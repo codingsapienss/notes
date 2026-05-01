@@ -15,7 +15,7 @@
 
 ---
 
-# Why Do We Need Type Aliases?
+### Why Do We Need Type Aliases?
 
 Consider the following function:
 
@@ -63,7 +63,7 @@ Higher Chance of Errors
 
 ---
 
-# What is a Type Alias?
+### What is a Type Alias?
 
 A Type Alias allows us to:
 
@@ -73,7 +73,7 @@ Give a name to a type.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 type TypeName = TypeDefinition;
@@ -81,7 +81,7 @@ type TypeName = TypeDefinition;
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type User = {
@@ -105,7 +105,7 @@ const user: User = {
 
 ---
 
-# Mental Model
+### Mental Model
 
 Think of:
 
@@ -129,7 +129,7 @@ in C/C++.
 
 ---
 
-# Reusing Type Aliases
+### Reusing Type Aliases
 
 Without Alias:
 
@@ -160,11 +160,11 @@ More readable.
 
 ---
 
-# Type Aliases with Variables
+### Type Aliases with Variables
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type User = {
@@ -196,7 +196,7 @@ Prashant
 
 ---
 
-# Type Checking Still Happens
+### Type Checking Still Happens
 
 ---
 
@@ -229,13 +229,13 @@ is not assignable to type 'number'
 
 ---
 
-# Nested Type Aliases
+### Nested Type Aliases
 
 One alias can use another alias.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Address = {
@@ -269,7 +269,7 @@ const user: User = {
 
 ---
 
-# Why Nest Types?
+### Why Nest Types?
 
 Real applications contain relationships.
 
@@ -290,7 +290,7 @@ Nested aliases make these models manageable.
 
 ---
 
-# Deeply Nested Example
+### Deeply Nested Example
 
 ```ts
 type Contact = {
@@ -326,13 +326,13 @@ const user: User = {
 
 ---
 
-# Type Aliases with Functions
+### Type Aliases with Functions
 
 Aliases can be used in parameters.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type User = {
@@ -370,7 +370,7 @@ Prashant
 
 ---
 
-# Type Aliases with Return Types
+### Type Aliases with Return Types
 
 ---
 
@@ -404,11 +404,11 @@ User
 
 ---
 
-# Type Aliases with Arrays
+### Type Aliases with Arrays
 
 ---
 
-## Array of Numbers
+#### Array of Numbers
 
 ```ts
 type Scores = number[];
@@ -424,7 +424,7 @@ const marks: Scores = [90, 85, 95];
 
 ---
 
-# Array of Strings
+### Array of Strings
 
 ```ts
 type UserNames = string[];
@@ -438,7 +438,7 @@ const users: UserNames = ["Prashant", "John", "Alex"];
 
 ---
 
-# Array of Objects
+### Array of Objects
 
 Very common.
 
@@ -476,13 +476,13 @@ const users: Users = [
 
 ---
 
-# Type Aliases with Functions (Function Types)
+### Type Aliases with Functions (Function Types)
 
 A Type Alias can describe a function itself.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type AddFunction = (a: number, b: number) => number;
@@ -512,7 +512,7 @@ Output
 
 ---
 
-# Why Use Function Aliases?
+### Why Use Function Aliases?
 
 Useful when:
 
@@ -539,13 +539,13 @@ const multiply: Calculator = (a, b) => a * b;
 
 ---
 
-# Type Aliases with Union Types
+### Type Aliases with Union Types
 
 One of the biggest advantages.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Status = "success" | "error" | "loading";
@@ -573,7 +573,7 @@ Error.
 
 ---
 
-# Why Is This Useful?
+### Why Is This Useful?
 
 Restricts values.
 
@@ -599,13 +599,13 @@ Reusable.
 
 ---
 
-# Type Aliases with Intersection Types
+### Type Aliases with Intersection Types
 
 Aliases can combine multiple types.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Person = {
@@ -651,11 +651,11 @@ const staff: Staff = {
 
 ---
 
-# Type Alias vs Inline Object Type
+### Type Alias vs Inline Object Type
 
 ---
 
-## Inline
+#### Inline
 
 ```ts
 function printUser(user: { name: string; age: number }) {}
@@ -663,7 +663,7 @@ function printUser(user: { name: string; age: number }) {}
 
 ---
 
-## Alias
+#### Alias
 
 ```ts
 type User = {
@@ -686,7 +686,7 @@ Maintainable
 
 ---
 
-# Can Type Aliases Be Reopened?
+### Can Type Aliases Be Reopened?
 
 Important Interview Question.
 
@@ -728,13 +728,13 @@ Type Aliases Cannot Merge
 
 ---
 
-# Naming Conventions
+### Naming Conventions
 
 Common conventions:
 
 ---
 
-## PascalCase
+#### PascalCase
 
 ```ts
 type User = {};
@@ -756,7 +756,7 @@ PascalCase is standard.
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -788,11 +788,11 @@ Much easier to maintain.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Repeating Types Everywhere
+#### Repeating Types Everywhere
 
 Bad
 
@@ -808,7 +808,7 @@ Use aliases instead.
 
 ---
 
-## Creating Duplicate Aliases
+#### Creating Duplicate Aliases
 
 Wrong
 
@@ -823,7 +823,7 @@ Error.
 
 ---
 
-## Using Poor Names
+#### Using Poor Names
 
 Bad
 
@@ -838,15 +838,15 @@ Use meaningful names.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Type Alias?
 
-### Answer
+#### Answer
 
 ```text
 A named reusable type definition.
@@ -854,11 +854,11 @@ A named reusable type definition.
 
 ---
 
-## Q2
+#### Q2
 
 Why use Type Aliases?
 
-### Answer
+#### Answer
 
 ```text
 To improve readability,
@@ -867,11 +867,11 @@ reuse and maintainability.
 
 ---
 
-## Q3
+#### Q3
 
 Can a Type Alias represent a function?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -881,11 +881,11 @@ type Add = (a: number, b: number) => number;
 
 ---
 
-## Q4
+#### Q4
 
 Can a Type Alias represent an array?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -895,11 +895,11 @@ type Users = User[];
 
 ---
 
-## Q5
+#### Q5
 
 Can Type Aliases be merged?
 
-### Answer
+#### Answer
 
 No.
 
@@ -966,21 +966,3 @@ type Staff = Person & Employee;
 - Use PascalCase naming conventions.
 - Prefer aliases over repeating inline object types.
 - Type Aliases form the foundation for scalable TypeScript codebases.
-
----
- 
- 
- 
- 
-
-
----\n*Last refined on April 17, 2026*
-
-
----\n*Last refined on April 18, 2026*
-
-
----\n*Last refined on April 20, 2026*
-
-
----\n*Last refined on April 27, 2026*
