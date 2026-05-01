@@ -26,11 +26,11 @@
 
 ---
 
-# Optional Properties
+### Optional Properties
 
 ---
 
-## What are Optional Properties?
+#### What are Optional Properties?
 
 Normally, every property in an object type is:
 
@@ -78,7 +78,7 @@ Property 'age' is missing
 
 ---
 
-# Making Properties Optional
+### Making Properties Optional
 
 Use:
 
@@ -90,7 +90,7 @@ after the property name.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 type User = {
@@ -100,7 +100,7 @@ type User = {
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type User = {
@@ -134,7 +134,7 @@ const user: User = {
 
 ---
 
-# How Optional Properties Work Internally
+### How Optional Properties Work Internally
 
 This is a very important concept.
 
@@ -168,7 +168,7 @@ The property may be undefined
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -194,7 +194,7 @@ undefined
 
 ---
 
-# Why Optional Properties Exist
+### Why Optional Properties Exist
 
 Imagine a profile form.
 
@@ -246,7 +246,7 @@ Valid
 
 ---
 
-# Optional Properties in Functions
+### Optional Properties in Functions
 
 Very common.
 
@@ -283,7 +283,7 @@ Valid.
 
 ---
 
-# Accessing Optional Properties Safely
+### Accessing Optional Properties Safely
 
 ---
 
@@ -319,7 +319,7 @@ age may be undefined
 
 ---
 
-# Safe Check
+### Safe Check
 
 ```ts
 if (user.age !== undefined) {
@@ -333,7 +333,7 @@ Valid.
 
 ---
 
-# Optional Chaining
+### Optional Chaining
 
 Modern TypeScript provides:
 
@@ -365,7 +365,7 @@ Much cleaner.
 
 ---
 
-# Multiple Optional Properties
+### Multiple Optional Properties
 
 ---
 
@@ -403,7 +403,7 @@ Valid
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -431,11 +431,11 @@ Optional properties model this perfectly.
 
 ---
 
-# Readonly Properties
+### Readonly Properties
 
 ---
 
-## What are Readonly Properties?
+#### What are Readonly Properties?
 
 Readonly properties can:
 
@@ -453,7 +453,7 @@ after creation.
 
 ---
 
-# Syntax
+### Syntax
 
 ```ts
 readonly property: Type;
@@ -461,7 +461,7 @@ readonly property: Type;
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -509,7 +509,7 @@ Cannot assign to readonly property
 
 ---
 
-# Why Use Readonly?
+### Why Use Readonly?
 
 Some values should never change.
 
@@ -525,7 +525,7 @@ Configuration Values
 
 ---
 
-# Example
+### Example
 
 ```ts
 type Product = {
@@ -555,7 +555,7 @@ product.productId = 999;
 
 ---
 
-# Readonly Does NOT Affect Other Properties
+### Readonly Does NOT Affect Other Properties
 
 ---
 
@@ -590,7 +590,7 @@ Only readonly properties are protected.
 
 ---
 
-# Readonly Arrays
+### Readonly Arrays
 
 Very common interview topic.
 
@@ -620,7 +620,7 @@ numbers.pop();
 
 ---
 
-# Readonly Array
+### Readonly Array
 
 ```ts
 const numbers: readonly number[] = [1, 2, 3];
@@ -658,7 +658,7 @@ Error.
 
 ---
 
-# Alternative Syntax
+### Alternative Syntax
 
 ---
 
@@ -682,7 +682,7 @@ Both create immutable arrays.
 
 ---
 
-# Example
+### Example
 
 ```ts
 const scores: ReadonlyArray<number> = [90, 95, 100];
@@ -698,7 +698,7 @@ scores.push(80);
 
 ---
 
-# Readonly vs const
+### Readonly vs const
 
 One of the most common interview questions.
 
@@ -722,7 +722,7 @@ They are not.
 
 ---
 
-# const
+### const
 
 Protects:
 
@@ -760,7 +760,7 @@ Valid.
 
 ---
 
-# readonly
+### readonly
 
 Protects:
 
@@ -788,7 +788,7 @@ user.name = "John";
 
 ---
 
-# Comparison
+### Comparison
 
 | Feature            | const | readonly |
 | ------------------ | ----- | -------- |
@@ -799,7 +799,7 @@ user.name = "John";
 
 ---
 
-# Combining Optional and Readonly
+### Combining Optional and Readonly
 
 ---
 
@@ -850,7 +850,7 @@ user.email = "abc@gmail.com";
 
 ---
 
-# Real World Example
+### Real World Example
 
 Database Entity
 
@@ -886,11 +886,11 @@ Perfect real-world modeling.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Forgetting Undefined Check
+#### Forgetting Undefined Check
 
 Wrong
 
@@ -914,7 +914,7 @@ if(user.age !== undefined)
 
 ---
 
-## Thinking Readonly Exists at Runtime
+#### Thinking Readonly Exists at Runtime
 
 Important.
 
@@ -942,7 +942,7 @@ No readonly protection exists.
 
 ---
 
-## Confusing const with readonly
+#### Confusing const with readonly
 
 Remember:
 
@@ -954,15 +954,15 @@ readonly → property
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What does `?` mean in TypeScript?
 
-### Answer
+#### Answer
 
 ```text
 Optional Property
@@ -970,7 +970,7 @@ Optional Property
 
 ---
 
-## Q2
+#### Q2
 
 How does TypeScript internally treat:
 
@@ -978,7 +978,7 @@ How does TypeScript internally treat:
 age?: number
 ```
 
-### Answer
+#### Answer
 
 ```ts
 age: number | undefined;
@@ -986,11 +986,11 @@ age: number | undefined;
 
 ---
 
-## Q3
+#### Q3
 
 What does readonly do?
 
-### Answer
+#### Answer
 
 ```text
 Prevents property reassignment.
@@ -998,11 +998,11 @@ Prevents property reassignment.
 
 ---
 
-## Q4
+#### Q4
 
 Difference between const and readonly?
 
-### Answer
+#### Answer
 
 ```text
 const protects variables.
@@ -1012,11 +1012,11 @@ readonly protects properties.
 
 ---
 
-## Q5
+#### Q5
 
 How do you create a readonly array?
 
-### Answer
+#### Answer
 
 ```ts
 readonly number[]
@@ -1030,7 +1030,7 @@ ReadonlyArray<number>;
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 age?: number;
@@ -1068,7 +1068,7 @@ ReadonlyArray<number>;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Optional properties use the `?` operator.
 - Optional properties may be missing or undefined.
@@ -1080,8 +1080,3 @@ ReadonlyArray<number>;
 - `const` and `readonly` solve different problems.
 - Both optional and readonly properties are extremely common in production TypeScript code.
 - These concepts form the foundation for Interfaces, Classes and API Modeling.
-
----
-
-
----\n*Last refined on April 15, 2026*
