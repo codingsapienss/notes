@@ -31,7 +31,7 @@
 
 ---
 
-# What is a Union Type?
+### What is a Union Type?
 
 A Union Type allows a value to be:
 
@@ -41,7 +41,7 @@ One of Multiple Types
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 Type1 | Type2;
@@ -55,7 +55,7 @@ Type1 OR Type2
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let value: string | number;
@@ -103,7 +103,7 @@ is not assignable to type
 
 ---
 
-# Why Do We Need Union Types?
+### Why Do We Need Union Types?
 
 Without unions:
 
@@ -147,11 +147,11 @@ Now TypeScript still checks types.
 
 ---
 
-# Union of Primitive Types
+### Union of Primitive Types
 
 ---
 
-## String or Number
+#### String or Number
 
 ```ts
 let id: string | number;
@@ -183,7 +183,7 @@ id = true;
 
 ---
 
-# Multiple Types
+### Multiple Types
 
 A union can contain many types.
 
@@ -221,7 +221,7 @@ value = false;
 
 ---
 
-# Union with null
+### Union with null
 
 Very common.
 
@@ -251,7 +251,7 @@ user = null;
 
 ---
 
-# Why Use null?
+### Why Use null?
 
 Represents:
 
@@ -277,7 +277,7 @@ selectedUser = "Prashant";
 
 ---
 
-# Union with undefined
+### Union with undefined
 
 ---
 
@@ -305,7 +305,7 @@ username = undefined;
 
 ---
 
-# Common Real World Pattern
+### Common Real World Pattern
 
 ```ts
 let currentUser: User | null;
@@ -321,7 +321,7 @@ no user is logged in
 
 ---
 
-# Union Types with Functions
+### Union Types with Functions
 
 ---
 
@@ -359,7 +359,7 @@ printId(true);
 
 ---
 
-# Important Problem
+### Important Problem
 
 Consider:
 
@@ -403,11 +403,11 @@ which will be covered in Part 3C.
 
 ---
 
-# Union Types with Arrays
+### Union Types with Arrays
 
 ---
 
-## Array of Multiple Types
+#### Array of Multiple Types
 
 ```ts
 const values: (string | number)[] = ["John", 25, "Alex", 40];
@@ -419,11 +419,11 @@ Valid.
 
 ---
 
-# Difference Between These Two
+### Difference Between These Two
 
 ---
 
-## Version 1
+#### Version 1
 
 ```ts
 string | number[]
@@ -459,7 +459,7 @@ Valid.
 
 ---
 
-# Version 2
+### Version 2
 
 ```ts
 (string | number)[]
@@ -488,7 +488,7 @@ This is a very common interview question.
 
 ---
 
-# Union Types with Objects
+### Union Types with Objects
 
 ---
 
@@ -540,7 +540,7 @@ person = {
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -590,7 +590,7 @@ Error Response
 
 ---
 
-# Literal Types
+### Literal Types
 
 Literal Types are often combined with unions.
 
@@ -630,7 +630,7 @@ Error.
 
 ---
 
-# Why Are Literal Unions Useful?
+### Why Are Literal Unions Useful?
 
 They restrict values.
 
@@ -668,7 +668,7 @@ Much safer.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Request State
 
@@ -702,7 +702,7 @@ state = "completed";
 
 ---
 
-# Union Type Aliases
+### Union Type Aliases
 
 Very common.
 
@@ -736,7 +736,7 @@ Cleaner.
 
 ---
 
-# Optional Properties Internally Use Union Types
+### Optional Properties Internally Use Union Types
 
 This is a very important connection.
 
@@ -770,11 +770,11 @@ Union Types.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any Instead of Union
+#### Using any Instead of Union
 
 Bad
 
@@ -792,7 +792,7 @@ let value: string | number;
 
 ---
 
-# Assuming All Methods Exist
+### Assuming All Methods Exist
 
 Wrong
 
@@ -812,7 +812,7 @@ Must narrow first.
 
 ---
 
-# Overusing Large Unions
+### Overusing Large Unions
 
 Bad
 
@@ -830,15 +830,15 @@ Prefer meaningful aliases.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Union Type?
 
-### Answer
+#### Answer
 
 ```text
 A type that allows a value
@@ -847,11 +847,11 @@ to be one of several types.
 
 ---
 
-## Q2
+#### Q2
 
 What does `|` mean?
 
-### Answer
+#### Answer
 
 ```text
 OR
@@ -861,7 +861,7 @@ between types.
 
 ---
 
-## Q3
+#### Q3
 
 Difference between:
 
@@ -875,7 +875,7 @@ and
 (string | number)[]
 ```
 
-### Answer
+#### Answer
 
 ```ts
 string | number[]
@@ -901,21 +901,21 @@ array containing strings and numbers
 
 ---
 
-## Q4
+#### Q4
 
 Why are Literal Unions useful?
 
-### Answer
+#### Answer
 
 They restrict values to a predefined set.
 
 ---
 
-## Q5
+#### Q5
 
 How are Optional Properties related to Union Types?
 
-### Answer
+#### Answer
 
 ```ts
 age?: number
@@ -929,7 +929,7 @@ age: number | undefined;
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 let value: string | number;
@@ -973,7 +973,7 @@ string | number[]
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Union Types allow values to belong to multiple possible types.
 - The `|` operator means "OR" between types.
@@ -985,17 +985,3 @@ string | number[]
 - TypeScript prevents unsafe operations on unions until they are narrowed.
 - Union Types provide flexibility without sacrificing type safety.
 - Understanding unions is essential before learning Type Narrowing and Discriminated Unions.
-
----
-
-
----\n*Last refined on April 14, 2026*
-
-
----\n*Last refined on April 18, 2026*
-
-
----\n*Last refined on April 19, 2026*
-
-
----\n*Last refined on April 20, 2026*
