@@ -20,7 +20,7 @@
 
 ---
 
-# What are Primitive Types?
+### What are Primitive Types?
 
 Primitive Types are the most basic data types available in TypeScript.
 
@@ -44,7 +44,7 @@ bigint;
 
 ---
 
-# Primitive Types in TypeScript
+### Primitive Types in TypeScript
 
 | Type      | Example    |
 | --------- | ---------- |
@@ -58,7 +58,7 @@ bigint;
 
 ---
 
-# Type Annotation
+### Type Annotation
 
 Type Annotation means:
 
@@ -69,7 +69,7 @@ what type a variable should store.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 let variableName: Type = value;
@@ -77,7 +77,7 @@ let variableName: Type = value;
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let username: string = "Prashant";
@@ -95,7 +95,7 @@ Value = "Prashant"
 
 ---
 
-# Why Use Type Annotations?
+### Why Use Type Annotations?
 
 Without TypeScript:
 
@@ -125,13 +125,13 @@ Type 'string' is not assignable to type 'number'
 
 ---
 
-# String Type
+### String Type
 
 Represents text values.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let firstName: string = "Prashant";
@@ -139,7 +139,7 @@ let firstName: string = "Prashant";
 
 ---
 
-## Valid Values
+#### Valid Values
 
 ```ts
 let city: string = "Delhi";
@@ -149,7 +149,7 @@ let company: string = "OpenAI";
 
 ---
 
-## Invalid
+#### Invalid
 
 ```ts
 let city: string = 100;
@@ -163,7 +163,7 @@ Type 'number' is not assignable to type 'string'
 
 ---
 
-# String Methods
+### String Methods
 
 TypeScript automatically understands available methods.
 
@@ -183,7 +183,7 @@ PRASHANT
 
 ---
 
-## IntelliSense Benefit
+#### IntelliSense Benefit
 
 TypeScript knows:
 
@@ -203,7 +203,7 @@ replace();
 
 ---
 
-# Number Type
+### Number Type
 
 Represents:
 
@@ -225,7 +225,7 @@ handles all numeric values.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let age: number = 25;
@@ -233,7 +233,7 @@ let age: number = 25;
 
 ---
 
-## Decimal
+#### Decimal
 
 ```ts
 let price: number = 99.99;
@@ -241,7 +241,7 @@ let price: number = 99.99;
 
 ---
 
-## Negative
+#### Negative
 
 ```ts
 let balance: number = -500;
@@ -249,7 +249,7 @@ let balance: number = -500;
 
 ---
 
-## Scientific Notation
+#### Scientific Notation
 
 ```ts
 let population: number = 1.5e9;
@@ -257,11 +257,11 @@ let population: number = 1.5e9;
 
 ---
 
-# Special Number Values
+### Special Number Values
 
 ---
 
-## Infinity
+#### Infinity
 
 ```ts
 let value: number = Infinity;
@@ -269,7 +269,7 @@ let value: number = Infinity;
 
 ---
 
-## NaN
+#### NaN
 
 ```ts
 let result: number = NaN;
@@ -291,7 +291,7 @@ NaN
 
 ---
 
-# Boolean Type
+### Boolean Type
 
 Represents:
 
@@ -304,7 +304,7 @@ only.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let isLoggedIn: boolean = true;
@@ -318,7 +318,7 @@ let isAdmin: boolean = false;
 
 ---
 
-# Common Usage
+### Common Usage
 
 ```ts
 if (isLoggedIn) {
@@ -328,7 +328,7 @@ if (isLoggedIn) {
 
 ---
 
-# Undefined Type
+### Undefined Type
 
 Represents:
 
@@ -338,7 +338,7 @@ Value not assigned yet
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let username: undefined = undefined;
@@ -356,7 +356,7 @@ covered later in Union Types.
 
 ---
 
-# Null Type
+### Null Type
 
 Represents:
 
@@ -366,7 +366,7 @@ Intentional absence of value
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let selectedUser: null = null;
@@ -374,7 +374,7 @@ let selectedUser: null = null;
 
 ---
 
-# Difference Between Null and Undefined
+### Difference Between Null and Undefined
 
 | Feature     | null                | undefined    |
 | ----------- | ------------------- | ------------ |
@@ -384,7 +384,7 @@ let selectedUser: null = null;
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let user = null;
@@ -410,13 +410,13 @@ Value not assigned.
 
 ---
 
-# BigInt Type
+### BigInt Type
 
 Used for very large integers.
 
 ---
 
-## Problem with number
+#### Problem with number
 
 JavaScript numbers become unsafe after:
 
@@ -437,7 +437,7 @@ Unexpected results may occur.
 
 ---
 
-# BigInt Solution
+### BigInt Solution
 
 ```ts
 let largeNumber: bigint = 9007199254740993n;
@@ -451,7 +451,7 @@ n suffix
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let population: bigint = 9999999999999999999n;
@@ -459,7 +459,7 @@ let population: bigint = 9999999999999999999n;
 
 ---
 
-# BigInt Rules
+### BigInt Rules
 
 ---
 
@@ -489,7 +489,7 @@ BigInt(20);
 
 ---
 
-# Symbol Type
+### Symbol Type
 
 One of the least used primitive types.
 
@@ -503,7 +503,7 @@ Unique Identifiers
 
 ---
 
-## Example
+#### Example
 
 ```ts
 const id1 = Symbol();
@@ -530,7 +530,7 @@ Even though both were created the same way.
 
 ---
 
-# Why Symbols Exist?
+### Why Symbols Exist?
 
 Avoid key collisions.
 
@@ -548,13 +548,13 @@ const user = {
 
 ---
 
-# Type Inference
+### Type Inference
 
 One of TypeScript's most powerful features.
 
 ---
 
-# What is Type Inference?
+### What is Type Inference?
 
 TypeScript can automatically determine the type.
 
@@ -584,7 +584,7 @@ automatically.
 
 ---
 
-# Example
+### Example
 
 ```ts
 let age = 25;
@@ -608,11 +608,11 @@ Error.
 
 ---
 
-# Inference Examples
+### Inference Examples
 
 ---
 
-## String
+#### String
 
 ```ts
 let city = "Delhi";
@@ -626,7 +626,7 @@ string;
 
 ---
 
-## Number
+#### Number
 
 ```ts
 let score = 100;
@@ -640,7 +640,7 @@ number;
 
 ---
 
-## Boolean
+#### Boolean
 
 ```ts
 let isActive = true;
@@ -654,13 +654,13 @@ boolean;
 
 ---
 
-# When Should You Use Explicit Types?
+### When Should You Use Explicit Types?
 
 Use explicit annotations when:
 
 ---
 
-## Function Parameters
+#### Function Parameters
 
 ```ts
 function greet(name: string) {}
@@ -668,7 +668,7 @@ function greet(name: string) {}
 
 ---
 
-## API Models
+#### API Models
 
 ```ts
 type User = {
@@ -679,7 +679,7 @@ type User = {
 
 ---
 
-## Public Interfaces
+#### Public Interfaces
 
 ```ts
 interface Product {
@@ -689,11 +689,11 @@ interface Product {
 
 ---
 
-# When Can You Rely on Inference?
+### When Can You Rely on Inference?
 
 ---
 
-## Local Variables
+#### Local Variables
 
 ```ts
 let count = 10;
@@ -701,7 +701,7 @@ let count = 10;
 
 ---
 
-## Simple Values
+#### Simple Values
 
 ```ts
 const city = "Delhi";
@@ -709,13 +709,13 @@ const city = "Delhi";
 
 ---
 
-# let vs const Inference
+### let vs const Inference
 
 Important Interview Topic.
 
 ---
 
-## let
+#### let
 
 ```ts
 let city = "Delhi";
@@ -739,7 +739,7 @@ Valid.
 
 ---
 
-## const
+#### const
 
 ```ts
 const city = "Delhi";
@@ -765,11 +765,11 @@ Error.
 
 ---
 
-# Type Widening
+### Type Widening
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let status = "active";
@@ -787,7 +787,7 @@ because value may change later.
 
 ---
 
-# Literal Type Inference
+### Literal Type Inference
 
 ---
 
@@ -809,11 +809,11 @@ string;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Mixing Types
+#### Mixing Types
 
 ```ts
 let age: number = 25;
@@ -825,7 +825,7 @@ Error.
 
 ---
 
-## Using BigInt with Number
+#### Using BigInt with Number
 
 Wrong
 
@@ -843,7 +843,7 @@ Correct
 
 ---
 
-## Confusing null and undefined
+#### Confusing null and undefined
 
 Wrong assumption:
 
@@ -855,15 +855,15 @@ They are different values.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What are Primitive Types?
 
-### Answer
+#### Answer
 
 ```text
 The basic built-in data types such as:
@@ -873,11 +873,11 @@ undefined, bigint and symbol.
 
 ---
 
-## Q2
+#### Q2
 
 What is Type Annotation?
 
-### Answer
+#### Answer
 
 ```text
 Explicitly specifying the type of a variable.
@@ -885,11 +885,11 @@ Explicitly specifying the type of a variable.
 
 ---
 
-## Q3
+#### Q3
 
 What is Type Inference?
 
-### Answer
+#### Answer
 
 ```text
 TypeScript automatically determining a type.
@@ -897,11 +897,11 @@ TypeScript automatically determining a type.
 
 ---
 
-## Q4
+#### Q4
 
 Difference between null and undefined?
 
-### Answer
+#### Answer
 
 ```text
 null → intentional absence of value
@@ -911,11 +911,11 @@ undefined → value not assigned
 
 ---
 
-## Q5
+#### Q5
 
 Why was bigint introduced?
 
-### Answer
+#### Answer
 
 ```text
 To safely represent integers larger than
@@ -924,7 +924,7 @@ Number.MAX_SAFE_INTEGER.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 let name: string = "Prashant";
@@ -960,7 +960,7 @@ let city = "Delhi"; // inferred string
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Primitive Types are the foundation of TypeScript's type system.
 - Type Annotation explicitly defines a type.
@@ -972,15 +972,3 @@ let city = "Delhi"; // inferred string
 - TypeScript can infer types in many situations.
 - Prefer inference for simple local variables.
 - Use explicit annotations for public APIs, function parameters, and shared types.
-
----
- 
-
-
----\n*Last refined on April 17, 2026*
-
-
----\n*Last refined on April 21, 2026*
-
-
----\n*Last refined on April 28, 2026*
