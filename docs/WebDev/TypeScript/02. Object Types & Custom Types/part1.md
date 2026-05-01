@@ -20,7 +20,7 @@
 
 ---
 
-# What is an Object?
+### What is an Object?
 
 An object is a collection of:
 
@@ -39,7 +39,7 @@ const user = {
 
 ---
 
-# Why Do We Need Object Types?
+### Why Do We Need Object Types?
 
 Consider:
 
@@ -63,11 +63,11 @@ But sometimes we want to explicitly define the structure.
 
 ---
 
-# Inline Object Types
+### Inline Object Types
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 let variable: {
@@ -77,7 +77,7 @@ let variable: {
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let user: {
@@ -115,7 +115,7 @@ Property 'age' is missing
 
 ---
 
-# Multiple Properties
+### Multiple Properties
 
 ```ts
 let product: {
@@ -139,7 +139,7 @@ product = {
 
 ---
 
-# Property Types Can Differ
+### Property Types Can Differ
 
 ```ts
 let employee: {
@@ -163,7 +163,7 @@ employee = {
 
 ---
 
-# Object Type Checking
+### Object Type Checking
 
 TypeScript checks:
 
@@ -204,13 +204,13 @@ is not assignable to type 'number'
 
 ---
 
-# Nested Objects
+### Nested Objects
 
 Objects can contain other objects.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 let user: {
@@ -238,7 +238,7 @@ user = {
 
 ---
 
-# Deeply Nested Objects
+### Deeply Nested Objects
 
 ```ts
 let company: {
@@ -270,13 +270,13 @@ company = {
 
 ---
 
-# Object Types in Functions
+### Object Types in Functions
 
 Very common in real projects.
 
 ---
 
-## Parameter Object
+#### Parameter Object
 
 ```ts
 function printUser(user: { name: string; age: number }) {
@@ -303,7 +303,7 @@ Prashant
 
 ---
 
-# Function Returning Objects
+### Function Returning Objects
 
 ---
 
@@ -334,7 +334,7 @@ Returned Value
 
 ---
 
-# Problem with Inline Object Types
+### Problem with Inline Object Types
 
 Imagine:
 
@@ -372,7 +372,7 @@ covered in upcoming chapters.
 
 ---
 
-# Object Type Inference
+### Object Type Inference
 
 TypeScript can infer object types automatically.
 
@@ -400,7 +400,7 @@ Inferred Type
 
 ---
 
-# Accessing Properties
+### Accessing Properties
 
 ---
 
@@ -429,7 +429,7 @@ Prashant
 
 ---
 
-# Invalid Property Access
+### Invalid Property Access
 
 ```ts
 console.log(user.salary);
@@ -448,7 +448,7 @@ This is one of the biggest benefits of TypeScript.
 
 ---
 
-# Duck Typing
+### Duck Typing
 
 TypeScript follows:
 
@@ -464,7 +464,7 @@ Duck Typing
 
 ---
 
-# What Does It Mean?
+### What Does It Mean?
 
 TypeScript cares about:
 
@@ -526,7 +526,7 @@ Required structure exists.
 
 ---
 
-# Structural Typing Example
+### Structural Typing Example
 
 ---
 
@@ -570,7 +570,7 @@ Therefore valid.
 
 ---
 
-# Excess Property Checking
+### Excess Property Checking
 
 One of the most common interview questions.
 
@@ -603,7 +603,7 @@ Object literal may only specify known properties.
 
 ---
 
-# Why Error Occurs?
+### Why Error Occurs?
 
 When passing:
 
@@ -627,7 +627,7 @@ Extra properties not allowed.
 
 ---
 
-# Example
+### Example
 
 Expected
 
@@ -656,7 +656,7 @@ Compilation Error
 
 ---
 
-# Interesting Behavior
+### Interesting Behavior
 
 ---
 
@@ -703,7 +703,7 @@ which satisfies the requirement.
 
 ---
 
-# Required vs Extra Properties
+### Required vs Extra Properties
 
 ---
 
@@ -758,7 +758,7 @@ Valid
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -800,11 +800,11 @@ Prashant
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Missing Required Property
+#### Missing Required Property
 
 ```ts
 let user: {
@@ -821,7 +821,7 @@ Error.
 
 ---
 
-## Wrong Property Type
+#### Wrong Property Type
 
 ```ts
 user = {
@@ -834,7 +834,7 @@ Error.
 
 ---
 
-## Invalid Property Access
+#### Invalid Property Access
 
 ```ts
 console.log(user.salary);
@@ -844,15 +844,15 @@ Error.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Object Type?
 
-### Answer
+#### Answer
 
 ```text
 A type that describes the structure
@@ -861,11 +861,11 @@ of an object.
 
 ---
 
-## Q2
+#### Q2
 
 What is Structural Typing?
 
-### Answer
+#### Answer
 
 ```text
 TypeScript checks object structure
@@ -874,11 +874,11 @@ instead of object names.
 
 ---
 
-## Q3
+#### Q3
 
 What is Duck Typing?
 
-### Answer
+#### Answer
 
 ```text
 If an object has the required properties,
@@ -887,11 +887,11 @@ it is considered compatible.
 
 ---
 
-## Q4
+#### Q4
 
 What is Excess Property Checking?
 
-### Answer
+#### Answer
 
 ```text
 Extra property validation performed
@@ -900,7 +900,7 @@ on object literals.
 
 ---
 
-## Q5
+#### Q5
 
 Difference between:
 
@@ -922,7 +922,7 @@ const user = {
 createUser(user);
 ```
 
-### Answer
+#### Answer
 
 Direct object literals trigger Excess Property Checking.
 
@@ -930,7 +930,7 @@ Variables use Structural Typing.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 let user: {
@@ -974,7 +974,7 @@ const user = {
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Object Types define the structure of objects.
 - TypeScript validates property names and property types.
@@ -986,17 +986,3 @@ const user = {
 - Object variables are checked using Structural Typing.
 - Inline object types become difficult to maintain in large applications.
 - Type Aliases and Interfaces solve this problem and are the next logical step.
-
----
-
-
----\n*Last refined on April 12, 2026*
-
-
----\n*Last refined on April 13, 2026*
-
-
----\n*Last refined on April 13, 2026*
-
-
----\n*Last refined on April 25, 2026*
