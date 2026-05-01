@@ -2,7 +2,7 @@
 
 ---
 
-# What is TypeScript?
+### What is TypeScript?
 
 TypeScript is an:
 
@@ -26,7 +26,7 @@ and adds:
 
 ---
 
-## Simple Definition
+#### Simple Definition
 
 You can think of TypeScript as:
 
@@ -48,7 +48,7 @@ TypeScript catches the mistake before the code runs.
 
 ---
 
-# Why Was TypeScript Created?
+### Why Was TypeScript Created?
 
 JavaScript was originally designed for:
 
@@ -77,11 +77,11 @@ TypeScript solves many of these issues.
 
 ---
 
-# Problems with JavaScript
+### Problems with JavaScript
 
 ---
 
-## Example 1
+#### Example 1
 
 ```js
 function add(a, b) {
@@ -105,7 +105,7 @@ This can easily introduce bugs.
 
 ---
 
-## Example 2
+#### Example 2
 
 ```js
 const user = {
@@ -125,7 +125,7 @@ The application crashes while running.
 
 ---
 
-# How TypeScript Helps
+### How TypeScript Helps
 
 TypeScript checks code:
 
@@ -153,7 +153,7 @@ No need to wait until runtime.
 
 ---
 
-# JavaScript vs TypeScript
+### JavaScript vs TypeScript
 
 | Feature         | JavaScript | TypeScript   |
 | --------------- | ---------- | ------------ |
@@ -168,13 +168,13 @@ No need to wait until runtime.
 
 ---
 
-# Dynamic Typing vs Static Typing
+### Dynamic Typing vs Static Typing
 
 This is one of the most important concepts.
 
 ---
 
-## Dynamic Typing
+#### Dynamic Typing
 
 JavaScript is:
 
@@ -198,7 +198,7 @@ The variable can hold different types during execution.
 
 ---
 
-## Static Typing
+#### Static Typing
 
 TypeScript is:
 
@@ -224,7 +224,7 @@ TypeScript enforces it.
 
 ---
 
-# What is a Type?
+### What is a Type?
 
 A type defines:
 
@@ -266,7 +266,7 @@ Type = number
 
 ---
 
-# What is Type Safety?
+### What is Type Safety?
 
 Type Safety means:
 
@@ -292,7 +292,7 @@ TypeScript prevents invalid operations.
 
 ---
 
-# TypeScript is NOT a New Runtime
+### TypeScript is NOT a New Runtime
 
 Many beginners think:
 
@@ -312,11 +312,11 @@ only.
 
 ---
 
-# TypeScript Compilation Process
+### TypeScript Compilation Process
 
 ---
 
-## Step 1
+#### Step 1
 
 Write TypeScript
 
@@ -326,7 +326,7 @@ let username: string = "Prashant";
 
 ---
 
-## Step 2
+#### Step 2
 
 TypeScript Compiler
 
@@ -342,7 +342,7 @@ checks:
 
 ---
 
-## Step 3
+#### Step 3
 
 Compiler removes TypeScript-specific code.
 
@@ -354,13 +354,13 @@ let username = "Prashant";
 
 ---
 
-## Step 4
+#### Step 4
 
 Browser runs JavaScript.
 
 ---
 
-# TypeScript Compilation Flow
+### TypeScript Compilation Flow
 
 ```text
 TypeScript Code
@@ -374,7 +374,7 @@ TypeScript Code
 
 ---
 
-# What is tsc?
+### What is tsc?
 
 `tsc` stands for:
 
@@ -412,7 +412,7 @@ app.js
 
 ---
 
-# Example Compilation
+### Example Compilation
 
 TypeScript:
 
@@ -434,7 +434,7 @@ Type information is removed.
 
 ---
 
-# What is Type Erasure?
+### What is Type Erasure?
 
 One of the most important TypeScript concepts.
 
@@ -470,7 +470,7 @@ Type Erasure
 
 ---
 
-# Why Does Type Erasure Happen?
+### Why Does Type Erasure Happen?
 
 Because:
 
@@ -506,11 +506,11 @@ Only JavaScript remains.
 
 ---
 
-# TypeScript Exists in Two Phases
+### TypeScript Exists in Two Phases
 
 ---
 
-## Development Phase
+#### Development Phase
 
 TypeScript helps with:
 
@@ -530,7 +530,7 @@ let age: number = 25;
 
 ---
 
-## Runtime Phase
+#### Runtime Phase
 
 Only JavaScript executes.
 
@@ -540,7 +540,7 @@ let age = 25;
 
 ---
 
-# Does TypeScript Improve Performance?
+### Does TypeScript Improve Performance?
 
 Common Interview Question.
 
@@ -576,17 +576,17 @@ Not runtime speed.
 
 ---
 
-# Advantages of TypeScript
+### Advantages of TypeScript
 
 ---
 
-## Better Error Detection
+#### Better Error Detection
 
 Errors found before execution.
 
 ---
 
-## Excellent IDE Support
+#### Excellent IDE Support
 
 Features:
 
@@ -597,13 +597,13 @@ Features:
 
 ---
 
-## Easier Maintenance
+#### Easier Maintenance
 
 Large codebases become manageable.
 
 ---
 
-## Self Documentation
+#### Self Documentation
 
 Example:
 
@@ -615,7 +615,7 @@ The function explains itself.
 
 ---
 
-## Better Team Collaboration
+#### Better Team Collaboration
 
 Types clearly communicate:
 
@@ -626,11 +626,11 @@ Expected Outputs
 
 ---
 
-# Limitations of TypeScript
+### Limitations of TypeScript
 
 ---
 
-## Extra Build Step
+#### Extra Build Step
 
 Need compilation:
 
@@ -640,7 +640,7 @@ TS → JS
 
 ---
 
-## Learning Curve
+#### Learning Curve
 
 Need to learn:
 
@@ -651,7 +651,7 @@ Need to learn:
 
 ---
 
-## Not Runtime Validation
+#### Not Runtime Validation
 
 Example:
 
@@ -669,7 +669,7 @@ Runtime validation may still be needed.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Without TypeScript:
 
@@ -699,7 +699,7 @@ Safer and easier to maintain.
 
 ---
 
-# When Should You Use TypeScript?
+### When Should You Use TypeScript?
 
 Use TypeScript for:
 
@@ -723,15 +723,15 @@ JavaScript may be enough.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is TypeScript?
 
-### Answer
+#### Answer
 
 ```text
 A statically typed superset of JavaScript developed by Microsoft.
@@ -739,11 +739,11 @@ A statically typed superset of JavaScript developed by Microsoft.
 
 ---
 
-## Q2
+#### Q2
 
 Does TypeScript run in browsers?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -753,11 +753,11 @@ TypeScript must be compiled first.
 
 ---
 
-## Q3
+#### Q3
 
 What is tsc?
 
-### Answer
+#### Answer
 
 ```text
 TypeScript Compiler.
@@ -765,11 +765,11 @@ TypeScript Compiler.
 
 ---
 
-## Q4
+#### Q4
 
 What is Type Erasure?
 
-### Answer
+#### Answer
 
 ```text
 Removal of TypeScript type information during compilation.
@@ -777,11 +777,11 @@ Removal of TypeScript type information during compilation.
 
 ---
 
-## Q5
+#### Q5
 
 Does TypeScript improve runtime performance?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -790,7 +790,7 @@ It improves development experience and code quality.
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - TypeScript is a superset of JavaScript.
 - TypeScript adds static typing to JavaScript.
@@ -802,8 +802,3 @@ It improves development experience and code quality.
 - TypeScript improves maintainability, tooling, and developer productivity.
 - TypeScript does not improve runtime performance.
 - TypeScript is widely used in modern frontend and backend applications.
-
----
-
-
----\n*Last refined on April 28, 2026*
