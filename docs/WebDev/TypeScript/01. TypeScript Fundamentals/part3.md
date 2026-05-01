@@ -21,13 +21,13 @@
 
 ---
 
-# What is a Function?
+### What is a Function?
 
 A function is a reusable block of code designed to perform a specific task.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function greet() {
@@ -51,7 +51,7 @@ Hello World
 
 ---
 
-# Why Do We Need Functions?
+### Why Do We Need Functions?
 
 Without functions:
 
@@ -81,7 +81,7 @@ Reusable and cleaner.
 
 ---
 
-# Function Syntax
+### Function Syntax
 
 ```ts
 function functionName(parameters): ReturnType {
@@ -91,7 +91,7 @@ function functionName(parameters): ReturnType {
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function add(a: number, b: number): number {
@@ -101,7 +101,7 @@ function add(a: number, b: number): number {
 
 ---
 
-# Anatomy of a Function
+### Anatomy of a Function
 
 ```ts
 function add(a: number, b: number): number {
@@ -120,13 +120,13 @@ function add(a: number, b: number): number {
 
 ---
 
-# Parameter Types
+### Parameter Types
 
 TypeScript allows explicit parameter typing.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function greet(name: string) {
@@ -159,7 +159,7 @@ is not assignable to parameter of type 'string'
 
 ---
 
-# Multiple Parameters
+### Multiple Parameters
 
 ```ts
 function add(a: number, b: number) {
@@ -193,13 +193,13 @@ Compilation Error.
 
 ---
 
-# Return Types
+### Return Types
 
 Functions may return values.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function add(a: number, b: number): number {
@@ -217,7 +217,7 @@ number;
 
 ---
 
-# Why Specify Return Types?
+### Why Specify Return Types?
 
 TypeScript can infer return types.
 
@@ -229,7 +229,7 @@ However, explicit return types:
 
 ---
 
-# Example
+### Example
 
 ```ts
 function multiply(a: number, b: number): number {
@@ -239,7 +239,7 @@ function multiply(a: number, b: number): number {
 
 ---
 
-# Type Inference for Returns
+### Type Inference for Returns
 
 ```ts
 function multiply(a: number, b: number) {
@@ -255,13 +255,13 @@ number;
 
 ---
 
-# Void Functions
+### Void Functions
 
 Some functions return nothing.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function printMessage(): void {
@@ -285,7 +285,7 @@ No value returned
 
 ---
 
-# Example
+### Example
 
 ```ts
 function greet(): void {
@@ -295,7 +295,7 @@ function greet(): void {
 
 ---
 
-# What Happens if We Return Something?
+### What Happens if We Return Something?
 
 ```ts
 function greet(): void {
@@ -312,13 +312,13 @@ is not assignable to type 'void'
 
 ---
 
-# Never Type
+### Never Type
 
 One of the most misunderstood types.
 
 ---
 
-## What is never?
+#### What is never?
 
 Represents:
 
@@ -328,7 +328,7 @@ A function that never successfully finishes.
 
 ---
 
-# Example 1
+### Example 1
 
 Infinite Loop
 
@@ -344,7 +344,7 @@ Function never exits.
 
 ---
 
-# Example 2
+### Example 2
 
 Always Throws Error
 
@@ -360,7 +360,7 @@ Execution stops immediately.
 
 ---
 
-# Difference Between void and never
+### Difference Between void and never
 
 | Feature                 | void | never |
 | ----------------------- | ---- | ----- |
@@ -370,7 +370,7 @@ Execution stops immediately.
 
 ---
 
-## void Example
+#### void Example
 
 ```ts
 function print(): void {
@@ -388,7 +388,7 @@ but function finishes.
 
 ---
 
-## never Example
+#### never Example
 
 ```ts
 function crash(): never {
@@ -400,13 +400,13 @@ Function never completes.
 
 ---
 
-# Optional Parameters
+### Optional Parameters
 
 Sometimes parameters are not required.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 parameter?: Type
@@ -414,7 +414,7 @@ parameter?: Type
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function greet(name?: string) {
@@ -440,7 +440,7 @@ greet("Prashant");
 
 ---
 
-# What is the Type Internally?
+### What is the Type Internally?
 
 ```ts
 name?: string
@@ -456,7 +456,7 @@ Internally.
 
 ---
 
-# Example
+### Example
 
 ```ts
 function greet(name?: string) {
@@ -468,7 +468,7 @@ function greet(name?: string) {
 
 ---
 
-# Multiple Optional Parameters
+### Multiple Optional Parameters
 
 ```ts
 function createUser(name: string, age?: number) {}
@@ -492,7 +492,7 @@ createUser("Prashant", 25);
 
 ---
 
-# Important Rule
+### Important Rule
 
 Optional parameters should come after required parameters.
 
@@ -516,13 +516,13 @@ Compilation Error.
 
 ---
 
-# Default Parameters
+### Default Parameters
 
 Default values automatically apply when no value is provided.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function greet(name: string = "Guest") {
@@ -560,7 +560,7 @@ Prashant
 
 ---
 
-# Optional vs Default Parameters
+### Optional vs Default Parameters
 
 ---
 
@@ -596,13 +596,13 @@ if not supplied.
 
 ---
 
-# Function Expressions
+### Function Expressions
 
 Functions can be stored inside variables.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 const add = function (a: number, b: number): number {
@@ -626,13 +626,13 @@ Output:
 
 ---
 
-# Arrow Functions
+### Arrow Functions
 
 Modern JavaScript and TypeScript heavily use Arrow Functions.
 
 ---
 
-## Traditional Function
+#### Traditional Function
 
 ```ts
 function add(a: number, b: number): number {
@@ -642,7 +642,7 @@ function add(a: number, b: number): number {
 
 ---
 
-## Arrow Version
+#### Arrow Version
 
 ```ts
 const add = (a: number, b: number): number => {
@@ -652,7 +652,7 @@ const add = (a: number, b: number): number => {
 
 ---
 
-# Short Arrow Syntax
+### Short Arrow Syntax
 
 ```ts
 const add = (a: number, b: number): number => a + b;
@@ -660,7 +660,7 @@ const add = (a: number, b: number): number => a + b;
 
 ---
 
-# Example
+### Example
 
 ```ts
 const square = (value: number): number => value * value;
@@ -680,13 +680,13 @@ square(5);
 
 ---
 
-# Contextual Typing
+### Contextual Typing
 
 TypeScript can infer parameter types based on context.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 const names = ["Prashant", "John", "Alex"];
@@ -710,7 +710,7 @@ No explicit annotation required.
 
 ---
 
-# Function Type Annotation
+### Function Type Annotation
 
 Functions themselves have types.
 
@@ -736,7 +736,7 @@ Valid.
 
 ---
 
-# Callback Functions
+### Callback Functions
 
 Functions passed as arguments.
 
@@ -770,13 +770,13 @@ Processing
 
 ---
 
-# Rest Parameters
+### Rest Parameters
 
 Accept multiple values.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 function sum(...numbers: number[]): number {
@@ -800,11 +800,11 @@ Output:
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Missing Return
+#### Missing Return
 
 ```ts
 function add(a: number, b: number): number {}
@@ -818,7 +818,7 @@ Function lacks ending return statement.
 
 ---
 
-## Wrong Parameter Type
+#### Wrong Parameter Type
 
 ```ts
 function greet(name: string) {}
@@ -830,7 +830,7 @@ Error.
 
 ---
 
-## Returning Wrong Type
+#### Returning Wrong Type
 
 ```ts
 function getAge(): number {
@@ -842,15 +842,15 @@ Error.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 Difference between void and never?
 
-### Answer
+#### Answer
 
 ```text
 void:
@@ -862,11 +862,11 @@ Function never completes.
 
 ---
 
-## Q2
+#### Q2
 
 What is an optional parameter?
 
-### Answer
+#### Answer
 
 ```ts
 name?: string
@@ -876,31 +876,31 @@ Parameter may be omitted.
 
 ---
 
-## Q3
+#### Q3
 
 What is a default parameter?
 
-### Answer
+#### Answer
 
 A parameter with a predefined value.
 
 ---
 
-## Q4
+#### Q4
 
 What are arrow functions?
 
-### Answer
+#### Answer
 
 A shorter syntax for writing functions.
 
 ---
 
-## Q5
+#### Q5
 
 Can TypeScript infer return types?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -908,7 +908,7 @@ TypeScript can automatically infer return types.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 function add(a: number, b: number): number {
@@ -956,7 +956,7 @@ function sum(...nums: number[]) {}
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Functions are reusable blocks of code.
 - TypeScript adds type safety to function parameters and return values.
@@ -968,10 +968,3 @@ function sum(...nums: number[]) {}
 - Arrow Functions are widely used in modern TypeScript.
 - Contextual Typing allows TypeScript to infer parameter types automatically.
 - Functions themselves can have types.
-
----
- 
- 
-
-
----\n*Last refined on April 16, 2026*
