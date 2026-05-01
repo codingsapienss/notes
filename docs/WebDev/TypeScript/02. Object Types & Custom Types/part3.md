@@ -29,7 +29,7 @@
 
 ---
 
-# What are Utility Types?
+### What are Utility Types?
 
 Utility Types are:
 
@@ -65,7 +65,7 @@ TypeScript can generate it automatically.
 
 ---
 
-# Why Utility Types Exist?
+### Why Utility Types Exist?
 
 Without utility types:
 
@@ -106,7 +106,7 @@ Utility Types solve this.
 
 ---
 
-# Most Important Utility Types
+### Most Important Utility Types
 
 For interviews and real projects:
 
@@ -122,7 +122,7 @@ are the most important.
 
 ---
 
-# Base Type
+### Base Type
 
 We'll use this type throughout the chapter.
 
@@ -136,11 +136,11 @@ type User = {
 
 ---
 
-# Partial<T>
+### Partial<T>
 
 ---
 
-## Definition
+#### Definition
 
 Makes:
 
@@ -150,7 +150,7 @@ All Properties Optional
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 Partial<Type>;
@@ -158,7 +158,7 @@ Partial<Type>;
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -188,7 +188,7 @@ Generated Type
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const updateData: UpdateUser = {
@@ -204,7 +204,7 @@ Only one property provided.
 
 ---
 
-# Why is Partial Useful?
+### Why is Partial Useful?
 
 Common API Endpoint:
 
@@ -230,11 +230,11 @@ Partial perfectly models this.
 
 ---
 
-# Required<T>
+### Required<T>
 
 ---
 
-## Definition
+#### Definition
 
 Makes:
 
@@ -244,7 +244,7 @@ All Properties Required
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -272,7 +272,7 @@ Generated Type
 
 ---
 
-# Usage
+### Usage
 
 Valid
 
@@ -297,7 +297,7 @@ Error.
 
 ---
 
-# Why Use Required?
+### Why Use Required?
 
 Useful when:
 
@@ -323,11 +323,11 @@ ValidatedUser;
 
 ---
 
-# Readonly<T>
+### Readonly<T>
 
 ---
 
-## Definition
+#### Definition
 
 Makes every property:
 
@@ -337,7 +337,7 @@ Read Only
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -365,7 +365,7 @@ Generated Type
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const user: ReadonlyUser = {
@@ -392,7 +392,7 @@ Cannot assign to readonly property
 
 ---
 
-# Why Use Readonly?
+### Why Use Readonly?
 
 Protects objects from accidental modification.
 
@@ -409,17 +409,17 @@ API Response Models
 
 ---
 
-# Pick<T, K>
+### Pick<T, K>
 
 ---
 
-## Definition
+#### Definition
 
 Selects specific properties from a type.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 Pick<Type, Keys>;
@@ -427,7 +427,7 @@ Pick<Type, Keys>;
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -456,7 +456,7 @@ Generated Type
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const preview: UserPreview = {
@@ -467,7 +467,7 @@ const preview: UserPreview = {
 
 ---
 
-# Why Use Pick?
+### Why Use Pick?
 
 Often we don't need the entire object.
 
@@ -500,7 +500,7 @@ password;
 
 ---
 
-# Pick Multiple Properties
+### Pick Multiple Properties
 
 ```ts
 type PublicUser = Pick<User, "id" | "name" | "email">;
@@ -508,17 +508,17 @@ type PublicUser = Pick<User, "id" | "name" | "email">;
 
 ---
 
-# Omit<T, K>
+### Omit<T, K>
 
 ---
 
-## Definition
+#### Definition
 
 Removes properties from a type.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 Omit<Type, Keys>;
@@ -526,7 +526,7 @@ Omit<Type, Keys>;
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -557,7 +557,7 @@ Generated Type
 
 ---
 
-# Why Use Omit?
+### Why Use Omit?
 
 Very common in APIs.
 
@@ -596,11 +596,11 @@ password
 
 ---
 
-# Pick vs Omit
+### Pick vs Omit
 
 ---
 
-## Pick
+#### Pick
 
 Choose what you want.
 
@@ -610,7 +610,7 @@ Pick<User, "id" | "name">;
 
 ---
 
-## Omit
+#### Omit
 
 Remove what you don't want.
 
@@ -620,7 +620,7 @@ Omit<User, "password">;
 
 ---
 
-# Real World Example
+### Real World Example
 
 ---
 
@@ -661,13 +661,13 @@ Much safer.
 
 ---
 
-# Combining Utility Types
+### Combining Utility Types
 
 Utility Types can be combined.
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -696,7 +696,7 @@ Generated
 
 ---
 
-# Another Example
+### Another Example
 
 ```ts
 type User = {
@@ -725,7 +725,7 @@ Generated
 
 ---
 
-# Visual Summary
+### Visual Summary
 
 ---
 
@@ -811,11 +811,11 @@ Omit<User, "email">;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Confusing Pick and Omit
+#### Confusing Pick and Omit
 
 Wrong mental model:
 
@@ -833,7 +833,7 @@ Pick selects properties.
 
 ---
 
-## Assuming Readonly is Runtime Protection
+#### Assuming Readonly is Runtime Protection
 
 Wrong.
 
@@ -857,7 +857,7 @@ No Readonly Enforcement
 
 ---
 
-## Overusing Partial
+#### Overusing Partial
 
 Bad
 
@@ -877,15 +877,15 @@ Data may be incomplete.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What does Partial<T> do?
 
-### Answer
+#### Answer
 
 ```text
 Makes all properties optional.
@@ -893,11 +893,11 @@ Makes all properties optional.
 
 ---
 
-## Q2
+#### Q2
 
 What does Required<T> do?
 
-### Answer
+#### Answer
 
 ```text
 Makes all properties required.
@@ -905,11 +905,11 @@ Makes all properties required.
 
 ---
 
-## Q3
+#### Q3
 
 Difference between Pick and Omit?
 
-### Answer
+#### Answer
 
 ```text
 Pick selects properties.
@@ -919,11 +919,11 @@ Omit removes properties.
 
 ---
 
-## Q4
+#### Q4
 
 What does Readonly<T> do?
 
-### Answer
+#### Answer
 
 ```text
 Makes all properties immutable.
@@ -931,11 +931,11 @@ Makes all properties immutable.
 
 ---
 
-## Q5
+#### Q5
 
 Can Utility Types be combined?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -947,7 +947,7 @@ Readonly<Partial<User>>;
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 Partial<User>;
@@ -1005,7 +1005,7 @@ Omit<User, "password">;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Utility Types generate new types from existing types.
 - They reduce duplication and improve maintainability.
@@ -1017,9 +1017,3 @@ Omit<User, "password">;
 - Utility Types can be combined together.
 - They are heavily used in APIs, React applications and backend systems.
 - Understanding these five utility types is essential for professional TypeScript development.
-
----
- 
-
-
----\n*Last refined on April 25, 2026*
