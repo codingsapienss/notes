@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Pointers Part 1B"
+sidebar_label: 'Dereferencing & Copying'
 sidebar_position: 2
 ---
 
