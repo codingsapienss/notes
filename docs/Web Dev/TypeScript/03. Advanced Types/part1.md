@@ -1,4 +1,8 @@
-# — Union Types
+---
+sidebar_label: 'Union Types'
+---
+
+# Union Types
 
 > One of the biggest limitations of primitive typing is that a variable can normally hold only one type.
 >
