@@ -36,7 +36,7 @@
 
 ---
 
-# What is Type Narrowing?
+### What is Type Narrowing?
 
 Type Narrowing means:
 
@@ -75,7 +75,7 @@ inside the block.
 
 ---
 
-# Why Do We Need Type Narrowing?
+### Why Do We Need Type Narrowing?
 
 Consider:
 
@@ -107,13 +107,13 @@ We must first narrow it.
 
 ---
 
-# Type Narrowing Using typeof
+### Type Narrowing Using typeof
 
 Most common narrowing technique.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 typeof variable;
@@ -134,7 +134,7 @@ symbol
 
 ---
 
-# Example
+### Example
 
 ```ts
 function printValue(value: string | number) {
@@ -164,7 +164,7 @@ Valid.
 
 ---
 
-# Example
+### Example
 
 ```ts
 function printValue(value: string | number) {
@@ -202,7 +202,7 @@ printValue(25);
 
 ---
 
-# Multiple Narrowing Branches
+### Multiple Narrowing Branches
 
 ```ts
 function printValue(value: string | number) {
@@ -246,11 +246,11 @@ number;
 
 ---
 
-# typeof Supported Types
+### typeof Supported Types
 
 ---
 
-## String
+#### String
 
 ```ts
 typeof value === "string";
@@ -258,7 +258,7 @@ typeof value === "string";
 
 ---
 
-## Number
+#### Number
 
 ```ts
 typeof value === "number";
@@ -266,7 +266,7 @@ typeof value === "number";
 
 ---
 
-## Boolean
+#### Boolean
 
 ```ts
 typeof value === "boolean";
@@ -274,7 +274,7 @@ typeof value === "boolean";
 
 ---
 
-## Undefined
+#### Undefined
 
 ```ts
 typeof value === "undefined";
@@ -282,7 +282,7 @@ typeof value === "undefined";
 
 ---
 
-## Function
+#### Function
 
 ```ts
 typeof value === "function";
@@ -290,7 +290,7 @@ typeof value === "function";
 
 ---
 
-# Important Interview Question
+### Important Interview Question
 
 ---
 
@@ -332,7 +332,7 @@ Still exists.
 
 ---
 
-# Narrowing Using instanceof
+### Narrowing Using instanceof
 
 Used with:
 
@@ -344,7 +344,7 @@ Built-in Constructors
 
 ---
 
-# Example
+### Example
 
 ```ts
 class Dog {
@@ -390,7 +390,7 @@ Dog;
 
 ---
 
-# Example
+### Example
 
 ```ts
 const date = new Date();
@@ -406,7 +406,7 @@ true
 
 ---
 
-# Why Use instanceof?
+### Why Use instanceof?
 
 Because:
 
@@ -443,7 +443,7 @@ instead.
 
 ---
 
-# Narrowing Using in Operator
+### Narrowing Using in Operator
 
 Used to check:
 
@@ -453,7 +453,7 @@ Whether a property exists.
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -496,7 +496,7 @@ Admin;
 
 ---
 
-# Another Example
+### Another Example
 
 ```ts
 type Car = {
@@ -532,7 +532,7 @@ Car;
 
 ---
 
-# Truthiness Narrowing
+### Truthiness Narrowing
 
 Very common in real projects.
 
@@ -560,7 +560,7 @@ NaN;
 
 ---
 
-# Example
+### Example
 
 ```ts
 function printName(name: string | null) {
@@ -594,7 +594,7 @@ null is eliminated.
 
 ---
 
-# Example
+### Example
 
 ```ts
 function process(value: string | undefined) {
@@ -620,7 +620,7 @@ string;
 
 ---
 
-# Equality Narrowing
+### Equality Narrowing
 
 Using:
 
@@ -633,7 +633,7 @@ Using:
 
 ---
 
-# Example
+### Example
 
 ```ts
 function printValue(value: string | number) {
@@ -661,7 +661,7 @@ Literal Type.
 
 ---
 
-# Another Example
+### Another Example
 
 ```ts
 function printValue(value: string | null) {
@@ -681,7 +681,7 @@ string;
 
 ---
 
-# Discriminated Unions
+### Discriminated Unions
 
 One of the most important TypeScript concepts.
 
@@ -689,7 +689,7 @@ Frequently asked in interviews.
 
 ---
 
-# Problem
+### Problem
 
 Suppose:
 
@@ -713,7 +713,7 @@ Need to identify shape.
 
 ---
 
-# Solution
+### Solution
 
 Add a common property.
 
@@ -745,7 +745,7 @@ type Shape = Circle | Square;
 
 ---
 
-# Example
+### Example
 
 ```ts
 function area(shape: Shape) {
@@ -771,7 +771,7 @@ Circle;
 
 ---
 
-# Why Called Discriminated Union?
+### Why Called Discriminated Union?
 
 Because:
 
@@ -789,7 +789,7 @@ which identifies the exact type.
 
 ---
 
-# Exhaustive Checking
+### Exhaustive Checking
 
 Ensures all possible cases are handled.
 
@@ -825,13 +825,13 @@ Safer.
 
 ---
 
-# User Defined Type Guards
+### User Defined Type Guards
 
 You can create custom narrowing functions.
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -882,7 +882,7 @@ Admin;
 
 ---
 
-# Why Type Guards Matter?
+### Why Type Guards Matter?
 
 Useful when:
 
@@ -894,7 +894,7 @@ Reusable validation
 
 ---
 
-# Visual Summary
+### Visual Summary
 
 ---
 
@@ -966,11 +966,11 @@ Dog;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Accessing Properties Without Narrowing
+#### Accessing Properties Without Narrowing
 
 Wrong
 
@@ -990,7 +990,7 @@ Must narrow first.
 
 ---
 
-## Using typeof for Objects
+#### Using typeof for Objects
 
 Wrong
 
@@ -1008,7 +1008,7 @@ instanceof Dog
 
 ---
 
-## Forgetting null Checks
+#### Forgetting null Checks
 
 Wrong
 
@@ -1028,15 +1028,15 @@ Check first.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is Type Narrowing?
 
-### Answer
+#### Answer
 
 ```text
 The process of reducing a broader type
@@ -1045,41 +1045,41 @@ into a more specific type.
 
 ---
 
-## Q2
+#### Q2
 
 How does typeof help narrowing?
 
-### Answer
+#### Answer
 
 It narrows primitive types.
 
 ---
 
-## Q3
+#### Q3
 
 When should instanceof be used?
 
-### Answer
+#### Answer
 
 For classes and object instances.
 
 ---
 
-## Q4
+#### Q4
 
 What is a Discriminated Union?
 
-### Answer
+#### Answer
 
 A union where every type contains a common literal property used for narrowing.
 
 ---
 
-## Q5
+#### Q5
 
 What is a User Defined Type Guard?
 
-### Answer
+#### Answer
 
 A custom function that narrows types using:
 
@@ -1091,7 +1091,7 @@ syntax.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 typeof value === "string";
@@ -1135,7 +1135,7 @@ function isAdmin(user): user is Admin;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Union Types often require narrowing before accessing specific properties or methods.
 - `typeof` is used for primitive type narrowing.
@@ -1147,10 +1147,3 @@ function isAdmin(user): user is Admin;
 - User Defined Type Guards allow reusable custom narrowing logic.
 - Type Narrowing is essential for writing safe TypeScript code.
 - Most advanced TypeScript features build upon narrowing concepts.
-
----
- 
- 
-
-
----\n*Last refined on April 23, 2026*
