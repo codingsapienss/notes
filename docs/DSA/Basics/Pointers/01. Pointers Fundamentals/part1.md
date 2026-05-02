@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Pointers Part 1A"
+sidebar_label: 'Memory & Addresses'
 sidebar_position: 1
 ---
 
