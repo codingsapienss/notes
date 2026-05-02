@@ -70,12 +70,11 @@
   list-style: none !important;
 }
 
-/* 2. Unified Link Styling (Standard 1rem font, no truncation) */
+/* 2. Unified Link Styling (Standard 1rem font) */
 .menu__link {
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   margin: 0 !important;
-  line-height: 1.4 !important;
   font-size: 1rem !important;
   text-transform: none !important;
   white-space: normal !important;
@@ -109,11 +108,12 @@
   font-weight: 600 !important;
 }
 
-/* Leaf Pages (Actual Notes) - Even Lighter */
+/* Leaf Pages (Actual Notes) - Professional Light Gray */
 .menu__link:not(.menu__link--sublist) {
-  color: var(--ifm-color-emphasis-400) !important;
+  color: #888888 !important;
   font-weight: 400 !important;
 }
+
 
 /* Active & Hover */
 .menu__link--active:not(.menu__link--sublist) {
@@ -125,4 +125,3 @@
 .menu__link:hover {
   background-color: var(--ifm-menu-color-background-hover) !important;
 }
-
