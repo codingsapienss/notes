@@ -34,7 +34,7 @@
 
 ---
 
-# What is a Tuple?
+### What is a Tuple?
 
 A Tuple is a special type of array where:
 
@@ -46,7 +46,7 @@ Types are Fixed
 
 ---
 
-## Example
+#### Example
 
 ```ts
 const user: [string, number] = ["Prashant", 25];
@@ -64,7 +64,7 @@ Index 1 → number
 
 ---
 
-# Why Not Use a Normal Array?
+### Why Not Use a Normal Array?
 
 Consider:
 
@@ -96,11 +96,11 @@ A Tuple provides this guarantee.
 
 ---
 
-# Tuple Syntax
+### Tuple Syntax
 
 ---
 
-## Basic Syntax
+#### Basic Syntax
 
 ```ts
 [type1, type2];
@@ -116,7 +116,7 @@ const user: [string, number] = ["Prashant", 25];
 
 ---
 
-# Valid Tuple
+### Valid Tuple
 
 ```ts
 const user: [string, number] = ["Prashant", 25];
@@ -136,7 +136,7 @@ Matches perfectly.
 
 ---
 
-# Invalid Tuple
+### Invalid Tuple
 
 Wrong Order
 
@@ -158,7 +158,7 @@ Received number
 
 ---
 
-# Another Invalid Example
+### Another Invalid Example
 
 Missing Element
 
@@ -178,7 +178,7 @@ Tuple expects 2 elements.
 
 ---
 
-# Fixed Length Guarantee
+### Fixed Length Guarantee
 
 Example
 
@@ -212,7 +212,7 @@ Tuple length is fixed.
 
 ---
 
-# Accessing Tuple Values
+### Accessing Tuple Values
 
 ---
 
@@ -252,7 +252,7 @@ Output
 
 ---
 
-# TypeScript Knows Exact Types
+### TypeScript Knows Exact Types
 
 ---
 
@@ -312,7 +312,7 @@ Valid.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Coordinates
 
@@ -349,7 +349,7 @@ Exactly two values.
 
 ---
 
-# Another Real World Example
+### Another Real World Example
 
 API Result
 
@@ -371,7 +371,7 @@ Index 1 → Message
 
 ---
 
-# Tuple with More Elements
+### Tuple with More Elements
 
 ---
 
@@ -393,7 +393,7 @@ Active Status
 
 ---
 
-# Readonly Tuples
+### Readonly Tuples
 
 Sometimes tuple values should never change.
 
@@ -421,7 +421,7 @@ Readonly protects tuple values.
 
 ---
 
-# Alternative Readonly Syntax
+### Alternative Readonly Syntax
 
 ---
 
@@ -449,13 +449,13 @@ readonly[(number, number)];
 
 ---
 
-# Optional Tuple Elements
+### Optional Tuple Elements
 
 Sometimes some positions are optional.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 [
@@ -486,7 +486,7 @@ Also Valid
 
 ---
 
-# Why Use Optional Tuple Elements?
+### Why Use Optional Tuple Elements?
 
 Example:
 
@@ -511,7 +511,7 @@ models this perfectly.
 
 ---
 
-# Rest Elements in Tuples
+### Rest Elements in Tuples
 
 A tuple can contain:
 
@@ -549,7 +549,7 @@ const result: Scores = ["Prashant", 90, 95, 100];
 
 ---
 
-# Named Tuples
+### Named Tuples
 
 Introduced for better readability.
 
@@ -583,13 +583,13 @@ Developer Experience
 
 ---
 
-# Tuple vs Array
+### Tuple vs Array
 
 One of the most common interview questions.
 
 ---
 
-## Array
+#### Array
 
 ```ts
 const values: string[] = ["A", "B", "C"];
@@ -607,7 +607,7 @@ Same Type
 
 ---
 
-## Tuple
+#### Tuple
 
 ```ts
 const user: [string, number] = ["Prashant", 25];
@@ -627,7 +627,7 @@ Different Types Allowed
 
 ---
 
-# Comparison Table
+### Comparison Table
 
 | Feature              | Array      | Tuple           |
 | -------------------- | ---------- | --------------- |
@@ -639,7 +639,7 @@ Different Types Allowed
 
 ---
 
-# Tuple Destructuring
+### Tuple Destructuring
 
 Very common.
 
@@ -671,7 +671,7 @@ age → 25
 
 ---
 
-# Function Returning Tuples
+### Function Returning Tuples
 
 Common pattern.
 
@@ -695,11 +695,11 @@ const [name, age] = getUser();
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using Array Instead of Tuple
+#### Using Array Instead of Tuple
 
 Wrong
 
@@ -725,7 +725,7 @@ Use:
 
 ---
 
-## Wrong Order
+#### Wrong Order
 
 Wrong
 
@@ -741,7 +741,7 @@ when tuple expects:
 
 ---
 
-## Confusing Tuple with Object
+#### Confusing Tuple with Object
 
 Tuple
 
@@ -766,7 +766,7 @@ Objects are usually more readable.
 
 ---
 
-# When Should You Use Tuples?
+### When Should You Use Tuples?
 
 Good Use Cases:
 
@@ -809,15 +809,15 @@ Instead use:
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Tuple?
 
-### Answer
+#### Answer
 
 ```text
 A fixed-length array
@@ -826,11 +826,11 @@ where each position has a predefined type.
 
 ---
 
-## Q2
+#### Q2
 
 Difference between Array and Tuple?
 
-### Answer
+#### Answer
 
 ```text
 Arrays:
@@ -842,11 +842,11 @@ Fixed length and fixed types.
 
 ---
 
-## Q3
+#### Q3
 
 Can Tuples have optional values?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -856,11 +856,11 @@ Yes.
 
 ---
 
-## Q4
+#### Q4
 
 Can Tuples have rest elements?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -870,11 +870,11 @@ Yes.
 
 ---
 
-## Q5
+#### Q5
 
 Can Tuples be readonly?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -884,7 +884,7 @@ readonly[(number, number)];
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 [string, number];
@@ -928,7 +928,7 @@ readonly[(number, number)];
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Tuples are fixed-length arrays with fixed types at specific positions.
 - Tuples provide stronger guarantees than regular arrays.
@@ -940,12 +940,3 @@ readonly[(number, number)];
 - Named tuples improve readability.
 - Arrays are best for collections of similar data.
 - Tuples are best for structured data with a fixed shape.
-
----
- 
-
-
----\n*Last refined on April 19, 2026*
-
-
----\n*Last refined on April 30, 2026*
