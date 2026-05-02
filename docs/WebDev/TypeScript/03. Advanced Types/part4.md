@@ -27,7 +27,7 @@
 
 ---
 
-# What is Type Assertion?
+### What is Type Assertion?
 
 Type Assertion tells TypeScript:
 
@@ -38,9 +38,9 @@ I know the type better than you do.
 
 ---
 
-# Syntax
+### Syntax
 
-## Modern Syntax
+#### Modern Syntax
 
 ```ts
 value as Type;
@@ -48,7 +48,7 @@ value as Type;
 
 ---
 
-## Alternative Syntax
+#### Alternative Syntax
 
 ```ts
 <Type>value;
@@ -60,7 +60,7 @@ Less commonly used.
 
 ---
 
-# First Example
+### First Example
 
 ```ts
 const value: unknown = "Hello TypeScript";
@@ -110,7 +110,7 @@ Output:
 
 ---
 
-# What Happens Internally?
+### What Happens Internally?
 
 Consider:
 
@@ -152,7 +152,7 @@ Compile Time
 
 ---
 
-# Type Assertion Does NOT Convert Values
+### Type Assertion Does NOT Convert Values
 
 Very important interview topic.
 
@@ -190,11 +190,11 @@ Treat this value as this type.
 
 ---
 
-# Type Conversion vs Type Assertion
+### Type Conversion vs Type Assertion
 
 ---
 
-## Type Conversion
+#### Type Conversion
 
 Actually changes data.
 
@@ -212,7 +212,7 @@ Result:
 
 ---
 
-## Type Assertion
+#### Type Assertion
 
 ```ts
 const value = "123" as unknown as number;
@@ -232,7 +232,7 @@ No conversion happened.
 
 ---
 
-# DOM Example
+### DOM Example
 
 One of the most common use cases.
 
@@ -291,7 +291,7 @@ Valid.
 
 ---
 
-# Type Assertion with Objects
+### Type Assertion with Objects
 
 ---
 
@@ -331,7 +331,7 @@ is fully typed.
 
 ---
 
-# Double Assertion
+### Double Assertion
 
 Sometimes TypeScript refuses direct assertions.
 
@@ -380,7 +380,7 @@ Double Assertion
 
 ---
 
-# Why Is Double Assertion Dangerous?
+### Why Is Double Assertion Dangerous?
 
 Because:
 
@@ -410,11 +410,11 @@ Value was still a string.
 
 ---
 
-# The any Type
+### The any Type
 
 ---
 
-## What is any?
+#### What is any?
 
 `any` disables TypeScript type checking.
 
@@ -454,7 +454,7 @@ All valid.
 
 ---
 
-# Dangerous Example
+### Dangerous Example
 
 ```ts
 let value: any = "hello";
@@ -488,7 +488,7 @@ Type Safety is disabled.
 
 ---
 
-# Why Does any Exist?
+### Why Does any Exist?
 
 Useful when:
 
@@ -512,7 +512,7 @@ Avoid using any whenever possible.
 
 ---
 
-# Problems with any
+### Problems with any
 
 ---
 
@@ -539,7 +539,7 @@ You lose most benefits of TypeScript.
 
 ---
 
-# The unknown Type
+### The unknown Type
 
 Introduced as a safer alternative to:
 
@@ -549,7 +549,7 @@ any;
 
 ---
 
-# What is unknown?
+### What is unknown?
 
 Represents:
 
@@ -591,7 +591,7 @@ All valid.
 
 ---
 
-# Difference from any
+### Difference from any
 
 Consider:
 
@@ -615,7 +615,7 @@ TypeScript forces us to check first.
 
 ---
 
-# Narrowing unknown
+### Narrowing unknown
 
 ---
 
@@ -653,7 +653,7 @@ string;
 
 ---
 
-# unknown vs any
+### unknown vs any
 
 | Feature            | any | unknown |
 | ------------------ | --- | ------- |
@@ -664,7 +664,7 @@ string;
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -690,13 +690,13 @@ Safer.
 
 ---
 
-# The never Type
+### The never Type
 
 One of the most misunderstood types.
 
 ---
 
-# What is never?
+### What is never?
 
 Represents:
 
@@ -706,7 +706,7 @@ A value that can never exist.
 
 ---
 
-# Example 1
+### Example 1
 
 Function that always throws.
 
@@ -722,7 +722,7 @@ Function never returns.
 
 ---
 
-# Example 2
+### Example 2
 
 Infinite Loop
 
@@ -738,11 +738,11 @@ Never finishes.
 
 ---
 
-# Difference Between void and never
+### Difference Between void and never
 
 ---
 
-## void
+#### void
 
 ```ts
 function print(): void {
@@ -758,7 +758,7 @@ Returns nothing.
 
 ---
 
-## never
+#### never
 
 ```ts
 function crash(): never {
@@ -772,7 +772,7 @@ Function never completes.
 
 ---
 
-# Visual Comparison
+### Visual Comparison
 
 ---
 
@@ -800,7 +800,7 @@ Never Returns
 
 ---
 
-# never in Exhaustive Checks
+### never in Exhaustive Checks
 
 Advanced but important.
 
@@ -851,11 +851,11 @@ Exhaustive Checking
 
 ---
 
-# Relationship Between any, unknown and never
+### Relationship Between any, unknown and never
 
 ---
 
-## any
+#### any
 
 ```text
 Can be anything.
@@ -863,7 +863,7 @@ Can be anything.
 
 ---
 
-## unknown
+#### unknown
 
 ```text
 Can be anything,
@@ -872,7 +872,7 @@ but must be checked first.
 
 ---
 
-## never
+#### never
 
 ```text
 Can never be anything.
@@ -880,11 +880,11 @@ Can never be anything.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any Everywhere
+#### Using any Everywhere
 
 Bad
 
@@ -904,7 +904,7 @@ instead.
 
 ---
 
-## Confusing Assertion with Conversion
+#### Confusing Assertion with Conversion
 
 Wrong
 
@@ -918,7 +918,7 @@ Assertions do not convert values.
 
 ---
 
-## Ignoring unknown Checks
+#### Ignoring unknown Checks
 
 Wrong
 
@@ -934,15 +934,15 @@ Must narrow first.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is Type Assertion?
 
-### Answer
+#### Answer
 
 ```text
 A way to tell TypeScript
@@ -951,11 +951,11 @@ to treat a value as a specific type.
 
 ---
 
-## Q2
+#### Q2
 
 Does Type Assertion change values?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -964,11 +964,11 @@ It only affects compile-time checking.
 
 ---
 
-## Q3
+#### Q3
 
 Difference between any and unknown?
 
-### Answer
+#### Answer
 
 ```text
 any:
@@ -980,11 +980,11 @@ Requires validation before use.
 
 ---
 
-## Q4
+#### Q4
 
 What does never represent?
 
-### Answer
+#### Answer
 
 ```text
 A value that can never occur.
@@ -992,11 +992,11 @@ A value that can never occur.
 
 ---
 
-## Q5
+#### Q5
 
 Difference between void and never?
 
-### Answer
+#### Answer
 
 ```text
 void:
@@ -1008,7 +1008,7 @@ Function never returns.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 value as string;
@@ -1048,7 +1048,7 @@ typeof value === "string";
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Type Assertions tell TypeScript to trust your type knowledge.
 - Assertions do not perform runtime conversions.
@@ -1060,6 +1060,3 @@ typeof value === "string";
 - Exhaustive checks often rely on `never`.
 - Prefer `unknown` over `any` whenever possible.
 - Understanding `any`, `unknown`, and `never` is essential for advanced TypeScript development.
-
----
- 
