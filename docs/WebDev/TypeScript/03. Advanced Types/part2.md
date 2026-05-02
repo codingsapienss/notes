@@ -28,13 +28,13 @@
 
 ---
 
-# What is an Intersection Type?
+### What is an Intersection Type?
 
 An Intersection Type combines multiple types into one.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 TypeA & TypeB;
@@ -48,7 +48,7 @@ TypeA AND TypeB
 
 ---
 
-# Mental Model
+### Mental Model
 
 Suppose:
 
@@ -96,11 +96,11 @@ from BOTH types
 
 ---
 
-# First Example
+### First Example
 
 ---
 
-## Type 1
+#### Type 1
 
 ```ts
 type Person = {
@@ -110,7 +110,7 @@ type Person = {
 
 ---
 
-## Type 2
+#### Type 2
 
 ```ts
 type Employee = {
@@ -120,7 +120,7 @@ type Employee = {
 
 ---
 
-## Combined
+#### Combined
 
 ```ts
 type Staff = Person & Employee;
@@ -139,7 +139,7 @@ Result
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const staff: Staff = {
@@ -152,7 +152,7 @@ Valid.
 
 ---
 
-# Missing Property Example
+### Missing Property Example
 
 ```ts
 const staff: Staff = {
@@ -176,7 +176,7 @@ is also required.
 
 ---
 
-# Visualization
+### Visualization
 
 ---
 
@@ -211,7 +211,7 @@ Intersection
 
 ---
 
-# Intersection with Multiple Types
+### Intersection with Multiple Types
 
 Not limited to two types.
 
@@ -263,7 +263,7 @@ Result
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const admin: AdminStaff = {
@@ -275,7 +275,7 @@ const admin: AdminStaff = {
 
 ---
 
-# Why Do We Need Intersections?
+### Why Do We Need Intersections?
 
 Without Intersections:
 
@@ -312,7 +312,7 @@ instead of repetition.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Suppose every entity has:
 
@@ -361,13 +361,13 @@ Very common in backend applications.
 
 ---
 
-# Intersection vs Union
+### Intersection vs Union
 
 This is one of the most important concepts.
 
 ---
 
-## Union
+#### Union
 
 ```ts
 type A = {
@@ -422,7 +422,7 @@ A OR B
 
 ---
 
-# Intersection
+### Intersection
 
 ```ts
 type Result = A & B;
@@ -469,7 +469,7 @@ A AND B
 
 ---
 
-# Visual Comparison
+### Visual Comparison
 
 ---
 
@@ -505,7 +505,7 @@ simultaneously
 
 ---
 
-# Intersection with Primitive Types
+### Intersection with Primitive Types
 
 Possible but rarely useful.
 
@@ -549,7 +549,7 @@ Impossible Type
 
 ---
 
-# Example
+### Example
 
 ```ts
 type Value = string & number;
@@ -567,7 +567,7 @@ No valid value can exist.
 
 ---
 
-# Property Conflict Example
+### Property Conflict Example
 
 ---
 
@@ -631,7 +631,7 @@ Impossible to satisfy.
 
 ---
 
-# Example
+### Example
 
 ```ts
 type A = {
@@ -661,7 +661,7 @@ No value satisfies both.
 
 ---
 
-# Compatible Property Example
+### Compatible Property Example
 
 ---
 
@@ -706,7 +706,7 @@ Perfectly valid.
 
 ---
 
-# Intersections with Type Aliases
+### Intersections with Type Aliases
 
 Very common.
 
@@ -747,7 +747,7 @@ Result
 
 ---
 
-# API Response Example
+### API Response Example
 
 ---
 
@@ -792,7 +792,7 @@ Result
 
 ---
 
-# Why Intersections Are Powerful
+### Why Intersections Are Powerful
 
 They encourage:
 
@@ -861,11 +861,11 @@ Cleaner.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Confusing Union and Intersection
+#### Confusing Union and Intersection
 
 Wrong Mental Model:
 
@@ -885,7 +885,7 @@ means AND
 
 ---
 
-## Conflicting Properties
+#### Conflicting Properties
 
 Bad
 
@@ -909,7 +909,7 @@ id: never;
 
 ---
 
-## Overusing Huge Intersections
+#### Overusing Huge Intersections
 
 Bad
 
@@ -927,15 +927,15 @@ Keep types meaningful.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Intersection Type?
 
-### Answer
+#### Answer
 
 ```text
 A type that combines multiple
@@ -944,11 +944,11 @@ types into one.
 
 ---
 
-## Q2
+#### Q2
 
 What does `&` mean?
 
-### Answer
+#### Answer
 
 ```text
 AND
@@ -958,7 +958,7 @@ between types.
 
 ---
 
-## Q3
+#### Q3
 
 Difference between:
 
@@ -972,7 +972,7 @@ and
 A & B;
 ```
 
-### Answer
+#### Answer
 
 ```ts
 A | B;
@@ -998,11 +998,11 @@ Both A and B
 
 ---
 
-## Q4
+#### Q4
 
 What happens when two intersected properties have incompatible types?
 
-### Answer
+#### Answer
 
 They become:
 
@@ -1014,11 +1014,11 @@ making the type impossible to satisfy.
 
 ---
 
-## Q5
+#### Q5
 
 Why are Intersection Types useful?
 
-### Answer
+#### Answer
 
 ```text
 They reduce duplication by
@@ -1027,7 +1027,7 @@ allowing type composition.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 type Staff = Person & Employee;
@@ -1059,7 +1059,7 @@ never;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Intersection Types combine multiple types into one.
 - The `&` operator means "AND".
@@ -1071,11 +1071,3 @@ never;
 - Intersections work extremely well with Type Aliases.
 - They are heavily used in API models, database entities, and large applications.
 - Understanding intersections is essential before learning Type Narrowing and Discriminated Unions.
-
----
-
-
----\n*Last refined on April 26, 2026*
-
-
----\n*Last refined on April 27, 2026*
