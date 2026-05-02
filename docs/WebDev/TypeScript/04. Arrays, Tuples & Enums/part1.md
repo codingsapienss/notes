@@ -25,13 +25,13 @@
 
 ---
 
-# What is an Array?
+### What is an Array?
 
 An array is a collection of values stored in a single variable.
 
 ---
 
-## JavaScript Example
+#### JavaScript Example
 
 ```ts
 const numbers = [10, 20, 30, 40];
@@ -52,7 +52,7 @@ we can store all values together.
 
 ---
 
-# Why Do We Need Typed Arrays?
+### Why Do We Need Typed Arrays?
 
 Consider JavaScript:
 
@@ -80,13 +80,13 @@ TypeScript prevents this.
 
 ---
 
-# Array Type Syntax
+### Array Type Syntax
 
 There are two ways to define array types.
 
 ---
 
-## Method 1 (Most Common)
+#### Method 1 (Most Common)
 
 ```ts
 type[]
@@ -110,7 +110,7 @@ Array of Numbers
 
 ---
 
-# Method 2 (Generic Syntax)
+### Method 2 (Generic Syntax)
 
 ```ts
 Array<type>;
@@ -130,7 +130,7 @@ Both are identical.
 
 ---
 
-# Number Arrays
+### Number Arrays
 
 ---
 
@@ -173,7 +173,7 @@ is not assignable to type 'number'
 
 ---
 
-# String Arrays
+### String Arrays
 
 ---
 
@@ -203,7 +203,7 @@ Error.
 
 ---
 
-# Boolean Arrays
+### Boolean Arrays
 
 ---
 
@@ -231,7 +231,7 @@ flags.push("true");
 
 ---
 
-# Type Inference with Arrays
+### Type Inference with Arrays
 
 TypeScript can infer array types automatically.
 
@@ -263,7 +263,7 @@ Error.
 
 ---
 
-# Mixed Arrays Using Union Types
+### Mixed Arrays Using Union Types
 
 Sometimes arrays need multiple types.
 
@@ -301,7 +301,7 @@ values.push(true);
 
 ---
 
-# Important Interview Question
+### Important Interview Question
 
 Difference between:
 
@@ -317,7 +317,7 @@ and
 
 ---
 
-## First
+#### First
 
 ```ts
 string | number[]
@@ -351,7 +351,7 @@ Valid
 
 ---
 
-# Second
+### Second
 
 ```ts
 (string | number)[]
@@ -374,7 +374,7 @@ Valid
 
 ---
 
-# Accessing Array Elements
+### Accessing Array Elements
 
 ---
 
@@ -400,7 +400,7 @@ Prashant
 
 ---
 
-# TypeScript Knows Element Types
+### TypeScript Knows Element Types
 
 Example
 
@@ -434,7 +434,7 @@ string;
 
 ---
 
-# Array Length
+### Array Length
 
 ---
 
@@ -458,11 +458,11 @@ Output
 
 ---
 
-# Common Array Methods
+### Common Array Methods
 
 ---
 
-## push()
+#### push()
 
 Add at end.
 
@@ -482,7 +482,7 @@ Result
 
 ---
 
-## pop()
+#### pop()
 
 Remove last element.
 
@@ -500,7 +500,7 @@ Result
 
 ---
 
-## shift()
+#### shift()
 
 Remove first element.
 
@@ -510,7 +510,7 @@ numbers.shift();
 
 ---
 
-## unshift()
+#### unshift()
 
 Add at beginning.
 
@@ -520,7 +520,7 @@ numbers.unshift(5);
 
 ---
 
-## includes()
+#### includes()
 
 Check existence.
 
@@ -536,7 +536,7 @@ true
 
 ---
 
-## indexOf()
+#### indexOf()
 
 Find index.
 
@@ -552,11 +552,11 @@ Output
 
 ---
 
-# Iterating Arrays
+### Iterating Arrays
 
 ---
 
-## for Loop
+#### for Loop
 
 ```ts
 const numbers = [10, 20, 30];
@@ -578,7 +578,7 @@ Output
 
 ---
 
-# for...of Loop
+### for...of Loop
 
 Modern approach.
 
@@ -602,7 +602,7 @@ Output
 
 ---
 
-# forEach()
+### forEach()
 
 ---
 
@@ -624,7 +624,7 @@ Output
 
 ---
 
-# Arrays of Objects
+### Arrays of Objects
 
 Very common in real applications.
 
@@ -670,7 +670,7 @@ Prashant
 
 ---
 
-# Nested Arrays
+### Nested Arrays
 
 Arrays inside arrays.
 
@@ -702,7 +702,7 @@ Output
 
 ---
 
-# Multidimensional Arrays
+### Multidimensional Arrays
 
 ---
 
@@ -725,7 +725,7 @@ const grid: number[][] = [
 
 ---
 
-# Readonly Arrays
+### Readonly Arrays
 
 Sometimes arrays should not be modified.
 
@@ -759,7 +759,7 @@ Error.
 
 ---
 
-# Alternative Readonly Syntax
+### Alternative Readonly Syntax
 
 ```ts
 ReadonlyArray<number>;
@@ -783,7 +783,7 @@ const users: ReadonlyArray<string> = ["Prashant", "John"];
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -816,11 +816,11 @@ Strong typing throughout the application.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Mixing Types Accidentally
+#### Mixing Types Accidentally
 
 Wrong
 
@@ -834,7 +834,7 @@ Error.
 
 ---
 
-## Confusing Array Types
+#### Confusing Array Types
 
 Wrong
 
@@ -850,7 +850,7 @@ when you intended:
 
 ---
 
-## Forgetting Readonly Arrays
+#### Forgetting Readonly Arrays
 
 If data should never change:
 
@@ -862,15 +862,15 @@ is often safer.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 How do you define an array of numbers?
 
-### Answer
+#### Answer
 
 ```ts
 number[]
@@ -878,11 +878,11 @@ number[]
 
 ---
 
-## Q2
+#### Q2
 
 Alternative syntax for arrays?
 
-### Answer
+#### Answer
 
 ```ts
 Array<number>;
@@ -890,7 +890,7 @@ Array<number>;
 
 ---
 
-## Q3
+#### Q3
 
 Difference between:
 
@@ -904,7 +904,7 @@ and
 (string | number)[]
 ```
 
-### Answer
+#### Answer
 
 ```ts
 string | number[]
@@ -930,11 +930,11 @@ array containing strings and numbers
 
 ---
 
-## Q4
+#### Q4
 
 How do you create a readonly array?
 
-### Answer
+#### Answer
 
 ```ts
 readonly number[]
@@ -948,11 +948,11 @@ ReadonlyArray<number>;
 
 ---
 
-## Q5
+#### Q5
 
 How do you type an array of objects?
 
-### Answer
+#### Answer
 
 ```ts
 User[]
@@ -960,7 +960,7 @@ User[]
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 const nums: number[] = [1, 2, 3];
@@ -1001,7 +1001,7 @@ const nums: readonly number[] = [1, 2, 3];
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Arrays store multiple values of the same type.
 - TypeScript adds compile-time type safety to arrays.
@@ -1013,12 +1013,3 @@ const nums: readonly number[] = [1, 2, 3];
 - Readonly arrays prevent accidental modifications.
 - Arrays are heavily used in APIs, React applications and backend systems.
 - Strongly typed arrays improve maintainability and reduce runtime bugs.
-
----
- 
-
-
----\n*Last refined on April 14, 2026*
-
-
----\n*Last refined on April 27, 2026*
