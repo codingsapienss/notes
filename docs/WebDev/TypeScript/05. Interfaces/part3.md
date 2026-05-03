@@ -40,7 +40,7 @@
 
 ---
 
-# First Important Truth
+### First Important Truth
 
 For most basic object definitions:
 
@@ -75,13 +75,13 @@ Object Validation
 
 ---
 
-# Similarities
+### Similarities
 
 Both can describe:
 
 ---
 
-## Objects
+#### Objects
 
 Interface
 
@@ -103,7 +103,7 @@ type User = {
 
 ---
 
-# Function Types
+### Function Types
 
 Interface
 
@@ -123,7 +123,7 @@ type Add = (a: number, b: number) => number;
 
 ---
 
-# Arrays
+### Arrays
 
 Type
 
@@ -145,7 +145,7 @@ Possible, but type aliases are usually cleaner.
 
 ---
 
-# Both Support Extension
+### Both Support Extension
 
 Interface
 
@@ -187,15 +187,15 @@ Both achieve similar results.
 
 ---
 
-# Major Difference #1
+### Major Difference #1
 
-# Declaration Merging
+### Declaration Merging
 
 This is the biggest difference.
 
 ---
 
-# Interface Supports Merging
+### Interface Supports Merging
 
 Example
 
@@ -245,7 +245,7 @@ Valid.
 
 ---
 
-# Type Alias Does NOT Support Merging
+### Type Alias Does NOT Support Merging
 
 Example
 
@@ -277,7 +277,7 @@ Type aliases cannot be reopened.
 
 ---
 
-# Visual Summary
+### Visual Summary
 
 Interface
 
@@ -322,9 +322,9 @@ Compilation Error
 
 ---
 
-# Major Difference #2
+### Major Difference #2
 
-# Type Aliases Can Represent More Than Objects
+### Type Aliases Can Represent More Than Objects
 
 Interfaces mainly describe:
 
@@ -348,7 +348,7 @@ Conditional Types
 
 ---
 
-# Primitive Types
+### Primitive Types
 
 Possible
 
@@ -366,7 +366,7 @@ interface ID extends string {}
 
 ---
 
-# Union Types
+### Union Types
 
 Possible
 
@@ -386,7 +386,7 @@ Impossible.
 
 ---
 
-# Tuple Types
+### Tuple Types
 
 Possible
 
@@ -402,7 +402,7 @@ Not practical.
 
 ---
 
-# Conditional Types
+### Conditional Types
 
 Possible
 
@@ -416,9 +416,9 @@ Interfaces cannot do this.
 
 ---
 
-# Major Difference #3
+### Major Difference #3
 
-# Extension Syntax
+### Extension Syntax
 
 Interfaces use:
 
@@ -474,7 +474,7 @@ type Admin = User & {
 
 ---
 
-# Interface Extension
+### Interface Extension
 
 Produces:
 
@@ -487,7 +487,7 @@ Produces:
 
 ---
 
-# Type Intersection
+### Type Intersection
 
 Produces:
 
@@ -506,9 +506,9 @@ Implementation differs.
 
 ---
 
-# Major Difference #4
+### Major Difference #4
 
-# Error Messages
+### Error Messages
 
 Interfaces often produce cleaner errors.
 
@@ -549,9 +549,9 @@ can produce longer errors.
 
 ---
 
-# Major Difference #5
+### Major Difference #5
 
-# Library Development
+### Library Development
 
 Large libraries prefer interfaces for public contracts.
 
@@ -591,7 +591,7 @@ Type aliases cannot do this.
 
 ---
 
-# Interface Extension vs Type Intersection
+### Interface Extension vs Type Intersection
 
 Frequently asked interview question.
 
@@ -663,7 +663,7 @@ But intersections can create conflicts.
 
 ---
 
-# Property Conflict Example
+### Property Conflict Example
 
 Type A
 
@@ -711,7 +711,7 @@ Interfaces catch conflicts earlier.
 
 ---
 
-# Performance Considerations
+### Performance Considerations
 
 The TypeScript team has mentioned that:
 
@@ -734,7 +734,7 @@ Choose based on design.
 
 ---
 
-# Modern Industry Practice
+### Modern Industry Practice
 
 Most large codebases follow:
 
@@ -765,7 +765,7 @@ Utility Types
 
 ---
 
-# Real World Example
+### Real World Example
 
 User Model
 
@@ -790,7 +790,7 @@ This is extremely common.
 
 ---
 
-# Recommended Rule
+### Recommended Rule
 
 A practical rule used by many teams:
 
@@ -828,11 +828,11 @@ Simple and effective.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using Type Alias for Everything
+#### Using Type Alias for Everything
 
 Possible.
 
@@ -847,7 +847,7 @@ Interface Extension Benefits
 
 ---
 
-## Using Interface for Unions
+#### Using Interface for Unions
 
 Wrong
 
@@ -873,7 +873,7 @@ instead.
 
 ---
 
-## Forgetting Declaration Merging
+#### Forgetting Declaration Merging
 
 Interfaces merge.
 
@@ -881,7 +881,7 @@ Types do not.
 
 ---
 
-# Comparison Table
+### Comparison Table
 
 | Feature             | Interface  | Type Alias |
 | ------------------- | ---------- | ---------- |
@@ -898,15 +898,15 @@ Types do not.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is the biggest difference between Interface and Type?
 
-### Answer
+#### Answer
 
 ```text
 Interfaces support Declaration Merging.
@@ -916,11 +916,11 @@ Type Aliases do not.
 
 ---
 
-## Q2
+#### Q2
 
 Can Interfaces represent Union Types?
 
-### Answer
+#### Answer
 
 No.
 
@@ -928,11 +928,11 @@ Use Type Aliases.
 
 ---
 
-## Q3
+#### Q3
 
 Can Type Aliases represent Primitive Types?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -942,37 +942,37 @@ type ID = string;
 
 ---
 
-## Q4
+#### Q4
 
 What is Declaration Merging?
 
-### Answer
+#### Answer
 
 Multiple interfaces with the same name automatically combine.
 
 ---
 
-## Q5
+#### Q5
 
 When should you use Interface?
 
-### Answer
+#### Answer
 
 For object structures and public contracts.
 
 ---
 
-## Q6
+#### Q6
 
 When should you use Type Alias?
 
-### Answer
+#### Answer
 
 For unions, intersections, tuples and advanced type manipulation.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface User {
@@ -1023,7 +1023,7 @@ interface User {
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Interfaces and Type Aliases are similar for basic object definitions.
 - Interfaces support Declaration Merging.
@@ -1035,12 +1035,3 @@ interface User {
 - Modern TypeScript projects use both extensively.
 - Neither is universally better; each solves different problems.
 - Understanding both is essential for professional TypeScript development.
-
----
- 
- 
- 
- 
-
-
----\n*Last refined on April 23, 2026*
