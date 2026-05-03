@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 2A'
+sidebar_label: 'Integer Arrays & Pointers'
 sidebar_position: 5
 ---
 # Arrays and Pointers (Integer Arrays)
