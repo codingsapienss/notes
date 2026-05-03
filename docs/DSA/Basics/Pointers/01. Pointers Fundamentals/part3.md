@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Pointers Part 1C"
+sidebar_label: 'Pointer Arithmetic'
 sidebar_position: 3
 ---
 
