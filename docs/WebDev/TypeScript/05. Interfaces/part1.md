@@ -19,7 +19,7 @@
 
 ---
 
-# What is an Interface?
+### What is an Interface?
 
 An Interface is a blueprint that describes the shape of an object.
 
@@ -48,7 +48,7 @@ age → number
 
 ---
 
-# Why Do We Need Interfaces?
+### Why Do We Need Interfaces?
 
 Without interfaces:
 
@@ -88,7 +88,7 @@ Much cleaner.
 
 ---
 
-# Interface Syntax
+### Interface Syntax
 
 ---
 
@@ -124,7 +124,7 @@ const user: User = {
 
 ---
 
-# Type Checking
+### Type Checking
 
 TypeScript validates:
 
@@ -176,7 +176,7 @@ Error.
 
 ---
 
-# Interface vs Object Type
+### Interface vs Object Type
 
 You already learned:
 
@@ -206,7 +206,7 @@ Differences will be covered in Part 5C.
 
 ---
 
-# Optional Properties
+### Optional Properties
 
 Sometimes properties may not exist.
 
@@ -266,7 +266,7 @@ age: number | undefined;
 
 ---
 
-# Real World Example
+### Real World Example
 
 User Profile
 
@@ -289,7 +289,7 @@ Others may not.
 
 ---
 
-# Readonly Properties
+### Readonly Properties
 
 Some properties should never change.
 
@@ -347,7 +347,7 @@ Cannot assign to readonly property
 
 ---
 
-# Why Use Readonly?
+### Why Use Readonly?
 
 Common examples:
 
@@ -364,7 +364,7 @@ Values that should never change.
 
 ---
 
-# Method Signatures
+### Method Signatures
 
 Interfaces can describe methods.
 
@@ -404,7 +404,7 @@ Hello
 
 ---
 
-# Method Parameters
+### Method Parameters
 
 Methods can have parameters.
 
@@ -446,7 +446,7 @@ Output
 
 ---
 
-# Method Return Types
+### Method Return Types
 
 Interfaces also enforce return types.
 
@@ -488,7 +488,7 @@ Error.
 
 ---
 
-# Nested Interfaces
+### Nested Interfaces
 
 Interfaces can contain other interfaces.
 
@@ -529,7 +529,7 @@ const user: User = {
 
 ---
 
-# Deeply Nested Interfaces
+### Deeply Nested Interfaces
 
 ---
 
@@ -579,7 +579,7 @@ const user: User = {
 
 ---
 
-# Arrays Inside Interfaces
+### Arrays Inside Interfaces
 
 Very common.
 
@@ -608,7 +608,7 @@ const user: User = {
 
 ---
 
-# Interface Reusability
+### Interface Reusability
 
 One of the biggest advantages.
 
@@ -655,7 +655,7 @@ Single source of truth.
 
 ---
 
-# Interfaces in Functions
+### Interfaces in Functions
 
 ---
 
@@ -689,7 +689,7 @@ printUser({
 
 ---
 
-# Interfaces as Return Types
+### Interfaces as Return Types
 
 ---
 
@@ -715,7 +715,7 @@ function getUser(): User {
 
 ---
 
-# Structural Typing Still Applies
+### Structural Typing Still Applies
 
 TypeScript uses:
 
@@ -764,7 +764,7 @@ Required structure exists.
 
 ---
 
-# Real World Example
+### Real World Example
 
 API User Model
 
@@ -817,11 +817,11 @@ Strong typing everywhere.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Forgetting Required Properties
+#### Forgetting Required Properties
 
 Wrong
 
@@ -841,7 +841,7 @@ age;
 
 ---
 
-## Wrong Property Types
+#### Wrong Property Types
 
 Wrong
 
@@ -862,7 +862,7 @@ number;
 
 ---
 
-## Modifying Readonly Properties
+#### Modifying Readonly Properties
 
 Wrong
 
@@ -876,15 +876,15 @@ Readonly prevents reassignment.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Interface?
 
-### Answer
+#### Answer
 
 ```text
 A blueprint that describes
@@ -893,11 +893,11 @@ the structure of an object.
 
 ---
 
-## Q2
+#### Q2
 
 Why use Interfaces?
 
-### Answer
+#### Answer
 
 ```text
 Reusability
@@ -908,11 +908,11 @@ Maintainability
 
 ---
 
-## Q3
+#### Q3
 
 How do you create an optional property?
 
-### Answer
+#### Answer
 
 ```ts
 age?: number;
@@ -920,11 +920,11 @@ age?: number;
 
 ---
 
-## Q4
+#### Q4
 
 How do you create a readonly property?
 
-### Answer
+#### Answer
 
 ```ts
 readonly id: number;
@@ -932,11 +932,11 @@ readonly id: number;
 
 ---
 
-## Q5
+#### Q5
 
 Can Interfaces contain methods?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -946,7 +946,7 @@ greet(): void;
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface User {
@@ -993,7 +993,7 @@ function saveUser(user: User) {}
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Interfaces define object structures.
 - They improve readability and reusability.
@@ -1005,13 +1005,3 @@ function saveUser(user: User) {}
 - TypeScript uses structural typing with interfaces.
 - Interfaces are one of the most commonly used features in large TypeScript codebases.
 - Mastering interfaces is essential before learning interface extension and declaration merging.
-
----
- 
- 
-
-
----\n*Last refined on April 12, 2026*
-
-
----\n*Last refined on April 24, 2026*
