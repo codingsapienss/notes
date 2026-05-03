@@ -19,7 +19,7 @@
 
 ---
 
-# What is a Class?
+### What is a Class?
 
 A Class is a blueprint for creating objects.
 
@@ -33,7 +33,7 @@ Object → Actual Instance
 
 ---
 
-## Real World Example
+#### Real World Example
 
 ```text
 Blueprint of House
@@ -51,7 +51,7 @@ User Object
 
 ---
 
-# Why Do We Need Classes?
+### Why Do We Need Classes?
 
 Without Classes:
 
@@ -100,11 +100,11 @@ Create multiple users easily.
 
 ---
 
-# Class Syntax
+### Class Syntax
 
 ---
 
-## Basic Structure
+#### Basic Structure
 
 ```ts
 class ClassName {
@@ -116,7 +116,7 @@ class ClassName {
 
 ---
 
-## Example
+#### Example
 
 ```ts
 class User {
@@ -139,7 +139,7 @@ Properties:
 
 ---
 
-# Creating Objects
+### Creating Objects
 
 Classes themselves do not create objects.
 
@@ -153,7 +153,7 @@ keyword.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 class User {
@@ -184,7 +184,7 @@ Object Created
 
 ---
 
-# What is an Object?
+### What is an Object?
 
 An Object is:
 
@@ -223,11 +223,11 @@ Both are separate objects.
 
 ---
 
-# Adding Properties
+### Adding Properties
 
 ---
 
-## Example
+#### Example
 
 ```ts
 class User {
@@ -264,13 +264,13 @@ User {
 
 ---
 
-# Constructor
+### Constructor
 
 One of the most important concepts.
 
 ---
 
-# What is a Constructor?
+### What is a Constructor?
 
 A Constructor is a special method that runs:
 
@@ -282,7 +282,7 @@ when an object is created.
 
 ---
 
-# Why Do We Need Constructors?
+### Why Do We Need Constructors?
 
 Without Constructor:
 
@@ -307,7 +307,7 @@ Cleaner.
 
 ---
 
-# Constructor Syntax
+### Constructor Syntax
 
 ```ts
 class User {
@@ -347,7 +347,7 @@ Constructor automatically executes.
 
 ---
 
-# Constructor with Parameters
+### Constructor with Parameters
 
 ---
 
@@ -390,7 +390,7 @@ User {
 
 ---
 
-# Understanding this
+### Understanding this
 
 One of the most important OOP concepts.
 
@@ -422,7 +422,7 @@ this.name;
 
 ---
 
-# Meaning of this
+### Meaning of this
 
 ```text
 Current Object
@@ -467,7 +467,7 @@ currently being created or used.
 
 ---
 
-# Memory Visualization
+### Memory Visualization
 
 ---
 
@@ -511,7 +511,7 @@ Object Initialized
 
 ---
 
-# Methods
+### Methods
 
 Classes can contain functions.
 
@@ -559,7 +559,7 @@ Hello Prashant
 
 ---
 
-# Multiple Methods
+### Multiple Methods
 
 ---
 
@@ -611,7 +611,7 @@ Output
 
 ---
 
-# Class as a Custom Type
+### Class as a Custom Type
 
 A class automatically creates a type.
 
@@ -653,7 +653,7 @@ Both Class and Type
 
 ---
 
-# Property Initialization Error
+### Property Initialization Error
 
 Common TypeScript Error.
 
@@ -689,7 +689,7 @@ Every property must be initialized.
 
 ---
 
-# Fix 1 — Constructor Initialization
+### Fix 1 — Constructor Initialization
 
 ```ts
 class User {
@@ -703,7 +703,7 @@ class User {
 
 ---
 
-# Fix 2 — Default Value
+### Fix 2 — Default Value
 
 ```ts
 class User {
@@ -713,7 +713,7 @@ class User {
 
 ---
 
-# Fix 3 — Definite Assignment Assertion
+### Fix 3 — Definite Assignment Assertion
 
 ```ts
 class User {
@@ -736,7 +736,7 @@ Use carefully.
 
 ---
 
-# Constructor Shorthand
+### Constructor Shorthand
 
 Very common in production code.
 
@@ -786,7 +786,7 @@ Equivalent behavior.
 
 ---
 
-# Class Expression
+### Class Expression
 
 Classes can be stored in variables.
 
@@ -814,7 +814,7 @@ Less common than normal classes.
 
 ---
 
-# Real World Example
+### Real World Example
 
 ---
 
@@ -854,11 +854,11 @@ Prashant (abc@gmail.com)
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Forgetting new
+#### Forgetting new
 
 Wrong
 
@@ -880,7 +880,7 @@ const user = new User();
 
 ---
 
-## Using Property Before Initialization
+#### Using Property Before Initialization
 
 Wrong
 
@@ -896,7 +896,7 @@ Initialize properly.
 
 ---
 
-## Forgetting this
+#### Forgetting this
 
 Wrong
 
@@ -918,15 +918,15 @@ constructor(name: string) {
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Class?
 
-### Answer
+#### Answer
 
 ```text
 A blueprint used to create objects.
@@ -934,11 +934,11 @@ A blueprint used to create objects.
 
 ---
 
-## Q2
+#### Q2
 
 What is an Object?
 
-### Answer
+#### Answer
 
 ```text
 An instance of a class.
@@ -946,11 +946,11 @@ An instance of a class.
 
 ---
 
-## Q3
+#### Q3
 
 What is a Constructor?
 
-### Answer
+#### Answer
 
 ```text
 A special method that executes
@@ -959,11 +959,11 @@ automatically when an object is created.
 
 ---
 
-## Q4
+#### Q4
 
 What does this refer to?
 
-### Answer
+#### Answer
 
 ```text
 The current object instance.
@@ -971,11 +971,11 @@ The current object instance.
 
 ---
 
-## Q5
+#### Q5
 
 Why use Classes?
 
-### Answer
+#### Answer
 
 ```text
 To model real-world entities,
@@ -985,7 +985,7 @@ and support OOP principles.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 class User {}
@@ -1025,7 +1025,7 @@ user.greet();
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - A class is a blueprint for creating objects.
 - Objects are instances of classes.
@@ -1037,7 +1037,3 @@ user.greet();
 - Properties should be initialized properly.
 - Constructor shorthand is heavily used in production TypeScript.
 - Classes form the foundation for inheritance, abstraction, and advanced OOP concepts.
-
----
- 
- 
