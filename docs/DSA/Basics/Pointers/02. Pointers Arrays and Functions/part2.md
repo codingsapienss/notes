@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 2B'
+sidebar_label: 'Character Arrays & Pointers'
 sidebar_position: 6
 ---
 # Character Arrays, Character Pointers, String Literals, and `cout` Behavior
