@@ -28,13 +28,13 @@
 
 ---
 
-# What is an Enum?
+### What is an Enum?
 
 An Enum is a special TypeScript feature that groups related constant values together.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 enum Status {
@@ -60,7 +60,7 @@ const currentStatus = 1;
 
 ---
 
-# Why Do We Need Enums?
+### Why Do We Need Enums?
 
 Without Enums:
 
@@ -100,13 +100,13 @@ Immediately clear.
 
 ---
 
-# Numeric Enums
+### Numeric Enums
 
 Default enum type.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 enum Status {
@@ -130,7 +130,7 @@ enum Status {
 
 ---
 
-# Accessing Enum Values
+### Accessing Enum Values
 
 ---
 
@@ -172,7 +172,7 @@ Output:
 
 ---
 
-# Custom Numeric Values
+### Custom Numeric Values
 
 You can specify values manually.
 
@@ -204,7 +204,7 @@ Output:
 
 ---
 
-# Auto Increment Behavior
+### Auto Increment Behavior
 
 ---
 
@@ -234,7 +234,7 @@ TypeScript automatically increments.
 
 ---
 
-# Reverse Mapping
+### Reverse Mapping
 
 Unique feature of Numeric Enums.
 
@@ -294,7 +294,7 @@ Failed
 
 ---
 
-# String Enums
+### String Enums
 
 Instead of numbers, use strings.
 
@@ -326,7 +326,7 @@ SUCCESS
 
 ---
 
-# Why String Enums?
+### Why String Enums?
 
 More readable.
 
@@ -356,7 +356,7 @@ is much easier to understand.
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Status
 
@@ -388,7 +388,7 @@ if (status === ApiStatus.Success) {
 
 ---
 
-# Heterogeneous Enums
+### Heterogeneous Enums
 
 Mixing strings and numbers.
 
@@ -423,7 +423,7 @@ Harder to Maintain
 
 ---
 
-# Enum as a Type
+### Enum as a Type
 
 Enums create both:
 
@@ -467,7 +467,7 @@ currentStatus = Status.Success;
 
 ---
 
-# Invalid Assignment
+### Invalid Assignment
 
 ```ts
 currentStatus = 100;
@@ -481,7 +481,7 @@ Prefer enum values.
 
 ---
 
-# Enum in Functions
+### Enum in Functions
 
 ---
 
@@ -517,7 +517,7 @@ Valid.
 
 ---
 
-# Real World Example
+### Real World Example
 
 User Roles
 
@@ -549,7 +549,7 @@ if (role === UserRole.Admin) {
 
 ---
 
-# Const Enums
+### Const Enums
 
 Optimization feature.
 
@@ -596,7 +596,7 @@ Faster Execution
 
 ---
 
-# Normal Enum Compilation
+### Normal Enum Compilation
 
 TypeScript
 
@@ -631,7 +631,7 @@ Extra JavaScript Object Created
 
 ---
 
-# Const Enum Compilation
+### Const Enum Compilation
 
 TypeScript
 
@@ -656,7 +656,7 @@ No runtime object.
 
 ---
 
-# Enum vs Union Literal Types
+### Enum vs Union Literal Types
 
 Modern TypeScript often prefers:
 
@@ -676,7 +676,7 @@ enum Status {
 
 ---
 
-# Enum Version
+### Enum Version
 
 ```ts
 enum Status {
@@ -694,7 +694,7 @@ Status.Success;
 
 ---
 
-# Union Literal Version
+### Union Literal Version
 
 ```ts
 type Status = "pending" | "success" | "failed";
@@ -708,7 +708,7 @@ const status: Status = "success";
 
 ---
 
-# Why Many Developers Prefer Literal Unions?
+### Why Many Developers Prefer Literal Unions?
 
 Benefits:
 
@@ -731,7 +731,7 @@ instead of Enums.
 
 ---
 
-# When Should You Use Enums?
+### When Should You Use Enums?
 
 Good Use Cases:
 
@@ -754,7 +754,7 @@ Role.Employee;
 
 ---
 
-# When Should You Avoid Enums?
+### When Should You Avoid Enums?
 
 If simple strings work:
 
@@ -766,11 +766,11 @@ Often preferred.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Mixing String and Numeric Enums
+#### Mixing String and Numeric Enums
 
 Bad
 
@@ -787,7 +787,7 @@ Avoid.
 
 ---
 
-## Using Magic Numbers
+#### Using Magic Numbers
 
 Bad
 
@@ -808,7 +808,7 @@ if(
 
 ---
 
-## Forgetting String Enums Don't Have Reverse Mapping
+#### Forgetting String Enums Don't Have Reverse Mapping
 
 ---
 
@@ -832,7 +832,7 @@ Does NOT reverse map.
 
 ---
 
-# Numeric vs String Enum
+### Numeric vs String Enum
 
 | Feature         | Numeric Enum | String Enum |
 | --------------- | ------------ | ----------- |
@@ -843,15 +843,15 @@ Does NOT reverse map.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Enum?
 
-### Answer
+#### Answer
 
 ```text
 A collection of named constants.
@@ -859,7 +859,7 @@ A collection of named constants.
 
 ---
 
-## Q2
+#### Q2
 
 What value does this generate?
 
@@ -871,7 +871,7 @@ enum Status {
 }
 ```
 
-### Answer
+#### Answer
 
 ```ts
 Pending = 0;
@@ -881,11 +881,11 @@ Failed = 2;
 
 ---
 
-## Q3
+#### Q3
 
 What is Reverse Mapping?
 
-### Answer
+#### Answer
 
 ```ts
 Status[1];
@@ -901,11 +901,11 @@ for numeric enums.
 
 ---
 
-## Q4
+#### Q4
 
 Difference between String and Numeric Enums?
 
-### Answer
+#### Answer
 
 ```text
 Numeric Enums:
@@ -918,11 +918,11 @@ No Reverse Mapping
 
 ---
 
-## Q5
+#### Q5
 
 What is a Const Enum?
 
-### Answer
+#### Answer
 
 ```text
 An enum removed during compilation
@@ -931,7 +931,7 @@ for better performance.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 enum Status {
@@ -979,7 +979,7 @@ type Status = "pending" | "success" | "failed";
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Enums group related constants together.
 - Numeric enums start from `0` by default.
@@ -991,12 +991,3 @@ type Status = "pending" | "success" | "failed";
 - Avoid heterogeneous enums.
 - Use enums when you need named constants with strong semantics.
 - Understanding enums is important for interviews and legacy TypeScript codebases.
-
----
- 
-
-
----\n*Last refined on April 18, 2026*
-
-
----\n*Last refined on April 26, 2026*
