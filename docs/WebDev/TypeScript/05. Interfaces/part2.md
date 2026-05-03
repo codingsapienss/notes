@@ -17,11 +17,11 @@
 
 ---
 
-# Function Interfaces
+### Function Interfaces
 
 ---
 
-## What is a Function Interface?
+#### What is a Function Interface?
 
 An Interface can describe the structure of a function.
 
@@ -43,7 +43,7 @@ interface AddFunction {
 
 ---
 
-# Example
+### Example
 
 ```ts
 interface AddFunction {
@@ -77,7 +77,7 @@ Output
 
 ---
 
-# Why Use Function Interfaces?
+### Why Use Function Interfaces?
 
 Useful when:
 
@@ -110,7 +110,7 @@ Both follow the same contract.
 
 ---
 
-# Function Interface with Object Properties
+### Function Interface with Object Properties
 
 Interfaces can describe:
 
@@ -148,13 +148,13 @@ This pattern is used in advanced libraries.
 
 ---
 
-# Index Signatures
+### Index Signatures
 
 One of the most important interface features.
 
 ---
 
-# Problem
+### Problem
 
 Normally:
 
@@ -189,13 +189,13 @@ Property names are not known beforehand.
 
 ---
 
-# Solution
+### Solution
 
 Use Index Signatures.
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 interface InterfaceName {
@@ -205,7 +205,7 @@ interface InterfaceName {
 
 ---
 
-# Example
+### Example
 
 ```ts
 interface Scores {
@@ -231,7 +231,7 @@ Valid.
 
 ---
 
-# Why Does This Work?
+### Why Does This Work?
 
 Interface says:
 
@@ -260,7 +260,7 @@ Valid.
 
 ---
 
-# Invalid Example
+### Invalid Example
 
 ```ts
 const marks: Scores = {
@@ -281,7 +281,7 @@ Value must be number.
 
 ---
 
-# Number Index Signatures
+### Number Index Signatures
 
 ---
 
@@ -310,7 +310,7 @@ Valid.
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Dictionary
 
@@ -344,7 +344,7 @@ Very common in backend systems.
 
 ---
 
-# Mixing Explicit Properties with Index Signatures
+### Mixing Explicit Properties with Index Signatures
 
 Allowed.
 
@@ -378,7 +378,7 @@ Valid.
 
 ---
 
-# Important Rule
+### Important Rule
 
 Explicit properties must be compatible with the index signature.
 
@@ -416,13 +416,13 @@ string | number;
 
 ---
 
-# Interface Extension
+### Interface Extension
 
 One of the most powerful interface features.
 
 ---
 
-# Why Extension?
+### Why Extension?
 
 Without extension:
 
@@ -453,7 +453,7 @@ Extension eliminates duplication.
 
 ---
 
-# Syntax
+### Syntax
 
 ```ts
 interface Child extends Parent {}
@@ -461,7 +461,7 @@ interface Child extends Parent {}
 
 ---
 
-# Example
+### Example
 
 ```ts
 interface User {
@@ -492,7 +492,7 @@ Result
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const admin: Admin = {
@@ -506,7 +506,7 @@ const admin: Admin = {
 
 ---
 
-# Visual Representation
+### Visual Representation
 
 ```text
 User
@@ -521,7 +521,7 @@ Admin
 
 ---
 
-# Multiple Interface Extension
+### Multiple Interface Extension
 
 Interfaces can inherit from multiple interfaces.
 
@@ -573,7 +573,7 @@ Result
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const admin: SuperAdmin = {
@@ -587,7 +587,7 @@ const admin: SuperAdmin = {
 
 ---
 
-# Interface Inheritance Hierarchy
+### Interface Inheritance Hierarchy
 
 Real projects often create inheritance chains.
 
@@ -635,7 +635,7 @@ Very common.
 
 ---
 
-# Declaration Merging
+### Declaration Merging
 
 This is the biggest difference between:
 
@@ -651,7 +651,7 @@ Type Alias
 
 ---
 
-# What is Declaration Merging?
+### What is Declaration Merging?
 
 TypeScript automatically merges interfaces having the same name.
 
@@ -690,7 +690,7 @@ TypeScript combines them.
 
 ---
 
-# Usage
+### Usage
 
 ```ts
 const user: User = {
@@ -705,7 +705,7 @@ Valid.
 
 ---
 
-# Why Is Declaration Merging Useful?
+### Why Is Declaration Merging Useful?
 
 Large libraries often extend existing interfaces.
 
@@ -741,7 +741,7 @@ Third-party Libraries
 
 ---
 
-# Type Alias Comparison
+### Type Alias Comparison
 
 Interfaces
 
@@ -785,7 +785,7 @@ Duplicate Identifier
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Models
 
@@ -829,11 +829,11 @@ const response: UserResponse = {
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using Extension When Composition Is Better
+#### Using Extension When Composition Is Better
 
 Avoid:
 
@@ -850,7 +850,7 @@ Deep hierarchies become difficult to maintain.
 
 ---
 
-## Forgetting Declaration Merging
+#### Forgetting Declaration Merging
 
 Interfaces merge automatically.
 
@@ -873,7 +873,7 @@ Not overwritten.
 
 ---
 
-## Wrong Index Signature Type
+#### Wrong Index Signature Type
 
 Wrong
 
@@ -903,15 +903,15 @@ number;
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 Can Interfaces describe functions?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -923,11 +923,11 @@ interface Add {
 
 ---
 
-## Q2
+#### Q2
 
 What is an Index Signature?
 
-### Answer
+#### Answer
 
 A way to describe dynamic property names.
 
@@ -941,11 +941,11 @@ Example:
 
 ---
 
-## Q3
+#### Q3
 
 Can an Interface extend another Interface?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -955,11 +955,11 @@ interface Admin extends User {}
 
 ---
 
-## Q4
+#### Q4
 
 Can an Interface extend multiple Interfaces?
 
-### Answer
+#### Answer
 
 Yes.
 
@@ -969,21 +969,21 @@ interface A extends B, C {}
 
 ---
 
-## Q5
+#### Q5
 
 What is Declaration Merging?
 
-### Answer
+#### Answer
 
 Interfaces with the same name are automatically combined by TypeScript.
 
 ---
 
-## Q6
+#### Q6
 
 Do Type Aliases support Declaration Merging?
 
-### Answer
+#### Answer
 
 No.
 
@@ -991,7 +991,7 @@ Only interfaces support declaration merging.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface Add {
@@ -1042,7 +1042,7 @@ interface User {
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Interfaces can describe functions, not just objects.
 - Index Signatures support dynamic property names.
@@ -1054,20 +1054,3 @@ interface User {
 - Extension helps create scalable type hierarchies.
 - Declaration Merging is one of the major differences between interfaces and type aliases.
 - Advanced interface concepts are widely used in large TypeScript codebases.
-
----
-
-
----\n*Last refined on April 18, 2026*
-
-
----\n*Last refined on April 28, 2026*
-
-
----\n*Last refined on April 29, 2026*
-
-
----\n*Last refined on April 29, 2026*
-
-
----\n*Last refined on April 30, 2026*
