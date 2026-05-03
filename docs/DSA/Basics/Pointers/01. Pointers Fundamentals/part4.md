@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Pointers Part 1D"
+sidebar_label: 'Pass by Address & Safety'
 sidebar_position: 4
 ---
 
