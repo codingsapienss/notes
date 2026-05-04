@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 2C'
+sidebar_label: 'Pointers in Functions'
 sidebar_position: 7
 ---
 # Pointers in Functions, Array Decay, Array Parameters, and Passing Arrays to Functions
