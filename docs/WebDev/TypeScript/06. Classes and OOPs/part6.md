@@ -34,7 +34,7 @@
 
 ---
 
-# Why Do We Need Abstract Classes?
+### Why Do We Need Abstract Classes?
 
 Suppose we are building an Animal System.
 
@@ -99,7 +99,7 @@ exists.
 
 ---
 
-# What is an Abstract Class?
+### What is an Abstract Class?
 
 An Abstract Class is:
 
@@ -128,7 +128,7 @@ abstract class Animal {}
 
 ---
 
-# Important Rule
+### Important Rule
 
 You CANNOT create an object of an abstract class.
 
@@ -173,7 +173,7 @@ Only child classes can be instantiated.
 
 ---
 
-# Abstract Methods
+### Abstract Methods
 
 The biggest feature of abstract classes.
 
@@ -218,7 +218,7 @@ No implementation.
 
 ---
 
-# Why?
+### Why?
 
 Because:
 
@@ -229,7 +229,7 @@ will implement it differently.
 
 ---
 
-# Implementing Abstract Methods
+### Implementing Abstract Methods
 
 ---
 
@@ -271,7 +271,7 @@ Woof!
 
 ---
 
-# What Happens If Child Class Doesn't Implement?
+### What Happens If Child Class Doesn't Implement?
 
 Example
 
@@ -309,7 +309,7 @@ Contract Broken
 
 ---
 
-# Abstract Class with Normal Methods
+### Abstract Class with Normal Methods
 
 Abstract classes can contain:
 
@@ -390,7 +390,7 @@ was implemented.
 
 ---
 
-# Real World Mental Model
+### Real World Mental Model
 
 Think of:
 
@@ -466,7 +466,7 @@ Stopped
 
 ---
 
-# Abstract Properties
+### Abstract Properties
 
 Not only methods.
 
@@ -498,7 +498,7 @@ Valid.
 
 ---
 
-# Multiple Abstract Methods
+### Multiple Abstract Methods
 
 ---
 
@@ -557,7 +557,7 @@ rect.area();
 
 ---
 
-# Constructors in Abstract Classes
+### Constructors in Abstract Classes
 
 Abstract classes can have constructors.
 
@@ -605,7 +605,7 @@ Tommy
 
 ---
 
-# Abstract Class as a Type
+### Abstract Class as a Type
 
 Abstract classes can be used as types.
 
@@ -651,7 +651,7 @@ Dog IS-A Animal
 
 ---
 
-# Polymorphism with Abstract Classes
+### Polymorphism with Abstract Classes
 
 ---
 
@@ -733,13 +733,13 @@ Runtime Polymorphism
 
 ---
 
-# Abstract Class vs Interface
+### Abstract Class vs Interface
 
 One of the most common interview questions.
 
 ---
 
-# Interface
+### Interface
 
 ```ts
 interface Animal {
@@ -769,7 +769,7 @@ Constructors
 
 ---
 
-# Abstract Class
+### Abstract Class
 
 ```ts
 abstract class Animal {
@@ -793,7 +793,7 @@ Implementation
 
 ---
 
-# Comparison Table
+### Comparison Table
 
 | Feature               | Interface | Abstract Class |
 | --------------------- | --------- | -------------- |
@@ -808,7 +808,7 @@ Implementation
 
 ---
 
-# When to Use Interface?
+### When to Use Interface?
 
 Use Interface when:
 
@@ -827,7 +827,7 @@ Serializer
 
 ---
 
-# When to Use Abstract Class?
+### When to Use Abstract Class?
 
 Use Abstract Class when:
 
@@ -846,11 +846,11 @@ Shape
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Instantiating Abstract Class
+#### Instantiating Abstract Class
 
 Wrong
 
@@ -868,7 +868,7 @@ Only child classes can be created.
 
 ---
 
-## Forgetting Abstract Method Implementation
+#### Forgetting Abstract Method Implementation
 
 Wrong
 
@@ -886,7 +886,7 @@ makeSound();
 
 ---
 
-## Using Abstract Class When Interface Is Enough
+#### Using Abstract Class When Interface Is Enough
 
 Bad
 
@@ -907,15 +907,15 @@ when no shared implementation exists.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Abstract Class?
 
-### Answer
+#### Answer
 
 ```text
 A class that cannot
@@ -926,11 +926,11 @@ abstract methods.
 
 ---
 
-## Q2
+#### Q2
 
 What is an Abstract Method?
 
-### Answer
+#### Answer
 
 ```text
 A method declaration
@@ -939,11 +939,11 @@ without implementation.
 
 ---
 
-## Q3
+#### Q3
 
 Can Abstract Classes Have Normal Methods?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -951,11 +951,11 @@ Yes.
 
 ---
 
-## Q4
+#### Q4
 
 Can Abstract Classes Have Constructors?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -963,11 +963,11 @@ Yes.
 
 ---
 
-## Q5
+#### Q5
 
 Difference Between Interface and Abstract Class?
 
-### Answer
+#### Answer
 
 ```text
 Interface:
@@ -979,11 +979,11 @@ Contract + Implementation
 
 ---
 
-## Q6
+#### Q6
 
 Can Abstract Classes Be Used as Types?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -991,7 +991,7 @@ Yes.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 abstract class Animal {}
@@ -1031,7 +1031,7 @@ new Animal();
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Abstract Classes are incomplete base classes.
 - Abstract Classes cannot be instantiated directly.
@@ -1043,9 +1043,3 @@ new Animal();
 - Interfaces provide contracts only.
 - Abstract Classes provide contracts plus implementation.
 - Abstract Classes are heavily used in enterprise-level OOP designs.
-
----
- 
-
-
----\n*Last refined on April 20, 2026*
