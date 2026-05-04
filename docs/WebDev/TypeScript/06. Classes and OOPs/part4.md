@@ -30,7 +30,7 @@
 
 ---
 
-# What is Inheritance?
+### What is Inheritance?
 
 Inheritance allows one class to:
 
@@ -41,7 +41,7 @@ from another class.
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```text
 Animal
@@ -80,11 +80,11 @@ once and reuse it.
 
 ---
 
-# Parent Class vs Child Class
+### Parent Class vs Child Class
 
 ---
 
-## Parent Class
+#### Parent Class
 
 Also called:
 
@@ -103,7 +103,7 @@ class Animal {}
 
 ---
 
-## Child Class
+#### Child Class
 
 Also called:
 
@@ -132,7 +132,7 @@ Animal
 
 ---
 
-# extends Keyword
+### extends Keyword
 
 Inheritance is created using:
 
@@ -186,7 +186,7 @@ Animal
 
 ---
 
-# Memory Visualization
+### Memory Visualization
 
 ```text
 Animal
@@ -224,7 +224,7 @@ Dog IS-A Animal
 
 ---
 
-# Adding Child-Specific Methods
+### Adding Child-Specific Methods
 
 Child classes can have their own methods.
 
@@ -267,7 +267,7 @@ Woof!
 
 ---
 
-# Inheritance with Properties
+### Inheritance with Properties
 
 ---
 
@@ -313,7 +313,7 @@ Property inherited successfully.
 
 ---
 
-# Constructors in Inheritance
+### Constructors in Inheritance
 
 Things become more interesting when constructors exist.
 
@@ -360,7 +360,7 @@ Animal's constructor.
 
 ---
 
-# Child Constructor
+### Child Constructor
 
 Suppose Dog needs:
 
@@ -403,7 +403,7 @@ must contain a super call.
 
 ---
 
-# What is super()?
+### What is super()?
 
 When a child class defines its own constructor:
 
@@ -422,7 +422,7 @@ super();
 
 ---
 
-# Correct Example
+### Correct Example
 
 ```ts
 class Animal {
@@ -467,7 +467,7 @@ Labrador
 
 ---
 
-# Why Must super() Come First?
+### Why Must super() Come First?
 
 Consider:
 
@@ -511,13 +511,13 @@ Parent must exist first.
 
 ---
 
-# Method Overriding
+### Method Overriding
 
 One of the most important OOP concepts.
 
 ---
 
-# What is Method Overriding?
+### What is Method Overriding?
 
 A child class can:
 
@@ -573,7 +573,7 @@ Parent method overridden.
 
 ---
 
-# Overriding Example
+### Overriding Example
 
 ---
 
@@ -617,7 +617,7 @@ Writing Code...
 
 ---
 
-# Calling Parent Method using super
+### Calling Parent Method using super
 
 Sometimes we want:
 
@@ -670,7 +670,7 @@ Woof!
 
 ---
 
-# super Keyword
+### super Keyword
 
 The keyword:
 
@@ -704,7 +704,7 @@ Parent Method
 
 ---
 
-# Access Modifiers and Inheritance
+### Access Modifiers and Inheritance
 
 ---
 
@@ -760,7 +760,7 @@ is not inherited.
 
 ---
 
-# Multi-Level Inheritance
+### Multi-Level Inheritance
 
 TypeScript supports:
 
@@ -805,7 +805,7 @@ features.
 
 ---
 
-# instanceof Operator
+### instanceof Operator
 
 Used to check inheritance relationships.
 
@@ -861,7 +861,7 @@ Dog IS-A Animal
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```ts
 class Employee {
@@ -911,11 +911,11 @@ Prashant writes TypeScript
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Forgetting super()
+#### Forgetting super()
 
 Wrong
 
@@ -939,7 +939,7 @@ super(...)
 
 ---
 
-## Using this Before super()
+#### Using this Before super()
 
 Wrong
 
@@ -970,7 +970,7 @@ constructor() {
 
 ---
 
-## Expecting private Members to Inherit
+#### Expecting private Members to Inherit
 
 Wrong
 
@@ -1002,15 +1002,15 @@ instead.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is Inheritance?
 
-### Answer
+#### Answer
 
 ```text
 A mechanism where one class
@@ -1020,11 +1020,11 @@ from another class.
 
 ---
 
-## Q2
+#### Q2
 
 Which keyword is used for inheritance?
 
-### Answer
+#### Answer
 
 ```ts
 extends
@@ -1032,11 +1032,11 @@ extends
 
 ---
 
-## Q3
+#### Q3
 
 What is Method Overriding?
 
-### Answer
+#### Answer
 
 ```text
 Providing a new implementation
@@ -1045,11 +1045,11 @@ of a parent method in a child class.
 
 ---
 
-## Q4
+#### Q4
 
 What is super()?
 
-### Answer
+#### Answer
 
 ```text
 Calls the parent constructor.
@@ -1057,11 +1057,11 @@ Calls the parent constructor.
 
 ---
 
-## Q5
+#### Q5
 
 Can private members be inherited?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -1072,11 +1072,11 @@ members are accessible.
 
 ---
 
-## Q6
+#### Q6
 
 What does instanceof do?
 
-### Answer
+#### Answer
 
 ```text
 Checks whether an object
@@ -1085,7 +1085,7 @@ belongs to a class hierarchy.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 class Dog extends Animal {}
@@ -1127,7 +1127,7 @@ accessible in child classes.
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Inheritance allows code reuse between classes.
 - `extends` is used to create inheritance relationships.
@@ -1140,6 +1140,3 @@ accessible in child classes.
 - Multi-level inheritance is supported.
 - `instanceof` helps identify inheritance relationships at runtime.
 - Inheritance is one of the core pillars of Object-Oriented Programming.
-
----
- 
