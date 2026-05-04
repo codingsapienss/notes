@@ -35,7 +35,7 @@
 
 ---
 
-# Why Access Modifiers?
+### Why Access Modifiers?
 
 Consider:
 
@@ -81,11 +81,11 @@ Controlled Access
 
 ---
 
-# public Modifier
+### public Modifier
 
 ---
 
-## What is public?
+#### What is public?
 
 ```text
 Accessible Everywhere
@@ -97,7 +97,7 @@ This is the default modifier in TypeScript.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 class User {
@@ -139,7 +139,7 @@ Valid.
 
 ---
 
-# public is Default
+### public is Default
 
 These are identical:
 
@@ -169,7 +169,7 @@ because it is implied.
 
 ---
 
-# public Access Diagram
+### public Access Diagram
 
 ```text
 Class
@@ -181,11 +181,11 @@ Class
 
 ---
 
-# private Modifier
+### private Modifier
 
 ---
 
-## What is private?
+#### What is private?
 
 ```text
 Accessible Only
@@ -198,7 +198,7 @@ Outside access is prohibited.
 
 ---
 
-# Example
+### Example
 
 ```ts
 class User {
@@ -237,7 +237,7 @@ is private
 
 ---
 
-# private Access Diagram
+### private Access Diagram
 
 ```text
 Class
@@ -249,7 +249,7 @@ Class
 
 ---
 
-# Accessing private Inside Class
+### Accessing private Inside Class
 
 Private members can still be used internally.
 
@@ -281,7 +281,7 @@ Same Class
 
 ---
 
-# Real World Example
+### Real World Example
 
 ---
 
@@ -335,7 +335,7 @@ Error.
 
 ---
 
-# Why Use private?
+### Why Use private?
 
 Protects:
 
@@ -358,11 +358,11 @@ Database Connection
 
 ---
 
-# protected Modifier
+### protected Modifier
 
 ---
 
-## What is protected?
+#### What is protected?
 
 ```text
 Accessible:
@@ -377,7 +377,7 @@ But NOT outside.
 
 ---
 
-# Example
+### Example
 
 ```ts
 class Animal {
@@ -416,7 +416,7 @@ protected Members
 
 ---
 
-# Outside Access
+### Outside Access
 
 ```ts
 const dog = new Dog("Tommy");
@@ -428,7 +428,7 @@ Error.
 
 ---
 
-# protected Access Diagram
+### protected Access Diagram
 
 ```text
 Class
@@ -440,11 +440,11 @@ Class
 
 ---
 
-# private vs protected
+### private vs protected
 
 ---
 
-## private
+#### private
 
 ```ts
 private balance: number;
@@ -460,7 +460,7 @@ Current Class Only
 
 ---
 
-## protected
+#### protected
 
 ```ts
 protected balance: number;
@@ -478,7 +478,7 @@ Derived Classes
 
 ---
 
-# Example Comparison
+### Example Comparison
 
 ```ts
 class Parent {
@@ -512,7 +512,7 @@ a → Error
 
 ---
 
-# # Private Fields (JavaScript Private Fields)
+### # Private Fields (JavaScript Private Fields)
 
 Modern JavaScript introduced:
 
@@ -526,7 +526,7 @@ These are different from TypeScript private.
 
 ---
 
-# Example
+### Example
 
 ```ts
 class User {
@@ -550,7 +550,7 @@ Error.
 
 ---
 
-# Why Was # Introduced?
+### Why Was # Introduced?
 
 TypeScript's:
 
@@ -588,11 +588,11 @@ True JavaScript Runtime Privacy
 
 ---
 
-# TypeScript private vs #private
+### TypeScript private vs #private
 
 ---
 
-## TypeScript private
+#### TypeScript private
 
 ```ts
 private password: string;
@@ -606,7 +606,7 @@ Compile Time
 
 ---
 
-## JavaScript #private
+#### JavaScript #private
 
 ```ts
 #password: string;
@@ -620,11 +620,11 @@ Runtime + Compile Time
 
 ---
 
-# readonly Modifier
+### readonly Modifier
 
 ---
 
-## What is readonly?
+#### What is readonly?
 
 Allows:
 
@@ -642,7 +642,7 @@ after initialization.
 
 ---
 
-# Example
+### Example
 
 ```ts
 class User {
@@ -690,7 +690,7 @@ Cannot assign to readonly property
 
 ---
 
-# Common Use Cases
+### Common Use Cases
 
 Examples:
 
@@ -706,7 +706,7 @@ These should never change.
 
 ---
 
-# readonly with Constructor Shorthand
+### readonly with Constructor Shorthand
 
 ---
 
@@ -741,7 +741,7 @@ Error.
 
 ---
 
-# Combining Modifiers
+### Combining Modifiers
 
 Very common.
 
@@ -770,7 +770,7 @@ class User {
 
 ---
 
-# Access Summary Table
+### Access Summary Table
 
 | Modifier  | Same Class | Child Class | Outside Class |
 | --------- | ---------- | ----------- | ------------- |
@@ -782,7 +782,7 @@ class User {
 
 ---
 
-# Constructor Shorthand with Access Modifiers
+### Constructor Shorthand with Access Modifiers
 
 Very common in production.
 
@@ -830,7 +830,7 @@ TypeScript automatically creates properties.
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```ts
 class Employee {
@@ -889,11 +889,11 @@ emp.department;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using private When Child Class Needs Access
+#### Using private When Child Class Needs Access
 
 Wrong
 
@@ -913,7 +913,7 @@ protected balance;
 
 ---
 
-## Using readonly for Mutable Data
+#### Using readonly for Mutable Data
 
 Wrong
 
@@ -933,7 +933,7 @@ Immutable Data
 
 ---
 
-## Assuming private Exists at Runtime
+#### Assuming private Exists at Runtime
 
 TypeScript:
 
@@ -953,15 +953,15 @@ when true runtime privacy is required.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is the default access modifier in TypeScript?
 
-### Answer
+#### Answer
 
 ```text
 public
@@ -969,11 +969,11 @@ public
 
 ---
 
-## Q2
+#### Q2
 
 Difference between private and protected?
 
-### Answer
+#### Answer
 
 ```text
 private:
@@ -985,11 +985,11 @@ Current class + child classes.
 
 ---
 
-## Q3
+#### Q3
 
 Can readonly properties be modified?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -998,11 +998,11 @@ Only initialization is allowed.
 
 ---
 
-## Q4
+#### Q4
 
 Difference between private and #private?
 
-### Answer
+#### Answer
 
 ```text
 private:
@@ -1014,11 +1014,11 @@ Runtime + compile-time protection.
 
 ---
 
-## Q5
+#### Q5
 
 When should protected be used?
 
-### Answer
+#### Answer
 
 ```text
 When derived classes need access
@@ -1027,7 +1027,7 @@ but external code should not.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 public name: string;
@@ -1068,7 +1068,7 @@ constructor(
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Access Modifiers control visibility of class members.
 - `public` is the default modifier.
@@ -1080,6 +1080,3 @@ constructor(
 - Access modifiers help enforce encapsulation and protect internal state.
 - Choosing the correct modifier improves maintainability and security.
 - Access control is a fundamental OOP concept used heavily in production TypeScript applications.
-
----
- 
