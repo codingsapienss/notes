@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 2D'
+sidebar_label: 'Advanced Relationships'
 sidebar_position: 8
 ---
 # Advanced Array-Pointer Relationships
