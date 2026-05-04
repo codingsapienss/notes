@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 3B'
+sidebar_label: 'Double Pointers & Functions'
 sidebar_position: 10
 ---
 
