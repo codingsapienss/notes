@@ -27,7 +27,7 @@
 
 ---
 
-# Why Do We Need Getters and Setters?
+### Why Do We Need Getters and Setters?
 
 Consider:
 
@@ -79,7 +79,7 @@ become useful.
 
 ---
 
-# What is a Getter?
+### What is a Getter?
 
 A Getter is a special method used to:
 
@@ -91,7 +91,7 @@ while executing custom logic behind the scenes.
 
 ---
 
-# Getter Syntax
+### Getter Syntax
 
 ```ts
 get propertyName() {
@@ -101,7 +101,7 @@ get propertyName() {
 
 ---
 
-# Basic Getter Example
+### Basic Getter Example
 
 ```ts
 class User {
@@ -157,7 +157,7 @@ Normal Properties
 
 ---
 
-# How Getters Work Internally
+### How Getters Work Internally
 
 When you write:
 
@@ -185,7 +185,7 @@ return _name
 
 ---
 
-# Why Use Getters?
+### Why Use Getters?
 
 Useful when:
 
@@ -244,7 +244,7 @@ Computed Dynamically
 
 ---
 
-# Computed Property Example
+### Computed Property Example
 
 ```ts
 class Rectangle {
@@ -287,7 +287,7 @@ property exists.
 
 ---
 
-# What is a Setter?
+### What is a Setter?
 
 A Setter is a special method used to:
 
@@ -299,7 +299,7 @@ before data is stored.
 
 ---
 
-# Setter Syntax
+### Setter Syntax
 
 ```ts
 set propertyName(value) {
@@ -308,7 +308,7 @@ set propertyName(value) {
 
 ---
 
-# Basic Setter Example
+### Basic Setter Example
 
 ```ts
 class User {
@@ -334,7 +334,7 @@ Setter automatically runs.
 
 ---
 
-# Validation Using Setters
+### Validation Using Setters
 
 One of the most common use cases.
 
@@ -385,7 +385,7 @@ Age cannot be negative
 
 ---
 
-# Getter and Setter Together
+### Getter and Setter Together
 
 Very common.
 
@@ -431,7 +431,7 @@ Prashant
 
 ---
 
-# Why Use Private Backing Variables?
+### Why Use Private Backing Variables?
 
 Notice:
 
@@ -490,7 +490,7 @@ Internal Storage
 
 ---
 
-# Real World Example
+### Real World Example
 
 Bank Account
 
@@ -532,7 +532,7 @@ Output
 
 ---
 
-# When Should You Use Getters and Setters?
+### When Should You Use Getters and Setters?
 
 Use them when:
 
@@ -555,7 +555,7 @@ is sufficient.
 
 ---
 
-# What are Static Members?
+### What are Static Members?
 
 Until now:
 
@@ -587,7 +587,7 @@ comes in.
 
 ---
 
-# Static Properties
+### Static Properties
 
 A Static Property belongs to:
 
@@ -603,7 +603,7 @@ The Object
 
 ---
 
-# Example
+### Example
 
 ```ts
 class User {
@@ -639,7 +639,7 @@ console.log(User.totalUsers);
 
 ---
 
-# Memory Visualization
+### Memory Visualization
 
 Normal Property
 
@@ -669,7 +669,7 @@ Class Itself
 
 ---
 
-# Static Property Access
+### Static Property Access
 
 Correct
 
@@ -700,7 +700,7 @@ Belong To Class
 
 ---
 
-# Static Methods
+### Static Methods
 
 Just like static properties.
 
@@ -716,7 +716,7 @@ not objects.
 
 ---
 
-# Example
+### Example
 
 ```ts
 class MathUtils {
@@ -752,7 +752,7 @@ works directly.
 
 ---
 
-# Why Use Static Methods?
+### Why Use Static Methods?
 
 Useful for:
 
@@ -777,7 +777,7 @@ All are static methods.
 
 ---
 
-# Static Method Example
+### Static Method Example
 
 ```ts
 class Temperature {
@@ -803,7 +803,7 @@ Output
 
 ---
 
-# Static vs Instance Members
+### Static vs Instance Members
 
 ---
 
@@ -845,7 +845,7 @@ User.totalUsers;
 
 ---
 
-# Can Static Methods Access Instance Properties?
+### Can Static Methods Access Instance Properties?
 
 Consider:
 
@@ -888,7 +888,7 @@ Class
 
 ---
 
-# What Does this Mean in Static Methods?
+### What Does this Mean in Static Methods?
 
 Instance Method
 
@@ -962,7 +962,7 @@ Output
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```ts
 class User {
@@ -998,11 +998,11 @@ Output
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Accessing Static Members Through Objects
+#### Accessing Static Members Through Objects
 
 Wrong
 
@@ -1022,7 +1022,7 @@ User.totalUsers;
 
 ---
 
-## Accessing Instance Properties in Static Methods
+#### Accessing Instance Properties in Static Methods
 
 Wrong
 
@@ -1042,7 +1042,7 @@ No Object Exists
 
 ---
 
-## Infinite Recursion in Getter
+#### Infinite Recursion in Getter
 
 Wrong
 
@@ -1068,15 +1068,15 @@ get name() {
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Getter?
 
-### Answer
+#### Answer
 
 ```text
 A special method used to read
@@ -1085,11 +1085,11 @@ a value like a property.
 
 ---
 
-## Q2
+#### Q2
 
 What is a Setter?
 
-### Answer
+#### Answer
 
 ```text
 A special method used to control
@@ -1098,11 +1098,11 @@ property updates.
 
 ---
 
-## Q3
+#### Q3
 
 Why use Setters?
 
-### Answer
+#### Answer
 
 ```text
 Validation
@@ -1112,11 +1112,11 @@ Business Rules
 
 ---
 
-## Q4
+#### Q4
 
 What is a Static Property?
 
-### Answer
+#### Answer
 
 ```text
 A property that belongs
@@ -1125,11 +1125,11 @@ to the class itself.
 
 ---
 
-## Q5
+#### Q5
 
 Can static methods access instance properties?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -1141,11 +1141,11 @@ not objects.
 
 ---
 
-## Q6
+#### Q6
 
 What does this refer to inside a static method?
 
-### Answer
+#### Answer
 
 ```text
 The Class Itself
@@ -1153,7 +1153,7 @@ The Class Itself
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 get name() {
@@ -1197,7 +1197,7 @@ MathUtils.add(10, 20);
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Getters allow controlled reading of data.
 - Setters allow controlled updates and validation.
@@ -1209,8 +1209,3 @@ MathUtils.add(10, 20);
 - `this` inside static methods refers to the class itself.
 - Static members are accessed using the class name.
 - Getters, Setters and Static members are heavily used in production TypeScript applications.
-
----
-
-
----\n*Last refined on April 16, 2026*
