@@ -41,7 +41,7 @@
 
 ---
 
-# What is an Interface?
+### What is an Interface?
 
 An Interface defines:
 
@@ -94,7 +94,7 @@ How it should work
 
 ---
 
-# Why Do We Need Interfaces?
+### Why Do We Need Interfaces?
 
 Suppose we have:
 
@@ -154,7 +154,7 @@ without forcing implementation.
 
 ---
 
-# implements Keyword
+### implements Keyword
 
 A class uses:
 
@@ -166,7 +166,7 @@ to follow an interface contract.
 
 ---
 
-# Basic Example
+### Basic Example
 
 Interface
 
@@ -206,7 +206,7 @@ Woof!
 
 ---
 
-# What Happens Internally?
+### What Happens Internally?
 
 Interface
 
@@ -250,7 +250,7 @@ Contract Broken
 
 ---
 
-# Interface with Properties
+### Interface with Properties
 
 Interfaces can define properties.
 
@@ -300,7 +300,7 @@ Employee {
 
 ---
 
-# Interface with Methods
+### Interface with Methods
 
 ---
 
@@ -347,7 +347,7 @@ Output
 
 ---
 
-# Interface with Multiple Members
+### Interface with Multiple Members
 
 ---
 
@@ -399,7 +399,7 @@ Car Started
 
 ---
 
-# Class Can Implement Multiple Interfaces
+### Class Can Implement Multiple Interfaces
 
 Unlike inheritance:
 
@@ -423,7 +423,7 @@ Multiple Contracts
 
 ---
 
-# Example
+### Example
 
 Interface 1
 
@@ -480,7 +480,7 @@ Swimming
 
 ---
 
-# Why Multiple Interfaces Matter?
+### Why Multiple Interfaces Matter?
 
 Real World Example:
 
@@ -516,13 +516,13 @@ A class can satisfy multiple behaviors.
 
 ---
 
-# extends vs implements
+### extends vs implements
 
 One of the most important interview topics.
 
 ---
 
-# extends
+### extends
 
 Used for:
 
@@ -559,7 +559,7 @@ Implementation
 
 ---
 
-# implements
+### implements
 
 Used for:
 
@@ -598,7 +598,7 @@ Must implement everything itself.
 
 ---
 
-# Comparison Table
+### Comparison Table
 
 | Feature            | extends     | implements |
 | ------------------ | ----------- | ---------- |
@@ -611,7 +611,7 @@ Must implement everything itself.
 
 ---
 
-# Interface + Inheritance Together
+### Interface + Inheritance Together
 
 Very common.
 
@@ -698,7 +698,7 @@ Flyable
 
 ---
 
-# What is Polymorphism?
+### What is Polymorphism?
 
 One of the four pillars of OOP.
 
@@ -723,7 +723,7 @@ Different Implementations
 
 ---
 
-# Example
+### Example
 
 Interface
 
@@ -779,7 +779,7 @@ But behave differently.
 
 ---
 
-# Polymorphic Function
+### Polymorphic Function
 
 ```ts
 function playSound(animal: Animal) {
@@ -845,7 +845,7 @@ Runtime Polymorphism
 
 ---
 
-# Why Polymorphism Matters?
+### Why Polymorphism Matters?
 
 Without polymorphism:
 
@@ -882,7 +882,7 @@ Extensible.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Payment Systems
 
@@ -968,11 +968,11 @@ Paid 100 via PayPal
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Confusing extends and implements
+#### Confusing extends and implements
 
 Wrong Thinking:
 
@@ -990,7 +990,7 @@ implements only enforces rules
 
 ---
 
-## Forgetting Required Members
+#### Forgetting Required Members
 
 Wrong
 
@@ -1008,7 +1008,7 @@ makeSound();
 
 ---
 
-## Using Interfaces for Code Reuse
+#### Using Interfaces for Code Reuse
 
 Interfaces provide:
 
@@ -1034,15 +1034,15 @@ for code reuse.
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is an Interface?
 
-### Answer
+#### Answer
 
 ```text
 A contract that defines
@@ -1052,11 +1052,11 @@ must follow.
 
 ---
 
-## Q2
+#### Q2
 
 What does implements do?
 
-### Answer
+#### Answer
 
 ```text
 Makes a class satisfy
@@ -1065,11 +1065,11 @@ an interface contract.
 
 ---
 
-## Q3
+#### Q3
 
 Difference between extends and implements?
 
-### Answer
+#### Answer
 
 ```text
 extends:
@@ -1081,11 +1081,11 @@ Contract enforcement
 
 ---
 
-## Q4
+#### Q4
 
 Can a class implement multiple interfaces?
 
-### Answer
+#### Answer
 
 ```text
 Yes
@@ -1093,11 +1093,11 @@ Yes
 
 ---
 
-## Q5
+#### Q5
 
 What is Polymorphism?
 
-### Answer
+#### Answer
 
 ```text
 Same interface
@@ -1106,7 +1106,7 @@ Different implementations
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface Animal {
@@ -1163,7 +1163,7 @@ Inheritance
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Interfaces define contracts, not implementations.
 - Classes use `implements` to satisfy interface requirements.
@@ -1175,11 +1175,3 @@ Inheritance
 - Interfaces are heavily used in enterprise TypeScript applications.
 - Polymorphism reduces conditional logic and improves extensibility.
 - Interfaces and Classes together form the foundation of scalable OOP design.
-
----
-
-
----\n*Last refined on April 16, 2026*
-
-
----\n*Last refined on April 24, 2026*
