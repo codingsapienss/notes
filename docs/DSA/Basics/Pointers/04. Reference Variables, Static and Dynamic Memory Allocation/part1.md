@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 4A'
+sidebar_label: 'Reference Variables'
 sidebar_position: 13
 ---
 # Reference Variables Fundamentals
