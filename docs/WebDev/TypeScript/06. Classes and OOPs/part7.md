@@ -34,7 +34,7 @@
 
 ---
 
-# The Four Pillars of OOP
+### The Four Pillars of OOP
 
 Object-Oriented Programming is built upon:
 
@@ -47,11 +47,11 @@ Object-Oriented Programming is built upon:
 
 ---
 
-# 1. Encapsulation
+### 1. Encapsulation
 
 ---
 
-## What is Encapsulation?
+#### What is Encapsulation?
 
 Encapsulation means:
 
@@ -70,7 +70,7 @@ A Class
 
 ---
 
-## Real World Example
+#### Real World Example
 
 Without Encapsulation:
 
@@ -137,7 +137,7 @@ is inaccessible.
 
 ---
 
-## Benefits
+#### Benefits
 
 ```text
 Data Protection
@@ -148,11 +148,11 @@ Better Maintainability
 
 ---
 
-# 2. Abstraction
+### 2. Abstraction
 
 ---
 
-## What is Abstraction?
+#### What is Abstraction?
 
 Abstraction means:
 
@@ -177,7 +177,7 @@ How it works internally
 
 ---
 
-## Real World Example
+#### Real World Example
 
 Using a Car:
 
@@ -203,7 +203,7 @@ Those details are hidden.
 
 ---
 
-## Example
+#### Example
 
 Interface:
 
@@ -255,7 +255,7 @@ Database Updates
 
 ---
 
-## Benefits
+#### Benefits
 
 ```text
 Reduced Complexity
@@ -266,11 +266,11 @@ Better Flexibility
 
 ---
 
-# 3. Inheritance
+### 3. Inheritance
 
 ---
 
-## What is Inheritance?
+#### What is Inheritance?
 
 Inheritance allows:
 
@@ -331,7 +331,7 @@ Animal
 
 ---
 
-## Benefits
+#### Benefits
 
 ```text
 Code Reuse
@@ -341,7 +341,7 @@ Hierarchical Relationships
 
 ---
 
-## Drawbacks
+#### Drawbacks
 
 Overusing inheritance creates:
 
@@ -371,11 +371,11 @@ This becomes difficult to maintain.
 
 ---
 
-# 4. Polymorphism
+### 4. Polymorphism
 
 ---
 
-## What is Polymorphism?
+#### What is Polymorphism?
 
 Word Meaning:
 
@@ -394,7 +394,7 @@ Different Behaviors
 
 ---
 
-## Example
+#### Example
 
 Interface:
 
@@ -480,7 +480,7 @@ Polymorphism
 
 ---
 
-## Benefits
+#### Benefits
 
 ```text
 Flexible Systems
@@ -491,13 +491,13 @@ Easy Extensibility
 
 ---
 
-# The Biggest Modern OOP Principle
+### The Biggest Modern OOP Principle
 
-# Composition Over Inheritance
+### Composition Over Inheritance
 
 ---
 
-## What is Composition?
+#### What is Composition?
 
 Composition means:
 
@@ -514,7 +514,7 @@ Large Inheritance Trees
 
 ---
 
-## Traditional Inheritance Approach
+#### Traditional Inheritance Approach
 
 Example:
 
@@ -552,7 +552,7 @@ Hard To Change
 
 ---
 
-# Composition Approach
+### Composition Approach
 
 Create behaviors separately.
 
@@ -611,7 +611,7 @@ Swimming
 
 ---
 
-## Why Composition is Better?
+#### Why Composition is Better?
 
 Instead of:
 
@@ -648,7 +648,7 @@ This is usually more flexible.
 
 ---
 
-# Real World Example
+### Real World Example
 
 React Components
 
@@ -688,7 +688,7 @@ Composition
 
 ---
 
-# Another Example
+### Another Example
 
 Car System
 
@@ -736,11 +736,11 @@ More flexible.
 
 ---
 
-# When To Use What?
+### When To Use What?
 
 ---
 
-## Use Encapsulation When
+#### Use Encapsulation When
 
 ```text
 Protecting Internal State
@@ -756,7 +756,7 @@ Tokens
 
 ---
 
-## Use Abstraction When
+#### Use Abstraction When
 
 ```text
 Complex Logic
@@ -773,7 +773,7 @@ API Clients
 
 ---
 
-## Use Inheritance When
+#### Use Inheritance When
 
 ```text
 True IS-A Relationship Exists
@@ -788,7 +788,7 @@ Car → Vehicle
 
 ---
 
-## Use Polymorphism When
+#### Use Polymorphism When
 
 ```text
 Same Action
@@ -805,7 +805,7 @@ Notifications
 
 ---
 
-## Use Composition When
+#### Use Composition When
 
 ```text
 Behavior Changes Frequently
@@ -821,7 +821,7 @@ Large Applications
 
 ---
 
-# Modern Industry Recommendation
+### Modern Industry Recommendation
 
 Historically:
 
@@ -849,7 +849,7 @@ More Flexible Systems
 
 ---
 
-# Real World Mapping
+### Real World Mapping
 
 | Concept       | Example                    |
 | ------------- | -------------------------- |
@@ -861,15 +861,15 @@ More Flexible Systems
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What are the four pillars of OOP?
 
-### Answer
+#### Answer
 
 ```text
 Encapsulation
@@ -880,11 +880,11 @@ Polymorphism
 
 ---
 
-## Q2
+#### Q2
 
 What is Encapsulation?
 
-### Answer
+#### Answer
 
 ```text
 Bundling data and methods
@@ -893,11 +893,11 @@ while protecting internal state.
 
 ---
 
-## Q3
+#### Q3
 
 What is Abstraction?
 
-### Answer
+#### Answer
 
 ```text
 Showing important details
@@ -906,11 +906,11 @@ while hiding implementation.
 
 ---
 
-## Q4
+#### Q4
 
 What is Polymorphism?
 
-### Answer
+#### Answer
 
 ```text
 Same interface,
@@ -919,11 +919,11 @@ different implementations.
 
 ---
 
-## Q5
+#### Q5
 
 What is Composition?
 
-### Answer
+#### Answer
 
 ```text
 Building objects using
@@ -933,11 +933,11 @@ deep inheritance.
 
 ---
 
-## Q6
+#### Q6
 
 Why is Composition preferred over Inheritance?
 
-### Answer
+#### Answer
 
 ```text
 More flexible,
@@ -947,7 +947,7 @@ easier to maintain.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```text
 Encapsulation
@@ -990,7 +990,7 @@ HAS-A
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Encapsulation protects internal state.
 - Abstraction hides implementation details.
@@ -1001,9 +1001,3 @@ HAS-A
 - Good software design focuses on flexibility and maintainability rather than excessive class hierarchies.
 - Understanding these principles is more important than memorizing syntax.
 - These concepts appear frequently in interviews and real-world system design discussions.
-
----
- 
-
-
----\n*Last refined on April 30, 2026*
