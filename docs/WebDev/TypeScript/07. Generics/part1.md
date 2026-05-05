@@ -27,7 +27,7 @@
 
 ---
 
-# The Problem Before Generics
+### The Problem Before Generics
 
 Suppose we want a function that returns the value passed to it.
 
@@ -71,7 +71,7 @@ string;
 
 ---
 
-# Solution 1 — Use any
+### Solution 1 — Use any
 
 ```ts
 function getValue(value: any) {
@@ -143,7 +143,7 @@ No safety.
 
 ---
 
-# Why any is Dangerous?
+### Why any is Dangerous?
 
 Consider:
 
@@ -189,7 +189,7 @@ Type Safety
 
 ---
 
-# Enter Generics
+### Enter Generics
 
 Generics allow us to:
 
@@ -208,7 +208,7 @@ Variables for Types
 
 ---
 
-# Generic Function Syntax
+### Generic Function Syntax
 
 ```ts
 function fn<T>(value: T): T {
@@ -241,7 +241,7 @@ with actual type
 
 ---
 
-# First Generic Function
+### First Generic Function
 
 ```ts
 function identity<T>(value: T): T {
@@ -305,7 +305,7 @@ Multiple types.
 
 ---
 
-# Visualizing Generics
+### Visualizing Generics
 
 Function:
 
@@ -347,7 +347,7 @@ identity<number>(100);
 
 ---
 
-# Explicit Generic Types
+### Explicit Generic Types
 
 Normally TypeScript infers types automatically.
 
@@ -393,7 +393,7 @@ Both are valid.
 
 ---
 
-# Why Are Generic Functions Useful?
+### Why Are Generic Functions Useful?
 
 Without Generics:
 
@@ -425,7 +425,7 @@ Single reusable function.
 
 ---
 
-# Generic Function with Arrays
+### Generic Function with Arrays
 
 ---
 
@@ -479,7 +479,7 @@ string;
 
 ---
 
-# Generic Function with Objects
+### Generic Function with Objects
 
 ---
 
@@ -515,7 +515,7 @@ T = {
 
 ---
 
-# Multiple Generic Parameters
+### Multiple Generic Parameters
 
 Generics are not limited to one type.
 
@@ -563,7 +563,7 @@ Result
 
 ---
 
-# Generic Tuples
+### Generic Tuples
 
 ---
 
@@ -601,7 +601,7 @@ Output
 
 ---
 
-# Generic Function with Return Types
+### Generic Function with Return Types
 
 ---
 
@@ -635,7 +635,7 @@ Result Type
 
 ---
 
-# Generic Function Preserves Types
+### Generic Function Preserves Types
 
 This is the biggest advantage.
 
@@ -687,7 +687,7 @@ Type safety preserved automatically.
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Wrapper
 
@@ -756,7 +756,7 @@ Extremely useful.
 
 ---
 
-# Common Naming Conventions
+### Common Naming Conventions
 
 Most common:
 
@@ -803,11 +803,11 @@ function map<K, V>() {}
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any Instead of Generics
+#### Using any Instead of Generics
 
 Bad
 
@@ -825,7 +825,7 @@ function fn<T>(value: T) {}
 
 ---
 
-## Creating Unnecessary Generics
+#### Creating Unnecessary Generics
 
 Wrong
 
@@ -847,7 +847,7 @@ Type must vary
 
 ---
 
-## Forgetting Return Type Relationship
+#### Forgetting Return Type Relationship
 
 Bad
 
@@ -871,15 +871,15 @@ function fn<T>(value: T): T;
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What are Generics?
 
-### Answer
+#### Answer
 
 ```text
 Generics allow types
@@ -888,11 +888,11 @@ to be passed as parameters.
 
 ---
 
-## Q2
+#### Q2
 
 Why are Generics needed?
 
-### Answer
+#### Answer
 
 ```text
 To achieve
@@ -902,11 +902,11 @@ and type safety.
 
 ---
 
-## Q3
+#### Q3
 
 What is T?
 
-### Answer
+#### Answer
 
 ```text
 A type parameter
@@ -915,11 +915,11 @@ A type parameter
 
 ---
 
-## Q4
+#### Q4
 
 Difference between any and Generics?
 
-### Answer
+#### Answer
 
 ```text
 any:
@@ -931,11 +931,11 @@ Preserve type information.
 
 ---
 
-## Q5
+#### Q5
 
 Can a Generic Function have multiple type parameters?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -949,7 +949,7 @@ function pair<T, U>();
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 function fn<T>(value: T): T;
@@ -989,7 +989,7 @@ Generic Tuple
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Generics allow types to be passed as parameters.
 - Generics provide flexibility without losing type safety.
@@ -1001,13 +1001,3 @@ Generic Tuple
 - Generics are widely used in APIs, libraries, frameworks, and utility types.
 - Prefer Generics over `any` whenever type information should be preserved.
 - Generics are the foundation of advanced TypeScript programming.
-
----
- 
- 
-
-
----\n*Last refined on April 17, 2026*
-
-
----\n*Last refined on April 23, 2026*
