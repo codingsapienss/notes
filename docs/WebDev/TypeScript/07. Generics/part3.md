@@ -19,7 +19,7 @@
 
 ---
 
-# Why Do We Need Generic Classes?
+### Why Do We Need Generic Classes?
 
 Suppose we want a class that stores data.
 
@@ -88,7 +88,7 @@ Code Duplication
 
 ---
 
-# Generic Class Solution
+### Generic Class Solution
 
 Instead of creating multiple classes:
 
@@ -116,7 +116,7 @@ Many types.
 
 ---
 
-# What is a Generic Class?
+### What is a Generic Class?
 
 A Generic Class is:
 
@@ -149,7 +149,7 @@ A Placeholder Type
 
 ---
 
-# First Generic Class
+### First Generic Class
 
 ```ts
 class Storage<T> {
@@ -186,7 +186,7 @@ Custom Types
 
 ---
 
-# Using Generic Classes
+### Using Generic Classes
 
 ---
 
@@ -224,7 +224,7 @@ Storage contains strings
 
 ---
 
-# Number Storage
+### Number Storage
 
 ```ts
 const scores = new Storage<number>();
@@ -254,7 +254,7 @@ Type-safe.
 
 ---
 
-# Type Safety in Action
+### Type Safety in Action
 
 ---
 
@@ -299,7 +299,7 @@ T = string;
 
 ---
 
-# Generic Class with Objects
+### Generic Class with Objects
 
 ---
 
@@ -346,7 +346,7 @@ Storage contains User objects
 
 ---
 
-# Generic Class Internally
+### Generic Class Internally
 
 Consider:
 
@@ -376,7 +376,7 @@ Conceptually.
 
 ---
 
-# Multiple Generic Parameters
+### Multiple Generic Parameters
 
 Classes can have multiple type parameters.
 
@@ -422,7 +422,7 @@ Result
 
 ---
 
-# Generic Key-Value Store
+### Generic Key-Value Store
 
 ---
 
@@ -458,7 +458,7 @@ Result
 
 ---
 
-# Constructor with Generics
+### Constructor with Generics
 
 Generics can be used inside constructors.
 
@@ -496,7 +496,7 @@ string;
 
 ---
 
-# Generic Class Methods
+### Generic Class Methods
 
 Methods automatically gain access to class generics.
 
@@ -540,7 +540,7 @@ number;
 
 ---
 
-# Generic Repository Pattern
+### Generic Repository Pattern
 
 One of the most common enterprise patterns.
 
@@ -620,7 +620,7 @@ Services
 
 ---
 
-# Generic Cache Example
+### Generic Cache Example
 
 ---
 
@@ -664,7 +664,7 @@ string;
 
 ---
 
-# Generic Class + Generic Method
+### Generic Class + Generic Method
 
 A class can have:
 
@@ -728,7 +728,7 @@ Independent.
 
 ---
 
-# Generic Class vs Generic Interface
+### Generic Class vs Generic Interface
 
 ---
 
@@ -768,7 +768,7 @@ Implementation
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Service
 
@@ -825,11 +825,11 @@ User;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any Instead of Generics
+#### Using any Instead of Generics
 
 Bad
 
@@ -857,7 +857,7 @@ class Storage<T>
 
 ---
 
-## Creating Duplicate Classes
+#### Creating Duplicate Classes
 
 Bad
 
@@ -881,7 +881,7 @@ instead.
 
 ---
 
-## Forgetting Generic Type
+#### Forgetting Generic Type
 
 Wrong
 
@@ -909,15 +909,15 @@ new Storage<string>();
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Generic Class?
 
-### Answer
+#### Answer
 
 ```text
 A class that accepts
@@ -926,11 +926,11 @@ type parameters.
 
 ---
 
-## Q2
+#### Q2
 
 Why use Generic Classes?
 
-### Answer
+#### Answer
 
 ```text
 To create reusable,
@@ -939,11 +939,11 @@ type-safe classes.
 
 ---
 
-## Q3
+#### Q3
 
 Can Generic Classes have methods?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -951,11 +951,11 @@ Yes.
 
 ---
 
-## Q4
+#### Q4
 
 Can Generic Classes have multiple type parameters?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -969,11 +969,11 @@ class Pair<T,U>
 
 ---
 
-## Q5
+#### Q5
 
 Difference between Generic Interface and Generic Class?
 
-### Answer
+#### Answer
 
 ```text
 Interface:
@@ -985,7 +985,7 @@ Implementation
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 class Storage<T> {}
@@ -1029,7 +1029,7 @@ getValue(): T
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Generic Classes allow classes to work with multiple data types.
 - They provide reusability while maintaining type safety.
@@ -1041,8 +1041,3 @@ getValue(): T
 - Generic Classes form the foundation of many enterprise TypeScript architectures.
 - Prefer Generic Classes over `any` whenever type information should be preserved.
 - Understanding Generic Classes is essential before learning Generic Constraints and Advanced Generics.
-
----
-
-
----\n*Last refined on April 29, 2026*
