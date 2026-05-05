@@ -37,7 +37,7 @@
 
 ---
 
-# Why Do We Need Constraints?
+### Why Do We Need Constraints?
 
 Consider:
 
@@ -135,7 +135,7 @@ T must have a length property
 
 ---
 
-# Generic Constraints
+### Generic Constraints
 
 A Generic Constraint restricts what types can be used.
 
@@ -163,7 +163,7 @@ T must extend SomeType
 
 ---
 
-# First Constraint Example
+### First Constraint Example
 
 ---
 
@@ -247,7 +247,7 @@ HasLength;
 
 ---
 
-# Visualizing Constraints
+### Visualizing Constraints
 
 Without Constraint
 
@@ -277,7 +277,7 @@ Only types having length
 
 ---
 
-# Constraint Using Objects
+### Constraint Using Objects
 
 ---
 
@@ -338,7 +338,7 @@ id missing
 
 ---
 
-# Constraint With Multiple Properties
+### Constraint With Multiple Properties
 
 ---
 
@@ -397,7 +397,7 @@ Extra properties are allowed.
 
 ---
 
-# Generic Constraints with Classes
+### Generic Constraints with Classes
 
 ---
 
@@ -457,13 +457,13 @@ Animal;
 
 ---
 
-# Understanding `keyof`
+### Understanding `keyof`
 
 One of the most important TypeScript concepts.
 
 ---
 
-# What is `keyof`?
+### What is `keyof`?
 
 `keyof` extracts all property names from a type.
 
@@ -514,7 +514,7 @@ User
 
 ---
 
-# Why is `keyof` Useful?
+### Why is `keyof` Useful?
 
 Suppose we want:
 
@@ -556,7 +556,7 @@ Runtime bug.
 
 ---
 
-# Solution Using `keyof`
+### Solution Using `keyof`
 
 ```ts
 function getValue<T, K extends keyof T>(obj: T, key: K) {
@@ -620,7 +620,7 @@ K must be a valid key of T
 
 ---
 
-# Example
+### Example
 
 ---
 
@@ -690,7 +690,7 @@ keyof User
 
 ---
 
-# Why `keyof` Is So Important
+### Why `keyof` Is So Important
 
 Many built-in utility types use:
 
@@ -722,7 +722,7 @@ is essential before learning advanced TypeScript.
 
 ---
 
-# Repository Example Using Constraints
+### Repository Example Using Constraints
 
 Suppose we want a repository.
 
@@ -762,7 +762,7 @@ id exists
 
 ---
 
-# Solution
+### Solution
 
 ```ts
 class Repository<T extends { id: number }> {
@@ -804,7 +804,7 @@ Valid.
 
 ---
 
-# Default Generic Types
+### Default Generic Types
 
 Sometimes we want:
 
@@ -824,7 +824,7 @@ Syntax
 
 ---
 
-# Example
+### Example
 
 ```ts
 class ApiResponse<T = string> {
@@ -852,7 +852,7 @@ automatically.
 
 ---
 
-# Overriding Default Type
+### Overriding Default Type
 
 ---
 
@@ -884,7 +884,7 @@ ApiResponse<number>;
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Wrapper
 
@@ -932,7 +932,7 @@ Very common in production code.
 
 ---
 
-# Combining Everything Together
+### Combining Everything Together
 
 ```ts
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
@@ -976,11 +976,11 @@ This is one of the most famous TypeScript Generic patterns.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using Unconstrained Generics
+#### Using Unconstrained Generics
 
 Wrong
 
@@ -1000,7 +1000,7 @@ Use
 
 ---
 
-## Confusing `extends` with Inheritance
+#### Confusing `extends` with Inheritance
 
 In Generics:
 
@@ -1024,7 +1024,7 @@ Must satisfy User shape
 
 ---
 
-## Not Using `keyof`
+#### Not Using `keyof`
 
 Wrong
 
@@ -1050,15 +1050,15 @@ Compile-time safety
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Generic Constraint?
 
-### Answer
+#### Answer
 
 ```text
 A restriction placed
@@ -1067,11 +1067,11 @@ on a generic type.
 
 ---
 
-## Q2
+#### Q2
 
 What does `extends` mean in Generics?
 
-### Answer
+#### Answer
 
 ```text
 The generic type
@@ -1080,11 +1080,11 @@ must satisfy another type.
 
 ---
 
-## Q3
+#### Q3
 
 What is `keyof`?
 
-### Answer
+#### Answer
 
 ```text
 Extracts all property names
@@ -1093,11 +1093,11 @@ from a type.
 
 ---
 
-## Q4
+#### Q4
 
 What does `K extends keyof T` mean?
 
-### Answer
+#### Answer
 
 ```text
 K must be a valid key of T.
@@ -1105,11 +1105,11 @@ K must be a valid key of T.
 
 ---
 
-## Q5
+#### Q5
 
 Why use Default Generics?
 
-### Answer
+#### Answer
 
 ```text
 To provide fallback types
@@ -1118,7 +1118,7 @@ when no generic is supplied.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 <T extends Type>
@@ -1168,7 +1168,7 @@ T[K];
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Generic Constraints restrict generic types.
 - `extends` is used to create constraints.
@@ -1180,15 +1180,3 @@ T[K];
 - Repository and API patterns frequently rely on constraints.
 - `keyof` and constraints are foundational concepts for advanced TypeScript.
 - Mastering these concepts makes utility types and advanced generics much easier to understand.
-
----
- 
-
-
----\n*Last refined on April 14, 2026*
-
-
----\n*Last refined on April 19, 2026*
-
-
----\n*Last refined on April 27, 2026*
