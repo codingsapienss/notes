@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 4B'
+sidebar_label: 'Static vs Dynamic Memory'
 sidebar_position: 14
 ---
 # Static vs Dynamic Memory
