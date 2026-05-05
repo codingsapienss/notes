@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 3C'
+sidebar_label: 'Memory Layout & Visualization'
 sidebar_position: 11
 ---
 
