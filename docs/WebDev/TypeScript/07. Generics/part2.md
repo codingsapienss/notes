@@ -23,7 +23,7 @@
 
 ---
 
-# The Problem Before Generic Interfaces
+### The Problem Before Generic Interfaces
 
 Suppose we want an API response interface.
 
@@ -80,7 +80,7 @@ Everything else remains the same.
 
 ---
 
-# Generic Interface Solution
+### Generic Interface Solution
 
 Instead of repeating:
 
@@ -98,7 +98,7 @@ interface ApiResponse<T>
 
 ---
 
-# What is a Generic Interface?
+### What is a Generic Interface?
 
 A Generic Interface is:
 
@@ -131,7 +131,7 @@ Type Placeholder
 
 ---
 
-# First Generic Interface
+### First Generic Interface
 
 ```ts
 interface ApiResponse<T> {
@@ -159,7 +159,7 @@ Flexible
 
 ---
 
-# Using Generic Interface
+### Using Generic Interface
 
 ---
 
@@ -216,7 +216,7 @@ Generated Type
 
 ---
 
-# Another Example
+### Another Example
 
 Product Type
 
@@ -254,7 +254,7 @@ Different data type.
 
 ---
 
-# Visualizing Generic Interfaces
+### Visualizing Generic Interfaces
 
 Interface
 
@@ -298,7 +298,7 @@ becomes:
 
 ---
 
-# Generic Interface with Arrays
+### Generic Interface with Arrays
 
 ---
 
@@ -355,7 +355,7 @@ Generated Type
 
 ---
 
-# Multiple Generic Parameters
+### Multiple Generic Parameters
 
 Generic Interfaces can have multiple type parameters.
 
@@ -405,7 +405,7 @@ Generated Type
 
 ---
 
-# Generic Key-Value Example
+### Generic Key-Value Example
 
 ---
 
@@ -445,7 +445,7 @@ Result
 
 ---
 
-# Generic Interfaces with Functions
+### Generic Interfaces with Functions
 
 Interfaces can define generic function structures.
 
@@ -489,7 +489,7 @@ HELLO
 
 ---
 
-# Generic Interfaces with Classes
+### Generic Interfaces with Classes
 
 Very common.
 
@@ -546,7 +546,7 @@ Repository Pattern
 
 ---
 
-# Real World API Response Model
+### Real World API Response Model
 
 One of the most important examples.
 
@@ -638,7 +638,7 @@ Huge code reuse.
 
 ---
 
-# Generic Collection Example
+### Generic Collection Example
 
 ---
 
@@ -682,7 +682,7 @@ Type-safe collection.
 
 ---
 
-# Generic Interfaces vs Generic Functions
+### Generic Interfaces vs Generic Functions
 
 ---
 
@@ -718,7 +718,7 @@ Reusable Structure
 
 ---
 
-# Generic Interfaces vs Generic Types
+### Generic Interfaces vs Generic Types
 
 ---
 
@@ -758,11 +758,11 @@ Interface vs Type
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any Instead of Generic Interfaces
+#### Using any Instead of Generic Interfaces
 
 Bad
 
@@ -792,7 +792,7 @@ interface ApiResponse<T> {
 
 ---
 
-## Creating Separate Interfaces
+#### Creating Separate Interfaces
 
 Bad
 
@@ -820,7 +820,7 @@ instead.
 
 ---
 
-## Forgetting Generic Arguments
+#### Forgetting Generic Arguments
 
 Wrong
 
@@ -838,15 +838,15 @@ const response: ApiResponse<User>;
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a Generic Interface?
 
-### Answer
+#### Answer
 
 ```text
 An interface that accepts
@@ -855,11 +855,11 @@ type parameters.
 
 ---
 
-## Q2
+#### Q2
 
 Why use Generic Interfaces?
 
-### Answer
+#### Answer
 
 ```text
 To create reusable,
@@ -868,11 +868,11 @@ type-safe structures.
 
 ---
 
-## Q3
+#### Q3
 
 Can Generic Interfaces have multiple type parameters?
 
-### Answer
+#### Answer
 
 ```text
 Yes.
@@ -886,11 +886,11 @@ interface Pair<T,U>
 
 ---
 
-## Q4
+#### Q4
 
 Where are Generic Interfaces commonly used?
 
-### Answer
+#### Answer
 
 ```text
 API Responses
@@ -901,11 +901,11 @@ Frameworks
 
 ---
 
-## Q5
+#### Q5
 
 Difference between Generic Function and Generic Interface?
 
-### Answer
+#### Answer
 
 ```text
 Generic Function:
@@ -917,7 +917,7 @@ Reusable structure
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface Box<T> {
@@ -965,7 +965,7 @@ implements Repository<User>
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Generic Interfaces allow interfaces to work with multiple data types.
 - They improve reusability while preserving type safety.
@@ -977,6 +977,3 @@ implements Repository<User>
 - Prefer Generic Interfaces over `any` when structure remains the same but data types change.
 - Generic Interfaces are a core building block of scalable TypeScript applications.
 - Understanding Generic Interfaces is essential before learning Generic Classes and Constraints.
-
----
- 
