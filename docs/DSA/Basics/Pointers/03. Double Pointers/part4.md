@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 3D'
+sidebar_label: 'Advanced Double Pointers'
 sidebar_position: 12
 ---
 
