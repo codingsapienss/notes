@@ -37,7 +37,7 @@
 
 ---
 
-# Why Do We Need Async Programming?
+### Why Do We Need Async Programming?
 
 Consider:
 
@@ -80,11 +80,11 @@ Response Arrives Later
 
 ---
 
-# Synchronous vs Asynchronous
+### Synchronous vs Asynchronous
 
 ---
 
-## Synchronous
+#### Synchronous
 
 ```ts
 console.log("A");
@@ -108,7 +108,7 @@ Each statement waits for the previous one.
 
 ---
 
-## Asynchronous
+#### Asynchronous
 
 ```ts
 console.log("A");
@@ -138,7 +138,7 @@ setTimeout runs later
 
 ---
 
-# What is a Promise?
+### What is a Promise?
 
 A Promise represents:
 
@@ -156,13 +156,13 @@ Will be available later
 
 ---
 
-# Promise States
+### Promise States
 
 A Promise can be in three states.
 
 ---
 
-## Pending
+#### Pending
 
 ```text
 Operation Still Running
@@ -170,7 +170,7 @@ Operation Still Running
 
 ---
 
-## Fulfilled
+#### Fulfilled
 
 ```text
 Operation Successful
@@ -178,7 +178,7 @@ Operation Successful
 
 ---
 
-## Rejected
+#### Rejected
 
 ```text
 Operation Failed
@@ -206,7 +206,7 @@ Fulfilled Rejected
 
 ---
 
-# Creating a Promise
+### Creating a Promise
 
 ---
 
@@ -237,7 +237,7 @@ to a string
 
 ---
 
-# Promise Type Syntax
+### Promise Type Syntax
 
 ```ts
 Promise<T>;
@@ -271,7 +271,7 @@ Promise<User>;
 
 ---
 
-# Promise Example
+### Promise Example
 
 ---
 
@@ -299,7 +299,7 @@ Promise returns number
 
 ---
 
-# Consuming Promises with then()
+### Consuming Promises with then()
 
 ---
 
@@ -341,7 +341,7 @@ Promise<number>;
 
 ---
 
-# Real API Example
+### Real API Example
 
 ---
 
@@ -369,7 +369,7 @@ for multiple async operations.
 
 ---
 
-# Async/Await
+### Async/Await
 
 Modern TypeScript uses:
 
@@ -384,7 +384,7 @@ These keywords make asynchronous code look synchronous.
 
 ---
 
-# async Function
+### async Function
 
 ---
 
@@ -444,7 +444,7 @@ Promise.resolve("Hello");
 
 ---
 
-# Example
+### Example
 
 ```ts
 async function getAge() {
@@ -470,7 +470,7 @@ number;
 
 ---
 
-# Understanding await
+### Understanding await
 
 `await` waits for a Promise to finish.
 
@@ -510,7 +510,7 @@ string;
 
 ---
 
-# First Async/Await Example
+### First Async/Await Example
 
 ---
 
@@ -546,7 +546,7 @@ string;
 
 ---
 
-# API Example Using Fetch
+### API Example Using Fetch
 
 ---
 
@@ -609,7 +609,7 @@ User;
 
 ---
 
-# Why Explicit Return Types Matter
+### Why Explicit Return Types Matter
 
 Bad
 
@@ -641,7 +641,7 @@ Better Refactoring
 
 ---
 
-# Async Function Returning Arrays
+### Async Function Returning Arrays
 
 ---
 
@@ -693,7 +693,7 @@ User[]
 
 ---
 
-# Generic API Response
+### Generic API Response
 
 Very common.
 
@@ -765,7 +765,7 @@ User;
 
 ---
 
-# Async Error Handling
+### Async Error Handling
 
 ---
 
@@ -785,7 +785,7 @@ Unhandled Exception
 
 ---
 
-# Try Catch
+### Try Catch
 
 ```ts
 try {
@@ -797,7 +797,7 @@ try {
 
 ---
 
-# Type of Error
+### Type of Error
 
 TypeScript treats:
 
@@ -823,7 +823,7 @@ Anything can be thrown
 
 ---
 
-# Proper Error Narrowing
+### Proper Error Narrowing
 
 ---
 
@@ -848,7 +848,7 @@ is safe.
 
 ---
 
-# Promise.all()
+### Promise.all()
 
 One of the most useful Promise APIs.
 
@@ -874,7 +874,7 @@ Runs sequentially.
 
 ---
 
-# Better
+### Better
 
 ```ts
 const [users, products] = await Promise.all([getUsers(), getProducts()]);
@@ -912,7 +912,7 @@ Product[]
 
 ---
 
-# Promise.all Type Inference
+### Promise.all Type Inference
 
 Example
 
@@ -934,7 +934,7 @@ Very powerful inference.
 
 ---
 
-# Promise<void>
+### Promise<void>
 
 Sometimes functions return nothing.
 
@@ -959,7 +959,7 @@ with no value
 
 ---
 
-# Promise<never>
+### Promise<never>
 
 Rare.
 
@@ -986,7 +986,7 @@ returns a value.
 
 ---
 
-# Real World Service Layer
+### Real World Service Layer
 
 ---
 
@@ -1034,11 +1034,11 @@ User;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Forgetting await
+#### Forgetting await
 
 Wrong
 
@@ -1072,7 +1072,7 @@ const user = await getUser();
 
 ---
 
-## Returning Wrong Type
+#### Returning Wrong Type
 
 Wrong
 
@@ -1090,7 +1090,7 @@ async function getUser(): Promise<User> {}
 
 ---
 
-## Ignoring Error Handling
+#### Ignoring Error Handling
 
 Bad
 
@@ -1108,15 +1108,15 @@ try/catch
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What does an async function return?
 
-### Answer
+#### Answer
 
 ```text
 Always a Promise.
@@ -1124,11 +1124,11 @@ Always a Promise.
 
 ---
 
-## Q2
+#### Q2
 
 What does await do?
 
-### Answer
+#### Answer
 
 ```text
 Waits for a Promise
@@ -1137,11 +1137,11 @@ and unwraps its value.
 
 ---
 
-## Q3
+#### Q3
 
 What is Promise<T>?
 
-### Answer
+#### Answer
 
 ```text
 A Promise that resolves
@@ -1150,11 +1150,11 @@ to type T.
 
 ---
 
-## Q4
+#### Q4
 
 What is the type of error in catch?
 
-### Answer
+#### Answer
 
 ```ts
 unknown;
@@ -1162,11 +1162,11 @@ unknown;
 
 ---
 
-## Q5
+#### Q5
 
 Why use Promise.all()?
 
-### Answer
+#### Answer
 
 ```text
 Run multiple async tasks
@@ -1175,7 +1175,7 @@ concurrently.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 Promise<T>;
@@ -1237,7 +1237,7 @@ Promise<never>;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Promises represent future values.
 - A Promise can be Pending, Fulfilled, or Rejected.
@@ -1249,11 +1249,3 @@ Promise<never>;
 - Errors inside `catch` are typed as `unknown`.
 - `Promise.all()` allows concurrent execution with strong type inference.
 - Async programming is a fundamental skill for modern TypeScript development.
-
----
-
-
----\n*Last refined on April 15, 2026*
-
-
----\n*Last refined on April 23, 2026*
