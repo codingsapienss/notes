@@ -32,7 +32,7 @@
 
 ---
 
-# What Are Utility Types?
+### What Are Utility Types?
 
 Utility Types are:
 
@@ -83,13 +83,13 @@ without rewriting everything.
 
 ---
 
-# 1. Partial<T>
+### 1. Partial<T>
 
 One of the most used utility types.
 
 ---
 
-# Problem
+### Problem
 
 Suppose:
 
@@ -126,7 +126,7 @@ age missing
 
 ---
 
-# Partial Solution
+### Partial Solution
 
 ```ts
 type PartialUser = Partial<User>;
@@ -168,7 +168,7 @@ Valid.
 
 ---
 
-# How Partial Works Internally
+### How Partial Works Internally
 
 Conceptually:
 
@@ -189,7 +189,7 @@ and make them optional
 
 ---
 
-# Real World Example
+### Real World Example
 
 Update API
 
@@ -229,7 +229,7 @@ Only changed fields required.
 
 ---
 
-# 2. Required<T>
+### 2. Required<T>
 
 Opposite of:
 
@@ -239,7 +239,7 @@ Partial<T>;
 
 ---
 
-# Example
+### Example
 
 ```ts
 type User = {
@@ -299,7 +299,7 @@ Missing fields:
 
 ---
 
-# Internal Idea
+### Internal Idea
 
 ```ts
 type Required<T> = {
@@ -317,7 +317,7 @@ Remove optional marker (?)
 
 ---
 
-# Real World Example
+### Real World Example
 
 After Database Save
 
@@ -341,13 +341,13 @@ because database guarantees all fields exist.
 
 ---
 
-# 3. Pick<T, K>
+### 3. Pick<T, K>
 
 One of the most important utility types.
 
 ---
 
-# Problem
+### Problem
 
 Suppose:
 
@@ -390,7 +390,7 @@ Duplicate code.
 
 ---
 
-# Pick Solution
+### Pick Solution
 
 ```ts
 type UserSummary = Pick<User, "id" | "name">;
@@ -422,7 +422,7 @@ const user: UserSummary = {
 
 ---
 
-# Visualizing Pick
+### Visualizing Pick
 
 Original
 
@@ -454,7 +454,7 @@ name
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -485,13 +485,13 @@ Password never exposed.
 
 ---
 
-# 4. Omit<T, K>
+### 4. Omit<T, K>
 
 Opposite of Pick.
 
 ---
 
-# Problem
+### Problem
 
 Need everything except:
 
@@ -543,7 +543,7 @@ Password removed.
 
 ---
 
-# Visualizing Omit
+### Visualizing Omit
 
 Original
 
@@ -572,7 +572,7 @@ email
 
 ---
 
-# Real World Example
+### Real World Example
 
 Backend Response
 
@@ -605,7 +605,7 @@ Much safer.
 
 ---
 
-# Combining Utility Types
+### Combining Utility Types
 
 Extremely common.
 
@@ -656,7 +656,7 @@ Update Forms
 
 ---
 
-# Utility Types + Generics
+### Utility Types + Generics
 
 Suppose we create:
 
@@ -682,7 +682,7 @@ Reusable.
 
 ---
 
-# Generic Repository Example
+### Generic Repository Example
 
 ```ts
 class Repository<T> {
@@ -706,7 +706,7 @@ Only modified fields required.
 
 ---
 
-# API Example
+### API Example
 
 ```ts
 interface ApiResponse<T> {
@@ -741,7 +741,7 @@ Result
 
 ---
 
-# Utility Types Interview Pattern
+### Utility Types Interview Pattern
 
 Question:
 
@@ -799,11 +799,11 @@ Omit<T, K>;
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Creating Duplicate Types
+#### Creating Duplicate Types
 
 Bad
 
@@ -824,7 +824,7 @@ Pick<User, "id" | "name">;
 
 ---
 
-## Using any
+#### Using any
 
 Bad
 
@@ -842,7 +842,7 @@ ApiResponse<T>;
 
 ---
 
-## Rewriting Update Types
+#### Rewriting Update Types
 
 Bad
 
@@ -863,15 +863,15 @@ Partial<User>;
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is Partial<T>?
 
-### Answer
+#### Answer
 
 ```text
 Makes all properties optional.
@@ -879,11 +879,11 @@ Makes all properties optional.
 
 ---
 
-## Q2
+#### Q2
 
 What is Required<T>?
 
-### Answer
+#### Answer
 
 ```text
 Makes all properties required.
@@ -891,11 +891,11 @@ Makes all properties required.
 
 ---
 
-## Q3
+#### Q3
 
 What is Pick<T,K>?
 
-### Answer
+#### Answer
 
 ```text
 Selects specific properties.
@@ -903,11 +903,11 @@ Selects specific properties.
 
 ---
 
-## Q4
+#### Q4
 
 What is Omit<T,K>?
 
-### Answer
+#### Answer
 
 ```text
 Removes specific properties.
@@ -915,11 +915,11 @@ Removes specific properties.
 
 ---
 
-## Q5
+#### Q5
 
 Why are Utility Types important?
 
-### Answer
+#### Answer
 
 ```text
 They reduce duplication
@@ -928,7 +928,7 @@ and improve reusability.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 Partial<T>;
@@ -990,7 +990,7 @@ Omit<User, "password">;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Utility Types are built-in generic helpers.
 - `Partial<T>` makes all properties optional.
@@ -1002,14 +1002,3 @@ Omit<User, "password">;
 - Utility Types are heavily used in APIs, forms, repositories and enterprise applications.
 - Combining Utility Types creates powerful reusable type transformations.
 - Mastering Utility Types is essential for professional TypeScript development.
-
----
-
-
----\n*Last refined on April 13, 2026*
-
-
----\n*Last refined on April 15, 2026*
-
-
----\n*Last refined on April 21, 2026*
