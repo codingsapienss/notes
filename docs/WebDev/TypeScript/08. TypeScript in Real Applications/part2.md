@@ -24,7 +24,7 @@
 
 ---
 
-# Why API Typing Matters
+### Why API Typing Matters
 
 Consider:
 
@@ -77,7 +77,7 @@ But fail at runtime.
 
 ---
 
-# The Goal
+### The Goal
 
 Instead of:
 
@@ -115,7 +115,7 @@ Catch Errors Early
 
 ---
 
-# Creating API Models
+### Creating API Models
 
 Suppose API returns:
 
@@ -153,7 +153,7 @@ for API data.
 
 ---
 
-# Typing fetch()
+### Typing fetch()
 
 ---
 
@@ -177,7 +177,7 @@ has weak typing.
 
 ---
 
-# Type Assertion Approach
+### Type Assertion Approach
 
 ```ts
 const response =
@@ -230,7 +230,7 @@ User;
 
 ---
 
-# Complete Example
+### Complete Example
 
 ```ts
 interface User {
@@ -284,7 +284,7 @@ User;
 
 ---
 
-# Typing Array Responses
+### Typing Array Responses
 
 Suppose API returns:
 
@@ -343,7 +343,7 @@ Autocomplete available.
 
 ---
 
-# Generic API Response Model
+### Generic API Response Model
 
 Very common.
 
@@ -411,7 +411,7 @@ Very common in enterprise applications.
 
 ---
 
-# Introduction to Axios
+### Introduction to Axios
 
 Axios is one of the most popular HTTP libraries.
 
@@ -443,7 +443,7 @@ How do we type the response?
 
 ---
 
-# AxiosResponse
+### AxiosResponse
 
 Axios provides:
 
@@ -470,7 +470,7 @@ contains User
 
 ---
 
-# Example
+### Example
 
 User Model
 
@@ -516,7 +516,7 @@ Autocomplete available.
 
 ---
 
-# How Axios Generics Work
+### How Axios Generics Work
 
 ---
 
@@ -550,7 +550,7 @@ User;
 
 ---
 
-# Array Response Example
+### Array Response Example
 
 Model
 
@@ -594,7 +594,7 @@ response.data[0].name;
 
 ---
 
-# Generic API Service
+### Generic API Service
 
 Common enterprise pattern.
 
@@ -650,7 +650,7 @@ Very common pattern.
 
 ---
 
-# Typing POST Requests
+### Typing POST Requests
 
 ---
 
@@ -699,7 +699,7 @@ Now payload is validated.
 
 ---
 
-# API Error Handling
+### API Error Handling
 
 One of the most important topics.
 
@@ -721,7 +721,7 @@ Application Crashes
 
 ---
 
-# Try-Catch
+### Try-Catch
 
 ```ts
 try {
@@ -733,7 +733,7 @@ try {
 
 ---
 
-# Problem
+### Problem
 
 Type of:
 
@@ -759,7 +759,7 @@ Anything can be thrown
 
 ---
 
-# Narrowing Error Type
+### Narrowing Error Type
 
 ```ts
 try {
@@ -782,7 +782,7 @@ is safe.
 
 ---
 
-# Axios Error Handling
+### Axios Error Handling
 
 Axios provides:
 
@@ -817,7 +817,7 @@ Very common in production.
 
 ---
 
-# Real World API Wrapper
+### Real World API Wrapper
 
 ```ts
 import axios from "axios";
@@ -875,11 +875,11 @@ Fully type-safe.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Using any
+#### Using any
 
 Bad
 
@@ -903,7 +903,7 @@ ApiResponse<User>;
 
 ---
 
-## Ignoring Error Types
+#### Ignoring Error Types
 
 Bad
 
@@ -934,7 +934,7 @@ instanceof Error
 
 ---
 
-## Not Creating API Models
+#### Not Creating API Models
 
 Bad
 
@@ -954,15 +954,15 @@ interface User
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 Why type API responses?
 
-### Answer
+#### Answer
 
 ```text
 Type Safety
@@ -972,11 +972,11 @@ Compile-Time Validation
 
 ---
 
-## Q2
+#### Q2
 
 What is AxiosResponse<T>?
 
-### Answer
+#### Answer
 
 ```text
 A generic response type
@@ -985,11 +985,11 @@ provided by Axios.
 
 ---
 
-## Q3
+#### Q3
 
 How do you type an API response?
 
-### Answer
+#### Answer
 
 ```ts
 axios.get<User>();
@@ -997,11 +997,11 @@ axios.get<User>();
 
 ---
 
-## Q4
+#### Q4
 
 Why is catch(error) typed as unknown?
 
-### Answer
+#### Answer
 
 ```text
 Anything can be thrown.
@@ -1009,11 +1009,11 @@ Anything can be thrown.
 
 ---
 
-## Q5
+#### Q5
 
 What is a common generic API pattern?
 
-### Answer
+#### Answer
 
 ```ts
 interface ApiResponse<T>
@@ -1021,7 +1021,7 @@ interface ApiResponse<T>
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 interface User {}
@@ -1072,7 +1072,7 @@ error instanceof AxiosError;
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - Always create models for API data.
 - `fetch()` responses should be typed.
@@ -1084,9 +1084,3 @@ error instanceof AxiosError;
 - `catch(error)` is typed as `unknown`.
 - `AxiosError` helps handle HTTP-specific failures.
 - Strongly typed APIs significantly reduce runtime bugs.
-
----
- 
- 
- 
- 
