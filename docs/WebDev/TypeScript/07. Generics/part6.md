@@ -9,13 +9,13 @@
 
 ---
 
-# 1. Record<K, T>
+### 1. Record<K, T>
 
 One of the most useful utility types.
 
 ---
 
-## Problem
+#### Problem
 
 Suppose we want:
 
@@ -49,7 +49,7 @@ Record<K, T>;
 
 ---
 
-## Syntax
+#### Syntax
 
 ```ts
 Record<Keys, ValueType>;
@@ -57,7 +57,7 @@ Record<Keys, ValueType>;
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Roles = Record<"admin" | "user" | "guest", string>;
@@ -89,7 +89,7 @@ const roles: Roles = {
 
 ---
 
-## Real World Example
+#### Real World Example
 
 ```ts
 type UserCache = Record<number, string>;
@@ -118,13 +118,13 @@ const cache: UserCache = {
 
 ---
 
-# 2. Exclude<T, U>
+### 2. Exclude<T, U>
 
 Used to remove types from a union.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Role = "admin" | "user" | "guest";
@@ -171,7 +171,7 @@ user
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```ts
 type Status = "loading" | "success" | "error";
@@ -193,7 +193,7 @@ Result
 
 ---
 
-# 3. Extract<T, U>
+### 3. Extract<T, U>
 
 Opposite of Exclude.
 
@@ -203,7 +203,7 @@ Keeps matching values.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type Role = "admin" | "user" | "guest";
@@ -251,7 +251,7 @@ user
 
 ---
 
-# Real World Example
+### Real World Example
 
 ```ts
 type EventType = "click" | "scroll" | "keydown";
@@ -273,7 +273,7 @@ Result
 
 ---
 
-# 4. NonNullable<T>
+### 4. NonNullable<T>
 
 Removes:
 
@@ -286,7 +286,7 @@ from a type.
 
 ---
 
-## Example
+#### Example
 
 ```ts
 type UserName = string | null | undefined;
@@ -328,7 +328,7 @@ string;
 
 ---
 
-# Real World Example
+### Real World Example
 
 API Response
 
@@ -354,7 +354,7 @@ User;
 
 ---
 
-# Combining Utility Types
+### Combining Utility Types
 
 ---
 
@@ -397,7 +397,7 @@ Result
 
 ---
 
-# Real World API Example
+### Real World API Example
 
 ```ts
 interface ApiResponse<T> {
@@ -443,15 +443,15 @@ Type Safety
 
 ---
 
-# Common Interview Questions
+### Common Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What does Record<K,T> do?
 
-### Answer
+#### Answer
 
 ```text
 Creates an object type
@@ -460,11 +460,11 @@ with specified keys and values.
 
 ---
 
-## Q2
+#### Q2
 
 What does Exclude<T,U> do?
 
-### Answer
+#### Answer
 
 ```text
 Removes matching types
@@ -473,11 +473,11 @@ from a union.
 
 ---
 
-## Q3
+#### Q3
 
 What does Extract<T,U> do?
 
-### Answer
+#### Answer
 
 ```text
 Keeps matching types
@@ -486,11 +486,11 @@ from a union.
 
 ---
 
-## Q4
+#### Q4
 
 What does NonNullable<T> do?
 
-### Answer
+#### Answer
 
 ```text
 Removes null and undefined.
@@ -498,11 +498,11 @@ Removes null and undefined.
 
 ---
 
-## Q5
+#### Q5
 
 Which utility type is used for object dictionaries?
 
-### Answer
+#### Answer
 
 ```ts
 Record<K, T>;
@@ -510,7 +510,7 @@ Record<K, T>;
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```ts
 Record<K, T>;
@@ -610,7 +610,7 @@ Remove Fields
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - `Record<K, T>` creates strongly typed object maps.
 - `Exclude<T, U>` removes values from unions.
@@ -620,17 +620,3 @@ Remove Fields
 - These types are heavily used in React, APIs, repositories, and backend applications.
 - Combining utility types creates powerful reusable type transformations.
 - Mastering utility types significantly improves TypeScript productivity.
-
----
-
-
----\n*Last refined on April 20, 2026*
-
-
----\n*Last refined on April 22, 2026*
-
-
----\n*Last refined on April 25, 2026*
-
-
----\n*Last refined on April 25, 2026*
