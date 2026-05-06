@@ -39,7 +39,7 @@
 
 ---
 
-# The Problem
+### The Problem
 
 Suppose we install:
 
@@ -90,7 +90,7 @@ Extra Type Definitions
 
 ---
 
-# What is a Type Declaration File?
+### What is a Type Declaration File?
 
 A Type Declaration File contains:
 
@@ -133,7 +133,7 @@ exist and what their types are.
 
 ---
 
-# Why `.d.ts` Files Exist
+### Why `.d.ts` Files Exist
 
 JavaScript Example
 
@@ -174,7 +174,7 @@ without needing implementation.
 
 ---
 
-# Important Rule
+### Important Rule
 
 A declaration file contains:
 
@@ -208,7 +208,7 @@ Type Information
 
 ---
 
-# How TypeScript Uses `.d.ts`
+### How TypeScript Uses `.d.ts`
 
 Suppose:
 
@@ -241,7 +241,7 @@ is executed.
 
 ---
 
-# Real World Example
+### Real World Example
 
 Consider:
 
@@ -283,7 +283,7 @@ produces an error.
 
 ---
 
-# What Does `declare` Mean?
+### What Does `declare` Mean?
 
 One of the most important keywords.
 
@@ -324,7 +324,7 @@ its type information.
 
 ---
 
-# Module Declaration Example
+### Module Declaration Example
 
 Suppose you use:
 
@@ -383,13 +383,13 @@ works correctly.
 
 ---
 
-# Understanding DefinitelyTyped
+### Understanding DefinitelyTyped
 
 One of the most important TypeScript ecosystem concepts.
 
 ---
 
-# What is DefinitelyTyped?
+### What is DefinitelyTyped?
 
 DefinitelyTyped is:
 
@@ -421,7 +421,7 @@ Thousands More
 
 ---
 
-# Why Do We Need DefinitelyTyped?
+### Why Do We Need DefinitelyTyped?
 
 Many libraries were originally written in:
 
@@ -465,7 +465,7 @@ from DefinitelyTyped.
 
 ---
 
-# Understanding @types Packages
+### Understanding @types Packages
 
 Convention:
 
@@ -513,7 +513,7 @@ No runtime code.
 
 ---
 
-# Example — Node.js Types
+### Example — Node.js Types
 
 Suppose:
 
@@ -554,7 +554,7 @@ were added.
 
 ---
 
-# Example — Express Types
+### Example — Express Types
 
 Install
 
@@ -601,7 +601,7 @@ TypeScript would not know these types.
 
 ---
 
-# Libraries With Built-In Types
+### Libraries With Built-In Types
 
 Modern libraries often include their own declaration files.
 
@@ -631,7 +631,7 @@ Built-in Type Definitions
 
 ---
 
-# How to Check if Types Exist
+### How to Check if Types Exist
 
 Look inside:
 
@@ -675,7 +675,7 @@ No need for:
 
 ---
 
-# Creating Your Own Declaration File
+### Creating Your Own Declaration File
 
 Suppose JavaScript file:
 
@@ -723,7 +723,7 @@ correctly.
 
 ---
 
-# Common Real-World `.d.ts` Files
+### Common Real-World `.d.ts` Files
 
 ---
 
@@ -770,11 +770,11 @@ Compile-Time Safety
 
 ---
 
-# Benefits of Declaration Files
+### Benefits of Declaration Files
 
 ---
 
-## Type Safety
+#### Type Safety
 
 ```ts
 user.name.toUpperCase();
@@ -784,7 +784,7 @@ TypeScript validates.
 
 ---
 
-## Autocomplete
+#### Autocomplete
 
 IDE can suggest:
 
@@ -796,7 +796,7 @@ Functions
 
 ---
 
-## Better Documentation
+#### Better Documentation
 
 Types become:
 
@@ -806,7 +806,7 @@ Self-Documenting APIs
 
 ---
 
-## Early Error Detection
+#### Early Error Detection
 
 Errors appear:
 
@@ -818,11 +818,11 @@ instead of runtime.
 
 ---
 
-# Common Mistakes
+### Common Mistakes
 
 ---
 
-## Installing Library But Not Types
+#### Installing Library But Not Types
 
 Install
 
@@ -848,7 +848,7 @@ Missing Type Definitions
 
 ---
 
-## Creating Implementation in `.d.ts`
+#### Creating Implementation in `.d.ts`
 
 Wrong
 
@@ -875,7 +875,7 @@ declare function add(): void;
 
 ---
 
-## Confusing `.ts` and `.d.ts`
+#### Confusing `.ts` and `.d.ts`
 
 `.ts`
 
@@ -893,15 +893,15 @@ Contains Types Only
 
 ---
 
-# Interview Questions
+### Interview Questions
 
 ---
 
-## Q1
+#### Q1
 
 What is a `.d.ts` file?
 
-### Answer
+#### Answer
 
 ```text
 A Type Declaration File
@@ -911,11 +911,11 @@ without implementation.
 
 ---
 
-## Q2
+#### Q2
 
 What does `declare` mean?
 
-### Answer
+#### Answer
 
 ```text
 This value exists elsewhere.
@@ -924,11 +924,11 @@ TypeScript should trust it.
 
 ---
 
-## Q3
+#### Q3
 
 What is DefinitelyTyped?
 
-### Answer
+#### Answer
 
 ```text
 An open-source repository
@@ -938,11 +938,11 @@ for JavaScript libraries.
 
 ---
 
-## Q4
+#### Q4
 
 What is `@types/react`?
 
-### Answer
+#### Answer
 
 ```text
 React type definitions
@@ -951,11 +951,11 @@ from DefinitelyTyped.
 
 ---
 
-## Q5
+#### Q5
 
 Do `.d.ts` files generate JavaScript?
 
-### Answer
+#### Answer
 
 ```text
 No.
@@ -963,7 +963,7 @@ No.
 
 ---
 
-# Cheat Sheet
+### Cheat Sheet
 
 ```text
 .d.ts
@@ -1019,7 +1019,7 @@ Community Type Definitions
 
 ---
 
-# Key Takeaways
+### Key Takeaways
 
 - `.d.ts` files contain type information only.
 - Declaration files help TypeScript understand JavaScript code.
@@ -1031,16 +1031,3 @@ Community Type Definitions
 - No JavaScript is generated from declaration files.
 - Understanding declaration files is essential when working with external libraries.
 - Type declarations form the foundation of the TypeScript ecosystem.
-
----
- 
- 
-
-
----\n*Last refined on April 22, 2026*
-
-
----\n*Last refined on April 22, 2026*
-
-
----\n*Last refined on April 28, 2026*
