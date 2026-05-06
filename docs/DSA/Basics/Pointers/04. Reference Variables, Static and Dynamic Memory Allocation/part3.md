@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 4C'
+sidebar_label: 'Dynamic Arrays & Memory'
 sidebar_position: 15
 ---
 
