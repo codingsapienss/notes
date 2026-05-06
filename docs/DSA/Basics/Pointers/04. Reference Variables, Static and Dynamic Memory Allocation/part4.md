@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Pointers Part 4D'
+sidebar_label: 'Dynamic 2D Arrays'
 sidebar_position: 16
 ---
 
