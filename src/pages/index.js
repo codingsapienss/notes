@@ -23,7 +23,7 @@ const KnowledgeCategories = [
   {
     title: 'React',
     description: 'Modern UI patterns, state management, and efficient component architecture.',
-    link: '/docs/WebDev/React/intro',
+    link: '/docs/web-dev',
     icon: '⚛️',
   },
   {
