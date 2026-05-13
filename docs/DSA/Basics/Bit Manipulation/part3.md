@@ -33,7 +33,7 @@ sidebar_position: 3
 
 ---
 
-# What are Bitwise Operators?
+## What are Bitwise Operators?
 
 Bitwise operators manipulate individual bits.
 
@@ -63,7 +63,7 @@ Then performs the operation bit by bit.
 
 ---
 
-# Available Bitwise Operators
+## Available Bitwise Operators
 
 | Operator | Name        |
 | -------- | ----------- |
@@ -76,7 +76,7 @@ Then performs the operation bit by bit.
 
 ---
 
-# Binary Refresher
+## Binary Refresher
 
 Example:
 
@@ -104,11 +104,11 @@ Bit Position
 
 ---
 
-# Bitwise AND (&)
+## Bitwise AND (&)
 
 ---
 
-## Rule
+### Rule
 
 ```text
 Both bits must be 1
@@ -124,7 +124,7 @@ Otherwise:
 
 ---
 
-# Truth Table
+## Truth Table
 
 | A   | B   | A & B |
 | --- | --- | ----- |
@@ -135,7 +135,7 @@ Otherwise:
 
 ---
 
-# Example
+## Example
 
 ```cpp
 5 & 3
@@ -172,7 +172,7 @@ Result
 
 ---
 
-## Code
+### Code
 
 ```cpp
 #include <iostream>
@@ -184,7 +184,7 @@ int main()
 }
 ```
 
-### Output
+#### Output
 
 ```text
 1
@@ -192,7 +192,7 @@ int main()
 
 ---
 
-# Why?
+## Why?
 
 ```text
 1 & 1 = 1
@@ -204,9 +204,9 @@ int main()
 
 ---
 
-# Common Uses of AND
+## Common Uses of AND
 
-## Check if Number is Even
+### Check if Number is Even
 
 ```cpp
 if((n & 1) == 0)
@@ -258,11 +258,11 @@ Even.
 
 ---
 
-# Bitwise OR (|)
+## Bitwise OR (|)
 
 ---
 
-## Rule
+### Rule
 
 ```text
 At least one bit must be 1
@@ -270,7 +270,7 @@ At least one bit must be 1
 
 ---
 
-# Truth Table
+## Truth Table
 
 | A   | B   | A \| B |
 | --- | --- | ------ |
@@ -281,7 +281,7 @@ At least one bit must be 1
 
 ---
 
-# Example
+## Example
 
 ```cpp
 5 | 3
@@ -318,13 +318,13 @@ Result
 
 ---
 
-## Code
+### Code
 
 ```cpp
 cout << (5 | 3);
 ```
 
-### Output
+#### Output
 
 ```text
 7
@@ -332,7 +332,7 @@ cout << (5 | 3);
 
 ---
 
-# Common Use
+## Common Use
 
 Set a Bit
 
@@ -340,11 +340,11 @@ Covered in Part 6D.
 
 ---
 
-# Bitwise XOR (^)
+## Bitwise XOR (^)
 
 ---
 
-## Rule
+### Rule
 
 ```text
 Same Bits     → 0
@@ -354,7 +354,7 @@ Different Bits → 1
 
 ---
 
-# Truth Table
+## Truth Table
 
 | A   | B   | A ^ B |
 | --- | --- | ----- |
@@ -365,7 +365,7 @@ Different Bits → 1
 
 ---
 
-# Important Shortcut
+## Important Shortcut
 
 ```text
 XOR of same bits = 0
@@ -383,7 +383,7 @@ Example
 
 ---
 
-# Example
+## Example
 
 ```cpp
 5 ^ 3
@@ -418,13 +418,13 @@ Result
 
 ---
 
-# Code
+## Code
 
 ```cpp
 cout << (5 ^ 3);
 ```
 
-### Output
+#### Output
 
 ```text
 6
@@ -432,11 +432,11 @@ cout << (5 ^ 3);
 
 ---
 
-# Extremely Important XOR Properties
+## Extremely Important XOR Properties
 
 ---
 
-## Property 1
+### Property 1
 
 ```text
 A ^ A = 0
@@ -456,7 +456,7 @@ Output:
 
 ---
 
-## Property 2
+### Property 2
 
 ```text
 A ^ 0 = A
@@ -476,7 +476,7 @@ Output:
 
 ---
 
-## Property 3
+### Property 3
 
 ```text
 A ^ B ^ B = A
@@ -492,7 +492,7 @@ Example:
 
 ---
 
-## Property 4
+### Property 4
 
 Order Doesn't Matter
 
@@ -505,7 +505,7 @@ B ^ A
 
 ---
 
-# Why XOR Is Famous?
+## Why XOR Is Famous?
 
 Many interview questions are solved using XOR.
 
@@ -521,11 +521,11 @@ Swap Without Temp
 
 ---
 
-# Bitwise NOT (~)
+## Bitwise NOT (~)
 
 ---
 
-## Rule
+### Rule
 
 Flip Every Bit
 
@@ -537,7 +537,7 @@ Flip Every Bit
 
 ---
 
-# Example
+## Example
 
 ```cpp
 ~5
@@ -604,7 +604,7 @@ Therefore:
 
 ---
 
-# Shortcut Formula
+## Shortcut Formula
 
 ```text
 ~n = -(n + 1)
@@ -634,7 +634,7 @@ Examples
 
 ---
 
-# NOT with Negative Number
+## NOT with Negative Number
 
 Example:
 
@@ -678,13 +678,13 @@ Result
 
 ---
 
-# Right Shift (>>)
+## Right Shift (>>)
 
 Moves bits towards right.
 
 ---
 
-# Formula
+## Formula
 
 ```text
 x >> k
@@ -696,7 +696,7 @@ For positive numbers.
 
 ---
 
-# Example
+## Example
 
 ```cpp
 13 >> 1
@@ -742,7 +742,7 @@ Verification
 
 ---
 
-# Example
+## Example
 
 ```cpp
 13 >> 2
@@ -780,7 +780,7 @@ Verification
 
 ---
 
-# Code
+## Code
 
 ```cpp
 cout << (13 >> 1);
@@ -806,13 +806,13 @@ Output:
 
 ---
 
-# Left Shift (<<)
+## Left Shift (<<)
 
 Moves bits towards left.
 
 ---
 
-# Formula
+## Formula
 
 ```text
 x << k
@@ -822,7 +822,7 @@ x << k
 
 ---
 
-# Example
+## Example
 
 ```cpp
 13 << 1
@@ -862,7 +862,7 @@ Verification
 
 ---
 
-# Example
+## Example
 
 ```cpp
 13 << 2
@@ -902,7 +902,7 @@ Verification
 
 ---
 
-# Why Does Shift Work?
+## Why Does Shift Work?
 
 Consider:
 
@@ -937,7 +937,7 @@ Multiply by 2
 
 ---
 
-# Important Warning
+## Important Warning
 
 Avoid:
 
@@ -963,7 +963,7 @@ Safer:
 
 ---
 
-# Operator Precedence
+## Operator Precedence
 
 Bitwise operators have lower precedence than arithmetic operators.
 
@@ -993,11 +993,11 @@ for clarity.
 
 ---
 
-# Common Interview Questions
+## Common Interview Questions
 
 ---
 
-## Why is XOR Used for Single Number Problems?
+### Why is XOR Used for Single Number Problems?
 
 Because:
 
@@ -1013,19 +1013,19 @@ A ^ 0 = A
 
 ---
 
-## Why Does Right Shift Divide By 2?
+### Why Does Right Shift Divide By 2?
 
 Because every bit moves to a position having half the weight.
 
 ---
 
-## Why Does Left Shift Multiply By 2?
+### Why Does Left Shift Multiply By 2?
 
 Because every bit moves to a position having double the weight.
 
 ---
 
-## What is ~5?
+### What is ~5?
 
 ```text
 -6
@@ -1033,7 +1033,7 @@ Because every bit moves to a position having double the weight.
 
 ---
 
-## What is 5 ^ 5?
+### What is 5 ^ 5?
 
 ```text
 0
@@ -1041,11 +1041,11 @@ Because every bit moves to a position having double the weight.
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ---
 
-## AND
+### AND
 
 ```cpp
 A & B
@@ -1057,7 +1057,7 @@ A & B
 
 ---
 
-## OR
+### OR
 
 ```cpp
 A | B
@@ -1069,7 +1069,7 @@ A | B
 
 ---
 
-## XOR
+### XOR
 
 ```cpp
 A ^ B
@@ -1081,7 +1081,7 @@ A ^ B
 
 ---
 
-## NOT
+### NOT
 
 ```cpp
 ~A
@@ -1093,7 +1093,7 @@ Flip Bits
 
 ---
 
-## Right Shift
+### Right Shift
 
 ```cpp
 A >> k
@@ -1105,7 +1105,7 @@ A >> k
 
 ---
 
-## Left Shift
+### Left Shift
 
 ```cpp
 A << k
@@ -1117,7 +1117,7 @@ A << k
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Bitwise operators work directly on binary representations.
 - `&` returns 1 only when both bits are 1.

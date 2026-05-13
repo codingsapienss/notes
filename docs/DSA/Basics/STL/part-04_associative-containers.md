@@ -25,9 +25,9 @@ sidebar_label: 'Associative Containers'
 
 ---
 
-# Associative Containers
+## Associative Containers
 
-## Intuition
+### Intuition
 
 Till now we studied:
 
@@ -49,7 +49,7 @@ Associative containers solve these problems.
 
 ---
 
-## Main Associative Containers
+### Main Associative Containers
 
 | Container     | Duplicate Allowed | Sorted | Internal Structure |
 | ------------- | ----------------- | ------ | ------------------ |
@@ -62,9 +62,9 @@ Associative containers solve these problems.
 
 ---
 
-# Set
+## Set
 
-## Intuition
+### Intuition
 
 Suppose:
 
@@ -89,7 +89,7 @@ Set solves this automatically.
 
 ---
 
-## Definition
+### Definition
 
 Set stores:
 
@@ -106,7 +106,7 @@ Usually Red Black Tree
 
 ---
 
-## Internal Working
+### Internal Working
 
 Insert:
 
@@ -136,7 +136,7 @@ Traversal:
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 set<int> st;
@@ -150,9 +150,9 @@ Header:
 
 ---
 
-# Insert
+## Insert
 
-## insert()
+### insert()
 
 ```cpp
 st.insert(10);
@@ -164,7 +164,7 @@ st.insert(30);
 
 ---
 
-## emplace()
+### emplace()
 
 ```cpp
 st.emplace(40);
@@ -172,7 +172,7 @@ st.emplace(40);
 
 ---
 
-# Duplicate Example
+## Duplicate Example
 
 ```cpp
 set<int> st;
@@ -194,7 +194,7 @@ Duplicate skipped automatically.
 
 ---
 
-# Traversal
+## Traversal
 
 ```cpp
 for(auto x:st)
@@ -211,7 +211,7 @@ Output:
 
 ---
 
-# find()
+## find()
 
 Returns iterator.
 
@@ -246,7 +246,7 @@ if(it!=st.end())
 
 ---
 
-# erase()
+## erase()
 
 Delete element.
 
@@ -256,7 +256,7 @@ st.erase(20);
 
 ---
 
-# count()
+## count()
 
 Returns:
 
@@ -274,7 +274,7 @@ cout<<st.count(20);
 
 ---
 
-# lower_bound()
+## lower_bound()
 
 Returns:
 
@@ -298,7 +298,7 @@ Result:
 
 ---
 
-# upper_bound()
+## upper_bound()
 
 Returns:
 
@@ -322,7 +322,7 @@ Result:
 
 ---
 
-# Complexity
+## Complexity
 
 | Operation   | Complexity |
 | ----------- | ---------- |
@@ -335,9 +335,9 @@ Result:
 
 ---
 
-# Multiset
+## Multiset
 
-## Definition
+### Definition
 
 Multiset stores:
 
@@ -352,7 +352,7 @@ Red Black Tree
 
 ---
 
-## Example
+### Example
 
 ```cpp
 multiset<int> ms;
@@ -372,7 +372,7 @@ Stored:
 
 ---
 
-# Erase Problem
+## Erase Problem
 
 ```cpp
 ms.erase(10);
@@ -386,7 +386,7 @@ ALL 10 values
 
 ---
 
-# Delete Single Occurrence
+## Delete Single Occurrence
 
 ```cpp
 ms.erase(ms.find(10));
@@ -396,7 +396,7 @@ Only first occurrence removed.
 
 ---
 
-# Example
+## Example
 
 ```cpp
 multiset<int> ms;
@@ -418,9 +418,9 @@ Output:
 
 ---
 
-# Unordered Set
+## Unordered Set
 
-## Definition
+### Definition
 
 Stores:
 
@@ -435,7 +435,7 @@ Hash Table
 
 ---
 
-## Internal Working
+### Internal Working
 
 Hash function:
 
@@ -467,7 +467,7 @@ Bucket5 → 25
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 unordered_set<int> st;
@@ -481,7 +481,7 @@ Header:
 
 ---
 
-# Example
+## Example
 
 ```cpp
 unordered_set<int> st;
@@ -506,7 +506,7 @@ Random order
 
 ---
 
-# Complexity
+## Complexity
 
 | Operation | Average | Worst |
 | --------- | ------- | ----- |
@@ -516,7 +516,7 @@ Random order
 
 ---
 
-# Why Worst Case O(N)?
+## Why Worst Case O(N)?
 
 Suppose:
 
@@ -551,9 +551,9 @@ O(N)
 
 ---
 
-# Map
+## Map
 
-## Intuition
+### Intuition
 
 Suppose:
 
@@ -573,7 +573,7 @@ key → value
 
 ---
 
-## Definition
+### Definition
 
 Map stores:
 
@@ -589,7 +589,7 @@ Red Black Tree
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 map<int,int> mpp;
@@ -597,7 +597,7 @@ map<int,int> mpp;
 
 ---
 
-# Different Declarations
+## Different Declarations
 
 ```cpp
 map<int,int> mpp;
@@ -609,7 +609,7 @@ map<pair<int,int>,int> mpp;
 
 ---
 
-# Insert
+## Insert
 
 Using indexing:
 
@@ -641,7 +641,7 @@ mpp.emplace(3,5);
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -674,7 +674,7 @@ Output:
 
 ---
 
-# Important Hidden Behavior
+## Important Hidden Behavior
 
 ```cpp
 cout<<mpp[100];
@@ -694,7 +694,7 @@ This surprises many developers.
 
 ---
 
-# Safe Method
+## Safe Method
 
 ```cpp
 auto it=mpp.find(100);
@@ -707,7 +707,7 @@ if(it!=mpp.end())
 
 ---
 
-# find()
+## find()
 
 ```cpp
 auto it=mpp.find(2);
@@ -717,7 +717,7 @@ Returns iterator.
 
 ---
 
-# Complexity
+## Complexity
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -727,9 +727,9 @@ Returns iterator.
 
 ---
 
-# Multimap
+## Multimap
 
-## Definition
+### Definition
 
 Stores:
 
@@ -738,7 +738,7 @@ Stores:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 multimap<int,string> mp;
@@ -758,7 +758,7 @@ Stored:
 
 ---
 
-## Important Limitation
+### Important Limitation
 
 Wrong:
 
@@ -772,9 +772,9 @@ Because duplicate keys exist.
 
 ---
 
-# Unordered Map
+## Unordered Map
 
-## Definition
+### Definition
 
 Stores:
 
@@ -789,7 +789,7 @@ Hash Table
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 unordered_map<int,int> mp;
@@ -797,7 +797,7 @@ unordered_map<int,int> mp;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 unordered_map<int,int> mp;
@@ -815,7 +815,7 @@ for(auto x:mp)
 
 ---
 
-# Complexity
+## Complexity
 
 | Operation | Average | Worst |
 | --------- | ------- | ----- |
@@ -825,7 +825,7 @@ for(auto x:mp)
 
 ---
 
-# When To Use Which
+## When To Use Which
 
 | Situation             | Container     |
 | --------------------- | ------------- |
@@ -838,9 +838,9 @@ for(auto x:mp)
 
 ---
 
-# Real-world Examples
+## Real-world Examples
 
-## Set
+### Set
 
 Used in:
 
@@ -850,7 +850,7 @@ Used in:
 
 ---
 
-## Multiset
+### Multiset
 
 Used in:
 
@@ -860,7 +860,7 @@ Used in:
 
 ---
 
-## Map
+### Map
 
 Used in:
 
@@ -870,7 +870,7 @@ Used in:
 
 ---
 
-## Unordered Map
+### Unordered Map
 
 Used in:
 
@@ -880,9 +880,9 @@ Used in:
 
 ---
 
-# Common Bugs
+## Common Bugs
 
-## Bug 1
+### Bug 1
 
 Wrong:
 
@@ -896,7 +896,7 @@ Creates new key.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Wrong:
 
@@ -927,7 +927,7 @@ if(it!=st.end())
 
 ---
 
-## Bug 3
+### Bug 3
 
 Wrong:
 
@@ -945,7 +945,7 @@ Hash table does not maintain order.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use unordered containers when sorting unnecessary
 - Use set/map when ordering required
@@ -955,9 +955,9 @@ Hash table does not maintain order.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 Why set stores sorted values?
 
@@ -967,7 +967,7 @@ Because internally it uses balanced BST.
 
 ---
 
-## Q2
+### Q2
 
 Why unordered_map is faster?
 
@@ -977,7 +977,7 @@ Uses hash table.
 
 ---
 
-## Q3
+### Q3
 
 Why worst case O(N) in unordered_map?
 
@@ -987,7 +987,7 @@ Hash collisions.
 
 ---
 
-## Q4
+### Q4
 
 Difference between map and unordered_map?
 
@@ -1001,7 +1001,7 @@ Answer:
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 set<int> st;
@@ -1038,7 +1038,7 @@ unordered_map<int,int> ump;
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Set stores unique sorted values
 - Multiset allows duplicates

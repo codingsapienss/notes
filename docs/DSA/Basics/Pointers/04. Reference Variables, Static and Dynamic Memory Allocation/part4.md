@@ -5,7 +5,7 @@ sidebar_position: 16
 
 # Dynamic Memory Allocation for 2D Arrays
 
-### Why Do We Need Dynamic 2D Arrays?
+#### Why Do We Need Dynamic 2D Arrays?
 
 Static 2D arrays require size at compile time:
 
@@ -24,13 +24,13 @@ we must use **dynamic memory allocation**.
 
 ---
 
-## Step 1: Create Row Pointers
+### Step 1: Create Row Pointers
 
 ```cpp
 int** arr = new int*[rows];
 ```
 
-#### Memory
+##### Memory
 
 ```text
 arr
@@ -50,7 +50,7 @@ Each location will store the address of a row.
 
 ---
 
-## Step 2: Create Individual Rows
+### Step 2: Create Individual Rows
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -59,7 +59,7 @@ for(int i = 0; i < rows; i++)
 }
 ```
 
-#### Memory Layout
+##### Memory Layout
 
 ```text
 arr
@@ -74,7 +74,7 @@ arr
 
 ---
 
-## Complete Allocation
+### Complete Allocation
 
 ```cpp
 int** arr = new int*[rows];
@@ -87,7 +87,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-## Taking Input
+### Taking Input
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -101,7 +101,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-## Printing Output
+### Printing Output
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -117,7 +117,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-## How Does `arr[i][j]` Work Internally?
+### How Does `arr[i][j]` Work Internally?
 
 Compiler converts:
 
@@ -131,7 +131,7 @@ into:
 *(*(arr + i) + j)
 ```
 
-#### Example
+##### Example
 
 ```cpp
 arr[2][3]
@@ -145,13 +145,13 @@ means:
 
 ---
 
-## Memory Deallocation
+### Memory Deallocation
 
 Every `new` must have a matching `delete`.
 
 ---
 
-### Step 1: Delete Each Row
+#### Step 1: Delete Each Row
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -162,7 +162,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-### Step 2: Delete Row Pointer Array
+#### Step 2: Delete Row Pointer Array
 
 ```cpp
 delete[] arr;
@@ -170,7 +170,7 @@ delete[] arr;
 
 ---
 
-## Complete Deallocation
+### Complete Deallocation
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -183,7 +183,7 @@ delete[] arr;
 
 ---
 
-## Common Mistake
+### Common Mistake
 
 Wrong:
 
@@ -203,7 +203,7 @@ Memory Leak
 
 ---
 
-## Complete Program
+### Complete Program
 
 ```cpp
 #include <iostream>
@@ -253,7 +253,7 @@ int main()
 
 ---
 
-## Static vs Dynamic 2D Array
+### Static vs Dynamic 2D Array
 
 | Feature                    | Static 2D Array | Dynamic 2D Array |
 | -------------------------- | --------------- | ---------------- |
@@ -264,7 +264,7 @@ int main()
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Use `int**` to create dynamic 2D arrays.
 - First allocate row pointers.
@@ -278,9 +278,9 @@ int main()
 
 ---
 
-## Jagged Arrays (Dynamic 2D Arrays with Variable Columns)
+### Jagged Arrays (Dynamic 2D Arrays with Variable Columns)
 
-### What Is a Jagged Array?
+#### What Is a Jagged Array?
 
 A Jagged Array is a 2D array where:
 
@@ -318,7 +318,7 @@ Example:
 
 ---
 
-## Why Do We Need Jagged Arrays?
+### Why Do We Need Jagged Arrays?
 
 Useful when every row does not require the same amount of data.
 
@@ -332,9 +332,9 @@ Examples:
 
 ---
 
-## Creating a Jagged Array
+### Creating a Jagged Array
 
-### Step 1: Create Row Pointers
+#### Step 1: Create Row Pointers
 
 ```cpp
 int rows = 3;
@@ -360,7 +360,7 @@ arr
 
 ---
 
-### Step 2: Allocate Different Column Sizes
+#### Step 2: Allocate Different Column Sizes
 
 ```cpp
 arr[0] = new int[2];
@@ -389,7 +389,7 @@ Every row has a different size.
 
 ---
 
-## Complete Example
+### Complete Example
 
 ```cpp
 #include <iostream>
@@ -431,7 +431,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 60
@@ -439,7 +439,7 @@ int main()
 
 ---
 
-## Runtime Jagged Array
+### Runtime Jagged Array
 
 Suppose each row size is entered by the user.
 
@@ -483,7 +483,7 @@ Row 2 → 3 columns
 
 ---
 
-## Taking Input
+### Taking Input
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -497,7 +497,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-## Printing Output
+### Printing Output
 
 ```cpp
 for(int i = 0; i < rows; i++)
@@ -513,7 +513,7 @@ for(int i = 0; i < rows; i++)
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 Example:
 
@@ -541,7 +541,7 @@ arr
 
 ---
 
-## Deallocating a Jagged Array
+### Deallocating a Jagged Array
 
 Exactly same as dynamic 2D arrays.
 
@@ -558,7 +558,7 @@ delete[] colSize;
 
 ---
 
-## Jagged Array vs Normal Dynamic 2D Array
+### Jagged Array vs Normal Dynamic 2D Array
 
 | Feature               | Dynamic 2D Array | Jagged Array  |
 | --------------------- | ---------------- | ------------- |
@@ -569,7 +569,7 @@ delete[] colSize;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - A jagged array is a 2D array where each row can have a different number of columns.
 - Implemented using `int**`.

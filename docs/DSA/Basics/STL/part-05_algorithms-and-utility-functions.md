@@ -29,9 +29,9 @@ sidebar_label: 'Algorithms & Utilities'
 
 ---
 
-# Introduction to STL Algorithms
+## Introduction to STL Algorithms
 
-## Intuition
+### Intuition
 
 Suppose you have:
 
@@ -58,7 +58,7 @@ STL algorithms solve this.
 
 ---
 
-# Why Algorithms Exist
+## Why Algorithms Exist
 
 Algorithms provide:
 
@@ -70,9 +70,9 @@ Algorithms provide:
 
 ---
 
-# sort()
+## sort()
 
-## Definition
+### Definition
 
 Used for sorting containers.
 
@@ -84,9 +84,9 @@ Header:
 
 ---
 
-# Sorting Arrays
+## Sorting Arrays
 
-## Syntax
+### Syntax
 
 ```cpp
 sort(arr,arr+n);
@@ -94,7 +94,7 @@ sort(arr,arr+n);
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -125,7 +125,7 @@ Output:
 
 ---
 
-## Code Explanation
+### Code Explanation
 
 ```cpp
 sort(arr,arr+n);
@@ -163,7 +163,7 @@ Range:
 
 ---
 
-# Sorting Vector
+## Sorting Vector
 
 Syntax:
 
@@ -194,7 +194,7 @@ Output:
 
 ---
 
-# Sorting Particular Portion
+## Sorting Particular Portion
 
 Syntax:
 
@@ -232,9 +232,9 @@ Output:
 
 ---
 
-# Sorting Descending Order
+## Sorting Descending Order
 
-## Syntax
+### Syntax
 
 ```cpp
 sort(arr,arr+n,greater<int>());
@@ -263,7 +263,7 @@ Output:
 
 ---
 
-# Internal Working of sort()
+## Internal Working of sort()
 
 STL sort internally uses:
 
@@ -283,7 +283,7 @@ Insertion Sort
 
 ---
 
-# Why Not Only Quick Sort?
+## Why Not Only Quick Sort?
 
 Quick sort worst case:
 
@@ -295,7 +295,7 @@ IntroSort avoids that.
 
 ---
 
-# Complexity
+## Complexity
 
 | Case    | Complexity |
 | ------- | ---------- |
@@ -305,9 +305,9 @@ IntroSort avoids that.
 
 ---
 
-# Custom Comparator
+## Custom Comparator
 
-## Why Custom Sorting?
+### Why Custom Sorting?
 
 Default sorting:
 
@@ -329,7 +329,7 @@ Sort first in descending
 
 ---
 
-# Example
+## Example
 
 Input:
 
@@ -354,7 +354,7 @@ Sort first descending
 
 ---
 
-# Comparator Function
+## Comparator Function
 
 ```cpp
 bool comp(
@@ -375,7 +375,7 @@ pair<int,int> p2)
 
 ---
 
-# Use Comparator
+## Use Comparator
 
 ```cpp
 sort(arr,arr+3,comp);
@@ -393,7 +393,7 @@ Output:
 
 ---
 
-# How Comparator Works
+## How Comparator Works
 
 Rule:
 
@@ -409,7 +409,7 @@ Keep first element before second
 
 ---
 
-# Wrong Comparator
+## Wrong Comparator
 
 Wrong:
 
@@ -438,9 +438,9 @@ instead.
 
 ---
 
-# \_\_builtin_popcount()
+## \_\_builtin_popcount()
 
-## Definition
+### Definition
 
 Returns:
 
@@ -480,7 +480,7 @@ Output:
 
 ---
 
-# Internal Working
+## Internal Working
 
 Binary:
 
@@ -504,7 +504,7 @@ Output:
 
 ---
 
-# \_\_builtin_popcountll()
+## \_\_builtin_popcountll()
 
 Used for:
 
@@ -522,7 +522,7 @@ cout<<__builtin_popcountll(num);
 
 ---
 
-# Why Separate Function?
+## Why Separate Function?
 
 Normal:
 
@@ -550,15 +550,15 @@ Long long:
 
 ---
 
-# next_permutation()
+## next_permutation()
 
-## Definition
+### Definition
 
 Creates next lexicographically larger permutation.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 next_permutation(
@@ -590,7 +590,7 @@ Output:
 
 ---
 
-# Internal Working
+## Internal Working
 
 Input:
 
@@ -623,7 +623,7 @@ is:
 
 ---
 
-# Print All Permutations
+## Print All Permutations
 
 Important rule:
 
@@ -672,7 +672,7 @@ Output:
 
 ---
 
-# Why Sort First?
+## Why Sort First?
 
 Wrong:
 
@@ -692,9 +692,9 @@ moves forward only.
 
 ---
 
-# max_element()
+## max_element()
 
-## Definition
+### Definition
 
 Returns iterator pointing to largest element.
 
@@ -730,7 +730,7 @@ Output:
 
 ---
 
-# Internal Working
+## Internal Working
 
 Process:
 
@@ -750,7 +750,7 @@ Current max=9
 
 ---
 
-# min_element()
+## min_element()
 
 Returns iterator of minimum element.
 
@@ -778,7 +778,7 @@ Output:
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 | Function         | Complexity        |
 | ---------------- | ----------------- |
@@ -790,9 +790,9 @@ Output:
 
 ---
 
-# Real-world Applications
+## Real-world Applications
 
-## sort()
+### sort()
 
 Used in:
 
@@ -803,7 +803,7 @@ Used in:
 
 ---
 
-## next_permutation()
+### next_permutation()
 
 Used in:
 
@@ -813,7 +813,7 @@ Used in:
 
 ---
 
-## popcount()
+### popcount()
 
 Used in:
 
@@ -823,7 +823,7 @@ Used in:
 
 ---
 
-## max_element()
+### max_element()
 
 Used in:
 
@@ -833,9 +833,9 @@ Used in:
 
 ---
 
-# Common Bugs
+## Common Bugs
 
-## Bug 1
+### Bug 1
 
 Wrong:
 
@@ -855,7 +855,7 @@ sort(arr,arr+n);
 
 ---
 
-## Bug 2
+### Bug 2
 
 Wrong:
 
@@ -875,7 +875,7 @@ Correct:
 
 ---
 
-## Bug 3
+### Bug 3
 
 Wrong:
 
@@ -891,7 +891,7 @@ __builtin_popcountll()
 
 ---
 
-## Bug 4
+### Bug 4
 
 Wrong:
 
@@ -919,9 +919,9 @@ sort(s.begin(),s.end());
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 What algorithm does STL sort use?
 
@@ -933,7 +933,7 @@ IntroSort
 
 ---
 
-## Q2
+### Q2
 
 Why is IntroSort better than QuickSort?
 
@@ -943,7 +943,7 @@ Avoids O(N²) worst case.
 
 ---
 
-## Q3
+### Q3
 
 Why does max_element return iterator?
 
@@ -953,7 +953,7 @@ Works uniformly with STL containers.
 
 ---
 
-## Q4
+### Q4
 
 Why sort before next_permutation?
 
@@ -963,7 +963,7 @@ To generate all permutations.
 
 ---
 
-## Q5
+### Q5
 
 Difference:
 
@@ -984,7 +984,7 @@ Answer:
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 sort(arr,arr+n);
@@ -1025,7 +1025,7 @@ arr+n
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - STL algorithms reduce code and bugs
 - sort() uses IntroSort

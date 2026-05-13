@@ -54,7 +54,7 @@ sidebar_position: 12
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -73,7 +73,7 @@ In this chapter we will cover:
 
 ---
 
-## Functions Have Addresses
+### Functions Have Addresses
 
 Consider:
 
@@ -128,7 +128,7 @@ has an address.
 
 ---
 
-## Printing Function Address
+### Printing Function Address
 
 Example:
 
@@ -157,7 +157,7 @@ Address varies by system.
 
 ---
 
-## Important Observation
+### Important Observation
 
 Just like:
 
@@ -183,7 +183,7 @@ gives address of function.
 
 ---
 
-## Function Name Decay
+### Function Name Decay
 
 Just like:
 
@@ -219,15 +219,15 @@ in most contexts.
 
 ---
 
-## What Is A Function Pointer?
+### What Is A Function Pointer?
 
-### Definition
+#### Definition
 
 A function pointer is a pointer that stores the address of a function.
 
 ---
 
-## Why Do We Need Function Pointers?
+### Why Do We Need Function Pointers?
 
 They allow us to:
 
@@ -240,7 +240,7 @@ They allow us to:
 
 ---
 
-## First Function Pointer
+### First Function Pointer
 
 Function:
 
@@ -261,7 +261,7 @@ void (*funcPtr)() = &greet;
 
 ---
 
-## Reading The Declaration
+### Reading The Declaration
 
 Start from:
 
@@ -323,7 +323,7 @@ and returns void.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 funcPtr
@@ -351,7 +351,7 @@ funcPtr
 
 ---
 
-## Calling Through Function Pointer
+### Calling Through Function Pointer
 
 Function:
 
@@ -386,7 +386,7 @@ Hello
 
 ---
 
-## Alternative Syntax
+### Alternative Syntax
 
 Also valid:
 
@@ -402,7 +402,7 @@ Hello
 
 ---
 
-## Why Both Work?
+### Why Both Work?
 
 Compiler automatically dereferences function pointers.
 
@@ -430,7 +430,7 @@ greet()
 
 ---
 
-## Example Program
+### Example Program
 
 ```cpp
 #include <iostream>
@@ -451,7 +451,7 @@ int main()
 
 ---
 
-## Expected Output
+### Expected Output
 
 ```text
 Hello
@@ -459,7 +459,7 @@ Hello
 
 ---
 
-## Function Pointer With Parameters
+### Function Pointer With Parameters
 
 Function:
 
@@ -494,7 +494,7 @@ int
 
 ---
 
-## Calling
+### Calling
 
 ```cpp
 cout << funcPtr(10,20);
@@ -508,7 +508,7 @@ Output:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 funcPtr
@@ -523,7 +523,7 @@ funcPtr
 
 ---
 
-## Function Pointer Type Matching
+### Function Pointer Type Matching
 
 Function:
 
@@ -569,13 +569,13 @@ Parameter list must match.
 
 ---
 
-## Passing Function Pointers To Functions
+### Passing Function Pointers To Functions
 
 This is where function pointers become powerful.
 
 ---
 
-## Example
+### Example
 
 Function:
 
@@ -617,13 +617,13 @@ Output:
 
 ---
 
-## Why Useful?
+### Why Useful?
 
 Function behavior becomes dynamic.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 execute(10,20,add);
@@ -655,9 +655,9 @@ Different behavior.
 
 ---
 
-## What Is A Callback?
+### What Is A Callback?
 
-### Definition
+#### Definition
 
 A callback is a function passed as an argument to another function.
 
@@ -683,7 +683,7 @@ calls it later
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int add(int a,int b)
@@ -735,7 +735,7 @@ add()
 
 ---
 
-## Real-World Example
+### Real-World Example
 
 GUI Systems:
 
@@ -762,7 +762,7 @@ Examples:
 
 ---
 
-## Multiple Operations Example
+### Multiple Operations Example
 
 Functions:
 
@@ -846,7 +846,7 @@ Output:
 
 ---
 
-## Arrays Of Function Pointers
+### Arrays Of Function Pointers
 
 Just like:
 
@@ -900,7 +900,7 @@ Output:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 operations
@@ -916,7 +916,7 @@ operations
 
 ---
 
-## Function Pointer vs Normal Pointer
+### Function Pointer vs Normal Pointer
 
 | Feature        | Normal Pointer | Function Pointer |
 | -------------- | -------------- | ---------------- |
@@ -928,7 +928,7 @@ operations
 
 ---
 
-## Function Pointer Arithmetic
+### Function Pointer Arithmetic
 
 Invalid:
 
@@ -944,7 +944,7 @@ Function pointers are not intended for arithmetic traversal.
 
 ---
 
-## Modern C++ Alternatives
+### Modern C++ Alternatives
 
 Function pointers are still important.
 
@@ -952,7 +952,7 @@ However modern C++ often uses:
 
 ---
 
-## Lambdas
+### Lambdas
 
 ```cpp
 auto add =
@@ -964,13 +964,13 @@ auto add =
 
 ---
 
-## Functors
+### Functors
 
 Objects that behave like functions.
 
 ---
 
-## std::function
+### std::function
 
 ```cpp
 std::function<int(int,int)> op;
@@ -982,57 +982,57 @@ These provide greater flexibility.
 
 ---
 
-## Advantages of Function Pointers
+### Advantages of Function Pointers
 
-#### Dynamic Behavior
+##### Dynamic Behavior
 
 Choose function at runtime.
 
 ---
 
-#### Reusable Code
+##### Reusable Code
 
 Avoid duplicate logic.
 
 ---
 
-#### Callback Systems
+##### Callback Systems
 
 Essential for event-driven programming.
 
 ---
 
-#### Low-Level Efficiency
+##### Low-Level Efficiency
 
 Very lightweight.
 
 ---
 
-## Disadvantages
+### Disadvantages
 
-#### Complex Syntax
+##### Complex Syntax
 
 Can be difficult to read.
 
 ---
 
-#### Limited Flexibility
+##### Limited Flexibility
 
 Compared to lambdas and `std::function`.
 
 ---
 
-#### Harder Maintenance
+##### Harder Maintenance
 
 Complex declarations reduce readability.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 Incorrect Signature
 
@@ -1046,7 +1046,7 @@ Compilation Error.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Forgetting Parentheses
 
@@ -1078,7 +1078,7 @@ Pointer to function
 
 ---
 
-## Bug 3
+### Bug 3
 
 Calling Null Function Pointer
 
@@ -1092,25 +1092,25 @@ Undefined Behavior.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is a function pointer?
 
-#### Answer
+##### Answer
 
 A pointer that stores the address of a function.
 
 ---
 
-### Q2
+#### Q2
 
 Do functions have memory addresses?
 
-#### Answer
+##### Answer
 
 Yes.
 
@@ -1118,7 +1118,7 @@ Functions are stored in program memory.
 
 ---
 
-### Q3
+#### Q3
 
 Difference between:
 
@@ -1132,7 +1132,7 @@ and
 (*funcPtr)();
 ```
 
-#### Answer
+##### Answer
 
 No difference.
 
@@ -1140,27 +1140,27 @@ Both call the function.
 
 ---
 
-### Q4
+#### Q4
 
 What is a callback?
 
-#### Answer
+##### Answer
 
 A function passed as an argument to another function.
 
 ---
 
-### Q5
+#### Q5
 
 Why are function pointers useful?
 
-#### Answer
+##### Answer
 
 They enable dynamic behavior and callback systems.
 
 ---
 
-### Q6
+#### Q6
 
 Difference between:
 
@@ -1174,7 +1174,7 @@ and
 int (*ptr)(int,int);
 ```
 
-#### Answer
+##### Answer
 
 | Declaration           | Meaning                    |
 | --------------------- | -------------------------- |
@@ -1183,7 +1183,7 @@ int (*ptr)(int,int);
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 void greet();
@@ -1211,7 +1211,7 @@ int (*operations[3])(int,int);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Functions have memory addresses.
 - Function names decay to function addresses in most contexts.

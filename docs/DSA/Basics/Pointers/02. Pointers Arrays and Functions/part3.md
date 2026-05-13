@@ -35,7 +35,7 @@ sidebar_position: 7
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -56,13 +56,13 @@ In this chapter we will cover:
 
 ---
 
-## Revisiting Function Calls
+### Revisiting Function Calls
 
 Before understanding arrays, let's revisit normal variables.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void update(int value)
@@ -88,7 +88,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -100,7 +100,7 @@ creates a copy.
 
 ---
 
-## Memory
+### Memory
 
 Before function call:
 
@@ -113,7 +113,7 @@ Value: 5
 
 ---
 
-## During Function Call
+### During Function Call
 
 ```text
 value
@@ -124,7 +124,7 @@ Value: 5
 
 ---
 
-## Visual
+### Visual
 
 ```text
 number
@@ -140,7 +140,7 @@ value
 
 ---
 
-## Important Rule
+### Important Rule
 
 Function parameters receive:
 
@@ -152,7 +152,7 @@ unless references are used.
 
 ---
 
-## Passing Pointers To Functions
+### Passing Pointers To Functions
 
 Consider:
 
@@ -166,7 +166,7 @@ void print(int *ptr)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 int value = 5;
@@ -178,7 +178,7 @@ print(valuePtr);
 
 ---
 
-## Memory Before Function Call
+### Memory Before Function Call
 
 ```text
 value
@@ -195,7 +195,7 @@ Value: 1000
 
 ---
 
-## What Gets Passed?
+### What Gets Passed?
 
 Many beginners think:
 
@@ -213,7 +213,7 @@ A copy of the pointer
 
 ---
 
-## Visual
+### Visual
 
 Before Call
 
@@ -226,7 +226,7 @@ Value: 1000
 
 ---
 
-## Function Parameter
+### Function Parameter
 
 ```cpp
 void print(int *ptr)
@@ -243,7 +243,7 @@ Value: 1000
 
 ---
 
-## Important Observation
+### Important Observation
 
 Two different pointer variables exist:
 
@@ -265,7 +265,7 @@ Same address
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 valuePtr
@@ -285,7 +285,7 @@ value
 
 ---
 
-## Why Does This Matter?
+### Why Does This Matter?
 
 Because changes to:
 
@@ -301,7 +301,7 @@ valuePtr
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void update(int *ptr)
@@ -312,7 +312,7 @@ void update(int *ptr)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 int value = 5;
@@ -332,7 +332,7 @@ Original address unchanged
 
 ---
 
-## Why?
+### Why?
 
 Many developers expect:
 
@@ -344,7 +344,7 @@ Wrong.
 
 ---
 
-## What Actually Happens?
+### What Actually Happens?
 
 Function receives:
 
@@ -354,7 +354,7 @@ Copy of pointer
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -400,7 +400,7 @@ valuePtr still contains 1000
 
 ---
 
-## Visual
+### Visual
 
 Before:
 
@@ -423,7 +423,7 @@ Different address
 
 ---
 
-## Important Rule
+### Important Rule
 
 Changing:
 
@@ -441,7 +441,7 @@ only.
 
 ---
 
-## Example From Your Code
+### Example From Your Code
 
 ```cpp
 void update(int *ptr)
@@ -454,7 +454,7 @@ void update(int *ptr)
 
 ---
 
-## Main Function
+### Main Function
 
 ```cpp
 int value = 5;
@@ -486,7 +486,7 @@ valuePtr unchanged
 
 ---
 
-## Why Does Updating Value Work?
+### Why Does Updating Value Work?
 
 Now consider:
 
@@ -499,7 +499,7 @@ void updateValue(int *ptr)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 int value = 5;
@@ -517,7 +517,7 @@ Expected Output:
 
 ---
 
-## Why Different?
+### Why Different?
 
 Because now:
 
@@ -529,7 +529,7 @@ is modified.
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -541,7 +541,7 @@ Value: 5
 
 ---
 
-## Function
+### Function
 
 ```text
 ptr = 1000
@@ -549,7 +549,7 @@ ptr = 1000
 
 ---
 
-## Operation
+### Operation
 
 ```cpp
 *ptr = *ptr + 10;
@@ -565,7 +565,7 @@ Modify value
 
 ---
 
-## Memory After
+### Memory After
 
 ```text
 Address: 1000
@@ -575,7 +575,7 @@ Value: 15
 
 ---
 
-## Key Insight
+### Key Insight
 
 Changing:
 
@@ -595,7 +595,7 @@ changes original memory.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Operation       | Original Variable Changes? |
 | --------------- | -------------------------- |
@@ -606,13 +606,13 @@ changes original memory.
 
 ---
 
-## Passing Arrays To Functions
+### Passing Arrays To Functions
 
 Now we move to one of the most important concepts.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int getSum(int arr[], int size)
@@ -630,7 +630,7 @@ int getSum(int arr[], int size)
 
 ---
 
-## Function Call
+### Function Call
 
 ```cpp
 int numbers[5] =
@@ -643,7 +643,7 @@ getSum(numbers,5);
 
 ---
 
-## Beginner Assumption
+### Beginner Assumption
 
 Many developers think:
 
@@ -655,7 +655,7 @@ Wrong.
 
 ---
 
-## What Actually Happens?
+### What Actually Happens?
 
 Only:
 
@@ -667,7 +667,7 @@ is passed.
 
 ---
 
-## Extremely Important Concept
+### Extremely Important Concept
 
 This is called:
 
@@ -677,9 +677,9 @@ Array Decay
 
 ---
 
-## Array Decay
+### Array Decay
 
-### Definition
+#### Definition
 
 When an array is passed to a function:
 
@@ -690,7 +690,7 @@ to pointer to first element.
 
 ---
 
-## Example
+### Example
 
 Function:
 
@@ -706,7 +706,7 @@ int getSum(int *arr, int size)
 
 ---
 
-## These Are Equivalent
+### These Are Equivalent
 
 ```cpp
 void func(int arr[])
@@ -728,7 +728,7 @@ Pointer to first element
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 Original Array
 
@@ -758,7 +758,7 @@ Only address passed.
 
 ---
 
-## Why Is This Important?
+### Why Is This Important?
 
 Because:
 
@@ -768,7 +768,7 @@ No full array copy occurs.
 
 ---
 
-## Performance Benefit
+### Performance Benefit
 
 Suppose:
 
@@ -784,7 +784,7 @@ Size:
 
 ---
 
-## If Entire Array Were Copied
+### If Entire Array Were Copied
 
 Every function call would copy:
 
@@ -796,7 +796,7 @@ Huge cost.
 
 ---
 
-## Actual Behavior
+### Actual Behavior
 
 Only:
 
@@ -808,7 +808,7 @@ passed.
 
 ---
 
-## Very Fast
+### Very Fast
 
 ```text
 O(1)
@@ -818,7 +818,7 @@ parameter passing.
 
 ---
 
-## sizeof Surprise
+### sizeof Surprise
 
 Consider:
 
@@ -842,7 +842,7 @@ because:
 
 ---
 
-## Now Inside Function
+### Now Inside Function
 
 ```cpp
 void func(int arr[])
@@ -853,7 +853,7 @@ void func(int arr[])
 
 ---
 
-## Output
+### Output
 
 Usually:
 
@@ -865,7 +865,7 @@ on a 64-bit system.
 
 ---
 
-## Why?
+### Why?
 
 Because inside function:
 
@@ -883,7 +883,7 @@ int*
 
 ---
 
-## Visual
+### Visual
 
 Before Function
 
@@ -905,7 +905,7 @@ Pointer
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void func(int arr[])
@@ -932,7 +932,7 @@ Expected Output:
 
 ---
 
-## Common Interview Question
+### Common Interview Question
 
 Why?
 
@@ -945,7 +945,7 @@ when passed to a function.
 
 ---
 
-## Modifying Array Inside Function
+### Modifying Array Inside Function
 
 Consider:
 
@@ -958,7 +958,7 @@ void update(int arr[])
 
 ---
 
-## Program
+### Program
 
 ```cpp
 int numbers[5] =
@@ -979,7 +979,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -990,7 +990,7 @@ of original array.
 
 ---
 
-## Memory
+### Memory
 
 ```text
 numbers
@@ -1016,13 +1016,13 @@ Same memory.
 
 ---
 
-## Passing Part Of An Array
+### Passing Part Of An Array
 
 One of the biggest benefits of array decay.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int numbers[6] =
@@ -1038,7 +1038,7 @@ int numbers[6] =
 
 ---
 
-## Function Call
+### Function Call
 
 ```cpp
 getSum(numbers+3,3);
@@ -1046,7 +1046,7 @@ getSum(numbers+3,3);
 
 ---
 
-## What Does numbers+3 Mean?
+### What Does numbers+3 Mean?
 
 Memory:
 
@@ -1063,7 +1063,7 @@ Index      Value
 
 ---
 
-## numbers+3
+### numbers+3
 
 Points to:
 
@@ -1073,7 +1073,7 @@ Index 3
 
 ---
 
-## Visual
+### Visual
 
 ```text
 45 6 7 5 54 42
@@ -1084,7 +1084,7 @@ numbers+3
 
 ---
 
-## Function Receives
+### Function Receives
 
 ```text
 5 54 42
@@ -1092,7 +1092,7 @@ numbers+3
 
 ---
 
-## Sum
+### Sum
 
 ```text
 5 + 54 + 42
@@ -1104,7 +1104,7 @@ numbers+3
 
 ---
 
-## Expected Output
+### Expected Output
 
 ```text
 101
@@ -1112,7 +1112,7 @@ numbers+3
 
 ---
 
-## Why Is This Powerful?
+### Why Is This Powerful?
 
 Allows working with:
 
@@ -1124,7 +1124,7 @@ without creating copies.
 
 ---
 
-## Real World Example
+### Real World Example
 
 Algorithms often process:
 
@@ -1144,11 +1144,11 @@ Examples:
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 void func(int arr[])
@@ -1169,7 +1169,7 @@ Gets pointer size.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 void update(int *ptr)
@@ -1186,7 +1186,7 @@ Only local copy moves.
 
 ---
 
-## Bug 3
+### Bug 3
 
 Thinking:
 
@@ -1202,7 +1202,7 @@ Pointer passed.
 
 ---
 
-## Bug 4
+### Bug 4
 
 Forgetting array size parameter.
 
@@ -1214,31 +1214,31 @@ Array length is lost.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What gets passed when an array is passed to a function?
 
-#### Answer
+##### Answer
 
 Address of first element.
 
 ---
 
-### Q2
+#### Q2
 
 What is Array Decay?
 
-#### Answer
+##### Answer
 
 Automatic conversion of array into pointer to first element.
 
 ---
 
-### Q3
+#### Q3
 
 Why does:
 
@@ -1248,13 +1248,13 @@ sizeof(arr)
 
 become 8 inside functions?
 
-#### Answer
+##### Answer
 
 Because `arr` becomes an `int*`.
 
 ---
 
-### Q4
+#### Q4
 
 Difference between:
 
@@ -1268,7 +1268,7 @@ and
 (*ptr)++;
 ```
 
-#### Answer
+##### Answer
 
 `ptr++` changes pointer.
 
@@ -1276,27 +1276,27 @@ and
 
 ---
 
-### Q5
+#### Q5
 
 Why does modifying array inside function affect original array?
 
-#### Answer
+##### Answer
 
 Function receives address of original array.
 
 ---
 
-### Q6
+#### Q6
 
 Why is passing arrays efficient?
 
-#### Answer
+##### Answer
 
 Only an address is passed, not the entire array.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 void func(int arr[]);
@@ -1316,7 +1316,7 @@ getSum(arr+3,3);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Functions receive copies of parameters.
 - Pointer parameters are also copied.

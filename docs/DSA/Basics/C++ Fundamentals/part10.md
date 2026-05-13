@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Fundamentals Part 10'
+sidebar_label: 'Functions'
 sidebar_position: 10
 ---
 
@@ -17,13 +17,13 @@ sidebar_position: 10
 
 ---
 
-## What is a Function?
+### What is a Function?
 
 A Function is a reusable block of code that performs a specific task.
 
 ---
 
-### Without Functions
+#### Without Functions
 
 ```cpp
 cout << "Welcome" << endl;
@@ -35,7 +35,7 @@ Repeated code.
 
 ---
 
-### With Functions
+#### With Functions
 
 ```cpp
 void printWelcome()
@@ -52,7 +52,7 @@ printWelcome();
 
 ---
 
-## Real Life Analogy
+### Real Life Analogy
 
 Think of a function like a machine.
 
@@ -76,7 +76,7 @@ Add Function
 
 ---
 
-## Syntax of a Function
+### Syntax of a Function
 
 ```cpp
 returnType functionName(parameters)
@@ -87,7 +87,7 @@ returnType functionName(parameters)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void greet()
@@ -98,7 +98,7 @@ void greet()
 
 ---
 
-## Parts of a Function
+### Parts of a Function
 
 ```cpp
 int add(int a, int b)
@@ -117,7 +117,7 @@ int add(int a, int b)
 
 ---
 
-## Function Declaration
+### Function Declaration
 
 Also called:
 
@@ -129,7 +129,7 @@ Tells the compiler that a function exists.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int add(int, int);
@@ -137,13 +137,13 @@ int add(int, int);
 
 ---
 
-## Function Definition
+### Function Definition
 
 Actual implementation.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int add(int a, int b)
@@ -154,13 +154,13 @@ int add(int a, int b)
 
 ---
 
-## Function Call
+### Function Call
 
 Invoking a function.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 add(10, 20);
@@ -168,7 +168,7 @@ add(10, 20);
 
 ---
 
-## Complete Example
+### Complete Example
 
 ```cpp
 #include <iostream>
@@ -187,7 +187,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello World
@@ -195,7 +195,7 @@ Hello World
 
 ---
 
-## Function Execution Flow
+### Function Execution Flow
 
 ```text
 main()
@@ -209,19 +209,19 @@ Return to main()
 
 ---
 
-## Return Type
+### Return Type
 
 Defines what a function returns.
 
 ---
 
-## Void Function
+### Void Function
 
 Returns nothing.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void greet()
@@ -232,7 +232,7 @@ void greet()
 
 ---
 
-## Function Returning Value
+### Function Returning Value
 
 ```cpp
 int getNumber()
@@ -243,7 +243,7 @@ int getNumber()
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int num = getNumber();
@@ -251,7 +251,7 @@ int num = getNumber();
 cout << num;
 ```
 
-#### Output
+##### Output
 
 ```text
 10
@@ -259,19 +259,19 @@ cout << num;
 
 ---
 
-## Parameters and Arguments
+### Parameters and Arguments
 
 Many beginners confuse these.
 
 ---
 
-## Parameters
+### Parameters
 
 Variables defined in function definition.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void print(int num)
@@ -290,13 +290,13 @@ is a parameter.
 
 ---
 
-## Arguments
+### Arguments
 
 Actual values passed during function call.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 print(50);
@@ -312,7 +312,7 @@ is an argument.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void greet(string name)
@@ -326,7 +326,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello Prashant
@@ -334,7 +334,7 @@ Hello Prashant
 
 ---
 
-## Multiple Parameters
+### Multiple Parameters
 
 ```cpp
 int add(int a, int b)
@@ -345,13 +345,13 @@ int add(int a, int b)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << add(10, 20);
 ```
 
-#### Output
+##### Output
 
 ```text
 30
@@ -359,13 +359,13 @@ cout << add(10, 20);
 
 ---
 
-## Pass By Value
+### Pass By Value
 
 Default behavior in C++.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void update(int num)
@@ -385,7 +385,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 10
@@ -393,7 +393,7 @@ int main()
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -417,13 +417,13 @@ Different memory locations.
 
 ---
 
-## Pass By Reference (Introduction)
+### Pass By Reference (Introduction)
 
 Allows function to work on the original variable.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void update(int& num)
@@ -440,7 +440,7 @@ update(value);
 cout << value;
 ```
 
-#### Output
+##### Output
 
 ```text
 11
@@ -452,13 +452,13 @@ cout << value;
 
 ---
 
-## Function Overloading
+### Function Overloading
 
 Multiple functions with the same name but different parameters.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int add(int a, int b)
@@ -476,7 +476,7 @@ double add(double a, double b)
 
 ---
 
-### Usage
+#### Usage
 
 ```cpp
 cout << add(10, 20);
@@ -502,13 +502,13 @@ Output:
 
 ---
 
-## Local Variables
+### Local Variables
 
 Variables declared inside a function.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void fun()
@@ -519,7 +519,7 @@ void fun()
 
 ---
 
-### Scope
+#### Scope
 
 ```cpp
 x
@@ -533,7 +533,7 @@ fun()
 
 ---
 
-## Scope Example
+### Scope Example
 
 ```cpp
 void fun()
@@ -551,7 +551,7 @@ Compilation Error.
 
 ---
 
-## Call Stack (Basic Understanding)
+### Call Stack (Basic Understanding)
 
 Whenever a function is called:
 
@@ -594,11 +594,11 @@ its memory is removed.
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Forgetting Function Call
+#### Forgetting Function Call
 
 ```cpp
 void greet()
@@ -617,7 +617,7 @@ is called.
 
 ---
 
-### Missing Return Value
+#### Missing Return Value
 
 Wrong
 
@@ -640,7 +640,7 @@ int getNum()
 
 ---
 
-### Wrong Number of Arguments
+#### Wrong Number of Arguments
 
 ```cpp
 add(10);
@@ -656,19 +656,19 @@ Compilation Error.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is a function?
+#### Q1. What is a function?
 
-#### Answer
+##### Answer
 
 A reusable block of code designed to perform a specific task.
 
 ---
 
-### Q2. Difference between parameter and argument?
+#### Q2. Difference between parameter and argument?
 
-#### Answer
+##### Answer
 
 Parameters are variables in function definition.
 
@@ -676,31 +676,31 @@ Arguments are actual values passed during function call.
 
 ---
 
-### Q3. What is a function prototype?
+#### Q3. What is a function prototype?
 
-#### Answer
+##### Answer
 
 A declaration that informs the compiler about a function before its use.
 
 ---
 
-### Q4. What is function overloading?
+#### Q4. What is function overloading?
 
-#### Answer
+##### Answer
 
 Multiple functions with the same name but different parameter lists.
 
 ---
 
-### Q5. What is pass by value?
+#### Q5. What is pass by value?
 
-#### Answer
+##### Answer
 
 A copy of the variable is passed to the function.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 void greet()
@@ -729,7 +729,7 @@ void update(int& value);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Functions improve code reusability and modularity.
 - Every function has a return type, name, parameters, and body.

@@ -30,7 +30,7 @@ sidebar_position: 11
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -48,7 +48,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Does Const Exist?
+### Why Does Const Exist?
 
 Consider:
 
@@ -86,7 +86,7 @@ Compilation Error.
 
 ---
 
-## Why Is This Useful?
+### Why Is This Useful?
 
 Prevents accidental modification.
 
@@ -101,7 +101,7 @@ Examples:
 
 ---
 
-## Pointer Refresher
+### Pointer Refresher
 
 Consider:
 
@@ -145,7 +145,7 @@ Both?
 
 ---
 
-## Four Possible Cases
+### Four Possible Cases
 
 | Pointer  | Value    |
 | -------- | -------- |
@@ -156,9 +156,9 @@ Both?
 
 ---
 
-## Case 1: Normal Pointer
+### Case 1: Normal Pointer
 
-### Mutable Pointer + Mutable Value
+#### Mutable Pointer + Mutable Value
 
 ---
 
@@ -198,7 +198,7 @@ Value    -> Can Change
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 ptr
@@ -213,9 +213,9 @@ Both are modifiable.
 
 ---
 
-## Case 2: Pointer to Const
+### Case 2: Pointer to Const
 
-### Mutable Pointer + Constant Value
+#### Mutable Pointer + Constant Value
 
 ---
 
@@ -235,7 +235,7 @@ Both are identical.
 
 ---
 
-## Read It As
+### Read It As
 
 ```text
 Pointer to Constant Integer
@@ -253,7 +253,7 @@ const int* ptr = &value;
 
 ---
 
-## What Is Restricted?
+### What Is Restricted?
 
 Value cannot be modified through pointer.
 
@@ -269,7 +269,7 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Compiler protects:
 
@@ -279,7 +279,7 @@ Value through pointer
 
 ---
 
-## What Is Allowed?
+### What Is Allowed?
 
 Pointer can move.
 
@@ -301,7 +301,7 @@ ptr = nullptr;
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Pointer  -> Can Change
@@ -311,7 +311,7 @@ Value    -> Cannot Change Through Pointer
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 ptr
@@ -328,7 +328,7 @@ Value protected.
 
 ---
 
-## Important Interview Trap
+### Important Interview Trap
 
 Consider:
 
@@ -358,7 +358,7 @@ is valid.
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -374,7 +374,7 @@ Pointer view is constant.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 10;
@@ -394,7 +394,7 @@ Output:
 
 ---
 
-## Visual
+### Visual
 
 ```text
 value
@@ -411,7 +411,7 @@ Variable itself can.
 
 ---
 
-## Alternative Syntax
+### Alternative Syntax
 
 These are identical:
 
@@ -431,9 +431,9 @@ Compiler treats both same.
 
 ---
 
-## Case 3: Const Pointer
+### Case 3: Const Pointer
 
-### Constant Pointer + Mutable Value
+#### Constant Pointer + Mutable Value
 
 ---
 
@@ -445,7 +445,7 @@ int* const ptr = &value;
 
 ---
 
-## Read It As
+### Read It As
 
 ```text
 Constant Pointer
@@ -466,7 +466,7 @@ Pointer itself.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 10;
@@ -476,7 +476,7 @@ int* const ptr = &value;
 
 ---
 
-## What Is Allowed?
+### What Is Allowed?
 
 ```cpp
 *ptr = 50;
@@ -490,7 +490,7 @@ Value changes.
 
 ---
 
-## What Is NOT Allowed?
+### What Is NOT Allowed?
 
 ```cpp
 ptr++;
@@ -508,13 +508,13 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Pointer address cannot change.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Pointer -> Fixed
@@ -524,7 +524,7 @@ Value -> Can Change
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 ptr
@@ -541,7 +541,7 @@ Value editable.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 10;
@@ -559,7 +559,7 @@ value = 500
 
 ---
 
-## Example
+### Example
 
 ```cpp
 ptr = nullptr;
@@ -569,15 +569,15 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Address stored inside pointer is constant.
 
 ---
 
-## Case 4: Const Pointer To Const Data
+### Case 4: Const Pointer To Const Data
 
-### Constant Pointer + Constant Value
+#### Constant Pointer + Constant Value
 
 ---
 
@@ -589,7 +589,7 @@ const int* const ptr = &value;
 
 ---
 
-## Read It As
+### Read It As
 
 ```text
 Constant Pointer
@@ -598,7 +598,7 @@ to Constant Integer
 
 ---
 
-## Restrictions
+### Restrictions
 
 Cannot modify value.
 
@@ -606,7 +606,7 @@ Cannot modify pointer.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 10;
@@ -640,7 +640,7 @@ ptr = nullptr;
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Pointer -> Fixed
@@ -650,7 +650,7 @@ Value -> Protected
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 ptr
@@ -665,7 +665,7 @@ Nothing can change through pointer.
 
 ---
 
-## Complete Comparison Table
+### Complete Comparison Table
 
 | Declaration            | Value Change? | Pointer Change? |
 | ---------------------- | ------------- | --------------- |
@@ -676,13 +676,13 @@ Nothing can change through pointer.
 
 ---
 
-## Easy Reading Rule
+### Easy Reading Rule
 
 One of the most useful interview tricks.
 
 ---
 
-## Rule
+### Rule
 
 Start from variable name.
 
@@ -697,7 +697,7 @@ Left
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* const ptr;
@@ -743,7 +743,7 @@ Constant Pointer to Integer
 
 ---
 
-## Example
+### Example
 
 ```cpp
 const int* ptr;
@@ -779,11 +779,11 @@ Pointer to Constant Integer
 
 ---
 
-## Memory Comparison
+### Memory Comparison
 
 ---
 
-### Normal Pointer
+#### Normal Pointer
 
 ```cpp
 int* ptr;
@@ -796,7 +796,7 @@ Value ✓
 
 ---
 
-### Pointer To Const
+#### Pointer To Const
 
 ```cpp
 const int* ptr;
@@ -809,7 +809,7 @@ Value ✗
 
 ---
 
-### Const Pointer
+#### Const Pointer
 
 ```cpp
 int* const ptr;
@@ -822,7 +822,7 @@ Value ✓
 
 ---
 
-### Const Pointer To Const
+#### Const Pointer To Const
 
 ```cpp
 const int* const ptr;
@@ -835,11 +835,11 @@ Value ✗
 
 ---
 
-## Real-World Use Cases
+### Real-World Use Cases
 
 ---
 
-### Read-Only Function Parameters
+#### Read-Only Function Parameters
 
 Example:
 
@@ -857,7 +857,7 @@ Array won't be modified.
 
 ---
 
-### API Design
+#### API Design
 
 Libraries use:
 
@@ -885,11 +885,11 @@ Not modify.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-### Bug 1
+#### Bug 1
 
 Confusing:
 
@@ -909,7 +909,7 @@ They are completely different.
 
 ---
 
-### Bug 2
+#### Bug 2
 
 Thinking:
 
@@ -925,7 +925,7 @@ Only pointer access is restricted.
 
 ---
 
-### Bug 3
+#### Bug 3
 
 Thinking:
 
@@ -941,7 +941,7 @@ Only pointer becomes constant.
 
 ---
 
-### Bug 4
+#### Bug 4
 
 Memorizing declarations.
 
@@ -953,11 +953,11 @@ What is protected?
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 Difference between:
 
@@ -971,7 +971,7 @@ and
 int* const ptr;
 ```
 
-#### Answer
+##### Answer
 
 | Declaration      | Constant |
 | ---------------- | -------- |
@@ -980,11 +980,11 @@ int* const ptr;
 
 ---
 
-### Q2
+#### Q2
 
 Can a pointer to const move?
 
-#### Answer
+##### Answer
 
 Yes.
 
@@ -996,11 +996,11 @@ valid.
 
 ---
 
-### Q3
+#### Q3
 
 Can a const pointer move?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -1008,7 +1008,7 @@ Address is fixed.
 
 ---
 
-### Q4
+#### Q4
 
 What does:
 
@@ -1018,17 +1018,17 @@ const int* const ptr;
 
 mean?
 
-#### Answer
+##### Answer
 
 Both pointer and data are constant.
 
 ---
 
-### Q5
+#### Q5
 
 Which declaration is most restrictive?
 
-#### Answer
+##### Answer
 
 ```cpp
 const int* const ptr;
@@ -1036,7 +1036,7 @@ const int* const ptr;
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int* ptr;
@@ -1058,7 +1058,7 @@ ptr = nullptr;
 
 ---
 
-## Quick Reference Table
+### Quick Reference Table
 
 | Declaration            | Data    | Pointer |
 | ---------------------- | ------- | ------- |
@@ -1069,7 +1069,7 @@ ptr = nullptr;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Const correctness protects data from accidental modification.
 - A pointer and the value it points to are separate entities.

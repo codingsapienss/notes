@@ -24,7 +24,7 @@ sidebar_position: 8
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -40,13 +40,13 @@ In this chapter we will cover:
 
 ---
 
-## Arrays Are Not Pointers
+### Arrays Are Not Pointers
 
 One of the biggest misconceptions in C++.
 
 ---
 
-## Incorrect Statement
+### Incorrect Statement
 
 ```text
 Array is a pointer.
@@ -56,7 +56,7 @@ Wrong.
 
 ---
 
-## Correct Statement
+### Correct Statement
 
 ```text
 Array is NOT a pointer.
@@ -66,7 +66,7 @@ Array name often behaves like a pointer.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[5] = {10,20,30,40,50};
@@ -84,7 +84,7 @@ Wrong.
 
 ---
 
-## Why They Look Similar
+### Why They Look Similar
 
 Both allow:
 
@@ -122,13 +122,13 @@ Both produce:
 
 ---
 
-## Why They Are Different
+### Why They Are Different
 
 Arrays and pointers have different identities.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -162,7 +162,7 @@ Value: 1000
 
 ---
 
-## Visual
+### Visual
 
 ```text
 ptr
@@ -178,7 +178,7 @@ arr
 
 ---
 
-## Key Observation
+### Key Observation
 
 Array:
 
@@ -194,7 +194,7 @@ Stores address
 
 ---
 
-## sizeof Comparison
+### sizeof Comparison
 
 Example:
 
@@ -217,7 +217,7 @@ Expected Output (64-bit system):
 
 ---
 
-## Why?
+### Why?
 
 Array:
 
@@ -247,7 +247,7 @@ Memory:
 
 ---
 
-## Assignment Comparison
+### Assignment Comparison
 
 Pointer:
 
@@ -269,7 +269,7 @@ Invalid.
 
 ---
 
-## Why?
+### Why?
 
 Pointer:
 
@@ -291,7 +291,7 @@ cannot change.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature            | Array           | Pointer      |
 | ------------------ | --------------- | ------------ |
@@ -304,13 +304,13 @@ cannot change.
 
 ---
 
-## arr vs &arr
+### arr vs &arr
 
 This is a very common interview question.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -331,7 +331,7 @@ Looks identical.
 
 ---
 
-## Important Reality
+### Important Reality
 
 Values appear same.
 
@@ -339,7 +339,7 @@ Types are different.
 
 ---
 
-## Type Of arr
+### Type Of arr
 
 In most expressions:
 
@@ -355,7 +355,7 @@ int*
 
 ---
 
-## Type Of &arr
+### Type Of &arr
 
 ```cpp
 &arr
@@ -375,7 +375,7 @@ Pointer to entire array
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 arr
@@ -395,7 +395,7 @@ Entire Array
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 ```text
 1000 -> 10
@@ -407,7 +407,7 @@ Entire Array
 
 ---
 
-## arr + 1
+### arr + 1
 
 Calculation:
 
@@ -421,7 +421,7 @@ Calculation:
 
 ---
 
-## &arr + 1
+### &arr + 1
 
 Calculation:
 
@@ -439,7 +439,7 @@ Calculation:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -464,7 +464,7 @@ Possible Output:
 
 ---
 
-## Visual
+### Visual
 
 ```text
 arr
@@ -495,13 +495,13 @@ Past entire array
 
 ---
 
-## Pointer To Entire Array
+### Pointer To Entire Array
 
 One of the least understood concepts.
 
 ---
 
-## Declaration
+### Declaration
 
 ```cpp
 int arr[5];
@@ -511,7 +511,7 @@ int (*ptr)[5] = &arr;
 
 ---
 
-## Understanding The Syntax
+### Understanding The Syntax
 
 Start from variable name:
 
@@ -565,7 +565,7 @@ Pointer to an array of 5 integers
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 ptr
@@ -581,7 +581,7 @@ arr
 
 ---
 
-## Accessing Elements
+### Accessing Elements
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -599,7 +599,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 ```cpp
 *ptr
@@ -627,11 +627,11 @@ arr[0]
 
 ---
 
-## Pointer To Entire Array vs Pointer To First Element
+### Pointer To Entire Array vs Pointer To First Element
 
 ---
 
-### Pointer To First Element
+#### Pointer To First Element
 
 ```cpp
 int *ptr = arr;
@@ -651,7 +651,7 @@ First Integer
 
 ---
 
-### Pointer To Entire Array
+#### Pointer To Entire Array
 
 ```cpp
 int (*ptr)[5] = &arr;
@@ -671,7 +671,7 @@ Whole Array
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature      | `int *ptr`    | `int (*ptr)[5]` |
 | ------------ | ------------- | --------------- |
@@ -682,13 +682,13 @@ Whole Array
 
 ---
 
-## Array Of Pointers
+### Array Of Pointers
 
 Another very important concept.
 
 ---
 
-## Declaration
+### Declaration
 
 ```cpp
 int *arr[3];
@@ -696,7 +696,7 @@ int *arr[3];
 
 ---
 
-## Read It Carefully
+### Read It Carefully
 
 Many beginners confuse:
 
@@ -714,7 +714,7 @@ They are completely different.
 
 ---
 
-## Rule
+### Rule
 
 Array notation:
 
@@ -730,7 +730,7 @@ has higher precedence than:
 
 ---
 
-## Meaning
+### Meaning
 
 ```cpp
 int *arr[3];
@@ -744,7 +744,7 @@ Array of 3 pointers to integers
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int a=10;
@@ -761,7 +761,7 @@ int *arr[3]=
 
 ---
 
-## Memory
+### Memory
 
 ```text
 arr[0] -> &a
@@ -773,7 +773,7 @@ arr[2] -> &c
 
 ---
 
-## Visual
+### Visual
 
 ```text
 arr
@@ -789,7 +789,7 @@ arr
 
 ---
 
-## Access Values
+### Access Values
 
 ```cpp
 cout << *arr[0];
@@ -827,13 +827,13 @@ Output:
 
 ---
 
-## Array Of Pointers vs Pointer To Array
+### Array Of Pointers vs Pointer To Array
 
 This is an extremely popular interview question.
 
 ---
 
-## Array Of Pointers
+### Array Of Pointers
 
 ```cpp
 int *arr[3];
@@ -861,7 +861,7 @@ Visual:
 
 ---
 
-## Pointer To Array
+### Pointer To Array
 
 ```cpp
 int (*ptr)[3];
@@ -888,7 +888,7 @@ ptr
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature | Array of Pointers | Pointer to Array |
 | ------- | ----------------- | ---------------- |
@@ -899,13 +899,13 @@ ptr
 
 ---
 
-## Traversing Arrays Using Pointers
+### Traversing Arrays Using Pointers
 
 Most developers traverse arrays using indices.
 
 ---
 
-## Traditional Method
+### Traditional Method
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -924,7 +924,7 @@ Output:
 
 ---
 
-## Pointer Method
+### Pointer Method
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -945,7 +945,7 @@ Output:
 
 ---
 
-## Why Does This Work?
+### Why Does This Work?
 
 Compiler converts:
 
@@ -961,7 +961,7 @@ to:
 
 ---
 
-## Pure Pointer Traversal
+### Pure Pointer Traversal
 
 ```cpp
 int arr[5]={10,20,30,40,50};
@@ -984,7 +984,7 @@ Output:
 
 ---
 
-## Memory Trace
+### Memory Trace
 
 Initial:
 
@@ -1028,11 +1028,11 @@ ptr -> 50
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 Confusing:
 
@@ -1050,7 +1050,7 @@ They may print same value but have different types.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Confusing:
 
@@ -1068,7 +1068,7 @@ Completely different declarations.
 
 ---
 
-## Bug 3
+### Bug 3
 
 Assuming arrays are pointers.
 
@@ -1078,7 +1078,7 @@ Arrays are separate language constructs.
 
 ---
 
-## Bug 4
+### Bug 4
 
 Forgetting parentheses.
 
@@ -1102,15 +1102,15 @@ Pointer to array.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 Is an array a pointer?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -1118,7 +1118,7 @@ Array name often decays to pointer, but an array is not a pointer.
 
 ---
 
-### Q2
+#### Q2
 
 Difference between:
 
@@ -1132,7 +1132,7 @@ and
 &arr
 ```
 
-#### Answer
+##### Answer
 
 Different types.
 
@@ -1143,7 +1143,7 @@ arr     -> int*
 
 ---
 
-### Q3
+#### Q3
 
 Difference between:
 
@@ -1157,13 +1157,13 @@ and
 int (*arr)[5];
 ```
 
-#### Answer
+##### Answer
 
 Array of pointers vs pointer to array.
 
 ---
 
-### Q4
+#### Q4
 
 Why does:
 
@@ -1177,17 +1177,17 @@ move farther than:
 arr+1
 ```
 
-#### Answer
+##### Answer
 
 Because it points to entire array.
 
 ---
 
-### Q5
+#### Q5
 
 Can arrays be incremented?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -1199,7 +1199,7 @@ is illegal.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int arr[5];
@@ -1231,7 +1231,7 @@ while(ptr != arr+5)
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Arrays and pointers are closely related but not identical.
 - `arr` and `&arr` often print the same address but have different types.

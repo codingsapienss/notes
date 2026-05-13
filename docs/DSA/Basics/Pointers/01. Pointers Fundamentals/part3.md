@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # C++ Pointers Fundamentals
 
-## Pointer Arithmetic Fundamentals
+### Pointer Arithmetic Fundamentals
 
 > In Part 1A we learned:
 >
@@ -51,7 +51,7 @@ sidebar_position: 3
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -71,7 +71,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Does Pointer Arithmetic Exist?
+### Why Does Pointer Arithmetic Exist?
 
 Consider:
 
@@ -101,7 +101,7 @@ Pointer arithmetic solves this problem.
 
 ---
 
-## First Example
+### First Example
 
 ```cpp
 int value = 100;
@@ -127,7 +127,7 @@ What should happen?
 
 ---
 
-## Common Beginner Assumption
+### Common Beginner Assumption
 
 Many think:
 
@@ -143,7 +143,7 @@ Wrong.
 
 ---
 
-## Actual Rule
+### Actual Rule
 
 When adding:
 
@@ -163,7 +163,7 @@ Current Address
 
 ---
 
-## General Formula
+### General Formula
 
 ```text
 New Address
@@ -179,7 +179,7 @@ Current Address
 
 ---
 
-## Integer Pointer Arithmetic
+### Integer Pointer Arithmetic
 
 Example:
 
@@ -197,7 +197,7 @@ ptr = 1000
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 ```text
 Address
@@ -217,7 +217,7 @@ sizeof(int) = 4
 
 ---
 
-## ptr + 1
+### ptr + 1
 
 ```cpp
 ptr + 1
@@ -241,7 +241,7 @@ Result:
 
 ---
 
-## ptr + 2
+### ptr + 2
 
 ```cpp
 ptr + 2
@@ -259,7 +259,7 @@ Calculation:
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 1000
@@ -285,7 +285,7 @@ ptr+2
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -323,7 +323,7 @@ Actual addresses vary.
 
 ---
 
-## Why Not Add One Byte?
+### Why Not Add One Byte?
 
 Because compiler knows:
 
@@ -357,7 +357,7 @@ Move to next byte
 
 ---
 
-## Character Pointer Arithmetic
+### Character Pointer Arithmetic
 
 Consider:
 
@@ -369,7 +369,7 @@ char *ptr = &grade;
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 ```text
 Address
@@ -388,7 +388,7 @@ sizeof(char) = 1
 
 ---
 
-## ptr + 1
+### ptr + 1
 
 Calculation:
 
@@ -402,7 +402,7 @@ Calculation:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char grade = 'A';
@@ -422,7 +422,7 @@ Addresses differ by:
 
 ---
 
-## Double Pointer Arithmetic
+### Double Pointer Arithmetic
 
 Consider:
 
@@ -440,7 +440,7 @@ sizeof(double) = 8
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 ```text
 1000
@@ -451,7 +451,7 @@ sizeof(double) = 8
 
 ---
 
-## ptr + 1
+### ptr + 1
 
 Calculation:
 
@@ -465,7 +465,7 @@ Calculation:
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Data Type | Size    | ptr+1 Moves |
 | --------- | ------- | ----------- |
@@ -477,9 +477,9 @@ Calculation:
 
 ---
 
-## Pointer Increment
+### Pointer Increment
 
-### Syntax
+#### Syntax
 
 ```cpp
 ptr++;
@@ -487,7 +487,7 @@ ptr++;
 
 ---
 
-## Meaning
+### Meaning
 
 ```cpp
 ptr = ptr + 1;
@@ -495,7 +495,7 @@ ptr = ptr + 1;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 100;
@@ -513,7 +513,7 @@ ptr = ptr + 1;
 
 ---
 
-## Visual
+### Visual
 
 Before:
 
@@ -537,9 +537,9 @@ ptr
 
 ---
 
-## Pointer Decrement
+### Pointer Decrement
 
-### Syntax
+#### Syntax
 
 ```cpp
 ptr--;
@@ -553,7 +553,7 @@ ptr = ptr - 1;
 
 ---
 
-## Example
+### Example
 
 Assume:
 
@@ -575,9 +575,9 @@ Result:
 
 ---
 
-## Pointer Subtraction
+### Pointer Subtraction
 
-### Example
+#### Example
 
 ```cpp
 ptr - 1
@@ -595,7 +595,7 @@ For integer pointer:
 
 ---
 
-## Visual
+### Visual
 
 ```text
 1000
@@ -614,7 +614,7 @@ ptr-1
 
 ---
 
-## Very Important Difference
+### Very Important Difference
 
 Many beginners confuse:
 
@@ -632,7 +632,7 @@ These are completely different.
 
 ---
 
-## Case 1
+### Case 1
 
 ```cpp
 (*ptr)++;
@@ -646,7 +646,7 @@ Value stored at memory
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int number = 100;
@@ -672,7 +672,7 @@ After:
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -698,7 +698,7 @@ Expected Output:
 
 ---
 
-## Case 2
+### Case 2
 
 ```cpp
 ptr++;
@@ -718,7 +718,7 @@ Stored value
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int number = 100;
@@ -738,7 +738,7 @@ Value remains unchanged
 
 ---
 
-## Side-by-Side Comparison
+### Side-by-Side Comparison
 
 | Expression | Changes |
 | ---------- | ------- |
@@ -749,7 +749,7 @@ Value remains unchanged
 
 ---
 
-## Memory Visualization
+### Memory Visualization
 
 Example:
 
@@ -771,7 +771,7 @@ Address      Value
 
 ---
 
-## Operation
+### Operation
 
 ```cpp
 ptr++;
@@ -789,7 +789,7 @@ ptr
 
 ---
 
-## Operation
+### Operation
 
 ```cpp
 (*ptr)++;
@@ -805,7 +805,7 @@ Address      Value
 
 ---
 
-## Pointer Addition
+### Pointer Addition
 
 Valid:
 
@@ -819,7 +819,7 @@ ptr + 5
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -835,7 +835,7 @@ Move 5 integers ahead
 
 ---
 
-## Pointer Subtraction
+### Pointer Subtraction
 
 Valid:
 
@@ -847,7 +847,7 @@ ptr - 3
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -863,7 +863,7 @@ Move 2 integers backward
 
 ---
 
-## Invalid Operation
+### Invalid Operation
 
 Wrong:
 
@@ -873,7 +873,7 @@ ptr * 2;
 
 ---
 
-## Why?
+### Why?
 
 Pointers support:
 
@@ -893,7 +893,7 @@ Division
 
 ---
 
-## Invalid Example
+### Invalid Example
 
 ```cpp
 ptr / 2;
@@ -903,7 +903,7 @@ Compilation Error.
 
 ---
 
-## Why Compiler Disallows It
+### Why Compiler Disallows It
 
 Multiplication and division have:
 
@@ -913,7 +913,7 @@ No meaningful memory interpretation
 
 ---
 
-## Pointer Difference
+### Pointer Difference
 
 Suppose:
 
@@ -925,7 +925,7 @@ ptr2 = 1000
 
 ---
 
-## Operation
+### Operation
 
 ```cpp
 ptr1 - ptr2
@@ -945,7 +945,7 @@ not:
 
 ---
 
-## Why?
+### Why?
 
 Compiler calculates:
 
@@ -959,7 +959,7 @@ sizeof(data_type)
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[5];
@@ -979,7 +979,7 @@ Expected Output:
 
 ---
 
-## Why Useful?
+### Why Useful?
 
 Used heavily in:
 
@@ -989,11 +989,11 @@ Used heavily in:
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int value = 100;
@@ -1015,7 +1015,7 @@ Undefined behavior.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 int *ptr = nullptr;
@@ -1029,7 +1029,7 @@ Invalid memory access.
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 (*ptr)++;
@@ -1043,11 +1043,11 @@ They do not.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What does:
 
@@ -1057,13 +1057,13 @@ ptr + 1
 
 mean?
 
-#### Answer
+##### Answer
 
 Move pointer to next object of its data type.
 
 ---
 
-### Q2
+#### Q2
 
 Why does:
 
@@ -1073,7 +1073,7 @@ int*
 
 move 4 bytes?
 
-#### Answer
+##### Answer
 
 Because:
 
@@ -1083,7 +1083,7 @@ sizeof(int)=4
 
 ---
 
-### Q3
+#### Q3
 
 Difference between:
 
@@ -1097,7 +1097,7 @@ and
 (*ptr)++
 ```
 
-#### Answer
+##### Answer
 
 | Expression | Changes |
 | ---------- | ------- |
@@ -1106,11 +1106,11 @@ and
 
 ---
 
-### Q4
+#### Q4
 
 Can pointers be multiplied?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -1118,7 +1118,7 @@ Only addition and subtraction are meaningful.
 
 ---
 
-### Q5
+#### Q5
 
 Why does:
 
@@ -1128,7 +1128,7 @@ end - start
 
 return element count instead of byte count?
 
-#### Answer
+##### Answer
 
 Compiler divides by:
 
@@ -1138,7 +1138,7 @@ sizeof(data_type)
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int *ptr;
@@ -1160,7 +1160,7 @@ ptr1 - ptr2;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Pointer arithmetic works in units of data types.
 - `ptr+1` does NOT mean one byte.
@@ -1175,4 +1175,4 @@ ptr1 - ptr2;
 
 ---
 
-## End of Pointers Fundamentals — Part 1C
+### End of Pointers Fundamentals — Part 1C

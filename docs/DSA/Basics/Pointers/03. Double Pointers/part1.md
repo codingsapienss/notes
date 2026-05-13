@@ -38,7 +38,7 @@ sidebar_position: 9
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -61,7 +61,7 @@ In this chapter we will cover:
 
 ---
 
-## Recap: Single Pointer
+### Recap: Single Pointer
 
 Consider:
 
@@ -73,7 +73,7 @@ int *valuePtr = &value;
 
 ---
 
-## Symbol Table
+### Symbol Table
 
 ```text
 Variable        Value
@@ -85,7 +85,7 @@ valuePtr        Address of value
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 ```text
 Address      Value
@@ -105,7 +105,7 @@ Address      Value
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 valuePtr
@@ -119,7 +119,7 @@ valuePtr
 
 ---
 
-## Important Observation
+### Important Observation
 
 Most beginners stop here.
 
@@ -147,7 +147,7 @@ valuePtr must also have an address.
 
 ---
 
-## Address of a Pointer
+### Address of a Pointer
 
 Example:
 
@@ -159,7 +159,7 @@ int *valuePtr = &value;
 
 ---
 
-## Printing Addresses
+### Printing Addresses
 
 ```cpp
 cout << &value << endl;
@@ -176,7 +176,7 @@ Possible Output:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 Address      Value
@@ -188,7 +188,7 @@ Address      Value
 
 ---
 
-## Interpretation
+### Interpretation
 
 ```text
 valuePtr
@@ -216,7 +216,7 @@ itself lives at:
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 valuePtr
@@ -233,7 +233,7 @@ Value:   5
 
 ---
 
-## Why Is This Important?
+### Why Is This Important?
 
 Because now we can store:
 
@@ -245,15 +245,15 @@ inside another pointer.
 
 ---
 
-## What Is A Double Pointer?
+### What Is A Double Pointer?
 
-### Definition
+#### Definition
 
 A double pointer is a pointer that stores the address of another pointer.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 int **ptr;
@@ -269,7 +269,7 @@ to an integer
 
 ---
 
-## First Example
+### First Example
 
 ```cpp
 int value = 5;
@@ -281,7 +281,7 @@ int **doublePtr = &valuePtr;
 
 ---
 
-## Symbol Table
+### Symbol Table
 
 ```text
 Variable          Value
@@ -295,7 +295,7 @@ doublePtr         Address of valuePtr
 
 ---
 
-## Memory Layout
+### Memory Layout
 
 Assume:
 
@@ -321,7 +321,7 @@ Address      Value
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 doublePtr
@@ -338,7 +338,7 @@ valuePtr
 
 ---
 
-## Multi-Level Memory Diagram
+### Multi-Level Memory Diagram
 
 ```text
 doublePtr
@@ -361,13 +361,13 @@ Value:   5
 
 ---
 
-## Understanding p, \*p, \*\*p
+### Understanding p, \*p, \*\*p
 
 This is the most important concept.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 5;
@@ -379,7 +379,7 @@ int **doublePtr = &valuePtr;
 
 ---
 
-## Step 1
+### Step 1
 
 ```cpp
 doublePtr
@@ -399,7 +399,7 @@ Address of valuePtr
 
 ---
 
-## Step 2
+### Step 2
 
 ```cpp
 *doublePtr
@@ -425,7 +425,7 @@ Address of value
 
 ---
 
-## Step 3
+### Step 3
 
 ```cpp
 **doublePtr
@@ -467,7 +467,7 @@ Result:
 
 ---
 
-## Summary Table
+### Summary Table
 
 | Expression    | Meaning              | Result |
 | ------------- | -------------------- | ------ |
@@ -477,7 +477,7 @@ Result:
 
 ---
 
-## Example Program
+### Example Program
 
 ```cpp
 #include<iostream>
@@ -507,7 +507,7 @@ int main()
 
 ---
 
-## Expected Output
+### Expected Output
 
 Addresses vary.
 
@@ -529,11 +529,11 @@ Structure:
 
 ---
 
-## Understanding All Expressions
+### Understanding All Expressions
 
 ---
 
-### value
+#### value
 
 ```cpp
 value
@@ -547,7 +547,7 @@ Output:
 
 ---
 
-### valuePtr
+#### valuePtr
 
 ```cpp
 valuePtr
@@ -561,7 +561,7 @@ Address of value
 
 ---
 
-### \*valuePtr
+#### \*valuePtr
 
 ```cpp
 *valuePtr
@@ -575,7 +575,7 @@ Output:
 
 ---
 
-### doublePtr
+#### doublePtr
 
 ```cpp
 doublePtr
@@ -589,7 +589,7 @@ Address of valuePtr
 
 ---
 
-### \*doublePtr
+#### \*doublePtr
 
 ```cpp
 *doublePtr
@@ -603,7 +603,7 @@ Address of value
 
 ---
 
-### \*\*doublePtr
+#### \*\*doublePtr
 
 ```cpp
 **doublePtr
@@ -617,7 +617,7 @@ Output:
 
 ---
 
-## Why Do We Need Double Pointers?
+### Why Do We Need Double Pointers?
 
 Many developers ask:
 
@@ -627,19 +627,19 @@ Why not just use normal pointers?
 
 ---
 
-## Reason 1
+### Reason 1
 
 Modify pointers inside functions.
 
 ---
 
-## Reason 2
+### Reason 2
 
 Dynamic memory management.
 
 ---
 
-## Reason 3
+### Reason 3
 
 Complex data structures.
 
@@ -652,7 +652,7 @@ Examples:
 
 ---
 
-## Reason 4
+### Reason 4
 
 Functions that need to change:
 
@@ -668,7 +668,7 @@ value pointed to
 
 ---
 
-## Understanding Function Behavior
+### Understanding Function Behavior
 
 Consider:
 
@@ -680,7 +680,7 @@ void update(int **p)
 
 ---
 
-## Initial Setup
+### Initial Setup
 
 ```cpp
 int num = 20;
@@ -692,7 +692,7 @@ int **numPtr2 = &numPtr;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 num
@@ -715,9 +715,9 @@ Value: 2000
 
 ---
 
-## Case 1
+### Case 1
 
-### p = p + 1
+#### p = p + 1
 
 Function:
 
@@ -730,7 +730,7 @@ void update(int **p)
 
 ---
 
-## What Changes?
+### What Changes?
 
 Only:
 
@@ -760,7 +760,7 @@ p = 3008
 
 ---
 
-## Outside Function
+### Outside Function
 
 ```cpp
 numPtr2
@@ -770,7 +770,7 @@ remains unchanged.
 
 ---
 
-## Why?
+### Why?
 
 Function receives:
 
@@ -780,7 +780,7 @@ Copy of double pointer
 
 ---
 
-## Visual
+### Visual
 
 Before:
 
@@ -824,9 +824,9 @@ unchanged.
 
 ---
 
-## Case 2
+### Case 2
 
-### *p = *p + 1
+#### *p = *p + 1
 
 Function:
 
@@ -839,7 +839,7 @@ void update(int **p)
 
 ---
 
-## Evaluation
+### Evaluation
 
 ```cpp
 *p
@@ -861,7 +861,7 @@ numPtr = numPtr + 1;
 
 ---
 
-## What Changes?
+### What Changes?
 
 Original pointer:
 
@@ -873,7 +873,7 @@ changes.
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -891,13 +891,13 @@ numPtr = 1004
 
 ---
 
-## Effect
+### Effect
 
 Pointer now points somewhere else.
 
 ---
 
-## num Value?
+### num Value?
 
 ```text
 Still 20
@@ -905,9 +905,9 @@ Still 20
 
 ---
 
-## Case 3
+### Case 3
 
-### **p = **p + 1
+#### **p = **p + 1
 
 Function:
 
@@ -920,7 +920,7 @@ void update(int **p)
 
 ---
 
-## Evaluation
+### Evaluation
 
 ```cpp
 **p
@@ -942,7 +942,7 @@ num = num + 1;
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -960,7 +960,7 @@ num = 21
 
 ---
 
-## What Changes?
+### What Changes?
 
 Only:
 
@@ -976,7 +976,7 @@ Pointers remain same.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Operation     | Changes                      |
 | ------------- | ---------------------------- |
@@ -986,7 +986,7 @@ Pointers remain same.
 
 ---
 
-## Triple Pointers
+### Triple Pointers
 
 If pointers have addresses:
 
@@ -1024,7 +1024,7 @@ is possible.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 5;
@@ -1038,7 +1038,7 @@ int ***triplePtr = &doublePtr;
 
 ---
 
-## Diagram
+### Diagram
 
 ```text
 triplePtr
@@ -1059,7 +1059,7 @@ value
 
 ---
 
-## General Rule
+### General Rule
 
 ```cpp
 *
@@ -1074,7 +1074,7 @@ to reach actual value.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int ***ptr;
@@ -1090,7 +1090,7 @@ to reach integer.
 
 ---
 
-## Pointer Declaration Style
+### Pointer Declaration Style
 
 You asked:
 
@@ -1108,13 +1108,13 @@ Which is correct?
 
 ---
 
-## Answer
+### Answer
 
 Both are identical.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -1130,7 +1130,7 @@ Compiler treats both same.
 
 ---
 
-## Industry Recommendation
+### Industry Recommendation
 
 Prefer:
 
@@ -1148,11 +1148,11 @@ makes pointer nature clearer.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int **ptr;
@@ -1164,7 +1164,7 @@ Uninitialized double pointer.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 int *ptr = nullptr;
@@ -1178,7 +1178,7 @@ Null pointer dereference.
 
 ---
 
-## Bug 3
+### Bug 3
 
 Confusing:
 
@@ -1194,31 +1194,31 @@ and
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is a double pointer?
 
-#### Answer
+##### Answer
 
 A pointer that stores the address of another pointer.
 
 ---
 
-### Q2
+#### Q2
 
 Why do double pointers exist?
 
-#### Answer
+##### Answer
 
 To work with pointers indirectly and modify pointers inside functions.
 
 ---
 
-### Q3
+#### Q3
 
 Difference between:
 
@@ -1234,7 +1234,7 @@ p
 **p
 ```
 
-#### Answer
+##### Answer
 
 | Expression | Meaning            |
 | ---------- | ------------------ |
@@ -1244,7 +1244,7 @@ p
 
 ---
 
-### Q4
+#### Q4
 
 What does:
 
@@ -1254,13 +1254,13 @@ What does:
 
 change?
 
-#### Answer
+##### Answer
 
 Original pointer.
 
 ---
 
-### Q5
+#### Q5
 
 What does:
 
@@ -1270,13 +1270,13 @@ What does:
 
 change?
 
-#### Answer
+##### Answer
 
 Original value.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int value = 5;
@@ -1300,7 +1300,7 @@ p = p + 1;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Every pointer is itself a variable.
 - Every pointer has its own address.

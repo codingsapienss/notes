@@ -13,7 +13,7 @@ sidebar_position: 4
 
 ---
 
-## What is Input and Output?
+### What is Input and Output?
 
 ```text
 User Input
@@ -33,7 +33,7 @@ Your Age is 25
 
 ---
 
-## Output in C++
+### Output in C++
 
 Output is performed using:
 
@@ -55,7 +55,7 @@ Character Output
 
 ---
 
-## Basic Output
+### Basic Output
 
 ```cpp
 #include <iostream>
@@ -69,7 +69,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello World
@@ -77,7 +77,7 @@ Hello World
 
 ---
 
-## Printing Multiple Values
+### Printing Multiple Values
 
 ```cpp
 int age = 25;
@@ -85,7 +85,7 @@ int age = 25;
 cout << "Age: " << age;
 ```
 
-#### Output
+##### Output
 
 ```text
 Age: 25
@@ -93,7 +93,7 @@ Age: 25
 
 ---
 
-## The Insertion Operator (`<<`)
+### The Insertion Operator (`<<`)
 
 Used to send data to output stream.
 
@@ -109,13 +109,13 @@ Insert "Hello" into cout
 
 ---
 
-## Multiple Outputs
+### Multiple Outputs
 
 ```cpp
 cout << "Age: " << 25 << " Years";
 ```
 
-#### Output
+##### Output
 
 ```text
 Age: 25 Years
@@ -123,16 +123,16 @@ Age: 25 Years
 
 ---
 
-## New Line
+### New Line
 
-### Using `endl`
+#### Using `endl`
 
 ```cpp
 cout << "Hello" << endl;
 cout << "World";
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello
@@ -141,14 +141,14 @@ World
 
 ---
 
-### Using `\n`
+#### Using `\n`
 
 ```cpp
 cout << "Hello\n";
 cout << "World";
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello
@@ -157,7 +157,7 @@ World
 
 ---
 
-## `endl` vs `\n`
+### `endl` vs `\n`
 
 | Feature        | endl | \n  |
 | -------------- | ---- | --- |
@@ -167,7 +167,7 @@ World
 
 ---
 
-### Recommendation
+#### Recommendation
 
 Prefer:
 
@@ -179,7 +179,7 @@ for better performance.
 
 ---
 
-## Input in C++
+### Input in C++
 
 Input is performed using:
 
@@ -195,7 +195,7 @@ Character Input
 
 ---
 
-## Basic Input
+### Basic Input
 
 ```cpp
 int age;
@@ -203,13 +203,13 @@ int age;
 cin >> age;
 ```
 
-#### Input
+##### Input
 
 ```text
 25
 ```
 
-#### Output
+##### Output
 
 ```cpp
 cout << age;
@@ -221,7 +221,7 @@ cout << age;
 
 ---
 
-## Extraction Operator (`>>`)
+### Extraction Operator (`>>`)
 
 Used to extract data from input stream.
 
@@ -237,7 +237,7 @@ Take data from cin and store in age
 
 ---
 
-## Multiple Inputs
+### Multiple Inputs
 
 ```cpp
 int a, b;
@@ -245,13 +245,13 @@ int a, b;
 cin >> a >> b;
 ```
 
-#### Input
+##### Input
 
 ```text
 10 20
 ```
 
-#### Values
+##### Values
 
 ```text
 a = 10
@@ -260,7 +260,7 @@ b = 20
 
 ---
 
-## Example Program
+### Example Program
 
 ```cpp
 #include <iostream>
@@ -282,7 +282,7 @@ int main()
 
 ---
 
-## Problem with `cin`
+### Problem with `cin`
 
 Consider:
 
@@ -310,7 +310,7 @@ Only first word is captured.
 
 ---
 
-## Why?
+### Why?
 
 `cin >>` stops reading when it encounters:
 
@@ -322,13 +322,13 @@ Newline (\n)
 
 ---
 
-# getline()
+## getline()
 
 Used to read an entire line.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 getline(cin, name);
@@ -336,7 +336,7 @@ getline(cin, name);
 
 ---
 
-## Example
+### Example
 
 ```cpp
 string name;
@@ -360,7 +360,7 @@ Prashant Sharma
 
 ---
 
-# cin vs getline()
+## cin vs getline()
 
 | Feature           | cin >> | getline() |
 | ----------------- | ------ | --------- |
@@ -371,7 +371,7 @@ Prashant Sharma
 
 ---
 
-# Common Issue with getline()
+## Common Issue with getline()
 
 Example:
 
@@ -402,7 +402,7 @@ name = ""
 
 ---
 
-# Why Does This Happen?
+## Why Does This Happen?
 
 After:
 
@@ -428,7 +428,7 @@ Remaining
 
 ---
 
-## Solution: cin.ignore()
+### Solution: cin.ignore()
 
 ```cpp
 int age;
@@ -461,7 +461,7 @@ Prashant Sharma
 
 ---
 
-## Input Buffer
+### Input Buffer
 
 Whenever user enters data:
 
@@ -519,7 +519,7 @@ Buffer:
 
 ---
 
-## Input Failure
+### Input Failure
 
 Example:
 
@@ -545,7 +545,7 @@ Input Failure
 
 ---
 
-## Checking Input Failure
+### Checking Input Failure
 
 ```cpp
 int age;
@@ -560,7 +560,7 @@ if(cin.fail())
 
 ---
 
-## Clearing Input Error
+### Clearing Input Error
 
 ```cpp
 cin.clear();
@@ -579,11 +579,11 @@ cin.ignore(1000, '\n');
 
 ---
 
-## Output Formatting
+### Output Formatting
 
 ---
 
-## fixed
+### fixed
 
 ```cpp
 double pi = 3.1415926535;
@@ -599,7 +599,7 @@ Output:
 
 ---
 
-## setprecision()
+### setprecision()
 
 Requires:
 
@@ -625,7 +625,7 @@ Output:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include <iostream>
@@ -651,11 +651,11 @@ Output:
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Forgetting `&`
+#### Forgetting `&`
 
 Wrong:
 
@@ -673,7 +673,7 @@ cin >> age;
 
 ---
 
-### Using `cin` for Full Names
+#### Using `cin` for Full Names
 
 Wrong:
 
@@ -705,7 +705,7 @@ instead.
 
 ---
 
-### Mixing `cin` and `getline`
+#### Mixing `cin` and `getline`
 
 Wrong:
 
@@ -729,11 +729,11 @@ getline(cin, name);
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Difference between `cin` and `cout`?
+#### Q1. Difference between `cin` and `cout`?
 
-#### Answer
+##### Answer
 
 ```cpp
 cin
@@ -749,9 +749,9 @@ produces output.
 
 ---
 
-### Q2. Difference between `endl` and `\n`?
+#### Q2. Difference between `endl` and `\n`?
 
-#### Answer
+##### Answer
 
 Both create a new line.
 
@@ -759,31 +759,31 @@ Both create a new line.
 
 ---
 
-## Q3. Why does `cin >>` stop at spaces?
+### Q3. Why does `cin >>` stop at spaces?
 
-### Answer
+#### Answer
 
 Because space, tab and newline are treated as delimiters.
 
 ---
 
-## Q4. When should we use `getline()`?
+### Q4. When should we use `getline()`?
 
-### Answer
+#### Answer
 
 When input may contain spaces.
 
 ---
 
-## Q5. Why is `cin.ignore()` used?
+### Q5. Why is `cin.ignore()` used?
 
-### Answer
+#### Answer
 
 To remove leftover newline characters from the input buffer.
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 cout << "Hello";
@@ -822,7 +822,7 @@ cout << fixed << setprecision(2);
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - `cout` is used for output.
 - `cin` is used for input.

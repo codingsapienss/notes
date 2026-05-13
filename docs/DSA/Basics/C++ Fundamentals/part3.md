@@ -20,7 +20,7 @@ sidebar_position: 3
 
 ---
 
-## What is Memory?
+### What is Memory?
 
 Memory (RAM) is a collection of storage locations where data is stored while a program is running.
 
@@ -50,7 +50,7 @@ Value
 
 ---
 
-## Memory Address
+### Memory Address
 
 Every location in memory has a unique address.
 
@@ -67,7 +67,7 @@ Address     Value
 
 ---
 
-## Variables in Memory
+### Variables in Memory
 
 Consider:
 
@@ -95,7 +95,7 @@ Address     Value
 
 ---
 
-## How Variables Are Stored
+### How Variables Are Stored
 
 When you write:
 
@@ -105,19 +105,19 @@ int num = 10;
 
 the compiler performs:
 
-#### Step 1
+##### Step 1
 
 Reserve memory.
 
 ---
 
-#### Step 2
+##### Step 2
 
 Assign an address.
 
 ---
 
-#### Step 3
+##### Step 3
 
 Store value.
 
@@ -135,7 +135,7 @@ Value    : 10
 
 ---
 
-## Memory and Data Types
+### Memory and Data Types
 
 Different data types occupy different amounts of memory.
 
@@ -149,7 +149,7 @@ Different data types occupy different amounts of memory.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char grade = 'A';
@@ -179,7 +179,7 @@ Size    : 4 Bytes
 
 ---
 
-## What is a Byte?
+### What is a Byte?
 
 Memory is measured in:
 
@@ -193,7 +193,7 @@ Gigabytes
 
 ---
 
-### Bit
+#### Bit
 
 Smallest unit of memory.
 
@@ -207,7 +207,7 @@ or
 
 ---
 
-### Byte
+#### Byte
 
 ```text
 1 Byte = 8 Bits
@@ -235,9 +235,9 @@ in ASCII.
 
 ---
 
-## Memory Allocation
+### Memory Allocation
 
-### What is Memory Allocation?
+#### What is Memory Allocation?
 
 The process of reserving memory for a variable.
 
@@ -259,7 +259,7 @@ for the integer.
 
 ---
 
-## Types of Memory Allocation
+### Types of Memory Allocation
 
 ```text
 Memory Allocation
@@ -271,7 +271,7 @@ Memory Allocation
 
 ---
 
-## Static Memory Allocation
+### Static Memory Allocation
 
 Memory size is known before the program runs.
 
@@ -303,7 +303,7 @@ before execution.
 
 ---
 
-## Dynamic Memory Allocation
+### Dynamic Memory Allocation
 
 Memory size is decided during program execution.
 
@@ -335,7 +335,7 @@ Runtime
 
 ---
 
-## Program Memory Layout
+### Program Memory Layout
 
 A simplified memory layout looks like:
 
@@ -362,9 +362,9 @@ Low Memory
 
 ---
 
-## Stack Memory
+### Stack Memory
 
-### What is Stack Memory?
+#### What is Stack Memory?
 
 Stack memory stores:
 
@@ -395,33 +395,33 @@ age = 25
 
 ---
 
-## Characteristics of Stack Memory
+### Characteristics of Stack Memory
 
-#### Automatic Allocation
+##### Automatic Allocation
 
 Memory is allocated automatically.
 
 ---
 
-#### Automatic Cleanup
+##### Automatic Cleanup
 
 Memory is freed automatically.
 
 ---
 
-#### Fast
+##### Fast
 
 Very fast allocation and deallocation.
 
 ---
 
-#### Limited Size
+##### Limited Size
 
 Usually much smaller than heap memory.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void fun()
@@ -438,9 +438,9 @@ x is automatically destroyed.
 
 ---
 
-## Heap Memory
+### Heap Memory
 
-### What is Heap Memory?
+#### What is Heap Memory?
 
 Heap memory is used for dynamic memory allocation.
 
@@ -484,33 +484,33 @@ Heap
 
 ---
 
-## Characteristics of Heap Memory
+### Characteristics of Heap Memory
 
-#### Dynamic
+##### Dynamic
 
 Allocated during runtime.
 
 ---
 
-#### Larger
+##### Larger
 
 Generally larger than stack memory.
 
 ---
 
-#### Manual Cleanup
+##### Manual Cleanup
 
 Programmer must free memory.
 
 ---
 
-#### Slightly Slower
+##### Slightly Slower
 
 Compared to stack allocation.
 
 ---
 
-## Stack vs Heap
+### Stack vs Heap
 
 | Feature    | Stack       | Heap          |
 | ---------- | ----------- | ------------- |
@@ -524,13 +524,13 @@ Compared to stack allocation.
 
 ---
 
-## Memory Cleanup
+### Memory Cleanup
 
 One of the most important concepts in C++.
 
 ---
 
-## Stack Memory Cleanup
+### Stack Memory Cleanup
 
 Example:
 
@@ -550,7 +550,7 @@ No action required.
 
 ---
 
-## Heap Memory Cleanup
+### Heap Memory Cleanup
 
 Example:
 
@@ -570,7 +570,7 @@ delete ptr;
 
 ---
 
-## Dynamic Array Cleanup
+### Dynamic Array Cleanup
 
 Allocation:
 
@@ -586,7 +586,7 @@ delete[] arr;
 
 ---
 
-## Memory Leak
+### Memory Leak
 
 Occurs when allocated memory is never released.
 
@@ -624,7 +624,7 @@ Memory Leak
 
 ---
 
-## Good Practice
+### Good Practice
 
 Always match:
 
@@ -650,7 +650,7 @@ delete ptr;
 
 ---
 
-## Example Program
+### Example Program
 
 ```cpp
 #include <iostream>
@@ -674,7 +674,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Age: 25
@@ -683,11 +683,11 @@ Age: 25
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Forgetting delete
+#### Forgetting delete
 
 Wrong:
 
@@ -699,7 +699,7 @@ Memory never released.
 
 ---
 
-### Using Memory After Delete
+#### Using Memory After Delete
 
 Wrong:
 
@@ -713,7 +713,7 @@ Undefined Behavior.
 
 ---
 
-### Confusing Stack and Heap
+#### Confusing Stack and Heap
 
 ```cpp
 int age = 20;
@@ -739,19 +739,19 @@ Heap
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is memory allocation?
+#### Q1. What is memory allocation?
 
-#### Answer
+##### Answer
 
 The process of reserving memory for storing data.
 
 ---
 
-### Q2. What is the difference between stack and heap memory?
+#### Q2. What is the difference between stack and heap memory?
 
-#### Answer
+##### Answer
 
 Stack is automatic and fast.
 
@@ -759,9 +759,9 @@ Heap is dynamic and manually managed.
 
 ---
 
-### Q3. Which keyword allocates memory on the heap?
+#### Q3. Which keyword allocates memory on the heap?
 
-#### Answer
+##### Answer
 
 ```cpp
 new
@@ -769,9 +769,9 @@ new
 
 ---
 
-### Q4. Which keyword frees heap memory?
+#### Q4. Which keyword frees heap memory?
 
-#### Answer
+##### Answer
 
 ```cpp
 delete
@@ -779,15 +779,15 @@ delete
 
 ---
 
-### Q5. What is a memory leak?
+#### Q5. What is a memory leak?
 
-#### Answer
+##### Answer
 
 Allocated memory that is never released.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int age = 25;       // Stack
@@ -805,7 +805,7 @@ delete[] arr;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Memory stores data while a program runs.
 - Every variable occupies memory.

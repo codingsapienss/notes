@@ -19,7 +19,7 @@ sidebar_position: 7
 
 ---
 
-## What is a Character?
+### What is a Character?
 
 A character is a single symbol such as:
 
@@ -45,9 +45,9 @@ data type.
 
 ---
 
-## Declaring Characters
+### Declaring Characters
 
-### Syntax
+#### Syntax
 
 ```cpp
 char ch = 'A';
@@ -55,7 +55,7 @@ char ch = 'A';
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char grade = 'B';
@@ -63,7 +63,7 @@ char grade = 'B';
 cout << grade;
 ```
 
-#### Output
+##### Output
 
 ```text
 B
@@ -71,7 +71,7 @@ B
 
 ---
 
-## Character Literals
+### Character Literals
 
 Characters are enclosed inside:
 
@@ -83,7 +83,7 @@ Characters are enclosed inside:
 
 ---
 
-### Correct
+#### Correct
 
 ```cpp
 char ch = 'A';
@@ -91,7 +91,7 @@ char ch = 'A';
 
 ---
 
-### Wrong
+#### Wrong
 
 ```cpp
 char ch = "A";
@@ -109,7 +109,7 @@ is a string literal.
 
 ---
 
-## Memory Occupied by char
+### Memory Occupied by char
 
 ```cpp
 char ch = 'A';
@@ -123,13 +123,13 @@ Typically occupies:
 
 ---
 
-### Verify
+#### Verify
 
 ```cpp
 cout << sizeof(char);
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -137,7 +137,7 @@ cout << sizeof(char);
 
 ---
 
-## How Characters Are Stored Internally
+### How Characters Are Stored Internally
 
 Computers understand only:
 
@@ -166,7 +166,7 @@ Every character is stored as a number.
 
 ---
 
-## What is ASCII?
+### What is ASCII?
 
 ASCII stands for:
 
@@ -178,7 +178,7 @@ It assigns a numeric value to each character.
 
 ---
 
-## ASCII Examples
+### ASCII Examples
 
 | Character | ASCII Value |
 | --------- | ----------- |
@@ -194,7 +194,7 @@ It assigns a numeric value to each character.
 
 ---
 
-## Viewing ASCII Values
+### Viewing ASCII Values
 
 ```cpp
 char ch = 'A';
@@ -202,7 +202,7 @@ char ch = 'A';
 cout << (int)ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 65
@@ -210,7 +210,7 @@ cout << (int)ch;
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'a';
@@ -218,7 +218,7 @@ char ch = 'a';
 cout << (int)ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 97
@@ -226,7 +226,7 @@ cout << (int)ch;
 
 ---
 
-## ASCII to Character Conversion
+### ASCII to Character Conversion
 
 ```cpp
 int num = 65;
@@ -234,7 +234,7 @@ int num = 65;
 cout << char(num);
 ```
 
-#### Output
+##### Output
 
 ```text
 A
@@ -242,13 +242,13 @@ A
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << char(97);
 ```
 
-#### Output
+##### Output
 
 ```text
 a
@@ -256,7 +256,7 @@ a
 
 ---
 
-## Character Arithmetic
+### Character Arithmetic
 
 Since characters are stored as numbers:
 
@@ -266,7 +266,7 @@ Character arithmetic is possible.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'A';
@@ -274,7 +274,7 @@ char ch = 'A';
 cout << char(ch + 1);
 ```
 
-#### Output
+##### Output
 
 ```text
 B
@@ -282,7 +282,7 @@ B
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'a';
@@ -290,7 +290,7 @@ char ch = 'a';
 cout << char(ch + 2);
 ```
 
-#### Output
+##### Output
 
 ```text
 c
@@ -298,7 +298,7 @@ c
 
 ---
 
-## Uppercase Letters Range
+### Uppercase Letters Range
 
 | Character | ASCII |
 | --------- | ----- |
@@ -315,7 +315,7 @@ Range:
 
 ---
 
-## Lowercase Letters Range
+### Lowercase Letters Range
 
 | Character | ASCII |
 | --------- | ----- |
@@ -332,7 +332,7 @@ Range:
 
 ---
 
-## Digits Range
+### Digits Range
 
 | Character | ASCII |
 | --------- | ----- |
@@ -349,13 +349,13 @@ Range:
 
 ---
 
-## Character Comparison
+### Character Comparison
 
 Characters can be compared directly.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'B';
@@ -366,7 +366,7 @@ if(ch == 'B')
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Match
@@ -374,7 +374,7 @@ Match
 
 ---
 
-## Checking Uppercase Character
+### Checking Uppercase Character
 
 ```cpp
 char ch = 'P';
@@ -385,7 +385,7 @@ if(ch >= 'A' && ch <= 'Z')
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Uppercase
@@ -393,7 +393,7 @@ Uppercase
 
 ---
 
-## Checking Lowercase Character
+### Checking Lowercase Character
 
 ```cpp
 char ch = 'm';
@@ -404,7 +404,7 @@ if(ch >= 'a' && ch <= 'z')
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Lowercase
@@ -412,7 +412,7 @@ Lowercase
 
 ---
 
-## Checking Digit
+### Checking Digit
 
 ```cpp
 char ch = '8';
@@ -423,7 +423,7 @@ if(ch >= '0' && ch <= '9')
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Digit
@@ -431,7 +431,7 @@ Digit
 
 ---
 
-## Converting Uppercase to Lowercase
+### Converting Uppercase to Lowercase
 
 ASCII Difference:
 
@@ -441,7 +441,7 @@ a - A = 32
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'A';
@@ -451,7 +451,7 @@ ch = ch + 32;
 cout << ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 a
@@ -459,7 +459,7 @@ a
 
 ---
 
-## Converting Lowercase to Uppercase
+### Converting Lowercase to Uppercase
 
 ```cpp
 char ch = 'a';
@@ -469,7 +469,7 @@ ch = ch - 32;
 cout << ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 A
@@ -477,7 +477,7 @@ A
 
 ---
 
-## Better Modern Approach
+### Better Modern Approach
 
 Use:
 
@@ -494,7 +494,7 @@ from:
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'A';
@@ -502,7 +502,7 @@ char ch = 'A';
 cout << char(tolower(ch));
 ```
 
-#### Output
+##### Output
 
 ```text
 a
@@ -510,7 +510,7 @@ a
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'z';
@@ -518,7 +518,7 @@ char ch = 'z';
 cout << char(toupper(ch));
 ```
 
-#### Output
+##### Output
 
 ```text
 Z
@@ -526,13 +526,13 @@ Z
 
 ---
 
-## Special Characters
+### Special Characters
 
 Characters can also store special symbols.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = '@';
@@ -540,7 +540,7 @@ char ch = '@';
 cout << ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 @
@@ -548,7 +548,7 @@ cout << ch;
 
 ---
 
-## Escape Characters
+### Escape Characters
 
 Special characters represented using backslash.
 
@@ -564,13 +564,13 @@ Special characters represented using backslash.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << "Hello\nWorld";
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello
@@ -579,13 +579,13 @@ World
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << "A\tB";
 ```
 
-#### Output
+##### Output
 
 ```text
 A       B
@@ -593,13 +593,13 @@ A       B
 
 ---
 
-## char vs int
+### char vs int
 
 Characters are internally integers.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 char ch = 'A';
@@ -609,7 +609,7 @@ cout << ch << endl;
 cout << (int)ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 A
@@ -618,11 +618,11 @@ A
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Using Double Quotes
+#### Using Double Quotes
 
 Wrong
 
@@ -640,7 +640,7 @@ char ch = 'A';
 
 ---
 
-### Forgetting ASCII Nature
+#### Forgetting ASCII Nature
 
 ```cpp
 char ch = 'A';
@@ -684,19 +684,19 @@ B
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is ASCII?
+#### Q1. What is ASCII?
 
-#### Answer
+##### Answer
 
 A character encoding standard that assigns numeric values to characters.
 
 ---
 
-### Q2. What is the ASCII value of 'A'?
+#### Q2. What is the ASCII value of 'A'?
 
-#### Answer
+##### Answer
 
 ```text
 65
@@ -704,9 +704,9 @@ A character encoding standard that assigns numeric values to characters.
 
 ---
 
-### Q3. What is the ASCII value of 'a'?
+#### Q3. What is the ASCII value of 'a'?
 
-#### Answer
+##### Answer
 
 ```text
 97
@@ -714,9 +714,9 @@ A character encoding standard that assigns numeric values to characters.
 
 ---
 
-### Q4. Difference between `'A'` and `"A"`?
+#### Q4. Difference between `'A'` and `"A"`?
 
-#### Answer
+##### Answer
 
 ```cpp
 'A'
@@ -732,15 +732,15 @@ is a string literal.
 
 ---
 
-### Q5. Why can characters participate in arithmetic operations?
+#### Q5. Why can characters participate in arithmetic operations?
 
-#### Answer
+##### Answer
 
 Because characters are stored internally as integers (ASCII values).
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 char ch = 'A';
@@ -774,7 +774,7 @@ toupper(ch);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `char` stores a single character.
 - Characters are enclosed in single quotes (`' '`).

@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # C++ Pointers Fundamentals
 
-## Pointer States, Pass By Address, Address Copy vs Value Copy, Special Pointer Behaviors
+### Pointer States, Pass By Address, Address Copy vs Value Copy, Special Pointer Behaviors
 
 > In Part 1A, Part 1B, and Part 1C we learned:
 >
@@ -34,7 +34,7 @@ sidebar_position: 4
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -54,7 +54,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Do Pointers Exist?
+### Why Do Pointers Exist?
 
 Before learning more syntax, we need to answer:
 
@@ -64,7 +64,7 @@ Why were pointers invented?
 
 ---
 
-## Problem Without Pointers
+### Problem Without Pointers
 
 Suppose:
 
@@ -77,7 +77,7 @@ void increment(int value)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -106,7 +106,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -138,7 +138,7 @@ Different memory locations.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 number
@@ -154,7 +154,7 @@ value
 
 ---
 
-## Result
+### Result
 
 Changing:
 
@@ -176,7 +176,7 @@ number
 
 ---
 
-## How Can We Modify Original Variable?
+### How Can We Modify Original Variable?
 
 We must somehow provide:
 
@@ -190,7 +190,7 @@ This is where pointers become useful.
 
 ---
 
-## Pass By Address
+### Pass By Address
 
 Example:
 
@@ -203,7 +203,7 @@ void increment(int *ptr)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -232,7 +232,7 @@ Expected Output:
 
 ---
 
-## Execution Flow
+### Execution Flow
 
 Before:
 
@@ -294,7 +294,7 @@ Value: 11
 
 ---
 
-## Why Pointers Are Powerful
+### Why Pointers Are Powerful
 
 Without pointers:
 
@@ -310,7 +310,7 @@ Original memory can be modified.
 
 ---
 
-## Pointer States
+### Pointer States
 
 A pointer can exist in multiple states.
 
@@ -318,7 +318,7 @@ Understanding these states prevents bugs.
 
 ---
 
-## Overview
+### Overview
 
 | Pointer State    | Safe? |
 | ---------------- | ----- |
@@ -329,9 +329,9 @@ Understanding these states prevents bugs.
 
 ---
 
-## Valid Pointer
+### Valid Pointer
 
-### Definition
+#### Definition
 
 Pointer contains address of valid memory.
 
@@ -358,9 +358,9 @@ value
 
 ---
 
-## Null Pointer
+### Null Pointer
 
-### Definition
+#### Definition
 
 Pointer intentionally points nowhere.
 
@@ -386,7 +386,7 @@ NULL
 
 ---
 
-## Why Null Pointers Exist
+### Why Null Pointers Exist
 
 Instead of:
 
@@ -402,7 +402,7 @@ Pointer currently points nowhere.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -432,7 +432,7 @@ depending on compiler.
 
 ---
 
-## Best Practice
+### Best Practice
 
 Always prefer:
 
@@ -448,9 +448,9 @@ int *ptr;
 
 ---
 
-## Wild Pointer
+### Wild Pointer
 
-### Definition
+#### Definition
 
 Pointer declared but never initialized.
 
@@ -482,7 +482,7 @@ Example:
 
 ---
 
-## Why Dangerous?
+### Why Dangerous?
 
 Program believes:
 
@@ -494,7 +494,7 @@ even though it doesn't.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -510,7 +510,7 @@ Random Address
 
 ---
 
-## Even Worse
+### Even Worse
 
 ```cpp
 int *ptr;
@@ -528,7 +528,7 @@ Undefined Behavior
 
 ---
 
-## Wild Pointer vs Null Pointer
+### Wild Pointer vs Null Pointer
 
 | Feature     | Wild Pointer | Null Pointer |
 | ----------- | ------------ | ------------ |
@@ -539,15 +539,15 @@ Undefined Behavior
 
 ---
 
-## Dangling Pointer
+### Dangling Pointer
 
-### Definition
+#### Definition
 
 Pointer that points to memory that no longer exists.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -561,7 +561,7 @@ int *ptr;
 
 ---
 
-## Memory
+### Memory
 
 Initially:
 
@@ -576,7 +576,7 @@ number
 
 ---
 
-## After Block Ends
+### After Block Ends
 
 ```cpp
 {
@@ -598,7 +598,7 @@ still stores old address.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 ptr
@@ -610,7 +610,7 @@ Memory No Longer Valid
 
 ---
 
-## Why Dangerous?
+### Why Dangerous?
 
 Pointer thinks:
 
@@ -626,7 +626,7 @@ Object already destroyed
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -648,7 +648,7 @@ Undefined Behavior
 
 ---
 
-## Important Note
+### Important Note
 
 We will study dangling pointers in detail later during:
 
@@ -658,13 +658,13 @@ Dynamic Memory Allocation
 
 ---
 
-## Value Copy vs Address Copy
+### Value Copy vs Address Copy
 
 One of the most important interview concepts.
 
 ---
 
-## Value Copy
+### Value Copy
 
 Example:
 
@@ -676,7 +676,7 @@ int secondNumber = firstNumber;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 firstNumber
@@ -693,7 +693,7 @@ Value: 100
 
 ---
 
-## Modify Second Variable
+### Modify Second Variable
 
 ```cpp
 secondNumber = 500;
@@ -709,7 +709,7 @@ secondNumber = 500
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -721,7 +721,7 @@ not memory.
 
 ---
 
-## Address Copy
+### Address Copy
 
 Example
 
@@ -735,7 +735,7 @@ int *pointerTwo = pointerOne;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 pointerOne
@@ -755,7 +755,7 @@ value
 
 ---
 
-## Visual
+### Visual
 
 ```text
 pointerOne ──┐
@@ -773,7 +773,7 @@ pointerTwo ──┘
 
 ---
 
-## Modify Through Second Pointer
+### Modify Through Second Pointer
 
 ```cpp
 *pointerTwo = 999;
@@ -789,7 +789,7 @@ value = 999
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -817,7 +817,7 @@ Expected Output:
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature               | Value Copy | Address Copy |
 | --------------------- | ---------- | ------------ |
@@ -828,7 +828,7 @@ Expected Output:
 
 ---
 
-## Why Pass By Address Is Useful
+### Why Pass By Address Is Useful
 
 Consider swapping two numbers.
 
@@ -845,7 +845,7 @@ void swapValues(int a,int b)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -877,7 +877,7 @@ Expected Output:
 
 ---
 
-## Why Failed?
+### Why Failed?
 
 Function received:
 
@@ -887,7 +887,7 @@ Copies
 
 ---
 
-## Using Pointers
+### Using Pointers
 
 ```cpp
 void swapValues(
@@ -905,7 +905,7 @@ int *second
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -942,7 +942,7 @@ Expected Output:
 
 ---
 
-## Why Successful?
+### Why Successful?
 
 Function modifies:
 
@@ -954,13 +954,13 @@ instead of copies.
 
 ---
 
-## Special Behavior of Character Pointers
+### Special Behavior of Character Pointers
 
 This is a very common interview trap.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char grade = 'A';
@@ -972,7 +972,7 @@ cout << ptr;
 
 ---
 
-## Beginner Expectation
+### Beginner Expectation
 
 ```text
 Address
@@ -980,7 +980,7 @@ Address
 
 ---
 
-## Actual Behavior
+### Actual Behavior
 
 Undefined / unexpected output.
 
@@ -992,7 +992,7 @@ A▒▒▒▒...
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -1014,7 +1014,7 @@ C-style string
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char name[] = "Prashant";
@@ -1032,7 +1032,7 @@ Prashant
 
 ---
 
-## Why?
+### Why?
 
 `cout` assumes:
 
@@ -1044,7 +1044,7 @@ points to a string.
 
 ---
 
-## How To Print Actual Address?
+### How To Print Actual Address?
 
 Use:
 
@@ -1054,7 +1054,7 @@ cout << static_cast<void*>(ptr);
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char name[] = "Hello";
@@ -1072,11 +1072,11 @@ Expected Output:
 
 ---
 
-## Pointer Safety Rules
+### Pointer Safety Rules
 
 ---
 
-## Rule 1
+### Rule 1
 
 Always initialize pointers.
 
@@ -1094,7 +1094,7 @@ int *ptr;
 
 ---
 
-## Rule 2
+### Rule 2
 
 Never dereference null pointers.
 
@@ -1112,7 +1112,7 @@ ptr == nullptr
 
 ---
 
-## Rule 3
+### Rule 3
 
 Never dereference wild pointers.
 
@@ -1126,13 +1126,13 @@ int *ptr;
 
 ---
 
-## Rule 4
+### Rule 4
 
 Do not use dangling pointers.
 
 ---
 
-## Rule 5
+### Rule 5
 
 When unsure:
 
@@ -1142,11 +1142,11 @@ ptr = nullptr;
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int *ptr = nullptr;
@@ -1162,7 +1162,7 @@ Null Pointer Dereference
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 int *ptr;
@@ -1178,7 +1178,7 @@ Wild Pointer
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 char ch='A';
@@ -1196,7 +1196,7 @@ cout treats char* specially
 
 ---
 
-## Bug 4
+### Bug 4
 
 ```cpp
 int *ptr;
@@ -1218,25 +1218,25 @@ Dangling Pointer
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 Why do pointers exist?
 
-#### Answer
+##### Answer
 
 To work with original memory addresses and allow direct memory manipulation.
 
 ---
 
-### Q2
+#### Q2
 
 Difference between null pointer and wild pointer?
 
-#### Answer
+##### Answer
 
 | Null Pointer | Wild Pointer  |
 | ------------ | ------------- |
@@ -1246,21 +1246,21 @@ Difference between null pointer and wild pointer?
 
 ---
 
-### Q3
+#### Q3
 
 What is a dangling pointer?
 
-#### Answer
+##### Answer
 
 Pointer pointing to memory that no longer exists.
 
 ---
 
-### Q4
+#### Q4
 
 Difference between value copy and address copy?
 
-#### Answer
+##### Answer
 
 Value copy duplicates data.
 
@@ -1268,7 +1268,7 @@ Address copy shares access to same memory.
 
 ---
 
-### Q5
+#### Q5
 
 Why does:
 
@@ -1278,13 +1278,13 @@ cout << charPointer;
 
 behave differently?
 
-#### Answer
+##### Answer
 
 Because `cout` treats `char*` as a C-style string.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int *ptr = nullptr;
@@ -1313,7 +1313,7 @@ cout << static_cast<void*>(ptr);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Pointers exist to work with original memory.
 - Pass by value creates copies.
@@ -1328,4 +1328,4 @@ cout << static_cast<void*>(ptr);
 
 ---
 
-## End of Pointers Fundamentals — Part 1D
+### End of Pointers Fundamentals — Part 1D

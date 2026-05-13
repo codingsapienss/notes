@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Fundamentals Part 11'
+sidebar_label: 'Advanced Function Concepts'
 sidebar_position: 11
 ---
 
@@ -16,7 +16,7 @@ sidebar_position: 11
 
 ---
 
-## Topics Covered
+### Topics Covered
 
 - Macros
 - Global Variables
@@ -25,9 +25,9 @@ sidebar_position: 11
 
 ---
 
-## Macros
+### Macros
 
-### What is a Macro?
+#### What is a Macro?
 
 A macro is a piece of code that gets replaced before compilation.
 
@@ -39,7 +39,7 @@ Created using:
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 #define PI 3.14159
@@ -58,7 +58,7 @@ cout << 3.14159;
 
 ---
 
-### Why Use Macros?
+#### Why Use Macros?
 
 Avoid repeating values.
 
@@ -82,7 +82,7 @@ cout << PI;
 
 ---
 
-### Macro Replacement
+#### Macro Replacement
 
 ```cpp
 #define MAX_SIZE 100
@@ -98,7 +98,7 @@ int arr[100];
 
 ---
 
-### Modern Alternative
+#### Modern Alternative
 
 Prefer:
 
@@ -114,15 +114,15 @@ because it is:
 
 ---
 
-## Global Variables
+### Global Variables
 
-### What is a Global Variable?
+#### What is a Global Variable?
 
 A variable declared outside all functions.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 #include <iostream>
@@ -143,7 +143,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -151,13 +151,13 @@ int main()
 
 ---
 
-### Scope
+#### Scope
 
 Accessible from all functions within the file.
 
 ---
 
-### Lifetime
+#### Lifetime
 
 Exists:
 
@@ -169,13 +169,13 @@ Program End
 
 ---
 
-### Why Use Global Variables?
+#### Why Use Global Variables?
 
 To share data between functions.
 
 ---
 
-### Problems
+#### Problems
 
 Any function can modify it.
 
@@ -201,7 +201,7 @@ Tracking changes becomes difficult.
 
 ---
 
-### Best Practice
+#### Best Practice
 
 Avoid mutable global variables whenever possible.
 
@@ -219,9 +219,9 @@ constexpr int MAX_SIZE = 100;
 
 ---
 
-## Inline Functions
+### Inline Functions
 
-### Why Do We Need Inline Functions?
+#### Why Do We Need Inline Functions?
 
 Normal function calls have overhead.
 
@@ -244,7 +244,7 @@ Return Back
 
 ---
 
-### Inline Function
+#### Inline Function
 
 ```cpp
 inline int square(int x)
@@ -255,7 +255,7 @@ inline int square(int x)
 
 ---
 
-### Usage
+#### Usage
 
 ```cpp
 cout << square(5);
@@ -269,13 +269,13 @@ cout << 5 * 5;
 
 ---
 
-### Benefit
+#### Benefit
 
 Reduces function call overhead.
 
 ---
 
-### Important Note
+#### Important Note
 
 ```text
 inline is only a request.
@@ -285,7 +285,7 @@ Compiler may ignore it.
 
 ---
 
-### Good Candidate
+#### Good Candidate
 
 ```cpp
 inline int maxVal(int a, int b)
@@ -298,7 +298,7 @@ Small utility functions.
 
 ---
 
-## Inline Function vs Macro
+### Inline Function vs Macro
 
 Macro:
 
@@ -327,15 +327,15 @@ inline int square(int x)
 
 ---
 
-## Default Arguments
+### Default Arguments
 
-### What Are Default Arguments?
+#### What Are Default Arguments?
 
 Values automatically supplied if arguments are omitted.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 void print(int value = 10)
@@ -346,13 +346,13 @@ void print(int value = 10)
 
 ---
 
-#### Call
+##### Call
 
 ```cpp
 print();
 ```
 
-#### Output
+##### Output
 
 ```text
 10
@@ -360,13 +360,13 @@ print();
 
 ---
 
-#### Call
+##### Call
 
 ```cpp
 print(50);
 ```
 
-#### Output
+##### Output
 
 ```text
 50
@@ -374,7 +374,7 @@ print(50);
 
 ---
 
-## Multiple Default Arguments
+### Multiple Default Arguments
 
 ```cpp
 void display(
@@ -388,7 +388,7 @@ void display(
 
 ---
 
-#### Call
+##### Call
 
 ```cpp
 display();
@@ -402,7 +402,7 @@ Output:
 
 ---
 
-#### Call
+##### Call
 
 ```cpp
 display(5);
@@ -416,7 +416,7 @@ Output:
 
 ---
 
-#### Call
+##### Call
 
 ```cpp
 display(5, 6);
@@ -430,13 +430,13 @@ Output:
 
 ---
 
-## Important Rule
+### Important Rule
 
 Default arguments must be provided from right to left.
 
 ---
 
-### Valid
+#### Valid
 
 ```cpp
 void func(int a, int b = 10);
@@ -444,7 +444,7 @@ void func(int a, int b = 10);
 
 ---
 
-### Valid
+#### Valid
 
 ```cpp
 void func(
@@ -456,7 +456,7 @@ void func(
 
 ---
 
-### Invalid
+#### Invalid
 
 ```cpp
 void func(int a = 5, int b);
@@ -466,7 +466,7 @@ Compilation Error.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature          | Purpose                       |
 | ---------------- | ----------------------------- |
@@ -477,11 +477,11 @@ Compilation Error.
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Using Macro for Constants
+#### Using Macro for Constants
 
 Avoid:
 
@@ -497,7 +497,7 @@ constexpr double PI = 3.14;
 
 ---
 
-### Overusing Global Variables
+#### Overusing Global Variables
 
 Avoid:
 
@@ -514,7 +514,7 @@ Pass values through functions whenever possible.
 
 ---
 
-### Assuming Inline Always Works
+#### Assuming Inline Always Works
 
 Wrong assumption:
 
@@ -526,7 +526,7 @@ Compiler may ignore it.
 
 ---
 
-### Default Argument Placement
+#### Default Argument Placement
 
 Wrong:
 
@@ -544,35 +544,35 @@ void func(int a, int b = 10);
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is a macro?
+#### Q1. What is a macro?
 
-#### Answer
+##### Answer
 
 A preprocessor replacement that occurs before compilation.
 
 ---
 
-### Q2. What is a global variable?
+#### Q2. What is a global variable?
 
-#### Answer
+##### Answer
 
 A variable declared outside all functions and accessible throughout the file.
 
 ---
 
-### Q3. What is an inline function?
+#### Q3. What is an inline function?
 
-#### Answer
+##### Answer
 
 A function that requests the compiler to replace the function call with its body.
 
 ---
 
-### Q4. Does inline guarantee inlining?
+#### Q4. Does inline guarantee inlining?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -580,15 +580,15 @@ It is only a compiler request.
 
 ---
 
-### Q5. What are default arguments?
+#### Q5. What are default arguments?
 
-#### Answer
+##### Answer
 
 Arguments automatically supplied when values are not provided during a function call.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 #define PI 3.14
@@ -623,7 +623,7 @@ print(50);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Macros perform text replacement before compilation.
 - Modern C++ prefers `constexpr` over macros for constants.

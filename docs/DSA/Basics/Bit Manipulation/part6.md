@@ -5,7 +5,7 @@ sidebar_position: 6
 
 # Bit Manipulation & Binary
 
-# Part 6F — Interview Problems Using Bit Manipulation
+## Part 6F — Interview Problems Using Bit Manipulation
 
 > This chapter combines everything learned so far:
 >
@@ -20,11 +20,11 @@ sidebar_position: 6
 
 ---
 
-# Problem 1 — Minimum Bit Flips to Convert a Number
+## Problem 1 — Minimum Bit Flips to Convert a Number
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 Given:
 
@@ -41,7 +41,7 @@ Find minimum bit flips required to convert:
 
 ---
 
-# Observation
+## Observation
 
 A bit needs flipping only when:
 
@@ -51,7 +51,7 @@ Bits are different.
 
 ---
 
-# XOR Property
+## XOR Property
 
 ```text
 Same Bits      → 0
@@ -73,7 +73,7 @@ Which bits differ.
 
 ---
 
-# Example
+## Example
 
 ```text
 start = 10
@@ -125,7 +125,7 @@ Answer
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int minBitFlips(int start, int goal)
@@ -138,9 +138,9 @@ int minBitFlips(int start, int goal)
 
 ---
 
-## Complexity
+### Complexity
 
-### Time
+#### Time
 
 ```text
 O(log(start ^ goal))
@@ -148,7 +148,7 @@ O(log(start ^ goal))
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(1)
@@ -156,11 +156,11 @@ O(1)
 
 ---
 
-# Problem 2 — Power Set Using Bit Manipulation
+## Problem 2 — Power Set Using Bit Manipulation
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 Given:
 
@@ -172,7 +172,7 @@ Generate all subsets.
 
 ---
 
-# Observation
+## Observation
 
 For:
 
@@ -188,7 +188,7 @@ there are:
 
 ---
 
-# Binary Representation
+## Binary Representation
 
 For:
 
@@ -223,7 +223,7 @@ Include Element ?
 
 ---
 
-# Example
+## Example
 
 Mask:
 
@@ -261,7 +261,7 @@ Subset:
 
 ---
 
-# Complete Dry Run
+## Complete Dry Run
 
 | Mask | Subset  |
 | ---- | ------- |
@@ -276,7 +276,7 @@ Subset:
 
 ---
 
-# Code
+## Code
 
 ```cpp
 vector<vector<int>> subsets(vector<int>& nums)
@@ -306,9 +306,9 @@ vector<vector<int>> subsets(vector<int>& nums)
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(N × 2^N)
@@ -316,7 +316,7 @@ O(N × 2^N)
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(2^N)
@@ -324,11 +324,11 @@ O(2^N)
 
 ---
 
-# Problem 3 — Single Number I
+## Problem 3 — Single Number I
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 Every element appears:
 
@@ -356,13 +356,13 @@ Answer:
 
 ---
 
-# Brute Force
+## Brute Force
 
 Use Hash Map.
 
 ---
 
-### Complexity
+#### Complexity
 
 ```text
 O(N)
@@ -376,11 +376,11 @@ O(N)
 
 ---
 
-# Optimal XOR Solution
+## Optimal XOR Solution
 
 ---
 
-# Key Property
+## Key Property
 
 ```text
 A ^ A = 0
@@ -418,7 +418,7 @@ Rearrange
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int singleNumber(vector<int>& nums)
@@ -436,9 +436,9 @@ int singleNumber(vector<int>& nums)
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(N)
@@ -446,7 +446,7 @@ O(N)
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(1)
@@ -454,11 +454,11 @@ O(1)
 
 ---
 
-# Problem 4 — Single Number II
+## Problem 4 — Single Number II
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 Every element appears:
 
@@ -486,7 +486,7 @@ Answer:
 
 ---
 
-# Brute Force
+## Brute Force
 
 Hash Map.
 
@@ -506,11 +506,11 @@ O(N)
 
 ---
 
-# Better Bit Counting Solution
+## Better Bit Counting Solution
 
 ---
 
-## Observation
+### Observation
 
 If every number appears:
 
@@ -578,7 +578,7 @@ which is:
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int singleNumber(vector<int>& nums)
@@ -609,9 +609,9 @@ int singleNumber(vector<int>& nums)
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(32 × N)
@@ -621,7 +621,7 @@ O(32 × N)
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(1)
@@ -629,11 +629,11 @@ O(1)
 
 ---
 
-# Problem 5 — Single Number III
+## Problem 5 — Single Number III
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 Every number appears:
 
@@ -665,7 +665,7 @@ Answer:
 
 ---
 
-# Step 1
+## Step 1
 
 Take XOR of all numbers.
 
@@ -705,7 +705,7 @@ Assume:
 
 ---
 
-# Step 2
+## Step 2
 
 Find Rightmost Set Bit
 
@@ -729,7 +729,7 @@ Rightmost Set Bit:
 
 ---
 
-# Why?
+## Why?
 
 Because:
 
@@ -739,7 +739,7 @@ Because:
 
 ---
 
-# Step 3
+## Step 3
 
 Create Two Buckets
 
@@ -791,7 +791,7 @@ Result:
 
 ---
 
-# Code
+## Code
 
 ```cpp
 vector<int> singleNumber(vector<int>& nums)
@@ -826,9 +826,9 @@ vector<int> singleNumber(vector<int>& nums)
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(N)
@@ -836,7 +836,7 @@ O(N)
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(1)
@@ -844,7 +844,7 @@ O(1)
 
 ---
 
-# Comparison Table
+## Comparison Table
 
 | Problem           | Optimal Technique    |
 | ----------------- | -------------------- |
@@ -856,11 +856,11 @@ O(1)
 
 ---
 
-# Pattern Recognition Cheat Sheet
+## Pattern Recognition Cheat Sheet
 
 ---
 
-## Every Number Appears Twice
+### Every Number Appears Twice
 
 Think:
 
@@ -870,7 +870,7 @@ XOR
 
 ---
 
-## Two Unique Numbers
+### Two Unique Numbers
 
 Think:
 
@@ -880,7 +880,7 @@ XOR + Buckets
 
 ---
 
-## Three Times Except One
+### Three Times Except One
 
 Think:
 
@@ -890,7 +890,7 @@ Bit Counting
 
 ---
 
-## Generate Subsets
+### Generate Subsets
 
 Think:
 
@@ -900,7 +900,7 @@ Bit Masking
 
 ---
 
-## Compare Two Numbers Bit by Bit
+### Compare Two Numbers Bit by Bit
 
 Think:
 
@@ -910,13 +910,13 @@ XOR
 
 ---
 
-# Common Interview Questions
+## Common Interview Questions
 
-## Q1
+### Q1
 
 Why does XOR solve Single Number I?
 
-### Answer
+#### Answer
 
 ```text
 A ^ A = 0
@@ -926,11 +926,11 @@ A ^ 0 = A
 
 ---
 
-## Q2
+### Q2
 
 Why does Power Set contain 2^N subsets?
 
-### Answer
+#### Answer
 
 Each element has:
 
@@ -943,11 +943,11 @@ Skip
 
 ---
 
-## Q3
+### Q3
 
 How do you isolate the rightmost set bit?
 
-### Answer
+#### Answer
 
 ```cpp
 n & (-n)
@@ -955,11 +955,11 @@ n & (-n)
 
 ---
 
-## Q4
+### Q4
 
 How do you count differing bits between two numbers?
 
-### Answer
+#### Answer
 
 ```cpp
 start ^ goal
@@ -969,11 +969,11 @@ then count set bits.
 
 ---
 
-## Q5
+### Q5
 
 Which bit manipulation problem appears most frequently?
 
-### Answer
+#### Answer
 
 ```text
 Single Number
@@ -983,7 +983,7 @@ variants.
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - XOR is the most important operator for interview problems.
 - Power Set generation is based on bit masking.

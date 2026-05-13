@@ -40,7 +40,7 @@ sidebar_position: 5
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -64,7 +64,7 @@ In this chapter we will cover:
 
 ---
 
-## How Arrays Are Stored In Memory
+### How Arrays Are Stored In Memory
 
 Consider:
 
@@ -74,7 +74,7 @@ int numbers[4] = {1,3,4,5};
 
 ---
 
-## Memory Allocation
+### Memory Allocation
 
 Each integer typically occupies:
 
@@ -101,7 +101,7 @@ Address      Value
 
 ---
 
-## Important Observation
+### Important Observation
 
 Array elements are stored:
 
@@ -119,7 +119,7 @@ without gaps.
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 numbers
@@ -133,7 +133,7 @@ numbers
 
 ---
 
-## What Is Array Name?
+### What Is Array Name?
 
 Consider:
 
@@ -161,7 +161,7 @@ Partially Correct
 
 ---
 
-## Correct Answer
+### Correct Answer
 
 Array name is:
 
@@ -184,7 +184,7 @@ to first element.
 
 ---
 
-## What Does Array Name Represent?
+### What Does Array Name Represent?
 
 ```cpp
 numbers
@@ -200,7 +200,7 @@ in most situations.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int numbers[4] = {1,3,4,5};
@@ -216,7 +216,7 @@ Possible Output:
 
 ---
 
-## Equivalent
+### Equivalent
 
 ```cpp
 cout << &numbers[0];
@@ -230,7 +230,7 @@ Output:
 
 ---
 
-## Important Rule
+### Important Rule
 
 Most of the time:
 
@@ -246,7 +246,7 @@ behaves like:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 numbers
@@ -273,7 +273,7 @@ evaluates to:
 
 ---
 
-## arr vs &arr[0]
+### arr vs &arr[0]
 
 Example:
 
@@ -300,7 +300,7 @@ Example:
 
 ---
 
-## Are They Actually Same?
+### Are They Actually Same?
 
 No.
 
@@ -308,7 +308,7 @@ This is an extremely important interview concept.
 
 ---
 
-## arr Type
+### arr Type
 
 ```cpp
 arr
@@ -322,7 +322,7 @@ int*
 
 ---
 
-## &arr[0] Type
+### &arr[0] Type
 
 ```cpp
 &arr[0]
@@ -336,7 +336,7 @@ int*
 
 ---
 
-## So Why Do They Look Same?
+### So Why Do They Look Same?
 
 Because both represent:
 
@@ -346,7 +346,7 @@ Address of first element
 
 ---
 
-## arr vs &arr
+### arr vs &arr
 
 Many developers incorrectly believe:
 
@@ -366,7 +366,7 @@ They are not.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[4]={1,2,3,4};
@@ -387,9 +387,9 @@ Looks identical.
 
 ---
 
-## Hidden Difference
+### Hidden Difference
 
-### arr
+#### arr
 
 Type:
 
@@ -401,7 +401,7 @@ int*
 
 ---
 
-### &arr
+#### &arr
 
 Type:
 
@@ -417,13 +417,13 @@ Pointer to entire array
 
 ---
 
-## Why Does This Matter?
+### Why Does This Matter?
 
 Because pointer arithmetic behaves differently.
 
 ---
 
-## Example
+### Example
 
 Assume:
 
@@ -439,7 +439,7 @@ Array size:
 
 ---
 
-### arr + 1
+#### arr + 1
 
 ```text
 1000 + 4
@@ -457,7 +457,7 @@ Next integer
 
 ---
 
-### &arr + 1
+#### &arr + 1
 
 ```text
 1000 + 16
@@ -471,7 +471,7 @@ Moves past entire array.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 arr
@@ -499,7 +499,7 @@ After whole array
 
 ---
 
-## Internal Working of Array Indexing
+### Internal Working of Array Indexing
 
 Most developers know:
 
@@ -511,7 +511,7 @@ But very few know what compiler actually does.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[4]={1,3,4,5};
@@ -527,7 +527,7 @@ Output:
 
 ---
 
-## Internal Compiler Conversion
+### Internal Compiler Conversion
 
 Compiler converts:
 
@@ -543,7 +543,7 @@ into:
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 arr[i]
@@ -555,7 +555,7 @@ arr[i]
 
 ---
 
-## Example
+### Example
 
 ```cpp
 arr[2]
@@ -569,7 +569,7 @@ becomes:
 
 ---
 
-## Memory
+### Memory
 
 ```text
 Address      Value
@@ -582,7 +582,7 @@ Address      Value
 
 ---
 
-## Evaluation
+### Evaluation
 
 ```cpp
 arr+2
@@ -610,7 +610,7 @@ Value:
 
 ---
 
-## Result
+### Result
 
 ```text
 4
@@ -618,7 +618,7 @@ Value:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << arr[2];
@@ -634,7 +634,7 @@ Expected Output:
 
 ---
 
-## Important Interview Question
+### Important Interview Question
 
 Why does:
 
@@ -660,13 +660,13 @@ and pointer arithmetic becomes possible.
 
 ---
 
-## Strange But Valid Syntax
+### Strange But Valid Syntax
 
 Most developers don't know this.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[4]={1,3,4,5};
@@ -682,7 +682,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Compiler converts:
 
@@ -718,7 +718,7 @@ works.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << arr[3];
@@ -734,13 +734,13 @@ Expected Output:
 
 ---
 
-## Arrays vs Pointers
+### Arrays vs Pointers
 
 This is one of the most misunderstood topics.
 
 ---
 
-## Array
+### Array
 
 ```cpp
 int arr[10];
@@ -760,7 +760,7 @@ because:
 
 ---
 
-## Pointer
+### Pointer
 
 ```cpp
 int *ptr=&arr[0];
@@ -782,7 +782,7 @@ on modern systems.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 Array:
 
@@ -806,7 +806,7 @@ contains address
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[10];
@@ -827,7 +827,7 @@ Expected Output (64-bit):
 
 ---
 
-## Why Different?
+### Why Different?
 
 Array:
 
@@ -843,7 +843,7 @@ Stores address only
 
 ---
 
-## Important Difference Table
+### Important Difference Table
 
 | Feature           | Array           | Pointer      |
 | ----------------- | --------------- | ------------ |
@@ -856,13 +856,13 @@ Stores address only
 
 ---
 
-## Why arr = arr + 1 Fails
+### Why arr = arr + 1 Fails
 
 Very common interview question.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int arr[10];
@@ -874,7 +874,7 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Array name is:
 
@@ -884,7 +884,7 @@ Not a modifiable variable
 
 ---
 
-## Important Concept
+### Important Concept
 
 Compiler symbol table stores:
 
@@ -900,7 +900,7 @@ This mapping is fixed.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Symbol Table
@@ -922,7 +922,7 @@ Change array identity
 
 ---
 
-## Therefore
+### Therefore
 
 ```cpp
 arr = arr+1;
@@ -932,7 +932,7 @@ fails.
 
 ---
 
-## Why ptr = ptr + 1 Works
+### Why ptr = ptr + 1 Works
 
 Example:
 
@@ -978,7 +978,7 @@ ptr = 1004
 
 ---
 
-## Why Allowed?
+### Why Allowed?
 
 Because:
 
@@ -992,7 +992,7 @@ Normal variables can change values.
 
 ---
 
-## Important Distinction
+### Important Distinction
 
 Array name:
 
@@ -1008,7 +1008,7 @@ Assignable
 
 ---
 
-## sizeof Examples
+### sizeof Examples
 
 Example:
 
@@ -1026,7 +1026,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Array owns:
 
@@ -1036,7 +1036,7 @@ Array owns:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << sizeof(arr[0]);
@@ -1050,7 +1050,7 @@ Expected Output:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr=&arr[0];
@@ -1066,7 +1066,7 @@ Expected Output:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << sizeof(*ptr);
@@ -1080,7 +1080,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -1096,11 +1096,11 @@ int
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 arr = arr+1;
@@ -1110,7 +1110,7 @@ Compilation Error.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Assuming:
 
@@ -1130,7 +1130,7 @@ Wrong.
 
 ---
 
-## Bug 3
+### Bug 3
 
 Thinking:
 
@@ -1146,15 +1146,15 @@ Array and pointer are different entities.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What does array name represent?
 
-#### Answer
+##### Answer
 
 In most expressions:
 
@@ -1170,7 +1170,7 @@ decays to:
 
 ---
 
-### Q2
+#### Q2
 
 How does compiler evaluate:
 
@@ -1178,7 +1178,7 @@ How does compiler evaluate:
 arr[i]
 ```
 
-#### Answer
+##### Answer
 
 ```cpp
 *(arr+i)
@@ -1186,7 +1186,7 @@ arr[i]
 
 ---
 
-### Q3
+#### Q3
 
 Why does:
 
@@ -1196,7 +1196,7 @@ i[arr]
 
 work?
 
-#### Answer
+##### Answer
 
 Because:
 
@@ -1210,7 +1210,7 @@ Because:
 
 ---
 
-### Q4
+#### Q4
 
 Difference between:
 
@@ -1224,7 +1224,7 @@ and
 &arr
 ```
 
-#### Answer
+##### Answer
 
 Different types.
 
@@ -1235,7 +1235,7 @@ arr      -> int*
 
 ---
 
-### Q5
+#### Q5
 
 Why does:
 
@@ -1245,13 +1245,13 @@ arr = arr+1;
 
 fail?
 
-#### Answer
+##### Answer
 
 Array name is not modifiable.
 
 ---
 
-### Q6
+#### Q6
 
 Why does:
 
@@ -1261,13 +1261,13 @@ ptr = ptr+1;
 
 work?
 
-#### Answer
+##### Answer
 
 Pointer is a normal variable storing an address.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 arr
@@ -1297,7 +1297,7 @@ ptr = ptr+1;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Arrays and pointers are closely related but not identical.
 - Array name usually decays to pointer to first element.

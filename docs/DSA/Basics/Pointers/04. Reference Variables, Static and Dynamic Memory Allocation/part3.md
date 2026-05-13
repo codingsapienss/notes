@@ -34,7 +34,7 @@ sidebar_position: 15
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -53,7 +53,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Memory Management Matters
+### Why Memory Management Matters
 
 Consider:
 
@@ -117,7 +117,7 @@ Heap memory does not.
 
 ---
 
-## Heap Object Lifetime
+### Heap Object Lifetime
 
 Consider:
 
@@ -151,7 +151,7 @@ Program terminates.
 
 ---
 
-## Visual
+### Visual
 
 ```text
 new
@@ -171,15 +171,15 @@ Memory Destroyed
 
 ---
 
-## Memory Leak
+### Memory Leak
 
-### Definition
+#### Definition
 
 A memory leak occurs when dynamically allocated memory becomes unreachable before being freed.
 
 ---
 
-## Simple Example
+### Simple Example
 
 ```cpp
 int* ptr = new int;
@@ -257,7 +257,7 @@ Memory Leak
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Heap Object
@@ -277,7 +277,7 @@ No pointer references it.
 
 ---
 
-## Why Is This Dangerous?
+### Why Is This Dangerous?
 
 Leaked memory:
 
@@ -289,7 +289,7 @@ for the rest of program execution.
 
 ---
 
-## Real World Consequences
+### Real World Consequences
 
 Long-running applications:
 
@@ -308,7 +308,7 @@ if leaks exist.
 
 ---
 
-## Classic Leak Example
+### Classic Leak Example
 
 ```cpp
 while(true)
@@ -319,7 +319,7 @@ while(true)
 
 ---
 
-## What Happens?
+### What Happens?
 
 Iteration 1
 
@@ -367,7 +367,7 @@ Out Of Memory Error
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Heap
@@ -388,7 +388,7 @@ Growing forever.
 
 ---
 
-## Correct Version
+### Correct Version
 
 ```cpp
 while(true)
@@ -421,7 +421,7 @@ No leak.
 
 ---
 
-## Another Memory Leak Example
+### Another Memory Leak Example
 
 ```cpp
 int* ptr = new int;
@@ -475,15 +475,15 @@ Memory leak occurs.
 
 ---
 
-## Dangling Pointer
+### Dangling Pointer
 
-### Definition
+#### Definition
 
 A dangling pointer is a pointer that points to memory that has already been released.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr = new int;
@@ -557,7 +557,7 @@ Gone
 
 ---
 
-## Dangerous Code
+### Dangerous Code
 
 ```cpp
 int* ptr = new int;
@@ -591,7 +591,7 @@ Undefined Behavior
 
 ---
 
-## Why Does It Sometimes Work?
+### Why Does It Sometimes Work?
 
 Because:
 
@@ -627,7 +627,7 @@ Still undefined behavior.
 
 ---
 
-## Preventing Dangling Pointers
+### Preventing Dangling Pointers
 
 Best Practice:
 
@@ -648,7 +648,7 @@ Pointer clearly indicates
 
 ---
 
-## Visual
+### Visual
 
 Before
 
@@ -686,15 +686,15 @@ Much safer.
 
 ---
 
-## Wild Pointer
+### Wild Pointer
 
-### Definition
+#### Definition
 
 A wild pointer is a pointer that was never initialized.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr;
@@ -728,7 +728,7 @@ Random Bits
 
 ---
 
-## Dangerous Usage
+### Dangerous Usage
 
 ```cpp
 cout << *ptr;
@@ -746,7 +746,7 @@ Undefined Behavior
 
 ---
 
-## Visual
+### Visual
 
 ```text
 ptr
@@ -758,7 +758,7 @@ Unknown Memory
 
 ---
 
-## Correct Version
+### Correct Version
 
 ```cpp
 int* ptr = nullptr;
@@ -774,15 +774,15 @@ Known State
 
 ---
 
-## Null Pointer
+### Null Pointer
 
-### Definition
+#### Definition
 
 A pointer intentionally pointing to no object.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr = nullptr;
@@ -802,7 +802,7 @@ NULL
 
 ---
 
-## Why Useful?
+### Why Useful?
 
 Indicates:
 
@@ -812,7 +812,7 @@ No valid memory currently assigned.
 
 ---
 
-## Difference Between Wild Pointer and Null Pointer
+### Difference Between Wild Pointer and Null Pointer
 
 | Feature             | Wild Pointer | Null Pointer |
 | ------------------- | ------------ | ------------ |
@@ -823,15 +823,15 @@ No valid memory currently assigned.
 
 ---
 
-## Double Delete
+### Double Delete
 
-### Definition
+#### Definition
 
 Deleting the same memory twice.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr = new int;
@@ -879,7 +879,7 @@ Random Behavior
 
 ---
 
-## Safe Version
+### Safe Version
 
 ```cpp
 delete ptr;
@@ -909,13 +909,13 @@ does nothing.
 
 ---
 
-## Use-After-Free Error
+### Use-After-Free Error
 
 One of the most dangerous bugs.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr = new int(50);
@@ -951,7 +951,7 @@ Undefined Behavior
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Memory Freed
@@ -967,7 +967,7 @@ Disaster
 
 ---
 
-## Heap Corruption
+### Heap Corruption
 
 Occurs when memory management damages heap metadata.
 
@@ -1009,7 +1009,7 @@ Heap Corruption
 
 ---
 
-## Memory Safety Checklist
+### Memory Safety Checklist
 
 Always:
 
@@ -1075,7 +1075,7 @@ Double delete
 
 ---
 
-## Real-World Example
+### Real-World Example
 
 Bad:
 
@@ -1115,11 +1115,11 @@ Memory released.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int* ptr;
@@ -1129,7 +1129,7 @@ Wild pointer.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 delete ptr;
@@ -1141,7 +1141,7 @@ Dangling pointer.
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 delete ptr;
@@ -1153,7 +1153,7 @@ Double delete.
 
 ---
 
-## Bug 4
+### Bug 4
 
 ```cpp
 new int;
@@ -1165,7 +1165,7 @@ Memory leak.
 
 ---
 
-## Bug 5
+### Bug 5
 
 ```cpp
 delete arr;
@@ -1181,45 +1181,45 @@ for arrays.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is a memory leak?
 
-#### Answer
+##### Answer
 
 Allocated memory that becomes unreachable before being released.
 
 ---
 
-### Q2
+#### Q2
 
 What is a dangling pointer?
 
-#### Answer
+##### Answer
 
 A pointer pointing to memory that has already been freed.
 
 ---
 
-### Q3
+#### Q3
 
 What is a wild pointer?
 
-#### Answer
+##### Answer
 
 An uninitialized pointer containing garbage data.
 
 ---
 
-### Q4
+#### Q4
 
 Difference between null pointer and wild pointer?
 
-#### Answer
+##### Answer
 
 Null pointer is intentionally initialized.
 
@@ -1227,37 +1227,37 @@ Wild pointer is uninitialized.
 
 ---
 
-### Q5
+#### Q5
 
 Why is double delete dangerous?
 
-#### Answer
+##### Answer
 
 Memory is released twice causing undefined behavior.
 
 ---
 
-### Q6
+#### Q6
 
 Why assign `nullptr` after delete?
 
-#### Answer
+##### Answer
 
 To prevent accidental access to freed memory.
 
 ---
 
-### Q7
+#### Q7
 
 What is use-after-free?
 
-#### Answer
+##### Answer
 
 Accessing memory after it has been deleted.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int* ptr = nullptr;
@@ -1286,7 +1286,7 @@ delete ptr;        // Dangerous
 
 ---
 
-## Quick Comparison Table
+### Quick Comparison Table
 
 | Problem          | Description               |
 | ---------------- | ------------------------- |
@@ -1299,7 +1299,7 @@ delete ptr;        // Dangerous
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Heap memory must be managed manually.
 - Forgetting `delete` causes memory leaks.

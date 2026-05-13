@@ -24,7 +24,7 @@ sidebar_position: 4
 
 ---
 
-# Binary Position Refresher
+## Binary Position Refresher
 
 Consider:
 
@@ -48,11 +48,11 @@ Bit Positions:
 
 ---
 
-# Check if ith Bit is Set
+## Check if ith Bit is Set
 
 ---
 
-## Problem
+### Problem
 
 Determine whether:
 
@@ -74,11 +74,11 @@ or
 
 ---
 
-# Method 1 — Left Shift Mask
+## Method 1 — Left Shift Mask
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n & (1 << i)
@@ -86,7 +86,7 @@ n & (1 << i)
 
 ---
 
-## Logic
+### Logic
 
 Create a mask having:
 
@@ -112,7 +112,7 @@ i = 2
 
 ---
 
-### Step 1
+#### Step 1
 
 Create Mask
 
@@ -128,7 +128,7 @@ Binary:
 
 ---
 
-### Step 2
+#### Step 2
 
 AND
 
@@ -156,7 +156,7 @@ Bit is SET
 
 ---
 
-# Code
+## Code
 
 ```cpp
 bool isSet(int n, int i)
@@ -167,7 +167,7 @@ bool isSet(int n, int i)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << isSet(13, 2);
@@ -181,11 +181,11 @@ Output:
 
 ---
 
-# Method 2 — Right Shift
+## Method 2 — Right Shift
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 (n >> i) & 1
@@ -193,7 +193,7 @@ Output:
 
 ---
 
-## Logic
+### Logic
 
 Bring the desired bit to the last position.
 
@@ -215,7 +215,7 @@ i = 2
 
 ---
 
-### Step 1
+#### Step 1
 
 Shift
 
@@ -227,7 +227,7 @@ Shift
 
 ---
 
-### Step 2
+#### Step 2
 
 AND with 1
 
@@ -251,7 +251,7 @@ Bit is set.
 
 ---
 
-# Code
+## Code
 
 ```cpp
 bool isSet(int n, int i)
@@ -262,7 +262,7 @@ bool isSet(int n, int i)
 
 ---
 
-# Complexity
+## Complexity
 
 | Complexity | Value |
 | ---------- | ----- |
@@ -271,11 +271,11 @@ bool isSet(int n, int i)
 
 ---
 
-# Set ith Bit
+## Set ith Bit
 
 ---
 
-## Problem
+### Problem
 
 Make ith bit:
 
@@ -287,7 +287,7 @@ regardless of its current value.
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n | (1 << i)
@@ -295,7 +295,7 @@ n | (1 << i)
 
 ---
 
-# Example
+## Example
 
 ```text
 n = 9
@@ -339,7 +339,7 @@ Result
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int setBit(int n, int i)
@@ -350,11 +350,11 @@ int setBit(int n, int i)
 
 ---
 
-# Clear ith Bit
+## Clear ith Bit
 
 ---
 
-## Problem
+### Problem
 
 Make ith bit:
 
@@ -366,7 +366,7 @@ regardless of current value.
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n & ~(1 << i)
@@ -374,7 +374,7 @@ n & ~(1 << i)
 
 ---
 
-# Example
+## Example
 
 ```text
 n = 13
@@ -428,7 +428,7 @@ Result
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int clearBit(int n, int i)
@@ -439,11 +439,11 @@ int clearBit(int n, int i)
 
 ---
 
-# Toggle ith Bit
+## Toggle ith Bit
 
 ---
 
-## Problem
+### Problem
 
 Flip the bit.
 
@@ -459,7 +459,7 @@ Meaning:
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n ^ (1 << i)
@@ -467,7 +467,7 @@ n ^ (1 << i)
 
 ---
 
-# Example
+## Example
 
 ```text
 13
@@ -509,7 +509,7 @@ Result
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int toggleBit(int n, int i)
@@ -520,13 +520,13 @@ int toggleBit(int n, int i)
 
 ---
 
-# Remove Rightmost Set Bit
+## Remove Rightmost Set Bit
 
 One of the most famous tricks.
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n & (n - 1)
@@ -534,7 +534,7 @@ n & (n - 1)
 
 ---
 
-# Example
+## Example
 
 ```text
 n = 12
@@ -544,7 +544,7 @@ n = 12
 
 ---
 
-### Step 1
+#### Step 1
 
 ```text
 n-1
@@ -554,7 +554,7 @@ n-1
 
 ---
 
-### Step 2
+#### Step 2
 
 AND
 
@@ -576,7 +576,7 @@ Result
 
 ---
 
-# Why Does This Work?
+## Why Does This Work?
 
 Observation:
 
@@ -600,7 +600,7 @@ The first set bit gets removed.
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int removeLastSetBit(int n)
@@ -611,11 +611,11 @@ int removeLastSetBit(int n)
 
 ---
 
-# Check if Number is Power of 2
+## Check if Number is Power of 2
 
 ---
 
-## Observation
+### Observation
 
 Power of 2 always contains:
 
@@ -649,7 +649,7 @@ always becomes 0
 
 ---
 
-# Formula
+## Formula
 
 ```cpp
 n > 0 &&
@@ -658,7 +658,7 @@ n > 0 &&
 
 ---
 
-# Example
+## Example
 
 ```text
 8
@@ -696,7 +696,7 @@ Power of 2
 
 ---
 
-# Code
+## Code
 
 ```cpp
 bool isPowerOfTwo(int n)
@@ -708,11 +708,11 @@ bool isPowerOfTwo(int n)
 
 ---
 
-# Swap Two Numbers Without Extra Variable
+## Swap Two Numbers Without Extra Variable
 
 ---
 
-## XOR Method
+### XOR Method
 
 ---
 
@@ -726,7 +726,7 @@ b = 7
 
 ---
 
-### Step 1
+#### Step 1
 
 ```cpp
 a = a ^ b;
@@ -734,7 +734,7 @@ a = a ^ b;
 
 ---
 
-### Step 2
+#### Step 2
 
 ```cpp
 b = a ^ b;
@@ -752,7 +752,7 @@ Becomes
 
 ---
 
-### Step 3
+#### Step 3
 
 ```cpp
 a = a ^ b;
@@ -768,7 +768,7 @@ Becomes
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int a = 5;
@@ -791,7 +791,7 @@ b = 5
 
 ---
 
-# Why XOR Swap is Rarely Used Today
+## Why XOR Swap is Rarely Used Today
 
 Modern approach:
 
@@ -807,11 +807,11 @@ is:
 
 ---
 
-# Extract Rightmost Set Bit
+## Extract Rightmost Set Bit
 
 ---
 
-## Formula
+### Formula
 
 ```cpp
 n & (-n)
@@ -819,7 +819,7 @@ n & (-n)
 
 ---
 
-# Example
+## Example
 
 ```text
 12
@@ -867,11 +867,11 @@ was isolated.
 
 ---
 
-# Common Interview Questions
+## Common Interview Questions
 
 ---
 
-## Check Odd or Even
+### Check Odd or Even
 
 ```cpp
 n & 1
@@ -899,7 +899,7 @@ Even.
 
 ---
 
-# Multiply by 2
+## Multiply by 2
 
 ```cpp
 n << 1
@@ -907,7 +907,7 @@ n << 1
 
 ---
 
-# Divide by 2
+## Divide by 2
 
 ```cpp
 n >> 1
@@ -915,7 +915,7 @@ n >> 1
 
 ---
 
-# Multiply by 8
+## Multiply by 8
 
 ```cpp
 n << 3
@@ -923,7 +923,7 @@ n << 3
 
 ---
 
-# Divide by 8
+## Divide by 8
 
 ```cpp
 n >> 3
@@ -931,7 +931,7 @@ n >> 3
 
 ---
 
-# Summary Table
+## Summary Table
 
 | Operation            | Formula        |
 | -------------------- | -------------- | ------- |
@@ -947,9 +947,9 @@ n >> 3
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 How do you check whether the 5th bit is set?
 
@@ -959,7 +959,7 @@ n & (1 << 5)
 
 ---
 
-## Q2
+### Q2
 
 How do you remove the rightmost set bit?
 
@@ -969,7 +969,7 @@ n & (n - 1)
 
 ---
 
-## Q3
+### Q3
 
 How do you check if a number is a power of 2?
 
@@ -979,7 +979,7 @@ How do you check if a number is a power of 2?
 
 ---
 
-## Q4
+### Q4
 
 How do you toggle a bit?
 
@@ -989,7 +989,7 @@ n ^ (1 << i)
 
 ---
 
-## Q5
+### Q5
 
 How do you set a bit?
 
@@ -999,7 +999,7 @@ n | (1 << i)
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 // Check Bit
@@ -1038,7 +1038,7 @@ n & (-n)
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Most common bit tricks are based on AND, OR, XOR and shifts.
 - Checking, setting, clearing and toggling bits can all be done in O(1).

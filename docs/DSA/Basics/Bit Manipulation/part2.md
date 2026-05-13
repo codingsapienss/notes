@@ -30,7 +30,7 @@ sidebar_position: 2
 
 ---
 
-# Memory Refresher
+## Memory Refresher
 
 Memory is ultimately a collection of bits.
 
@@ -44,7 +44,7 @@ or
 
 ---
 
-## Byte
+### Byte
 
 ```text
 1 Byte = 8 Bits
@@ -68,7 +68,7 @@ contains:
 
 ---
 
-# How Data is Stored
+## How Data is Stored
 
 When we write:
 
@@ -110,7 +110,7 @@ but memory stores:
 
 ---
 
-# Why Extra Zeros?
+## Why Extra Zeros?
 
 Because:
 
@@ -158,7 +158,7 @@ Stored as:
 
 ---
 
-# Data Type Sizes
+## Data Type Sizes
 
 | Type      | Typical Size |
 | --------- | ------------ |
@@ -173,7 +173,7 @@ Stored as:
 
 ---
 
-# How char is Stored
+## How char is Stored
 
 Example:
 
@@ -201,7 +201,7 @@ Memory:
 
 ---
 
-# How bool is Stored
+## How bool is Stored
 
 ```cpp
 bool flag = true;
@@ -227,7 +227,7 @@ Internally:
 
 ---
 
-# How int is Stored
+## How int is Stored
 
 Example:
 
@@ -258,7 +258,7 @@ Total:
 
 ---
 
-# How long long is Stored
+## How long long is Stored
 
 Example:
 
@@ -283,7 +283,7 @@ Total:
 
 ---
 
-# Signed vs Unsigned Numbers
+## Signed vs Unsigned Numbers
 
 Integers can be:
 
@@ -299,7 +299,7 @@ unsigned
 
 ---
 
-# Signed Integer
+## Signed Integer
 
 Can store:
 
@@ -320,7 +320,7 @@ int num = -10;
 
 ---
 
-# Unsigned Integer
+## Unsigned Integer
 
 Stores only:
 
@@ -338,7 +338,7 @@ unsigned int num = 10;
 
 ---
 
-# Why Unsigned Exists?
+## Why Unsigned Exists?
 
 Normally:
 
@@ -360,13 +360,13 @@ Larger Positive Range
 
 ---
 
-# Integer Range Formula
+## Integer Range Formula
 
 For n bits:
 
 ---
 
-## Signed
+### Signed
 
 ```text
 -(2^(n-1))
@@ -376,7 +376,7 @@ to
 
 ---
 
-## Unsigned
+### Unsigned
 
 ```text
 0
@@ -386,11 +386,11 @@ to
 
 ---
 
-# Integer Ranges
+## Integer Ranges
 
-## int (32 bit)
+### int (32 bit)
 
-### Signed
+#### Signed
 
 ```text
 -2147483648
@@ -402,7 +402,7 @@ to
 
 ---
 
-### Unsigned
+#### Unsigned
 
 ```text
 0
@@ -414,9 +414,9 @@ to
 
 ---
 
-# long long (64 bit)
+## long long (64 bit)
 
-### Signed
+#### Signed
 
 ```text
 -9223372036854775808
@@ -428,7 +428,7 @@ to
 
 ---
 
-### Unsigned
+#### Unsigned
 
 ```text
 0
@@ -440,13 +440,13 @@ to
 
 ---
 
-# Binary Addition
+## Binary Addition
 
 Everything inside CPU happens using binary arithmetic.
 
 ---
 
-# Rule 1
+## Rule 1
 
 ```text
 0 + 0 = 0
@@ -454,7 +454,7 @@ Everything inside CPU happens using binary arithmetic.
 
 ---
 
-# Rule 2
+## Rule 2
 
 ```text
 0 + 1 = 1
@@ -462,7 +462,7 @@ Everything inside CPU happens using binary arithmetic.
 
 ---
 
-# Rule 3
+## Rule 3
 
 ```text
 1 + 0 = 1
@@ -470,7 +470,7 @@ Everything inside CPU happens using binary arithmetic.
 
 ---
 
-# Rule 4
+## Rule 4
 
 ```text
 1 + 1 = 10
@@ -486,7 +486,7 @@ Carry = 1
 
 ---
 
-# Example
+## Example
 
 ```text
 1
@@ -516,7 +516,7 @@ Binary:
 
 ---
 
-# Example
+## Example
 
 ```text
 101
@@ -545,7 +545,7 @@ Correct.
 
 ---
 
-# One's Complement
+## One's Complement
 
 One's Complement means:
 
@@ -579,7 +579,7 @@ Rule:
 
 ---
 
-# Why Was One's Complement Introduced?
+## Why Was One's Complement Introduced?
 
 To represent:
 
@@ -619,29 +619,29 @@ was introduced.
 
 ---
 
-# Two's Complement
+## Two's Complement
 
 Most important concept in Computer Science.
 
 ---
 
-## Definition
+### Definition
 
 To get Two's Complement:
 
-### Step 1
+#### Step 1
 
 Find One's Complement
 
 ---
 
-### Step 2
+#### Step 2
 
 Add 1
 
 ---
 
-# Example
+## Example
 
 Represent:
 
@@ -689,7 +689,7 @@ stored as:
 
 ---
 
-# Why Two's Complement?
+## Why Two's Complement?
 
 Because:
 
@@ -711,7 +711,7 @@ And arithmetic becomes much simpler for CPUs.
 
 ---
 
-# How Negative Numbers Are Stored
+## How Negative Numbers Are Stored
 
 Example:
 
@@ -759,7 +759,7 @@ Stored Memory:
 
 ---
 
-# How Computer Reads Negative Numbers
+## How Computer Reads Negative Numbers
 
 Suppose memory contains:
 
@@ -787,7 +787,7 @@ Negative Number
 
 Now:
 
-### Step 1
+#### Step 1
 
 Two's Complement Again
 
@@ -827,7 +827,7 @@ Therefore:
 
 ---
 
-# Sign Bit
+## Sign Bit
 
 Most Significant Bit (MSB)
 
@@ -865,7 +865,7 @@ Negative.
 
 ---
 
-# Floating Point Numbers
+## Floating Point Numbers
 
 Integers are easy.
 
@@ -899,7 +899,7 @@ IEEE 754 Representation
 
 ---
 
-# IEEE 754 (float)
+## IEEE 754 (float)
 
 A float uses:
 
@@ -931,7 +931,7 @@ Structure:
 
 ---
 
-# Example
+## Example
 
 ```cpp
 float x = 5.75;
@@ -955,7 +955,7 @@ directly.
 
 ---
 
-# Why Floating Point Errors Occur
+## Why Floating Point Errors Occur
 
 Example:
 
@@ -985,7 +985,7 @@ exactly in binary.
 
 ---
 
-# Largest Values of Common Types
+## Largest Values of Common Types
 
 | Type      | Signed Range              |
 | --------- | ------------------------- |
@@ -998,9 +998,9 @@ exactly in binary.
 
 ---
 
-# Common Interview Questions
+## Common Interview Questions
 
-## Why Two's Complement Is Used?
+### Why Two's Complement Is Used?
 
 Answer:
 
@@ -1014,7 +1014,7 @@ Answer:
 
 ---
 
-## How Many Bits Are In An int?
+### How Many Bits Are In An int?
 
 Usually:
 
@@ -1024,7 +1024,7 @@ Usually:
 
 ---
 
-## How Are Negative Numbers Stored?
+### How Are Negative Numbers Stored?
 
 Using:
 
@@ -1034,13 +1034,13 @@ Two's Complement
 
 ---
 
-## Why Does Floating Point Precision Error Occur?
+### Why Does Floating Point Precision Error Occur?
 
 Because many decimal fractions cannot be represented exactly in binary.
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```text
 1 Byte = 8 Bits
@@ -1096,7 +1096,7 @@ Negative MSB = 1
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Memory stores everything as bits.
 - Integers are stored using binary representation.

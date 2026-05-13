@@ -33,7 +33,7 @@ sidebar_position: 6
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -54,7 +54,7 @@ In this chapter we will cover:
 
 ---
 
-## Character Arrays Recap
+### Character Arrays Recap
 
 Consider:
 
@@ -86,7 +86,7 @@ Address      Value
 
 ---
 
-## Important Observation
+### Important Observation
 
 Character arrays are stored:
 
@@ -102,7 +102,7 @@ sizeof(char) == 1
 
 ---
 
-## Character Array Name
+### Character Array Name
 
 Just like integer arrays:
 
@@ -124,7 +124,7 @@ decays to:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char name[] = "Prashant";
@@ -143,7 +143,7 @@ Prashant
 
 ---
 
-## Wait... Why Not Addresses?
+### Wait... Why Not Addresses?
 
 For integer arrays:
 
@@ -183,7 +183,7 @@ Why?
 
 ---
 
-## The Most Important Concept
+### The Most Important Concept
 
 `cout` has special handling for:
 
@@ -199,7 +199,7 @@ const char*
 
 ---
 
-## Integer Pointer Example
+### Integer Pointer Example
 
 ```cpp
 int value = 100;
@@ -219,7 +219,7 @@ Address.
 
 ---
 
-## Character Pointer Example
+### Character Pointer Example
 
 ```cpp
 char name[] = "Prashant";
@@ -237,7 +237,7 @@ Prashant
 
 ---
 
-## Why Does This Happen?
+### Why Does This Happen?
 
 Because internally:
 
@@ -275,7 +275,7 @@ Treat pointer as string
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 Integer Pointer:
 
@@ -313,7 +313,7 @@ Prashant
 
 ---
 
-## How Does cout Know Where To Stop?
+### How Does cout Know Where To Stop?
 
 Excellent question.
 
@@ -331,7 +331,7 @@ H e l l o \0
 
 ---
 
-## Printing Process
+### Printing Process
 
 ```cpp
 cout << name;
@@ -353,9 +353,9 @@ STOP
 
 ---
 
-## The Null Terminator
+### The Null Terminator
 
-### Definition
+#### Definition
 
 Null character:
 
@@ -377,7 +377,7 @@ Marks end of C-style string
 
 ---
 
-## Why Is It Needed?
+### Why Is It Needed?
 
 Without:
 
@@ -389,7 +389,7 @@ Without:
 
 ---
 
-## Dangerous Example
+### Dangerous Example
 
 ```cpp
 char name[5] =
@@ -416,7 +416,7 @@ No '\0'
 
 ---
 
-## Program
+### Program
 
 ```cpp
 cout << name;
@@ -442,7 +442,7 @@ Undefined Behavior
 
 ---
 
-## Why?
+### Why?
 
 Printing process:
 
@@ -470,7 +470,7 @@ is accidentally found.
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 Memory
@@ -492,7 +492,7 @@ No '\0'
 
 ---
 
-## Correct Version
+### Correct Version
 
 ```cpp
 char name[6] =
@@ -508,7 +508,7 @@ char name[6] =
 
 ---
 
-## Memory
+### Memory
 
 ```text
 1000 H
@@ -521,7 +521,7 @@ char name[6] =
 
 ---
 
-## Output
+### Output
 
 ```text
 Hello
@@ -529,7 +529,7 @@ Hello
 
 ---
 
-## Character Pointer
+### Character Pointer
 
 Consider:
 
@@ -541,7 +541,7 @@ char *ptr = &name[0];
 
 ---
 
-## Memory
+### Memory
 
 ```text
 ptr
@@ -553,7 +553,7 @@ P r a s h a n t \0
 
 ---
 
-## Printing Pointer
+### Printing Pointer
 
 ```cpp
 cout << ptr;
@@ -567,7 +567,7 @@ Prashant
 
 ---
 
-## Why Entire String?
+### Why Entire String?
 
 Because:
 
@@ -581,7 +581,7 @@ points to first character.
 
 ---
 
-## Execution
+### Execution
 
 ```text
 P
@@ -600,7 +600,7 @@ STOP
 
 ---
 
-## Important Example
+### Important Example
 
 ```cpp
 char name[] = "Prashant";
@@ -612,7 +612,7 @@ cout << ptr;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 P r a s h a n t \0
@@ -622,7 +622,7 @@ P r a s h a n t \0
 
 ---
 
-## Output
+### Output
 
 ```text
 shant
@@ -630,7 +630,7 @@ shant
 
 ---
 
-## Why?
+### Why?
 
 Printing begins from:
 
@@ -648,7 +648,7 @@ is found.
 
 ---
 
-## Very Common Interview Trap
+### Very Common Interview Trap
 
 Consider:
 
@@ -662,7 +662,7 @@ cout << ptr;
 
 ---
 
-## Expected By Beginners
+### Expected By Beginners
 
 ```text
 Address
@@ -670,7 +670,7 @@ Address
 
 ---
 
-## Actual Result
+### Actual Result
 
 Undefined Behavior.
 
@@ -682,7 +682,7 @@ A▒▒▒▒...
 
 ---
 
-## Why?
+### Why?
 
 Memory:
 
@@ -697,7 +697,7 @@ Address      Value
 
 ---
 
-## Problem
+### Problem
 
 `cout` assumes:
 
@@ -709,7 +709,7 @@ points to a string.
 
 ---
 
-## Execution
+### Execution
 
 ```text
 Print A
@@ -731,7 +731,7 @@ appears somewhere.
 
 ---
 
-## Correct Way To Print Address
+### Correct Way To Print Address
 
 Use:
 
@@ -741,7 +741,7 @@ cout << static_cast<void*>(ptr);
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char ch = 'A';
@@ -759,11 +759,11 @@ Expected Output:
 
 ---
 
-## Integer Array vs Character Array
+### Integer Array vs Character Array
 
 ---
 
-## Integer Array
+### Integer Array
 
 ```cpp
 int arr[5] =
@@ -782,7 +782,7 @@ Address
 
 ---
 
-## Character Array
+### Character Array
 
 ```cpp
 char arr[] = "Hello";
@@ -798,7 +798,7 @@ Hello
 
 ---
 
-## Why Different?
+### Why Different?
 
 Because:
 
@@ -816,7 +816,7 @@ only.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Type         | Output  |
 | ------------ | ------- |
@@ -828,7 +828,7 @@ only.
 
 ---
 
-## Character Array vs Character Pointer
+### Character Array vs Character Pointer
 
 Many developers think these are identical.
 
@@ -836,7 +836,7 @@ They are related but different.
 
 ---
 
-## Character Array
+### Character Array
 
 ```cpp
 char name[] = "Hello";
@@ -852,7 +852,7 @@ Stored directly.
 
 ---
 
-## Character Pointer
+### Character Pointer
 
 ```cpp
 char *ptr = name;
@@ -870,7 +870,7 @@ H e l l o \0
 
 ---
 
-## Difference
+### Difference
 
 Array:
 
@@ -886,7 +886,7 @@ Stores address
 
 ---
 
-## Example
+### Example
 
 ```cpp
 char name[] = "Hello";
@@ -896,7 +896,7 @@ char *ptr = name;
 
 ---
 
-## Size Comparison
+### Size Comparison
 
 ```cpp
 cout << sizeof(name);
@@ -924,7 +924,7 @@ Output:
 
 ---
 
-## String Literals
+### String Literals
 
 Consider:
 
@@ -934,7 +934,7 @@ Consider:
 
 ---
 
-## Internal Representation
+### Internal Representation
 
 ```text
 H e l l o \0
@@ -948,7 +948,7 @@ Compiler automatically adds:
 
 ---
 
-## String Literal Memory
+### String Literal Memory
 
 String literals are stored in:
 
@@ -958,7 +958,7 @@ Read-Only Memory
 
 ---
 
-## Dangerous Example
+### Dangerous Example
 
 ```cpp
 char *ptr = "Hello";
@@ -968,7 +968,7 @@ This compiles on some compilers (or gives warnings).
 
 ---
 
-## Internal Memory
+### Internal Memory
 
 ```text
 ptr
@@ -982,7 +982,7 @@ H e l l o \0
 
 ---
 
-## Why Dangerous?
+### Why Dangerous?
 
 Consider:
 
@@ -992,7 +992,7 @@ ptr[0] = 'M';
 
 ---
 
-## Result
+### Result
 
 ```text
 Undefined Behavior
@@ -1006,7 +1006,7 @@ Segmentation Fault
 
 ---
 
-## Correct Approach
+### Correct Approach
 
 ```cpp
 char name[] = "Hello";
@@ -1022,7 +1022,7 @@ Mello
 
 ---
 
-## Why Safe?
+### Why Safe?
 
 Because:
 
@@ -1034,7 +1034,7 @@ creates writable memory.
 
 ---
 
-## Behind The Scenes
+### Behind The Scenes
 
 ```cpp
 char name[] = "Hello";
@@ -1056,7 +1056,7 @@ Array memory
 
 ---
 
-## Visual
+### Visual
 
 ```text
 Literal
@@ -1076,7 +1076,7 @@ name[]
 
 ---
 
-## Modern C++ Recommendation
+### Modern C++ Recommendation
 
 Instead of:
 
@@ -1098,11 +1098,11 @@ String literal is read-only.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 char ch='A';
@@ -1120,7 +1120,7 @@ Not a string
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 char name[5]={'H','e','l','l','o'};
@@ -1136,7 +1136,7 @@ Missing '\0'
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 char *ptr="Hello";
@@ -1152,7 +1152,7 @@ Read-only memory
 
 ---
 
-## Bug 4
+### Bug 4
 
 Thinking:
 
@@ -1166,11 +1166,11 @@ Wrong.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 Why does:
 
@@ -1180,13 +1180,13 @@ cout << charPtr;
 
 print characters?
 
-#### Answer
+##### Answer
 
 Because `cout` treats `char*` as a C-style string.
 
 ---
 
-### Q2
+#### Q2
 
 Why does:
 
@@ -1196,33 +1196,33 @@ cout << intPtr;
 
 print an address?
 
-#### Answer
+##### Answer
 
 No special string handling exists.
 
 ---
 
-### Q3
+#### Q3
 
 What is the role of `'\0'`?
 
-#### Answer
+##### Answer
 
 Marks end of C-style string.
 
 ---
 
-### Q4
+#### Q4
 
 What happens if `'\0'` is missing?
 
-#### Answer
+##### Answer
 
 Undefined behavior.
 
 ---
 
-### Q5
+#### Q5
 
 Why is:
 
@@ -1232,17 +1232,17 @@ char *ptr = "Hello";
 
 dangerous?
 
-#### Answer
+##### Answer
 
 String literal resides in read-only memory.
 
 ---
 
-### Q6
+#### Q6
 
 How do you safely represent a string literal?
 
-#### Answer
+##### Answer
 
 ```cpp
 const char *ptr = "Hello";
@@ -1250,7 +1250,7 @@ const char *ptr = "Hello";
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 char name[] = "Hello";
@@ -1274,7 +1274,7 @@ sizeof(ptr);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Character pointers behave differently from other pointers.
 - `cout` treats `char*` as a C-style string.

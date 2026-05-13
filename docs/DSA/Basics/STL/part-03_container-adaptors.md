@@ -27,9 +27,9 @@ sidebar_label: 'Container Adaptors'
 
 ---
 
-# Introduction to Container Adaptors
+## Introduction to Container Adaptors
 
-## What Are Container Adaptors?
+### What Are Container Adaptors?
 
 Container adaptors are special containers that modify the behavior of existing containers.
 
@@ -45,7 +45,7 @@ Examples:
 
 ---
 
-## Why Container Adaptors Exist
+### Why Container Adaptors Exist
 
 Normal containers like vector provide:
 
@@ -57,7 +57,7 @@ But sometimes we want controlled behavior.
 
 Examples:
 
-### Browser History
+#### Browser History
 
 ```text
 Open A
@@ -79,7 +79,7 @@ LIFO
 
 ---
 
-### Ticket Counter
+#### Ticket Counter
 
 ```text
 Person A
@@ -103,9 +103,9 @@ FIFO
 
 ---
 
-# Stack
+## Stack
 
-## Intuition
+### Intuition
 
 Stack follows:
 
@@ -125,7 +125,7 @@ Real-world examples:
 
 ---
 
-# Visual Understanding
+## Visual Understanding
 
 Push:
 
@@ -158,7 +158,7 @@ Removed:
 
 ---
 
-## Internal Working
+### Internal Working
 
 By default:
 
@@ -181,7 +181,7 @@ list
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 stack<int> st;
@@ -195,7 +195,7 @@ Header:
 
 ---
 
-# push()
+## push()
 
 Adds element.
 
@@ -221,7 +221,7 @@ Top
 
 ---
 
-# emplace()
+## emplace()
 
 Constructs directly.
 
@@ -231,7 +231,7 @@ st.emplace(40);
 
 ---
 
-# top()
+## top()
 
 Returns top element.
 
@@ -249,7 +249,7 @@ Element remains in stack.
 
 ---
 
-# pop()
+## pop()
 
 Removes top element.
 
@@ -259,7 +259,7 @@ st.pop();
 
 ---
 
-## Important Detail
+### Important Detail
 
 Wrong:
 
@@ -285,7 +285,7 @@ st.pop();
 
 ---
 
-# empty()
+## empty()
 
 Checks whether stack is empty.
 
@@ -298,7 +298,7 @@ if(st.empty())
 
 ---
 
-# swap()
+## swap()
 
 ```cpp
 st1.swap(st2);
@@ -306,7 +306,7 @@ st1.swap(st2);
 
 ---
 
-# size()
+## size()
 
 ```cpp
 cout<<st.size();
@@ -314,7 +314,7 @@ cout<<st.size();
 
 ---
 
-# Complete Example
+## Complete Example
 
 ```cpp
 #include<iostream>
@@ -350,7 +350,7 @@ Output:
 
 ---
 
-## Code Explanation
+### Code Explanation
 
 ```cpp
 st.push(10)
@@ -372,7 +372,7 @@ Removes top.
 
 ---
 
-# Can We Access First or Middle Elements?
+## Can We Access First or Middle Elements?
 
 No.
 
@@ -398,7 +398,7 @@ Only allowed:
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -410,9 +410,9 @@ Only allowed:
 
 ---
 
-# Queue
+## Queue
 
-## Intuition
+### Intuition
 
 Queue follows:
 
@@ -432,7 +432,7 @@ Real-world examples:
 
 ---
 
-# Visual Understanding
+## Visual Understanding
 
 Insertion:
 
@@ -462,7 +462,7 @@ Removed:
 
 ---
 
-# Internal Working
+## Internal Working
 
 Default implementation:
 
@@ -472,7 +472,7 @@ deque
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 queue<int> q;
@@ -486,7 +486,7 @@ Header:
 
 ---
 
-# push()
+## push()
 
 ```cpp
 q.push(10);
@@ -498,7 +498,7 @@ q.push(30);
 
 ---
 
-# emplace()
+## emplace()
 
 ```cpp
 q.emplace(40);
@@ -506,7 +506,7 @@ q.emplace(40);
 
 ---
 
-# front()
+## front()
 
 Returns first element.
 
@@ -522,7 +522,7 @@ Output:
 
 ---
 
-# back()
+## back()
 
 Returns last inserted element.
 
@@ -538,7 +538,7 @@ Output:
 
 ---
 
-# pop()
+## pop()
 
 Deletes front element.
 
@@ -548,7 +548,7 @@ q.pop();
 
 ---
 
-# Complete Example
+## Complete Example
 
 ```cpp
 #include<iostream>
@@ -584,7 +584,7 @@ Output:
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -596,7 +596,7 @@ Output:
 
 ---
 
-# Stack vs Queue
+## Stack vs Queue
 
 | Feature | Stack    | Queue          |
 | ------- | -------- | -------------- |
@@ -607,9 +607,9 @@ Output:
 
 ---
 
-# Priority Queue
+## Priority Queue
 
-## Intuition
+### Intuition
 
 Normal queue:
 
@@ -647,7 +647,7 @@ Patient C
 
 ---
 
-# Internal Working
+## Internal Working
 
 Internally uses:
 
@@ -669,7 +669,7 @@ vector
 
 ---
 
-# Max Heap
+## Max Heap
 
 Default priority queue:
 
@@ -677,7 +677,7 @@ Largest element remains at top.
 
 ---
 
-# Visual Understanding
+## Visual Understanding
 
 Insert:
 
@@ -707,7 +707,7 @@ Top:
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 priority_queue<int> pq;
@@ -721,9 +721,9 @@ Header:
 
 ---
 
-# Operations
+## Operations
 
-## push()
+### push()
 
 ```cpp
 pq.push(5);
@@ -737,7 +737,7 @@ pq.push(1);
 
 ---
 
-## emplace()
+### emplace()
 
 ```cpp
 pq.emplace(10);
@@ -745,7 +745,7 @@ pq.emplace(10);
 
 ---
 
-## top()
+### top()
 
 ```cpp
 cout<<pq.top();
@@ -759,7 +759,7 @@ Output:
 
 ---
 
-## pop()
+### pop()
 
 ```cpp
 pq.pop();
@@ -769,7 +769,7 @@ Removes highest priority.
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -807,7 +807,7 @@ Output:
 
 ---
 
-# Min Heap
+## Min Heap
 
 Normally:
 
@@ -829,7 +829,7 @@ greater<int>
 
 ---
 
-# Example
+## Example
 
 ```cpp
 priority_queue<
@@ -855,7 +855,7 @@ Output:
 
 ---
 
-# Internal Working of Heap Insertion
+## Internal Working of Heap Insertion
 
 Insert:
 
@@ -899,7 +899,7 @@ Heapify:
 
 ---
 
-# Complexity Analysis
+## Complexity Analysis
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -911,7 +911,7 @@ Heapify:
 
 ---
 
-# Why push() Takes O(logN)
+## Why push() Takes O(logN)
 
 Heap height:
 
@@ -923,9 +923,9 @@ Insertion may travel from leaf to root.
 
 ---
 
-# Real-world Applications
+## Real-world Applications
 
-## Stack
+### Stack
 
 Used in:
 
@@ -938,7 +938,7 @@ Used in:
 
 ---
 
-## Queue
+### Queue
 
 Used in:
 
@@ -950,7 +950,7 @@ Used in:
 
 ---
 
-## Priority Queue
+### Priority Queue
 
 Used in:
 
@@ -963,9 +963,9 @@ Used in:
 
 ---
 
-# Common Bugs
+## Common Bugs
 
-## Bug 1
+### Bug 1
 
 Wrong:
 
@@ -983,7 +983,7 @@ returns nothing.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Wrong:
 
@@ -1001,7 +1001,7 @@ Queue may become empty.
 
 ---
 
-## Fix
+### Fix
 
 ```cpp
 if(!q.empty())
@@ -1012,7 +1012,7 @@ if(!q.empty())
 
 ---
 
-## Bug 3
+### Bug 3
 
 Wrong:
 
@@ -1036,7 +1036,7 @@ greater<int>
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use stack for LIFO problems
 - Use queue for FIFO problems
@@ -1046,9 +1046,9 @@ greater<int>
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 Why stack does not allow indexing?
 
@@ -1058,7 +1058,7 @@ Stack intentionally restricts access to preserve LIFO behavior.
 
 ---
 
-## Q2
+### Q2
 
 What is internally used by priority queue?
 
@@ -1068,7 +1068,7 @@ Binary heap.
 
 ---
 
-## Q3
+### Q3
 
 Difference between queue and priority queue?
 
@@ -1088,7 +1088,7 @@ Priority-based
 
 ---
 
-## Q4
+### Q4
 
 Why push in priority queue is O(logN)?
 
@@ -1098,7 +1098,7 @@ Heapify operation may move element through tree height.
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 stack<int> st;
@@ -1141,7 +1141,7 @@ greater<int>
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Stack follows LIFO
 - Queue follows FIFO

@@ -4,7 +4,7 @@ sidebar_position: 14
 ---
 # Static vs Dynamic Memory
 
-## Dynamic Memory Allocation, Stack vs Heap, Runtime Memory, `new`, `delete`, and Dynamic Arrays
+### Dynamic Memory Allocation, Stack vs Heap, Runtime Memory, `new`, `delete`, and Dynamic Arrays
 
 > In previous chapters, we worked with variables whose size was known before the program started running:
 >
@@ -41,7 +41,7 @@ sidebar_position: 14
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -62,15 +62,15 @@ In this chapter we will cover:
 
 ---
 
-## Compile Time vs Runtime
+### Compile Time vs Runtime
 
 Before learning dynamic memory, we must understand when memory decisions happen.
 
 ---
 
-## What Is Compile Time?
+### What Is Compile Time?
 
-### Definition
+#### Definition
 
 Compile time is the phase where source code is translated into machine code.
 
@@ -104,9 +104,9 @@ Size is known beforehand.
 
 ---
 
-## What Is Runtime?
+### What Is Runtime?
 
-### Definition
+#### Definition
 
 Runtime begins when the compiled program starts executing.
 
@@ -141,7 +141,7 @@ Unknown until execution.
 
 ---
 
-## Key Difference
+### Key Difference
 
 | Compile Time           | Runtime               |
 | ---------------------- | --------------------- |
@@ -152,7 +152,7 @@ Unknown until execution.
 
 ---
 
-## Why Is This Important?
+### Why Is This Important?
 
 Consider:
 
@@ -170,7 +170,7 @@ Many beginners write this.
 
 ---
 
-## Is This Valid C++?
+### Is This Valid C++?
 
 According to:
 
@@ -203,7 +203,7 @@ Variable Length Arrays (VLA)
 
 ---
 
-## Important Interview Answer
+### Important Interview Answer
 
 ```text
 int arr[n]
@@ -219,7 +219,7 @@ even if some compilers accept it.
 
 ---
 
-## Why Dynamic Memory Exists
+### Why Dynamic Memory Exists
 
 Consider:
 
@@ -261,7 +261,7 @@ This is Dynamic Memory Allocation.
 
 ---
 
-## Program Memory Layout
+### Program Memory Layout
 
 A simplified process memory layout looks like:
 
@@ -288,7 +288,7 @@ Low Memory
 
 ---
 
-## Important Sections
+### Important Sections
 
 For this chapter:
 
@@ -301,9 +301,9 @@ are the most important.
 
 ---
 
-## Stack Memory
+### Stack Memory
 
-### Definition
+#### Definition
 
 Stack memory stores:
 
@@ -335,33 +335,33 @@ num = 10
 
 ---
 
-## Characteristics
+### Characteristics
 
-#### Fast Allocation
+##### Fast Allocation
 
 Very fast.
 
 ---
 
-#### Automatic Cleanup
+##### Automatic Cleanup
 
 Memory automatically released.
 
 ---
 
-#### Small Size
+##### Small Size
 
 Usually much smaller than heap.
 
 ---
 
-#### Managed By Compiler
+##### Managed By Compiler
 
 No manual cleanup required.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void fun()
@@ -380,9 +380,9 @@ x destroyed automatically.
 
 ---
 
-## Heap Memory
+### Heap Memory
 
-### Definition
+#### Definition
 
 Heap memory is used for memory allocated during runtime.
 
@@ -404,33 +404,33 @@ delete
 
 ---
 
-## Characteristics
+### Characteristics
 
-#### Runtime Allocation
+##### Runtime Allocation
 
 Size can be decided while program runs.
 
 ---
 
-#### Manual Cleanup
+##### Manual Cleanup
 
 Programmer responsible.
 
 ---
 
-#### Larger Memory Region
+##### Larger Memory Region
 
 Generally much larger than stack.
 
 ---
 
-#### Slightly Slower
+##### Slightly Slower
 
 Requires allocator management.
 
 ---
 
-## Stack vs Heap
+### Stack vs Heap
 
 | Feature    | Stack       | Heap          |
 | ---------- | ----------- | ------------- |
@@ -443,9 +443,9 @@ Requires allocator management.
 
 ---
 
-## Static Memory Allocation
+### Static Memory Allocation
 
-### Definition
+#### Definition
 
 Memory size known before execution.
 
@@ -471,9 +471,9 @@ Allocation occurs on stack.
 
 ---
 
-## Dynamic Memory Allocation
+### Dynamic Memory Allocation
 
-### Definition
+#### Definition
 
 Memory size decided while program executes.
 
@@ -499,15 +499,15 @@ Size determined at runtime.
 
 ---
 
-## The `new` Operator
+### The `new` Operator
 
-### Definition
+#### Definition
 
 `new` allocates memory on the heap and returns its address.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 new datatype;
@@ -515,7 +515,7 @@ new datatype;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 new int;
@@ -523,15 +523,15 @@ new int;
 
 ---
 
-## What Happens Internally?
+### What Happens Internally?
 
-### Step 1
+#### Step 1
 
 Heap memory allocated.
 
 ---
 
-### Step 2
+#### Step 2
 
 Address returned.
 
@@ -557,7 +557,7 @@ Returned:
 
 ---
 
-## Why Can't We Access It Directly?
+### Why Can't We Access It Directly?
 
 Heap objects have:
 
@@ -589,7 +589,7 @@ Memory leak occurs.
 
 ---
 
-## Correct Usage
+### Correct Usage
 
 ```cpp
 int* ptr = new int;
@@ -597,7 +597,7 @@ int* ptr = new int;
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 Stack:
 
@@ -639,7 +639,7 @@ Heap
 
 ---
 
-## Dynamic Integer Example
+### Dynamic Integer Example
 
 ```cpp
 int* ptr = new int;
@@ -661,7 +661,7 @@ Stack:
 
 ---
 
-## Dynamic Character Example
+### Dynamic Character Example
 
 ```cpp
 char* ch = new char;
@@ -689,7 +689,7 @@ Stack
 
 ---
 
-## Assigning Values
+### Assigning Values
 
 ```cpp
 int* ptr = new int;
@@ -721,13 +721,13 @@ cout << *ptr;
 
 ---
 
-## Dynamic Arrays
+### Dynamic Arrays
 
 One of the most important uses of heap memory.
 
 ---
 
-## Problem
+### Problem
 
 ```cpp
 int n;
@@ -739,7 +739,7 @@ Size unknown.
 
 ---
 
-## Solution
+### Solution
 
 ```cpp
 int* arr = new int[n];
@@ -747,7 +747,7 @@ int* arr = new int[n];
 
 ---
 
-## What Happens?
+### What Happens?
 
 Suppose:
 
@@ -769,7 +769,7 @@ Pointer stores first address.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 Stack
@@ -787,7 +787,7 @@ Heap
 
 ---
 
-## Input Example
+### Input Example
 
 ```cpp
 for(int i=0;i<n;i++)
@@ -802,7 +802,7 @@ Works exactly like normal arrays.
 
 ---
 
-## Dynamic Array Example
+### Dynamic Array Example
 
 ```cpp
 int n;
@@ -819,7 +819,7 @@ for(int i=0;i<n;i++)
 
 ---
 
-## Why Does This Work?
+### Why Does This Work?
 
 Because:
 
@@ -837,7 +837,7 @@ just like a normal array.
 
 ---
 
-## Dynamic Arrays vs Static Arrays
+### Dynamic Arrays vs Static Arrays
 
 | Feature                    | Static Array | Dynamic Array |
 | -------------------------- | ------------ | ------------- |
@@ -849,21 +849,21 @@ just like a normal array.
 
 ---
 
-## The `delete` Operator
+### The `delete` Operator
 
-### Definition
+#### Definition
 
 `delete` releases heap memory.
 
 ---
 
-## Why Needed?
+### Why Needed?
 
 Heap memory is NOT automatically cleaned.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int* ptr = new int;
@@ -885,7 +885,7 @@ Memory freed.
 
 ---
 
-## Visual
+### Visual
 
 Before:
 
@@ -909,7 +909,7 @@ Heap object destroyed.
 
 ---
 
-## Deleting Dynamic Arrays
+### Deleting Dynamic Arrays
 
 For arrays:
 
@@ -927,7 +927,7 @@ delete[] arr;
 
 ---
 
-## Why?
+### Why?
 
 Compiler must know:
 
@@ -939,7 +939,7 @@ must be released.
 
 ---
 
-## Wrong
+### Wrong
 
 ```cpp
 delete arr;
@@ -949,7 +949,7 @@ Undefined behavior.
 
 ---
 
-## Correct
+### Correct
 
 ```cpp
 delete[] arr;
@@ -957,7 +957,7 @@ delete[] arr;
 
 ---
 
-## Memory Leak Example
+### Memory Leak Example
 
 Consider:
 
@@ -970,7 +970,7 @@ while(true)
 
 ---
 
-## What Happens?
+### What Happens?
 
 Every iteration:
 
@@ -1004,7 +1004,7 @@ Memory Leak
 
 ---
 
-## Compare With Stack Example
+### Compare With Stack Example
 
 ```cpp
 while(true)
@@ -1027,7 +1027,7 @@ No memory leak.
 
 ---
 
-## Why?
+### Why?
 
 Stack cleanup is automatic.
 
@@ -1037,7 +1037,7 @@ Heap cleanup is manual.
 
 ---
 
-## Best Practice
+### Best Practice
 
 After deleting:
 
@@ -1055,11 +1055,11 @@ Avoid accidental use of freed memory.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 new int;
@@ -1071,7 +1071,7 @@ Memory leak.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 delete ptr;
@@ -1083,7 +1083,7 @@ Memory leak.
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 delete arr;
@@ -1095,7 +1095,7 @@ Wrong.
 
 ---
 
-## Bug 4
+### Bug 4
 
 Using:
 
@@ -1109,7 +1109,7 @@ Not standard.
 
 ---
 
-## Bug 5
+### Bug 5
 
 Assuming heap memory auto-cleans.
 
@@ -1117,45 +1117,45 @@ It does not.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is Dynamic Memory Allocation?
 
-#### Answer
+##### Answer
 
 Allocating memory during runtime instead of compile time.
 
 ---
 
-### Q2
+#### Q2
 
 Why do we use heap memory?
 
-#### Answer
+##### Answer
 
 When size or lifetime cannot be determined beforehand.
 
 ---
 
-### Q3
+#### Q3
 
 What does `new` return?
 
-#### Answer
+##### Answer
 
 Address of allocated memory.
 
 ---
 
-### Q4
+#### Q4
 
 Why can't heap objects have names?
 
-#### Answer
+##### Answer
 
 They are created during runtime.
 
@@ -1163,11 +1163,11 @@ Only addresses identify them.
 
 ---
 
-### Q5
+#### Q5
 
 Difference between stack and heap?
 
-#### Answer
+##### Answer
 
 Stack is automatic and fast.
 
@@ -1175,7 +1175,7 @@ Heap is manual and flexible.
 
 ---
 
-### Q6
+#### Q6
 
 Difference between:
 
@@ -1189,7 +1189,7 @@ and
 delete[] arr;
 ```
 
-#### Answer
+##### Answer
 
 One deletes a single object.
 
@@ -1197,17 +1197,17 @@ The other deletes an entire dynamic array.
 
 ---
 
-### Q7
+#### Q7
 
 What is a memory leak?
 
-#### Answer
+##### Answer
 
 Allocated memory that is never released.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int* ptr = new int;
@@ -1230,7 +1230,7 @@ delete[] arr;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Dynamic memory allocation occurs during runtime.
 - Stack memory is automatic and scope-based.

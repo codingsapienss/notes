@@ -22,9 +22,9 @@ sidebar_position: 1
 
 ---
 
-# Arrays
+## Arrays
 
-## Intuition
+### Intuition
 
 Suppose you have marks of 5 students:
 
@@ -79,13 +79,13 @@ arr[3] → 40
 
 ---
 
-## Definition
+### Definition
 
 Array is a collection of elements of the same data type stored in **contiguous memory locations**.
 
 ---
 
-## Why Arrays Exist
+### Why Arrays Exist
 
 Arrays solve:
 
@@ -96,7 +96,7 @@ Arrays solve:
 
 ---
 
-## Internal Working
+### Internal Working
 
 Array stores elements continuously in memory.
 
@@ -159,7 +159,7 @@ Value:
 
 ---
 
-## Why Array Access Is Fast
+### Why Array Access Is Fast
 
 Array indexing:
 
@@ -179,7 +179,7 @@ Time complexity:
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 datatype arrayName[size];
@@ -193,9 +193,9 @@ int arr[5];
 
 ---
 
-# Array Initialization
+## Array Initialization
 
-## Method 1
+### Method 1
 
 ```cpp
 int arr[5]={1,2,3,4,5};
@@ -203,7 +203,7 @@ int arr[5]={1,2,3,4,5};
 
 ---
 
-## Method 2
+### Method 2
 
 Compiler automatically calculates size.
 
@@ -213,7 +213,7 @@ int arr[]={1,2,3,4};
 
 ---
 
-## Method 3
+### Method 3
 
 Initialize all values with zero.
 
@@ -229,7 +229,7 @@ Output:
 
 ---
 
-## Method 4
+### Method 4
 
 Partial initialization
 
@@ -251,7 +251,7 @@ Remaining values become:
 
 ---
 
-# Basic Example
+## Basic Example
 
 ```cpp
 #include<iostream>
@@ -269,7 +269,7 @@ int main()
 }
 ```
 
-## Code Explanation
+### Code Explanation
 
 ```cpp
 int arr[5]
@@ -301,7 +301,7 @@ arr[4] → 50
 
 ---
 
-# Array Properties
+## Array Properties
 
 | Property | Value |
 |-----------|--------|
@@ -315,11 +315,11 @@ arr[4] → 50
 
 ---
 
-# Array Iteration Methods
+## Array Iteration Methods
 
 ---
 
-## Method 1 — Traditional Loop
+### Method 1 — Traditional Loop
 
 ```cpp
 #include<iostream>
@@ -344,7 +344,7 @@ Output:
 
 ---
 
-## Method 2 — Pointer Iteration
+### Method 2 — Pointer Iteration
 
 ```cpp
 #include<iostream>
@@ -377,7 +377,7 @@ dereferences pointer.
 
 ---
 
-## Method 3 — Range-based Loop
+### Method 3 — Range-based Loop
 
 ```cpp
 #include<iostream>
@@ -402,9 +402,9 @@ Output:
 
 ---
 
-# Pair
+## Pair
 
-## Intuition
+### Intuition
 
 Suppose:
 
@@ -429,7 +429,7 @@ Pair combines two related values.
 
 ---
 
-## Definition
+### Definition
 
 Pair stores two values together.
 
@@ -441,7 +441,7 @@ Header:
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 pair<int,int> p;
@@ -449,7 +449,7 @@ pair<int,int> p;
 
 ---
 
-## Assign Values
+### Assign Values
 
 ```cpp
 pair<int,int> p;
@@ -467,7 +467,7 @@ cout<<p.second;
 
 ---
 
-## Basic Example
+### Basic Example
 
 ```cpp
 #include<iostream>
@@ -494,7 +494,7 @@ Output:
 
 ---
 
-## Nested Pair
+### Nested Pair
 
 ```cpp
 pair<int,pair<int,int>> p;
@@ -512,7 +512,7 @@ Output:
 
 ---
 
-## Array of Pairs
+### Array of Pairs
 
 ```cpp
 pair<int,int> arr[]=
@@ -533,9 +533,9 @@ Output:
 
 ---
 
-# Vector
+## Vector
 
-## Intuition
+### Intuition
 
 Arrays have a limitation:
 
@@ -573,7 +573,7 @@ Vector solves this problem.
 
 ---
 
-# Important Correction
+## Important Correction
 
 Wrong:
 
@@ -591,7 +591,7 @@ Vector internally behaves like a resizable array.
 
 ---
 
-# Internal Working
+## Internal Working
 
 Initially:
 
@@ -708,7 +708,7 @@ Usually:
 
 ---
 
-# Size vs Capacity
+## Size vs Capacity
 
 | Size | Capacity |
 |--------|----------|
@@ -736,9 +736,9 @@ Possible output:
 
 ---
 
-# Vector Initialization
+## Vector Initialization
 
-## Empty Vector
+### Empty Vector
 
 ```cpp
 vector<int> v;
@@ -746,7 +746,7 @@ vector<int> v;
 
 ---
 
-## Fixed Size
+### Fixed Size
 
 ```cpp
 vector<int> v(5);
@@ -760,7 +760,7 @@ Output:
 
 ---
 
-## Fixed Size With Value
+### Fixed Size With Value
 
 ```cpp
 vector<int> v(5,100);
@@ -774,7 +774,7 @@ Output:
 
 ---
 
-## Copy Vector
+### Copy Vector
 
 ```cpp
 vector<int> v1={1,2,3};
@@ -784,7 +784,7 @@ vector<int> v2(v1);
 
 ---
 
-# Element Access
+## Element Access
 
 ```cpp
 cout<<v[0];
@@ -796,9 +796,9 @@ cout<<v.back();
 
 ---
 
-# Push Back vs Emplace Back
+## Push Back vs Emplace Back
 
-## push_back()
+### push_back()
 
 Creates object first.
 
@@ -810,7 +810,7 @@ v.push_back(10);
 
 ---
 
-## emplace_back()
+### emplace_back()
 
 Constructs object directly inside memory.
 
@@ -820,7 +820,7 @@ v.emplace_back(10);
 
 ---
 
-## Example
+### Example
 
 ```cpp
 vector<pair<int,int>> v;
@@ -832,7 +832,7 @@ v.emplace_back(3,4);
 
 ---
 
-## Should We Always Use emplace_back() ?
+### Should We Always Use emplace_back() ?
 
 No.
 
@@ -854,9 +854,9 @@ More useful for:
 
 ---
 
-# Iterators
+## Iterators
 
-## Definition
+### Definition
 
 Iterator behaves like a pointer.
 
@@ -864,7 +864,7 @@ Used for traversing containers.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 vector<int>::iterator it=v.begin();
@@ -878,7 +878,7 @@ auto it=v.begin();
 
 ---
 
-## begin()
+### begin()
 
 Points to first element.
 
@@ -890,7 +890,7 @@ begin()
 
 ---
 
-## end()
+### end()
 
 Does NOT point to last element.
 
@@ -904,7 +904,7 @@ Points after last element.
 
 ---
 
-## rbegin()
+### rbegin()
 
 ```text
 10 20 30 40
@@ -914,7 +914,7 @@ Points after last element.
 
 ---
 
-## rend()
+### rend()
 
 ```text
 10 20 30 40
@@ -924,7 +924,7 @@ rend()
 
 ---
 
-## Reverse Iterator Increment
+### Reverse Iterator Increment
 
 ```cpp
 auto it=v.rbegin();
@@ -940,7 +940,7 @@ Movement:
 
 ---
 
-# Iterator Loop
+## Iterator Loop
 
 ```cpp
 for(auto it=v.begin();it!=v.end();it++)
@@ -951,7 +951,7 @@ for(auto it=v.begin();it!=v.end();it++)
 
 ---
 
-# Reverse Loop
+## Reverse Loop
 
 ```cpp
 for(auto it=v.rbegin();it!=v.rend();it++)
@@ -962,9 +962,9 @@ for(auto it=v.rbegin();it!=v.rend();it++)
 
 ---
 
-# auto
+## auto
 
-## Why use auto
+### Why use auto
 
 Without auto:
 
@@ -984,7 +984,7 @@ Compiler detects type automatically.
 
 ---
 
-# const
+## const
 
 Prevents modification.
 
@@ -1021,7 +1021,7 @@ Benefits:
 
 ---
 
-# Range-based Loop
+## Range-based Loop
 
 Syntax:
 
@@ -1034,7 +1034,7 @@ for(auto x:v)
 
 ---
 
-## Hidden Behavior
+### Hidden Behavior
 
 Wrong:
 
@@ -1066,7 +1066,7 @@ for(auto &x:v)
 
 ---
 
-# Complexity Summary
+## Complexity Summary
 
 | Operation | Array | Vector |
 |------------|--------|---------|
@@ -1078,9 +1078,9 @@ for(auto &x:v)
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-## Mistake 1
+### Mistake 1
 
 ```cpp
 auto it=v.end();
@@ -1100,7 +1100,7 @@ Undefined behavior.
 
 ---
 
-## Mistake 2
+### Mistake 2
 
 ```cpp
 for(auto x:v)
@@ -1113,7 +1113,7 @@ Only copy modified.
 
 ---
 
-## Mistake 3
+### Mistake 3
 
 ```cpp
 int arr[5];
@@ -1125,9 +1125,9 @@ Contains garbage value.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 Why vector indexing is O(1)?
 
@@ -1137,7 +1137,7 @@ Because vector stores elements in contiguous memory.
 
 ---
 
-## Q2
+### Q2
 
 Difference between size and capacity?
 
@@ -1153,7 +1153,7 @@ Allocated memory
 
 ---
 
-## Q3
+### Q3
 
 Why insertion in middle of vector is expensive?
 
@@ -1169,7 +1169,7 @@ O(N)
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 vector<int> v;
@@ -1199,7 +1199,7 @@ p.second;
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Arrays use contiguous memory
 - Vector uses dynamic contiguous memory

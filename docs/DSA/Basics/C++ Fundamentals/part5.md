@@ -17,7 +17,7 @@ sidebar_position: 5
 
 ---
 
-## What is Control Flow?
+### What is Control Flow?
 
 Control Flow determines:
 
@@ -29,7 +29,7 @@ How many times they execute
 
 ---
 
-### Default Flow
+#### Default Flow
 
 ```cpp
 cout << "A";
@@ -37,7 +37,7 @@ cout << "B";
 cout << "C";
 ```
 
-#### Output
+##### Output
 
 ```text
 ABC
@@ -55,15 +55,15 @@ C
 
 ---
 
-## Conditional Statements
+### Conditional Statements
 
 Conditional statements allow execution of code only when a condition is true.
 
 ---
 
-## if Statement
+### if Statement
 
-### Syntax
+#### Syntax
 
 ```cpp
 if(condition)
@@ -74,7 +74,7 @@ if(condition)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 20;
@@ -85,7 +85,7 @@ if(age >= 18)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Eligible to Vote
@@ -93,7 +93,7 @@ Eligible to Vote
 
 ---
 
-### How It Works
+#### How It Works
 
 ```text
 Condition Checked
@@ -105,7 +105,7 @@ Condition Checked
 
 ---
 
-## if Statement (False Condition)
+### if Statement (False Condition)
 
 ```cpp
 int age = 15;
@@ -116,7 +116,7 @@ if(age >= 18)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 No Output
@@ -132,13 +132,13 @@ Condition = False
 
 ---
 
-## if-else Statement
+### if-else Statement
 
 Used when two possible paths exist.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 if(condition)
@@ -153,7 +153,7 @@ else
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 15;
@@ -168,7 +168,7 @@ else
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Not Eligible
@@ -176,7 +176,7 @@ Not Eligible
 
 ---
 
-### Flow Diagram
+#### Flow Diagram
 
 ```text
 Condition
@@ -190,13 +190,13 @@ True False
 
 ---
 
-## else if Ladder
+### else if Ladder
 
 Used when multiple conditions must be checked.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 if(condition1)
@@ -215,7 +215,7 @@ else
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int marks = 75;
@@ -238,7 +238,7 @@ else
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Grade C
@@ -246,7 +246,7 @@ Grade C
 
 ---
 
-### Important Point
+#### Important Point
 
 As soon as one condition becomes true:
 
@@ -256,13 +256,13 @@ Remaining conditions are skipped.
 
 ---
 
-## Nested if
+### Nested if
 
 An `if` statement inside another `if`.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 20;
@@ -277,7 +277,7 @@ if(age >= 18)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Can Drive
@@ -285,7 +285,7 @@ Can Drive
 
 ---
 
-### Flow
+#### Flow
 
 ```text
 Age Check
@@ -297,13 +297,13 @@ Result
 
 ---
 
-## switch Statement
+### switch Statement
 
 Used when comparing one variable against multiple fixed values.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 switch(variable)
@@ -320,7 +320,7 @@ switch(variable)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int day = 2;
@@ -344,7 +344,7 @@ switch(day)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Tuesday
@@ -352,7 +352,7 @@ Tuesday
 
 ---
 
-## Why break is Important?
+### Why break is Important?
 
 Without:
 
@@ -364,7 +364,7 @@ execution continues into the next case.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int day = 1;
@@ -382,7 +382,7 @@ switch(day)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 MondayTuesdayWednesday
@@ -398,13 +398,13 @@ Fallthrough
 
 ---
 
-## default Case
+### default Case
 
 Executed when no case matches.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int day = 10;
@@ -420,7 +420,7 @@ switch(day)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Invalid Day
@@ -428,7 +428,7 @@ Invalid Day
 
 ---
 
-## if-else vs switch
+### if-else vs switch
 
 | Feature              | if-else | switch                  |
 | -------------------- | ------- | ----------------------- |
@@ -439,13 +439,13 @@ Invalid Day
 
 ---
 
-## break Statement
+### break Statement
 
 Used to immediately exit a loop or switch.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i=1;i<=10;i++)
@@ -459,7 +459,7 @@ for(int i=1;i<=10;i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 3 4
@@ -467,13 +467,13 @@ for(int i=1;i<=10;i++)
 
 ---
 
-## continue Statement
+### continue Statement
 
 Used to skip the current iteration and move to the next one.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i=1;i<=5;i++)
@@ -487,7 +487,7 @@ for(int i=1;i<=5;i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 4 5
@@ -495,13 +495,13 @@ for(int i=1;i<=5;i++)
 
 ---
 
-## Ternary Operator
+### Ternary Operator
 
 Short form of if-else.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 condition ? value1 : value2;
@@ -509,7 +509,7 @@ condition ? value1 : value2;
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 20;
@@ -522,7 +522,7 @@ string result =
 cout << result;
 ```
 
-#### Output
+##### Output
 
 ```text
 Eligible
@@ -530,11 +530,11 @@ Eligible
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Using = Instead of ==
+#### Using = Instead of ==
 
 Wrong
 
@@ -552,7 +552,7 @@ if(age == 18)
 
 ---
 
-## Forgetting break in switch
+### Forgetting break in switch
 
 Wrong
 
@@ -565,7 +565,7 @@ May cause fallthrough.
 
 ---
 
-## Writing Multiple if Instead of else if
+### Writing Multiple if Instead of else if
 
 Wrong
 
@@ -596,11 +596,11 @@ else if(...)
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Difference between if and switch?
+#### Q1. Difference between if and switch?
 
-#### Answer
+##### Answer
 
 `if` can evaluate ranges and complex expressions.
 
@@ -608,39 +608,39 @@ else if(...)
 
 ---
 
-### Q2. What is fallthrough?
+#### Q2. What is fallthrough?
 
-#### Answer
+##### Answer
 
 Execution of subsequent switch cases when `break` is omitted.
 
 ---
 
-### Q3. What does break do?
+#### Q3. What does break do?
 
-#### Answer
+##### Answer
 
 Immediately exits the current loop or switch.
 
 ---
 
-### Q4. What does continue do?
+#### Q4. What does continue do?
 
-#### Answer
+##### Answer
 
 Skips the current iteration and moves to the next one.
 
 ---
 
-### Q5. When should switch be preferred?
+#### Q5. When should switch be preferred?
 
-#### Answer
+##### Answer
 
 When comparing one variable against multiple fixed values.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 if(condition)
@@ -693,7 +693,7 @@ condition ? A : B;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Control flow determines program execution paths.
 - `if` executes code when a condition is true.

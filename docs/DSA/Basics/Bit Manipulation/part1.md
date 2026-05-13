@@ -16,7 +16,7 @@ sidebar_position: 1
 
 ---
 
-# What is Binary?
+## What is Binary?
 
 Binary is a number system with only:
 
@@ -48,7 +48,7 @@ Digits:
 
 ---
 
-# Decimal Number System
+## Decimal Number System
 
 We use decimal numbers daily.
 
@@ -81,7 +81,7 @@ Expands as:
 
 ---
 
-# Binary Number System
+## Binary Number System
 
 Example:
 
@@ -111,7 +111,7 @@ Expands as:
 
 ---
 
-# Powers of 2
+## Powers of 2
 
 Memorizing powers of 2 is extremely important.
 
@@ -131,7 +131,7 @@ Memorizing powers of 2 is extremely important.
 
 ---
 
-# Binary Position Values
+## Binary Position Values
 
 Consider:
 
@@ -158,17 +158,17 @@ Weights:
 
 ---
 
-# Binary to Decimal Conversion
+## Binary to Decimal Conversion
 
 ---
 
-## Method
+### Method
 
 Multiply every bit with its corresponding power of 2.
 
 ---
 
-## Example 1
+### Example 1
 
 Convert:
 
@@ -180,7 +180,7 @@ to decimal.
 
 ---
 
-### Step 1
+#### Step 1
 
 Write powers of 2.
 
@@ -192,7 +192,7 @@ Power    3 2 1 0
 
 ---
 
-### Step 2
+#### Step 2
 
 Multiply.
 
@@ -209,7 +209,7 @@ Multiply.
 
 ---
 
-### Step 3
+#### Step 3
 
 Calculate.
 
@@ -225,7 +225,7 @@ Calculate.
 
 ---
 
-# Example 2
+## Example 2
 
 Convert:
 
@@ -266,7 +266,7 @@ Convert:
 
 ---
 
-# Binary to Decimal Code
+## Binary to Decimal Code
 
 ```cpp
 #include <iostream>
@@ -298,7 +298,7 @@ int main()
 }
 ```
 
-### Output
+#### Output
 
 ```text
 11
@@ -306,9 +306,9 @@ int main()
 
 ---
 
-# Complexity
+## Complexity
 
-### Time Complexity
+#### Time Complexity
 
 ```text
 O(N)
@@ -322,7 +322,7 @@ N = Number of Binary Digits
 
 ---
 
-### Space Complexity
+#### Space Complexity
 
 ```text
 O(1)
@@ -330,11 +330,11 @@ O(1)
 
 ---
 
-# Decimal to Binary Conversion
+## Decimal to Binary Conversion
 
 ---
 
-## Method
+### Method
 
 Repeatedly divide by:
 
@@ -346,7 +346,7 @@ and store remainders.
 
 ---
 
-# Example 1
+## Example 1
 
 Convert:
 
@@ -358,7 +358,7 @@ to binary.
 
 ---
 
-### Step 1
+#### Step 1
 
 ```text
 13 / 2 = 6 remainder 1
@@ -366,7 +366,7 @@ to binary.
 
 ---
 
-### Step 2
+#### Step 2
 
 ```text
 6 / 2 = 3 remainder 0
@@ -374,7 +374,7 @@ to binary.
 
 ---
 
-### Step 3
+#### Step 3
 
 ```text
 3 / 2 = 1 remainder 1
@@ -382,7 +382,7 @@ to binary.
 
 ---
 
-### Step 4
+#### Step 4
 
 ```text
 1 / 2 = 0 remainder 1
@@ -404,7 +404,7 @@ Read from bottom to top:
 
 ---
 
-# Visual Representation
+## Visual Representation
 
 ```text
 13
@@ -421,7 +421,7 @@ Bottom to Top
 
 ---
 
-# Example 2
+## Example 2
 
 Convert:
 
@@ -447,7 +447,7 @@ Read bottom to top:
 
 ---
 
-# Decimal to Binary Code
+## Decimal to Binary Code
 
 ```cpp
 #include <iostream>
@@ -478,7 +478,7 @@ int main()
 }
 ```
 
-### Output
+#### Output
 
 ```text
 1101
@@ -486,9 +486,9 @@ int main()
 
 ---
 
-# Complexity
+## Complexity
 
-### Time Complexity
+#### Time Complexity
 
 ```text
 O(log₂ N)
@@ -500,7 +500,7 @@ Every iteration divides the number by 2.
 
 ---
 
-### Space Complexity
+#### Space Complexity
 
 ```text
 O(log₂ N)
@@ -510,7 +510,7 @@ if storing all binary digits.
 
 ---
 
-# Understanding Bits
+## Understanding Bits
 
 Each binary digit is called a:
 
@@ -532,7 +532,7 @@ contains:
 
 ---
 
-# Most Significant Bit (MSB)
+## Most Significant Bit (MSB)
 
 Leftmost bit.
 
@@ -544,7 +544,7 @@ MSB
 
 ---
 
-# Least Significant Bit (LSB)
+## Least Significant Bit (LSB)
 
 Rightmost bit.
 
@@ -556,13 +556,13 @@ Rightmost bit.
 
 ---
 
-# Binary Addition
+## Binary Addition
 
 Exactly like decimal addition.
 
 ---
 
-# Rule 1
+## Rule 1
 
 ```text
 0 + 0 = 0
@@ -570,7 +570,7 @@ Exactly like decimal addition.
 
 ---
 
-# Rule 2
+## Rule 2
 
 ```text
 0 + 1 = 1
@@ -578,7 +578,7 @@ Exactly like decimal addition.
 
 ---
 
-# Rule 3
+## Rule 3
 
 ```text
 1 + 0 = 1
@@ -586,7 +586,7 @@ Exactly like decimal addition.
 
 ---
 
-# Rule 4
+## Rule 4
 
 ```text
 1 + 1 = 10
@@ -602,7 +602,7 @@ Carry = 1
 
 ---
 
-# Why?
+## Why?
 
 Because:
 
@@ -618,7 +618,7 @@ and:
 
 ---
 
-# Binary Addition Example
+## Binary Addition Example
 
 Add:
 
@@ -655,7 +655,7 @@ Result:
 
 ---
 
-# Verify
+## Verify
 
 ```text
 1011 = 11
@@ -671,7 +671,7 @@ Correct.
 
 ---
 
-# Why Binary Matters?
+## Why Binary Matters?
 
 Every future topic depends on it.
 
@@ -701,11 +701,11 @@ All operate directly on binary representation.
 
 ---
 
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 ---
 
-## Reading Remainders Top to Bottom
+### Reading Remainders Top to Bottom
 
 Wrong:
 
@@ -736,7 +736,7 @@ Bottom → Top
 
 ---
 
-## Forgetting Powers of 2
+### Forgetting Powers of 2
 
 Wrong:
 
@@ -757,7 +757,7 @@ Correct:
 
 ---
 
-## Confusing Decimal and Binary Digits
+### Confusing Decimal and Binary Digits
 
 ```text
 1011
@@ -777,11 +777,11 @@ Binary Number
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. What is binary?
+### Q1. What is binary?
 
-### Answer
+#### Answer
 
 A base-2 number system using only:
 
@@ -791,9 +791,9 @@ A base-2 number system using only:
 
 ---
 
-## Q2. Why do computers use binary?
+### Q2. Why do computers use binary?
 
-### Answer
+#### Answer
 
 Electronic circuits naturally represent:
 
@@ -805,9 +805,9 @@ OFF → 0
 
 ---
 
-## Q3. Time Complexity of Decimal → Binary Conversion?
+### Q3. Time Complexity of Decimal → Binary Conversion?
 
-### Answer
+#### Answer
 
 ```text
 O(log₂N)
@@ -815,9 +815,9 @@ O(log₂N)
 
 ---
 
-## Q4. Time Complexity of Binary → Decimal Conversion?
+### Q4. Time Complexity of Binary → Decimal Conversion?
 
-### Answer
+#### Answer
 
 ```text
 O(N)
@@ -831,9 +831,9 @@ N = Number of Bits
 
 ---
 
-## Q5. What are MSB and LSB?
+### Q5. What are MSB and LSB?
 
-### Answer
+#### Answer
 
 ```text
 MSB → Leftmost Bit
@@ -843,7 +843,7 @@ LSB → Rightmost Bit
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```text
 Decimal → Binary
@@ -877,7 +877,7 @@ LSB → Rightmost Bit
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Binary uses only `0` and `1`.
 - Computers store and process data using binary.

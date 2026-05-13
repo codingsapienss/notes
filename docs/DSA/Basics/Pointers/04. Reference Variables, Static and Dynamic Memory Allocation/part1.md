@@ -32,7 +32,7 @@ sidebar_position: 13
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -51,7 +51,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Do References Exist?
+### Why Do References Exist?
 
 Suppose we have:
 
@@ -87,15 +87,15 @@ That is exactly what references provide.
 
 ---
 
-## What Is A Reference?
+### What Is A Reference?
 
-### Definition
+#### Definition
 
 A reference is an alias (another name) for an existing variable.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 int value = 10;
@@ -105,7 +105,7 @@ int& ref = value;
 
 ---
 
-## Read As
+### Read As
 
 ```text
 ref is a reference to value
@@ -113,7 +113,7 @@ ref is a reference to value
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 value
@@ -129,7 +129,7 @@ Same Memory Location
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
          ┌──────┐
@@ -142,7 +142,7 @@ ref ────────┘
 
 ---
 
-## Important Observation
+### Important Observation
 
 No new integer is created.
 
@@ -174,7 +174,7 @@ for the same memory.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 5;
@@ -194,7 +194,7 @@ Output:
 
 ---
 
-## Modifying Through Reference
+### Modifying Through Reference
 
 ```cpp
 int value = 5;
@@ -218,7 +218,7 @@ cout << value;
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -230,7 +230,7 @@ refer to the same memory.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 Before:
 
@@ -258,7 +258,7 @@ value/ref
 
 ---
 
-## Proof Using Addresses
+### Proof Using Addresses
 
 Example:
 
@@ -280,7 +280,7 @@ Possible Output:
 
 ---
 
-## Important Observation
+### Important Observation
 
 Both addresses are identical.
 
@@ -294,11 +294,11 @@ They are the same object.
 
 ---
 
-## Reference vs Normal Variable
+### Reference vs Normal Variable
 
 ---
 
-### Normal Variable
+#### Normal Variable
 
 ```cpp
 int a = 10;
@@ -320,7 +320,7 @@ Two separate memory locations.
 
 ---
 
-## Diagram
+### Diagram
 
 ```text
 a ──► 10
@@ -330,7 +330,7 @@ b ──► 10
 
 ---
 
-## Reference Variable
+### Reference Variable
 
 ```cpp
 int a = 10;
@@ -352,7 +352,7 @@ a,b
 
 ---
 
-## Diagram
+### Diagram
 
 ```text
        ┌─────┐
@@ -365,11 +365,11 @@ b ────────┘
 
 ---
 
-## Important Rules of References
+### Important Rules of References
 
 ---
 
-### Rule 1
+#### Rule 1
 
 Reference must be initialized.
 
@@ -395,7 +395,7 @@ int& ref = value;
 
 ---
 
-### Rule 2
+#### Rule 2
 
 Reference cannot be reseated.
 
@@ -449,13 +449,13 @@ a
 
 ---
 
-## Reference vs Pointer
+### Reference vs Pointer
 
 This is one of the most common interview questions.
 
 ---
 
-## Reference
+### Reference
 
 ```cpp
 int value = 10;
@@ -465,7 +465,7 @@ int& ref = value;
 
 ---
 
-## Pointer
+### Pointer
 
 ```cpp
 int value = 10;
@@ -475,7 +475,7 @@ int* ptr = &value;
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Feature               | Reference | Pointer  |
 | --------------------- | --------- | -------- |
@@ -488,7 +488,7 @@ int* ptr = &value;
 
 ---
 
-## Example
+### Example
 
 Reference:
 
@@ -510,15 +510,15 @@ References are generally safer.
 
 ---
 
-## Pass By Value
+### Pass By Value
 
-### Definition
+#### Definition
 
 Function receives a copy of the variable.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void updateByValue(int n)
@@ -547,7 +547,7 @@ Output:
 
 ---
 
-## Why?
+### Why?
 
 Memory Before Call
 
@@ -601,15 +601,15 @@ value
 
 ---
 
-## Pass By Reference
+### Pass By Reference
 
-### Definition
+#### Definition
 
 Function receives an alias to the original variable.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void updateByRef(int& n)
@@ -638,7 +638,7 @@ Output:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 value
@@ -667,11 +667,11 @@ updateByRef(value)
 
 ---
 
-## Why Use Pass By Reference?
+### Why Use Pass By Reference?
 
 ---
 
-### Avoid Copies
+#### Avoid Copies
 
 Large objects:
 
@@ -696,7 +696,7 @@ passes only a reference.
 
 ---
 
-## Example With String
+### Example With String
 
 Pass By Value
 
@@ -722,7 +722,7 @@ No copy.
 
 ---
 
-## Pass By Const Reference
+### Pass By Const Reference
 
 Most common in production code.
 
@@ -747,7 +747,7 @@ Cannot Modify
 
 ---
 
-## Return By Value
+### Return By Value
 
 Example
 
@@ -766,9 +766,9 @@ Returned value is copied.
 
 ---
 
-## Return By Reference
+### Return By Reference
 
-### Definition
+#### Definition
 
 Function returns a reference.
 
@@ -801,7 +801,7 @@ Output:
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 getReference(value)
@@ -826,7 +826,7 @@ Returned Reference
 
 ---
 
-## Valid Return By Reference Example
+### Valid Return By Reference Example
 
 ```cpp
 int& getReference(int& x)
@@ -848,7 +848,7 @@ that still exists.
 
 ---
 
-## Dangerous Return By Reference
+### Dangerous Return By Reference
 
 Example
 
@@ -873,7 +873,7 @@ WRONG
 
 ---
 
-## Why?
+### Why?
 
 Memory Layout
 
@@ -903,7 +903,7 @@ Still points to destroyed memory
 
 ---
 
-## Visual
+### Visual
 
 Before Return
 
@@ -930,7 +930,7 @@ Destroyed Memory
 
 ---
 
-## Result
+### Result
 
 ```text
 Dangling Reference
@@ -938,7 +938,7 @@ Dangling Reference
 
 ---
 
-## Undefined Behavior
+### Undefined Behavior
 
 Possible outcomes:
 
@@ -953,7 +953,7 @@ All are possible.
 
 ---
 
-## Another Dangerous Example
+### Another Dangerous Example
 
 ```cpp
 int& update(int n)
@@ -982,7 +982,7 @@ Local variable dies after function ends.
 
 ---
 
-## Rule For Return By Reference
+### Rule For Return By Reference
 
 Safe:
 
@@ -1008,7 +1008,7 @@ return local variable;
 
 ---
 
-## Static Variable Example
+### Static Variable Example
 
 ```cpp
 int& counter()
@@ -1032,11 +1032,11 @@ for entire program lifetime.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int& ref;
@@ -1046,7 +1046,7 @@ Reference not initialized.
 
 ---
 
-## Bug 2
+### Bug 2
 
 Returning local reference.
 
@@ -1056,7 +1056,7 @@ return localVar;
 
 ---
 
-## Bug 3
+### Bug 3
 
 Confusing reference with copy.
 
@@ -1068,7 +1068,7 @@ does not create new integer.
 
 ---
 
-## Bug 4
+### Bug 4
 
 Thinking references can be reassigned.
 
@@ -1076,25 +1076,25 @@ They cannot.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is a reference variable?
 
-#### Answer
+##### Answer
 
 An alias for an existing variable.
 
 ---
 
-### Q2
+#### Q2
 
 Difference between pointer and reference?
 
-#### Answer
+##### Answer
 
 References cannot be null or reseated.
 
@@ -1102,57 +1102,57 @@ Pointers can.
 
 ---
 
-### Q3
+#### Q3
 
 Why use pass by reference?
 
-#### Answer
+##### Answer
 
 Avoid copies and modify original data.
 
 ---
 
-### Q4
+#### Q4
 
 Why use const reference?
 
-#### Answer
+##### Answer
 
 Avoid copying while preventing modification.
 
 ---
 
-### Q5
+#### Q5
 
 Can references be reseated?
 
-#### Answer
+##### Answer
 
 No.
 
 ---
 
-### Q6
+#### Q6
 
 Why is returning a local reference dangerous?
 
-#### Answer
+##### Answer
 
 Because local variables are destroyed after function exit.
 
 ---
 
-### Q7
+#### Q7
 
 What is a dangling reference?
 
-#### Answer
+##### Answer
 
 A reference pointing to memory that no longer exists.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int value = 10;
@@ -1174,7 +1174,7 @@ int& dangerous()
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - References are aliases for existing variables.
 - References do not create new objects.

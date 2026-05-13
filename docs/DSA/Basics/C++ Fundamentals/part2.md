@@ -15,7 +15,7 @@ sidebar_position: 2
 
 ---
 
-## What is a Data Type?
+### What is a Data Type?
 
 A Data Type defines:
 
@@ -28,7 +28,7 @@ A Data Type defines:
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 25;
@@ -48,7 +48,7 @@ double → Decimal numbers
 
 ---
 
-## Why Do We Need Data Types?
+### Why Do We Need Data Types?
 
 Imagine if C++ had no data types.
 
@@ -69,7 +69,7 @@ Data types solve this problem.
 
 ---
 
-## Classification of Data Types
+### Classification of Data Types
 
 ```text
 Data Types
@@ -102,21 +102,21 @@ Fundamental Data Types
 
 ---
 
-## Integer Types
+### Integer Types
 
 Used for storing whole numbers.
 
 ---
 
-### int
+#### int
 
-#### Syntax
+##### Syntax
 
 ```cpp
 int age = 25;
 ```
 
-#### Output
+##### Output
 
 ```cpp
 cout << age;
@@ -128,7 +128,7 @@ cout << age;
 
 ---
 
-#### Memory
+##### Memory
 
 Typically:
 
@@ -138,7 +138,7 @@ Typically:
 
 ---
 
-#### Range
+##### Range
 
 ```text
 -2,147,483,648
@@ -150,7 +150,7 @@ to
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 int population = 1500000;
@@ -158,7 +158,7 @@ int population = 1500000;
 cout << population;
 ```
 
-#### Output
+##### Output
 
 ```text
 1500000
@@ -166,15 +166,15 @@ cout << population;
 
 ---
 
-## Character Type
+### Character Type
 
-### char
+#### char
 
 Stores a single character.
 
 ---
 
-#### Syntax
+##### Syntax
 
 ```cpp
 char grade = 'A';
@@ -182,7 +182,7 @@ char grade = 'A';
 
 ---
 
-#### Output
+##### Output
 
 ```cpp
 cout << grade;
@@ -194,7 +194,7 @@ A
 
 ---
 
-#### Memory
+##### Memory
 
 ```text
 1 Byte
@@ -202,7 +202,7 @@ A
 
 ---
 
-#### Important
+##### Important
 
 Character must use:
 
@@ -232,9 +232,9 @@ Compilation Error.
 
 ---
 
-## Boolean Type
+### Boolean Type
 
-### bool
+#### bool
 
 Stores:
 
@@ -245,7 +245,7 @@ false
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 bool isLoggedIn = true;
@@ -253,7 +253,7 @@ bool isLoggedIn = true;
 
 ---
 
-#### Output
+##### Output
 
 ```cpp
 cout << isLoggedIn;
@@ -265,7 +265,7 @@ cout << isLoggedIn;
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 cout << false;
@@ -279,7 +279,7 @@ Output:
 
 ---
 
-#### Memory
+##### Memory
 
 Typically:
 
@@ -289,15 +289,15 @@ Typically:
 
 ---
 
-## Floating Point Types
+### Floating Point Types
 
 Used for decimal numbers.
 
 ---
 
-## float
+### float
 
-#### Syntax
+##### Syntax
 
 ```cpp
 float price = 12.5f;
@@ -305,7 +305,7 @@ float price = 12.5f;
 
 ---
 
-#### Memory
+##### Memory
 
 ```text
 4 Bytes
@@ -313,7 +313,7 @@ float price = 12.5f;
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 float temperature = 36.5f;
@@ -321,7 +321,7 @@ float temperature = 36.5f;
 cout << temperature;
 ```
 
-#### Output
+##### Output
 
 ```text
 36.5
@@ -329,13 +329,13 @@ cout << temperature;
 
 ---
 
-## double
+### double
 
 Higher precision than float.
 
 ---
 
-#### Syntax
+##### Syntax
 
 ```cpp
 double pi = 3.1415926535;
@@ -343,7 +343,7 @@ double pi = 3.1415926535;
 
 ---
 
-#### Memory
+##### Memory
 
 ```text
 8 Bytes
@@ -351,7 +351,7 @@ double pi = 3.1415926535;
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 double salary = 50000.75;
@@ -359,7 +359,7 @@ double salary = 50000.75;
 cout << salary;
 ```
 
-#### Output
+##### Output
 
 ```text
 50000.8
@@ -369,7 +369,7 @@ cout << salary;
 
 ---
 
-## float vs double
+### float vs double
 
 | Feature     | float           | double          |
 | ----------- | --------------- | --------------- |
@@ -380,7 +380,7 @@ cout << salary;
 
 ---
 
-## Void Type
+### Void Type
 
 Represents:
 
@@ -390,7 +390,7 @@ No Data
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 void print()
@@ -409,7 +409,7 @@ Function returns nothing.
 
 ---
 
-## Size of Data Types
+### Size of Data Types
 
 Use:
 
@@ -419,13 +419,13 @@ sizeof()
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 cout << sizeof(int);
 ```
 
-#### Output
+##### Output
 
 ```text
 4
@@ -433,13 +433,13 @@ cout << sizeof(int);
 
 ---
 
-#### Example
+##### Example
 
 ```cpp
 cout << sizeof(double);
 ```
 
-#### Output
+##### Output
 
 ```text
 8
@@ -447,7 +447,7 @@ cout << sizeof(double);
 
 ---
 
-## Program to Check Sizes
+### Program to Check Sizes
 
 ```cpp
 #include <iostream>
@@ -465,7 +465,7 @@ int main()
 }
 ```
 
-#### Possible Output
+##### Possible Output
 
 ```text
 char   : 1
@@ -477,7 +477,7 @@ double : 8
 
 ---
 
-## Signed and Unsigned
+### Signed and Unsigned
 
 By default:
 
@@ -493,7 +493,7 @@ signed int
 
 ---
 
-## Signed Integer
+### Signed Integer
 
 Stores:
 
@@ -514,7 +514,7 @@ signed int num = -50;
 
 ---
 
-## Unsigned Integer
+### Unsigned Integer
 
 Stores only:
 
@@ -542,7 +542,7 @@ Unexpected result due to conversion.
 
 ---
 
-## Why Use Unsigned?
+### Why Use Unsigned?
 
 Because:
 
@@ -554,11 +554,11 @@ Range becomes larger.
 
 ---
 
-## Type Modifiers
+### Type Modifiers
 
 ---
 
-## short
+### short
 
 Smaller integer.
 
@@ -568,7 +568,7 @@ short num = 100;
 
 ---
 
-## long
+### long
 
 Larger integer.
 
@@ -578,7 +578,7 @@ long num = 1000000;
 
 ---
 
-## long long
+### long long
 
 Very large integers.
 
@@ -588,7 +588,7 @@ long long population = 8000000000;
 
 ---
 
-## Integer Type Comparison
+### Integer Type Comparison
 
 | Type      | Typical Size |
 | --------- | ------------ |
@@ -599,13 +599,13 @@ long long population = 8000000000;
 
 ---
 
-## Type Conversion
+### Type Conversion
 
 Conversion of one type into another.
 
 ---
 
-## Implicit Conversion
+### Implicit Conversion
 
 Done automatically by compiler.
 
@@ -629,7 +629,7 @@ Result
 
 ---
 
-## Explicit Conversion
+### Explicit Conversion
 
 Done manually.
 
@@ -663,7 +663,7 @@ int num = static_cast<int>(pi);
 
 ---
 
-## ASCII and char
+### ASCII and char
 
 Characters are stored as numbers internally.
 
@@ -677,7 +677,7 @@ char ch = 'A';
 cout << (int)ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 65
@@ -693,7 +693,7 @@ char ch = 'a';
 cout << (int)ch;
 ```
 
-#### Output
+##### Output
 
 ```text
 97
@@ -701,7 +701,7 @@ cout << (int)ch;
 
 ---
 
-## Character Arithmetic
+### Character Arithmetic
 
 ```cpp
 char ch = 'A';
@@ -709,7 +709,7 @@ char ch = 'A';
 cout << char(ch + 1);
 ```
 
-#### Output
+##### Output
 
 ```text
 B
@@ -717,7 +717,7 @@ B
 
 ---
 
-## Overflow
+### Overflow
 
 Occurs when value exceeds storage capacity.
 
@@ -749,11 +749,11 @@ Value exceeded allowed range.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
 ---
 
-### Using Double Quotes for char
+#### Using Double Quotes for char
 
 Wrong
 
@@ -771,7 +771,7 @@ char ch = 'A';
 
 ---
 
-### Storing Large Numbers in int
+#### Storing Large Numbers in int
 
 Wrong
 
@@ -789,7 +789,7 @@ long long population = 8000000000;
 
 ---
 
-### Comparing float Values Directly
+#### Comparing float Values Directly
 
 Avoid:
 
@@ -803,35 +803,35 @@ Precision issues may occur.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is a data type?
+#### Q1. What is a data type?
 
-#### Answer
+##### Answer
 
 A data type defines the type of data, memory size, range, and allowed operations.
 
 ---
 
-### Q2. Difference between float and double?
+#### Q2. Difference between float and double?
 
-#### Answer
+##### Answer
 
 Double uses more memory and provides higher precision.
 
 ---
 
-### Q3. What does sizeof() do?
+#### Q3. What does sizeof() do?
 
-#### Answer
+##### Answer
 
 Returns the memory occupied by a data type or variable in bytes.
 
 ---
 
-### Q4. Difference between signed and unsigned?
+#### Q4. Difference between signed and unsigned?
 
-#### Answer
+##### Answer
 
 Signed stores positive and negative values.
 
@@ -839,15 +839,15 @@ Unsigned stores only positive values.
 
 ---
 
-### Q5. What is ASCII?
+#### Q5. What is ASCII?
 
-#### Answer
+##### Answer
 
 A character encoding standard where each character is represented by a numeric value.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int age = 25;
@@ -877,7 +877,7 @@ unsigned int b;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Data types tell the compiler what kind of data is being stored.
 - Every data type occupies memory.

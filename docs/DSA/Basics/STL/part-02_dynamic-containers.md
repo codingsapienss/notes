@@ -27,7 +27,7 @@ sidebar_label: 'Dynamic Containers'
 
 ---
 
-# Deep Dive Into Vector
+## Deep Dive Into Vector
 
 In Part 1 we learned:
 
@@ -39,9 +39,9 @@ Now we will study real operations and understand what happens internally.
 
 ---
 
-# Vector Insert Operation
+## Vector Insert Operation
 
-## Intuition
+### Intuition
 
 Suppose:
 
@@ -59,9 +59,9 @@ Insertion in vector is expensive because vector stores elements continuously.
 
 ---
 
-## Syntax
+### Syntax
 
-### Insert single element
+#### Insert single element
 
 ```cpp
 v.insert(position,value);
@@ -69,7 +69,7 @@ v.insert(position,value);
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 #include<iostream>
@@ -99,7 +99,7 @@ Output:
 
 ---
 
-## Internal Working
+### Internal Working
 
 Initial memory:
 
@@ -141,7 +141,7 @@ Insert 100
 
 ---
 
-## Time Complexity
+### Time Complexity
 
 | Position  | Complexity     |
 | --------- | -------------- |
@@ -151,7 +151,7 @@ Insert 100
 
 ---
 
-# Insert Multiple Same Values
+## Insert Multiple Same Values
 
 Syntax:
 
@@ -175,7 +175,7 @@ Output:
 
 ---
 
-# Insert Another Vector
+## Insert Another Vector
 
 Syntax:
 
@@ -201,7 +201,7 @@ Output:
 
 ---
 
-# Wrong Approach
+## Wrong Approach
 
 ```cpp
 vector<int> v={1,2,3};
@@ -217,7 +217,7 @@ Undefined behavior.
 
 ---
 
-# Correct Approach
+## Correct Approach
 
 ```cpp
 if(index<v.size())
@@ -228,9 +228,9 @@ if(index<v.size())
 
 ---
 
-# Vector Erase
+## Vector Erase
 
-## Syntax
+### Syntax
 
 Remove one element:
 
@@ -246,7 +246,7 @@ v.erase(start,end);
 
 ---
 
-## Remove Single Element
+### Remove Single Element
 
 ```cpp
 vector<int> v={10,20,30,40};
@@ -262,7 +262,7 @@ Output:
 
 ---
 
-## Internal Working
+### Internal Working
 
 Before:
 
@@ -292,7 +292,7 @@ Result:
 
 ---
 
-## Remove Multiple Elements
+### Remove Multiple Elements
 
 ```cpp
 vector<int> v={1,2,3,4,5};
@@ -308,7 +308,7 @@ Output:
 
 ---
 
-## Important Rule
+### Important Rule
 
 Range format:
 
@@ -320,7 +320,7 @@ End excluded.
 
 ---
 
-# pop_back()
+## pop_back()
 
 Removes last element.
 
@@ -352,7 +352,7 @@ O(1)
 
 ---
 
-# size()
+## size()
 
 Returns number of elements.
 
@@ -362,7 +362,7 @@ cout<<v.size();
 
 ---
 
-# clear()
+## clear()
 
 Deletes all elements.
 
@@ -390,7 +390,7 @@ Output:
 
 ---
 
-## Hidden Detail
+### Hidden Detail
 
 `clear()` removes elements.
 
@@ -419,7 +419,7 @@ Memory may still exist.
 
 ---
 
-# empty()
+## empty()
 
 Checks if vector contains elements.
 
@@ -449,7 +449,7 @@ if(v.empty())
 
 ---
 
-# swap()
+## swap()
 
 Swaps content.
 
@@ -491,9 +491,9 @@ Because internal pointers swap.
 
 ---
 
-# Nested Vectors
+## Nested Vectors
 
-## Definition
+### Definition
 
 Vector inside vector.
 
@@ -505,7 +505,7 @@ vector<vector<int>> matrix;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -544,7 +544,7 @@ Output:
 
 ---
 
-## Memory Representation
+### Memory Representation
 
 ```text
 matrix
@@ -568,9 +568,9 @@ Memory is not necessarily one continuous block.
 
 ---
 
-# Iterator Invalidation
+## Iterator Invalidation
 
-## Definition
+### Definition
 
 Sometimes vector reallocation changes memory address.
 
@@ -624,9 +624,9 @@ Invalid.
 
 ---
 
-# List
+## List
 
-## Definition
+### Definition
 
 List internally uses:
 
@@ -636,7 +636,7 @@ Doubly Linked List
 
 ---
 
-# Internal Working
+## Internal Working
 
 Node structure:
 
@@ -652,7 +652,7 @@ NULL <- [10] <-> [20] <-> [30] -> NULL
 
 ---
 
-## Why List Exists
+### Why List Exists
 
 Problem in vector:
 
@@ -666,7 +666,7 @@ List solves this.
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 list<int> ls;
@@ -680,7 +680,7 @@ Header:
 
 ---
 
-# push_front()
+## push_front()
 
 ```cpp
 ls.push_front(10);
@@ -688,7 +688,7 @@ ls.push_front(10);
 
 ---
 
-# emplace_front()
+## emplace_front()
 
 ```cpp
 ls.emplace_front(20);
@@ -696,7 +696,7 @@ ls.emplace_front(20);
 
 ---
 
-# push_back()
+## push_back()
 
 ```cpp
 ls.push_back(50);
@@ -704,7 +704,7 @@ ls.push_back(50);
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -737,7 +737,7 @@ Output:
 
 ---
 
-# Why Insert Is Faster In List
+## Why Insert Is Faster In List
 
 Vector:
 
@@ -777,7 +777,7 @@ O(1)
 
 ---
 
-# List vs Vector
+## List vs Vector
 
 | Feature        | Vector     | List           |
 | -------------- | ---------- | -------------- |
@@ -789,9 +789,9 @@ O(1)
 
 ---
 
-# Deque
+## Deque
 
-## Definition
+### Definition
 
 Deque:
 
@@ -803,7 +803,7 @@ Supports insertion/removal from both ends.
 
 ---
 
-## Internal Working
+### Internal Working
 
 Deque is not a linked list.
 
@@ -829,7 +829,7 @@ Block2
 
 ---
 
-## Why Deque Exists
+### Why Deque Exists
 
 Vector problem:
 
@@ -851,7 +851,7 @@ efficiently.
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 deque<int> dq;
@@ -865,7 +865,7 @@ Header:
 
 ---
 
-# Operations
+## Operations
 
 ```cpp
 dq.push_back(10);
@@ -887,7 +887,7 @@ dq.pop_back();
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -920,7 +920,7 @@ Output:
 
 ---
 
-# Vector vs List vs Deque
+## Vector vs List vs Deque
 
 | Feature       | Vector | List | Deque  |
 | ------------- | ------ | ---- | ------ |
@@ -932,9 +932,9 @@ Output:
 
 ---
 
-# Common Bugs
+## Common Bugs
 
-## Bug 1
+### Bug 1
 
 ```cpp
 auto it=v.begin();
@@ -950,7 +950,7 @@ Iterator invalidation.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 for(auto x:v)
@@ -965,7 +965,7 @@ Container modified while iterating.
 
 ---
 
-## Fix
+### Fix
 
 ```cpp
 int n=v.size();
@@ -978,7 +978,7 @@ for(int i=0;i<n;i++)
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use vector by default
 - Use list only when frequent middle insertion/deletion exists
@@ -989,9 +989,9 @@ for(int i=0;i<n;i++)
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 Why is vector insertion expensive?
 
@@ -1001,7 +1001,7 @@ Elements must shift and reallocation may happen.
 
 ---
 
-## Q2
+### Q2
 
 Why does list consume more memory?
 
@@ -1015,7 +1015,7 @@ Each node stores:
 
 ---
 
-## Q3
+### Q3
 
 Why is deque faster than vector for front insertion?
 
@@ -1025,7 +1025,7 @@ Deque manages memory in blocks instead of shifting all elements.
 
 ---
 
-## Q4
+### Q4
 
 Should list always replace vector?
 
@@ -1041,7 +1041,7 @@ Vector is usually faster because of:
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 vector<int> v;
@@ -1077,7 +1077,7 @@ dq.back();
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Vector insertion in middle is expensive
 - `erase()` shifts elements

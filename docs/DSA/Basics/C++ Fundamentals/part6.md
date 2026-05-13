@@ -18,7 +18,7 @@ sidebar_position: 6
 
 ---
 
-## Why Do We Need Loops?
+### Why Do We Need Loops?
 
 Without loops:
 
@@ -55,13 +55,13 @@ Output:
 
 ---
 
-## What is a Loop?
+### What is a Loop?
 
 A loop repeatedly executes a block of code until a condition becomes false.
 
 ---
 
-### General Flow
+#### General Flow
 
 ```text
 Initialize
@@ -79,7 +79,7 @@ Check Again
 
 ---
 
-## Types of Loops in C++
+### Types of Loops in C++
 
 ```text
 Loops
@@ -91,13 +91,13 @@ Loops
 
 ---
 
-## for Loop
+### for Loop
 
 Used when the number of iterations is known.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 for(initialization; condition; update)
@@ -108,7 +108,7 @@ for(initialization; condition; update)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i = 1; i <= 5; i++)
@@ -117,7 +117,7 @@ for(int i = 1; i <= 5; i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 3 4 5
@@ -125,7 +125,7 @@ for(int i = 1; i <= 5; i++)
 
 ---
 
-## Understanding the Flow
+### Understanding the Flow
 
 ```cpp
 for(int i = 1; i <= 3; i++)
@@ -136,7 +136,7 @@ for(int i = 1; i <= 3; i++)
 
 ---
 
-#### Iteration 1
+##### Iteration 1
 
 ```text
 i = 1
@@ -150,7 +150,7 @@ i++
 
 ---
 
-#### Iteration 2
+##### Iteration 2
 
 ```text
 i = 2
@@ -164,7 +164,7 @@ i++
 
 ---
 
-#### Iteration 3
+##### Iteration 3
 
 ```text
 i = 3
@@ -178,7 +178,7 @@ i++
 
 ---
 
-#### Iteration 4
+##### Iteration 4
 
 ```text
 i = 4
@@ -190,7 +190,7 @@ Stop
 
 ---
 
-## Loop Variable
+### Loop Variable
 
 The variable controlling a loop is called:
 
@@ -214,7 +214,7 @@ is the loop variable.
 
 ---
 
-## Reverse Loop
+### Reverse Loop
 
 ```cpp
 for(int i = 5; i >= 1; i--)
@@ -223,7 +223,7 @@ for(int i = 5; i >= 1; i--)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 5 4 3 2 1
@@ -231,13 +231,13 @@ for(int i = 5; i >= 1; i--)
 
 ---
 
-## while Loop
+### while Loop
 
 Used when the number of iterations is unknown.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 while(condition)
@@ -248,7 +248,7 @@ while(condition)
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int i = 1;
@@ -261,7 +261,7 @@ while(i <= 5)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 3 4 5
@@ -269,7 +269,7 @@ while(i <= 5)
 
 ---
 
-## Flow of while Loop
+### Flow of while Loop
 
 ```text
 Condition
@@ -285,7 +285,7 @@ Condition Again
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int count = 5;
@@ -298,7 +298,7 @@ while(count > 0)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 5 4 3 2 1
@@ -306,13 +306,13 @@ while(count > 0)
 
 ---
 
-## do-while Loop
+### do-while Loop
 
 Unlike `for` and `while`, a `do-while` loop executes at least once.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 do
@@ -324,7 +324,7 @@ while(condition);
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int i = 1;
@@ -338,7 +338,7 @@ do
 while(i <= 5);
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 3 4 5
@@ -346,7 +346,7 @@ while(i <= 5);
 
 ---
 
-## Important Difference
+### Important Difference
 
 ```cpp
 int i = 10;
@@ -394,7 +394,7 @@ checks later.
 
 ---
 
-## for vs while vs do-while
+### for vs while vs do-while
 
 | Feature                 | for         | while       | do-while  |
 | ----------------------- | ----------- | ----------- | --------- |
@@ -405,13 +405,13 @@ checks later.
 
 ---
 
-## Infinite Loops
+### Infinite Loops
 
 A loop that never terminates.
 
 ---
 
-### Infinite for Loop
+#### Infinite for Loop
 
 ```cpp
 for(;;)
@@ -422,7 +422,7 @@ for(;;)
 
 ---
 
-### Infinite while Loop
+#### Infinite while Loop
 
 ```cpp
 while(true)
@@ -433,7 +433,7 @@ while(true)
 
 ---
 
-## Why Infinite Loops Occur?
+### Why Infinite Loops Occur?
 
 Condition never becomes false.
 
@@ -470,13 +470,13 @@ Infinite Loop
 
 ---
 
-## break Statement
+### break Statement
 
 Used to immediately terminate a loop.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i = 1; i <= 10; i++)
@@ -490,7 +490,7 @@ for(int i = 1; i <= 10; i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 3 4
@@ -498,7 +498,7 @@ for(int i = 1; i <= 10; i++)
 
 ---
 
-### Flow
+#### Flow
 
 ```text
 Loop Running
@@ -512,13 +512,13 @@ Loop Ends
 
 ---
 
-## continue Statement
+### continue Statement
 
 Skips the current iteration.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i = 1; i <= 5; i++)
@@ -532,7 +532,7 @@ for(int i = 1; i <= 5; i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 1 2 4 5
@@ -540,13 +540,13 @@ for(int i = 1; i <= 5; i++)
 
 ---
 
-## Nested Loops
+### Nested Loops
 
 A loop inside another loop.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 for(int i = 1; i <= 3; i++)
@@ -560,7 +560,7 @@ for(int i = 1; i <= 3; i++)
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 * * *
@@ -570,7 +570,7 @@ for(int i = 1; i <= 3; i++)
 
 ---
 
-## Understanding Nested Loops
+### Understanding Nested Loops
 
 Outer Loop:
 
@@ -592,7 +592,7 @@ controls columns.
 
 ---
 
-## Common Uses of Nested Loops
+### Common Uses of Nested Loops
 
 - Patterns
 - Matrices
@@ -601,11 +601,11 @@ controls columns.
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Missing Update
+#### Missing Update
 
 Wrong
 
@@ -622,7 +622,7 @@ Infinite loop.
 
 ---
 
-### Semicolon After Loop
+#### Semicolon After Loop
 
 Wrong
 
@@ -639,7 +639,7 @@ The semicolon ends the loop immediately.
 
 ---
 
-### Using Wrong Condition
+#### Using Wrong Condition
 
 Wrong
 
@@ -651,11 +651,11 @@ Loop never executes.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Difference between while and do-while?
+#### Q1. Difference between while and do-while?
 
-#### Answer
+##### Answer
 
 `while` checks condition first.
 
@@ -663,9 +663,9 @@ Loop never executes.
 
 ---
 
-### Q2. Which loop is best when iteration count is known?
+#### Q2. Which loop is best when iteration count is known?
 
-#### Answer
+##### Answer
 
 ```cpp
 for
@@ -673,39 +673,39 @@ for
 
 ---
 
-### Q3. What causes an infinite loop?
+#### Q3. What causes an infinite loop?
 
-#### Answer
+##### Answer
 
 Condition never becomes false.
 
 ---
 
-### Q4. What does break do?
+#### Q4. What does break do?
 
-#### Answer
+##### Answer
 
 Terminates the loop immediately.
 
 ---
 
-### Q5. What does continue do?
+#### Q5. What does continue do?
 
-#### Answer
+##### Answer
 
 Skips the current iteration and moves to the next one.
 
 ---
 
-### Q6. What are nested loops?
+#### Q6. What are nested loops?
 
-#### Answer
+##### Answer
 
 Loops placed inside another loop.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 for(int i=0;i<5;i++)
@@ -748,7 +748,7 @@ while(true)
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Loops are used to execute code repeatedly.
 - C++ provides `for`, `while`, and `do-while` loops.

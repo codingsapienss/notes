@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # C++ Pointers Fundamentals
 
-## Memory, Addresses, Symbol Table, Pointer Fundamentals
+### Memory, Addresses, Symbol Table, Pointer Fundamentals
 
 > Before learning pointers, you must first understand how variables actually exist inside memory.
 >
@@ -27,7 +27,7 @@ sidebar_position: 1
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -51,9 +51,9 @@ In this chapter we will cover:
 
 ---
 
-## What Is Memory?
+### What Is Memory?
 
-### Intuition
+#### Intuition
 
 When a program runs, it needs space to store:
 
@@ -72,7 +72,7 @@ Memory (RAM)
 
 ---
 
-## Real World Analogy
+### Real World Analogy
 
 Imagine a huge apartment building.
 
@@ -114,7 +114,7 @@ Stores data
 
 ---
 
-## Memory Is Just Bytes
+### Memory Is Just Bytes
 
 Computers store information in bytes.
 
@@ -136,7 +136,7 @@ Address      Content
 
 ---
 
-## Variables Inside Memory
+### Variables Inside Memory
 
 Consider:
 
@@ -175,7 +175,7 @@ typically equals:
 
 ---
 
-## Important Observation
+### Important Observation
 
 Memory stores:
 
@@ -193,7 +193,7 @@ This is extremely important.
 
 ---
 
-## Then Where Does Variable Name Exist?
+### Then Where Does Variable Name Exist?
 
 The variable name:
 
@@ -221,9 +221,9 @@ memory addresses
 
 ---
 
-## Symbol Table
+### Symbol Table
 
-### Definition
+#### Definition
 
 A symbol table is a compiler-maintained structure that maps:
 
@@ -237,7 +237,7 @@ Memory Location
 
 ---
 
-## Example
+### Example
 
 Code:
 
@@ -258,7 +258,7 @@ salary  → 0x2000
 
 ---
 
-## Why Symbol Table Exists
+### Why Symbol Table Exists
 
 Without symbol tables:
 
@@ -276,7 +276,7 @@ Which memory location belongs to age?
 
 ---
 
-## Important Note
+### Important Note
 
 The symbol table is mostly a:
 
@@ -294,9 +294,9 @@ not variable names.
 
 ---
 
-## Stack Memory
+### Stack Memory
 
-### Definition
+#### Definition
 
 Local variables are generally stored in:
 
@@ -306,7 +306,7 @@ Stack Memory
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int marks = 95;
@@ -328,7 +328,7 @@ Address        Value
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 Stack Memory
@@ -344,9 +344,9 @@ Stack Memory
 
 ---
 
-## Memory Addresses
+### Memory Addresses
 
-### Definition
+#### Definition
 
 Every memory location has a unique address.
 
@@ -360,7 +360,7 @@ for memory.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int number = 100;
@@ -376,7 +376,7 @@ Address         Value
 
 ---
 
-## Why Hexadecimal?
+### Why Hexadecimal?
 
 Memory addresses are usually displayed in:
 
@@ -392,7 +392,7 @@ Example:
 
 ---
 
-## Why Not Decimal?
+### Why Not Decimal?
 
 Decimal:
 
@@ -410,9 +410,9 @@ Much shorter and easier.
 
 ---
 
-## Address-of Operator (`&`)
+### Address-of Operator (`&`)
 
-### Definition
+#### Definition
 
 The address-of operator returns the memory address of a variable.
 
@@ -424,7 +424,7 @@ Symbol:
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 &variableName
@@ -432,7 +432,7 @@ Symbol:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -448,7 +448,7 @@ int main()
 
 ---
 
-## Expected Output
+### Expected Output
 
 ```text
 0x7fffdd3ef8c4
@@ -458,7 +458,7 @@ Actual address varies every run.
 
 ---
 
-## Code Explanation
+### Code Explanation
 
 ```cpp
 &number
@@ -472,7 +472,7 @@ Give me the address where number is stored.
 
 ---
 
-## Example With Multiple Variables
+### Example With Multiple Variables
 
 ```cpp
 int age = 25;
@@ -500,7 +500,7 @@ Example:
 
 ---
 
-## Why Pointers Exist?
+### Why Pointers Exist?
 
 Suppose:
 
@@ -524,7 +524,7 @@ Yes.
 
 ---
 
-## Naive Approach
+### Naive Approach
 
 ```cpp
 long long address = 0x7fffdd3ef8c4;
@@ -546,7 +546,7 @@ Location of a specific data type.
 
 ---
 
-## Problem With Storing Addresses In Normal Variables
+### Problem With Storing Addresses In Normal Variables
 
 Consider:
 
@@ -576,7 +576,7 @@ What type exists at that address?
 
 ---
 
-## Solution: Pointers
+### Solution: Pointers
 
 Pointers store:
 
@@ -592,15 +592,15 @@ Type information
 
 ---
 
-## Definition of Pointer
+### Definition of Pointer
 
 A pointer is a variable that stores the address of another variable.
 
 ---
 
-## Pointer Declaration
+### Pointer Declaration
 
-### Syntax
+#### Syntax
 
 ```cpp
 datatype *pointerName;
@@ -608,7 +608,7 @@ datatype *pointerName;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int *ptr;
@@ -622,7 +622,7 @@ ptr is a pointer to int
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```cpp
 int number = 100;
@@ -645,7 +645,7 @@ Value:   1000
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 ptr
@@ -659,7 +659,7 @@ number
 
 ---
 
-## Complete Example
+### Complete Example
 
 ```cpp
 #include<iostream>
@@ -685,7 +685,7 @@ Address stored in ptr:
 
 ---
 
-## Understanding The Syntax
+### Understanding The Syntax
 
 Many students incorrectly think:
 
@@ -709,11 +709,11 @@ ptr stores address of an integer.
 
 ---
 
-## Different Pointer Types
+### Different Pointer Types
 
 ---
 
-### Integer Pointer
+#### Integer Pointer
 
 ```cpp
 int value = 10;
@@ -723,7 +723,7 @@ int *ptr = &value;
 
 ---
 
-### Double Pointer
+#### Double Pointer
 
 ```cpp
 double price = 2.34;
@@ -733,7 +733,7 @@ double *ptr = &price;
 
 ---
 
-### Character Pointer
+#### Character Pointer
 
 ```cpp
 char grade = 'A';
@@ -743,7 +743,7 @@ char *ptr = &grade;
 
 ---
 
-### Float Pointer
+#### Float Pointer
 
 ```cpp
 float marks = 99.5f;
@@ -753,7 +753,7 @@ float *ptr = &marks;
 
 ---
 
-## Why Different Pointer Types Exist
+### Why Different Pointer Types Exist
 
 Because compiler must know:
 
@@ -771,9 +771,9 @@ Pointer Arithmetic
 
 ---
 
-## Uninitialized Pointer
+### Uninitialized Pointer
 
-### Dangerous Example
+#### Dangerous Example
 
 ```cpp
 int *ptr;
@@ -781,7 +781,7 @@ int *ptr;
 
 ---
 
-## What Happens?
+### What Happens?
 
 Pointer contains:
 
@@ -797,7 +797,7 @@ Example:
 
 ---
 
-## Why Dangerous?
+### Why Dangerous?
 
 Program thinks:
 
@@ -809,7 +809,7 @@ even though it doesn't.
 
 ---
 
-## Never Do This
+### Never Do This
 
 ```cpp
 int *ptr;
@@ -825,7 +825,7 @@ Random address
 
 ---
 
-## Even Worse
+### Even Worse
 
 ```cpp
 int *ptr;
@@ -843,7 +843,7 @@ Undefined Behavior
 
 ---
 
-## Best Practice
+### Best Practice
 
 Always initialize pointers.
 
@@ -855,9 +855,9 @@ int *ptr = nullptr;
 
 ---
 
-## Null Pointer
+### Null Pointer
 
-### Definition
+#### Definition
 
 Null pointer points to:
 
@@ -867,7 +867,7 @@ No valid memory location
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 int *ptr = nullptr;
@@ -875,7 +875,7 @@ int *ptr = nullptr;
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -905,7 +905,7 @@ depending on compiler.
 
 ---
 
-## Why Null Pointer Is Useful
+### Why Null Pointer Is Useful
 
 Instead of:
 
@@ -921,7 +921,7 @@ This pointer currently points nowhere.
 
 ---
 
-## Assign Later
+### Assign Later
 
 ```cpp
 int value = 5;
@@ -935,13 +935,13 @@ This is completely valid.
 
 ---
 
-## Pointer Size
+### Pointer Size
 
 A very common interview question.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int value = 100;
@@ -955,7 +955,7 @@ double *doublePtr = &number;
 
 ---
 
-## Check Sizes
+### Check Sizes
 
 ```cpp
 cout << sizeof(intPtr) << endl;
@@ -972,7 +972,7 @@ Expected Output (64-bit system):
 
 ---
 
-## Why Same Size?
+### Why Same Size?
 
 Pointers store:
 
@@ -984,7 +984,7 @@ not actual data.
 
 ---
 
-## Important Observation
+### Important Observation
 
 | Type     | Size    |
 | -------- | ------- |
@@ -997,7 +997,7 @@ not actual data.
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -1007,7 +1007,7 @@ All memory addresses require the same number of bits.
 
 ---
 
-## Null Pointer Size
+### Null Pointer Size
 
 Example:
 
@@ -1025,7 +1025,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Pointer size depends on:
 
@@ -1041,11 +1041,11 @@ Stored value
 
 ---
 
-## 32-bit vs 64-bit Systems
+### 32-bit vs 64-bit Systems
 
 ---
 
-### 32-bit System
+#### 32-bit System
 
 Address size:
 
@@ -1067,7 +1067,7 @@ Output:
 
 ---
 
-### 64-bit System
+#### 64-bit System
 
 Address size:
 
@@ -1089,7 +1089,7 @@ Output:
 
 ---
 
-## Summary Table
+### Summary Table
 
 | Architecture | Pointer Size |
 | ------------ | ------------ |
@@ -1098,9 +1098,9 @@ Output:
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 ```cpp
 int *ptr;
@@ -1116,7 +1116,7 @@ Uninitialized pointer
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 ```cpp
 int *ptr = nullptr;
@@ -1132,7 +1132,7 @@ Null pointer dereference
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 ```cpp
 long long address = &number;
@@ -1144,23 +1144,23 @@ Loses pointer type information.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1
+#### Q1
 
 What is a pointer?
 
-#### Answer
+##### Answer
 
 A pointer is a variable that stores the address of another variable.
 
 ---
 
-### Q2
+#### Q2
 
 Why do pointers have data types?
 
-#### Answer
+##### Answer
 
 Compiler must know:
 
@@ -1170,17 +1170,17 @@ What type exists at the stored address.
 
 ---
 
-### Q3
+#### Q3
 
 Why are addresses displayed in hexadecimal?
 
-#### Answer
+##### Answer
 
 Hexadecimal is more compact and easier to read than decimal.
 
 ---
 
-### Q4
+#### Q4
 
 What is the difference between:
 
@@ -1194,7 +1194,7 @@ and
 int *ptr = nullptr;
 ```
 
-#### Answer
+##### Answer
 
 First:
 
@@ -1210,11 +1210,11 @@ Points nowhere safely
 
 ---
 
-### Q5
+#### Q5
 
 Why is size of every pointer same?
 
-#### Answer
+##### Answer
 
 Pointers store addresses.
 
@@ -1222,7 +1222,7 @@ Address size depends on architecture, not data type.
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Variables live in memory.
 - Memory is organized using addresses.
@@ -1239,4 +1239,4 @@ Address size depends on architecture, not data type.
 
 ---
 
-## End of Pointers Fundamentals — Part 1A
+### End of Pointers Fundamentals — Part 1A

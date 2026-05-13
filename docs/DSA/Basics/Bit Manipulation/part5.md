@@ -42,7 +42,7 @@ sidebar_position: 5
 
 ---
 
-# What is a Set Bit?
+## What is a Set Bit?
 
 A bit having value:
 
@@ -58,7 +58,7 @@ Set Bit
 
 ---
 
-# What is an Unset Bit?
+## What is an Unset Bit?
 
 A bit having value:
 
@@ -80,7 +80,7 @@ Clear Bit
 
 ---
 
-# Example
+## Example
 
 ```text
 13
@@ -103,11 +103,11 @@ Count:
 
 ---
 
-# Method 1 — Division by 2 (Basic Approach)
+## Method 1 — Division by 2 (Basic Approach)
 
 ---
 
-## Idea
+### Idea
 
 Convert number into binary.
 
@@ -121,7 +121,7 @@ Count++
 
 ---
 
-# Dry Run
+## Dry Run
 
 Example:
 
@@ -171,7 +171,7 @@ Result:
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int countSetBits(int n)
@@ -194,13 +194,13 @@ int countSetBits(int n)
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << countSetBits(13);
 ```
 
-### Output
+#### Output
 
 ```text
 3
@@ -208,9 +208,9 @@ cout << countSetBits(13);
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(log₂N)
@@ -218,7 +218,7 @@ O(log₂N)
 
 ---
 
-### Space
+#### Space
 
 ```text
 O(1)
@@ -226,13 +226,13 @@ O(1)
 
 ---
 
-# Method 2 — Right Shift Technique
+## Method 2 — Right Shift Technique
 
 Much more natural for Bit Manipulation.
 
 ---
 
-## Idea
+### Idea
 
 Check:
 
@@ -254,7 +254,7 @@ n >>= 1
 
 ---
 
-# Why Does It Work?
+## Why Does It Work?
 
 Last bit:
 
@@ -310,7 +310,7 @@ Result:
 
 ---
 
-# Dry Run
+## Dry Run
 
 ```text
 13
@@ -398,7 +398,7 @@ Result
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int countSetBits(int n)
@@ -418,7 +418,7 @@ int countSetBits(int n)
 
 ---
 
-# Complexity
+## Complexity
 
 | Complexity | Value    |
 | ---------- | -------- |
@@ -427,13 +427,13 @@ int countSetBits(int n)
 
 ---
 
-# Method 3 — Brian Kernighan Algorithm
+## Method 3 — Brian Kernighan Algorithm
 
 One of the most famous interview algorithms.
 
 ---
 
-# Core Observation
+## Core Observation
 
 Formula:
 
@@ -449,7 +449,7 @@ Rightmost Set Bit
 
 ---
 
-# Example
+## Example
 
 ```text
 12
@@ -487,7 +487,7 @@ One Set Bit Removed
 
 ---
 
-# Idea
+## Idea
 
 Instead of checking every bit:
 
@@ -497,7 +497,7 @@ Remove one set bit at a time.
 
 ---
 
-# Dry Run
+## Dry Run
 
 Example:
 
@@ -573,7 +573,7 @@ Result:
 
 ---
 
-# Code
+## Code
 
 ```cpp
 int countSetBits(int n)
@@ -593,9 +593,9 @@ int countSetBits(int n)
 
 ---
 
-# Complexity
+## Complexity
 
-### Time
+#### Time
 
 ```text
 O(Number of Set Bits)
@@ -633,7 +633,7 @@ needed.
 
 ---
 
-# Why Is This Better?
+## Why Is This Better?
 
 For sparse numbers:
 
@@ -645,13 +645,13 @@ it is significantly faster.
 
 ---
 
-# Method 4 — STL Built-in Function
+## Method 4 — STL Built-in Function
 
 C++ provides optimized CPU-level implementations.
 
 ---
 
-# For int
+## For int
 
 ```cpp
 __builtin_popcount(n)
@@ -673,7 +673,7 @@ Output:
 
 ---
 
-# For long long
+## For long long
 
 ```cpp
 __builtin_popcountll(n)
@@ -691,7 +691,7 @@ cout << __builtin_popcountll(num);
 
 ---
 
-# Complexity
+## Complexity
 
 Typically:
 
@@ -709,7 +709,7 @@ depending on architecture.
 
 ---
 
-# Comparison of All Methods
+## Comparison of All Methods
 
 | Method          | Time Complexity | Space |
 | --------------- | --------------- | ----- |
@@ -720,11 +720,11 @@ depending on architecture.
 
 ---
 
-# Which Method Should You Use?
+## Which Method Should You Use?
 
 ---
 
-## Interview
+### Interview
 
 Use:
 
@@ -736,7 +736,7 @@ because it demonstrates understanding.
 
 ---
 
-## Production Code
+### Production Code
 
 Use:
 
@@ -748,7 +748,7 @@ when available.
 
 ---
 
-# Special Case — Count Set Bits from 1 to N
+## Special Case — Count Set Bits from 1 to N
 
 Example:
 
@@ -784,11 +784,11 @@ This is a separate advanced problem often asked in interviews.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
 ---
 
-## Forgetting Parentheses
+### Forgetting Parentheses
 
 Wrong
 
@@ -806,7 +806,7 @@ n & (n - 1)
 
 ---
 
-# Infinite Loop
+## Infinite Loop
 
 Wrong
 
@@ -827,7 +827,7 @@ n = n & (n - 1);
 
 ---
 
-# Using popcount for long long
+## Using popcount for long long
 
 Wrong
 
@@ -851,13 +851,13 @@ __builtin_popcountll(num);
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1
+### Q1
 
 How do you count set bits using Bit Manipulation?
 
-### Answer
+#### Answer
 
 ```cpp
 while(n)
@@ -870,7 +870,7 @@ while(n)
 
 ---
 
-## Q2
+### Q2
 
 What does:
 
@@ -880,17 +880,17 @@ n & (n - 1)
 
 do?
 
-### Answer
+#### Answer
 
 Removes the rightmost set bit.
 
 ---
 
-## Q3
+### Q3
 
 Which counting set bits algorithm is most famous?
 
-### Answer
+#### Answer
 
 ```text
 Brian Kernighan Algorithm
@@ -898,11 +898,11 @@ Brian Kernighan Algorithm
 
 ---
 
-## Q4
+### Q4
 
 Time complexity of Brian Kernighan?
 
-### Answer
+#### Answer
 
 ```text
 O(Number of Set Bits)
@@ -910,11 +910,11 @@ O(Number of Set Bits)
 
 ---
 
-## Q5
+### Q5
 
 Best STL function?
 
-### Answer
+#### Answer
 
 ```cpp
 __builtin_popcount()
@@ -924,7 +924,7 @@ __builtin_popcountll()
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 // Method 1
@@ -964,7 +964,7 @@ __builtin_popcountll(n)
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - A Set Bit is a bit having value `1`.
 - Counting set bits is one of the most common bit manipulation problems.

@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # C++ Pointers Fundamentals
 
-## Dereference Operator, Memory Access, Pointer Copying, Call By Value Fundamentals
+### Dereference Operator, Memory Access, Pointer Copying, Call By Value Fundamentals
 
 > In Part 1A we learned:
 >
@@ -38,7 +38,7 @@ sidebar_position: 2
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -58,7 +58,7 @@ In this chapter we will cover:
 
 ---
 
-## Revisiting Pointer Basics
+### Revisiting Pointer Basics
 
 Consider:
 
@@ -97,7 +97,7 @@ scorePtr
 
 ---
 
-## The Big Question
+### The Big Question
 
 We know:
 
@@ -127,9 +127,9 @@ stored at that address?
 
 ---
 
-## Dereference Operator (`*`)
+### Dereference Operator (`*`)
 
-### Definition
+#### Definition
 
 The dereference operator accesses the value stored at the address held by a pointer.
 
@@ -141,7 +141,7 @@ Symbol:
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 *pointerName
@@ -162,7 +162,7 @@ and give me the value stored there.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```cpp
 int score = 100;
@@ -217,7 +217,7 @@ Result:
 
 ---
 
-## First Dereference Example
+### First Dereference Example
 
 ```cpp
 #include<iostream>
@@ -241,7 +241,7 @@ Expected Output:
 
 ---
 
-## Code Explanation
+### Code Explanation
 
 ```cpp
 scorePtr
@@ -267,13 +267,13 @@ value stored at address inside scorePtr
 
 ---
 
-## Pointer vs Dereferenced Pointer
+### Pointer vs Dereferenced Pointer
 
 One of the most important concepts.
 
 ---
 
-## Pointer
+### Pointer
 
 ```cpp
 scorePtr
@@ -293,7 +293,7 @@ Example:
 
 ---
 
-## Dereferenced Pointer
+### Dereferenced Pointer
 
 ```cpp
 *scorePtr
@@ -313,7 +313,7 @@ Example:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 cout << scorePtr << endl;
@@ -330,7 +330,7 @@ Expected Output:
 
 ---
 
-## Common Interview Question
+### Common Interview Question
 
 What is the difference between:
 
@@ -353,7 +353,7 @@ Answer:
 
 ---
 
-## Relationship Between Variable and Dereferenced Pointer
+### Relationship Between Variable and Dereferenced Pointer
 
 Consider:
 
@@ -365,7 +365,7 @@ int *marksPtr = &marks;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 Address: 1000
@@ -375,7 +375,7 @@ Value: 95
 
 ---
 
-## Access Through Variable
+### Access Through Variable
 
 ```cpp
 cout << marks;
@@ -389,7 +389,7 @@ Output:
 
 ---
 
-## Access Through Pointer
+### Access Through Pointer
 
 ```cpp
 cout << *marksPtr;
@@ -403,7 +403,7 @@ Output:
 
 ---
 
-## Important Observation
+### Important Observation
 
 Both produce:
 
@@ -421,7 +421,7 @@ same memory location
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 marks
@@ -441,7 +441,7 @@ Value 95
 
 ---
 
-## Key Rule
+### Key Rule
 
 For a valid pointer:
 
@@ -453,7 +453,7 @@ in terms of value.
 
 ---
 
-## Writing Through Pointer
+### Writing Through Pointer
 
 Until now we only read values.
 
@@ -461,7 +461,7 @@ Now let's modify them.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int score = 100;
@@ -473,7 +473,7 @@ int *scorePtr = &score;
 
 ---
 
-## Memory Before
+### Memory Before
 
 ```text
 Address: 1000
@@ -483,7 +483,7 @@ Value: 100
 
 ---
 
-## Execution
+### Execution
 
 ```cpp
 *scorePtr = 500;
@@ -499,7 +499,7 @@ Store 500 there
 
 ---
 
-## Memory After
+### Memory After
 
 ```text
 Address: 1000
@@ -509,7 +509,7 @@ Value: 500
 
 ---
 
-## Complete Program
+### Complete Program
 
 ```cpp
 #include<iostream>
@@ -535,7 +535,7 @@ Expected Output:
 
 ---
 
-## Why Did score Change?
+### Why Did score Change?
 
 Many beginners think:
 
@@ -555,7 +555,7 @@ not value.
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 Before:
 
@@ -592,7 +592,7 @@ score
 
 ---
 
-## Reading and Writing Together
+### Reading and Writing Together
 
 ```cpp
 #include<iostream>
@@ -624,7 +624,7 @@ After: 700
 
 ---
 
-## Increment Through Pointer
+### Increment Through Pointer
 
 Example:
 
@@ -638,7 +638,7 @@ int *valuePtr = &value;
 
 ---
 
-## Execution
+### Execution
 
 Before:
 
@@ -671,7 +671,7 @@ After:
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -697,7 +697,7 @@ Expected Output:
 
 ---
 
-## Important Distinction
+### Important Distinction
 
 Many students confuse:
 
@@ -715,7 +715,7 @@ These are NOT the same.
 
 ---
 
-## Version 1
+### Version 1
 
 ```cpp
 (*ptr)++
@@ -729,7 +729,7 @@ Stored value
 
 ---
 
-## Version 2
+### Version 2
 
 ```cpp
 ptr++
@@ -747,13 +747,13 @@ Pointer arithmetic will be covered later.
 
 ---
 
-## Copying Variables
+### Copying Variables
 
 Now let's compare variable copying and pointer copying.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int firstNumber = 100;
@@ -763,7 +763,7 @@ int secondNumber = firstNumber;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 firstNumber
@@ -780,7 +780,7 @@ Value:   100
 
 ---
 
-## Important Observation
+### Important Observation
 
 Two separate variables.
 
@@ -788,7 +788,7 @@ Two separate memory locations.
 
 ---
 
-## Modify One
+### Modify One
 
 ```cpp
 secondNumber = 500;
@@ -804,7 +804,7 @@ secondNumber = 500
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -833,7 +833,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -845,7 +845,7 @@ not memory.
 
 ---
 
-## Pointer Copying
+### Pointer Copying
 
 Now compare:
 
@@ -859,7 +859,7 @@ int *pointerTwo = pointerOne;
 
 ---
 
-## Memory
+### Memory
 
 ```text
 value
@@ -882,7 +882,7 @@ Value:   1000
 
 ---
 
-## Important Observation
+### Important Observation
 
 Both pointers store:
 
@@ -892,7 +892,7 @@ Same address
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 pointerOne ──┐
@@ -910,7 +910,7 @@ pointerTwo ──┘
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -939,7 +939,7 @@ Expected Output:
 
 ---
 
-## Modify Through Second Pointer
+### Modify Through Second Pointer
 
 ```cpp
 *pointerTwo = 999;
@@ -947,7 +947,7 @@ Expected Output:
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -963,7 +963,7 @@ value = 999
 
 ---
 
-## Example
+### Example
 
 ```cpp
 #include<iostream>
@@ -997,7 +997,7 @@ Expected Output:
 
 ---
 
-## Why?
+### Why?
 
 All three refer to:
 
@@ -1007,7 +1007,7 @@ same memory location
 
 ---
 
-## Multiple Pointers To Same Variable
+### Multiple Pointers To Same Variable
 
 Example:
 
@@ -1023,7 +1023,7 @@ int *p3 = &marks;
 
 ---
 
-## Visual
+### Visual
 
 ```text
 p1 ──┐
@@ -1035,7 +1035,7 @@ p3 ──┘
 
 ---
 
-## Modify Through Any Pointer
+### Modify Through Any Pointer
 
 ```cpp
 *p2 = 150;
@@ -1049,7 +1049,7 @@ marks = 150
 
 ---
 
-## Call By Value Fundamentals
+### Call By Value Fundamentals
 
 Consider:
 
@@ -1062,7 +1062,7 @@ void update(int value)
 
 ---
 
-## Program
+### Program
 
 ```cpp
 #include<iostream>
@@ -1091,7 +1091,7 @@ Expected Output:
 
 ---
 
-## Why Did It Not Change?
+### Why Did It Not Change?
 
 Many beginners expect:
 
@@ -1101,7 +1101,7 @@ Many beginners expect:
 
 ---
 
-## What Actually Happens
+### What Actually Happens
 
 When function is called:
 
@@ -1117,7 +1117,7 @@ COPY
 
 ---
 
-## Memory
+### Memory
 
 Before:
 
@@ -1141,7 +1141,7 @@ Value: 100
 
 ---
 
-## Visual
+### Visual
 
 ```text
 number
@@ -1157,7 +1157,7 @@ value
 
 ---
 
-## Modify Copy
+### Modify Copy
 
 ```cpp
 value = 500;
@@ -1173,7 +1173,7 @@ value = 500
 
 ---
 
-## After Function Ends
+### After Function Ends
 
 ```text
 value destroyed
@@ -1189,7 +1189,7 @@ remains.
 
 ---
 
-## Call By Value Summary
+### Call By Value Summary
 
 Function receives:
 
@@ -1205,11 +1205,11 @@ Changes do not affect original variable.
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 int *ptr = nullptr;
@@ -1225,7 +1225,7 @@ Dereferencing null pointer
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 int *ptr;
@@ -1241,7 +1241,7 @@ Uninitialized pointer
 
 ---
 
-## Bug 3
+### Bug 3
 
 ```cpp
 int *ptr = nullptr;
@@ -1257,11 +1257,11 @@ No valid memory exists
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What does:
 
@@ -1271,13 +1271,13 @@ What does:
 
 mean?
 
-#### Answer
+##### Answer
 
 Value stored at the address held by pointer.
 
 ---
 
-### Q2
+#### Q2
 
 Difference between:
 
@@ -1291,7 +1291,7 @@ and
 *ptr
 ```
 
-#### Answer
+##### Answer
 
 | Expression | Meaning          |
 | ---------- | ---------------- |
@@ -1300,7 +1300,7 @@ and
 
 ---
 
-### Q3
+#### Q3
 
 Why does:
 
@@ -1310,17 +1310,17 @@ Why does:
 
 change original variable?
 
-#### Answer
+##### Answer
 
 Because pointer accesses original memory location.
 
 ---
 
-### Q4
+#### Q4
 
 Difference between copying variable and copying pointer?
 
-#### Answer
+##### Answer
 
 Variable copy:
 
@@ -1336,17 +1336,17 @@ Copies address
 
 ---
 
-### Q5
+#### Q5
 
 Why does call by value not modify original variable?
 
-#### Answer
+##### Answer
 
 Function receives a separate copy.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 int value = 100;
@@ -1373,7 +1373,7 @@ int b = a;        // value copy
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `ptr` stores an address.
 - `*ptr` accesses the value at that address.
@@ -1388,4 +1388,4 @@ int b = a;        // value copy
 
 ---
 
-## End of Pointers Fundamentals — Part 1B
+### End of Pointers Fundamentals — Part 1B

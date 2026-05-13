@@ -21,9 +21,9 @@ sidebar_label: 'Revision'
 
 ---
 
-# STL Decision Tree
+## STL Decision Tree
 
-## Question 1
+### Question 1
 
 Do you need key-value pairs?
 
@@ -37,7 +37,7 @@ Do you need key-value pairs?
 
 ---
 
-## Question 2
+### Question 2
 
 Need ordering?
 
@@ -51,7 +51,7 @@ Need ordering?
 
 ---
 
-## Question 3
+### Question 3
 
 Need duplicate keys?
 
@@ -65,7 +65,7 @@ Need duplicate keys?
 
 ---
 
-## Question 4
+### Question 4
 
 Need unique values only?
 
@@ -79,7 +79,7 @@ Need unique values only?
 
 ---
 
-## Question 5
+### Question 5
 
 Need fastest lookup?
 
@@ -93,7 +93,7 @@ Unordered Containers    Ordered Containers
 
 ---
 
-## Question 6
+### Question 6
 
 Need insertion at front?
 
@@ -107,7 +107,7 @@ Need insertion at front?
 
 ---
 
-## Question 7
+### Question 7
 
 Need LIFO behavior?
 
@@ -121,7 +121,7 @@ Need LIFO behavior?
 
 ---
 
-## Question 8
+### Question 8
 
 Need highest priority element?
 
@@ -135,7 +135,7 @@ Priority Queue
 
 ---
 
-# Complete STL Comparison Table
+## Complete STL Comparison Table
 
 | Feature       | Vector | List | Deque  | Stack  | Queue  |
 | ------------- | ------ | ---- | ------ | ------ | ------ |
@@ -147,7 +147,7 @@ Priority Queue
 
 ---
 
-# Set Family Comparison
+## Set Family Comparison
 
 | Feature            | Set            | Multiset       | Unordered Set |
 | ------------------ | -------------- | -------------- | ------------- |
@@ -158,7 +158,7 @@ Priority Queue
 
 ---
 
-# Map Family Comparison
+## Map Family Comparison
 
 | Feature            | Map            | Multimap       | Unordered Map |
 | ------------------ | -------------- | -------------- | ------------- |
@@ -169,9 +169,9 @@ Priority Queue
 
 ---
 
-# Complexity Master Table
+## Complexity Master Table
 
-## Arrays
+### Arrays
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -181,7 +181,7 @@ Priority Queue
 
 ---
 
-## Vector
+### Vector
 
 | Operation     | Complexity     |
 | ------------- | -------------- |
@@ -192,7 +192,7 @@ Priority Queue
 
 ---
 
-## List
+### List
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -202,7 +202,7 @@ Priority Queue
 
 ---
 
-## Deque
+### Deque
 
 | Operation  | Complexity |
 | ---------- | ---------- |
@@ -212,7 +212,7 @@ Priority Queue
 
 ---
 
-## Stack
+### Stack
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -222,7 +222,7 @@ Priority Queue
 
 ---
 
-## Queue
+### Queue
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -232,7 +232,7 @@ Priority Queue
 
 ---
 
-## Priority Queue
+### Priority Queue
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -242,7 +242,7 @@ Priority Queue
 
 ---
 
-## Set
+### Set
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -252,7 +252,7 @@ Priority Queue
 
 ---
 
-## Unordered Set
+### Unordered Set
 
 | Operation | Average | Worst |
 | --------- | ------- | ----- |
@@ -261,7 +261,7 @@ Priority Queue
 
 ---
 
-## Map
+### Map
 
 | Operation | Complexity |
 | --------- | ---------- |
@@ -271,7 +271,7 @@ Priority Queue
 
 ---
 
-## Unordered Map
+### Unordered Map
 
 | Operation | Average | Worst |
 | --------- | ------- | ----- |
@@ -280,11 +280,11 @@ Priority Queue
 
 ---
 
-# Common Bugs and Debugging Tips
+## Common Bugs and Debugging Tips
 
 ---
 
-## Bug 1: Dereferencing end()
+### Bug 1: Dereferencing end()
 
 Wrong:
 
@@ -319,7 +319,7 @@ if(it!=st.end())
 
 ---
 
-## Bug 2: Modifying Copy in Range Loop
+### Bug 2: Modifying Copy in Range Loop
 
 Wrong:
 
@@ -357,7 +357,7 @@ for(auto &x:v)
 
 ---
 
-## Bug 3: Vector Iterator Invalidation
+### Bug 3: Vector Iterator Invalidation
 
 Wrong:
 
@@ -383,7 +383,7 @@ Recalculate iterator.
 
 ---
 
-## Bug 4: Accessing Empty Stack
+### Bug 4: Accessing Empty Stack
 
 Wrong:
 
@@ -404,7 +404,7 @@ if(!st.empty())
 
 ---
 
-## Bug 5: Accessing Empty Queue
+### Bug 5: Accessing Empty Queue
 
 Wrong:
 
@@ -425,7 +425,7 @@ if(!q.empty())
 
 ---
 
-## Bug 6: Unexpected Key Insertion
+### Bug 6: Unexpected Key Insertion
 
 Wrong:
 
@@ -456,11 +456,11 @@ if(it!=mp.end())
 
 ---
 
-# Best Practices
+## Best Practices
 
-## General Rules
+### General Rules
 
-### Rule 1
+#### Rule 1
 
 Use:
 
@@ -478,7 +478,7 @@ Reason:
 
 ---
 
-### Rule 2
+#### Rule 2
 
 Use:
 
@@ -500,7 +500,7 @@ lookup.
 
 ---
 
-### Rule 3
+#### Rule 3
 
 Use:
 
@@ -512,7 +512,7 @@ only when sorted keys needed.
 
 ---
 
-### Rule 4
+#### Rule 4
 
 Prefer:
 
@@ -524,7 +524,7 @@ for objects.
 
 ---
 
-### Rule 5
+#### Rule 5
 
 Use:
 
@@ -545,7 +545,7 @@ for(const auto &x:v)
 
 ---
 
-### Rule 6
+#### Rule 6
 
 Reserve vector memory if size known.
 
@@ -559,11 +559,11 @@ Avoids repeated reallocations.
 
 ---
 
-# Real-world Applications
+## Real-world Applications
 
 ---
 
-## Vector
+### Vector
 
 Used in:
 
@@ -574,7 +574,7 @@ Used in:
 
 ---
 
-## Stack
+### Stack
 
 Used in:
 
@@ -585,7 +585,7 @@ Used in:
 
 ---
 
-## Queue
+### Queue
 
 Used in:
 
@@ -595,7 +595,7 @@ Used in:
 
 ---
 
-## Priority Queue
+### Priority Queue
 
 Used in:
 
@@ -605,7 +605,7 @@ Used in:
 
 ---
 
-## Map
+### Map
 
 Used in:
 
@@ -615,7 +615,7 @@ Used in:
 
 ---
 
-## Set
+### Set
 
 Used in:
 
@@ -624,13 +624,13 @@ Used in:
 
 ---
 
-# Frequently Asked Interview Questions
+## Frequently Asked Interview Questions
 
 ---
 
-## Beginner Level
+### Beginner Level
 
-### Q1
+#### Q1
 
 Difference between vector and array?
 
@@ -643,7 +643,7 @@ Answer:
 
 ---
 
-### Q2
+#### Q2
 
 Difference between push_back() and emplace_back()?
 
@@ -661,7 +661,7 @@ Construct directly
 
 ---
 
-### Q3
+#### Q3
 
 Difference between begin() and end()
 
@@ -679,9 +679,9 @@ Points after last element
 
 ---
 
-## Intermediate Level
+### Intermediate Level
 
-### Q4
+#### Q4
 
 Why vector insertion in middle takes O(N)?
 
@@ -691,7 +691,7 @@ Elements shift.
 
 ---
 
-### Q5
+#### Q5
 
 Why unordered_map worst case becomes O(N)?
 
@@ -701,7 +701,7 @@ Hash collisions.
 
 ---
 
-### Q6
+#### Q6
 
 Why priority queue insertion is O(logN)?
 
@@ -711,9 +711,9 @@ Heapify operation.
 
 ---
 
-## Advanced Level
+### Advanced Level
 
-### Q7
+#### Q7
 
 Why vector is usually preferred over list even though insertion in list is O(1)?
 
@@ -729,7 +729,7 @@ List theoretically wins in insertion but often loses in real systems.
 
 ---
 
-### Q8
+#### Q8
 
 What is cache locality?
 
@@ -739,7 +739,7 @@ Continuous memory improves CPU cache performance.
 
 ---
 
-### Q9
+#### Q9
 
 What causes iterator invalidation?
 
@@ -749,7 +749,7 @@ Memory reallocation.
 
 ---
 
-### Q10
+#### Q10
 
 Why does map use Red Black Tree instead of BST?
 
@@ -771,7 +771,7 @@ O(logN)
 
 ---
 
-# Final STL Cheat Sheet
+## Final STL Cheat Sheet
 
 ```cpp
 vector<int> v;
@@ -858,7 +858,7 @@ arr+n
 
 ---
 
-# Final Key Takeaways
+## Final Key Takeaways
 
 1. Vector should usually be the first choice
 2. Use unordered containers for speed
@@ -873,7 +873,7 @@ arr+n
 
 ---
 
-# Final Summary
+## Final Summary
 
 STL is not a collection of random functions.
 

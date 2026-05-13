@@ -11,7 +11,7 @@ sidebar_position: 9
 
 ---
 
-## What is an Operator?
+### What is an Operator?
 
 An operator tells the compiler:
 
@@ -46,7 +46,7 @@ are operands.
 
 ---
 
-## Types of Operators
+### Types of Operators
 
 ```text
 Operators
@@ -63,7 +63,7 @@ Operators
 
 ---
 
-## Arithmetic Operators
+### Arithmetic Operators
 
 Used for mathematical calculations.
 
@@ -79,7 +79,7 @@ Used for mathematical calculations.
 
 ---
 
-### Addition
+#### Addition
 
 ```cpp
 int a = 10;
@@ -88,7 +88,7 @@ int b = 5;
 cout << a + b;
 ```
 
-#### Output
+##### Output
 
 ```text
 15
@@ -96,13 +96,13 @@ cout << a + b;
 
 ---
 
-### Subtraction
+#### Subtraction
 
 ```cpp
 cout << 10 - 5;
 ```
 
-#### Output
+##### Output
 
 ```text
 5
@@ -110,13 +110,13 @@ cout << 10 - 5;
 
 ---
 
-### Multiplication
+#### Multiplication
 
 ```cpp
 cout << 4 * 3;
 ```
 
-#### Output
+##### Output
 
 ```text
 12
@@ -124,13 +124,13 @@ cout << 4 * 3;
 
 ---
 
-### Division
+#### Division
 
 ```cpp
 cout << 10 / 2;
 ```
 
-#### Output
+##### Output
 
 ```text
 5
@@ -138,13 +138,13 @@ cout << 10 / 2;
 
 ---
 
-## Integer Division
+### Integer Division
 
 ```cpp
 cout << 5 / 2;
 ```
 
-#### Output
+##### Output
 
 ```text
 2
@@ -164,13 +164,13 @@ Both operands are int
 
 ---
 
-### Getting Decimal Output
+#### Getting Decimal Output
 
 ```cpp
 cout << 5.0 / 2;
 ```
 
-#### Output
+##### Output
 
 ```text
 2.5
@@ -178,7 +178,7 @@ cout << 5.0 / 2;
 
 ---
 
-## Modulus Operator (%)
+### Modulus Operator (%)
 
 Returns remainder.
 
@@ -186,7 +186,7 @@ Returns remainder.
 cout << 10 % 3;
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -194,7 +194,7 @@ cout << 10 % 3;
 
 ---
 
-### Common Uses
+#### Common Uses
 
 Check even/odd:
 
@@ -207,7 +207,7 @@ if(num % 2 == 0)
 
 ---
 
-## Relational Operators
+### Relational Operators
 
 Used for comparisons.
 
@@ -224,13 +224,13 @@ Used for comparisons.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (10 > 5);
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -238,13 +238,13 @@ cout << (10 > 5);
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (10 < 5);
 ```
 
-#### Output
+##### Output
 
 ```text
 0
@@ -252,7 +252,7 @@ cout << (10 < 5);
 
 ---
 
-## Important
+### Important
 
 Relational operators return:
 
@@ -275,7 +275,7 @@ which are displayed as:
 
 ---
 
-## Logical Operators
+### Logical Operators
 
 Used to combine multiple conditions.
 
@@ -289,13 +289,13 @@ Used to combine multiple conditions.
 
 ---
 
-## Logical AND (&&)
+### Logical AND (&&)
 
 Returns true only if both conditions are true.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 20;
@@ -303,7 +303,7 @@ int age = 20;
 cout << (age >= 18 && age <= 60);
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -311,19 +311,19 @@ cout << (age >= 18 && age <= 60);
 
 ---
 
-## Logical OR (||)
+### Logical OR (||)
 
 Returns true if at least one condition is true.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (10 > 5 || 5 > 10);
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -331,19 +331,19 @@ cout << (10 > 5 || 5 > 10);
 
 ---
 
-## Logical NOT (!)
+### Logical NOT (!)
 
 Reverses the result.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << !(10 > 5);
 ```
 
-#### Output
+##### Output
 
 ```text
 0
@@ -351,13 +351,13 @@ cout << !(10 > 5);
 
 ---
 
-## Assignment Operators
+### Assignment Operators
 
 Used to assign values.
 
 ---
 
-### Basic Assignment
+#### Basic Assignment
 
 ```cpp
 int num = 10;
@@ -365,7 +365,7 @@ int num = 10;
 
 ---
 
-### Compound Assignment Operators
+#### Compound Assignment Operators
 
 | Operator | Meaning             |
 | -------- | ------------------- |
@@ -377,7 +377,7 @@ int num = 10;
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int num = 10;
@@ -387,7 +387,7 @@ num += 5;
 cout << num;
 ```
 
-#### Output
+##### Output
 
 ```text
 15
@@ -395,13 +395,13 @@ cout << num;
 
 ---
 
-## Increment Operator (++)
+### Increment Operator (++)
 
 Increases value by 1.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int x = 5;
@@ -411,7 +411,7 @@ x++;
 cout << x;
 ```
 
-#### Output
+##### Output
 
 ```text
 6
@@ -419,13 +419,13 @@ cout << x;
 
 ---
 
-## Decrement Operator (--)
+### Decrement Operator (--)
 
 Decreases value by 1.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int x = 5;
@@ -435,7 +435,7 @@ x--;
 cout << x;
 ```
 
-#### Output
+##### Output
 
 ```text
 4
@@ -443,7 +443,7 @@ cout << x;
 
 ---
 
-## Pre Increment
+### Pre Increment
 
 ```cpp
 ++x
@@ -453,7 +453,7 @@ Increase first, then use.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int x = 5;
@@ -461,7 +461,7 @@ int x = 5;
 cout << ++x;
 ```
 
-#### Output
+##### Output
 
 ```text
 6
@@ -469,7 +469,7 @@ cout << ++x;
 
 ---
 
-## Post Increment
+### Post Increment
 
 ```cpp
 x++
@@ -479,7 +479,7 @@ Use first, then increase.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int x = 5;
@@ -487,7 +487,7 @@ int x = 5;
 cout << x++;
 ```
 
-#### Output
+##### Output
 
 ```text
 5
@@ -501,7 +501,7 @@ Final value of x:
 
 ---
 
-## Pre vs Post Increment
+### Pre vs Post Increment
 
 ```cpp
 int x = 5;
@@ -531,19 +531,19 @@ Output:
 
 ---
 
-## sizeof Operator
+### sizeof Operator
 
 Returns memory occupied in bytes.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << sizeof(int);
 ```
 
-#### Output
+##### Output
 
 ```text
 4
@@ -551,7 +551,7 @@ cout << sizeof(int);
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 double d;
@@ -559,7 +559,7 @@ double d;
 cout << sizeof(d);
 ```
 
-#### Output
+##### Output
 
 ```text
 8
@@ -567,13 +567,13 @@ cout << sizeof(d);
 
 ---
 
-## Ternary Operator
+### Ternary Operator
 
 Short form of if-else.
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 condition ? value1 : value2
@@ -581,7 +581,7 @@ condition ? value1 : value2
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int age = 20;
@@ -589,7 +589,7 @@ int age = 20;
 cout << (age >= 18 ? "Adult" : "Minor");
 ```
 
-#### Output
+##### Output
 
 ```text
 Adult
@@ -597,7 +597,7 @@ Adult
 
 ---
 
-## Bitwise Operators (Introduction)
+### Bitwise Operators (Introduction)
 
 Operate directly on bits.
 
@@ -614,13 +614,13 @@ Operate directly on bits.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (5 & 3);
 ```
 
-#### Output
+##### Output
 
 ```text
 1
@@ -637,13 +637,13 @@ Because:
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (5 | 3);
 ```
 
-#### Output
+##### Output
 
 ```text
 7
@@ -651,13 +651,13 @@ cout << (5 | 3);
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << (5 ^ 3);
 ```
 
-#### Output
+##### Output
 
 ```text
 6
@@ -665,19 +665,19 @@ cout << (5 ^ 3);
 
 ---
 
-## Operator Precedence
+### Operator Precedence
 
 Not all operators execute in the same order.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 cout << 10 + 5 * 2;
 ```
 
-#### Output
+##### Output
 
 ```text
 20
@@ -693,13 +693,13 @@ Because:
 
 ---
 
-## Using Parentheses
+### Using Parentheses
 
 ```cpp
 cout << (10 + 5) * 2;
 ```
 
-#### Output
+##### Output
 
 ```text
 30
@@ -707,11 +707,11 @@ cout << (10 + 5) * 2;
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Using = Instead of ==
+#### Using = Instead of ==
 
 Wrong
 
@@ -729,7 +729,7 @@ if(age == 18)
 
 ---
 
-### Expecting Decimal Result
+#### Expecting Decimal Result
 
 ```cpp
 cout << 5 / 2;
@@ -749,7 +749,7 @@ not:
 
 ---
 
-### Confusing Pre and Post Increment
+#### Confusing Pre and Post Increment
 
 ```cpp
 int x = 5;
@@ -771,11 +771,11 @@ Many beginners expect:
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Difference between `=` and `==`?
+#### Q1. Difference between `=` and `==`?
 
-#### Answer
+##### Answer
 
 ```cpp
 =
@@ -791,9 +791,9 @@ compares values.
 
 ---
 
-### Q2. Output of `5 / 2`?
+#### Q2. Output of `5 / 2`?
 
-#### Answer
+##### Answer
 
 ```text
 2
@@ -803,9 +803,9 @@ because integer division truncates decimals.
 
 ---
 
-### Q3. Difference between `++x` and `x++`?
+#### Q3. Difference between `++x` and `x++`?
 
-#### Answer
+##### Answer
 
 `++x` increments first.
 
@@ -813,23 +813,23 @@ because integer division truncates decimals.
 
 ---
 
-### Q4. What does `%` do?
+#### Q4. What does `%` do?
 
-#### Answer
+##### Answer
 
 Returns remainder after division.
 
 ---
 
-### Q5. What does `sizeof()` return?
+#### Q5. What does `sizeof()` return?
 
-#### Answer
+##### Answer
 
 Memory occupied by a data type or variable in bytes.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 +
@@ -877,7 +877,7 @@ condition ? A : B
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Operators perform operations on operands.
 - Arithmetic operators perform mathematical calculations.

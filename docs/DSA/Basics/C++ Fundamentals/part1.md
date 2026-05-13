@@ -9,7 +9,7 @@ sidebar_position: 1
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 In this chapter, you will learn:
 
@@ -28,7 +28,7 @@ In this chapter, you will learn:
 
 ---
 
-## Your First C++ Program
+### Your First C++ Program
 
 ```cpp
 #include <iostream>
@@ -43,7 +43,7 @@ int main()
 }
 ```
 
-#### Output
+##### Output
 
 ```text
 Hello World
@@ -51,7 +51,7 @@ Hello World
 
 ---
 
-## Understanding Program Structure
+### Understanding Program Structure
 
 Every C++ program follows a basic structure:
 
@@ -70,7 +70,7 @@ int main()
 
 ---
 
-### Structure Diagram
+#### Structure Diagram
 
 ```text
 Header Files
@@ -86,15 +86,15 @@ return
 
 ---
 
-## Header Files
+### Header Files
 
-### What Are Header Files?
+#### What Are Header Files?
 
 Header files contain declarations of functions, classes, and objects that can be used in a program.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 #include <iostream>
@@ -102,7 +102,7 @@ Header files contain declarations of functions, classes, and objects that can be
 
 ---
 
-### Why Do We Need It?
+#### Why Do We Need It?
 
 Without:
 
@@ -128,7 +128,7 @@ will produce a compilation error if `<iostream>` is not included.
 
 ---
 
-### Common Header Files
+#### Common Header Files
 
 | Header File  | Purpose                |
 | ------------ | ---------------------- |
@@ -140,9 +140,9 @@ will produce a compilation error if `<iostream>` is not included.
 
 ---
 
-## Preprocessor Directives
+### Preprocessor Directives
 
-### What Are They?
+#### What Are They?
 
 Lines beginning with:
 
@@ -156,7 +156,7 @@ They are processed before compilation.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 #include <iostream>
@@ -180,7 +180,7 @@ Other examples:
 
 ---
 
-### Important Point
+#### Important Point
 
 The compiler does not process preprocessor directives directly.
 
@@ -194,9 +194,9 @@ handles them before compilation starts.
 
 ---
 
-## Namespace
+### Namespace
 
-### What Problem Does It Solve?
+#### What Problem Does It Solve?
 
 Different libraries may contain functions or objects with the same name.
 
@@ -204,7 +204,7 @@ Namespaces prevent naming conflicts.
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 using namespace std;
@@ -226,7 +226,7 @@ std::cout << "Hello";
 
 ---
 
-### Without Namespace
+#### Without Namespace
 
 ```cpp
 #include <iostream>
@@ -239,7 +239,7 @@ int main()
 
 ---
 
-### With Namespace
+#### With Namespace
 
 ```cpp
 #include <iostream>
@@ -254,9 +254,9 @@ int main()
 
 ---
 
-## The `main()` Function
+### The `main()` Function
 
-### What Is It?
+#### What Is It?
 
 The entry point of every C++ program.
 
@@ -268,7 +268,7 @@ main()
 
 ---
 
-### Syntax
+#### Syntax
 
 ```cpp
 int main()
@@ -278,7 +278,7 @@ int main()
 
 ---
 
-### Example
+#### Example
 
 ```cpp
 int main()
@@ -291,7 +291,7 @@ int main()
 
 ---
 
-#### Output
+##### Output
 
 ```text
 Program Started
@@ -299,7 +299,7 @@ Program Started
 
 ---
 
-## Why Does `main()` Return `int`?
+### Why Does `main()` Return `int`?
 
 ```cpp
 int main()
@@ -327,7 +327,7 @@ Program executed successfully.
 
 ---
 
-## return 0
+### return 0
 
 Example:
 
@@ -342,7 +342,7 @@ int main()
 
 ---
 
-#### Meaning
+##### Meaning
 
 ```text
 Return control to Operating System
@@ -351,9 +351,9 @@ with success status.
 
 ---
 
-## Statements
+### Statements
 
-### What Is A Statement?
+#### What Is A Statement?
 
 A statement is an instruction given to the computer.
 
@@ -389,9 +389,9 @@ Semicolon
 
 ---
 
-## Semicolon (`;`)
+### Semicolon (`;`)
 
-### Why Is It Needed?
+#### Why Is It Needed?
 
 Marks the end of a statement.
 
@@ -415,7 +415,7 @@ Compilation Error.
 
 ---
 
-## Comments
+### Comments
 
 Comments are ignored by the compiler.
 
@@ -423,7 +423,7 @@ Used to explain code.
 
 ---
 
-### Single Line Comment
+#### Single Line Comment
 
 ```cpp
 // This is a comment
@@ -440,7 +440,7 @@ int age = 20;
 
 ---
 
-### Multi-line Comment
+#### Multi-line Comment
 
 ```cpp
 /*
@@ -465,9 +465,9 @@ Prashant
 
 ---
 
-## Keywords
+### Keywords
 
-### What Are Keywords?
+#### What Are Keywords?
 
 Reserved words that already have a meaning in C++.
 
@@ -490,7 +490,7 @@ void
 
 ---
 
-### Invalid Example
+#### Invalid Example
 
 ```cpp
 int int = 10;
@@ -510,9 +510,9 @@ is a keyword.
 
 ---
 
-## Identifiers
+### Identifiers
 
-### What Are Identifiers?
+#### What Are Identifiers?
 
 Names given to:
 
@@ -537,11 +537,11 @@ age
 
 ---
 
-## Identifier Rules
+### Identifier Rules
 
 ---
 
-### Rule 1
+#### Rule 1
 
 Can contain:
 
@@ -563,7 +563,7 @@ count123
 
 ---
 
-### Rule 2
+#### Rule 2
 
 Cannot start with a digit.
 
@@ -583,7 +583,7 @@ count123
 
 ---
 
-### Rule 3
+#### Rule 3
 
 Cannot be a keyword.
 
@@ -595,7 +595,7 @@ int return = 10;
 
 ---
 
-### Rule 4
+#### Rule 4
 
 C++ is case-sensitive.
 
@@ -609,9 +609,9 @@ are different identifiers.
 
 ---
 
-## Variables (Introduction)
+### Variables (Introduction)
 
-### What Is A Variable?
+#### What Is A Variable?
 
 A named memory location used to store data.
 
@@ -643,7 +643,7 @@ Value stored:
 
 ---
 
-## Variable Declaration
+### Variable Declaration
 
 ```cpp
 int age;
@@ -651,7 +651,7 @@ int age;
 
 ---
 
-## Variable Initialization
+### Variable Initialization
 
 ```cpp
 int age = 20;
@@ -659,7 +659,7 @@ int age = 20;
 
 ---
 
-## Multiple Variables
+### Multiple Variables
 
 ```cpp
 int a = 10;
@@ -669,9 +669,9 @@ int c = 30;
 
 ---
 
-## Constants (Introduction)
+### Constants (Introduction)
 
-### What Is A Constant?
+#### What Is A Constant?
 
 A value that cannot be changed after initialization.
 
@@ -695,7 +695,7 @@ Compilation Error.
 
 ---
 
-## constexpr
+### constexpr
 
 Modern C++ provides:
 
@@ -715,7 +715,7 @@ Used for compile-time constants.
 
 ---
 
-## Program Execution Flow
+### Program Execution Flow
 
 Consider:
 
@@ -738,7 +738,7 @@ int main()
 
 ---
 
-#### Output
+##### Output
 
 ```text
 A
@@ -748,7 +748,7 @@ C
 
 ---
 
-#### Execution Flow
+##### Execution Flow
 
 ```text
 Program Starts
@@ -768,11 +768,11 @@ Program Ends
 
 ---
 
-## Common Beginner Mistakes
+### Common Beginner Mistakes
 
 ---
 
-### Missing Semicolon
+#### Missing Semicolon
 
 Wrong:
 
@@ -790,7 +790,7 @@ int age = 20;
 
 ---
 
-### Missing Header File
+#### Missing Header File
 
 Wrong:
 
@@ -806,7 +806,7 @@ without:
 
 ---
 
-### Using Keyword As Variable Name
+#### Using Keyword As Variable Name
 
 Wrong:
 
@@ -816,7 +816,7 @@ int return = 10;
 
 ---
 
-### Forgetting `main()`
+#### Forgetting `main()`
 
 Every C++ program must have:
 
@@ -826,11 +826,11 @@ main()
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is the entry point of a C++ program?
+#### Q1. What is the entry point of a C++ program?
 
-#### Answer
+##### Answer
 
 ```cpp
 main()
@@ -838,9 +838,9 @@ main()
 
 ---
 
-### Q2. Why do we use `#include <iostream>`?
+#### Q2. Why do we use `#include <iostream>`?
 
-#### Answer
+##### Answer
 
 To use input/output objects such as:
 
@@ -852,31 +852,31 @@ endl
 
 ---
 
-### Q3. What is a namespace?
+#### Q3. What is a namespace?
 
-#### Answer
+##### Answer
 
 A mechanism used to avoid naming conflicts.
 
 ---
 
-### Q4. What does `return 0` mean?
+#### Q4. What does `return 0` mean?
 
-#### Answer
+##### Answer
 
 Program executed successfully.
 
 ---
 
-### Q5. What is an identifier?
+#### Q5. What is an identifier?
 
-#### Answer
+##### Answer
 
 A user-defined name given to variables, functions, classes, etc.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 #include <iostream>
@@ -910,7 +910,7 @@ constexpr double PI = 3.14159;
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Every C++ program starts execution from `main()`.
 - Header files provide declarations for library features.

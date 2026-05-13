@@ -39,7 +39,7 @@ sidebar_position: 10
 
 ---
 
-## Learning Roadmap
+### Learning Roadmap
 
 In this chapter we will cover:
 
@@ -59,7 +59,7 @@ In this chapter we will cover:
 
 ---
 
-## Why Do Normal Pointers Need Types?
+### Why Do Normal Pointers Need Types?
 
 Consider:
 
@@ -125,7 +125,7 @@ Move 8 bytes
 
 ---
 
-## Problem
+### Problem
 
 Suppose we want a pointer that can point to:
 
@@ -169,7 +169,7 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Because:
 
@@ -185,7 +185,7 @@ Address of int
 
 ---
 
-## Solution
+### Solution
 
 Use:
 
@@ -195,15 +195,15 @@ void*
 
 ---
 
-## What Is a Void Pointer?
+### What Is a Void Pointer?
 
-### Definition
+#### Definition
 
 A void pointer is a special pointer that can store the address of any data type.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 void* ptr;
@@ -211,7 +211,7 @@ void* ptr;
 
 ---
 
-## Read As
+### Read As
 
 ```text
 Pointer to unknown type
@@ -225,7 +225,7 @@ Generic pointer
 
 ---
 
-## Important Clarification
+### Important Clarification
 
 Many beginners think:
 
@@ -246,7 +246,7 @@ stored at the address.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int number = 10;
@@ -278,7 +278,7 @@ Address      Value
 
 ---
 
-## Visual Diagram
+### Visual Diagram
 
 ```text
 ptr
@@ -291,7 +291,7 @@ number
 
 ---
 
-## Compiler View
+### Compiler View
 
 Compiler knows:
 
@@ -309,13 +309,13 @@ Address contains an integer
 
 ---
 
-## Storing Different Data Types
+### Storing Different Data Types
 
 One of the biggest advantages of void pointers.
 
 ---
 
-## Integer Example
+### Integer Example
 
 ```cpp
 int number = 10;
@@ -327,7 +327,7 @@ Valid.
 
 ---
 
-## Double Example
+### Double Example
 
 ```cpp
 double price = 99.5;
@@ -339,7 +339,7 @@ Valid.
 
 ---
 
-## Character Example
+### Character Example
 
 ```cpp
 char grade = 'A';
@@ -351,7 +351,7 @@ Valid.
 
 ---
 
-## Structure Example
+### Structure Example
 
 ```cpp
 struct Student
@@ -368,7 +368,7 @@ Valid.
 
 ---
 
-## Important Observation
+### Important Observation
 
 Same pointer type:
 
@@ -389,7 +389,7 @@ object
 
 ---
 
-## Why Was Void Pointer Created?
+### Why Was Void Pointer Created?
 
 Without void pointers:
 
@@ -418,7 +418,7 @@ can handle all of them.
 
 ---
 
-## Internal Working
+### Internal Working
 
 Consider:
 
@@ -468,13 +468,13 @@ Some data exists there.
 
 ---
 
-## Why Dereferencing Fails
+### Why Dereferencing Fails
 
 Most important concept of this chapter.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 int number = 100;
@@ -488,7 +488,7 @@ Compilation Error.
 
 ---
 
-## Why?
+### Why?
 
 Compiler asks:
 
@@ -521,7 +521,7 @@ is illegal.
 
 ---
 
-## Error Explanation
+### Error Explanation
 
 Normal pointer:
 
@@ -553,7 +553,7 @@ Unknown.
 
 ---
 
-## Solution: Type Casting
+### Solution: Type Casting
 
 Before dereferencing a void pointer, we must tell the compiler:
 
@@ -563,7 +563,7 @@ What data type exists there.
 
 ---
 
-## Integer Example
+### Integer Example
 
 ```cpp
 int number = 100;
@@ -581,7 +581,7 @@ Output:
 
 ---
 
-## Execution
+### Execution
 
 Compiler sees:
 
@@ -607,7 +607,7 @@ cout << *temp;
 
 ---
 
-## Double Example
+### Double Example
 
 ```cpp
 double price = 99.5;
@@ -625,7 +625,7 @@ Output:
 
 ---
 
-## Character Example
+### Character Example
 
 ```cpp
 char grade = 'A';
@@ -643,7 +643,7 @@ A
 
 ---
 
-## Modern C++ Style Cast
+### Modern C++ Style Cast
 
 Prefer:
 
@@ -667,7 +667,7 @@ cout << *static_cast<int*>(ptr);
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 Example:
 
@@ -727,13 +727,13 @@ int*
 
 ---
 
-## Pointer Arithmetic on Void Pointer
+### Pointer Arithmetic on Void Pointer
 
 Extremely common interview question.
 
 ---
 
-## Example
+### Example
 
 ```cpp
 void* ptr;
@@ -743,7 +743,7 @@ ptr++;
 
 ---
 
-## Is This Valid?
+### Is This Valid?
 
 According to standard C++:
 
@@ -753,7 +753,7 @@ No
 
 ---
 
-## Why?
+### Why?
 
 Compiler asks:
 
@@ -829,7 +829,7 @@ is illegal in standard C++.
 
 ---
 
-## Comparison Table
+### Comparison Table
 
 | Pointer Type | Size Known? | Arithmetic Possible? |
 | ------------ | ----------- | -------------------- |
@@ -840,13 +840,13 @@ is illegal in standard C++.
 
 ---
 
-## Real-World Applications
+### Real-World Applications
 
 Void pointers are heavily used in:
 
 ---
 
-## 1. malloc()
+### 1. malloc()
 
 C-style memory allocation:
 
@@ -884,7 +884,7 @@ class
 
 ---
 
-## 2. memcpy()
+### 2. memcpy()
 
 ```cpp
 memcpy(destination,
@@ -910,7 +910,7 @@ Can copy any data type.
 
 ---
 
-## 3. Generic Libraries
+### 3. Generic Libraries
 
 Low-level libraries frequently use:
 
@@ -922,7 +922,7 @@ for generic interfaces.
 
 ---
 
-## 4. Operating Systems
+### 4. Operating Systems
 
 Many OS APIs return:
 
@@ -934,47 +934,47 @@ because actual type depends on usage.
 
 ---
 
-## Advantages of Void Pointers
+### Advantages of Void Pointers
 
-#### Generic
+##### Generic
 
 Can point to any data type.
 
 ---
 
-#### Flexible
+##### Flexible
 
 Useful for reusable APIs.
 
 ---
 
-#### Efficient
+##### Efficient
 
 No need for multiple function versions.
 
 ---
 
-## Disadvantages of Void Pointers
+### Disadvantages of Void Pointers
 
-#### No Direct Dereferencing
+##### No Direct Dereferencing
 
 Requires casting.
 
 ---
 
-#### No Type Safety
+##### No Type Safety
 
 Compiler cannot verify correctness.
 
 ---
 
-#### Easy To Make Mistakes
+##### Easy To Make Mistakes
 
 Wrong casts can cause bugs.
 
 ---
 
-## Dangerous Example
+### Dangerous Example
 
 ```cpp
 double price = 99.5;
@@ -1000,7 +1000,7 @@ Undefined Behavior
 
 ---
 
-## Why?
+### Why?
 
 Compiler interprets:
 
@@ -1016,11 +1016,11 @@ Integer memory
 
 ---
 
-## Common Bugs
+### Common Bugs
 
 ---
 
-## Bug 1
+### Bug 1
 
 ```cpp
 void* ptr;
@@ -1032,7 +1032,7 @@ Compilation Error.
 
 ---
 
-## Bug 2
+### Bug 2
 
 ```cpp
 void* ptr = &value;
@@ -1044,7 +1044,7 @@ Not valid in standard C++.
 
 ---
 
-## Bug 3
+### Bug 3
 
 Wrong cast.
 
@@ -1058,7 +1058,7 @@ cout << *(int*)ptr;
 
 ---
 
-## Bug 4
+### Bug 4
 
 Assuming void pointer stores type information.
 
@@ -1066,7 +1066,7 @@ It does not.
 
 ---
 
-## Comparison: Normal Pointer vs Void Pointer
+### Comparison: Normal Pointer vs Void Pointer
 
 | Feature            | int\* | void\* |
 | ------------------ | ----- | ------ |
@@ -1079,25 +1079,25 @@ It does not.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
 ---
 
-### Q1
+#### Q1
 
 What is a void pointer?
 
-#### Answer
+##### Answer
 
 A generic pointer capable of storing the address of any data type.
 
 ---
 
-### Q2
+#### Q2
 
 Can a void pointer point to an integer?
 
-#### Answer
+##### Answer
 
 Yes.
 
@@ -1109,11 +1109,11 @@ void* ptr = &value;
 
 ---
 
-### Q3
+#### Q3
 
 Can you dereference a void pointer directly?
 
-#### Answer
+##### Answer
 
 No.
 
@@ -1121,11 +1121,11 @@ Compiler does not know the data type.
 
 ---
 
-### Q4
+#### Q4
 
 Why is casting required?
 
-#### Answer
+##### Answer
 
 Compiler must know:
 
@@ -1135,27 +1135,27 @@ How many bytes to read.
 
 ---
 
-### Q5
+#### Q5
 
 Can pointer arithmetic be performed on void pointers?
 
-#### Answer
+##### Answer
 
 Not in standard C++.
 
 ---
 
-### Q6
+#### Q6
 
 Why does malloc return void\*?
 
-#### Answer
+##### Answer
 
 Because allocated memory can be used for any type.
 
 ---
 
-## Cheat Sheet
+### Cheat Sheet
 
 ```cpp
 void* ptr;
@@ -1181,7 +1181,7 @@ cout << *static_cast<double*>(ptr);
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - A void pointer is a generic pointer.
 - It can store the address of any data type.
