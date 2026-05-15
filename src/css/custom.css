@@ -57,28 +57,31 @@
   opacity: 0.8;
 }
 
-/* Truncate long sidebar text with ellipsis after 2 lines */
+/* Uniform vertical spacing and truncation for all sidebar items */
+.menu__list-item {
+  margin: 0 !important;
+}
+
+.menu__list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .menu__link {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  margin: 0 !important;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+  line-height: 1.25;
 }
 
-/* Remove extra spacing below expandable sections/categories */
-.menu__list-item {
+/* Match category spacing to regular links */
+.menu__list-item-collapsible {
   margin: 0 !important;
-  padding: 0 !important;
-}
-
-.menu__list {
-  margin-bottom: 0 !important;
-}
-
-.menu__link {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
 }
 
