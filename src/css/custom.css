@@ -68,8 +68,8 @@
 }
 
 .menu__link {
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
   margin: 0 !important;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -78,10 +78,52 @@
   text-overflow: ellipsis;
   white-space: normal;
   line-height: 1.25;
+  font-size: 0.95rem;
 }
 
 /* Match category spacing to regular links */
 .menu__list-item-collapsible {
   margin: 0 !important;
+}
+
+/* Color Hierarchy */
+
+/* Top-level Categories (e.g., DSA, Web Dev) */
+.menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
+.menu__list > .menu__list-item > .menu__link {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  margin-top: 8px !important;
+}
+
+/* Sub-categories (e.g., Basics, TypeScript) */
+.menu__list .menu__list .menu__list-item-collapsible .menu__link {
+  color: var(--ifm-color-emphasis-800) !important;
+  font-weight: 600 !important;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.95rem;
+  margin-top: 0 !important;
+}
+
+/* Leaf Pages (Actual Notes) */
+.menu__link:not(.menu__link--sublist) {
+  color: var(--ifm-color-emphasis-700) !important;
+  font-weight: 400 !important;
+}
+
+/* Active Page Highlight */
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-color-primary) !important;
+  background-color: var(--ifm-menu-color-background-active) !important;
+  font-weight: 600 !important;
+}
+
+/* Hover effects */
+.menu__link:hover {
+  background-color: var(--ifm-menu-color-background-hover) !important;
 }
 
