@@ -60,11 +60,12 @@
 /* Uniform vertical spacing and truncation for all sidebar items */
 .menu__list-item {
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 .menu__list {
   margin: 0 !important;
-  /* Removed padding: 0 !important to restore hierarchical indentation */
+  /* Indentation is handled by default padding-left, keeping it untouched */
 }
 
 .menu__link {
@@ -84,6 +85,13 @@
 /* Match category spacing to regular links */
 .menu__list-item-collapsible {
   margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force nested lists (inside expanded categories) to have zero bottom margin */
+.menu__list .menu__list {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 /* Color Hierarchy */
@@ -96,7 +104,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 0.8rem;
-  margin-top: 12px !important; /* Visual separation for main sections */
+  margin-top: 12px !important; /* Only top-level items get a gap for sectioning */
 }
 
 /* Sub-categories (e.g., Basics, TypeScript) */
@@ -106,12 +114,11 @@
   text-transform: none;
   letter-spacing: normal;
   font-size: 0.9rem;
-  margin-top: 0 !important;
 }
 
-/* Leaf Pages (Actual Notes) - Lighter color as requested */
+/* Leaf Pages (Actual Notes) - Lighter color */
 .menu__link:not(.menu__link--sublist) {
-  color: var(--ifm-color-emphasis-600) !important;
+  color: var(--ifm-color-emphasis-500) !important; /* Made even lighter */
   font-weight: 400 !important;
 }
 
