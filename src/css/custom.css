@@ -57,41 +57,41 @@
   opacity: 0.8;
 }
 
-/* Uniform vertical spacing and truncation for all sidebar items */
-.menu__list-item {
+/* Nuclear Fix for Sidebar Spacing & Truncation */
+
+/* 1. Reset all container spacing to zero */
+.menu__list,
+.menu__list-item,
+.menu__list-item-collapsible {
   margin: 0 !important;
   padding: 0 !important;
+  list-style: none !important;
 }
 
-.menu__list {
-  margin: 0 !important;
-  /* Indentation is handled by default padding-left, keeping it untouched */
-}
-
+/* 2. Unified Link Styling (The only place where vertical space is defined) */
 .menu__link {
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   margin: 0 !important;
-  white-space: nowrap;
+  line-height: 1.25 !important;
+  font-size: 0.95rem;
+  
+  /* Restore 2-line truncation */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: block;
-  font-size: 0.95rem;
+  white-space: normal !important;
 }
 
-/* Match category spacing to regular links */
+/* 3. Ensure the collapsible wrapper doesn't add height */
 .menu__list-item-collapsible {
-  margin: 0 !important;
-  padding: 0 !important;
+  display: flex;
+  align-items: center;
 }
 
-/* Force nested lists (inside expanded categories) to have zero bottom margin */
-.menu__list .menu__list {
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* Color Hierarchy */
+/* 4. Color Hierarchy */
 
 /* Top-level Categories (e.g., DSA, Web Dev) */
 .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
@@ -109,13 +109,23 @@
   font-weight: 600 !important;
   text-transform: none;
   letter-spacing: normal;
-  font-size: 0.9rem;
 }
 
 /* Leaf Pages (Actual Notes) - Lighter color */
 .menu__link:not(.menu__link--sublist) {
-  color: var(--ifm-color-emphasis-500) !important; /* Made even lighter */
+  color: var(--ifm-color-emphasis-500) !important;
   font-weight: 400 !important;
+}
+
+/* Active & Hover */
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-color-primary) !important;
+  background-color: var(--ifm-menu-color-background-active) !important;
+  font-weight: 600 !important;
+}
+
+.menu__link:hover {
+  background-color: var(--ifm-menu-color-background-hover) !important;
 }
 
 /* Active Page Highlight */
