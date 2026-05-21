@@ -59,12 +59,14 @@
 
 /* Nuclear Fix for Sidebar Spacing & Truncation */
 
-/* 1. Reset all container spacing to zero */
+/* 1. Reset all VERTICAL container spacing to zero to fix ghost gaps */
 .menu__list,
 .menu__list-item,
 .menu__list-item-collapsible {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   list-style: none !important;
 }
 
@@ -124,18 +126,6 @@
   font-weight: 600 !important;
 }
 
-.menu__link:hover {
-  background-color: var(--ifm-menu-color-background-hover) !important;
-}
-
-/* Active Page Highlight */
-.menu__link--active:not(.menu__link--sublist) {
-  color: var(--ifm-color-primary) !important;
-  background-color: var(--ifm-menu-color-background-active) !important;
-  font-weight: 600 !important;
-}
-
-/* Hover effects */
 .menu__link:hover {
   background-color: var(--ifm-menu-color-background-hover) !important;
 }
