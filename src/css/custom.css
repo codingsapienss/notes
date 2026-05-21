@@ -57,9 +57,9 @@
   opacity: 0.8;
 }
 
-/* Nuclear Fix for Sidebar Spacing & Truncation */
+/* Sidebar Spacing & Typography Refinement */
 
-/* 1. Reset all VERTICAL container spacing to zero to fix ghost gaps */
+/* 1. Reset all VERTICAL container spacing to zero */
 .menu__list,
 .menu__list-item,
 .menu__list-item-collapsible {
@@ -70,21 +70,16 @@
   list-style: none !important;
 }
 
-/* 2. Unified Link Styling (The only place where vertical space is defined) */
+/* 2. Unified Link Styling (Standard 1rem font, no truncation) */
 .menu__link {
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   margin: 0 !important;
-  line-height: 1.25 !important;
-  font-size: 0.95rem;
-  
-  /* Restore 2-line truncation */
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4 !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
   white-space: normal !important;
+  display: block !important;
 }
 
 /* 3. Ensure the collapsible wrapper doesn't add height */
@@ -93,29 +88,30 @@
   align-items: center;
 }
 
-/* 4. Color Hierarchy */
+/* 4. Table of Contents (Right Sidebar) Styling */
+.table-of-contents__link {
+  text-transform: none !important;
+}
+
+/* 5. Color Hierarchy */
 
 /* Top-level Categories (e.g., DSA, Web Dev) */
 .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
 .menu__list > .menu__list-item > .menu__link {
   color: var(--ifm-color-primary) !important;
   font-weight: 700 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 0.8rem;
+  letter-spacing: normal !important;
 }
 
 /* Sub-categories (e.g., Basics, TypeScript) */
 .menu__list .menu__list .menu__list-item-collapsible .menu__link {
   color: var(--ifm-color-emphasis-800) !important;
   font-weight: 600 !important;
-  text-transform: none;
-  letter-spacing: normal;
 }
 
-/* Leaf Pages (Actual Notes) - Lighter color */
+/* Leaf Pages (Actual Notes) - Even Lighter */
 .menu__link:not(.menu__link--sublist) {
-  color: var(--ifm-color-emphasis-500) !important;
+  color: var(--ifm-color-emphasis-400) !important;
   font-weight: 400 !important;
 }
 
