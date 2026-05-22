@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdsa_site=self.webpackChunkdsa_site||[]).push([["3220"],{1912(s){s.exports=JSON.parse('{"blogBasePath":"/DSA/blog","blogTitle":"Blog","authorsListPath":"/DSA/blog/authors"}')}}]);
