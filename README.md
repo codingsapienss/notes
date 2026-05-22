@@ -1,41 +1,35 @@
-# Website
+# Notes 📚
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Personal knowledge base and engineering handbook covering Data Structures & Algorithms, Web Development, and more.
 
-## Installation
+## 🚀 Live Site
+View the handbook at: [https://codingsapienss.github.io/notes/](https://codingsapienss.github.io/notes/)
 
+## 🛠️ Quick Start
+
+### Installation
 ```bash
-yarn
+npm install
 ```
 
-## Local Development
-
+### Local Development
 ```bash
-yarn start
+npm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
+### Build
 ```bash
-yarn build
+npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
-
+### Deploy
 ```bash
-USE_SSH=true yarn deploy
+npm run deploy
 ```
 
-Not using SSH:
+## 📝 Adding Notes
+1. Add `.md` files to the `docs/` folder.
+2. Organize by category (e.g., `docs/DSA/`, `docs/WebDev/React/`).
+3. Update `sidebars.js` if you create a new top-level category.
 
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Built with [Docusaurus](https://docusaurus.io/).
