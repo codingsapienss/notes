@@ -1,0 +1,3 @@
+# TypeScript Notes
+
+Coming soon!

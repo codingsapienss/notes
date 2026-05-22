@@ -7,45 +7,42 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
-const HandbookParts = [
+const KnowledgeCategories = [
   {
-    title: 'Part 1: Foundations',
-    description: 'Master the basics of C++ STL, arrays, pairs, and vector internals.',
-    link: '/docs/',
+    title: 'Data Structures & Algorithms',
+    description: 'Master DSA with C++ STL, complexity analysis, and problem-solving techniques.',
+    link: '/docs/DSA/STL/part-01_foundation',
+    icon: '📊',
   },
   {
-    title: 'Part 2: Dynamic Containers',
-    description: 'Deep dive into Vectors, Lists, and Deques for flexible data storage.',
-    link: '/docs/Basics/STL/part-02_dynamic-containers',
+    title: 'TypeScript',
+    description: 'Deep dive into type systems, decorators, and scalable JS applications.',
+    link: '/docs/WebDev/TypeScript/intro',
+    icon: '🟦',
   },
   {
-    title: 'Part 3: Container Adaptors',
-    description: 'Understand Stacks, Queues, and Priority Queues for restricted interfaces.',
-    link: '/docs/Basics/STL/part-03_container-adaptors',
+    title: 'React',
+    description: 'Build modern UIs with hooks, state management, and component patterns.',
+    link: '/docs/WebDev/React/intro',
+    icon: '⚛️',
   },
   {
-    title: 'Part 4: Associative Containers',
-    description: 'Efficiently manage unique data with Sets, Multisets, and Maps.',
-    link: '/docs/Basics/STL/part-04_associative-containers',
-  },
-  {
-    title: 'Part 5: Algorithms',
-    description: 'Level up with sorting, searching, and built-in STL utility functions.',
-    link: '/docs/Basics/STL/part-05_algorithms-and-utility-functions',
-  },
-  {
-    title: 'Part 6: Revision Handbook',
-    description: 'A concise summary and quick reference for last-minute revisions.',
-    link: '/docs/Basics/STL/part-06_final-revision-handbook',
+    title: 'Coming Soon...',
+    description: 'System Design, Backend Engineering, and more notes on the way.',
+    link: '#',
+    icon: '🚀',
   },
 ];
 
-function HandbookCard({title, description, link}) {
+function CategoryCard({title, description, link, icon}) {
   return (
-    <div className="col col--4 margin-bottom--lg">
+    <div className="col col--6 margin-bottom--lg">
       <Link className="card" to={link} style={{textDecoration: 'none'}}>
         <div className="card__header">
-          <Heading as="h3">{title}</Heading>
+          <Heading as="h3">
+            <span style={{marginRight: '10px'}}>{icon}</span>
+            {title}
+          </Heading>
         </div>
         <div className="card__body">
           <p>{description}</p>
@@ -63,12 +60,12 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">Your Personal Knowledge Hub for Software Engineering</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/">
-            Start Reading Now 📖
+            to="/docs/DSA/STL/part-01_foundation">
+            Explore My Notes 📚
           </Link>
         </div>
       </div>
@@ -81,13 +78,13 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Modern C++ STL Handbook for Data Structures and Algorithms">
+      description="Personal knowledge base for DSA, Web Development, and more.">
       <HomepageHeader />
       <main>
         <div className="container" style={{padding: '4rem 0'}}>
           <div className="row">
-            {HandbookParts.map((props, idx) => (
-              <HandbookCard key={idx} {...props} />
+            {KnowledgeCategories.map((props, idx) => (
+              <CategoryCard key={idx} {...props} />
             ))}
           </div>
         </div>

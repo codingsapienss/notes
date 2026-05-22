@@ -3,8 +3,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'DSA Handbook',
-  tagline: 'C++ STL Mastery Guide',
+  title: 'Dev Notes',
+  tagline: 'Personal Knowledge Base & Engineering Handbook',
   favicon: 'img/favicon.ico',
   url: 'https://codingsapienss.github.io',
   baseUrl: '/DSA/',
@@ -44,9 +44,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'DSA Handbook',
+        title: 'Dev Notes',
         logo: {
-          alt: 'DSA Logo',
+          alt: 'Dev Notes Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -54,7 +54,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Handbook',
+            label: 'Notes',
           },
           {
             href: 'https://github.com/codingsapienss/DSA',
@@ -70,7 +70,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Handbook',
+                label: 'All Notes',
                 to: '/docs/',
               },
             ],
