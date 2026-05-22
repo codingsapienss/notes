@@ -7,9 +7,9 @@ const config = {
   tagline: 'Personal Knowledge Base & Engineering Handbook',
   favicon: 'img/favicon.ico',
   url: 'https://codingsapienss.github.io',
-  baseUrl: '/DSA/',
+  baseUrl: '/Notes/',
   organizationName: 'codingsapienss',
-  projectName: 'DSA',
+  projectName: 'Notes',
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -26,7 +26,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/codingsapienss/DSA/tree/main/',
+          editUrl: 'https://github.com/codingsapienss/Notes/tree/main/',
         },
         blog: false,
         theme: {
@@ -57,7 +57,7 @@ const config = {
             label: 'Notes',
           },
           {
-            href: 'https://github.com/codingsapienss/DSA',
+            href: 'https://github.com/codingsapienss/Notes',
             label: 'GitHub',
             position: 'right',
           },
