@@ -1,10 +1,10 @@
+import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
 import Heading from '@theme/Heading';
+
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -32,11 +32,13 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Data Structures and Algorithms Handbook for C++ STL">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <div className="container" style={{padding: '2rem 0', textAlign: 'center'}}>
+          <p>A comprehensive guide to mastering C++ Standard Template Library.</p>
+        </div>
       </main>
     </Layout>
   );
