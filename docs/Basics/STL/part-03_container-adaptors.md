@@ -1143,7 +1143,7 @@ greater<int>
 - Queue follows FIFO
 - Priority Queue uses Heap
 - Max Heap is default
-- Min Heap uses greater<int>
+- Min Heap uses `greater<int>`
 - Stack does not allow indexing
 - Priority Queue insertion takes O(logN)
 

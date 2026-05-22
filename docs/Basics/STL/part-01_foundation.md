@@ -1,3 +1,9 @@
+---
+slug: /
+sidebar_label: 'Foundation'
+sidebar_position: 1
+---
+
 # C++ STL Handbook — Part 1 Foundations
 
 **Topics Covered**

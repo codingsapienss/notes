@@ -1,0 +1,67 @@
+I want you to execute and guide me through converting my existing GitHub repo into a Docusaurus documentation site and deploy it to GitHub Pages.
+
+Repository:
+- GitHub username: codingsapienss
+- Repo: DSA
+
+Existing structure:
+
+DSA/
+└── Basics/
+    └── STL/
+        ├── part-01_foundation.md
+        ├── part-02_dynamic-containers.md
+        ├── Part-03_container-adaptors.md
+        ├── part-04_associative-containers.md
+        ├── part-05_algorithms-and-utility-functions.md
+        └── part-06_final-revision-handbook.md
+
+Perform the following actions automatically and give commands only when user confirmation is required:
+
+1. Create a Docusaurus project using npm:
+
+npx create-docusaurus@latest . classic
+
+2. Preserve all existing markdown files.
+
+3. Move the markdown files into:
+
+docs/Basics/STL/
+
+4. Configure:
+- title = DSA Handbook
+- GitHub repo link
+- dark mode
+- syntax highlighting
+- navigation sidebar
+
+5. Generate a complete sidebars.js from existing files.
+
+6. Configure docusaurus.config.js for GitHub Pages using:
+
+url: https://codingsapienss.github.io
+baseUrl: /DSA/
+organizationName: codingsapienss
+projectName: DSA
+
+7. Configure deployment using gh-pages.
+
+8. Install required packages automatically.
+
+9. Run local development server.
+
+10. Build project and verify there are no errors.
+
+11. Commit changes:
+
+git add .
+git commit -m "Setup Docusaurus docs"
+
+12. Push changes.
+
+13. Deploy to GitHub Pages.
+
+14. Tell me exactly what GitHub settings I need to click after deployment.
+
+Do not explain concepts unless necessary.
+Execute tasks step by step and wait only when user input is required.
