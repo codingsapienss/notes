@@ -65,27 +65,8 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'All Notes',
-                to: '/docs/',
-              },
-            ],
-          },
-          {
-            title: 'GitHub',
-            items: [
-              {
-                label: 'Source Code',
-                href: 'https://github.com/codingsapienss/DSA',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} DSA Handbook.`,
+        links: [],
+        copyright: `Built with ❤️ by codingsapienss • © ${new Date().getFullYear()} Dev Notes`,
       },
       prism: {
         theme: prismThemes.github,

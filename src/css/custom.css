@@ -45,3 +45,15 @@
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
+/* Minimalist Footer */
+.footer {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+

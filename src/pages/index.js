@@ -10,27 +10,27 @@ import styles from './index.module.css';
 const KnowledgeCategories = [
   {
     title: 'Data Structures & Algorithms',
-    description: 'Master DSA with C++ STL, complexity analysis, and problem-solving techniques.',
+    description: 'Foundational concepts, C++ STL mastery, and algorithmic problem-solving.',
     link: '/docs/DSA/STL/part-01_foundation',
     icon: '📊',
   },
   {
     title: 'TypeScript',
-    description: 'Deep dive into type systems, decorators, and scalable JS applications.',
+    description: 'Advanced type systems, best practices, and scalable application design.',
     link: '/docs/WebDev/TypeScript/intro',
     icon: '🟦',
   },
   {
     title: 'React',
-    description: 'Build modern UIs with hooks, state management, and component patterns.',
+    description: 'Modern UI patterns, state management, and efficient component architecture.',
     link: '/docs/WebDev/React/intro',
     icon: '⚛️',
   },
   {
-    title: 'Coming Soon...',
-    description: 'System Design, Backend Engineering, and more notes on the way.',
+    title: 'System Design',
+    description: 'Scaling applications, distributed systems, and architectural patterns.',
     link: '#',
-    icon: '🚀',
+    icon: '🏗️',
   },
 ];
 
@@ -60,12 +60,12 @@ function HomepageHeader() {
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">Your Personal Knowledge Hub for Software Engineering</p>
+        <p className="hero__subtitle">A curated collection of technical notes and engineering insights.</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/DSA/STL/part-01_foundation">
-            Explore My Notes 📚
+            to="/docs/intro">
+            Start Reading 🚀
           </Link>
         </div>
       </div>
