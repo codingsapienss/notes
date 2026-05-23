@@ -44,7 +44,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Notes',
+        title: 'Tech Hub',
         logo: {
           alt: 'Notes Logo',
           src: 'img/logo.svg',
@@ -54,7 +54,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Notes',
+            label: 'Handbook',
           },
           {
             href: 'https://github.com/codingsapienss/notes',

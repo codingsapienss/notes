@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Algorithms & Utilities'
+---
+
 # C++ STL Handbook — Part 5 Algorithms and Utility Functions
 
 **Topics Covered**

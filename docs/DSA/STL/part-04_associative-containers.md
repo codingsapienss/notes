@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Associative Containers'
+---
+
 # C++ STL Handbook — Part 4 Associative Containers
 
 **Topics Covered**

@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Dynamic Containers'
+---
+
 # C++ STL Handbook — Part 2 Dynamic Containers
 
 **Topics Covered**

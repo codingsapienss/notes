@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Revision Handbook'
+---
+
 # C++ STL Handbook — Part 6 Final Revision Handbook
 
 **Topics Covered**
