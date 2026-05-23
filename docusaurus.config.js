@@ -51,11 +51,6 @@ const config = {
         },
         items: [
           {
-            to: '/docs/dsa',
-            position: 'left',
-            label: 'All Notes',
-          },
-          {
             href: 'https://github.com/codingsapienss/notes',
             label: 'GitHub',
             position: 'right',
