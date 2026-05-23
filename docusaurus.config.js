@@ -51,8 +51,7 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            to: '/docs/dsa',
             position: 'left',
             label: 'All Notes',
           },
