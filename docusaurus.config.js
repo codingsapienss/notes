@@ -44,7 +44,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Handbook',
+        title: 'Knowledge Base',
         logo: {
           alt: 'Notes Logo',
           src: 'img/logo.svg',
@@ -54,7 +54,17 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Handbook',
+            label: 'All Notes',
+          },
+          {
+            to: '/docs/DSA/STL/part-01_foundation',
+            label: 'C++ STL',
+            position: 'left',
+          },
+          {
+            to: '/docs/WebDev/React/intro',
+            label: 'Web Dev',
+            position: 'left',
           },
           {
             href: 'https://github.com/codingsapienss/notes',
