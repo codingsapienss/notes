@@ -44,7 +44,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Tech Hub',
+        title: 'Handbook',
         logo: {
           alt: 'Notes Logo',
           src: 'img/logo.svg',
