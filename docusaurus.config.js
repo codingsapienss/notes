@@ -57,16 +57,6 @@ const config = {
             label: 'All Notes',
           },
           {
-            to: '/docs/DSA/STL/part-01_foundation',
-            label: 'C++ STL',
-            position: 'left',
-          },
-          {
-            to: '/docs/WebDev/React/intro',
-            label: 'Web Dev',
-            position: 'left',
-          },
-          {
             href: 'https://github.com/codingsapienss/notes',
             label: 'GitHub',
             position: 'right',
