@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunknotes_site=globalThis.webpackChunknotes_site||[]).push([[662],{3205(s){s.exports=JSON.parse('{"tags":[{"label":"cpp","permalink":"/notes/blog/tags/cpp","count":2},{"label":"stl","permalink":"/notes/blog/tags/stl","count":2},{"label":"dsa","permalink":"/notes/blog/tags/dsa","count":2}]}')}}]);
