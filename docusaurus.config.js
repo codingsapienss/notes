@@ -3,7 +3,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Notes',
+  title: 'Knowledge Base',
   tagline: 'Personal Knowledge Base & Engineering Handbook',
   favicon: 'img/favicon.ico',
   url: 'https://codingsapienss.github.io',
@@ -46,7 +46,7 @@ const config = {
       navbar: {
         title: 'Knowledge Base',
         logo: {
-          alt: 'Notes Logo',
+          alt: 'Knowledge Base Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -60,7 +60,7 @@ const config = {
       footer: {
         style: 'dark',
         links: [],
-        copyright: `Built with ❤️ by codingsapienss • © ${new Date().getFullYear()} Notes`,
+        copyright: `Built with ❤️ by codingsapienss • © ${new Date().getFullYear()} Knowledge Base`,
       },
       prism: {
         theme: prismThemes.github,

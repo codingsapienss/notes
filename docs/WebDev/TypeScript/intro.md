@@ -1,3 +1,3 @@
-# TypeScript Notes
+# TypeScript Knowledge Base
 
 Coming soon!

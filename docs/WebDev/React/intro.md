@@ -1,3 +1,3 @@
-# React Notes
+# React Knowledge Base
 
 Coming soon!
