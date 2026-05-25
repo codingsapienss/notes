@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunknotes_site=globalThis.webpackChunknotes_site||[]).push([[738],{1345(s){s.exports=JSON.parse('{"authors":[{"name":"codingsapienss","title":"Software Engineer & Curator","url":"https://github.com/codingsapienss","imageURL":"https://github.com/codingsapienss.png","key":"codingsapienss","page":null,"count":2}]}')}}]);
