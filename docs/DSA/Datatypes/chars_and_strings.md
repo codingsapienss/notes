@@ -3,7 +3,7 @@ sidebar_label: 'Chars & Strings'
 sidebar_position: 1
 ---
 
-# C++ Complete Handbook — Characters and Strings
+# Characters and Strings
 
 **Topics Covered**
 
