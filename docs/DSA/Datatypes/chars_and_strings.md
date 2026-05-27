@@ -1,4 +1,9 @@
-# C++ Complete Handbook — Characters and Strings
+---
+sidebar_label: 'Chars & Strings'
+sidebar_position: 1
+---
+
+# Characters and Strings
 
 **Topics Covered**
 
