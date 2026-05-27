@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.1">
 <title data-rh="true">C++ STL Handbook — Part 2 Dynamic Containers | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/DSA/STL/part-02_dynamic-containers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C++ STL Handbook — Part 2 Dynamic Containers | Knowledge Base"><meta data-rh="true" name="description" content="Topics Covered"><meta data-rh="true" property="og:description" content="Topics Covered"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-02_dynamic-containers"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-02_dynamic-containers" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-02_dynamic-containers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSA","item":"https://codingsapienss.github.io/notes/docs/dsa"},{"@type":"ListItem","position":2,"name":"Dynamic Containers","item":"https://codingsapienss.github.io/notes/docs/DSA/STL/part-02_dynamic-containers"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.8b1b3928.css">
-<script src="/notes/assets/js/runtime~main.a98c364a.js" defer="defer"></script>
-<script src="/notes/assets/js/main.e622a8fd.js" defer="defer"></script>
+<script src="/notes/assets/js/runtime~main.f9e26718.js" defer="defer"></script>
+<script src="/notes/assets/js/main.43b064f8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -69,6 +69,27 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Step 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Move 30 right</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10 20 _ 30</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Step 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Move 20 right</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10 _ 20 30</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Step 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Insert 100</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10 100 20 30</span><br></div></code></pre></div></div>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="time-complexity">Time Complexity<a href="#time-complexity" class="hash-link" aria-label="Direct link to Time Complexity" title="Direct link to Time Complexity" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Position</th><th>Complexity</th></tr></thead><tbody><tr><td>Beginning</td><td>O(N)</td></tr><tr><td>Middle</td><td>O(N)</td></tr><tr><td>End</td><td>O(1) amortized</td></tr></tbody></table>
 <hr>
 <h1>Insert Multiple Same Values</h1>
@@ -267,6 +288,41 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">O(1)</span><br></div></code></pre></div></div>
 <hr>
 <h1>List vs Vector</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Feature</th><th>Vector</th><th>List</th></tr></thead><tbody><tr><td>Memory</td><td>Contiguous</td><td>Non-contiguous</td></tr><tr><td>Access</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Insert Middle</td><td>O(N)</td><td>O(1)</td></tr><tr><td>Cache Friendly</td><td>Yes</td><td>No</td></tr><tr><td>Memory Usage</td><td>Less</td><td>More</td></tr></tbody></table>
 <hr>
 <h1>Deque</h1>
@@ -304,6 +360,47 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10 20 30</span><br></div></code></pre></div></div>
 <hr>
 <h1>Vector vs List vs Deque</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Feature</th><th>Vector</th><th>List</th><th>Deque</th></tr></thead><tbody><tr><td>Random Access</td><td>O(1)</td><td>O(N)</td><td>O(1)</td></tr><tr><td>Push Front</td><td>O(N)</td><td>O(1)</td><td>O(1)</td></tr><tr><td>Push Back</td><td>O(1)</td><td>O(1)</td><td>O(1)</td></tr><tr><td>Middle Insert</td><td>O(N)</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Memory Usage</td><td>Low</td><td>High</td><td>Medium</td></tr></tbody></table>
 <hr>
 <h1>Common Bugs</h1>

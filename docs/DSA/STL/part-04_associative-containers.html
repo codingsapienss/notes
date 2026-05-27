@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.1">
 <title data-rh="true">C++ STL Handbook — Part 4 Associative Containers | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/DSA/STL/part-04_associative-containers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C++ STL Handbook — Part 4 Associative Containers | Knowledge Base"><meta data-rh="true" name="description" content="Topics Covered"><meta data-rh="true" property="og:description" content="Topics Covered"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-04_associative-containers"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-04_associative-containers" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/DSA/STL/part-04_associative-containers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSA","item":"https://codingsapienss.github.io/notes/docs/dsa"},{"@type":"ListItem","position":2,"name":"Associative Containers","item":"https://codingsapienss.github.io/notes/docs/DSA/STL/part-04_associative-containers"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.8b1b3928.css">
-<script src="/notes/assets/js/runtime~main.a98c364a.js" defer="defer"></script>
-<script src="/notes/assets/js/main.e622a8fd.js" defer="defer"></script>
+<script src="/notes/assets/js/runtime~main.f9e26718.js" defer="defer"></script>
+<script src="/notes/assets/js/main.43b064f8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -52,6 +52,53 @@
 <p>Associative containers solve these problems.</p>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="main-associative-containers">Main Associative Containers<a href="#main-associative-containers" class="hash-link" aria-label="Direct link to Main Associative Containers" title="Direct link to Main Associative Containers" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Container</th><th>Duplicate Allowed</th><th>Sorted</th><th>Internal Structure</th></tr></thead><tbody><tr><td>Set</td><td>No</td><td>Yes</td><td>Balanced Tree</td></tr><tr><td>Multiset</td><td>Yes</td><td>Yes</td><td>Balanced Tree</td></tr><tr><td>Unordered Set</td><td>No</td><td>No</td><td>Hash Table</td></tr><tr><td>Map</td><td>Key unique</td><td>Yes</td><td>Balanced Tree</td></tr><tr><td>Multimap</td><td>Key duplicate</td><td>Yes</td><td>Balanced Tree</td></tr><tr><td>Unordered Map</td><td>Key unique</td><td>No</td><td>Hash Table</td></tr></tbody></table>
 <hr>
 <h1>Set</h1>
@@ -146,6 +193,39 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">40</span><br></div></code></pre></div></div>
 <hr>
 <h1>Complexity</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Operation</th><th>Complexity</th></tr></thead><tbody><tr><td>Insert</td><td>O(logN)</td></tr><tr><td>Erase</td><td>O(logN)</td></tr><tr><td>Find</td><td>O(logN)</td></tr><tr><td>Count</td><td>O(logN)</td></tr><tr><td>Lower Bound</td><td>O(logN)</td></tr><tr><td>Upper Bound</td><td>O(logN)</td></tr></tbody></table>
 <hr>
 <h1>Multiset</h1>
@@ -206,6 +286,31 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Random order</span><br></div></code></pre></div></div>
 <hr>
 <h1>Complexity</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Operation</th><th>Average</th><th>Worst</th></tr></thead><tbody><tr><td>Insert</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Search</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Erase</td><td>O(1)</td><td>O(N)</td></tr></tbody></table>
 <hr>
 <h1>Why Worst Case O(N)?</h1>
@@ -275,6 +380,27 @@
 <p>Returns iterator.</p>
 <hr>
 <h1>Complexity</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Operation</th><th>Complexity</th></tr></thead><tbody><tr><td>Insert</td><td>O(logN)</td></tr><tr><td>Find</td><td>O(logN)</td></tr><tr><td>Delete</td><td>O(logN)</td></tr></tbody></table>
 <hr>
 <h1>Multimap</h1>
@@ -313,9 +439,67 @@
 <div class="language-cpp codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cpp codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">unordered_map</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token keyword" style="color:#00009f">int</span><span class="token punctuation" style="color:#393A34">,</span><span class="token keyword" style="color:#00009f">int</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> mp</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">mp</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">mp</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">20</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">200</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">for</span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">auto</span><span class="token plain"> x</span><span class="token operator" style="color:#393A34">:</span><span class="token plain">mp</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    cout</span><span class="token operator" style="color:#393A34">&lt;&lt;</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">first</span><span class="token operator" style="color:#393A34">&lt;&lt;</span><span class="token string" style="color:#e3116c">&quot; &quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token operator" style="color:#393A34">&lt;&lt;</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">second</span><span class="token operator" style="color:#393A34">&lt;&lt;</span><span class="token plain">endl</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
 <hr>
 <h1>Complexity</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Operation</th><th>Average</th><th>Worst</th></tr></thead><tbody><tr><td>Insert</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Search</td><td>O(1)</td><td>O(N)</td></tr><tr><td>Delete</td><td>O(1)</td><td>O(N)</td></tr></tbody></table>
 <hr>
 <h1>When To Use Which</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Situation</th><th>Container</th></tr></thead><tbody><tr><td>Unique + Sorted</td><td>Set</td></tr><tr><td>Duplicate + Sorted</td><td>Multiset</td></tr><tr><td>Unique + Fast Search</td><td>Unordered Set</td></tr><tr><td>Key Value + Sorted</td><td>Map</td></tr><tr><td>Duplicate Keys</td><td>Multimap</td></tr><tr><td>Fast Key Value Access</td><td>Unordered Map</td></tr></tbody></table>
 <hr>
 <h1>Real-world Examples</h1>
@@ -403,6 +587,27 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4">Q4<a href="#q4" class="hash-link" aria-label="Direct link to Q4" title="Direct link to Q4" translate="no">​</a></h2>
 <p>Difference between map and unordered_map?</p>
 <p>Answer:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table><thead><tr><th>Map</th><th>Unordered Map</th></tr></thead><tbody><tr><td>Sorted</td><td>Random</td></tr><tr><td>O(logN)</td><td>O(1) average</td></tr><tr><td>Tree</td><td>Hash Table</td></tr></tbody></table>
 <hr>
 <h1>Cheat Sheet</h1>
