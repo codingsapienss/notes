@@ -31,7 +31,7 @@ sidebar_position: 1
 
 ---
 
-# Introduction
+## Introduction
 
 Strings in C++ look simple:
 
@@ -61,7 +61,7 @@ This chapter explains everything deeply.
 
 ---
 
-# The 4 Most Important Concepts
+## The 4 Most Important Concepts
 
 Most beginners confuse these:
 
@@ -85,7 +85,7 @@ These are NOT the same.
 
 ---
 
-# Quick Overview
+## Quick Overview
 
 | Concept           | Example              | Meaning                          |
 | ----------------- | -------------------- | -------------------------------- |
@@ -97,15 +97,15 @@ These are NOT the same.
 
 ---
 
-# Character (`char`)
+## Character (`char`)
 
-## Definition
+### Definition
 
 `char` is a primitive data type used to store a single character.
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 char ch='A';
@@ -113,7 +113,7 @@ char ch='A';
 
 ---
 
-# Important Rule
+## Important Rule
 
 Characters use:
 
@@ -125,7 +125,7 @@ single quotes.
 
 ---
 
-# Internal Storage
+## Internal Storage
 
 Characters are internally stored using ASCII values.
 
@@ -155,7 +155,7 @@ Address    Value
 
 ---
 
-# ASCII Table
+## ASCII Table
 
 | Character | ASCII Value |
 | --------- | ----------- |
@@ -168,7 +168,7 @@ Address    Value
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -193,7 +193,7 @@ A
 
 ---
 
-# Code Explanation
+## Code Explanation
 
 ```cpp
 (int)ch
@@ -203,11 +203,11 @@ typecasts character into integer.
 
 ---
 
-# Character Literal vs String Literal
+## Character Literal vs String Literal
 
 ---
 
-# Character Literal
+## Character Literal
 
 ```cpp
 'A'
@@ -227,7 +227,7 @@ Size:
 
 ---
 
-# String Literal
+## String Literal
 
 ```cpp
 "Hello"
@@ -247,9 +247,9 @@ H e l l o \0
 
 ---
 
-# Character Array
+## Character Array
 
-## Definition
+### Definition
 
 Array capable of storing characters.
 
@@ -261,7 +261,7 @@ char arr[10];
 
 ---
 
-# Important Distinction
+## Important Distinction
 
 This:
 
@@ -285,7 +285,7 @@ No '\0'
 
 ---
 
-# Memory Layout
+## Memory Layout
 
 ```cpp
 char arr[5]={'H','e','l','l','o'};
@@ -311,7 +311,7 @@ No null terminator exists
 
 ---
 
-# Dangerous Consequence
+## Dangerous Consequence
 
 ```cpp
 cout<<arr;
@@ -327,7 +327,7 @@ or even crash.
 
 ---
 
-# Why Does This Happen?
+## Why Does This Happen?
 
 `cout` assumes:
 
@@ -351,7 +351,7 @@ Undefined Behavior
 
 ---
 
-# Correct Manual Initialization
+## Correct Manual Initialization
 
 ```cpp
 char arr[6]={'H','e','l','l','o','\0'};
@@ -371,7 +371,7 @@ H e l l o \0
 
 ---
 
-# Expected Output
+## Expected Output
 
 ```cpp
 cout<<arr;
@@ -385,7 +385,7 @@ Hello
 
 ---
 
-# Best Initialization Method
+## Best Initialization Method
 
 ```cpp
 char arr[]="Hello";
@@ -417,7 +417,7 @@ because:
 
 ---
 
-# Important Compilation Rule
+## Important Compilation Rule
 
 Correct:
 
@@ -439,7 +439,7 @@ Total:
 
 ---
 
-# Wrong Example
+## Wrong Example
 
 ```cpp
 char arr[5]="Hello";
@@ -447,7 +447,7 @@ char arr[5]="Hello";
 
 ---
 
-# Why Wrong?
+## Why Wrong?
 
 Needs:
 
@@ -463,7 +463,7 @@ Hello + '\0'
 
 ---
 
-# Expected Result
+## Expected Result
 
 Usually:
 
@@ -475,7 +475,7 @@ or compiler warning.
 
 ---
 
-# Correct Mental Model
+## Correct Mental Model
 
 Without:
 
@@ -499,9 +499,9 @@ array of characters
 
 ---
 
-# Null Character (`'\0'`)
+## Null Character (`'\0'`)
 
-## Definition
+### Definition
 
 Null character:
 
@@ -523,7 +523,7 @@ Marks end of C-style string
 
 ---
 
-# Why Null Character Exists
+## Why Null Character Exists
 
 Suppose:
 
@@ -562,7 +562,7 @@ STOP
 
 ---
 
-# Important Example
+## Important Example
 
 ```cpp
 char arr[]={'a','\0','b','\0','c'};
@@ -578,7 +578,7 @@ a
 
 ---
 
-# Why?
+## Why?
 
 Printing stops at first:
 
@@ -588,9 +588,9 @@ Printing stops at first:
 
 ---
 
-# String Literal
+## String Literal
 
-## Definition
+### Definition
 
 Text enclosed in:
 
@@ -606,7 +606,7 @@ Example:
 
 ---
 
-# Internal Representation
+## Internal Representation
 
 ```text
 H e l l o \0
@@ -620,7 +620,7 @@ Compiler automatically appends:
 
 ---
 
-# MOST IMPORTANT CONCEPT
+## MOST IMPORTANT CONCEPT
 
 String literals are:
 
@@ -630,7 +630,7 @@ READ ONLY
 
 ---
 
-# Dangerous Example
+## Dangerous Example
 
 ```cpp
 char *ptr="Hello";
@@ -640,7 +640,7 @@ ptr[0]='M';
 
 ---
 
-# Why Dangerous?
+## Why Dangerous?
 
 String literal stored in:
 
@@ -656,7 +656,7 @@ Attempting modification causes:
 
 ---
 
-# Internal Memory Layout
+## Internal Memory Layout
 
 ```text
 ptr
@@ -668,7 +668,7 @@ Pointer points to read-only memory.
 
 ---
 
-# Correct Writable Version
+## Correct Writable Version
 
 ```cpp
 char arr[]="Hello";
@@ -686,7 +686,7 @@ Mello
 
 ---
 
-# Why Does This Work?
+## Why Does This Work?
 
 Because:
 
@@ -704,7 +704,7 @@ Stack Memory
 
 ---
 
-# Character Array vs String Literal
+## Character Array vs String Literal
 
 | Feature    | Character Array      | String Literal    |
 | ---------- | -------------------- | ----------------- |
@@ -716,9 +716,9 @@ Stack Memory
 
 ---
 
-# C-Style String
+## C-Style String
 
-## Definition
+### Definition
 
 A C-style string is:
 
@@ -728,7 +728,7 @@ Character array ending with '\0'
 
 ---
 
-# Important Rule
+## Important Rule
 
 This:
 
@@ -748,7 +748,7 @@ is NOT.
 
 ---
 
-# How Length Is Determined
+## How Length Is Determined
 
 C-style strings do NOT store length.
 
@@ -766,7 +766,7 @@ scan memory until:
 
 ---
 
-# Example
+## Example
 
 ```cpp
 #include<iostream>
@@ -790,7 +790,7 @@ Expected Output:
 
 ---
 
-# Internal Working
+## Internal Working
 
 Memory:
 
@@ -814,7 +814,7 @@ STOP
 
 ---
 
-# Complexity
+## Complexity
 
 ```text
 O(N)
@@ -824,7 +824,7 @@ because full scan required.
 
 ---
 
-# Dangerous Example
+## Dangerous Example
 
 ```cpp
 char arr[5]={'H','e','l','l','o'};
@@ -834,7 +834,7 @@ cout<<strlen(arr);
 
 ---
 
-# Problem
+## Problem
 
 No null terminator exists.
 
@@ -844,11 +844,11 @@ Undefined behavior.
 
 ---
 
-# Input Into Character Array
+## Input Into Character Array
 
 ---
 
-# Method 1 — cin
+## Method 1 — cin
 
 ```cpp
 char name[20];
@@ -870,7 +870,7 @@ Prashant
 
 ---
 
-# Hidden Behavior
+## Hidden Behavior
 
 Input:
 
@@ -886,7 +886,7 @@ Prashant
 
 ---
 
-# Why?
+## Why?
 
 `cin` stops at:
 
@@ -896,7 +896,7 @@ Prashant
 
 ---
 
-# Internal Buffer Behavior
+## Internal Buffer Behavior
 
 Input:
 
@@ -920,7 +920,7 @@ still exists in input stream.
 
 ---
 
-# Safe Full-Line Input
+## Safe Full-Line Input
 
 ```cpp
 char name[50];
@@ -942,9 +942,9 @@ Prashant Sharma
 
 ---
 
-# Buffer Overflow Problem
+## Buffer Overflow Problem
 
-## Dangerous Example
+### Dangerous Example
 
 ```cpp
 char name[5];
@@ -960,7 +960,7 @@ Prashant
 
 ---
 
-# Problem
+## Problem
 
 Memory allocated:
 
@@ -982,7 +982,7 @@ including:
 
 ---
 
-# Possible Results
+## Possible Results
 
 - Memory corruption
 - Crash
@@ -991,11 +991,11 @@ including:
 
 ---
 
-# Output Behavior
+## Output Behavior
 
 ---
 
-# Character Output
+## Character Output
 
 ```cpp
 char ch='A';
@@ -1011,7 +1011,7 @@ A
 
 ---
 
-# Character Array Output
+## Character Array Output
 
 ```cpp
 char arr[]="Hello";
@@ -1027,7 +1027,7 @@ Hello
 
 ---
 
-# Important Hidden Behavior
+## Important Hidden Behavior
 
 This works because:
 
@@ -1043,7 +1043,7 @@ char*
 
 ---
 
-# Compare With Integer Array
+## Compare With Integer Array
 
 ```cpp
 int arr[]={1,2,3};
@@ -1059,15 +1059,15 @@ Memory Address
 
 ---
 
-# Why?
+## Why?
 
 Only character pointers treated specially as strings.
 
 ---
 
-# C++ String (`std::string`)
+## C++ String (`std::string`)
 
-## Definition
+### Definition
 
 C++ string is an STL class.
 
@@ -1085,7 +1085,7 @@ string s="Hello";
 
 ---
 
-# Important Correction
+## Important Correction
 
 Wrong:
 
@@ -1101,7 +1101,7 @@ std::string is a class that internally manages dynamic character arrays.
 
 ---
 
-# Internal Structure
+## Internal Structure
 
 ```cpp
 string s="Hello";
@@ -1133,7 +1133,7 @@ H e l l o \0
 
 ---
 
-# Dynamic Resizing
+## Dynamic Resizing
 
 Character array:
 
@@ -1157,7 +1157,7 @@ Can grow automatically.
 
 ---
 
-# Example
+## Example
 
 ```cpp
 string s="Hello";
@@ -1175,7 +1175,7 @@ Hello World
 
 ---
 
-# Size vs Capacity
+## Size vs Capacity
 
 ```cpp
 string s="Hello";
@@ -1191,7 +1191,7 @@ Capacity = 15
 
 ---
 
-# Why Extra Capacity?
+## Why Extra Capacity?
 
 To reduce repeated reallocations.
 
@@ -1199,7 +1199,7 @@ Same concept as vector.
 
 ---
 
-# Character Array vs C++ String
+## Character Array vs C++ String
 
 | Feature                | Character Array | C++ String         |
 | ---------------------- | --------------- | ------------------ |
@@ -1212,11 +1212,11 @@ Same concept as vector.
 
 ---
 
-# Array of Characters vs Array of Strings
+## Array of Characters vs Array of Strings
 
 ---
 
-# Array of Characters
+## Array of Characters
 
 ```cpp
 char arr[]="Hello";
@@ -1236,7 +1236,7 @@ H e l l o \0
 
 ---
 
-# Array of Strings
+## Array of Strings
 
 ```cpp
 string arr[3]=
@@ -1255,7 +1255,7 @@ Contains:
 
 ---
 
-# Memory Model
+## Memory Model
 
 ```text
 arr[0] → Hello
@@ -1267,11 +1267,11 @@ arr[2] → Bye
 
 ---
 
-# Important STL String Functions
+## Important STL String Functions
 
 ---
 
-# length()
+## length()
 
 ```cpp
 string s="Hello";
@@ -1287,7 +1287,7 @@ Expected Output:
 
 ---
 
-# size()
+## size()
 
 ```cpp
 cout<<s.size();
@@ -1301,7 +1301,7 @@ Expected Output:
 
 ---
 
-# empty()
+## empty()
 
 ```cpp
 string s="";
@@ -1317,7 +1317,7 @@ Expected Output:
 
 ---
 
-# push_back()
+## push_back()
 
 ```cpp
 string s="Hell";
@@ -1335,7 +1335,7 @@ Hello
 
 ---
 
-# pop_back()
+## pop_back()
 
 ```cpp
 string s="Hello";
@@ -1353,7 +1353,7 @@ Hell
 
 ---
 
-# substr()
+## substr()
 
 ```cpp
 string s="Prashant";
@@ -1369,7 +1369,7 @@ asha
 
 ---
 
-# find()
+## find()
 
 ```cpp
 string s="Prashant";
@@ -1385,7 +1385,7 @@ Expected Output:
 
 ---
 
-# erase()
+## erase()
 
 ```cpp
 string s="Prashant";
@@ -1403,7 +1403,7 @@ Prant
 
 ---
 
-# insert()
+## insert()
 
 ```cpp
 string s="Prant";
@@ -1421,7 +1421,7 @@ PrASHant
 
 ---
 
-# reverse()
+## reverse()
 
 ```cpp
 #include<algorithm>
@@ -1434,7 +1434,7 @@ s.end()
 
 ---
 
-# Example
+## Example
 
 ```cpp
 string s="Hello";
@@ -1455,7 +1455,7 @@ olleH
 
 ---
 
-# Important C String Functions
+## Important C String Functions
 
 Header:
 
@@ -1465,7 +1465,7 @@ Header:
 
 ---
 
-# strlen()
+## strlen()
 
 ```cpp
 char arr[]="Hello";
@@ -1481,7 +1481,7 @@ Expected Output:
 
 ---
 
-# strcpy()
+## strcpy()
 
 ```cpp
 char src[]="Hello";
@@ -1501,7 +1501,7 @@ Hello
 
 ---
 
-# strcat()
+## strcat()
 
 ```cpp
 char a[20]="Hello ";
@@ -1521,7 +1521,7 @@ Hello World
 
 ---
 
-# strcmp()
+## strcmp()
 
 ```cpp
 cout<<strcmp("ABC","ABC");
@@ -1535,7 +1535,7 @@ Expected Output:
 
 ---
 
-# strcmp Return Meaning
+## strcmp Return Meaning
 
 | Result | Meaning       |
 | ------ | ------------- |
@@ -1545,11 +1545,11 @@ Expected Output:
 
 ---
 
-# sizeof vs strlen
+## sizeof vs strlen
 
 ---
 
-# Example
+## Example
 
 ```cpp
 char arr[]="Hello";
@@ -1568,7 +1568,7 @@ Expected Output:
 
 ---
 
-# Why Different?
+## Why Different?
 
 Memory:
 
@@ -1578,7 +1578,7 @@ H e l l o \0
 
 ---
 
-# sizeof()
+## sizeof()
 
 Counts:
 
@@ -1594,7 +1594,7 @@ including:
 
 ---
 
-# strlen()
+## strlen()
 
 Counts:
 
@@ -1604,7 +1604,7 @@ Characters before '\0'
 
 ---
 
-# When To Use What
+## When To Use What
 
 | Situation               | Recommended     |
 | ----------------------- | --------------- |
@@ -1617,11 +1617,11 @@ Characters before '\0'
 
 ---
 
-# Common Bugs
+## Common Bugs
 
 ---
 
-# Bug 1
+## Bug 1
 
 Wrong:
 
@@ -1643,7 +1643,7 @@ H e l l o \0
 
 ---
 
-# Bug 2
+## Bug 2
 
 Wrong:
 
@@ -1661,7 +1661,7 @@ String literals are read-only
 
 ---
 
-# Bug 3
+## Bug 3
 
 Wrong:
 
@@ -1683,7 +1683,7 @@ Prashant
 
 ---
 
-# Fix
+## Fix
 
 ```cpp
 getline(cin,name);
@@ -1691,7 +1691,7 @@ getline(cin,name);
 
 ---
 
-# Bug 4
+## Bug 4
 
 Wrong:
 
@@ -1709,11 +1709,11 @@ No '\0'
 
 ---
 
-# Interview Questions
+## Interview Questions
 
 ---
 
-# Q1
+## Q1
 
 Difference between:
 
@@ -1736,7 +1736,7 @@ Answer:
 
 ---
 
-# Q2
+## Q2
 
 Why null character important?
 
@@ -1746,7 +1746,7 @@ Marks end of C-style string.
 
 ---
 
-# Q3
+## Q3
 
 Difference between character array and string literal?
 
@@ -1760,7 +1760,7 @@ Answer:
 
 ---
 
-# Q4
+## Q4
 
 Why string class preferred?
 
@@ -1773,7 +1773,7 @@ Answer:
 
 ---
 
-# Q5
+## Q5
 
 Why does `cout<<charArray` print full string?
 
@@ -1787,11 +1787,11 @@ char*
 
 ---
 
-# Final Mental Model
+## Final Mental Model
 
 ---
 
-# Character Literal
+## Character Literal
 
 ```cpp
 'A'
@@ -1803,7 +1803,7 @@ Single character
 
 ---
 
-# String Literal
+## String Literal
 
 ```cpp
 "Hello"
@@ -1815,7 +1815,7 @@ Read-only null-terminated character sequence
 
 ---
 
-# Character Array
+## Character Array
 
 ```cpp
 char arr[10];
@@ -1827,7 +1827,7 @@ Array capable of storing characters
 
 ---
 
-# C-Style String
+## C-Style String
 
 ```cpp
 char arr[]="Hello";
@@ -1839,7 +1839,7 @@ Null-terminated character array
 
 ---
 
-# C++ String
+## C++ String
 
 ```cpp
 string s="Hello";
@@ -1851,7 +1851,7 @@ Dynamic string object
 
 ---
 
-# Cheat Sheet
+## Cheat Sheet
 
 ```cpp
 char ch='A';
@@ -1898,7 +1898,7 @@ strcmp(a,b);
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Character arrays and strings are NOT identical
 - `'\0'` is critical in C-style strings
