@@ -11,7 +11,7 @@ const KnowledgeCategories = [
   {
     title: 'Data Structures & Algorithms',
     description: 'Foundational concepts, C++ STL mastery, and algorithmic problem-solving.',
-    link: '/docs/DSA/STL/part-01_foundation',
+    link: '/docs/DSA/Datatypes/chars_and_strings',
     icon: '📊',
   },
   {
@@ -64,7 +64,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/DSA/STL/part-01_foundation">
+            to="/docs/DSA/Datatypes/chars_and_strings">
             Start Reading 🚀
           </Link>
         </div>
