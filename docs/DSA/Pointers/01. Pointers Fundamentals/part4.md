@@ -1,8 +1,9 @@
 ---
-sidebar_label: 'Pointers Part 1D'
+sidebar_label: "Pointers Part 1D"
 sidebar_position: 4
 ---
-# C++ Pointers Fundamentals — Part 1D
+
+# C++ Pointers Fundamentals
 
 ## Pointer States, Pass By Address, Address Copy vs Value Copy, Special Pointer Behaviors
 
