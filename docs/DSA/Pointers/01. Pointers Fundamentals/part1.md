@@ -1,8 +1,9 @@
 ---
-sidebar_label: 'Pointers Part 1A'
+sidebar_label: "Pointers Part 1A"
 sidebar_position: 1
 ---
-# C++ Pointers Fundamentals — Part 1A
+
+# C++ Pointers Fundamentals
 
 ## Memory, Addresses, Symbol Table, Pointer Fundamentals
 
