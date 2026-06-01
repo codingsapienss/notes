@@ -1,8 +1,9 @@
 ---
-sidebar_label: 'Pointers Part 1C'
+sidebar_label: "Pointers Part 1C"
 sidebar_position: 3
 ---
-# C++ Pointers Fundamentals — Part 1C
+
+# C++ Pointers Fundamentals
 
 ## Pointer Arithmetic Fundamentals
 
