@@ -1,8 +1,9 @@
 ---
-sidebar_label: 'Pointers Part 1B'
+sidebar_label: "Pointers Part 1B"
 sidebar_position: 2
 ---
-# C++ Pointers Fundamentals — Part 1B
+
+# C++ Pointers Fundamentals
 
 ## Dereference Operator, Memory Access, Pointer Copying, Call By Value Fundamentals
 
