@@ -3,7 +3,7 @@ const sidebars = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'DSA',
+      label: 'DSA (C++)',
       link: {
         type: 'generated-index',
         title: 'DSA Knowledge Base',
