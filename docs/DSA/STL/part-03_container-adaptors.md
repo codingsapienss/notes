@@ -2,7 +2,7 @@
 sidebar_label: 'Container Adaptors'
 ---
 
-# C++ STL Handbook — Part 3 Container Adaptors
+# C++ STL: Container Adaptors
 
 **Topics Covered**
 
@@ -1153,4 +1153,3 @@ greater<int>
 
 ---
 
-# End of Part 3

@@ -2,7 +2,7 @@
 sidebar_label: 'Associative Containers'
 ---
 
-# C++ STL Handbook — Part 4 Associative Containers
+# C++ STL: Associative Containers
 
 **Topics Covered**
 
@@ -1050,4 +1050,3 @@ unordered_map<int,int> ump;
 
 ---
 
-# End of Part 4

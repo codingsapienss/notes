@@ -2,7 +2,7 @@
 sidebar_label: 'Dynamic Containers'
 ---
 
-# C++ STL Handbook — Part 2 Dynamic Containers
+# C++ STL: Dynamic Containers
 
 **Topics Covered**
 
@@ -1089,4 +1089,3 @@ dq.back();
 
 ---
 
-# End of Part 2

@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Revision Handbook'
+sidebar_label: 'Revision'
 ---
 
-# C++ STL Handbook — Part 6 Final Revision Handbook
+# C++ STL: Final Revision
 
 **Topics Covered**
 
@@ -890,4 +890,3 @@ Understanding internal behavior, complexity, and real-world tradeoffs turns STL 
 
 ---
 
-# End of C++ STL Handbook

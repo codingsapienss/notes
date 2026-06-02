@@ -3,7 +3,7 @@ sidebar_label: 'Foundation'
 sidebar_position: 1
 ---
 
-# C++ STL Handbook — Part 1 Foundations
+# C++ STL: Foundations
 
 **Topics Covered**
 
@@ -1211,5 +1211,3 @@ p.second;
 - Range loops may create copies
 
 ---
-
-# End of Part 1
