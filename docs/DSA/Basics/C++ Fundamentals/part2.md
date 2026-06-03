@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Fundamentals Part 2'
+sidebar_label: 'Part 2'
 sidebar_position: 2
 ---
 
