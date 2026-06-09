@@ -17,7 +17,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
@@ -46,7 +45,6 @@
   color: var(--ifm-color-primary);
 }
 
-/* Minimalist Footer */
 .footer {
   padding: 2rem 0;
   text-align: center;
@@ -57,79 +55,81 @@
   opacity: 0.8;
 }
 
-/* Sidebar Spacing & Typography Refinement */
+/* --- SIDEBAR REFINEMENT --- */
 
-/* 1. Reset all VERTICAL container spacing to zero */
-.menu__list,
-.menu__list-item,
-.menu__list-item-collapsible {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  list-style: none !important;
-}
-
-/* 2. Unified Link Styling (Standard 1rem font) */
-/* AGGRESSIVELY kill all Webkit/Truncation properties on all sidebar elements */
+/* 1. Global Reset for Sidebar Elements */
+/* This kills the webkit-box and any internal Docusaurus truncation */
 .menu__link,
 .menu__link *,
-.menu__list-item-collapsible,
-.menu__list-item-collapsible * {
+[class*='menu__link'],
+[class*='categoryLinkLabel'] {
   display: block !important;
-  -webkit-line-clamp: unset !important;
-  -webkit-box-orient: unset !important;
+  white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
-  white-space: normal !important;
+  -webkit-line-clamp: initial !important;
+  -webkit-box-orient: initial !important;
+  
+  /* Reset Spacing */
+  margin: 0 !important;
   padding-top: 6px !important;
   padding-bottom: 6px !important;
-  margin: 0 !important;
+  
+  /* Typography */
   font-size: 1rem !important;
   text-transform: none !important;
   line-height: 1.4 !important;
 }
 
-/* 3. Ensure the collapsible wrapper doesn't add height */
-.menu__list-item-collapsible {
-  display: flex !important;
-  align-items: center !important;
+/* 2. Remove internal list margins to ensure uniform spacing */
+.menu__list,
+.menu__list-item {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* 4. Table of Contents (Right Sidebar) Styling */
-.table-of-contents__link {
-  text-transform: none !important;
-}
+/* 3. Hierarchical Colors */
 
-/* 5. Color Hierarchy */
-
-/* Top-level Categories (e.g., DSA, Web Dev) */
-.menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
-.menu__list > .menu__list-item > .menu__link {
-  color: var(--ifm-color-primary) !important;
+/* Bold Categories and Sub-categories (Items with sublists) */
+.menu__link--sublist,
+.menu__list-item-collapsible .menu__link {
+  color: var(--ifm-color-emphasis-800) !important;
   font-weight: 700 !important;
 }
 
-/* Sub-categories (e.g., Basics, TypeScript) */
-.menu__list .menu__list .menu__list-item-collapsible .menu__link {
-  color: var(--ifm-color-emphasis-800) !important;
-  font-weight: 600 !important;
+/* Top-level headings specifically (Primary Color) */
+.menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
+.menu__list > .menu__list-item > .menu__link {
+  color: var(--ifm-color-primary) !important;
 }
 
-/* Leaf Pages (Actual Notes) - Professional Light Gray #888888 */
-/* Targeted aggressively to override Docusaurus defaults */
+/* Leaf Level Nodes (The actual notes) - Light Gray */
+/* Using specific targeting to override everything */
 .menu__list-item .menu__link:not(.menu__link--sublist) {
   color: #888888 !important;
   font-weight: 400 !important;
 }
 
-/* Active & Hover */
+/* 4. Active & Hover Highlight */
 .menu__link--active:not(.menu__link--sublist) {
   color: var(--ifm-color-primary) !important;
-  background-color: var(--ifm-menu-color-background-active) !important;
   font-weight: 600 !important;
+  background-color: var(--ifm-menu-color-background-active) !important;
 }
 
 .menu__link:hover {
   background-color: var(--ifm-menu-color-background-hover) !important;
 }
+
+/* Right Sidebar (TOC) Text Transform Fix */
+.table-of-contents__link {
+  text-transform: none !important;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
