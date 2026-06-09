@@ -71,20 +71,29 @@
 }
 
 /* 2. Unified Link Styling (Standard 1rem font) */
-.menu__link {
+/* AGGRESSIVELY kill all Webkit/Truncation properties on all sidebar elements */
+.menu__link,
+.menu__link *,
+.menu__list-item-collapsible,
+.menu__list-item-collapsible * {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   margin: 0 !important;
   font-size: 1rem !important;
   text-transform: none !important;
-  white-space: normal !important;
-  display: block !important;
+  line-height: 1.4 !important;
 }
 
 /* 3. Ensure the collapsible wrapper doesn't add height */
 .menu__list-item-collapsible {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
 }
 
 /* 4. Table of Contents (Right Sidebar) Styling */
@@ -99,7 +108,6 @@
 .menu__list > .menu__list-item > .menu__link {
   color: var(--ifm-color-primary) !important;
   font-weight: 700 !important;
-  letter-spacing: normal !important;
 }
 
 /* Sub-categories (e.g., Basics, TypeScript) */
@@ -108,12 +116,12 @@
   font-weight: 600 !important;
 }
 
-/* Leaf Pages (Actual Notes) - Professional Light Gray */
-.menu__link:not(.menu__link--sublist) {
+/* Leaf Pages (Actual Notes) - Professional Light Gray #888888 */
+/* Targeted aggressively to override Docusaurus defaults */
+.menu__list-item .menu__link:not(.menu__link--sublist) {
   color: #888888 !important;
   font-weight: 400 !important;
 }
-
 
 /* Active & Hover */
 .menu__link--active:not(.menu__link--sublist) {
