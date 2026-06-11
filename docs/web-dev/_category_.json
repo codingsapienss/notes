@@ -1,0 +1,8 @@
+{
+  "label": "Web Development",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Explorations and handbooks for modern web engineering, from frontend frameworks to backend architecture."
+  }
+}
