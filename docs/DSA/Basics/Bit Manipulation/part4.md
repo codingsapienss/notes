@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Common Bit Manipulation Techniques'
+sidebar_label: "Common Bit Manipulation Techniques"
 sidebar_position: 4
 ---
 
-# Part 6D — Common Bit Manipulation Techniques
+# Common Bit Manipulation Techniques
 
 > This chapter contains the most important bit manipulation tricks asked in coding interviews.
 >

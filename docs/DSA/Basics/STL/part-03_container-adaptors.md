@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Container Adaptors'
+sidebar_label: "Container Adaptors"
 ---
 
-# C++ STL: Container Adaptors
+# Container Adaptors
 
 **Topics Covered**
 
@@ -1152,4 +1152,3 @@ greater<int>
 - Priority Queue insertion takes O(logN)
 
 ---
-

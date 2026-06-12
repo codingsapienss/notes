@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Revision'
+sidebar_label: "Revision"
 ---
 
-# C++ STL: Final Revision
+# Final Revision
 
 **Topics Covered**
 
@@ -889,4 +889,3 @@ Choosing the correct container is often more important than writing clever code.
 Understanding internal behavior, complexity, and real-world tradeoffs turns STL from syntax memorization into engineering knowledge.
 
 ---
-

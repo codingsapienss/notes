@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Associative Containers'
+sidebar_label: "Associative Containers"
 ---
 
-# C++ STL: Associative Containers
+# Associative Containers
 
 **Topics Covered**
 
@@ -1049,4 +1049,3 @@ unordered_map<int,int> ump;
 - Hash collisions cause O(N)
 
 ---
-

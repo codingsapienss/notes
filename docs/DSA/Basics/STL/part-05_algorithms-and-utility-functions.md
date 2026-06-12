@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Algorithms & Utilities'
+sidebar_label: "Algorithms & Utilities"
 ---
 
-# C++ STL: Algorithms and Utility Functions
+# Algorithms and Utility Functions
 
 **Topics Covered**
 
@@ -1036,4 +1036,3 @@ arr+n
 - Always sort before generating permutations
 
 ---
-

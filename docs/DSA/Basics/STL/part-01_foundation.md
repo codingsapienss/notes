@@ -1,9 +1,9 @@
 ---
-sidebar_label: 'Foundation'
+sidebar_label: "Foundation"
 sidebar_position: 1
 ---
 
-# C++ STL: Foundations
+# Foundations
 
 **Topics Covered**
 
@@ -174,8 +174,8 @@ No traversal needed.
 Time complexity:
 
 | Operation | Complexity |
-|------------|-------------|
-| Access | O(1) |
+| --------- | ---------- |
+| Access    | O(1)       |
 
 ---
 
@@ -303,15 +303,15 @@ arr[4] → 50
 
 ## Array Properties
 
-| Property | Value |
-|-----------|--------|
-| Memory Layout | Contiguous |
-| Size | Fixed |
-| Random Access | Yes |
-| Dynamic Resize | No |
-| Insert Middle | O(N) |
-| Delete Middle | O(N) |
-| Access | O(1) |
+| Property       | Value      |
+| -------------- | ---------- |
+| Memory Layout  | Contiguous |
+| Size           | Fixed      |
+| Random Access  | Yes        |
+| Dynamic Resize | No         |
+| Insert Middle  | O(N)       |
+| Delete Middle  | O(N)       |
+| Access         | O(1)       |
 
 ---
 
@@ -710,8 +710,8 @@ Usually:
 
 ## Size vs Capacity
 
-| Size | Capacity |
-|--------|----------|
+| Size            | Capacity         |
+| --------------- | ---------------- |
 | Actual elements | Allocated memory |
 
 Example:
@@ -1068,13 +1068,13 @@ for(auto &x:v)
 
 ## Complexity Summary
 
-| Operation | Array | Vector |
-|------------|--------|---------|
-| Access | O(1) | O(1) |
-| Insert End | N/A | O(1) amortized |
-| Delete End | N/A | O(1) |
-| Insert Middle | O(N) | O(N) |
-| Delete Middle | O(N) | O(N) |
+| Operation     | Array | Vector         |
+| ------------- | ----- | -------------- |
+| Access        | O(1)  | O(1)           |
+| Insert End    | N/A   | O(1) amortized |
+| Delete End    | N/A   | O(1)           |
+| Insert Middle | O(N)  | O(N)           |
+| Delete Middle | O(N)  | O(N)           |
 
 ---
 

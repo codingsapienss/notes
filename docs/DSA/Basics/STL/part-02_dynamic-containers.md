@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Dynamic Containers'
+sidebar_label: "Dynamic Containers"
 ---
 
-# C++ STL: Dynamic Containers
+# Dynamic Containers
 
 **Topics Covered**
 
@@ -1088,4 +1088,3 @@ dq.back();
 - Vector should generally be default choice
 
 ---
-

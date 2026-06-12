@@ -110,10 +110,10 @@
   color: var(--ifm-color-primary) !important;
 }
 
-/* Leaf Level Nodes (The actual notes) - Light Gray */
+/* Leaf Level Nodes (The actual notes) - Bright Gray #cccccc */
 /* Using specific targeting to override everything */
 .menu__list-item .menu__link:not(.menu__link--sublist) {
-  color: #888888 !important;
+  color: #cccccc !important;
   font-weight: 400 !important;
 }
 

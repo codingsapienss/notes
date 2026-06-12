@@ -1,11 +1,11 @@
 ---
-sidebar_label: 'Interview Problems Using Bit Manipulation'
+sidebar_label: "Interview Problems Using Bit Manipulation"
 sidebar_position: 6
 ---
 
 # Bit Manipulation & Binary
 
-## Part 6F — Interview Problems Using Bit Manipulation
+## Interview Problems Using Bit Manipulation
 
 > This chapter combines everything learned so far:
 >
