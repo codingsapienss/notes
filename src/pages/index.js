@@ -34,19 +34,16 @@ const KnowledgeCategories = [
   },
 ];
 
-function CategoryCard({title, description, link, icon}) {
+function CategoryListItem({title, description, link, icon}) {
   return (
-    <div className="col col--6 margin-bottom--lg">
-      <Link className="card" to={link} style={{textDecoration: 'none'}}>
-        <div className="card__header">
-          <Heading as="h3">
-            <span style={{marginRight: '10px'}}>{icon}</span>
-            {title}
-          </Heading>
+    <div className={styles.categoryItem}>
+      <Link to={link} className={styles.categoryLink}>
+        <div className={styles.categoryIcon}>{icon}</div>
+        <div className={styles.categoryContent}>
+          <Heading as="h3" className={styles.categoryTitle}>{title}</Heading>
+          <p className={styles.categoryDescription}>{description}</p>
         </div>
-        <div className="card__body">
-          <p>{description}</p>
-        </div>
+        <div className={styles.categoryArrow}>→</div>
       </Link>
     </div>
   );
@@ -81,10 +78,10 @@ export default function Home() {
       description="Personal knowledge base for DSA, Web Development, and more.">
       <HomepageHeader />
       <main>
-        <div className="container" style={{padding: '4rem 0'}}>
-          <div className="row">
+        <div className="container" style={{padding: '4rem 0', maxWidth: '800px'}}>
+          <div className={styles.categoryList}>
             {KnowledgeCategories.map((props, idx) => (
-              <CategoryCard key={idx} {...props} />
+              <CategoryListItem key={idx} {...props} />
             ))}
           </div>
         </div>

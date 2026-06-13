@@ -1,23 +1,100 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: transparent;
+  color: var(--ifm-font-color-base);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+[data-theme='dark'] .heroBanner {
+  background: transparent;
+}
+
+.heroBanner :global(.hero__title) {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Minimalist List Styles */
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.categoryItem {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.2s ease;
+}
+
+.categoryItem:last-child {
+  border-bottom: none;
+}
+
+.categoryLink {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  text-decoration: none !important;
+  color: inherit !important;
+  border-radius: 8px;
+}
+
+.categoryLink:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.categoryIcon {
+  font-size: 2rem;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+}
+
+.categoryContent {
+  flex: 1;
+}
+
+.categoryTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.categoryDescription {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.categoryArrow {
+  font-size: 1.5rem;
+  color: var(--ifm-color-emphasis-400);
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.categoryLink:hover .categoryArrow {
+  transform: translateX(5px);
+  color: var(--ifm-color-primary);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 4rem 2rem;
+  }
+  .heroBanner :global(.hero__title) {
+    font-size: 2.5rem;
+  }
 }
