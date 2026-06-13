@@ -19,19 +19,19 @@ const KnowledgeCategories = [
     title: 'Data Structures & Algorithms',
     description: 'Foundational concepts, C++ STL mastery, and algorithmic problem-solving.',
     link: '/docs/dsa',
-    icon: <Code2 size={32} color="#2e8555" />,
+    icon: <img src="/notes/img/cpp.svg" width="32" height="32" alt="C++ Logo" />,
   },
   {
     title: 'TypeScript',
     description: 'Advanced type systems, best practices, and scalable application design.',
     link: '/docs/web-dev',
-    icon: <Braces size={32} color="#3178c6" />,
+    icon: <img src="/notes/img/typescript.svg" width="32" height="32" alt="TypeScript Logo" />,
   },
   {
     title: 'React',
     description: 'Modern UI patterns, state management, and efficient component architecture.',
     link: '/docs/web-dev',
-    icon: <Atom size={32} color="#61dafb" />,
+    icon: <img src="/notes/img/react.svg" width="32" height="32" alt="React Logo" />,
   },
   {
     title: 'System Design',
