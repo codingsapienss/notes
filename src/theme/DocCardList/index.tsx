@@ -1,4 +1,4 @@
-import React, {type ComponentProps, type ReactNode} from 'react';
+import React, {useState, type ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import {
@@ -14,32 +14,60 @@ function DocCardListForCurrentSidebarCategory({className}: Props) {
 }
 
 interface DocListItemProps {
-  item: any; // Using any for simplicity as Docusaurus types can be complex
+  item: any;
   level?: number;
 }
 
 function DocListItem({item, level = 0}: DocListItemProps) {
   const isCategory = item.type === 'category';
-  
+  const hasItems = isCategory && item.items && item.items.length > 0;
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    if (hasItems) {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsExpanded(!isExpanded);
+    }
+  };
+
   return (
     <div 
-      className={clsx(styles.listItem, isCategory && styles.categoryItem)} 
+      className={clsx(
+        styles.listItem, 
+        isCategory && styles.categoryItem,
+        isExpanded && styles.listItemExpanded
+      )} 
       style={{ paddingLeft: `${level * 1.5}rem` }}
     >
-      <Link to={item.href || '#'} className={styles.itemLink}>
-        <div className={styles.itemIcon}>
-          {isCategory ? '📁' : '📄'}
-        </div>
-        <div className={styles.itemContent}>
-          <span className={styles.itemLabel}>{item.label}</span>
-          {item.description && (
-            <p className={styles.itemDescription}>{item.description}</p>
-          )}
-        </div>
-        {!isCategory && <div className={styles.itemArrow}>→</div>}
-      </Link>
+      <div className={styles.itemHeader} onClick={hasItems ? toggleExpand : undefined}>
+        <Link 
+          to={item.href || '#'} 
+          className={clsx(styles.itemLink, !hasItems && styles.itemLinkLeaf)}
+          onClick={(e) => {
+            if (hasItems && !item.href) {
+              toggleExpand(e);
+            }
+          }}
+        >
+          <div className={styles.itemIcon}>
+            {isCategory ? (
+              <span className={clsx(styles.toggleArrow, isExpanded && styles.toggleArrowExpanded)}>
+                ▶
+              </span>
+            ) : '📄'}
+          </div>
+          <div className={styles.itemContent}>
+            <span className={styles.itemLabel}>{item.label}</span>
+            {item.description && !isCategory && (
+              <p className={styles.itemDescription}>{item.description}</p>
+            )}
+          </div>
+          {!isCategory && <div className={styles.itemArrow}>→</div>}
+        </Link>
+      </div>
       
-      {isCategory && item.items && item.items.length > 0 && (
+      {hasItems && isExpanded && (
         <div className={styles.nestedList}>
           {item.items.map((subItem: any, index: number) => (
             <DocListItem key={index} item={subItem} level={level + 1} />

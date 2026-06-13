@@ -2,37 +2,52 @@
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
 .listItem {
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  transition: all 0.2s ease;
 }
 
-.listItem:last-child {
-  border-bottom: none;
-}
-
-.categoryItem {
-  border-bottom: none;
+.itemHeader {
+  cursor: pointer;
 }
 
 .itemLink {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1.25rem 0.5rem;
   text-decoration: none !important;
   color: inherit !important;
   transition: all 0.2s ease;
 }
 
 .itemLink:hover {
+  background-color: var(--ifm-color-emphasis-100);
   color: var(--ifm-color-primary) !important;
 }
 
 .itemIcon {
   margin-right: 1rem;
-  font-size: 1.2rem;
-  opacity: 0.7;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+}
+
+.toggleArrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.toggleArrowExpanded {
+  transform: rotate(90deg);
+  opacity: 1;
+  color: var(--ifm-color-primary);
 }
 
 .itemContent {
@@ -41,28 +56,28 @@
 
 .itemLabel {
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
-.categoryItem > .itemLink .itemLabel {
+.categoryItem > .itemHeader .itemLabel {
   font-weight: 700;
   color: var(--ifm-color-primary);
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   letter-spacing: 0.5px;
 }
 
 .itemDescription {
-  margin: 0.2rem 0 0 0;
+  margin: 0.25rem 0 0 0;
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-600);
   line-height: 1.4;
 }
 
 .itemArrow {
-  opacity: 0.3;
+  opacity: 0.2;
   margin-left: 1rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .itemLink:hover .itemArrow {
@@ -72,6 +87,13 @@
 }
 
 .nestedList {
-  margin-left: 0.5rem;
-  border-left: 2px solid var(--ifm-color-emphasis-100);
+  background-color: rgba(var(--ifm-color-emphasis-100-rgb), 0.3);
+}
+
+.listItemExpanded {
+  background-color: rgba(var(--ifm-color-emphasis-100-rgb), 0.1);
+}
+
+[data-theme='dark'] .nestedList {
+  background-color: rgba(255, 255, 255, 0.02);
 }
