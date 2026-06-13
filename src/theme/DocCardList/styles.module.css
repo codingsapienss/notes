@@ -30,28 +30,31 @@
 
 .itemIcon {
   margin-right: 1rem;
-  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 1.5rem;
+  opacity: 0.6;
 }
 
-.toggleArrow {
-  font-size: 0.7rem;
-  transition: transform 0.2s ease;
-  display: inline-block;
-  opacity: 0.5;
-}
-
-.toggleArrowExpanded {
-  transform: rotate(90deg);
+.itemLink:hover .itemIcon {
   opacity: 1;
   color: var(--ifm-color-primary);
 }
 
 .itemContent {
   flex: 1;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.folderIcon {
+  color: var(--ifm-color-primary);
+  opacity: 0.8;
 }
 
 .itemLabel {

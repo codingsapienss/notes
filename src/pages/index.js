@@ -4,6 +4,13 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import { 
+  Code2, 
+  Braces, 
+  Atom, 
+  GitBranch,
+  ChevronRight 
+} from 'lucide-react';
 
 import styles from './index.module.css';
 
@@ -12,25 +19,25 @@ const KnowledgeCategories = [
     title: 'Data Structures & Algorithms',
     description: 'Foundational concepts, C++ STL mastery, and algorithmic problem-solving.',
     link: '/docs/dsa',
-    icon: '📊',
+    icon: <Code2 size={32} color="#2e8555" />,
   },
   {
     title: 'TypeScript',
     description: 'Advanced type systems, best practices, and scalable application design.',
     link: '/docs/web-dev',
-    icon: '🟦',
+    icon: <Braces size={32} color="#3178c6" />,
   },
   {
     title: 'React',
     description: 'Modern UI patterns, state management, and efficient component architecture.',
     link: '/docs/web-dev',
-    icon: '⚛️',
+    icon: <Atom size={32} color="#61dafb" />,
   },
   {
     title: 'System Design',
     description: 'Scaling applications, distributed systems, and architectural patterns.',
     link: '#',
-    icon: '🏗️',
+    icon: <GitBranch size={32} color="#f05032" />,
   },
 ];
 
@@ -43,7 +50,9 @@ function CategoryListItem({title, description, link, icon}) {
           <Heading as="h3" className={styles.categoryTitle}>{title}</Heading>
           <p className={styles.categoryDescription}>{description}</p>
         </div>
-        <div className={styles.categoryArrow}>→</div>
+        <div className={styles.categoryArrow}>
+          <ChevronRight size={24} />
+        </div>
       </Link>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   filterDocCardListItems,
 } from '@docusaurus/plugin-content-docs/client';
 import type {Props} from '@theme/DocCardList';
+import { Folder, FileText, ChevronRight, ChevronDown } from 'lucide-react';
 import styles from './styles.module.css';
 
 function DocCardListForCurrentSidebarCategory({className}: Props) {
@@ -52,18 +53,21 @@ function DocListItem({item, level = 0}: DocListItemProps) {
         >
           <div className={styles.itemIcon}>
             {isCategory ? (
-              <span className={clsx(styles.toggleArrow, isExpanded && styles.toggleArrowExpanded)}>
-                ▶
-              </span>
-            ) : '📄'}
+              isExpanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />
+            ) : (
+              <FileText size={18} />
+            )}
           </div>
           <div className={styles.itemContent}>
-            <span className={styles.itemLabel}>{item.label}</span>
+            <div className={styles.labelWrapper}>
+              {isCategory && <Folder size={18} className={styles.folderIcon} />}
+              <span className={styles.itemLabel}>{item.label}</span>
+            </div>
             {item.description && !isCategory && (
               <p className={styles.itemDescription}>{item.description}</p>
             )}
           </div>
-          {!isCategory && <div className={styles.itemArrow}>→</div>}
+          {!isCategory && <ChevronRight size={18} className={styles.itemArrow} />}
         </Link>
       </div>
       
