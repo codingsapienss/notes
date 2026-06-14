@@ -24,13 +24,13 @@ const KnowledgeCategories = [
   {
     title: 'TypeScript',
     description: 'Advanced type systems, best practices, and scalable application design.',
-    link: '/docs/web-dev',
+    link: '/docs/web-dev/typescript/typescript-fundamentals/part1',
     icon: <img src="/notes/img/typescript.svg" width="32" height="32" alt="TypeScript Logo" />,
   },
   {
     title: 'React',
     description: 'Modern UI patterns, state management, and efficient component architecture.',
-    link: '/docs/web-dev',
+    link: '/docs/web-dev/react/intro',
     icon: <img src="/notes/img/react.svg" width="32" height="32" alt="React Logo" />,
   },
   {
