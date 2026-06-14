@@ -19,7 +19,7 @@
   --ifm-background-color: #fcfcfc !important;
 }
 
-html, body, article, .theme-doc-sidebar-container {
+html, body, article, .theme-doc-sidebar-container, .footer, .main-wrapper {
   background-image: 
     linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px) !important;
@@ -44,7 +44,9 @@ html, body, article, .theme-doc-sidebar-container {
 [data-theme="dark"] html, 
 [data-theme="dark"] body, 
 [data-theme="dark"] article, 
-[data-theme="dark"] .theme-doc-sidebar-container {
+[data-theme="dark"] .theme-doc-sidebar-container,
+[data-theme="dark"] .footer,
+[data-theme="dark"] .main-wrapper {
   background-image: 
     linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
@@ -128,6 +130,7 @@ article {
 .footer {
   padding: 2rem 0;
   text-align: center;
+  background-color: transparent !important;
 }
 
 /* TOC text fix */
