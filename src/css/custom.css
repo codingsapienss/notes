@@ -45,7 +45,27 @@
 
 /* --- COLOR THEMES --- */
 
-/* Deep Sea (Blue) */
+/* 1. Default (Green) */
+[data-theme-color='default'] {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+}
+[data-theme='dark'][data-theme-color='default'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+}
+
+/* 2. Deep Sea (Blue) */
 [data-theme-color='blue'] {
   --ifm-color-primary: #3578e5;
   --ifm-color-primary-dark: #306cd0;
@@ -55,8 +75,17 @@
   --ifm-color-primary-lighter: #6196eb;
   --ifm-color-primary-lightest: #8bb2f1;
 }
+[data-theme='dark'][data-theme-color='blue'] {
+  --ifm-color-primary: #4aa3ff;
+  --ifm-color-primary-dark: #218fff;
+  --ifm-color-primary-darker: #0d85ff;
+  --ifm-color-primary-darkest: #006dd1;
+  --ifm-color-primary-light: #73b7ff;
+  --ifm-color-primary-lighter: #89c1ff;
+  --ifm-color-primary-lightest: #cae4ff;
+}
 
-/* Midnight Purple (Purple) */
+/* 3. Midnight (Purple) */
 [data-theme-color='purple'] {
   --ifm-color-primary: #a061ff;
   --ifm-color-primary-dark: #9047ff;
@@ -66,8 +95,17 @@
   --ifm-color-primary-lighter: #b887ff;
   --ifm-color-primary-lightest: #cfabff;
 }
+[data-theme='dark'][data-theme-color='purple'] {
+  --ifm-color-primary: #bd93f9;
+  --ifm-color-primary-dark: #a16ef7;
+  --ifm-color-primary-darker: #935bf6;
+  --ifm-color-primary-darkest: #6a13f2;
+  --ifm-color-primary-light: #d9c3fb;
+  --ifm-color-primary-lighter: #e7dbfc;
+  --ifm-color-primary-lightest: #ffffff;
+}
 
-/* Solarized Orange (Orange) */
+/* 4. Solarized (Orange) */
 [data-theme-color='orange'] {
   --ifm-color-primary: #e67e22;
   --ifm-color-primary-dark: #cf711f;
@@ -77,11 +115,61 @@
   --ifm-color-primary-lighter: #ed9346;
   --ifm-color-primary-lightest: #f1a96c;
 }
+[data-theme='dark'][data-theme-color='orange'] {
+  --ifm-color-primary: #ff9f43;
+  --ifm-color-primary-dark: #ff8b21;
+  --ifm-color-primary-darker: #ff8110;
+  --ifm-color-primary-darkest: #d16300;
+  --ifm-color-primary-light: #ffb365;
+  --ifm-color-primary-lighter: #ffbd76;
+  --ifm-color-primary-lightest: #ffdbc6;
+}
+
+/* 5. Rose (Pink) */
+[data-theme-color='rose'] {
+  --ifm-color-primary: #e91e63;
+  --ifm-color-primary-dark: #d81b60;
+  --ifm-color-primary-darker: #cc195a;
+  --ifm-color-primary-darkest: #a81447;
+  --ifm-color-primary-light: #ed4b82;
+  --ifm-color-primary-lighter: #f06292;
+  --ifm-color-primary-lightest: #f48fb1;
+}
+[data-theme='dark'][data-theme-color='rose'] {
+  --ifm-color-primary: #ff79c6;
+  --ifm-color-primary-dark: #ff4db1;
+  --ifm-color-primary-darker: #ff37a7;
+  --ifm-color-primary-darkest: #eb008a;
+  --ifm-color-primary-light: #ff94d1;
+  --ifm-color-primary-lighter: #ffa2d7;
+  --ifm-color-primary-lightest: #ffcceb;
+}
+
+/* 6. Cyan (Teal) */
+[data-theme-color='cyan'] {
+  --ifm-color-primary: #0891b2;
+  --ifm-color-primary-dark: #07728e;
+  --ifm-color-primary-darker: #066c85;
+  --ifm-color-primary-darkest: #05596e;
+  --ifm-color-primary-light: #0ea5e9;
+  --ifm-color-primary-lighter: #38bdf8;
+  --ifm-color-primary-lightest: #7dd3fc;
+}
+[data-theme='dark'][data-theme-color='cyan'] {
+  --ifm-color-primary: #8be9fd;
+  --ifm-color-primary-dark: #58defd;
+  --ifm-color-primary-darker: #3ed9fc;
+  --ifm-color-primary-darkest: #01bff9;
+  --ifm-color-primary-light: #bef3fe;
+  --ifm-color-primary-lighter: #d7f7fe;
+  --ifm-color-primary-lightest: #ffffff;
+}
 
 /* Base styles using primary color */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
 
 
 .footer {
