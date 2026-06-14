@@ -172,13 +172,13 @@
   --ifm-card-border-radius: 8px;
 }
 
-/* 2. Glassmorphism (Mesh & Frost) */
+/* 2. Glassmorphism (Mesh & Deep Hierarchy) */
 [data-site-style='glassmorphism'] {
   background: 
     radial-gradient(at 0% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
     radial-gradient(at 50% 0%, rgba(var(--ifm-color-primary-rgb), 0.1) 0, transparent 50%),
     radial-gradient(at 100% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
-    var(--ifm-background-color) !important;
+    #050505 !important;
   background-attachment: fixed !important;
 }
 [data-site-style='glassmorphism'] .navbar,
@@ -192,118 +192,123 @@
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
 }
-/* Differentiate Components for Glass */
 [data-site-style='glassmorphism'] article {
   background: rgba(var(--ifm-color-primary-rgb), 0.05) !important;
+  backdrop-filter: blur(30px) !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 3rem;
+  padding: 3rem !important;
   border-radius: 24px;
 }
-[data-site-style='glassmorphism'] .theme-doc-sidebar-container {
-  background: rgba(0, 0, 0, 0.1) !important;
-}
 
-/* 3. Neo-Brutalism (Fixed Contrast & Multi-Color) */
+/* 3. Neo-Brutalism (Bold Multi-Color & Fixed Contrast) */
 [data-site-style='brutalism'] {
-  --ifm-background-color: #f0f0f0 !important;
+  --ifm-background-color: #f1f1f1 !important;
   background-image: 
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px) !important;
+    linear-gradient(rgba(0,0,0,0.05) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1.5px, transparent 1.5px) !important;
   background-size: 30px 30px !important;
 }
-[data-site-style='brutalism'] .navbar,
-[data-site-style='brutalism'] .card,
-[data-site-style='brutalism'] .menu__link--active,
-[data-site-style='brutalism'] .theme-doc-sidebar-container {
-  border: 3px solid #000 !important;
-  box-shadow: 8px 8px 0px var(--ifm-color-primary) !important;
+[data-site-style='brutalism'] .navbar {
   background-color: #fff !important;
-  color: #000 !important;
+  border: 4px solid #000 !important;
+  margin: 15px !important;
+  box-shadow: 8px 8px 0px #000 !important;
 }
-/* Multi-Color Layout for Brutalism */
 [data-site-style='brutalism'] .theme-doc-sidebar-container {
-  background-color: rgba(var(--ifm-color-primary-rgb), 0.1) !important; /* Pale theme color for sidebar */
-}
-[data-site-style='brutalism'] main {
-  background-color: transparent !important;
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.15) !important;
+  border: 4px solid #000 !important;
+  margin: 15px !important;
+  box-shadow: 8px 8px 0px #000 !important;
 }
 [data-site-style='brutalism'] article {
   background-color: #ffffff !important;
-  border: 4px solid #000 !important;
-  box-shadow: 16px 16px 0px #000 !important;
-  padding: 3rem !important;
-  margin: 2rem 0 !important;
+  border: 5px solid #000 !important;
+  box-shadow: 15px 15px 0px #000 !important;
+  padding: 3.5rem !important;
+  margin: 2rem !important;
+  border-radius: 0px !important;
 }
-/* Force black text for absolute readability in Brutalism */
+/* Absolute Readability Force */
 [data-site-style='brutalism'] article,
 [data-site-style='brutalism'] article *,
 [data-site-style='brutalism'] article p,
 [data-site-style='brutalism'] article li,
-[data-site-style='brutalism'] article span {
+[data-site-style='brutalism'] article span,
+[data-site-style='brutalism'] article code,
+[data-site-style='brutalism'] article strong {
   color: #000000 !important;
 }
 [data-site-style='brutalism'] article h1, 
 [data-site-style='brutalism'] article h2, 
 [data-site-style='brutalism'] article h3 {
   background-color: var(--ifm-color-primary) !important;
+  color: #ffffff !important;
   display: inline-block;
-  padding: 5px 15px;
-  color: #fff !important;
-  border: 3px solid #000;
-  margin-bottom: 1rem;
+  padding: 8px 20px !important;
+  border: 4px solid #000 !important;
+  margin-bottom: 1.5rem !important;
+  transform: rotate(-0.5deg);
 }
 
-/* 4. Claymorphism (Multi-Layered) */
+/* 4. Claymorphism (Soft Inset Layers) */
+[data-site-style='claymorphism'] {
+  --ifm-background-color: #e6e9ef !important;
+}
 [data-site-style='claymorphism'] .theme-doc-sidebar-container {
-  background: var(--ifm-background-surface-color);
-  margin: 15px;
+  background: #e6e9ef !important;
+  margin: 20px;
   border-radius: 30px;
-  box-shadow: 10px 10px 20px rgba(0,0,0,0.05);
+  box-shadow: inset 8px 8px 16px #c8ccd3, inset -8px -8px 16px #ffffff !important;
 }
 [data-site-style='claymorphism'] article {
-  background: white !important;
-  border-radius: 50px;
-  padding: 4rem;
-  color: #333 !important;
+  background: #f0f2f5 !important;
+  border-radius: 50px !important;
+  padding: 4rem !important;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
-}
-[data-theme='dark'][data-site-style='claymorphism'] article {
-  background: #242526 !important;
-  color: #eee !important;
-  box-shadow: 20px 20px 60px #1a1a1a, -20px -20px 60px #2e2e2e !important;
+  color: #333 !important;
 }
 
-/* 5. Skeuomorphism (Metallic Layout) */
+/* 5. Skeuomorphism (Metallic Stack) */
+[data-site-style='skeuomorphism'] {
+  background: #ccc !important;
+  background-image: linear-gradient(145deg, #d9d9d9, #b3b3b3) !important;
+}
 [data-site-style='skeuomorphism'] .theme-doc-sidebar-container {
-  background: #eee !important;
-  border-right: 2px solid #ccc;
+  background: #e0e0e0 !important;
+  border-right: 2px solid #888;
+  box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
 }
 [data-site-style='skeuomorphism'] article {
-  background: #fdfdfd !important;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 3rem;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.1);
-  color: #222 !important;
+  background: #f9f9f9 !important;
+  border: 1px solid #aaa;
+  border-top: 6px solid #333;
+  padding: 4.5rem !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important;
+  color: #333 !important;
 }
 
-/* 6. Liquid Glass (Cyber Layout) */
+/* 6. Liquid Glass (Neon Stack) */
+[data-site-style='liquid'] {
+  background: #000 !important;
+  background-image: radial-gradient(circle at center, #111 0%, #000 100%) !important;
+}
 [data-site-style='liquid'] .theme-doc-sidebar-container {
   background: rgba(var(--ifm-color-primary-rgb), 0.05) !important;
-  border-right: 1px solid var(--ifm-color-primary);
+  border-right: 2px solid var(--ifm-color-primary);
 }
 [data-site-style='liquid'] article {
-  background: rgba(0, 0, 0, 0.8) !important;
-  border: 1px solid var(--ifm-color-primary);
-  box-shadow: 0 0 30px rgba(var(--ifm-color-primary-rgb), 0.2);
-  padding: 3rem;
-  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid var(--ifm-color-primary);
+  box-shadow: 0 0 40px rgba(var(--ifm-color-primary-rgb), 0.3), inset 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.1) !important;
+  padding: 4rem !important;
+  border-radius: 32px !important;
 }
 
 /* Base style sync */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
 
 
 
