@@ -15,12 +15,15 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   
-  /* Grid Background */
-  --ifm-background-color: #f8f9fa !important;
+  /* Prominent Grid Background (Light) */
+  --ifm-background-color: #fcfcfc !important;
+}
+
+html, body, article, .theme-doc-sidebar-container {
   background-image: 
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px) !important;
-  background-size: 30px 30px !important;
+    linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
   background-attachment: fixed !important;
 }
 
@@ -34,12 +37,19 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 
-  /* Dark Grid */
+  /* Prominent Grid Background (Dark) */
   --ifm-background-color: #0d1117 !important;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
 }
+
+[data-theme="dark"] html, 
+[data-theme="dark"] body, 
+[data-theme="dark"] article, 
+[data-theme="dark"] .theme-doc-sidebar-container {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
+}
+
 
 /* --- COLOR THEME OVERRIDES --- */
 [data-theme-color='blue'] {
