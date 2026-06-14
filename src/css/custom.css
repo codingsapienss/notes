@@ -4,7 +4,6 @@
  * work well for content-centric websites.
  */
 
-/* Reverted to original Docusaurus Green Palette */
 :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
@@ -15,6 +14,14 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  
+  /* Grid Background */
+  --ifm-background-color: #f8f9fa !important;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px) !important;
+  background-size: 30px 30px !important;
+  background-attachment: fixed !important;
 }
 
 [data-theme="dark"] {
@@ -26,381 +33,94 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+  /* Dark Grid */
+  --ifm-background-color: #0d1117 !important;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
+}
+
+/* --- COLOR THEME OVERRIDES --- */
+[data-theme-color='blue'] {
+  --ifm-color-primary: #3578e5;
+}
+[data-theme='dark'][data-theme-color='blue'] {
+  --ifm-color-primary: #4aa3ff;
+}
+
+[data-theme-color='purple'] {
+  --ifm-color-primary: #a061ff;
+}
+[data-theme='dark'][data-theme-color='purple'] {
+  --ifm-color-primary: #bd93f9;
+}
+
+[data-theme-color='orange'] {
+  --ifm-color-primary: #e67e22;
+}
+[data-theme='dark'][data-theme-color='orange'] {
+  --ifm-color-primary: #ff9f43;
+}
+
+[data-theme-color='rose'] {
+  --ifm-color-primary: #e91e63;
+}
+[data-theme='dark'][data-theme-color='rose'] {
+  --ifm-color-primary: #ff79c6;
+}
+
+[data-theme-color='cyan'] {
+  --ifm-color-primary: #0891b2;
+}
+[data-theme='dark'][data-theme-color='cyan'] {
+  --ifm-color-primary: #8be9fd;
+}
+
+/* --- COMPONENT STYLING --- */
+
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
 .card {
   border-radius: 8px;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid var(--ifm-color-emphasis-200);
+  background-color: var(--ifm-background-surface-color);
   height: 100%;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--ifm-global-shadow-md);
-  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  border-color: var(--ifm-color-primary);
 }
 
-/* --- COLOR THEMES --- */
-
-/* 1. Default (Green) */
-[data-theme-color='default'] {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-}
-[data-theme='dark'][data-theme-color='default'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-}
-
-/* 2. Deep Sea (Blue) */
-[data-theme-color='blue'] {
-  --ifm-color-primary: #3578e5;
-  --ifm-color-primary-dark: #306cd0;
-  --ifm-color-primary-darker: #2d66c4;
-  --ifm-color-primary-darkest: #2554a1;
-  --ifm-color-primary-light: #538ce9;
-  --ifm-color-primary-lighter: #6196eb;
-  --ifm-color-primary-lightest: #8bb2f1;
-}
-[data-theme='dark'][data-theme-color='blue'] {
-  --ifm-color-primary: #4aa3ff;
-  --ifm-color-primary-dark: #218fff;
-  --ifm-color-primary-darker: #0d85ff;
-  --ifm-color-primary-darkest: #006dd1;
-  --ifm-color-primary-light: #73b7ff;
-  --ifm-color-primary-lighter: #89c1ff;
-  --ifm-color-primary-lightest: #cae4ff;
-}
-
-/* 3. Midnight (Purple) */
-[data-theme-color='purple'] {
-  --ifm-color-primary: #a061ff;
-  --ifm-color-primary-dark: #9047ff;
-  --ifm-color-primary-darker: #883aff;
-  --ifm-color-primary-darkest: #7010ff;
-  --ifm-color-primary-light: #b07aff;
-  --ifm-color-primary-lighter: #b887ff;
-  --ifm-color-primary-lightest: #cfabff;
-}
-[data-theme='dark'][data-theme-color='purple'] {
-  --ifm-color-primary: #bd93f9;
-  --ifm-color-primary-dark: #a16ef7;
-  --ifm-color-primary-darker: #935bf6;
-  --ifm-color-primary-darkest: #6a13f2;
-  --ifm-color-primary-light: #d9c3fb;
-  --ifm-color-primary-lighter: #e7dbfc;
-  --ifm-color-primary-lightest: #ffffff;
-}
-
-/* 4. Solarized (Orange) */
-[data-theme-color='orange'] {
-  --ifm-color-primary: #e67e22;
-  --ifm-color-primary-dark: #cf711f;
-  --ifm-color-primary-darker: #c46b1d;
-  --ifm-color-primary-darkest: #a15818;
-  --ifm-color-primary-light: #eb8c3a;
-  --ifm-color-primary-lighter: #ed9346;
-  --ifm-color-primary-lightest: #f1a96c;
-}
-[data-theme='dark'][data-theme-color='orange'] {
-  --ifm-color-primary: #ff9f43;
-  --ifm-color-primary-dark: #ff8b21;
-  --ifm-color-primary-darker: #ff8110;
-  --ifm-color-primary-darkest: #d16300;
-  --ifm-color-primary-light: #ffb365;
-  --ifm-color-primary-lighter: #ffbd76;
-  --ifm-color-primary-lightest: #ffdbc6;
-}
-
-/* 5. Rose (Pink) */
-[data-theme-color='rose'] {
-  --ifm-color-primary: #e91e63;
-  --ifm-color-primary-dark: #d81b60;
-  --ifm-color-primary-darker: #cc195a;
-  --ifm-color-primary-darkest: #a81447;
-  --ifm-color-primary-light: #ed4b82;
-  --ifm-color-primary-lighter: #f06292;
-  --ifm-color-primary-lightest: #f48fb1;
-}
-[data-theme='dark'][data-theme-color='rose'] {
-  --ifm-color-primary: #ff79c6;
-  --ifm-color-primary-dark: #ff4db1;
-  --ifm-color-primary-darker: #ff37a7;
-  --ifm-color-primary-darkest: #eb008a;
-  --ifm-color-primary-light: #ff94d1;
-  --ifm-color-primary-lighter: #ffa2d7;
-  --ifm-color-primary-lightest: #ffcceb;
-}
-
-/* 6. Cyan (Teal) */
-[data-theme-color='cyan'] {
-  --ifm-color-primary: #0891b2;
-  --ifm-color-primary-dark: #07728e;
-  --ifm-color-primary-darker: #066c85;
-  --ifm-color-primary-darkest: #05596e;
-  --ifm-color-primary-light: #0ea5e9;
-  --ifm-color-primary-lighter: #38bdf8;
-  --ifm-color-primary-lightest: #7dd3fc;
-}
-[data-theme='dark'][data-theme-color='cyan'] {
-  --ifm-color-primary: #8be9fd;
-  --ifm-color-primary-dark: #58defd;
-  --ifm-color-primary-darker: #3ed9fc;
-  --ifm-color-primary-darkest: #01bff9;
-  --ifm-color-primary-light: #bef3fe;
-  --ifm-color-primary-lighter: #d7f7fe;
-  --ifm-color-primary-lightest: #ffffff;
-}
-
-/* --- GLOBAL STYLE ENHANCEMENTS --- */
-
-/* 1. Minimalism (Default) */
-[data-site-style='minimalism'] {
-  --ifm-card-border-radius: 8px;
-}
-
-/* 2. Glassmorphism (Mesh & Deep Hierarchy) */
-[data-site-style='glassmorphism'] {
-  background: 
-    radial-gradient(at 0% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
-    radial-gradient(at 50% 0%, rgba(var(--ifm-color-primary-rgb), 0.1) 0, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
-    #050505 !important;
-  background-attachment: fixed !important;
-}
-[data-site-style='glassmorphism'] .navbar,
-[data-site-style='glassmorphism'] .card,
-[data-site-style='glassmorphism'] .footer,
-[data-site-style='glassmorphism'] .menu__link--active,
-[data-site-style='glassmorphism'] .theme-doc-sidebar-container {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
-}
-[data-site-style='glassmorphism'] article {
-  background: rgba(var(--ifm-color-primary-rgb), 0.05) !important;
-  backdrop-filter: blur(30px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 3rem !important;
-  border-radius: 24px;
-}
-
-/* 3. Neo-Brutalism (Bold Multi-Color & Fixed Contrast) */
-[data-site-style='brutalism'] {
-  --ifm-background-color: #f1f1f1 !important;
-  background-image: 
-    linear-gradient(rgba(0,0,0,0.05) 1.5px, transparent 1.5px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1.5px, transparent 1.5px) !important;
-  background-size: 30px 30px !important;
-}
-[data-site-style='brutalism'] .navbar {
-  background-color: #fff !important;
-  border: 4px solid #000 !important;
-  margin: 15px !important;
-  box-shadow: 8px 8px 0px #000 !important;
-}
-[data-site-style='brutalism'] .theme-doc-sidebar-container {
-  background-color: rgba(var(--ifm-color-primary-rgb), 0.15) !important;
-  border: 4px solid #000 !important;
-  margin: 15px !important;
-  box-shadow: 8px 8px 0px #000 !important;
-}
-[data-site-style='brutalism'] article {
-  background-color: #ffffff !important;
-  border: 5px solid #000 !important;
-  box-shadow: 15px 15px 0px #000 !important;
-  padding: 3.5rem !important;
-  margin: 2rem !important;
-  border-radius: 0px !important;
-}
-/* Absolute Readability Force */
-[data-site-style='brutalism'] article,
-[data-site-style='brutalism'] article *,
-[data-site-style='brutalism'] article p,
-[data-site-style='brutalism'] article li,
-[data-site-style='brutalism'] article span,
-[data-site-style='brutalism'] article code,
-[data-site-style='brutalism'] article strong {
-  color: #000000 !important;
-}
-[data-site-style='brutalism'] article h1, 
-[data-site-style='brutalism'] article h2, 
-[data-site-style='brutalism'] article h3 {
-  background-color: var(--ifm-color-primary) !important;
-  color: #ffffff !important;
-  display: inline-block;
-  padding: 8px 20px !important;
-  border: 4px solid #000 !important;
-  margin-bottom: 1.5rem !important;
-  transform: rotate(-0.5deg);
-}
-
-/* 4. Claymorphism (Soft Inset Layers) */
-[data-site-style='claymorphism'] {
-  --ifm-background-color: #e6e9ef !important;
-}
-[data-site-style='claymorphism'] .theme-doc-sidebar-container {
-  background: #e6e9ef !important;
-  margin: 20px;
-  border-radius: 30px;
-  box-shadow: inset 8px 8px 16px #c8ccd3, inset -8px -8px 16px #ffffff !important;
-}
-[data-site-style='claymorphism'] article {
-  background: #f0f2f5 !important;
-  border-radius: 50px !important;
-  padding: 4rem !important;
-  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
-  color: #333 !important;
-}
-
-/* 5. Skeuomorphism (Metallic Stack) */
-[data-site-style='skeuomorphism'] {
-  background: #ccc !important;
-  background-image: linear-gradient(145deg, #d9d9d9, #b3b3b3) !important;
-}
-[data-site-style='skeuomorphism'] .theme-doc-sidebar-container {
-  background: #e0e0e0 !important;
-  border-right: 2px solid #888;
-  box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
-}
-[data-site-style='skeuomorphism'] article {
-  background: #f9f9f9 !important;
-  border: 1px solid #aaa;
-  border-top: 6px solid #333;
-  padding: 4.5rem !important;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 #fff !important;
-  color: #333 !important;
-}
-
-/* 6. Liquid Glass (Neon Stack) */
-[data-site-style='liquid'] {
-  background: #000 !important;
-  background-image: radial-gradient(circle at center, #111 0%, #000 100%) !important;
-}
-[data-site-style='liquid'] .theme-doc-sidebar-container {
-  background: rgba(var(--ifm-color-primary-rgb), 0.05) !important;
-  border-right: 2px solid var(--ifm-color-primary);
-}
-[data-site-style='liquid'] article {
-  background: rgba(0, 0, 0, 0.9) !important;
-  border: 2px solid var(--ifm-color-primary);
-  box-shadow: 0 0 40px rgba(var(--ifm-color-primary-rgb), 0.3), inset 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.1) !important;
-  padding: 4rem !important;
-  border-radius: 32px !important;
-}
-
-/* Base style sync */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
 
+article {
+  background: var(--ifm-background-surface-color);
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
 
-
-
-
-
-
-
-
-
+/* Sidebar Refinement */
+.menu__link--active {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600 !important;
+}
 
 .footer {
   padding: 2rem 0;
   text-align: center;
 }
 
-.footer__copyright {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-/* --- SIDEBAR REFINEMENT --- */
-
-/* 1. Global Reset for Sidebar Elements */
-/* This kills the webkit-box and any internal Docusaurus truncation */
-.menu__link,
-.menu__link *,
-[class*="menu__link"],
-[class*="categoryLinkLabel"] {
-  /* display: block !important; */
-  white-space: normal !important;
-  overflow: visible !important;
-  text-overflow: clip !important;
-  -webkit-line-clamp: initial !important;
-  -webkit-box-orient: initial !important;
-
-  /* Reset Spacing */
-  margin: 0 !important;
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
-
-  /* Typography */
-  font-size: 1rem !important;
-  text-transform: none !important;
-  line-height: 1.4 !important;
-}
-
-/* 2. Remove internal list margins to ensure uniform spacing */
-.menu__list {
-  margin: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.menu__list-item {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 3. Hierarchical Colors */
-
-/* Bold Categories and Sub-categories (Items with sublists) */
-.menu__link--sublist,
-.menu__list-item-collapsible .menu__link {
-  color: var(--ifm-color-emphasis-800) !important;
-  font-weight: 700 !important;
-}
-
-/* Top-level headings specifically (Primary Color) */
-.menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link,
-.menu__list > .menu__list-item > .menu__link {
-  color: var(--ifm-color-primary) !important;
-}
-
-/* Leaf Level Nodes (The actual notes) - Bright Gray #cccccc */
-/* Using specific targeting to override everything */
-.menu__list-item .menu__link:not(.menu__link--sublist) {
-  color: #cccccc !important;
-  font-weight: 400 !important;
-}
-
-/* 4. Active & Hover Highlight */
-.menu__link--active:not(.menu__link--sublist) {
-  color: var(--ifm-color-primary) !important;
-  font-weight: 600 !important;
-  background-color: var(--ifm-menu-color-background-active) !important;
-}
-
-.menu__link:hover {
-  background-color: var(--ifm-menu-color-background-hover) !important;
-}
-
-/* Right Sidebar (TOC) Text Transform Fix */
+/* TOC text fix */
 .table-of-contents__link {
   text-transform: none !important;
 }

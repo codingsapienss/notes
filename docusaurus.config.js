@@ -60,10 +60,6 @@ const config = {
             position: 'right',
           },
           {
-            type: 'custom-styleSwitcher',
-            position: 'right',
-          },
-          {
             href: 'https://github.com/codingsapienss/notes',
             label: 'GitHub',
             position: 'right',
