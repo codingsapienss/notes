@@ -24,7 +24,7 @@ html, body, article, .theme-doc-sidebar-container, .footer, .main-wrapper {
     linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px) !important;
   background-size: 40px 40px !important;
-  background-attachment: fixed !important;
+  background-attachment: scroll !important;
 }
 
 [data-theme="dark"] {
@@ -140,19 +140,24 @@ article {
 
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 996px) {
-  /* Use full width on small screens */
+  /* Use full width on small screens and remove backgrounds */
   article {
     padding: 1.5rem !important;
     margin: 0 !important;
     border-radius: 0 !important;
-    border-left: none !important;
-    border-right: none !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   .container {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     max-width: 100% !important;
+  }
+
+  .col {
+    padding: 0 !important;
   }
 
   /* Adjust font sizes for mobile */
