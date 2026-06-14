@@ -165,64 +165,71 @@
   --ifm-color-primary-lightest: #ffffff;
 }
 
-/* --- SITE STYLES --- */
+/* --- GLOBAL STYLE ENHANCEMENTS --- */
 
 /* 1. Minimalism (Default) */
 [data-site-style='minimalism'] {
   --ifm-card-border-radius: 8px;
 }
 
-/* 2. Glassmorphism */
+/* 2. Glassmorphism (Mesh & Frost) */
 [data-site-style='glassmorphism'] {
-  background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-              radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-              radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-  background-attachment: fixed;
-}
-[data-theme='light'][data-site-style='glassmorphism'] {
-  background: radial-gradient(at 0% 0%, hsla(202,100%,90%,1) 0, transparent 50%), 
-              radial-gradient(at 50% 0%, hsla(280,100%,90%,1) 0, transparent 50%), 
-              radial-gradient(at 100% 0%, hsla(340,100%,90%,1) 0, transparent 50%);
+  background: 
+    radial-gradient(at 0% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(var(--ifm-color-primary-rgb), 0.1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(var(--ifm-color-primary-rgb), 0.15) 0, transparent 50%),
+    var(--ifm-background-color) !important;
+  background-attachment: fixed !important;
 }
 [data-site-style='glassmorphism'] .navbar,
 [data-site-style='glassmorphism'] .card,
 [data-site-style='glassmorphism'] .footer,
 [data-site-style='glassmorphism'] .menu__link--active,
-[data-site-style='glassmorphism'] .theme-doc-sidebar-container {
-  background: rgba(255, 255, 255, 0.03) !important;
+[data-site-style='glassmorphism'] .theme-doc-sidebar-container,
+[data-site-style='glassmorphism'] div[class*='codeBlockContainer'] {
+  background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(25px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
 }
 [data-theme='light'][data-site-style='glassmorphism'] .navbar,
 [data-theme='light'][data-site-style='glassmorphism'] .card {
-  background: rgba(255, 255, 255, 0.4) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(var(--ifm-color-primary-rgb), 0.2) !important;
 }
 
-/* 3. Neo-Brutalism */
+/* 3. Neo-Brutalism (Bold & Raw) */
 [data-site-style='brutalism'] {
-  --ifm-background-color: #e0e0e0;
+  --ifm-background-color: #f0f0f0 !important;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
 }
 [data-theme='dark'][data-site-style='brutalism'] {
-  --ifm-background-color: #121212;
+  --ifm-background-color: #0a0a0a !important;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
 }
 [data-site-style='brutalism'] .card,
 [data-site-style='brutalism'] .navbar,
 [data-site-style='brutalism'] .menu__link--active,
-[data-site-style='brutalism'] button:not([class*='close']) {
+[data-site-style='brutalism'] button:not([class*='close']),
+[data-site-style='brutalism'] div[class*='codeBlockContainer'] {
   border: 4px solid #000 !important;
-  box-shadow: 12px 12px 0px #000 !important;
+  box-shadow: 10px 10px 0px var(--ifm-color-primary) !important;
   border-radius: 0px !important;
   background-color: #fff !important;
   color: #000 !important;
+  transition: all 0.15s ease !important;
 }
 [data-theme='dark'][data-site-style='brutalism'] .card,
 [data-theme='dark'][data-site-style='brutalism'] .navbar,
 [data-theme='dark'][data-site-style='brutalism'] .menu__link--active {
   border-color: #fff !important;
-  box-shadow: 10px 10px 0px #fff !important;
+  box-shadow: 8px 8px 0px var(--ifm-color-primary) !important;
   background-color: #1a1a1a !important;
   color: #fff !important;
 }
@@ -231,100 +238,120 @@
   box-shadow: 16px 16px 0px #000 !important;
 }
 [data-theme='dark'][data-site-style='brutalism'] .card:hover {
-  box-shadow: 14px 14px 0px #fff !important;
+  box-shadow: 14px 14px 0px var(--ifm-color-primary-light) !important;
 }
 [data-site-style='brutalism'] h1, 
 [data-site-style='brutalism'] h2, 
-[data-site-style='brutalism'] h3 {
-  font-family: 'Courier New', Courier, monospace !important;
+[data-site-style='brutalism'] h3,
+[data-site-style='brutalism'] .navbar__title {
+  font-family: 'Space Mono', monospace, 'Courier New', Courier !important;
   text-transform: uppercase;
   font-weight: 900 !important;
+  letter-spacing: -1px;
 }
 
-/* 4. Claymorphism (Inflated 3D Clay) */
+/* 4. Claymorphism (Inflated 3D) */
 [data-site-style='claymorphism'] {
-  --ifm-background-color: #e6e9ef !important; /* Soft clay background */
+  --ifm-background-color: #f4f7fa !important;
 }
 [data-theme='dark'][data-site-style='claymorphism'] {
-  --ifm-background-color: #242526 !important;
+  --ifm-background-color: #1e1e1e !important;
 }
 [data-site-style='claymorphism'] .card {
   background: var(--ifm-color-primary) !important;
   color: white !important;
-  border-radius: 45px !important;
+  border-radius: 40px !important;
   border: none !important;
-  /* Aggressive inner shadow to create "inflated" look */
   box-shadow: 
-    10px 10px 20px rgba(0,0,0,0.15), 
-    inset -10px -10px 20px rgba(0,0,0,0.2),
-    inset 10px 10px 20px rgba(255,255,255,0.4) !important;
+    15px 15px 35px rgba(0,0,0,0.1), 
+    inset -12px -12px 25px rgba(0,0,0,0.2),
+    inset 12px 12px 25px rgba(255,255,255,0.3) !important;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 [data-site-style='claymorphism'] .card__header h3,
 [data-site-style='claymorphism'] .card__body p {
   color: white !important;
 }
-[data-site-style='claymorphism'] .card:hover {
-  transform: scale(1.05) !important;
+[data-site-style='claymorphism'] .navbar {
+  border-radius: 0 0 30px 30px !important;
+  margin: 10px !important;
+  box-shadow: 8px 8px 20px rgba(0,0,0,0.05) !important;
 }
 
-/* 5. Skeuomorphism (Glossy Physical Material) */
+/* 5. Skeuomorphism (Glossy Physical) */
 [data-site-style='skeuomorphism'] {
-  background: linear-gradient(145deg, #e6e6e6, #ffffff) !important; 
-  background-attachment: fixed;
+  background: #d1d1d1 !important;
+  background-image: linear-gradient(145deg, #e6e6e6, #bcbcbc) !important;
 }
 [data-theme='dark'][data-site-style='skeuomorphism'] {
-  background: linear-gradient(145deg, #1a1a1a, #000000) !important;
+  background: #121212 !important;
+  background-image: linear-gradient(145deg, #1a1a1a, #000000) !important;
 }
 [data-site-style='skeuomorphism'] .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 100%) !important;
-  border: 1px solid rgba(255,255,255,0.4) !important;
-  border-top: 2px solid rgba(255,255,255,0.8) !important;
+  background: linear-gradient(180deg, var(--ifm-color-primary-light) 0%, var(--ifm-color-primary) 100%) !important;
+  border: 1px solid rgba(0,0,0,0.3) !important;
+  border-top: 3px solid rgba(255,255,255,0.4) !important;
   border-radius: 12px !important;
   box-shadow: 
-    0 15px 30px rgba(0,0,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.5) !important;
-  backdrop-filter: none !important;
+    0 10px 20px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 5px rgba(0,0,0,0.2) !important;
+}
+[data-site-style='skeuomorphism'] .card__header h3,
+[data-site-style='skeuomorphism'] .card__body p {
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 [data-site-style='skeuomorphism'] .navbar {
   background: linear-gradient(to bottom, #555, #222) !important;
-  border-bottom: 3px solid #000 !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+  border-bottom: 4px solid #000 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6) !important;
 }
 
-/* 6. Liquid Glass (Vibrant Glowing Neon) */
+/* 6. Liquid Glass (Cyber Glow) */
 [data-site-style='liquid'] {
-  background: #000000 !important;
+  background: #000 !important;
+  background-image: radial-gradient(circle at 50% -20%, var(--ifm-color-primary-darkest) 0%, transparent 50%) !important;
 }
 [data-site-style='liquid'] .card {
   background: rgba(0, 0, 0, 0.7) !important;
-  backdrop-filter: blur(20px) !important;
-  border-radius: 24px !important;
-  border: 2px solid rgba(var(--ifm-color-primary-rgb), 0.4) !important;
-  /* Intense primary color glow */
+  backdrop-filter: blur(15px) !important;
+  border: 2px solid var(--ifm-color-primary) !important;
+  border-radius: 20px !important;
   box-shadow: 
-    0 0 20px rgba(var(--ifm-color-primary-rgb), 0.2),
-    0 0 40px rgba(var(--ifm-color-primary-rgb), 0.1),
-    inset 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.3) !important;
-  transition: all 0.4s ease !important;
+    0 0 15px rgba(var(--ifm-color-primary-rgb), 0.3),
+    inset 0 0 10px rgba(var(--ifm-color-primary-rgb), 0.2) !important;
 }
 [data-site-style='liquid'] .card:hover {
-  box-shadow: 
-    0 0 40px rgba(var(--ifm-color-primary-rgb), 0.8),
-    0 0 80px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
-  border-color: var(--ifm-color-primary) !important;
-  transform: translateY(-5px) !important;
+  box-shadow: 0 0 30px var(--ifm-color-primary) !important;
+  transform: scale(1.02) !important;
 }
 [data-site-style='liquid'] .navbar {
   background: rgba(0,0,0,0.9) !important;
   border-bottom: 2px solid var(--ifm-color-primary) !important;
-  box-shadow: 0 0 30px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
+  box-shadow: 0 0 25px rgba(var(--ifm-color-primary-rgb), 0.5) !important;
 }
 
-/* Base styles using primary color */
+/* Scrollbar Integration */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ifm-background-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-primary);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+/* Base style sync */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
 
 
 
