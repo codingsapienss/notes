@@ -241,74 +241,91 @@
   font-weight: 900 !important;
 }
 
-/* 4. Claymorphism */
+/* 4. Claymorphism (Inflated 3D Clay) */
 [data-site-style='claymorphism'] {
-  --ifm-background-color: #f0f2f5;
+  --ifm-background-color: #e6e9ef !important; /* Soft clay background */
 }
 [data-theme='dark'][data-site-style='claymorphism'] {
-  --ifm-background-color: #18191a;
+  --ifm-background-color: #242526 !important;
 }
 [data-site-style='claymorphism'] .card {
-  background: var(--ifm-background-surface-color) !important;
-  border-radius: 40px !important;
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
+  border-radius: 45px !important;
   border: none !important;
+  /* Aggressive inner shadow to create "inflated" look */
   box-shadow: 
-    20px 20px 40px rgba(0,0,0,0.12), 
-    -20px -20px 40px rgba(255,255,255,0.05),
-    inset 10px 10px 20px rgba(255,255,255,0.1),
-    inset -10px -10px 20px rgba(0,0,0,0.1) !important;
+    10px 10px 20px rgba(0,0,0,0.15), 
+    inset -10px -10px 20px rgba(0,0,0,0.2),
+    inset 10px 10px 20px rgba(255,255,255,0.4) !important;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
-[data-theme='light'][data-site-style='claymorphism'] .card {
-  box-shadow: 
-    15px 15px 30px #bebebe, 
-    -15px -15px 30px #ffffff,
-    inset 10px 10px 20px #ffffff,
-    inset -10px -10px 20px #bebebe !important;
+[data-site-style='claymorphism'] .card__header h3,
+[data-site-style='claymorphism'] .card__body p {
+  color: white !important;
 }
 [data-site-style='claymorphism'] .card:hover {
-  transform: scale(1.02) translateY(-5px) !important;
+  transform: scale(1.05) !important;
 }
 
-/* 5. Skeuomorphism */
+/* 5. Skeuomorphism (Glossy Physical Material) */
+[data-site-style='skeuomorphism'] {
+  background: linear-gradient(145deg, #e6e6e6, #ffffff) !important; 
+  background-attachment: fixed;
+}
+[data-theme='dark'][data-site-style='skeuomorphism'] {
+  background: linear-gradient(145deg, #1a1a1a, #000000) !important;
+}
 [data-site-style='skeuomorphism'] .card {
-  background: linear-gradient(145deg, var(--ifm-color-emphasis-100), var(--ifm-color-emphasis-0)) !important;
-  border-radius: 15px !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  border-top: 2px solid rgba(255,255,255,0.8) !important;
+  border-radius: 12px !important;
   box-shadow: 
-    9px 9px 16px var(--ifm-color-emphasis-300), 
-    -9px -9px 16px var(--ifm-color-emphasis-0),
-    inset 1px 1px 2px rgba(255,255,255,0.3) !important;
+    0 15px 30px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.5) !important;
+  backdrop-filter: none !important;
 }
 [data-site-style='skeuomorphism'] .navbar {
-  background: linear-gradient(to bottom, var(--ifm-background-surface-color), var(--ifm-color-emphasis-100)) !important;
-  border-bottom: 2px solid var(--ifm-color-emphasis-300) !important;
+  background: linear-gradient(to bottom, #555, #222) !important;
+  border-bottom: 3px solid #000 !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
 }
 
-/* 6. Liquid Glass (Glow) */
+/* 6. Liquid Glass (Vibrant Glowing Neon) */
+[data-site-style='liquid'] {
+  background: #000000 !important;
+}
 [data-site-style='liquid'] .card {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 2px solid transparent !important;
-  background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05)), 
-                    linear-gradient(135deg, var(--ifm-color-primary) 0%, transparent 100%) !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  box-shadow: 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.2) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  border-radius: 24px !important;
+  border: 2px solid rgba(var(--ifm-color-primary-rgb), 0.4) !important;
+  /* Intense primary color glow */
+  box-shadow: 
+    0 0 20px rgba(var(--ifm-color-primary-rgb), 0.2),
+    0 0 40px rgba(var(--ifm-color-primary-rgb), 0.1),
+    inset 0 0 20px rgba(var(--ifm-color-primary-rgb), 0.3) !important;
+  transition: all 0.4s ease !important;
 }
 [data-site-style='liquid'] .card:hover {
-  box-shadow: 0 0 35px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
-  transform: scale(1.01) !important;
+  box-shadow: 
+    0 0 40px rgba(var(--ifm-color-primary-rgb), 0.8),
+    0 0 80px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
+  border-color: var(--ifm-color-primary) !important;
+  transform: translateY(-5px) !important;
 }
 [data-site-style='liquid'] .navbar {
-  border-bottom: 1px solid var(--ifm-color-primary) !important;
-  box-shadow: 0 4px 20px rgba(var(--ifm-color-primary-rgb), 0.1) !important;
+  background: rgba(0,0,0,0.9) !important;
+  border-bottom: 2px solid var(--ifm-color-primary) !important;
+  box-shadow: 0 0 30px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
 }
 
 /* Base styles using primary color */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
 
 
 
