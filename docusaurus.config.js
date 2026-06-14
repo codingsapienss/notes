@@ -56,6 +56,10 @@ const config = {
         },
         items: [
           {
+            type: 'custom-themeSwitcher',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/codingsapienss/notes',
             label: 'GitHub',
             position: 'right',

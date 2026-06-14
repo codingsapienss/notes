@@ -43,9 +43,46 @@
   text-decoration: none;
 }
 
+/* --- COLOR THEMES --- */
+
+/* Deep Sea (Blue) */
+[data-theme-color='blue'] {
+  --ifm-color-primary: #3578e5;
+  --ifm-color-primary-dark: #306cd0;
+  --ifm-color-primary-darker: #2d66c4;
+  --ifm-color-primary-darkest: #2554a1;
+  --ifm-color-primary-light: #538ce9;
+  --ifm-color-primary-lighter: #6196eb;
+  --ifm-color-primary-lightest: #8bb2f1;
+}
+
+/* Midnight Purple (Purple) */
+[data-theme-color='purple'] {
+  --ifm-color-primary: #a061ff;
+  --ifm-color-primary-dark: #9047ff;
+  --ifm-color-primary-darker: #883aff;
+  --ifm-color-primary-darkest: #7010ff;
+  --ifm-color-primary-light: #b07aff;
+  --ifm-color-primary-lighter: #b887ff;
+  --ifm-color-primary-lightest: #cfabff;
+}
+
+/* Solarized Orange (Orange) */
+[data-theme-color='orange'] {
+  --ifm-color-primary: #e67e22;
+  --ifm-color-primary-dark: #cf711f;
+  --ifm-color-primary-darker: #c46b1d;
+  --ifm-color-primary-darkest: #a15818;
+  --ifm-color-primary-light: #eb8c3a;
+  --ifm-color-primary-lighter: #ed9346;
+  --ifm-color-primary-lightest: #f1a96c;
+}
+
+/* Base styles using primary color */
 .card__header h3 {
   color: var(--ifm-color-primary);
 }
+
 
 .footer {
   padding: 2rem 0;
