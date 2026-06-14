@@ -137,3 +137,47 @@ article {
 .table-of-contents__link {
   text-transform: none !important;
 }
+
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 996px) {
+  /* Use full width on small screens */
+  article {
+    padding: 1.5rem !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    max-width: 100% !important;
+  }
+
+  /* Adjust font sizes for mobile */
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  .card__header h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Increase readability for paragraphs on small screens */
+  p, li {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Navbar padding adjustment */
+  .navbar__inner {
+    padding: 0 10px !important;
+  }
+}
