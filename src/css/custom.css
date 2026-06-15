@@ -15,23 +15,29 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   
-  /* Prominent Grid Background (Light) */
-  --ifm-background-color: #fcfcfc !important;
+  /* Grid Background (Light) */
+  --ifm-background-color: #ebedf0 !important; /* Distinct light gray */
+  --grid-color: rgba(0, 0, 0, 0.08);
+  --ifm-footer-color: #444950;
 }
 
 /* SINGLE LAYER GRID - Apply ONLY to html to prevent overlapping */
 html {
   background-image: 
-    linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px) !important;
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px) !important;
   background-size: 40px 40px !important;
-  background-attachment: fixed !important;
+  background-attachment: scroll !important; /* Scrolls with content */
   background-color: var(--ifm-background-color) !important;
 }
 
-/* Ensure all other containers are transparent to show the single grid */
-body, #__docusaurus, .main-wrapper, article, .theme-doc-sidebar-container, .footer {
-  background: transparent !important;
+/* Ensure all other containers do NOT have their own grid to prevent duplication */
+body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer, article {
+  background-image: none !important;
+}
+
+body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
+  background-color: transparent !important;
 }
 
 [data-theme="dark"] {
@@ -44,14 +50,17 @@ body, #__docusaurus, .main-wrapper, article, .theme-doc-sidebar-container, .foot
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 
-  /* Prominent Grid Background (Dark) */
+  /* Grid Background (Dark) */
   --ifm-background-color: #0d1117 !important;
+  --grid-color: rgba(255, 255, 255, 0.05);
+  --ifm-footer-color: #8a94a1;
 }
 
+/* Apply dark theme grid color */
 [data-theme="dark"] html {
   background-image: 
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px) !important;
 }
 
 /* Prevent horizontal scroll on small screens */
@@ -106,6 +115,7 @@ article {
 .footer {
   padding: 2rem 0;
   text-align: center;
+  color: var(--ifm-footer-color);
 }
 
 .table-of-contents__link {
