@@ -65,7 +65,7 @@ body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
   /* Grid Background (Dark) */
   --ifm-background-color: #0d1117 !important;
   --grid-color: rgba(255, 255, 255, 0.05);
-  --ifm-footer-color: #8a94a1;
+  --ifm-footer-color: #cbd5e1;
 
   /* Glassmorphism (Dark) */
   --glass-bg: rgba(22, 27, 34, 0.8);
@@ -139,7 +139,11 @@ article {
 .footer {
   padding: 2rem 0;
   text-align: center;
-  color: var(--ifm-footer-color);
+  color: var(--ifm-footer-color) !important;
+}
+
+.footer__link-item, .footer__copyright {
+  color: inherit !important;
 }
 
 .table-of-contents__link {
