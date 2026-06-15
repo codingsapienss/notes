@@ -5,24 +5,28 @@
  */
 
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #1a5e3a; /* Darker green for better contrast in light mode */
+  --ifm-color-primary-dark: #175534;
+  --ifm-color-primary-darker: #165031;
+  --ifm-color-primary-darkest: #124229;
+  --ifm-color-primary-light: #1d6740;
+  --ifm-color-primary-lighter: #1e6c43;
+  --ifm-color-primary-lightest: #22794b;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Readability & Contrast (Light) */
+  --ifm-font-color-base: #1c1e21; /* High contrast near-black */
+  --ifm-heading-color: #000000;
   
   /* Grid Background (Light) */
   --ifm-background-color: #ebedf0 !important; /* Distinct light gray */
   --grid-color: rgba(0, 0, 0, 0.08);
-  --ifm-footer-color: #444950;
+  --ifm-footer-color: #2e3135; /* Darker footer text */
 
-  /* Glassmorphism (Light) */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  /* Glassmorphism (Light) - More opaque for better text legibility */
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.15);
 }
 
 /* SINGLE LAYER GRID - Apply ONLY to html to prevent overlapping */
