@@ -129,18 +129,17 @@ article {
   font-weight: 600 !important;
 }
 
-.footer {
-  padding: 2rem 0;
-  text-align: center;
-  color: var(--ifm-footer-color) !important;
+/* Explicitly force footer text colors for both themes */
+[data-theme="light"] .footer,
+[data-theme="light"] .footer__link-item,
+[data-theme="light"] .footer__copyright {
+  color: #1c1e21 !important; /* High-contrast blackish */
 }
 
-/* Explicitly force copyright and links to respect theme variables */
-.footer__link-item, 
-.footer__copyright,
-.footer--dark .footer__link-item,
-.footer--dark .footer__copyright {
-  color: var(--ifm-footer-color) !important;
+[data-theme="dark"] .footer,
+[data-theme="dark"] .footer__link-item,
+[data-theme="dark"] .footer__copyright {
+  color: #cbd5e1 !important; /* Light gray for dark mode */
 }
 
 .table-of-contents__link {
