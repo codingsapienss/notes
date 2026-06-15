@@ -58,14 +58,24 @@ body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
 
+  /* Readability & Contrast (Dark) */
+  --ifm-font-color-base: #e3e3e3;
+  --ifm-heading-color: #ffffff;
+
   /* Grid Background (Dark) */
   --ifm-background-color: #0d1117 !important;
   --grid-color: rgba(255, 255, 255, 0.05);
   --ifm-footer-color: #8a94a1;
 
   /* Glassmorphism (Dark) */
-  --glass-bg: rgba(22, 27, 34, 0.7);
+  --glass-bg: rgba(22, 27, 34, 0.8);
   --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Specific styling for code blocks to ensure readability in light mode */
+[data-theme="light"] .prism-code {
+  background-color: #f6f8fa !important;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 /* Apply dark theme grid color */
