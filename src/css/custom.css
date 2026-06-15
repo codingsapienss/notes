@@ -5,7 +5,7 @@
  */
 
 :root {
-  --ifm-color-primary: #1a5e3a; /* Darker green for better contrast in light mode */
+  --ifm-color-primary: #1a5e3a; /* High-contrast green for light mode */
   --ifm-color-primary-dark: #175534;
   --ifm-color-primary-darker: #165031;
   --ifm-color-primary-darkest: #124229;
@@ -16,17 +16,15 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   /* Readability & Contrast (Light) */
-  --ifm-font-color-base: #1c1e21; /* High contrast near-black */
+  --ifm-font-color-base: #1c1e21; 
   --ifm-heading-color: #000000;
+  --ifm-background-color: #f0f2f5 !important; /* Clean light gray background */
   
-  /* Grid Background (Light) */
-  --ifm-background-color: #ebedf0 !important; /* Distinct light gray */
+  /* Grid & Glass (Light) */
   --grid-color: rgba(0, 0, 0, 0.08);
-  --ifm-footer-color: #2e3135; /* Darker footer text */
-
-  /* Glassmorphism (Light) - More opaque for better text legibility */
-  --glass-bg: rgba(255, 255, 255, 0.88);
-  --glass-border: rgba(0, 0, 0, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.9); /* High opacity for legibility */
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --ifm-footer-color: #1c1e21; /* Strong contrast for footer text */
 }
 
 /* SINGLE LAYER GRID - Apply ONLY to html to prevent overlapping */
@@ -35,17 +33,14 @@ html {
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px) !important;
   background-size: 40px 40px !important;
-  background-attachment: scroll !important; /* Scrolls with content */
+  background-attachment: scroll !important;
   background-color: var(--ifm-background-color) !important;
 }
 
-/* Ensure all other containers do NOT have their own grid to prevent duplication */
-body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer, article {
-  background-image: none !important;
-}
-
+/* Base resets to show grid */
 body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
   background-color: transparent !important;
+  background-image: none !important;
 }
 
 [data-theme="dark"] {
@@ -61,31 +56,29 @@ body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
   /* Readability & Contrast (Dark) */
   --ifm-font-color-base: #e3e3e3;
   --ifm-heading-color: #ffffff;
-
-  /* Grid Background (Dark) */
   --ifm-background-color: #0d1117 !important;
+
+  /* Grid & Glass (Dark) */
   --grid-color: rgba(255, 255, 255, 0.05);
-  --ifm-footer-color: #cbd5e1;
-
-  /* Glassmorphism (Dark) */
-  --glass-bg: rgba(22, 27, 34, 0.8);
+  --glass-bg: rgba(22, 27, 34, 0.85);
   --glass-border: rgba(255, 255, 255, 0.1);
+  --ifm-footer-color: #cbd5e1;
 }
 
-/* Specific styling for code blocks to ensure readability in light mode */
-[data-theme="light"] .prism-code {
-  background-color: #f6f8fa !important;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-/* Apply dark theme grid color */
+/* Dark theme grid color override */
 [data-theme="dark"] html {
   background-image: 
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px) !important;
 }
 
-/* Prevent horizontal scroll on small screens */
+/* Code block contrast for Light Mode */
+[data-theme="light"] .prism-code {
+  background-color: #f6f8fa !important;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Prevent horizontal scroll */
 body {
   overflow-x: hidden;
 }
@@ -142,7 +135,7 @@ article {
   color: var(--ifm-footer-color) !important;
 }
 
-/* Ensure copyright and links respect theme colors even if Docusaurus forces 'dark' style */
+/* Explicitly force copyright and links to respect theme variables */
 .footer__link-item, 
 .footer__copyright,
 .footer--dark .footer__link-item,
@@ -156,7 +149,6 @@ article {
 
 /* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 996px) {
-  /* Prevent content from touching edges but use most of width */
   article {
     padding: 1.5rem 15px !important;
     margin: 0 !important;
@@ -174,10 +166,7 @@ article {
     overflow-x: hidden !important;
   }
 
-  .col {
-    padding: 0 5px !important;
-  }
-
+  .col { padding: 0 5px !important; }
   h1 { font-size: 1.8rem !important; }
   h2 { font-size: 1.5rem !important; }
   h3 { font-size: 1.2rem !important; }
@@ -187,9 +176,8 @@ article {
     line-height: 1.5 !important;
   }
 
-  /* Optimize Pagination Buttons (Next/Prev) */
   .pagination-nav {
-    margin: 1.5rem 15px !important; /* Add space from edges and top */
+    margin: 1.5rem 15px !important;
     gap: 10px;
   }
 
@@ -202,7 +190,5 @@ article {
     padding: 0.75rem !important;
   }
 
-  .pagination-nav__link--next {
-    text-align: right;
-  }
+  .pagination-nav__link--next { text-align: right; }
 }
