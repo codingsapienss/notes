@@ -164,4 +164,23 @@ article {
     font-size: 1rem !important;
     line-height: 1.5 !important;
   }
+
+  /* Optimize Pagination Buttons (Next/Prev) */
+  .pagination-nav {
+    margin: 1.5rem 15px !important; /* Add space from edges and top */
+    gap: 10px;
+  }
+
+  .pagination-nav__link {
+    border-radius: 8px !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border) !important;
+    padding: 0.75rem !important;
+  }
+
+  .pagination-nav__link--next {
+    text-align: right;
+  }
 }
