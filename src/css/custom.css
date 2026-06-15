@@ -19,6 +19,10 @@
   --ifm-background-color: #ebedf0 !important; /* Distinct light gray */
   --grid-color: rgba(0, 0, 0, 0.08);
   --ifm-footer-color: #444950;
+
+  /* Glassmorphism (Light) */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
 }
 
 /* SINGLE LAYER GRID - Apply ONLY to html to prevent overlapping */
@@ -54,6 +58,10 @@ body, #__docusaurus, .main-wrapper, .theme-doc-sidebar-container, .footer {
   --ifm-background-color: #0d1117 !important;
   --grid-color: rgba(255, 255, 255, 0.05);
   --ifm-footer-color: #8a94a1;
+
+  /* Glassmorphism (Dark) */
+  --glass-bg: rgba(22, 27, 34, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Apply dark theme grid color */
@@ -100,11 +108,13 @@ body {
 }
 
 article {
-  background: var(--ifm-background-surface-color);
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 2.5rem;
   border-radius: 8px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .menu__link--active {
@@ -131,7 +141,9 @@ article {
     border-radius: 0 !important;
     border-left: none !important;
     border-right: none !important;
-    background: var(--ifm-background-surface-color) !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .container {
