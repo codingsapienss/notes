@@ -142,8 +142,12 @@ article {
   color: var(--ifm-footer-color) !important;
 }
 
-.footer__link-item, .footer__copyright {
-  color: inherit !important;
+/* Ensure copyright and links respect theme colors even if Docusaurus forces 'dark' style */
+.footer__link-item, 
+.footer__copyright,
+.footer--dark .footer__link-item,
+.footer--dark .footer__copyright {
+  color: var(--ifm-footer-color) !important;
 }
 
 .table-of-contents__link {
