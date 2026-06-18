@@ -22,6 +22,12 @@ const KnowledgeCategories = [
     icon: <img src="/notes/img/cpp.svg" width="32" height="32" alt="C++ Logo" />,
   },
   {
+    title: 'JavaScript',
+    description: 'Core language mechanics, prototype chain, scoping, and modern APIs.',
+    link: '/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1',
+    icon: <img src="/notes/img/javascript.svg" width="32" height="32" alt="JavaScript Logo" />,
+  },
+  {
     title: 'TypeScript',
     description: 'Advanced type systems, best practices, and scalable application design.',
     link: '/docs/web-dev/typescript/typescript-fundamentals/part1',

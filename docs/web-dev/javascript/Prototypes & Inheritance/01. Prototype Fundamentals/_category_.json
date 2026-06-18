@@ -1,0 +1,8 @@
+{
+  "label": "Prototype Fundamentals",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Understanding [[Prototype]], proto, prototype chain, and fundamental concepts."
+  }
+}

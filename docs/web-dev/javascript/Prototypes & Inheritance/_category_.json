@@ -1,0 +1,8 @@
+{
+  "label": "Prototypes & Inheritance",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Mastering JavaScript prototype inheritance, prototype chain, and modern prototype APIs."
+  }
+}
