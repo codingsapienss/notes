@@ -1,0 +1,8 @@
+{
+  "label": "Native Prototypes",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Understanding Object.prototype, Array.prototype, Function.prototype, and other native prototypes."
+  }
+}
