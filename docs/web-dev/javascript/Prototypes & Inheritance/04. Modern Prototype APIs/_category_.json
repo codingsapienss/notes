@@ -1,0 +1,8 @@
+{
+  "label": "Modern Prototype APIs",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Understanding Object.create, Object.getPrototypeOf, Object.setPrototypeOf, and proto-less objects."
+  }
+}
