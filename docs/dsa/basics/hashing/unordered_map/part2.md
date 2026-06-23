@@ -28,7 +28,7 @@
 
 ---
 
-# What is a Hash Table?
+## What is a Hash Table?
 
 A **Hash Table** is a data structure that stores data in an array called
 
@@ -60,7 +60,7 @@ Store Value
 
 ---
 
-# Components of a Hash Table
+## Components of a Hash Table
 
 A Hash Table mainly consists of:
 
@@ -76,7 +76,7 @@ A Hash Table mainly consists of:
 
 ---
 
-# Step 1 — The Key
+## Step 1 — The Key
 
 A key is the value we want to store or search.
 
@@ -96,7 +96,7 @@ Example
 
 ---
 
-# Step 2 — Hash Function
+## Step 2 — Hash Function
 
 A **Hash Function** converts a key into an array index.
 
@@ -126,7 +126,7 @@ Bucket Number = 5
 
 ---
 
-# What is a Hash Function?
+## What is a Hash Function?
 
 A Hash Function is simply a function that converts
 
@@ -168,7 +168,7 @@ Key = 247
 
 ---
 
-# Why Do We Need a Hash Function?
+## Why Do We Need a Hash Function?
 
 Imagine storing
 
@@ -210,7 +210,7 @@ Possible indices
 
 ---
 
-# Buckets
+## Buckets
 
 A bucket is simply one location inside the hash table.
 
@@ -250,7 +250,7 @@ Each bucket stores one or more elements.
 
 ---
 
-# Example
+## Example
 
 Suppose
 
@@ -312,7 +312,7 @@ Bucket
 
 ---
 
-# Searching
+## Searching
 
 Need to search
 
@@ -356,7 +356,7 @@ This is why hashing is fast.
 
 ---
 
-# Why is Hashing O(1)?
+## Why is Hashing O(1)?
 
 Suppose
 
@@ -402,7 +402,7 @@ Average.
 
 ---
 
-# Division Method (Most Important)
+## Division Method (Most Important)
 
 The most common hash function is
 
@@ -456,7 +456,7 @@ Hash Values
 
 ---
 
-# Why Use Modulo?
+## Why Use Modulo?
 
 Modulo ensures
 
@@ -488,7 +488,7 @@ So even a huge key maps into a valid bucket.
 
 ---
 
-# Other Hashing Methods
+## Other Hashing Methods
 
 Besides the Division Method, there are other ways to design hash functions.
 
@@ -506,7 +506,7 @@ the **Division Method** is the only one you usually need to understand in detail
 
 ---
 
-# Good Hash Function
+## Good Hash Function
 
 A good hash function should:
 
@@ -517,7 +517,7 @@ A good hash function should:
 
 ---
 
-# Poor Hash Function
+## Poor Hash Function
 
 Suppose
 
@@ -555,7 +555,7 @@ Searching becomes very slow.
 
 ---
 
-# Ideal Distribution
+## Ideal Distribution
 
 Good
 
@@ -637,7 +637,7 @@ Almost everything is stored in one bucket.
 
 ---
 
-# What Happens After Finding the Bucket?
+## What Happens After Finding the Bucket?
 
 Finding the bucket is only the first step.
 
@@ -666,7 +666,7 @@ We'll study **Linear Chaining and Collisions** in detail in **Part 3C**.
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 | Operation      | Average | Worst                    |
 | -------------- | ------- | ------------------------ |
@@ -676,7 +676,7 @@ We'll study **Linear Chaining and Collisions** in detail in **Part 3C**.
 
 ---
 
-# Space Complexity
+## Space Complexity
 
 Suppose
 
@@ -696,7 +696,7 @@ Additional memory is required for the bucket array.
 
 ---
 
-# Advantages of Hash Tables
+## Advantages of Hash Tables
 
 - Extremely fast lookups.
 - Fast insertion.
@@ -706,7 +706,7 @@ Additional memory is required for the bucket array.
 
 ---
 
-# Limitations
+## Limitations
 
 - No ordering of keys.
 - Performance depends on the quality of the hash function.
@@ -715,9 +715,9 @@ Additional memory is required for the bucket array.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. What is a Hash Table?
+### Q1. What is a Hash Table?
 
 **Answer**
 
@@ -725,7 +725,7 @@ A Hash Table is a data structure that stores key-value pairs by mapping keys to 
 
 ---
 
-## Q2. What is a Hash Function?
+### Q2. What is a Hash Function?
 
 **Answer**
 
@@ -733,7 +733,7 @@ A function that converts a key into a valid bucket index inside the hash table.
 
 ---
 
-## Q3. Why is the Division Method so common?
+### Q3. Why is the Division Method so common?
 
 **Answer**
 
@@ -741,7 +741,7 @@ Because it is simple, fast, and guarantees that the bucket index remains within 
 
 ---
 
-## Q4. Why are hash table operations usually O(1)?
+### Q4. Why are hash table operations usually O(1)?
 
 **Answer**
 
@@ -749,7 +749,7 @@ Because the hash function directly computes the bucket location, avoiding a line
 
 ---
 
-## Q5. What is the purpose of buckets?
+### Q5. What is the purpose of buckets?
 
 **Answer**
 
@@ -757,7 +757,7 @@ Buckets are storage locations in the hash table where elements are placed after 
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - `unordered_map` is implemented using a **Hash Table**.
 - A hash table stores data in **buckets**.
