@@ -13,7 +13,7 @@
 
 ---
 
-# How is a map Implemented?
+## How is a map Implemented?
 
 In C++, STL `map` is implemented using a
 
@@ -45,7 +45,7 @@ Balanced BST
 
 ---
 
-# What is a Binary Search Tree (BST)?
+## What is a Binary Search Tree (BST)?
 
 A Binary Search Tree follows one simple rule.
 
@@ -79,7 +79,7 @@ Notice
 
 ---
 
-# Why Use a Balanced Tree?
+## Why Use a Balanced Tree?
 
 Suppose we insert
 
@@ -147,7 +147,7 @@ O(log N)
 
 ---
 
-# Why is map Always Sorted?
+## Why is map Always Sorted?
 
 Suppose
 
@@ -209,7 +209,7 @@ When we perform an **inorder traversal**, keys naturally appear in sorted order.
 
 ---
 
-# Visual Representation
+## Visual Representation
 
 Inserted
 
@@ -253,7 +253,7 @@ map always prints keys in sorted order.
 
 ---
 
-# Why is Searching O(log N)?
+## Why is Searching O(log N)?
 
 Suppose
 
@@ -299,7 +299,7 @@ O(log N)
 
 ---
 
-# Insertion
+## Insertion
 
 Suppose
 
@@ -341,7 +341,7 @@ O(log N)
 
 ---
 
-# Searching
+## Searching
 
 ```cpp
 mp.find(10);
@@ -373,7 +373,7 @@ O(log N)
 
 ---
 
-# Updating
+## Updating
 
 ```cpp
 mp[5] = 20;
@@ -397,7 +397,7 @@ O(log N)
 
 ---
 
-# Deletion
+## Deletion
 
 ```cpp
 mp.erase(10);
@@ -425,7 +425,7 @@ O(log N)
 
 ---
 
-# Traversal
+## Traversal
 
 ```cpp
 for(auto x : mp)
@@ -453,7 +453,7 @@ O(N)
 
 ---
 
-# Why Can't We Access Using an Index?
+## Why Can't We Access Using an Index?
 
 Arrays
 
@@ -553,7 +553,7 @@ Key = 2
 
 ---
 
-# Iterators
+## Iterators
 
 Since maps are not index-based,
 
@@ -612,7 +612,7 @@ for(auto it = mp.begin();
 
 ---
 
-# lower_bound()
+## lower_bound()
 
 Returns
 
@@ -648,7 +648,7 @@ Returns
 
 ---
 
-# upper_bound()
+## upper_bound()
 
 Returns
 
@@ -686,7 +686,7 @@ Returns
 
 ---
 
-# Complexity Table
+## Complexity Table
 
 | Operation     | Time Complexity |
 | ------------- | --------------: |
@@ -704,7 +704,7 @@ Returns
 
 ---
 
-# Space Complexity
+## Space Complexity
 
 ```text
 O(N)
@@ -725,7 +725,7 @@ maps consume more memory than arrays.
 
 ---
 
-# Advantages of map
+## Advantages of map
 
 - Automatically sorted.
 - Efficient searching.
@@ -736,7 +736,7 @@ maps consume more memory than arrays.
 
 ---
 
-# Limitations
+## Limitations
 
 - Slower than `unordered_map` on average.
 - Uses more memory.
@@ -745,9 +745,9 @@ maps consume more memory than arrays.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. How is `map` implemented internally?
+### Q1. How is `map` implemented internally?
 
 **Answer**
 
@@ -755,7 +755,7 @@ maps consume more memory than arrays.
 
 ---
 
-## Q2. Why are map keys always sorted?
+### Q2. Why are map keys always sorted?
 
 **Answer**
 
@@ -763,7 +763,7 @@ Because the underlying Red-Black Tree maintains the Binary Search Tree property,
 
 ---
 
-## Q3. Why is insertion O(log N)?
+### Q3. Why is insertion O(log N)?
 
 **Answer**
 
@@ -771,7 +771,7 @@ The tree remains balanced, so its height is approximately `log₂N`. Insertion r
 
 ---
 
-## Q4. Why can't we access a map using an index?
+### Q4. Why can't we access a map using an index?
 
 **Answer**
 
@@ -779,7 +779,7 @@ A map is a tree-based data structure, not a contiguous array. Elements are organ
 
 ---
 
-## Q5. What are `lower_bound()` and `upper_bound()`?
+### Q5. What are `lower_bound()` and `upper_bound()`?
 
 **Answer**
 
@@ -788,7 +788,7 @@ A map is a tree-based data structure, not a contiguous array. Elements are organ
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - STL `map` is implemented using a **Red-Black Tree**.
 - A Red-Black Tree is a self-balancing Binary Search Tree.
