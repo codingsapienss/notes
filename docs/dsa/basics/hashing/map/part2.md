@@ -18,7 +18,7 @@
 
 ---
 
-# What is Frequency Counting?
+## What is Frequency Counting?
 
 Frequency Counting means:
 
@@ -54,7 +54,7 @@ Frequency Table
 
 ---
 
-# Why use map?
+## Why use map?
 
 Suppose the array contains
 
@@ -80,7 +80,7 @@ stores only the numbers that actually appear.
 
 ---
 
-# Frequency Counting (Integer)
+## Frequency Counting (Integer)
 
 Example
 
@@ -118,7 +118,7 @@ int main() {
 
 ---
 
-## Input
+### Input
 
 ```text
 6
@@ -128,7 +128,7 @@ int main() {
 
 ---
 
-## Output
+### Output
 
 ```text
 1 -> 3
@@ -140,7 +140,7 @@ int main() {
 
 ---
 
-# Understanding
+## Understanding
 
 Initially
 
@@ -252,7 +252,7 @@ Final Map
 
 ---
 
-# Why Does
+## Why Does
 
 ```cpp
 freq[arr[i]]++;
@@ -302,13 +302,13 @@ This automatic insertion is one of the most useful features of `map`.
 
 ---
 
-# Query Problem
+## Query Problem
 
 One of the most common interview patterns.
 
 ---
 
-## Problem
+### Problem
 
 Given an array,
 
@@ -346,7 +346,7 @@ Output
 
 ---
 
-# Solution
+## Solution
 
 ```cpp
 #include <iostream>
@@ -386,7 +386,7 @@ int main() {
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 Building map
 
@@ -420,7 +420,7 @@ O(N log N + Q log N)
 
 ---
 
-# Character Frequency
+## Character Frequency
 
 Exactly the same idea.
 
@@ -479,7 +479,7 @@ Output
 
 ---
 
-# Word Frequency
+## Word Frequency
 
 `map` can also count words.
 
@@ -505,7 +505,7 @@ banana → 1
 
 ---
 
-# Traversing the Map
+## Traversing the Map
 
 ```cpp
 for(auto x : freq) {
@@ -525,7 +525,7 @@ Key Frequency
 
 ---
 
-# Checking Frequency
+## Checking Frequency
 
 Suppose
 
@@ -566,7 +566,7 @@ if(freq.find(100) != freq.end()) {
 
 ---
 
-# Real DSA Applications
+## Real DSA Applications
 
 Frequency counting using `map` is used in:
 
@@ -583,7 +583,7 @@ Frequency counting using `map` is used in:
 
 ---
 
-# map vs Array Hashing
+## map vs Array Hashing
 
 | Feature        | Array | map      |
 | -------------- | ----- | -------- |
@@ -595,11 +595,11 @@ Frequency counting using `map` is used in:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
 ---
 
-## Using Array Hashing for Huge Values
+### Using Array Hashing for Huge Values
 
 Wrong
 
@@ -617,7 +617,7 @@ map<int,int>
 
 ---
 
-## Forgetting That `operator[]` Inserts Keys
+### Forgetting That `operator[]` Inserts Keys
 
 ```cpp
 cout << freq[100];
@@ -641,7 +641,7 @@ find()
 
 ---
 
-## Confusing Key with Frequency
+### Confusing Key with Frequency
 
 Wrong
 
@@ -665,9 +665,9 @@ The key can be:
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. Why is `map` commonly used for frequency counting?
+### Q1. Why is `map` commonly used for frequency counting?
 
 **Answer**
 
@@ -675,7 +675,7 @@ Because it efficiently stores frequencies for any key range without requiring a 
 
 ---
 
-## Q2. What happens if we write `freq[x]++` and `x` is not present?
+### Q2. What happens if we write `freq[x]++` and `x` is not present?
 
 **Answer**
 
@@ -683,7 +683,7 @@ Because it efficiently stores frequencies for any key range without requiring a 
 
 ---
 
-## Q3. How do you count character frequencies using `map`?
+### Q3. How do you count character frequencies using `map`?
 
 **Answer**
 
@@ -696,7 +696,7 @@ for(char ch : s)
 
 ---
 
-## Q4. What is the time complexity of building a frequency map?
+### Q4. What is the time complexity of building a frequency map?
 
 **Answer**
 
@@ -704,7 +704,7 @@ Each insertion is **O(log N)**, so building the map takes **O(N log N)**.
 
 ---
 
-## Q5. When should you use `map` instead of array hashing?
+### Q5. When should you use `map` instead of array hashing?
 
 **Answer**
 
@@ -712,7 +712,7 @@ When the range of values is large, unknown, or sparse, making array hashing inef
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - `map` is one of the most common tools for frequency counting.
 - It stores frequencies as **Key → Count** pairs.
