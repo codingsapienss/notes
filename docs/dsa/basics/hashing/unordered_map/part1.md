@@ -12,7 +12,7 @@
 
 ---
 
-# What is an unordered_map?
+## What is an unordered_map?
 
 An `unordered_map` is an STL associative container that stores data as
 
@@ -26,7 +26,7 @@ However, unlike `map`, it **does not maintain any ordering of keys**.
 
 ---
 
-# map vs unordered_map
+## map vs unordered_map
 
 ```text
 map
@@ -64,7 +64,7 @@ Average O(1)
 
 ---
 
-# Syntax
+## Syntax
 
 ```cpp
 unordered_map<KeyType, ValueType> variableName;
@@ -86,7 +86,7 @@ Value → int
 
 ---
 
-# Example
+## Example
 
 ```cpp
 unordered_map<int,int> mp;
@@ -124,7 +124,7 @@ Every execution may even produce a different order.
 
 ---
 
-# Why is it called "unordered"?
+## Why is it called "unordered"?
 
 Unlike `map`, an `unordered_map` makes **no guarantee** about the order in which keys are stored or traversed.
 
@@ -170,7 +170,7 @@ Both are valid.
 
 ---
 
-# How to Insert Elements
+## How to Insert Elements
 
 Method 1
 
@@ -198,7 +198,7 @@ Recommended.
 
 ---
 
-# Updating Values
+## Updating Values
 
 ```cpp
 mp[10] = 20;
@@ -212,7 +212,7 @@ Result
 
 ---
 
-# Accessing Elements
+## Accessing Elements
 
 ```cpp
 cout << mp[10];
@@ -242,7 +242,7 @@ because `operator[]` inserts the key with a default value.
 
 ---
 
-# Finding an Element
+## Finding an Element
 
 ```cpp
 if(mp.find(10) != mp.end()) {
@@ -261,7 +261,7 @@ mp.find(10) == mp.end()
 
 ---
 
-# Removing Elements
+## Removing Elements
 
 ```cpp
 mp.erase(10);
@@ -277,7 +277,7 @@ mp.clear();
 
 ---
 
-# Size
+## Size
 
 ```cpp
 cout << mp.size();
@@ -291,7 +291,7 @@ Number of key-value pairs
 
 ---
 
-# Empty
+## Empty
 
 ```cpp
 mp.empty();
@@ -309,7 +309,7 @@ false
 
 ---
 
-# Traversing
+## Traversing
 
 ```cpp
 for(auto x : mp) {
@@ -329,7 +329,7 @@ Traversal order is NOT guaranteed.
 
 ---
 
-# Frequency Counting Example
+## Frequency Counting Example
 
 Exactly like `map`.
 
@@ -369,7 +369,7 @@ int main() {
 
 ---
 
-# Character Frequency
+## Character Frequency
 
 ```cpp
 string s;
@@ -392,9 +392,9 @@ cout << freq['a'];
 
 ---
 
-# Common Key Types
+## Common Key Types
 
-## Integer
+### Integer
 
 ```cpp
 unordered_map<int,int> mp;
@@ -402,7 +402,7 @@ unordered_map<int,int> mp;
 
 ---
 
-## Character
+### Character
 
 ```cpp
 unordered_map<char,int> mp;
@@ -410,7 +410,7 @@ unordered_map<char,int> mp;
 
 ---
 
-## String
+### String
 
 ```cpp
 unordered_map<string,int> mp;
@@ -418,7 +418,7 @@ unordered_map<string,int> mp;
 
 ---
 
-## Long Long
+### Long Long
 
 ```cpp
 unordered_map<long long,int> mp;
@@ -426,7 +426,7 @@ unordered_map<long long,int> mp;
 
 ---
 
-# Can Any Data Type Be Used as a Key?
+## Can Any Data Type Be Used as a Key?
 
 Only if a **hash function** exists for that type.
 
@@ -446,7 +446,7 @@ you must define your own hash function.
 
 ---
 
-# Time Complexity
+## Time Complexity
 
 | Operation | Best | Average | Worst |
 | --------- | ---- | ------- | ----- |
@@ -458,7 +458,7 @@ you must define your own hash function.
 
 ---
 
-# Why is the Worst Case O(N)?
+## Why is the Worst Case O(N)?
 
 Normally,
 
@@ -548,7 +548,7 @@ We'll study collisions in detail in Part 3C.
 
 ---
 
-# Should We Always Use unordered_map?
+## Should We Always Use unordered_map?
 
 Generally:
 
@@ -565,7 +565,7 @@ is usually the first choice.
 
 ---
 
-# map vs unordered_map
+## map vs unordered_map
 
 | Feature            | map            | unordered_map |
 | ------------------ | -------------- | ------------- |
@@ -579,7 +579,7 @@ is usually the first choice.
 
 ---
 
-# Advantages
+## Advantages
 
 - Very fast average performance.
 - Excellent for frequency counting.
@@ -589,7 +589,7 @@ is usually the first choice.
 
 ---
 
-# Limitations
+## Limitations
 
 - Keys are not sorted.
 - Worst-case complexity is O(N).
@@ -598,9 +598,9 @@ is usually the first choice.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. What is an `unordered_map`?
+### Q1. What is an `unordered_map`?
 
 **Answer**
 
@@ -608,7 +608,7 @@ An associative STL container that stores key-value pairs using a hash table and 
 
 ---
 
-## Q2. Why is `unordered_map` faster than `map`?
+### Q2. Why is `unordered_map` faster than `map`?
 
 **Answer**
 
@@ -616,7 +616,7 @@ Because it uses a **hash table** instead of a balanced tree, allowing average co
 
 ---
 
-## Q3. Does `unordered_map` store keys in sorted order?
+### Q3. Does `unordered_map` store keys in sorted order?
 
 **Answer**
 
@@ -624,7 +624,7 @@ No. It does not guarantee any ordering of keys.
 
 ---
 
-## Q4. Why can `unordered_map` become O(N)?
+### Q4. Why can `unordered_map` become O(N)?
 
 **Answer**
 
@@ -632,7 +632,7 @@ If many keys collide and end up in the same bucket, operations degrade to linear
 
 ---
 
-## Q5. When should we use `unordered_map`?
+### Q5. When should we use `unordered_map`?
 
 **Answer**
 
@@ -640,7 +640,7 @@ When key ordering is not required and faster average performance is preferred.
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - `unordered_map` stores key-value pairs using a **hash table**.
 - Keys are **not stored in sorted order**.
