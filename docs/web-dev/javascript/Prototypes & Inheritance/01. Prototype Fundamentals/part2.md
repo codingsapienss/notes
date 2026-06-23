@@ -12,7 +12,7 @@
 
 ---
 
-# Why is This Confusing?
+## Why is This Confusing?
 
 Many beginners think these are the same thing.
 
@@ -30,7 +30,7 @@ Understanding this difference is one of the most important JavaScript interview 
 
 ---
 
-# The Three Terms
+## The Three Terms
 
 | Name            | What is it?                             | Exists On             |
 | --------------- | --------------------------------------- | --------------------- |
@@ -54,7 +54,7 @@ prototype
 
 ---
 
-# Big Picture
+## Big Picture
 
 ```text
                 Function
@@ -78,7 +78,7 @@ __proto__ -------------------------+
 
 ---
 
-# What is `[[Prototype]]`?
+## What is `[[Prototype]]`?
 
 `[[Prototype]]` is an **internal hidden property** that exists inside every JavaScript object.
 
@@ -120,7 +120,7 @@ animal
 
 ---
 
-# Why is it Hidden?
+## Why is it Hidden?
 
 It is part of JavaScript's internal implementation.
 
@@ -144,7 +144,7 @@ It is notation used in the ECMAScript specification.
 
 ---
 
-# Purpose of `[[Prototype]]`
+## Purpose of `[[Prototype]]`
 
 Whenever JavaScript cannot find a property,
 
@@ -186,7 +186,7 @@ Found
 
 ---
 
-# What is `__proto__`?
+## What is `__proto__`?
 
 `__proto__` is **not** the prototype itself.
 
@@ -230,7 +230,7 @@ animal
 
 ---
 
-# Important
+## Important
 
 ```text
 __proto__
@@ -284,7 +284,7 @@ accesses
 
 ---
 
-# Why is `__proto__` Considered Legacy?
+## Why is `__proto__` Considered Legacy?
 
 Early versions of JavaScript had no official way to read or modify an object's prototype.
 
@@ -318,7 +318,7 @@ instead.
 
 ---
 
-# Modern Alternative
+## Modern Alternative
 
 Get prototype
 
@@ -348,7 +348,7 @@ console.log(Object.getPrototypeOf(rabbit));
 
 ---
 
-# Why Prefer Modern APIs?
+## Why Prefer Modern APIs?
 
 Because they are
 
@@ -371,7 +371,7 @@ Object.getPrototypeOf(obj);
 
 ---
 
-# What is `prototype`?
+## What is `prototype`?
 
 Unlike `[[Prototype]]`,
 
@@ -409,7 +409,7 @@ It is **not** inside objects.
 
 ---
 
-# Purpose of `prototype`
+## Purpose of `prototype`
 
 Its only special job is:
 
@@ -465,7 +465,7 @@ We'll study it in detail in Part 2.
 
 ---
 
-# Comparing the Three
+## Comparing the Three
 
 Suppose
 
@@ -540,7 +540,7 @@ rabbit
 
 ---
 
-# Example
+## Example
 
 ```javascript
 function Rabbit() {}
@@ -572,9 +572,9 @@ true
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 > `prototype` and `__proto__` are the same.
 
@@ -586,7 +586,7 @@ One belongs to objects.
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 > Every object has a `prototype`.
 
@@ -606,7 +606,7 @@ prototype
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 > `__proto__` is the real prototype.
 
@@ -620,7 +620,7 @@ It simply exposes the hidden
 
 ---
 
-# Interview Memory Trick
+## Interview Memory Trick
 
 Remember this sentence:
 
@@ -642,7 +642,7 @@ is only a way to access
 
 ---
 
-# Comparison Table
+## Comparison Table
 
 | Feature                  | `prototype` | `[[Prototype]]`           | `__proto__`                    |
 | ------------------------ | ----------- | ------------------------- | ------------------------------ |
@@ -655,7 +655,7 @@ is only a way to access
 
 ---
 
-# Real-World Flow
+## Real-World Flow
 
 ```javascript
 function Person() {}
@@ -691,7 +691,7 @@ Return object
 
 ---
 
-# Advantages of Understanding This
+## Advantages of Understanding This
 
 - Easier to understand inheritance.
 - Easier to debug prototype issues.
@@ -701,9 +701,9 @@ Return object
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Using
 
@@ -715,7 +715,7 @@ Normal objects do **not** have a meaningful `prototype` property.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -729,7 +729,7 @@ It only reads or changes an existing prototype link.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Using
 
@@ -749,9 +749,9 @@ Object.setPrototypeOf();
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. What is `[[Prototype]]`?
+### Q1. What is `[[Prototype]]`?
 
 **Answer**
 
@@ -759,7 +759,7 @@ It is the internal hidden reference that points to another object and is used fo
 
 ---
 
-## Q2. What is `__proto__`?
+### Q2. What is `__proto__`?
 
 **Answer**
 
@@ -767,7 +767,7 @@ It is a legacy getter/setter that provides access to an object's internal `[[Pro
 
 ---
 
-## Q3. What is `prototype`?
+### Q3. What is `prototype`?
 
 **Answer**
 
@@ -775,7 +775,7 @@ It is a property that exists on constructor functions. When `new` is used, the c
 
 ---
 
-## Q4. Which one should you use today?
+### Q4. Which one should you use today?
 
 **Answer**
 
@@ -788,7 +788,7 @@ Avoid relying on `__proto__` in application code.
 
 ---
 
-## Q5. Does every object have a `prototype` property?
+### Q5. Does every object have a `prototype` property?
 
 **Answer**
 
@@ -796,7 +796,7 @@ No. Ordinary objects have an internal `[[Prototype]]`. The `prototype` property 
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - `[[Prototype]]` is the hidden internal link used for inheritance.
 - `__proto__` is a legacy accessor for reading or changing `[[Prototype]]`.
