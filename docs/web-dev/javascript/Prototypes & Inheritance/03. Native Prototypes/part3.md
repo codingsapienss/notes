@@ -26,7 +26,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -39,7 +39,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# The Problem
+## The Problem
 
 Consider
 
@@ -77,7 +77,7 @@ toUpperCase();
 
 ---
 
-# First Important Fact
+## First Important Fact
 
 There are two completely different things.
 
@@ -97,7 +97,7 @@ They are **not** the same.
 
 ---
 
-# Primitive
+## Primitive
 
 ```javascript
 const str = "Hello";
@@ -119,7 +119,7 @@ Primitive.
 
 ---
 
-# Object
+## Object
 
 ```javascript
 const str = new String("Hello");
@@ -141,7 +141,7 @@ This is an object.
 
 ---
 
-# Comparison
+## Comparison
 
 ```javascript
 const a = "Hello";
@@ -163,7 +163,7 @@ object
 
 ---
 
-# So How Does a Primitive Call Methods?
+## So How Does a Primitive Call Methods?
 
 Suppose
 
@@ -179,7 +179,7 @@ JavaScript performs approximately this sequence.
 
 ---
 
-## Step 1
+### Step 1
 
 Primitive exists
 
@@ -189,7 +189,7 @@ Primitive exists
 
 ---
 
-## Step 2
+### Step 2
 
 JavaScript creates a temporary wrapper object.
 
@@ -211,7 +211,7 @@ String.prototype
 
 ---
 
-## Step 3
+### Step 3
 
 Search
 
@@ -233,7 +233,7 @@ Found
 
 ---
 
-## Step 4
+### Step 4
 
 Execute
 
@@ -243,7 +243,7 @@ toUpperCase();
 
 ---
 
-## Step 5
+### Step 5
 
 Destroy the temporary object.
 
@@ -251,7 +251,7 @@ Only the primitive remains.
 
 ---
 
-# Complete Internal Flow
+## Complete Internal Flow
 
 ```javascript
 "Hello".toUpperCase();
@@ -289,7 +289,7 @@ Return Result
 
 ---
 
-# Visualization
+## Visualization
 
 ```text
 Primitive
@@ -329,7 +329,7 @@ The wrapper object exists only during the operation.
 
 ---
 
-# This Process Has a Name
+## This Process Has a Name
 
 This automatic conversion is called
 
@@ -347,7 +347,7 @@ JavaScript automatically wraps primitive values inside temporary objects wheneve
 
 ---
 
-# String Wrapper
+## String Wrapper
 
 Methods stored inside
 
@@ -409,7 +409,7 @@ Execute
 
 ---
 
-# Number Wrapper
+## Number Wrapper
 
 Numbers are also primitives.
 
@@ -471,7 +471,7 @@ Number.prototype;
 
 ---
 
-# Boolean Wrapper
+## Boolean Wrapper
 
 Example
 
@@ -505,7 +505,7 @@ Destroy Wrapper
 
 ---
 
-# BigInt Wrapper
+## BigInt Wrapper
 
 Example
 
@@ -535,7 +535,7 @@ toString()
 
 ---
 
-# Symbol Wrapper
+## Symbol Wrapper
 
 Example
 
@@ -565,7 +565,7 @@ toString()
 
 ---
 
-# Complete Primitive Table
+## Complete Primitive Table
 
 | Primitive | Temporary Wrapper | Prototype           |
 | --------- | ----------------- | ------------------- |
@@ -577,7 +577,7 @@ toString()
 
 ---
 
-# Why Doesn't JavaScript Permanently Convert Them?
+## Why Doesn't JavaScript Permanently Convert Them?
 
 Imagine
 
@@ -619,7 +619,7 @@ The wrapper exists only temporarily.
 
 ---
 
-# Temporary Means Temporary
+## Temporary Means Temporary
 
 Example
 
@@ -687,7 +687,7 @@ Property Lost
 
 ---
 
-# Reading Works
+## Reading Works
 
 Example
 
@@ -727,7 +727,7 @@ Nothing needs to persist.
 
 ---
 
-# Writing Doesn't Work
+## Writing Doesn't Work
 
 Example
 
@@ -755,7 +755,7 @@ after assignment.
 
 ---
 
-# Why Are Wrapper Objects Needed?
+## Why Are Wrapper Objects Needed?
 
 Without wrappers,
 
@@ -775,7 +775,7 @@ Wrapper objects solve this problem while keeping primitives lightweight.
 
 ---
 
-# The Exceptions
+## The Exceptions
 
 Two primitive values are special.
 
@@ -837,9 +837,9 @@ Undefined.prototype
 
 ---
 
-# Prototype Chains
+## Prototype Chains
 
-## String
+### String
 
 ```text
 Primitive String
@@ -863,7 +863,7 @@ null
 
 ---
 
-## Number
+### Number
 
 ```text
 Primitive Number
@@ -887,7 +887,7 @@ null
 
 ---
 
-## Boolean
+### Boolean
 
 ```text
 Primitive Boolean
@@ -911,9 +911,9 @@ null
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 Strings are objects.
 
@@ -925,7 +925,7 @@ Only temporary wrapper objects are created.
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 Wrapper objects remain in memory.
 
@@ -935,7 +935,7 @@ They are destroyed immediately after the operation completes.
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 Properties added to primitives remain.
 
@@ -945,9 +945,9 @@ They disappear because the wrapper object is temporary.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-## Mistake 1
+### Mistake 1
 
 Using
 
@@ -971,7 +971,7 @@ Prefer
 
 ---
 
-## Mistake 2
+### Mistake 2
 
 Expecting custom properties to remain.
 
@@ -991,7 +991,7 @@ undefined
 
 ---
 
-## Mistake 3
+### Mistake 3
 
 Thinking
 
@@ -1013,7 +1013,7 @@ object
 
 ---
 
-# Why Avoid Wrapper Constructors?
+## Why Avoid Wrapper Constructors?
 
 Consider
 
@@ -1065,7 +1065,7 @@ Using wrapper constructors can therefore produce confusing behavior.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Prefer primitive values (`"text"`, `123`, `true`) over wrapper constructors (`new String()`, `new Number()`, `new Boolean()`).
 - Remember that wrapper objects are temporary and should not be relied upon to store state.
@@ -1074,9 +1074,9 @@ Using wrapper constructors can therefore produce confusing behavior.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. How can primitive strings call methods?
+### Q1. How can primitive strings call methods?
 
 **Answer**
 
@@ -1084,7 +1084,7 @@ JavaScript temporarily creates a `String` wrapper object, looks up the method on
 
 ---
 
-## Q2. What is autoboxing?
+### Q2. What is autoboxing?
 
 **Answer**
 
@@ -1092,7 +1092,7 @@ Autoboxing is JavaScript's automatic creation of temporary wrapper objects aroun
 
 ---
 
-## Q3. Why doesn't assigning properties to primitives work?
+### Q3. Why doesn't assigning properties to primitives work?
 
 **Answer**
 
@@ -1100,7 +1100,7 @@ Because the property is assigned to a temporary wrapper object, which is destroy
 
 ---
 
-## Q4. Why do `null` and `undefined` throw errors when accessing methods?
+### Q4. Why do `null` and `undefined` throw errors when accessing methods?
 
 **Answer**
 
@@ -1108,7 +1108,7 @@ They have no wrapper objects and no associated prototypes, so JavaScript cannot 
 
 ---
 
-## Q5. Why is `new String("abc")` discouraged?
+### Q5. Why is `new String("abc")` discouraged?
 
 **Answer**
 
@@ -1116,7 +1116,7 @@ It creates an object instead of a primitive, leading to unexpected behavior with
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Strings, numbers, booleans, bigints, and symbols are **primitive values**, not objects.
 - JavaScript uses **autoboxing** to temporarily wrap primitives in objects when methods or properties are accessed.
