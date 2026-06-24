@@ -14,7 +14,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -26,7 +26,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# Why Do Constructor Functions Exist?
+## Why Do Constructor Functions Exist?
 
 Imagine we want to create 100 users.
 
@@ -75,7 +75,7 @@ Constructor Function
 
 ---
 
-# What is a Constructor Function?
+## What is a Constructor Function?
 
 A constructor function is simply a **normal JavaScript function** that is intended to create and initialize objects.
 
@@ -105,7 +105,7 @@ new
 
 ---
 
-# Why is it Called a Constructor?
+## Why is it Called a Constructor?
 
 Because it
 
@@ -129,7 +129,7 @@ a new object
 
 ---
 
-# Naming Convention
+## Naming Convention
 
 By convention,
 
@@ -167,7 +167,7 @@ new
 
 ---
 
-# Creating Objects
+## Creating Objects
 
 Constructor
 
@@ -204,7 +204,7 @@ console.log(user1);
 
 ---
 
-# Without Constructor
+## Without Constructor
 
 ```javascript
 const john = {
@@ -225,7 +225,7 @@ const bob = {
 
 ---
 
-# With Constructor
+## With Constructor
 
 ```javascript
 const john = new User("John", 25);
@@ -243,7 +243,7 @@ Scalable
 
 ---
 
-# What Happens When We Use `new`?
+## What Happens When We Use `new`?
 
 This is the most important part.
 
@@ -265,7 +265,7 @@ the `new` operator performs several internal steps automatically.
 
 ---
 
-# Internal Steps of `new`
+## Internal Steps of `new`
 
 When JavaScript executes
 
@@ -303,7 +303,7 @@ Let's study each step.
 
 ---
 
-# Step 1 — Create an Empty Object
+## Step 1 — Create an Empty Object
 
 Suppose
 
@@ -338,7 +338,7 @@ Nothing
 
 ---
 
-# Step 2 — Set the Prototype
+## Step 2 — Set the Prototype
 
 JavaScript automatically performs
 
@@ -372,7 +372,7 @@ We'll study it deeply in Part 2B.
 
 ---
 
-# Step 3 — Call the Constructor
+## Step 3 — Call the Constructor
 
 Now JavaScript calls
 
@@ -432,7 +432,7 @@ Properties Added
 
 ---
 
-# Step 4 — Return the Object
+## Step 4 — Return the Object
 
 Finally
 
@@ -450,7 +450,7 @@ user;
 
 ---
 
-# Complete Internal Flow
+## Complete Internal Flow
 
 Suppose
 
@@ -484,7 +484,7 @@ The actual engine implementation is more optimized, but the observable behavior 
 
 ---
 
-# Visual Representation
+## Visual Representation
 
 ```text
 new User()
@@ -516,7 +516,7 @@ Return Object
 
 ---
 
-# Example
+## Example
 
 Constructor
 
@@ -564,7 +564,7 @@ Result
 
 ---
 
-# Understanding `this`
+## Understanding `this`
 
 Many beginners think
 
@@ -636,7 +636,7 @@ New Object
 
 ---
 
-# What If the Constructor Returns Something?
+## What If the Constructor Returns Something?
 
 Normally
 
@@ -668,7 +668,7 @@ Returns
 
 But constructors can explicitly return values.
 
-## Returning an Object
+### Returning an Object
 
 ```javascript
 function User() {
@@ -696,7 +696,7 @@ The returned object replaces the automatically created one.
 
 ---
 
-## Returning a Primitive
+### Returning a Primitive
 
 ```javascript
 function User() {
@@ -718,7 +718,7 @@ Primitive values are ignored.
 
 ---
 
-# Summary of Return Behavior
+## Summary of Return Behavior
 
 | Constructor Returns | Result               |
 | ------------------- | -------------------- |
@@ -728,9 +728,9 @@ Primitive values are ignored.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-## Mistake 1
+### Mistake 1
 
 Calling constructor without
 
@@ -746,7 +746,7 @@ This does not create a new object automatically.
 
 ---
 
-## Mistake 2
+### Mistake 2
 
 Thinking constructor functions are special.
 
@@ -762,7 +762,7 @@ not from the function itself.
 
 ---
 
-## Mistake 3
+### Mistake 3
 
 Thinking
 
@@ -788,7 +788,7 @@ points to it.
 
 ---
 
-# Advantages of Constructor Functions
+## Advantages of Constructor Functions
 
 - Reusable object creation
 - Less duplicated code
@@ -798,7 +798,7 @@ points to it.
 
 ---
 
-# Constructor Functions vs Factory Functions
+## Constructor Functions vs Factory Functions
 
 | Feature                      | Constructor Function | Factory Function        |
 | ---------------------------- | -------------------- | ----------------------- |
@@ -809,7 +809,7 @@ points to it.
 
 ---
 
-# Real-World Examples
+## Real-World Examples
 
 Many built-in JavaScript objects are constructor functions.
 
@@ -839,9 +839,9 @@ JavaScript conceptually creates an array object associated with `Array.prototype
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. What is a constructor function?
+### Q1. What is a constructor function?
 
 **Answer**
 
@@ -849,7 +849,7 @@ A constructor function is a normal JavaScript function intended to create and in
 
 ---
 
-## Q2. What are the four internal steps performed by `new`?
+### Q2. What are the four internal steps performed by `new`?
 
 **Answer**
 
@@ -860,7 +860,7 @@ A constructor function is a normal JavaScript function intended to create and in
 
 ---
 
-## Q3. What happens if a constructor returns an object?
+### Q3. What happens if a constructor returns an object?
 
 **Answer**
 
@@ -868,7 +868,7 @@ The explicitly returned object replaces the automatically created object.
 
 ---
 
-## Q4. What happens if a constructor returns a primitive value?
+### Q4. What happens if a constructor returns a primitive value?
 
 **Answer**
 
@@ -876,7 +876,7 @@ The primitive value is ignored, and the automatically created object is returned
 
 ---
 
-## Q5. Are constructor functions different from normal functions?
+### Q5. Are constructor functions different from normal functions?
 
 **Answer**
 
@@ -884,7 +884,7 @@ No. They are ordinary functions. The special behavior comes from invoking them w
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Constructor functions provide a reusable way to create similar objects.
 - The `new` operator is responsible for the special object creation behavior.
