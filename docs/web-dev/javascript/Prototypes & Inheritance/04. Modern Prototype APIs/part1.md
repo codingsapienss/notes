@@ -18,7 +18,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -31,7 +31,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# Why Does Object.create() Exist?
+## Why Does Object.create() Exist?
 
 Before ES5,
 
@@ -56,7 +56,7 @@ Sometimes we want to decide the prototype ourselves.
 
 ---
 
-# Syntax
+## Syntax
 
 ```javascript
 Object.create(proto);
@@ -75,13 +75,13 @@ Parameters:
 
 ---
 
-# Return Value
+## Return Value
 
 Returns a **new object** whose internal `[[Prototype]]` is set to the specified `proto`.
 
 ---
 
-# Simplest Example
+## Simplest Example
 
 ```javascript
 const animal = {
@@ -103,7 +103,7 @@ Prototype diagram.
 
 ---
 
-# What Actually Happens Internally?
+## What Actually Happens Internally?
 
 Show engine steps.
 
@@ -122,7 +122,7 @@ Return Object
 
 ---
 
-# Visual Memory Diagram
+## Visual Memory Diagram
 
 ```
 rabbit
@@ -142,7 +142,7 @@ null
 
 ---
 
-# Verifying the Prototype
+## Verifying the Prototype
 
 Explain
 
@@ -162,7 +162,7 @@ console.log(Object.getPrototypeOf(rabbit) === animal);
 
 ---
 
-# Object.create(null)
+## Object.create(null)
 
 Introduce briefly.
 
@@ -182,7 +182,7 @@ Explain:
 
 ---
 
-# Object.create() vs {}
+## Object.create() vs {}
 
 Comparison table
 
@@ -194,7 +194,7 @@ Comparison table
 
 ---
 
-# Object.create() vs Constructor Functions
+## Object.create() vs Constructor Functions
 
 Comparison
 
@@ -216,13 +216,13 @@ Discuss:
 
 ---
 
-# Object.create() vs Classes
+## Object.create() vs Classes
 
 Comparison table.
 
 ---
 
-# Creating Objects Without Constructors
+## Creating Objects Without Constructors
 
 Example
 
@@ -242,7 +242,7 @@ Explain why this works.
 
 ---
 
-# Creating Multiple Objects
+## Creating Multiple Objects
 
 Example
 
@@ -252,7 +252,7 @@ Show memory diagram.
 
 ---
 
-# Object.create() with Property Descriptors
+## Object.create() with Property Descriptors
 
 Explain second parameter.
 
@@ -279,7 +279,7 @@ Explain every descriptor.
 
 ---
 
-# Property Descriptor Review
+## Property Descriptor Review
 
 Explain
 
@@ -292,7 +292,7 @@ Explain
 
 ---
 
-# Why Use Property Descriptors?
+## Why Use Property Descriptors?
 
 Real-world example.
 
@@ -300,7 +300,7 @@ Read-only configuration object.
 
 ---
 
-# Creating Immutable Objects
+## Creating Immutable Objects
 
 Example using
 
@@ -310,7 +310,7 @@ writable: false;
 
 ---
 
-# Using Object.create() for Inheritance
+## Using Object.create() for Inheritance
 
 Example
 
@@ -328,7 +328,7 @@ Memory diagram.
 
 ---
 
-# Deep Prototype Chains
+## Deep Prototype Chains
 
 Example
 
@@ -352,7 +352,7 @@ Object.create();
 
 ---
 
-# Manual Prototype Inheritance
+## Manual Prototype Inheritance
 
 Build inheritance manually without
 
@@ -361,7 +361,7 @@ Build inheritance manually without
 
 ---
 
-# Real-World Use Cases
+## Real-World Use Cases
 
 Discuss:
 
@@ -373,7 +373,7 @@ Discuss:
 
 ---
 
-# Performance Considerations
+## Performance Considerations
 
 Explain:
 
@@ -384,31 +384,31 @@ Explain:
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
 Examples.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
 Examples.
 
 ---
 
-# Best Practices
+## Best Practices
 
 Guidelines.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
 15–20 interview questions.
 
 ---
 
-# Summary
+## Summary
 
 Key takeaways.
 
