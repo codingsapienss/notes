@@ -15,7 +15,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -29,7 +29,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# The Big Picture
+## The Big Picture
 
 Every JavaScript value belongs to one of these categories:
 
@@ -50,7 +50,7 @@ Every one of them eventually participates in the prototype system.
 
 ---
 
-# The Most Important Rule
+## The Most Important Rule
 
 Whenever JavaScript needs a property,
 
@@ -80,7 +80,7 @@ Until the property is found.
 
 ---
 
-# The Universal Lookup Algorithm
+## The Universal Lookup Algorithm
 
 Whenever JavaScript executes
 
@@ -152,7 +152,7 @@ Everything about prototypes follows this algorithm.
 
 ---
 
-# Ordinary Objects
+## Ordinary Objects
 
 Example
 
@@ -188,7 +188,7 @@ isPrototypeOf();
 
 ---
 
-# Arrays
+## Arrays
 
 Example
 
@@ -238,7 +238,7 @@ some();
 
 ---
 
-# Functions
+## Functions
 
 Example
 
@@ -278,7 +278,7 @@ toString();
 
 ---
 
-# Dates
+## Dates
 
 ```javascript
 const today = new Date();
@@ -316,7 +316,7 @@ toISOString();
 
 ---
 
-# Maps
+## Maps
 
 ```javascript
 const map = new Map();
@@ -356,7 +356,7 @@ clear()
 
 ---
 
-# Sets
+## Sets
 
 ```javascript
 const set = new Set();
@@ -394,7 +394,7 @@ clear()
 
 ---
 
-# Regular Expressions
+## Regular Expressions
 
 ```javascript
 const regex = /abc/;
@@ -420,7 +420,7 @@ null
 
 ---
 
-# Promise Objects
+## Promise Objects
 
 ```javascript
 const promise = Promise.resolve();
@@ -446,7 +446,7 @@ null
 
 ---
 
-# Error Objects
+## Error Objects
 
 ```javascript
 const err = new Error();
@@ -472,7 +472,7 @@ null
 
 ---
 
-# Primitive Strings
+## Primitive Strings
 
 ```javascript
 const str = "Hello";
@@ -510,7 +510,7 @@ null
 
 ---
 
-# Primitive Numbers
+## Primitive Numbers
 
 ```javascript
 const num = 100;
@@ -536,7 +536,7 @@ null
 
 ---
 
-# Primitive Booleans
+## Primitive Booleans
 
 ```javascript
 true
@@ -560,7 +560,7 @@ null
 
 ---
 
-# Primitive BigInt
+## Primitive BigInt
 
 ```javascript
 100n
@@ -584,7 +584,7 @@ null
 
 ---
 
-# Primitive Symbol
+## Primitive Symbol
 
 ```javascript
 Symbol()
@@ -608,7 +608,7 @@ null
 
 ---
 
-# Exceptions
+## Exceptions
 
 These values have
 
@@ -642,7 +642,7 @@ TypeError
 
 ---
 
-# The Complete Hierarchy
+## The Complete Hierarchy
 
 ```text
                            Object.prototype
@@ -658,7 +658,7 @@ TypeError
 
 ---
 
-# Wrapper Hierarchy
+## Wrapper Hierarchy
 
 ```text
 Primitive String
@@ -694,7 +694,7 @@ Symbol
 
 ---
 
-# Constructor Relationship
+## Constructor Relationship
 
 Suppose
 
@@ -742,7 +742,7 @@ This is the relationship behind every constructor function.
 
 ---
 
-# Where Does a Method Come From?
+## Where Does a Method Come From?
 
 Suppose
 
@@ -840,7 +840,7 @@ Execute
 
 ---
 
-# The Memory Optimization
+## The Memory Optimization
 
 Without prototypes
 
@@ -886,9 +886,9 @@ Exactly the same idea applies to
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 Every object stores every method.
 
@@ -900,7 +900,7 @@ Methods usually live in prototype objects.
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 Methods are copied.
 
@@ -910,7 +910,7 @@ Methods are shared through prototype references.
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 Only user-created objects use prototypes.
 
@@ -920,7 +920,7 @@ Every built-in object also participates in the prototype system.
 
 ---
 
-## Misconception 4
+### Misconception 4
 
 Primitive values are objects.
 
@@ -930,7 +930,7 @@ Temporary wrapper objects are created only when methods or properties are access
 
 ---
 
-# Prototype Lookup Cheat Sheet
+## Prototype Lookup Cheat Sheet
 
 | Value          | First Prototype                         |
 | -------------- | --------------------------------------- |
@@ -950,9 +950,9 @@ Temporary wrapper objects are created only when methods or properties are access
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. Where does `Array.prototype` fit in the prototype chain?
+### Q1. Where does `Array.prototype` fit in the prototype chain?
 
 **Answer**
 
@@ -974,7 +974,7 @@ null
 
 ---
 
-## Q2. Why do arrays have access to `toString()`?
+### Q2. Why do arrays have access to `toString()`?
 
 **Answer**
 
@@ -982,7 +982,7 @@ null
 
 ---
 
-## Q3. Do primitives participate in the prototype system?
+### Q3. Do primitives participate in the prototype system?
 
 **Answer**
 
@@ -990,7 +990,7 @@ Yes, through temporary wrapper objects created during property or method access.
 
 ---
 
-## Q4. Which values do not have wrapper objects?
+### Q4. Which values do not have wrapper objects?
 
 **Answer**
 
@@ -998,7 +998,7 @@ Yes, through temporary wrapper objects created during property or method access.
 
 ---
 
-## Q5. What is the root of almost every prototype chain?
+### Q5. What is the root of almost every prototype chain?
 
 **Answer**
 
@@ -1006,7 +1006,7 @@ Yes, through temporary wrapper objects created during property or method access.
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Every JavaScript object participates in a prototype chain.
 - Different built-in types have their own prototype objects (`Array.prototype`, `Function.prototype`, `Date.prototype`, etc.).
