@@ -23,7 +23,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -35,7 +35,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# What is a Prototype-less Object?
+## What is a Prototype-less Object?
 
 Normally
 
@@ -77,7 +77,7 @@ There is **no** `Object.prototype`.
 
 ---
 
-# Why Does JavaScript Allow This?
+## Why Does JavaScript Allow This?
 
 Sometimes we don't want
 
@@ -93,7 +93,7 @@ Pure Key-Value Storage
 
 ---
 
-# Internal Working
+## Internal Working
 
 ```javascript
 const obj = Object.create(null);
@@ -140,7 +140,7 @@ Object.prototype
 
 ---
 
-# Memory Diagram
+## Memory Diagram
 
 Ordinary Object
 
@@ -168,7 +168,7 @@ null
 
 ---
 
-# Verification
+## Verification
 
 ```javascript
 const obj = Object.create(null);
@@ -184,7 +184,7 @@ null
 
 ---
 
-# No Inherited Methods
+## No Inherited Methods
 
 Example
 
@@ -228,7 +228,7 @@ exists.
 
 ---
 
-# Another Example
+## Another Example
 
 ```javascript
 const obj = Object.create(null);
@@ -266,7 +266,7 @@ undefined
 
 ---
 
-# Comparison
+## Comparison
 
 Ordinary Object
 
@@ -300,7 +300,7 @@ None
 
 ---
 
-# Why Is This Useful?
+## Why Is This Useful?
 
 Suppose
 
@@ -354,7 +354,7 @@ to conflict with.
 
 ---
 
-# Dictionary Objects
+## Dictionary Objects
 
 Prototype-less objects are commonly used as
 
@@ -396,7 +396,7 @@ Output
 
 ---
 
-# Why Not Use {}?
+## Why Not Use {}?
 
 Because
 
@@ -447,7 +447,7 @@ false
 
 ---
 
-# Property Lookup
+## Property Lookup
 
 Suppose
 
@@ -511,7 +511,7 @@ No additional search occurs.
 
 ---
 
-# Enumeration
+## Enumeration
 
 Example
 
@@ -541,7 +541,7 @@ There are no inherited enumerable properties.
 
 ---
 
-# Object.keys()
+## Object.keys()
 
 Works normally.
 
@@ -561,7 +561,7 @@ Output
 
 ---
 
-# JSON Serialization
+## JSON Serialization
 
 Prototype-less objects serialize exactly like ordinary objects.
 
@@ -583,7 +583,7 @@ Output
 
 ---
 
-# The Missing constructor
+## The Missing constructor
 
 Example
 
@@ -615,7 +615,7 @@ Not Present
 
 ---
 
-# Using Object.hasOwn()
+## Using Object.hasOwn()
 
 Remember
 
@@ -651,7 +651,7 @@ true
 
 ---
 
-# Security Benefits
+## Security Benefits
 
 Prototype-less objects help prevent
 
@@ -673,7 +673,7 @@ Prototype-less objects have no prototype chain, reducing this class of problems 
 
 ---
 
-# Prototype Pollution Example
+## Prototype Pollution Example
 
 Ordinary object
 
@@ -705,7 +705,7 @@ Much safer for
 
 ---
 
-# Object.create(null) vs {}
+## Object.create(null) vs {}
 
 | Feature                   | `{}` | `Object.create(null)` |
 | ------------------------- | ---- | --------------------- |
@@ -717,7 +717,7 @@ Much safer for
 
 ---
 
-# Object.create(null) vs Map
+## Object.create(null) vs Map
 
 Many developers ask
 
@@ -746,7 +746,7 @@ Comparison
 
 ---
 
-# When Should You Use Each?
+## When Should You Use Each?
 
 Use
 
@@ -778,9 +778,9 @@ when
 
 ---
 
-# Real-World Use Cases
+## Real-World Use Cases
 
-## Word Frequency Counter
+### Word Frequency Counter
 
 ```javascript
 const frequency = Object.create(null);
@@ -788,7 +788,7 @@ const frequency = Object.create(null);
 
 ---
 
-## Translation Dictionary
+### Translation Dictionary
 
 ```javascript
 const translations = Object.create(null);
@@ -796,7 +796,7 @@ const translations = Object.create(null);
 
 ---
 
-## Cache
+### Cache
 
 ```javascript
 const cache = Object.create(null);
@@ -804,7 +804,7 @@ const cache = Object.create(null);
 
 ---
 
-## Routing Tables
+### Routing Tables
 
 ```javascript
 const routes = Object.create(null);
@@ -812,15 +812,15 @@ const routes = Object.create(null);
 
 ---
 
-## Compiler Symbol Tables
+### Compiler Symbol Tables
 
 Many JavaScript engines and compilers internally use dictionary-like structures for symbol lookup.
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 Prototype-less objects are broken.
 
@@ -834,7 +834,7 @@ Object.prototype;
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 They cannot store properties.
 
@@ -846,7 +846,7 @@ Only inheritance changes.
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 Object.create(null)
 
@@ -863,9 +863,9 @@ Their prototype chains are different.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-## Mistake 1
+### Mistake 1
 
 Calling
 
@@ -889,7 +889,7 @@ instead.
 
 ---
 
-## Mistake 2
+### Mistake 2
 
 Calling
 
@@ -903,7 +903,7 @@ No inherited methods exist.
 
 ---
 
-## Mistake 3
+### Mistake 3
 
 Assuming
 
@@ -917,7 +917,7 @@ It doesn't.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use `Object.create(null)` when you need a pure dictionary object.
 - Prefer `
