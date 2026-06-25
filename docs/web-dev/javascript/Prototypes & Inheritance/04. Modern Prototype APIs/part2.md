@@ -15,7 +15,7 @@
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -27,7 +27,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-# Why Were Modern Prototype APIs Introduced?
+## Why Were Modern Prototype APIs Introduced?
 
 Originally developers used
 
@@ -58,7 +58,7 @@ ES5 and later introduced official APIs.
 
 ---
 
-# Overview of Modern Prototype APIs
+## Overview of Modern Prototype APIs
 
 | API                                | Purpose                       |
 | ---------------------------------- | ----------------------------- |
@@ -73,9 +73,9 @@ ES5 and later introduced official APIs.
 
 ---
 
-# Object.getPrototypeOf()
+## Object.getPrototypeOf()
 
-## Syntax
+### Syntax
 
 ```javascript
 Object.getPrototypeOf(object);
@@ -89,7 +89,7 @@ The object's [[Prototype]]
 
 ---
 
-## Example
+### Example
 
 ```javascript
 const animal = {
@@ -111,7 +111,7 @@ Output
 
 ---
 
-## Internal Working
+### Internal Working
 
 JavaScript internally performs
 
@@ -131,7 +131,7 @@ No property lookup occurs.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 rabbit
@@ -151,7 +151,7 @@ null
 
 ---
 
-## Why Prefer It Over **proto**?
+### Why Prefer It Over **proto**?
 
 Instead of
 
@@ -174,7 +174,7 @@ Reasons:
 
 ---
 
-# Reflect.getPrototypeOf()
+## Reflect.getPrototypeOf()
 
 The Reflect API provides an equivalent operation.
 
@@ -186,9 +186,9 @@ Returns exactly the same prototype.
 
 ---
 
-# Object.setPrototypeOf()
+## Object.setPrototypeOf()
 
-## Syntax
+### Syntax
 
 ```javascript
 Object.setPrototypeOf(obj, prototype);
@@ -198,7 +198,7 @@ Changes an existing object's prototype.
 
 ---
 
-## Example
+### Example
 
 ```javascript
 const animal = {
@@ -220,7 +220,7 @@ true
 
 ---
 
-## Internal Working
+### Internal Working
 
 ```
 rabbit
@@ -250,7 +250,7 @@ Object.prototype
 
 ---
 
-## Why Is It Discouraged?
+### Why Is It Discouraged?
 
 Changing an object's prototype after creation forces JavaScript engines to discard internal optimizations.
 
@@ -268,7 +268,7 @@ when creating the object.
 
 ---
 
-# Reflect.setPrototypeOf()
+## Reflect.setPrototypeOf()
 
 Equivalent API
 
@@ -292,7 +292,7 @@ instead of throwing in some failure cases.
 
 ---
 
-# Object.hasOwn()
+## Object.hasOwn()
 
 Introduced as a modern replacement for
 
@@ -302,7 +302,7 @@ hasOwnProperty();
 
 ---
 
-## Syntax
+### Syntax
 
 ```javascript
 Object.hasOwn(object, property);
@@ -310,7 +310,7 @@ Object.hasOwn(object, property);
 
 ---
 
-## Example
+### Example
 
 ```javascript
 const animal = {
@@ -336,7 +336,7 @@ false
 
 ---
 
-## Why Was It Added?
+### Why Was It Added?
 
 Objects created with
 
@@ -362,7 +362,7 @@ may fail.
 
 ---
 
-# Object.getOwnPropertyNames()
+## Object.getOwnPropertyNames()
 
 Returns all own string property names,
 
@@ -399,7 +399,7 @@ this also includes non-enumerable string properties.
 
 ---
 
-# Object.getOwnPropertySymbols()
+## Object.getOwnPropertySymbols()
 
 Objects may have Symbol keys.
 
@@ -423,7 +423,7 @@ Output
 
 ---
 
-# Object.getOwnPropertyDescriptors()
+## Object.getOwnPropertyDescriptors()
 
 Returns the complete descriptor of every own property.
 
@@ -452,7 +452,7 @@ Output
 
 ---
 
-# Why Is This Useful?
+## Why Is This Useful?
 
 Useful when:
 
@@ -463,7 +463,7 @@ Useful when:
 
 ---
 
-# Object.keys() vs Object.getOwnPropertyNames()
+## Object.keys() vs Object.getOwnPropertyNames()
 
 | API                          | Enumerable | Non-enumerable |
 | ---------------------------- | ---------- | -------------- |
@@ -472,7 +472,7 @@ Useful when:
 
 ---
 
-# hasOwnProperty() vs Object.hasOwn()
+## hasOwnProperty() vs Object.hasOwn()
 
 | Feature                        | hasOwnProperty() | Object.hasOwn() |
 | ------------------------------ | ---------------- | --------------- |
@@ -482,7 +482,7 @@ Useful when:
 
 ---
 
-# **proto** vs Modern APIs
+## **proto** vs Modern APIs
 
 | Task               | Legacy                 | Modern                          |
 | ------------------ | ---------------------- | ------------------------------- |
@@ -492,7 +492,7 @@ Useful when:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a framework wants to verify inheritance.
 
@@ -508,7 +508,7 @@ if (Object.getPrototypeOf(rabbit) === animal) {
 
 ---
 
-# Performance Considerations
+## Performance Considerations
 
 Good
 
@@ -534,9 +534,9 @@ Modern engines optimize the first approach much better.
 
 ---
 
-# Common Misconceptions
+## Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 `__proto__`
 
@@ -556,7 +556,7 @@ The other is a property of constructor functions.
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 `Object.setPrototypeOf()`
 
@@ -568,7 +568,7 @@ It only changes the prototype link.
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 `Object.hasOwn()`
 
@@ -580,9 +580,9 @@ It checks only own properties.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-## Mistake 1
+### Mistake 1
 
 Using
 
@@ -600,7 +600,7 @@ Object.getPrototypeOf();
 
 ---
 
-## Mistake 2
+### Mistake 2
 
 Frequently changing prototypes.
 
@@ -608,7 +608,7 @@ Prototype mutation is slow.
 
 ---
 
-## Mistake 3
+### Mistake 3
 
 Using
 
@@ -626,7 +626,7 @@ It throws because the method doesn't exist.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Prefer `Object.getPrototypeOf()` over `__proto__`.
 - Prefer `Object.setPrototypeOf()` only when absolutely necessary.
@@ -637,31 +637,31 @@ It throws because the method doesn't exist.
 
 ---
 
-# Interview Questions
+## Interview Questions
 
-## Q1. Why is `__proto__` discouraged?
+### Q1. Why is `__proto__` discouraged?
 
-## Q2. Difference between `Object.create()` and `Object.setPrototypeOf()`?
+### Q2. Difference between `Object.create()` and `Object.setPrototypeOf()`?
 
-## Q3. Why is `Object.setPrototypeOf()` considered slow?
+### Q3. Why is `Object.setPrototypeOf()` considered slow?
 
-## Q4. Difference between `Object.hasOwn()` and `hasOwnProperty()`?
+### Q4. Difference between `Object.hasOwn()` and `hasOwnProperty()`?
 
-## Q5. Difference between `Object.keys()` and `Object.getOwnPropertyNames()`?
+### Q5. Difference between `Object.keys()` and `Object.getOwnPropertyNames()`?
 
-## Q6. What does `Object.getOwnPropertyDescriptors()` return?
+### Q6. What does `Object.getOwnPropertyDescriptors()` return?
 
-## Q7. Why does `Object.hasOwn()` work with `Object.create(null)`?
+### Q7. Why does `Object.hasOwn()` work with `Object.create(null)`?
 
-## Q8. What is the Reflect API, and why does it provide prototype methods?
+### Q8. What is the Reflect API, and why does it provide prototype methods?
 
-## Q9. Does `Object.setPrototypeOf()` copy properties?
+### Q9. Does `Object.setPrototypeOf()` copy properties?
 
-## Q10. Which API should modern JavaScript use to read an object's prototype?
+### Q10. Which API should modern JavaScript use to read an object's prototype?
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Modern JavaScript provides standardized APIs for working with prototypes and property metadata.
 - `Object.getPrototypeOf()` and `Reflect.getPrototypeOf()` are preferred over `__proto__` for reading prototypes.
@@ -672,4 +672,4 @@ It throws because the method doesn't exist.
 
 ---
 
-# Next Part
+## Next Part
