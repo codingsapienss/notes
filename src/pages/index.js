@@ -9,7 +9,8 @@ import {
   Braces, 
   Atom, 
   GitBranch,
-  ChevronRight 
+  ChevronRight,
+  Server 
 } from 'lucide-react';
 
 import styles from './index.module.css';
@@ -38,6 +39,12 @@ const KnowledgeCategories = [
     description: 'Modern UI patterns, state management, and efficient component architecture.',
     link: '/docs/web-dev/react/intro',
     icon: <img src="/notes/img/react.svg" width="32" height="32" alt="React Logo" />,
+  },
+  {
+    title: 'DevOps',
+    description: 'Linux administration, cloud platforms, Nginx, deployment, monitoring, and troubleshooting.',
+    link: '/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide',
+    icon: <Server size={32} color="#e34c26" />,
   },
   {
     title: 'System Design',
