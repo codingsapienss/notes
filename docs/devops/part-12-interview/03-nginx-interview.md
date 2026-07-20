@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Nginx Interview Preparation
 
-## Overview
+### Overview
 
 Nginx is one of the most widely used web servers and reverse proxies in modern infrastructure. It is commonly used for:
 
@@ -22,7 +22,7 @@ Interviewers expect candidates to understand **how Nginx works internally**, **w
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -35,7 +35,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Nginx in Production
+## Nginx in Production
 
 ```text id="ng001"
 Internet
@@ -65,7 +65,7 @@ Nginx sits between clients and backend services, handling incoming traffic effic
 
 ---
 
-# Nginx Knowledge Roadmap
+## Nginx Knowledge Roadmap
 
 ```text id="ng002"
 Web Server
@@ -105,9 +105,9 @@ Production Troubleshooting
 
 ---
 
-# Beginner Interview Questions
+## Beginner Interview Questions
 
-## Q1. What is Nginx?
+### Q1. What is Nginx?
 
 **Answer**
 
@@ -123,7 +123,7 @@ Common use cases include:
 
 ---
 
-## Q2. Why is Nginx Popular?
+### Q2. Why is Nginx Popular?
 
 Reasons include:
 
@@ -136,7 +136,7 @@ Reasons include:
 
 ---
 
-## Q3. Difference Between Apache and Nginx
+### Q3. Difference Between Apache and Nginx
 
 | Apache                   | Nginx                   |
 | ------------------------ | ----------------------- |
@@ -147,7 +147,7 @@ Reasons include:
 
 ---
 
-## Q4. What is a Reverse Proxy?
+### Q4. What is a Reverse Proxy?
 
 A reverse proxy receives client requests and forwards them to backend servers.
 
@@ -173,7 +173,7 @@ Benefits:
 
 ---
 
-## Q5. Why Not Expose Node.js Directly?
+### Q5. Why Not Expose Node.js Directly?
 
 Reasons:
 
@@ -209,9 +209,9 @@ Node.js
 
 ---
 
-# Configuration Questions
+## Configuration Questions
 
-## Q6. Where is the Main Nginx Configuration?
+### Q6. Where is the Main Nginx Configuration?
 
 Common locations:
 
@@ -229,7 +229,7 @@ Virtual hosts:
 
 ---
 
-## Q7. What is a Server Block?
+### Q7. What is a Server Block?
 
 A server block defines how Nginx responds to requests for a domain or IP.
 
@@ -244,7 +244,7 @@ server {
 
 ---
 
-## Q8. Difference Between `root` and `alias`
+### Q8. Difference Between `root` and `alias`
 
 | root                     | alias                       |
 | ------------------------ | --------------------------- |
@@ -257,9 +257,9 @@ Candidates often confuse these directives. Be prepared to explain when each shou
 
 ---
 
-# Reverse Proxy Questions
+## Reverse Proxy Questions
 
-## Q9. How Does Reverse Proxy Work?
+### Q9. How Does Reverse Proxy Work?
 
 ```text id="ng007"
 Browser
@@ -281,7 +281,7 @@ Nginx receives the request, optionally terminates TLS, forwards it to the backen
 
 ---
 
-## Q10. Example Reverse Proxy Configuration
+### Q10. Example Reverse Proxy Configuration
 
 ```nginx
 location / {
@@ -291,9 +291,9 @@ location / {
 
 ---
 
-# SSL Questions
+## SSL Questions
 
-## Q11. What is SSL Termination?
+### Q11. What is SSL Termination?
 
 SSL termination means Nginx decrypts HTTPS traffic and forwards requests to backend services, often over HTTP within a trusted internal network.
 
@@ -315,7 +315,7 @@ Node.js
 
 ---
 
-## Q12. Why Use HTTPS?
+### Q12. Why Use HTTPS?
 
 Advantages:
 
@@ -326,9 +326,9 @@ Advantages:
 
 ---
 
-# Load Balancing Questions
+## Load Balancing Questions
 
-## Q13. What is Load Balancing?
+### Q13. What is Load Balancing?
 
 Load balancing distributes incoming traffic across multiple backend servers.
 
@@ -350,7 +350,7 @@ Server 3
 
 ---
 
-## Q14. Common Load Balancing Methods
+### Q14. Common Load Balancing Methods
 
 | Method            | Description                                    |
 | ----------------- | ---------------------------------------------- |
@@ -360,9 +360,9 @@ Server 3
 
 ---
 
-# Caching Questions
+## Caching Questions
 
-## Q15. Why Cache Static Files?
+### Q15. Why Cache Static Files?
 
 Benefits:
 
@@ -380,9 +380,9 @@ Common cached files:
 
 ---
 
-# Logging Questions
+## Logging Questions
 
-## Q16. Where Are Nginx Logs Stored?
+### Q16. Where Are Nginx Logs Stored?
 
 Typical locations:
 
@@ -394,7 +394,7 @@ Typical locations:
 
 ---
 
-## Q17. Which Log Is Used for Debugging?
+### Q17. Which Log Is Used for Debugging?
 
 | Log        | Purpose             |
 | ---------- | ------------------- |
@@ -403,9 +403,9 @@ Typical locations:
 
 ---
 
-# Performance Questions
+## Performance Questions
 
-## Q18. Why is Nginx Fast?
+### Q18. Why is Nginx Fast?
 
 Reasons:
 
@@ -417,15 +417,15 @@ Reasons:
 
 ---
 
-## Q19. What is Keep-Alive?
+### Q19. What is Keep-Alive?
 
 Keep-Alive allows multiple HTTP requests to reuse a single TCP connection, reducing connection overhead and improving performance.
 
 ---
 
-# Security Questions
+## Security Questions
 
-## Q20. How Can Nginx Improve Security?
+### Q20. How Can Nginx Improve Security?
 
 Examples:
 
@@ -438,15 +438,15 @@ Examples:
 
 ---
 
-## Q21. What is Rate Limiting?
+### Q21. What is Rate Limiting?
 
 Rate limiting restricts how many requests a client can make within a given period, helping mitigate abuse and certain denial-of-service attacks.
 
 ---
 
-# Linux Integration Questions
+## Linux Integration Questions
 
-## Q22. How Do You Check Nginx Status?
+### Q22. How Do You Check Nginx Status?
 
 ```bash id="ng011"
 systemctl status nginx
@@ -454,7 +454,7 @@ systemctl status nginx
 
 ---
 
-## Q23. How Do You Test Configuration?
+### Q23. How Do You Test Configuration?
 
 ```bash id="ng012"
 sudo nginx -t
@@ -470,7 +470,7 @@ test is successful
 
 ---
 
-## Q24. How Do You Reload Nginx?
+### Q24. How Do You Reload Nginx?
 
 ```bash id="ng014"
 sudo systemctl reload nginx
@@ -478,7 +478,7 @@ sudo systemctl reload nginx
 
 ---
 
-## Q25. Difference Between Reload and Restart?
+### Q25. Difference Between Reload and Restart?
 
 | Reload                        | Restart                        |
 | ----------------------------- | ------------------------------ |
@@ -487,9 +487,9 @@ sudo systemctl reload nginx
 
 ---
 
-# Cloud Questions
+## Cloud Questions
 
-## Q26. How Does Nginx Work with Cloudflare?
+### Q26. How Does Nginx Work with Cloudflare?
 
 ```text id="ng015"
 Browser
@@ -511,7 +511,7 @@ Cloudflare provides CDN, caching, and DDoS protection, while Nginx proxies reque
 
 ---
 
-## Q27. Why Use Nginx with Docker?
+### Q27. Why Use Nginx with Docker?
 
 Reasons:
 
@@ -523,9 +523,9 @@ Reasons:
 
 ---
 
-# Advanced Questions
+## Advanced Questions
 
-## Q28. What Happens When a Request Reaches Nginx?
+### Q28. What Happens When a Request Reaches Nginx?
 
 ```text id="ng016"
 Client
@@ -563,7 +563,7 @@ Nginx selects the appropriate server block, evaluates location rules, processes 
 
 ---
 
-## Q29. How Does Nginx Select a Location Block?
+### Q29. How Does Nginx Select a Location Block?
 
 General order:
 
@@ -576,9 +576,9 @@ Understanding location matching is a common interview topic.
 
 ---
 
-# Scenario-Based Questions
+## Scenario-Based Questions
 
-## Scenario 1
+### Scenario 1
 
 **Question**
 
@@ -630,7 +630,7 @@ tail -f /var/log/nginx/error.log
 
 ---
 
-## Scenario 2
+### Scenario 2
 
 **Question**
 
@@ -655,7 +655,7 @@ journalctl -u nginx
 
 ---
 
-## Scenario 3
+### Scenario 3
 
 **Question**
 
@@ -671,7 +671,7 @@ Possible causes:
 
 ---
 
-## Scenario 4
+### Scenario 4
 
 **Question**
 
@@ -687,7 +687,7 @@ Possible checks:
 
 ---
 
-# Production Experience Questions
+## Production Experience Questions
 
 Interviewers may ask:
 
@@ -703,7 +703,7 @@ Demonstrating a structured troubleshooting process is generally more valuable th
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Explain request flow from browser to backend.
 - Understand reverse proxy concepts thoroughly.
@@ -714,44 +714,44 @@ Demonstrating a structured troubleshooting process is generally more valuable th
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing Reverse Proxy with Forward Proxy
+#### Confusing Reverse Proxy with Forward Proxy
 
 A reverse proxy represents servers to clients, while a forward proxy represents clients to servers.
 
 ---
 
-### Restarting Instead of Reloading
+#### Restarting Instead of Reloading
 
 Reloading configuration is usually preferred for routine configuration updates because it minimizes disruption.
 
 ---
 
-### Forgetting Configuration Validation
+#### Forgetting Configuration Validation
 
 Always run `nginx -t` before reloading or restarting.
 
 ---
 
-### Exposing Backend Services Directly
+#### Exposing Backend Services Directly
 
 Production applications should typically be placed behind a reverse proxy.
 
 ---
 
-### Ignoring Error Logs
+#### Ignoring Error Logs
 
 The Nginx error log is often the first place to investigate configuration or upstream issues.
 
 ---
 
-# Summary
+## Summary
 
 Nginx interviews focus on architecture, reverse proxying, SSL termination, load balancing, performance optimization, and troubleshooting. Strong candidates understand how Nginx fits into a production stack, explain request flow clearly, and follow systematic debugging practices for real-world issues.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Node.js Interview Preparation**

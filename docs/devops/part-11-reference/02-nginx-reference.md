@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Nginx Reference
 
-## Overview
+### Overview
 
 Nginx is one of the world's most popular web servers and reverse proxies. It is commonly used to:
 
@@ -23,7 +23,7 @@ This chapter is a quick-reference guide covering the most useful Nginx commands,
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -37,7 +37,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Nginx Architecture
+## Nginx Architecture
 
 ```text
 Internet
@@ -59,7 +59,7 @@ Application
 
 ---
 
-# Nginx Directory Structure
+## Nginx Directory Structure
 
 | Location                      | Purpose                      |
 | ----------------------------- | ---------------------------- |
@@ -73,7 +73,7 @@ Application
 
 ---
 
-# Common Nginx Commands
+## Common Nginx Commands
 
 | Command                   | Purpose                     |
 | ------------------------- | --------------------------- |
@@ -103,7 +103,7 @@ sudo systemctl reload nginx
 
 ---
 
-# Basic Server Block
+## Basic Server Block
 
 ```nginx
 server {
@@ -126,7 +126,7 @@ Purpose:
 
 ---
 
-# Reverse Proxy Configuration
+## Reverse Proxy Configuration
 
 ```nginx
 server {
@@ -163,7 +163,7 @@ Used for:
 
 ---
 
-# SSL Configuration
+## SSL Configuration
 
 ```nginx
 server {
@@ -190,7 +190,7 @@ Common SSL directives:
 
 ---
 
-# HTTP to HTTPS Redirect
+## HTTP to HTTPS Redirect
 
 ```nginx
 server {
@@ -208,7 +208,7 @@ This permanently redirects all HTTP traffic to HTTPS.
 
 ---
 
-# Static File Configuration
+## Static File Configuration
 
 ```nginx
 location /images/ {
@@ -237,7 +237,7 @@ Difference:
 
 ---
 
-# Important Directives
+## Important Directives
 
 | Directive     | Purpose              |
 | ------------- | -------------------- |
@@ -254,7 +254,7 @@ Difference:
 
 ---
 
-# Location Matching
+## Location Matching
 
 ```nginx
 location / {
@@ -290,7 +290,7 @@ Regex match.
 
 ---
 
-# Proxy Headers
+## Proxy Headers
 
 ```nginx
 proxy_set_header Host $host;
@@ -306,7 +306,7 @@ These headers preserve client request information when forwarding traffic to bac
 
 ---
 
-# Timeouts
+## Timeouts
 
 | Directive               | Purpose            |
 | ----------------------- | ------------------ |
@@ -323,7 +323,7 @@ proxy_read_timeout 120s;
 
 ---
 
-# Gzip Compression
+## Gzip Compression
 
 ```nginx
 gzip on;
@@ -343,7 +343,7 @@ Benefits:
 
 ---
 
-# Caching
+## Caching
 
 Example:
 
@@ -364,7 +364,7 @@ Used for:
 
 ---
 
-# Logging
+## Logging
 
 Access log:
 
@@ -390,7 +390,7 @@ tail -f /var/log/nginx/error.log
 
 ---
 
-# Load Balancing
+## Load Balancing
 
 Example:
 
@@ -422,7 +422,7 @@ Load balancing methods:
 
 ---
 
-# Security Headers
+## Security Headers
 
 Example:
 
@@ -440,7 +440,7 @@ These headers improve browser-side security.
 
 ---
 
-# File Upload Size
+## File Upload Size
 
 ```nginx
 client_max_body_size 50M;
@@ -457,7 +457,7 @@ Common values:
 
 ---
 
-# Common Error Codes
+## Common Error Codes
 
 | Code | Meaning               |
 | ---- | --------------------- |
@@ -473,7 +473,7 @@ Common values:
 
 ---
 
-# Nginx Configuration Flow
+## Nginx Configuration Flow
 
 ```text
 Client
@@ -505,7 +505,7 @@ Application
 
 ---
 
-# Testing Configuration
+## Testing Configuration
 
 Validate configuration:
 
@@ -529,7 +529,7 @@ Never reload Nginx before validating the configuration.
 
 ---
 
-# Useful File Locations
+## Useful File Locations
 
 | File                      | Purpose              |
 | ------------------------- | -------------------- |
@@ -542,7 +542,7 @@ Never reload Nginx before validating the configuration.
 
 ---
 
-# Daily Administration Commands
+## Daily Administration Commands
 
 ```text
 Configuration
@@ -568,7 +568,7 @@ Ports
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production website returns **502 Bad Gateway**.
 
@@ -620,7 +620,7 @@ The problem was not with Nginx itself but with the upstream application.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always run `nginx -t` before reloading.
 - Prefer `reload` over `restart` for configuration changes.
@@ -634,44 +634,44 @@ The problem was not with Nginx itself but with the upstream application.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting Without Testing
+#### Restarting Without Testing
 
 Reloading an invalid configuration can cause Nginx to fail.
 
 ---
 
-### Forgetting Proxy Headers
+#### Forgetting Proxy Headers
 
 Missing proxy headers may cause incorrect client IPs or broken authentication.
 
 ---
 
-### Using `restart` Instead of `reload`
+#### Using `restart` Instead of `reload`
 
 A restart briefly interrupts active connections, while a reload applies configuration changes with minimal disruption.
 
 ---
 
-### Ignoring Log Files
+#### Ignoring Log Files
 
 Most Nginx issues can be diagnosed quickly by reviewing `error.log`.
 
 ---
 
-### Not Configuring `client_max_body_size`
+#### Not Configuring `client_max_body_size`
 
 Large file uploads may fail with **413 Payload Too Large** if the upload limit is too small.
 
 ---
 
-# Summary
+## Summary
 
 This Nginx Reference chapter serves as a practical handbook for everyday administration. It consolidates the most commonly used commands, directives, configuration examples, and production best practices into a single reference, enabling administrators to configure, maintain, and troubleshoot Nginx efficiently.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - systemctl Reference**

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Memory Monitoring
 
-## Overview
+### Overview
 
 Memory (RAM) is one of the most valuable resources on a Linux server.
 
@@ -24,7 +24,7 @@ Monitoring memory usage helps administrators:
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -39,7 +39,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is RAM?
+## What is RAM?
 
 RAM (Random Access Memory) is temporary storage that holds the data and programs currently being used by the CPU.
 
@@ -64,7 +64,7 @@ Applications
 
 ---
 
-# Why Memory Monitoring Matters
+## Why Memory Monitoring Matters
 
 Consider a production API server.
 
@@ -118,7 +118,7 @@ With monitoring, administrators can resolve issues before they impact production
 
 ---
 
-# How Linux Uses Memory
+## How Linux Uses Memory
 
 Linux tries to use available RAM efficiently.
 
@@ -139,7 +139,7 @@ In Linux, this is often **normal**, because unused memory is automatically used 
 
 ---
 
-# Viewing Memory Usage
+## Viewing Memory Usage
 
 Display memory statistics.
 
@@ -159,7 +159,7 @@ The `-h` option displays values in a human-readable format.
 
 ---
 
-# Understanding free Output
+## Understanding free Output
 
 | Column     | Meaning                               |
 | ---------- | ------------------------------------- |
@@ -174,7 +174,7 @@ The **Available** column is usually the most important value when evaluating mem
 
 ---
 
-# Buffers and Cache
+## Buffers and Cache
 
 Linux improves performance by storing frequently accessed data in RAM.
 
@@ -204,7 +204,7 @@ If applications require more memory, Linux automatically releases cached memory.
 
 ---
 
-# Why High Memory Usage Is Not Always Bad
+## Why High Memory Usage Is Not Always Bad
 
 Example A:
 
@@ -228,7 +228,7 @@ Always evaluate **Available** memory instead of relying only on **Used** memory.
 
 ---
 
-# Swap Memory
+## Swap Memory
 
 Swap is disk space that Linux uses when RAM becomes insufficient.
 
@@ -248,7 +248,7 @@ Because disks are much slower than RAM, heavy swap usage usually reduces perform
 
 ---
 
-# Viewing Swap Usage
+## Viewing Swap Usage
 
 Display swap information.
 
@@ -266,7 +266,7 @@ Regular swap activity may indicate that additional RAM or application optimizati
 
 ---
 
-# Virtual Memory Statistics
+## Virtual Memory Statistics
 
 Linux provides additional statistics through `vmstat`.
 
@@ -284,7 +284,7 @@ This command displays:
 
 ---
 
-# Monitoring Memory by Process
+## Monitoring Memory by Process
 
 Identify applications consuming the most memory.
 
@@ -306,7 +306,7 @@ These tools help identify:
 
 ---
 
-# Memory Leaks
+## Memory Leaks
 
 A memory leak occurs when an application allocates memory but never releases it.
 
@@ -335,7 +335,7 @@ Typical symptoms include:
 
 ---
 
-# Detecting Memory Leaks
+## Detecting Memory Leaks
 
 Example trend:
 
@@ -367,7 +367,7 @@ If workload remains relatively constant but memory continues increasing, a memor
 
 ---
 
-# Out of Memory (OOM) Killer
+## Out of Memory (OOM) Killer
 
 When Linux cannot allocate additional memory, the kernel may terminate one or more processes.
 
@@ -391,7 +391,7 @@ Applications terminated by the OOM Killer usually stop unexpectedly.
 
 ---
 
-# Checking OOM Events
+## Checking OOM Events
 
 View kernel messages.
 
@@ -409,7 +409,7 @@ These logs help confirm whether a process was terminated due to insufficient mem
 
 ---
 
-# Memory Monitoring Workflow
+## Memory Monitoring Workflow
 
 ```text
 Check RAM
@@ -437,7 +437,7 @@ Resolve Issue
 
 ---
 
-# Useful Memory Commands
+## Useful Memory Commands
 
 | Command                | Purpose                     |
 | ---------------------- | --------------------------- |
@@ -452,7 +452,7 @@ Resolve Issue
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production Express.js API begins restarting unexpectedly.
 
@@ -467,7 +467,7 @@ The administrator investigates:
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor available memory rather than only used memory.
 - Watch swap usage regularly.
@@ -479,44 +479,44 @@ The administrator investigates:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming High RAM Usage Is Always Bad
+#### Assuming High RAM Usage Is Always Bad
 
 Linux intentionally uses free RAM for caching to improve performance.
 
 ---
 
-### Ignoring Swap
+#### Ignoring Swap
 
 Heavy swap usage is often an early indicator of memory pressure.
 
 ---
 
-### Restarting Applications Without Investigation
+#### Restarting Applications Without Investigation
 
 Restarting temporarily reduces memory usage but does not solve underlying memory leaks.
 
 ---
 
-### Ignoring OOM Events
+#### Ignoring OOM Events
 
 Repeated OOM kills indicate a serious production issue that requires investigation.
 
 ---
 
-### Looking Only at Current Values
+#### Looking Only at Current Values
 
 Long-term memory trends often reveal problems that single snapshots cannot.
 
 ---
 
-# Summary
+## Summary
 
 Memory monitoring is a core responsibility of Linux server administration. By understanding RAM usage, buffers, cache, swap, memory leaks, and the OOM Killer, administrators can maintain stable production systems and detect resource issues before they impact users. Combining memory metrics with CPU, disk, and application monitoring provides a complete view of system health.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Nginx Logs**

@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # Cron and Scheduling
 
-## Overview
+### Overview
 
 Many system administration tasks need to run automatically at specific times or regular intervals. Examples include database backups, log cleanup, report generation, SSL certificate renewal, and scheduled application maintenance.
 
@@ -16,7 +16,7 @@ Cron is one of the most widely used utilities in Linux and is an essential skill
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Cron?
+## What is Cron?
 
 **Cron** is a time-based job scheduler in Linux.
 
@@ -50,7 +50,7 @@ Instead of remembering to run these commands manually, Cron executes them automa
 
 ---
 
-# How Cron Works
+## How Cron Works
 
 The scheduling process is straightforward.
 
@@ -74,7 +74,7 @@ If a job matches the current date and time, it is executed automatically.
 
 ---
 
-# Cron Daemon
+## Cron Daemon
 
 The Cron service runs as a background daemon.
 
@@ -99,7 +99,7 @@ systemctl status crond
 
 ---
 
-# What is Crontab?
+## What is Crontab?
 
 A **crontab** (Cron table) is a configuration file that contains scheduled jobs.
 
@@ -127,7 +127,7 @@ Be careful with `crontab -r` because it removes all cron jobs for the current us
 
 ---
 
-# Cron Job Format
+## Cron Job Format
 
 Each cron entry consists of five time fields followed by the command.
 
@@ -143,7 +143,7 @@ Each cron entry consists of five time fields followed by the command.
 
 ---
 
-# Cron Time Fields
+## Cron Time Fields
 
 | Field        | Allowed Values                 |
 | ------------ | ------------------------------ |
@@ -155,7 +155,7 @@ Each cron entry consists of five time fields followed by the command.
 
 ---
 
-# Common Cron Expressions
+## Common Cron Expressions
 
 Run every minute:
 
@@ -195,9 +195,9 @@ Run every Sunday at midnight:
 
 ---
 
-# Special Characters
+## Special Characters
 
-## Asterisk (`*`)
+### Asterisk (`*`)
 
 Represents **every value**.
 
@@ -211,7 +211,7 @@ Runs every minute.
 
 ---
 
-## Comma (`,`)
+### Comma (`,`)
 
 Specify multiple values.
 
@@ -228,7 +228,7 @@ Runs at:
 
 ---
 
-## Hyphen (`-`)
+### Hyphen (`-`)
 
 Specify a range.
 
@@ -242,7 +242,7 @@ Runs every hour between 9 AM and 5 PM.
 
 ---
 
-## Slash (`/`)
+### Slash (`/`)
 
 Specify intervals.
 
@@ -264,7 +264,7 @@ Runs every two hours.
 
 ---
 
-# Creating a Cron Job
+## Creating a Cron Job
 
 Open the crontab:
 
@@ -288,7 +288,7 @@ every day at **2:00 AM**.
 
 ---
 
-# Running Shell Scripts
+## Running Shell Scripts
 
 Suppose you have:
 
@@ -306,7 +306,7 @@ The script runs every day at **3:00 AM**.
 
 ---
 
-# Redirecting Output
+## Redirecting Output
 
 Without redirection, Cron emails command output to the user (if mail is configured).
 
@@ -327,7 +327,7 @@ Logging cron output is useful for troubleshooting scheduled jobs.
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 Cron jobs execute in a limited environment.
 
@@ -353,7 +353,7 @@ use:
 
 ---
 
-# System-Wide Cron Jobs
+## System-Wide Cron Jobs
 
 User-specific cron jobs are stored separately from system-wide schedules.
 
@@ -381,7 +381,7 @@ Scripts placed in these directories run according to the configured schedule.
 
 ---
 
-# Viewing Cron Logs
+## Viewing Cron Logs
 
 Depending on the Linux distribution, Cron activity can be viewed using:
 
@@ -409,7 +409,7 @@ grep CRON /var/log/syslog
 
 ---
 
-# Useful Cron Commands
+## Useful Cron Commands
 
 | Command                 | Purpose            |
 | ----------------------- | ------------------ |
@@ -421,7 +421,7 @@ grep CRON /var/log/syslog
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production server hosts a Node.js application.
 
@@ -449,7 +449,7 @@ These automated jobs reduce manual maintenance and improve system reliability.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use absolute paths for commands and scripts.
 - Redirect output to log files for troubleshooting.
@@ -459,9 +459,9 @@ These automated jobs reduce manual maintenance and improve system reliability.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Forgetting Execute Permissions
+#### Forgetting Execute Permissions
 
 A script without execute permission will fail.
 
@@ -473,7 +473,7 @@ chmod +x backup.sh
 
 ---
 
-### Using Relative Paths
+#### Using Relative Paths
 
 Relative paths may not work under Cron.
 
@@ -491,7 +491,7 @@ instead of:
 
 ---
 
-### Assuming Environment Variables Exist
+#### Assuming Environment Variables Exist
 
 Cron runs with a minimal environment.
 
@@ -499,7 +499,7 @@ Always verify required variables or specify them explicitly.
 
 ---
 
-### Ignoring Job Output
+#### Ignoring Job Output
 
 If a scheduled job silently fails, the problem may go unnoticed.
 
@@ -507,7 +507,7 @@ Redirect output to log files and review them regularly.
 
 ---
 
-# Summary
+## Summary
 
 Cron is Linux's built-in scheduling system for automating recurring tasks.
 
@@ -517,6 +517,6 @@ Automation through Cron is a fundamental part of production system administratio
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **11 - Linux Networking Tools**

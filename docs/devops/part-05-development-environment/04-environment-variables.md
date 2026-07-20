@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Environment Variables
 
-## Overview
+### Overview
 
 Applications require configuration values to function correctly. These values may include:
 
@@ -25,7 +25,7 @@ In this chapter, you will learn how environment variables work, how to use `.env
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -39,7 +39,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What are Environment Variables?
+## What are Environment Variables?
 
 Environment variables are **key-value pairs** that are made available to an application while it is running.
 
@@ -65,7 +65,7 @@ Example:
 
 ---
 
-# Why Use Environment Variables?
+## Why Use Environment Variables?
 
 Imagine writing the database password directly inside your application.
 
@@ -90,7 +90,7 @@ Now the application reads the value at runtime instead of storing it permanently
 
 ---
 
-# Development vs Production
+## Development vs Production
 
 Different environments often require different configurations.
 
@@ -114,7 +114,7 @@ The application code remains the same, while the environment variables change.
 
 ---
 
-# The .env File
+## The .env File
 
 During development, environment variables are commonly stored in a file named:
 
@@ -141,7 +141,7 @@ Each line represents a single environment variable.
 
 ---
 
-# Using dotenv
+## Using dotenv
 
 Node.js does not automatically read `.env` files.
 
@@ -171,7 +171,7 @@ After loading `dotenv`, all variables become available through `process.env`.
 
 ---
 
-# Accessing Environment Variables
+## Accessing Environment Variables
 
 Example:
 
@@ -195,7 +195,7 @@ my-secret-key
 
 ---
 
-# Using Environment Variables in Express
+## Using Environment Variables in Express
 
 Example:
 
@@ -217,7 +217,7 @@ If `PORT` is not defined, the application uses the default value.
 
 ---
 
-# Common Environment Variables
+## Common Environment Variables
 
 Most Node.js applications contain variables similar to these.
 
@@ -243,7 +243,7 @@ The exact variables depend on the application's requirements.
 
 ---
 
-# How Node.js Reads Environment Variables
+## How Node.js Reads Environment Variables
 
 ```text
 .env File
@@ -261,7 +261,7 @@ Every configuration value is accessed through `process.env`.
 
 ---
 
-# System Environment Variables
+## System Environment Variables
 
 Environment variables do not always come from a `.env` file.
 
@@ -293,9 +293,9 @@ process.env.PORT;
 
 ---
 
-# Temporary vs Permanent Variables
+## Temporary vs Permanent Variables
 
-## Temporary
+### Temporary
 
 ```bash
 export NODE_ENV=production
@@ -305,7 +305,7 @@ Available only for the current shell session.
 
 ---
 
-## Permanent
+### Permanent
 
 Variables can be added to shell configuration files such as:
 
@@ -321,7 +321,7 @@ or configured through process managers like PM2 or system services.
 
 ---
 
-# Environment Variables with PM2
+## Environment Variables with PM2
 
 PM2 allows environment variables to be defined inside its ecosystem configuration.
 
@@ -346,7 +346,7 @@ PM2 automatically provides these variables to the application when it starts.
 
 ---
 
-# .gitignore
+## .gitignore
 
 The `.env` file often contains sensitive information.
 
@@ -368,7 +368,7 @@ This ensures secrets remain outside version control.
 
 ---
 
-# Production Configuration
+## Production Configuration
 
 A typical production deployment looks like this:
 
@@ -392,7 +392,7 @@ Configuration remains separate from the application source code.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js application connects to MongoDB Atlas.
 
@@ -422,7 +422,7 @@ When moving the application from development to production, only the `.env` file
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Never hardcode secrets in source code.
 - Keep `.env` files out of Git repositories.
@@ -435,44 +435,44 @@ When moving the application from development to production, only the `.env` file
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Committing the .env File
+#### Committing the .env File
 
 A leaked `.env` file can expose database credentials, API keys, and authentication secrets.
 
 ---
 
-### Hardcoding Credentials
+#### Hardcoding Credentials
 
 Configuration should be separated from application logic to improve security and maintainability.
 
 ---
 
-### Using the Same Secrets Everywhere
+#### Using the Same Secrets Everywhere
 
 Development, testing, and production environments should use different credentials and configuration values.
 
 ---
 
-### Forgetting to Load dotenv
+#### Forgetting to Load dotenv
 
 If `dotenv.config()` is not called before accessing `process.env`, variables stored in `.env` will not be available.
 
 ---
 
-### Logging Sensitive Values
+#### Logging Sensitive Values
 
 Avoid printing secrets such as passwords, API keys, or tokens to the console or application logs.
 
 ---
 
-# Summary
+## Summary
 
 Environment variables allow applications to separate configuration from source code, making deployments more secure and flexible. By storing configuration in `.env` files during development and using secure environment management in production, developers can maintain the same codebase across multiple environments while protecting sensitive information.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - PM2**

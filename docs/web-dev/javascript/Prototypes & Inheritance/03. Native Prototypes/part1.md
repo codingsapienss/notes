@@ -30,7 +30,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -43,7 +43,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## The Question
+### The Question
 
 Consider
 
@@ -87,7 +87,7 @@ come from?
 
 ---
 
-## First Important Fact
+### First Important Fact
 
 The following two statements are equivalent.
 
@@ -118,7 +118,7 @@ Although JavaScript engines optimize object literal creation internally, the res
 
 ---
 
-## The Object Constructor
+### The Object Constructor
 
 JavaScript already provides a built-in constructor called
 
@@ -150,7 +150,7 @@ Object.prototype;
 
 ---
 
-## What is `Object.prototype`?
+### What is `Object.prototype`?
 
 `Object.prototype` is the root prototype object for ordinary JavaScript objects.
 
@@ -172,7 +172,7 @@ Object.prototype.propertyIsEnumerable;
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 Object Constructor
@@ -204,7 +204,7 @@ Every normal object ultimately inherits from this object.
 
 ---
 
-## Creating an Empty Object
+### Creating an Empty Object
 
 ```javascript
 const user = {};
@@ -260,7 +260,7 @@ null
 
 ---
 
-## Property Lookup
+### Property Lookup
 
 Suppose
 
@@ -306,7 +306,7 @@ works.
 
 ---
 
-## Verifying the Prototype
+### Verifying the Prototype
 
 Example
 
@@ -350,7 +350,7 @@ Although this works, prefer `Object.getPrototypeOf()` in modern code.
 
 ---
 
-## The Complete Prototype Chain
+### The Complete Prototype Chain
 
 Suppose
 
@@ -398,7 +398,7 @@ null
 
 ---
 
-## Why Does the Chain End?
+### Why Does the Chain End?
 
 If
 
@@ -444,7 +444,7 @@ Property lookup stops here.
 
 ---
 
-## Searching for a Property
+### Searching for a Property
 
 Suppose
 
@@ -516,7 +516,7 @@ undefined
 
 ---
 
-## Why Doesn't Every Object Store These Methods?
+### Why Doesn't Every Object Store These Methods?
 
 Imagine
 
@@ -566,7 +566,7 @@ Huge memory savings.
 
 ---
 
-## Built-in Methods
+### Built-in Methods
 
 Some common methods available because of
 
@@ -584,7 +584,7 @@ Object.prototype;
 
 ---
 
-## Example
+### Example
 
 ```javascript
 const user = {
@@ -618,7 +618,7 @@ Object.prototype
 
 ---
 
-## Another Example
+### Another Example
 
 ```javascript
 const user = {
@@ -646,7 +646,7 @@ Object.prototype;
 
 ---
 
-## Why Do We Say "Everything Inherits From Object"?
+### Why Do We Say "Everything Inherits From Object"?
 
 Most ordinary JavaScript objects eventually have
 
@@ -714,7 +714,7 @@ Object.prototype
 
 ---
 
-## Important Exception
+### Important Exception
 
 Not every value inherits from
 
@@ -736,7 +736,7 @@ Additionally, objects created with `Object.create(null)` deliberately have no pr
 
 ---
 
-## Visual Summary
+### Visual Summary
 
 Ordinary Object
 
@@ -790,9 +790,9 @@ null
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -813,7 +813,7 @@ Object.prototype;
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -833,7 +833,7 @@ Object.prototype;
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking
 
@@ -853,7 +853,7 @@ null
 
 ---
 
-### Mistake 4
+#### Mistake 4
 
 Thinking all JavaScript values inherit from `Object.prototype`.
 
@@ -863,7 +863,7 @@ Wrong.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Prefer `Object.getPrototypeOf()` over `__proto__` for inspecting prototypes.
 - Remember that methods inherited from `Object.prototype` are shared across objects.
@@ -871,9 +871,9 @@ Wrong.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Why does an empty object have `toString()`?
+#### Q1. Why does an empty object have `toString()`?
 
 **Answer**
 
@@ -881,7 +881,7 @@ Because an empty object inherits from `Object.prototype`, where `toString()` is 
 
 ---
 
-### Q2. What is `Object.prototype`?
+#### Q2. What is `Object.prototype`?
 
 **Answer**
 
@@ -889,7 +889,7 @@ It is the root prototype object for ordinary JavaScript objects and contains met
 
 ---
 
-### Q3. What is the prototype of `Object.prototype`?
+#### Q3. What is the prototype of `Object.prototype`?
 
 **Answer**
 
@@ -897,7 +897,7 @@ Its prototype is `null`, which marks the end of the prototype chain.
 
 ---
 
-### Q4. Why is `Object.prototype` important?
+#### Q4. Why is `Object.prototype` important?
 
 **Answer**
 
@@ -905,7 +905,7 @@ It provides common functionality shared by ordinary JavaScript objects while avo
 
 ---
 
-### Q5. Does every JavaScript object inherit directly from `Object.prototype`?
+#### Q5. Does every JavaScript object inherit directly from `Object.prototype`?
 
 **Answer**
 
@@ -913,7 +913,7 @@ No. Arrays inherit from `Array.prototype`, functions inherit from `Function.prot
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `{}` is conceptually equivalent to `new Object()`.
 - Ordinary objects automatically have `Object.prototype` as their prototype.

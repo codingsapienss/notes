@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Azure Basics
 
-## Overview
+### Overview
 
 In the previous chapters, we learned:
 
@@ -28,7 +28,7 @@ This chapter introduces the Azure Portal, account hierarchy, subscriptions, tena
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Microsoft Azure?
+## What is Microsoft Azure?
 
 Microsoft Azure is a cloud computing platform developed by Microsoft.
 
@@ -63,7 +63,7 @@ Instead of purchasing hardware, organizations create cloud resources directly fr
 
 ---
 
-# Azure Around the World
+## Azure Around the World
 
 Azure operates data centers across multiple geographic regions.
 
@@ -87,7 +87,7 @@ Deploying applications closer to users generally reduces network latency and imp
 
 ---
 
-# Accessing Azure
+## Accessing Azure
 
 Azure is managed through several interfaces.
 
@@ -105,7 +105,7 @@ For beginners, the **Azure Portal** is the easiest way to create and manage reso
 
 ---
 
-# Azure Portal
+## Azure Portal
 
 The Azure Portal is Microsoft's web-based management interface.
 
@@ -137,7 +137,7 @@ Most infrastructure can be managed without using the command line.
 
 ---
 
-# Azure Account Hierarchy
+## Azure Account Hierarchy
 
 Azure organizes resources using a hierarchical structure.
 
@@ -161,7 +161,7 @@ Each level serves a different purpose.
 
 ---
 
-# What is a Tenant?
+## What is a Tenant?
 
 A **Tenant** represents an organization's identity within Microsoft Entra ID (formerly Azure Active Directory).
 
@@ -195,7 +195,7 @@ Most organizations have one primary tenant, although larger enterprises may use 
 
 ---
 
-# What is a Subscription?
+## What is a Subscription?
 
 A **Subscription** is a billing and resource management boundary.
 
@@ -222,7 +222,7 @@ Using separate subscriptions helps isolate environments and control costs.
 
 ---
 
-# Why Multiple Subscriptions?
+## Why Multiple Subscriptions?
 
 Organizations often separate workloads.
 
@@ -257,7 +257,7 @@ Benefits:
 
 ---
 
-# What are Azure Resources?
+## What are Azure Resources?
 
 Almost everything created in Azure is called a **Resource**.
 
@@ -289,7 +289,7 @@ We will explore Resource Groups in the next chapter.
 
 ---
 
-# Common Azure Services
+## Common Azure Services
 
 Azure contains hundreds of services.
 
@@ -311,7 +311,7 @@ You do not need to learn every Azure service to become productive.
 
 ---
 
-# Azure Regions
+## Azure Regions
 
 Azure infrastructure is divided into **Regions**.
 
@@ -340,7 +340,7 @@ Factors to consider:
 
 ---
 
-# Availability Zones
+## Availability Zones
 
 Many Azure regions include multiple **Availability Zones**.
 
@@ -362,7 +362,7 @@ Deploying across multiple zones increases application availability.
 
 ---
 
-# Azure Resource Organization
+## Azure Resource Organization
 
 A simplified deployment might look like this:
 
@@ -394,7 +394,7 @@ This hierarchy makes Azure resources easier to manage as projects grow.
 
 ---
 
-# Azure Pricing
+## Azure Pricing
 
 Azure generally follows a **pay-as-you-go** pricing model.
 
@@ -420,7 +420,7 @@ The exact cost depends on the services used and how long they remain active.
 
 ---
 
-# Azure Free Account
+## Azure Free Account
 
 Microsoft offers a free Azure account that typically includes:
 
@@ -433,7 +433,7 @@ The available offers may change over time depending on Microsoft's current progr
 
 ---
 
-# Typical Azure Deployment
+## Typical Azure Deployment
 
 Suppose you want to host a Node.js application.
 
@@ -467,7 +467,7 @@ The difference is that the infrastructure is now hosted inside Azure.
 
 ---
 
-# Azure Management Tools
+## Azure Management Tools
 
 Although the Azure Portal is commonly used, administrators often automate tasks.
 
@@ -484,7 +484,7 @@ As you gain experience, automation becomes increasingly important.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A startup wants to deploy its first production application.
 
@@ -510,7 +510,7 @@ This deployment uses only a small number of Azure services, yet it demonstrates 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use meaningful names for Azure resources.
 - Deploy resources in the region closest to your users.
@@ -522,44 +522,44 @@ This deployment uses only a small number of Azure services, yet it demonstrates 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing Tenants and Subscriptions
+#### Confusing Tenants and Subscriptions
 
 A tenant manages identities, while a subscription manages billing and cloud resources.
 
 ---
 
-### Creating Resources in the Wrong Region
+#### Creating Resources in the Wrong Region
 
 Moving resources between regions can be difficult or require redeployment.
 
 ---
 
-### Leaving Unused Resources Running
+#### Leaving Unused Resources Running
 
 Virtual Machines, Public IPs, and other resources may continue to generate charges while allocated.
 
 ---
 
-### Trying to Learn Every Azure Service
+#### Trying to Learn Every Azure Service
 
 Azure contains hundreds of services. Focus first on the services required for your applications.
 
 ---
 
-### Ignoring Resource Organization
+#### Ignoring Resource Organization
 
 Poor organization makes permissions, billing, and maintenance more difficult as cloud environments grow.
 
 ---
 
-# Summary
+## Summary
 
 Microsoft Azure is a comprehensive cloud platform that enables organizations to build and manage infrastructure without owning physical hardware. Azure organizes resources through a hierarchy consisting of Management Groups, Tenants, Subscriptions, Resource Groups, and Resources. Understanding this structure, along with the Azure Portal, regions, availability zones, and the platform's core services, provides the foundation for deploying and managing cloud infrastructure effectively.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Resource Groups**

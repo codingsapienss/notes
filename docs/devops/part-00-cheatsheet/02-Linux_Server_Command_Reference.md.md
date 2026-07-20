@@ -9,7 +9,7 @@ sidebar_position: 2
 
 ---
 
-# 1. SSH Connection
+## 1. SSH Connection
 
 ```bash
 ssh -i "<key.pem>" username@server-ip
@@ -17,7 +17,7 @@ ssh -i "<key.pem>" username@server-ip
 
 ---
 
-# 2. System Information
+## 2. System Information
 
 ```bash
 hostnamectl
@@ -29,27 +29,27 @@ timedatectl
 
 ---
 
-# 3. Package Management
+## 3. Package Management
 
-## Update Package List
+### Update Package List
 
 ```bash
 sudo apt update
 ```
 
-## Check Available Updates
+### Check Available Updates
 
 ```bash
 apt list --upgradable
 ```
 
-## Upgrade Packages
+### Upgrade Packages
 
 ```bash
 sudo apt upgrade -y
 ```
 
-## Install Packages
+### Install Packages
 
 ```bash
 sudo apt install fail2ban -y
@@ -62,9 +62,9 @@ sudo apt install certbot python3-certbot-nginx -y
 
 ---
 
-# 4. UFW Firewall
+## 4. UFW Firewall
 
-## Check Firewall Status
+### Check Firewall Status
 
 ```bash
 sudo ufw status
@@ -72,7 +72,7 @@ sudo ufw status verbose
 sudo ufw status numbered
 ```
 
-## Allow Services & Ports
+### Allow Services & Ports
 
 ```bash
 sudo ufw allow OpenSSH
@@ -80,13 +80,13 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 ```
 
-## Show Added Rules
+### Show Added Rules
 
 ```bash
 sudo ufw show added
 ```
 
-## Enable Firewall
+### Enable Firewall
 
 ```bash
 sudo ufw enable
@@ -94,9 +94,9 @@ sudo ufw enable
 
 ---
 
-# 5. Swap Memory
+## 5. Swap Memory
 
-## Create Swap File
+### Create Swap File
 
 ```bash
 sudo fallocate -l 2G /swapfile
@@ -105,13 +105,13 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
 
-## Verify Swap
+### Verify Swap
 
 ```bash
 free -h
 ```
 
-## Make Swap Persistent
+### Make Swap Persistent
 
 ```bash
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
@@ -120,15 +120,15 @@ cat /etc/fstab
 
 ---
 
-# 6. Fail2Ban
+## 6. Fail2Ban
 
-## Install
+### Install
 
 ```bash
 sudo apt install fail2ban -y
 ```
 
-## Enable Service
+### Enable Service
 
 ```bash
 sudo systemctl enable fail2ban
@@ -136,14 +136,14 @@ sudo systemctl start fail2ban
 sudo systemctl status fail2ban
 ```
 
-## Check Status
+### Check Status
 
 ```bash
 sudo fail2ban-client status
 sudo fail2ban-client status sshd
 ```
 
-## View Jail Configuration
+### View Jail Configuration
 
 ```bash
 sudo fail2ban-client get sshd maxretry
@@ -153,33 +153,33 @@ sudo fail2ban-client get sshd bantime
 
 ---
 
-# 7. SSH Hardening
+## 7. SSH Hardening
 
-## Check Current SSH Configuration
+### Check Current SSH Configuration
 
 ```bash
 sudo grep -E '^(#)?(PasswordAuthentication|PubkeyAuthentication|PermitRootLogin|ChallengeResponseAuthentication|KbdInteractiveAuthentication|UsePAM)' /etc/ssh/sshd_config
 ```
 
-## Backup SSH Config
+### Backup SSH Config
 
 ```bash
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 ```
 
-## Edit SSH Config
+### Edit SSH Config
 
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
 
-## Validate SSH Config
+### Validate SSH Config
 
 ```bash
 sudo sshd -t
 ```
 
-## Reload SSH
+### Reload SSH
 
 ```bash
 sudo systemctl reload ssh
@@ -187,21 +187,21 @@ sudo systemctl reload ssh
 
 ---
 
-# 8. Git
+## 8. Git
 
-## Install
+### Install
 
 ```bash
 sudo apt install git -y
 ```
 
-## Verify Installation
+### Verify Installation
 
 ```bash
 git --version
 ```
 
-## Repository Commands
+### Repository Commands
 
 ```bash
 git init
@@ -215,7 +215,7 @@ git push origin main
 
 ---
 
-# 9. General Linux Commands
+## 9. General Linux Commands
 
 ```bash
 pwd
@@ -227,16 +227,16 @@ cat .env
 
 ---
 
-# 10. Node.js
+## 10. Node.js
 
-## Install Using NodeSource
+### Install Using NodeSource
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-## Verify Installation
+### Verify Installation
 
 ```bash
 node -v
@@ -245,16 +245,16 @@ npm -v
 
 ---
 
-# 11. NVM
+## 11. NVM
 
-## Install
+### Install
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
 ```
 
-## Verify
+### Verify
 
 ```bash
 nvm --version
@@ -264,15 +264,15 @@ nvm use system
 
 ---
 
-# 12. PM2
+## 12. PM2
 
-## Install
+### Install
 
 ```bash
 sudo npm install -g pm2
 ```
 
-## Start Applications
+### Start Applications
 
 ```bash
 pm2 start app.js
@@ -280,7 +280,7 @@ pm2 start app.js --name uat
 pm2 start api.js -i 4
 ```
 
-## Monitoring
+### Monitoring
 
 ```bash
 pm2 list
@@ -289,14 +289,14 @@ pm2 logs
 pm2 logs uat --lines 20
 ```
 
-## Startup
+### Startup
 
 ```bash
 pm2 startup
 pm2 save
 ```
 
-## Process Management
+### Process Management
 
 ```bash
 pm2 restart all
@@ -306,21 +306,21 @@ pm2 delete all
 
 ---
 
-# 13. Nginx
+## 13. Nginx
 
-## Install
+### Install
 
 ```bash
 sudo apt install nginx -y
 ```
 
-## Verify
+### Verify
 
 ```bash
 nginx -v
 ```
 
-## Service Management
+### Service Management
 
 ```bash
 sudo systemctl enable nginx
@@ -330,7 +330,7 @@ sudo systemctl restart nginx
 sudo systemctl reload nginx
 ```
 
-## Configuration
+### Configuration
 
 ```bash
 sudo nano /etc/nginx/sites-available/uat.makear.co.in
@@ -338,14 +338,14 @@ sudo nginx -t
 sudo nginx -T | grep server_name
 ```
 
-## Site Management
+### Site Management
 
 ```bash
 sudo ln -s /etc/nginx/sites-available/uat.makear.co.in /etc/nginx/sites-enabled/
 sudo rm /etc/nginx/sites-enabled/default
 ```
 
-## View Configuration
+### View Configuration
 
 ```bash
 cat /etc/nginx/sites-available/uat.makear.co.in
@@ -355,16 +355,16 @@ ls -l /etc/nginx/sites-enabled/
 
 ---
 
-# 14. Networking
+## 14. Networking
 
-## Listening Ports
+### Listening Ports
 
 ```bash
 sudo ss -tulpn
 sudo ss -tulpn | grep :80
 ```
 
-## HTTP Testing
+### HTTP Testing
 
 ```bash
 curl http://localhost
@@ -375,13 +375,13 @@ curl -I -H "Host: uat.makear.co.in" http://127.0.0.1
 curl -I -H "Host: www.uat.makear.co.in" http://127.0.0.1
 ```
 
-## Public IP
+### Public IP
 
 ```bash
 curl ifconfig.me
 ```
 
-## DNS
+### DNS
 
 ```bash
 nslookup uat.makear.co.in
@@ -390,22 +390,22 @@ nslookup www.uat.makear.co.in
 
 ---
 
-# 15. SSL / Certbot
+## 15. SSL / Certbot
 
-## Install
+### Install
 
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
 ```
 
-## Generate SSL
+### Generate SSL
 
 ```bash
 sudo certbot --nginx
 sudo certbot --nginx -d uat.makear.co.in -d www.uat.makear.co.in
 ```
 
-## Verify
+### Verify
 
 ```bash
 certbot --version
@@ -414,9 +414,9 @@ sudo systemctl status certbot.timer
 
 ---
 
-# 16. OpenSSL
+## 16. OpenSSL
 
-## Inspect Certificate
+### Inspect Certificate
 
 ```bash
 openssl x509 -in /etc/letsencrypt/live/uat.makear.co.in/fullchain.pem -text -noout | grep "Public-Key"
@@ -424,7 +424,7 @@ openssl x509 -in /etc/letsencrypt/live/uat.makear.co.in/fullchain.pem -text -noo
 
 ---
 
-# 17. File Operations
+## 17. File Operations
 
 ```bash
 ls -lh /home/iciciadmin/uat.makear.co.in.cer
@@ -434,7 +434,7 @@ zip uat.makear.co.in.cer.zip uat.makear.co.in.cer
 
 ---
 
-# 18. Frequently Used Verification Commands
+## 18. Frequently Used Verification Commands
 
 ```bash
 hostnamectl

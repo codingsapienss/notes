@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Linux Security Basics
 
-## Overview
+### Overview
 
 A Linux server connected to the Internet is constantly exposed to potential threats.
 
@@ -37,7 +37,7 @@ This chapter introduces the security mindset required before configuring firewal
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -52,7 +52,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Linux Server Security?
+## What is Linux Server Security?
 
 Linux server security is the process of protecting a server from:
 
@@ -78,7 +78,7 @@ It is about **reducing risk** and **minimizing the impact** of successful attack
 
 ---
 
-# Why Are Linux Servers Targeted?
+## Why Are Linux Servers Targeted?
 
 Linux powers a significant portion of modern infrastructure, including:
 
@@ -103,7 +103,7 @@ Most Internet-facing servers receive automated scans within minutes of becoming 
 
 ---
 
-# Common Security Threats
+## Common Security Threats
 
 Production Linux servers face many different threats.
 
@@ -122,7 +122,7 @@ Understanding these threats helps administrators build appropriate defenses.
 
 ---
 
-# The CIA Triad
+## The CIA Triad
 
 Almost every security decision is based on three core principles known as the **CIA Triad**.
 
@@ -136,7 +136,7 @@ Confidentiality Integrity Availability
 
 ---
 
-## Confidentiality
+### Confidentiality
 
 Confidentiality ensures that only authorized users can access sensitive information.
 
@@ -151,7 +151,7 @@ Without confidentiality, attackers may read confidential data.
 
 ---
 
-## Integrity
+### Integrity
 
 Integrity ensures that data is accurate and cannot be modified without authorization.
 
@@ -166,7 +166,7 @@ If integrity is compromised, users can no longer trust the information stored on
 
 ---
 
-## Availability
+### Availability
 
 Availability ensures that legitimate users can access services whenever required.
 
@@ -182,7 +182,7 @@ A secure system is of little value if it is unavailable when users need it.
 
 ---
 
-# Defense in Depth
+## Defense in Depth
 
 A single security control should never be your only protection.
 
@@ -212,7 +212,7 @@ This layered approach is known as **Defense in Depth**.
 
 ---
 
-# Principle of Least Privilege
+## Principle of Least Privilege
 
 Every user, application, and service should have **only the permissions necessary** to perform its work.
 
@@ -235,7 +235,7 @@ Limiting permissions reduces the damage caused by both mistakes and attacks.
 
 ---
 
-# What is Server Hardening?
+## What is Server Hardening?
 
 Server hardening is the process of reducing the server's attack surface.
 
@@ -254,7 +254,7 @@ A hardened server provides fewer opportunities for attackers.
 
 ---
 
-# Understanding the Attack Surface
+## Understanding the Attack Surface
 
 The **attack surface** includes every component that could potentially be exploited.
 
@@ -283,7 +283,7 @@ Reducing unnecessary components directly improves security.
 
 ---
 
-# Security is a Continuous Process
+## Security is a Continuous Process
 
 Security is not something you configure once and forget.
 
@@ -322,7 +322,7 @@ Security is an ongoing operational responsibility.
 
 ---
 
-# Shared Responsibility in Cloud Platforms
+## Shared Responsibility in Cloud Platforms
 
 Cloud providers secure the underlying infrastructure, but customers remain responsible for their own operating systems and applications.
 
@@ -351,7 +351,7 @@ For example, Azure secures the physical data center, but you are responsible for
 
 ---
 
-# Security Layers in a Typical Production Server
+## Security Layers in a Typical Production Server
 
 A modern production deployment may look like this:
 
@@ -379,11 +379,11 @@ Removing one layer increases overall risk.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy a Node.js application on an Azure Virtual Machine.
 
-### Insecure Deployment
+#### Insecure Deployment
 
 ```text
 Internet
@@ -403,7 +403,7 @@ Problems:
 - Application exposed directly
 - Higher attack surface
 
-### Hardened Deployment
+#### Hardened Deployment
 
 ```text
 Internet
@@ -432,7 +432,7 @@ Improvements:
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Assume every Internet-facing server will be scanned.
 - Minimize the number of open ports.
@@ -445,15 +445,15 @@ Improvements:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Linux Is Automatically Secure
+#### Assuming Linux Is Automatically Secure
 
 Linux provides strong security features, but insecure configurations can still leave a server vulnerable.
 
 ---
 
-### Exposing Unnecessary Services
+#### Exposing Unnecessary Services
 
 Every publicly accessible service increases the attack surface.
 
@@ -461,7 +461,7 @@ Only expose services that users actually need.
 
 ---
 
-### Ignoring Updates
+#### Ignoring Updates
 
 Many attacks target vulnerabilities that already have available security patches.
 
@@ -469,7 +469,7 @@ Delaying updates unnecessarily increases risk.
 
 ---
 
-### Depending on One Security Layer
+#### Depending on One Security Layer
 
 A firewall alone cannot stop every attack.
 
@@ -477,7 +477,7 @@ Production security combines firewalls, authentication, encryption, monitoring, 
 
 ---
 
-# Summary
+## Summary
 
 Linux server security is the practice of protecting servers, applications, and data from unauthorized access and malicious activity. Effective security relies on layered defenses, following principles such as the CIA Triad, Defense in Depth, Least Privilege, and server hardening. Rather than depending on a single security mechanism, production Linux servers combine multiple protective controls to reduce risk and maintain confidentiality, integrity, and availability.
 
@@ -485,6 +485,6 @@ This chapter establishes the foundation for the rest of Part 4, where you will l
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - SSH Security**

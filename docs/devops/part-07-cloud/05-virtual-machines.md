@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Virtual Machines
 
-## Overview
+### Overview
 
 So far in this section, we have learned:
 
@@ -38,7 +38,7 @@ Instead of buying a physical computer, Azure provides a virtual one that you can
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -52,7 +52,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Virtual Machine?
+## What is a Virtual Machine?
 
 A **Virtual Machine (VM)** is a software-based computer that behaves like a physical computer.
 
@@ -68,7 +68,7 @@ The only difference is that it runs on shared physical hardware inside a cloud d
 
 ---
 
-# Physical Server vs Virtual Machine
+## Physical Server vs Virtual Machine
 
 Traditional infrastructure:
 
@@ -101,7 +101,7 @@ Multiple virtual machines share the same physical hardware while remaining isola
 
 ---
 
-# How Virtualization Works
+## How Virtualization Works
 
 A special software layer called a **Hypervisor** manages virtual machines.
 
@@ -123,7 +123,7 @@ Users generally do not interact with the hypervisor directly.
 
 ---
 
-# Why Use Virtual Machines?
+## Why Use Virtual Machines?
 
 Virtual Machines provide several advantages over physical servers.
 
@@ -138,7 +138,7 @@ Virtual Machines provide several advantages over physical servers.
 
 ---
 
-# Components of an Azure VM
+## Components of an Azure VM
 
 Creating a VM involves more than selecting an operating system.
 
@@ -162,7 +162,7 @@ Each component can usually be configured independently.
 
 ---
 
-# Choosing an Operating System
+## Choosing an Operating System
 
 Azure supports multiple operating systems.
 
@@ -184,7 +184,7 @@ For Node.js, Nginx, Docker, and most web applications, **Ubuntu Server** is one 
 
 ---
 
-# Azure VM Images
+## Azure VM Images
 
 When creating a VM, Azure uses an **Image**.
 
@@ -208,7 +208,7 @@ Creating multiple VMs from the same image ensures consistent environments.
 
 ---
 
-# VM Sizes
+## VM Sizes
 
 Azure provides many VM sizes optimized for different workloads.
 
@@ -247,7 +247,7 @@ Selecting the appropriate size balances performance and cost.
 
 ---
 
-# CPU and Memory
+## CPU and Memory
 
 Every VM includes a defined number of virtual CPUs (vCPUs) and RAM.
 
@@ -263,7 +263,7 @@ The available sizes vary by Azure region and VM family.
 
 ---
 
-# Virtual Disks
+## Virtual Disks
 
 Every Azure VM requires storage.
 
@@ -295,7 +295,7 @@ The operating system is installed on the OS disk, while additional data disks ca
 
 ---
 
-# Networking
+## Networking
 
 Every VM is connected to an Azure Virtual Network.
 
@@ -318,7 +318,7 @@ Private communication between Azure resources occurs through private IP addresse
 
 ---
 
-# Connecting to a Linux VM
+## Connecting to a Linux VM
 
 Most Linux VMs are accessed using SSH.
 
@@ -348,7 +348,7 @@ This is the same method used throughout the Linux sections of this handbook.
 
 ---
 
-# Typical Web Server Deployment
+## Typical Web Server Deployment
 
 After connecting to the VM, administrators install:
 
@@ -384,7 +384,7 @@ This closely matches the production environments built earlier in this handbook.
 
 ---
 
-# Resizing a Virtual Machine
+## Resizing a Virtual Machine
 
 One advantage of cloud infrastructure is the ability to resize a VM.
 
@@ -410,7 +410,7 @@ Unlike physical hardware, increasing resources often requires only changing the 
 
 ---
 
-# Starting and Stopping VMs
+## Starting and Stopping VMs
 
 Virtual Machines can be managed as needed.
 
@@ -438,7 +438,7 @@ Stopping a VM can reduce compute costs, although some associated resources (such
 
 ---
 
-# Azure VM Pricing
+## Azure VM Pricing
 
 VM pricing generally depends on:
 
@@ -470,7 +470,7 @@ Selecting a VM larger than necessary increases operating costs.
 
 ---
 
-# Availability
+## Availability
 
 Critical applications should avoid relying on a single VM.
 
@@ -491,7 +491,7 @@ Multiple VMs improve reliability and reduce downtime during failures or maintena
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="vm16"
 Users
@@ -522,7 +522,7 @@ The Virtual Machine provides the compute environment where the application runs.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A company wants to deploy a production Express.js application.
 
@@ -547,7 +547,7 @@ The Azure VM functions as the production server for the application.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Choose the smallest VM that meets current requirements.
 - Use Ubuntu LTS releases for long-term stability.
@@ -560,44 +560,44 @@ The Azure VM functions as the production server for the application.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Choosing an Oversized VM
+#### Choosing an Oversized VM
 
 Allocating more CPU or memory than necessary increases costs without improving application efficiency.
 
 ---
 
-### Using Password Authentication
+#### Using Password Authentication
 
 SSH key authentication is generally more secure than password-based logins.
 
 ---
 
-### Forgetting About Attached Resources
+#### Forgetting About Attached Resources
 
 Deleting or stopping a VM does not automatically remove all associated resources such as disks or public IP addresses.
 
 ---
 
-### Ignoring Monitoring
+#### Ignoring Monitoring
 
 CPU, memory, disk usage, and network activity should be monitored regularly to identify performance issues before they affect users.
 
 ---
 
-### Treating Cloud VMs as Disposable Without Backups
+#### Treating Cloud VMs as Disposable Without Backups
 
 Although VMs can be recreated, application data and configuration should still be backed up appropriately.
 
 ---
 
-# Summary
+## Summary
 
 Azure Virtual Machines provide on-demand computing resources that behave like traditional physical servers while benefiting from the flexibility of cloud infrastructure. By understanding virtualization, VM sizes, operating systems, storage, networking, and pricing, administrators can deploy and manage reliable Linux or Windows servers for a wide range of workloads. The Linux, Nginx, Node.js, and deployment techniques covered earlier in this handbook are directly applicable to Azure Virtual Machines, making them a foundational service for cloud-hosted applications.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Storage**

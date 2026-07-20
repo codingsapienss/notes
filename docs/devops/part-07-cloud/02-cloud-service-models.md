@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Cloud Service Models
 
-## Overview
+### Overview
 
 In the previous chapter, we learned what cloud computing is and why organizations moved from traditional on-premises infrastructure to the cloud.
 
@@ -31,7 +31,7 @@ Understanding these models is essential because nearly every cloud service belon
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Different Service Models?
+## Why Different Service Models?
 
 Imagine you want to open a restaurant.
 
@@ -77,7 +77,7 @@ Cloud computing works in a similar way.
 
 ---
 
-# The Cloud Stack
+## The Cloud Stack
 
 Every application depends on several layers.
 
@@ -101,7 +101,7 @@ Depending on the cloud service model, different layers are managed by either the
 
 ---
 
-# Infrastructure as a Service (IaaS)
+## Infrastructure as a Service (IaaS)
 
 Infrastructure as a Service provides virtual infrastructure.
 
@@ -145,7 +145,7 @@ Examples:
 
 ---
 
-# Advantages of IaaS
+## Advantages of IaaS
 
 - Maximum flexibility
 - Full server control
@@ -155,7 +155,7 @@ Examples:
 
 ---
 
-# Disadvantages of IaaS
+## Disadvantages of IaaS
 
 - Customer manages updates
 - Customer secures the operating system
@@ -164,7 +164,7 @@ Examples:
 
 ---
 
-# Real Example of IaaS
+## Real Example of IaaS
 
 Everything learned in the previous parts of this handbook fits into the IaaS model.
 
@@ -186,7 +186,7 @@ You are responsible for configuring and maintaining every software component.
 
 ---
 
-# Platform as a Service (PaaS)
+## Platform as a Service (PaaS)
 
 Platform as a Service removes much of the infrastructure management.
 
@@ -230,7 +230,7 @@ Examples:
 
 ---
 
-# Advantages of PaaS
+## Advantages of PaaS
 
 - Faster deployments
 - No server maintenance
@@ -240,7 +240,7 @@ Examples:
 
 ---
 
-# Disadvantages of PaaS
+## Disadvantages of PaaS
 
 - Less control
 - Platform restrictions
@@ -249,7 +249,7 @@ Examples:
 
 ---
 
-# Real Example of PaaS
+## Real Example of PaaS
 
 Instead of creating an Ubuntu VM and installing Node.js manually:
 
@@ -269,7 +269,7 @@ The platform handles the underlying infrastructure.
 
 ---
 
-# Software as a Service (SaaS)
+## Software as a Service (SaaS)
 
 Software as a Service provides complete applications over the internet.
 
@@ -308,7 +308,7 @@ No server management is required from the user.
 
 ---
 
-# Advantages of SaaS
+## Advantages of SaaS
 
 - No installation
 - Automatic updates
@@ -318,7 +318,7 @@ No server management is required from the user.
 
 ---
 
-# Disadvantages of SaaS
+## Disadvantages of SaaS
 
 - Limited customization
 - Subscription costs
@@ -327,7 +327,7 @@ No server management is required from the user.
 
 ---
 
-# Function as a Service (FaaS)
+## Function as a Service (FaaS)
 
 Function as a Service allows developers to deploy individual functions rather than complete applications.
 
@@ -363,7 +363,7 @@ Examples:
 
 ---
 
-# Advantages of FaaS
+## Advantages of FaaS
 
 - No server management
 - Pay only when functions execute
@@ -372,7 +372,7 @@ Examples:
 
 ---
 
-# Disadvantages of FaaS
+## Disadvantages of FaaS
 
 - Execution time limits
 - Cold starts
@@ -381,7 +381,7 @@ Examples:
 
 ---
 
-# Shared Responsibility Model
+## Shared Responsibility Model
 
 One of the most important concepts in cloud computing is the **Shared Responsibility Model**.
 
@@ -407,7 +407,7 @@ As you move from IaaS to SaaS, more responsibility shifts to the provider.
 
 ---
 
-# Responsibility Comparison
+## Responsibility Comparison
 
 | Component         | IaaS     | PaaS     | SaaS       |
 | ----------------- | -------- | -------- | ---------- |
@@ -424,7 +424,7 @@ As you move from IaaS to SaaS, more responsibility shifts to the provider.
 
 ---
 
-# Comparing All Service Models
+## Comparing All Service Models
 
 | Feature                | IaaS   | PaaS   | SaaS    | FaaS      |
 | ---------------------- | ------ | ------ | ------- | --------- |
@@ -436,7 +436,7 @@ As you move from IaaS to SaaS, more responsibility shifts to the provider.
 
 ---
 
-# Which Model Should You Choose?
+## Which Model Should You Choose?
 
 Choose **IaaS** if:
 
@@ -460,11 +460,11 @@ Choose **FaaS** if:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you are building an online shopping platform.
 
-### IaaS
+#### IaaS
 
 ```text id="vjlwm3"
 Azure VM
@@ -490,7 +490,7 @@ You manage everything.
 
 ---
 
-### PaaS
+#### PaaS
 
 ```text id="jlwm4"
 Azure App Service
@@ -508,7 +508,7 @@ Azure manages the infrastructure.
 
 ---
 
-### SaaS
+#### SaaS
 
 Instead of building your own email system:
 
@@ -524,7 +524,7 @@ The provider delivers the complete application.
 
 ---
 
-### FaaS
+#### FaaS
 
 When a customer uploads an image:
 
@@ -548,7 +548,7 @@ The function runs only for the duration of the task.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Choose the simplest service model that satisfies your requirements.
 - Understand which responsibilities remain with your organization.
@@ -558,44 +558,44 @@ The function runs only for the duration of the task.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Choosing IaaS for Every Project
+#### Choosing IaaS for Every Project
 
 Not every application requires full server control. Managed platforms may reduce operational effort.
 
 ---
 
-### Assuming the Cloud Provider Handles Security Completely
+#### Assuming the Cloud Provider Handles Security Completely
 
 Even in managed services, customers remain responsible for identity management, access control, application security, and data protection.
 
 ---
 
-### Ignoring Vendor Lock-In
+#### Ignoring Vendor Lock-In
 
 Some PaaS and FaaS services rely on provider-specific features that can make migration more difficult.
 
 ---
 
-### Using FaaS for Long-Running Applications
+#### Using FaaS for Long-Running Applications
 
 Serverless functions are designed for short-lived, event-driven workloads rather than continuously running applications.
 
 ---
 
-### Selecting a Model Based Only on Cost
+#### Selecting a Model Based Only on Cost
 
 Operational complexity, maintenance, scalability, and developer productivity should also influence the decision.
 
 ---
 
-# Summary
+## Summary
 
 Cloud providers offer multiple service models to meet different infrastructure and application needs. Infrastructure as a Service (IaaS) provides the greatest flexibility and control, while Platform as a Service (PaaS) simplifies application deployment by managing the underlying infrastructure. Software as a Service (SaaS) delivers complete applications ready for use, and Function as a Service (FaaS) enables event-driven execution without server management. Understanding these models and the Shared Responsibility Model helps organizations choose the most appropriate cloud architecture for their workloads.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Azure Basics**

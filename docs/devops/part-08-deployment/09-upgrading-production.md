@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Upgrading Production
 
-## Overview
+### Overview
 
 Deploying an application for the first time is only the beginning of a production system's lifecycle.
 
@@ -36,7 +36,7 @@ This chapter explains how to safely upgrade production systems while minimizing 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -51,7 +51,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Production Upgrade?
+## What is a Production Upgrade?
 
 A production upgrade is the process of replacing an existing production component with a newer version.
 
@@ -69,7 +69,7 @@ Unlike a fresh deployment, production upgrades affect an already running applica
 
 ---
 
-# Production Upgrade Architecture
+## Production Upgrade Architecture
 
 ```text id="up01"
 Current Production
@@ -91,7 +91,7 @@ The goal is to improve the system without disrupting users.
 
 ---
 
-# Types of Production Upgrades
+## Types of Production Upgrades
 
 | Upgrade Type     | Example                                    |
 | ---------------- | ------------------------------------------ |
@@ -108,7 +108,7 @@ Each upgrade should be evaluated independently before being applied.
 
 ---
 
-# Planning an Upgrade
+## Planning an Upgrade
 
 Never begin by immediately changing the production server.
 
@@ -138,7 +138,7 @@ Planning reduces the likelihood of unexpected failures.
 
 ---
 
-# Maintenance Window
+## Maintenance Window
 
 Some upgrades may require a scheduled maintenance window.
 
@@ -168,7 +168,7 @@ Maintenance windows reduce the impact on users by scheduling work during periods
 
 ---
 
-# Before Starting
+## Before Starting
 
 Verify the following:
 
@@ -185,7 +185,7 @@ Never begin an upgrade without preparation.
 
 ---
 
-# Updating Application Code
+## Updating Application Code
 
 Fetch the latest code.
 
@@ -215,7 +215,7 @@ This sequence updates the application while minimizing service interruption.
 
 ---
 
-# Upgrading npm Packages
+## Upgrading npm Packages
 
 Check for outdated packages.
 
@@ -233,7 +233,7 @@ For major dependency upgrades, test thoroughly in a staging environment before d
 
 ---
 
-# Upgrading Node.js
+## Upgrading Node.js
 
 Check the installed version.
 
@@ -261,7 +261,7 @@ Always validate that the application behaves correctly after the runtime changes
 
 ---
 
-# Updating Ubuntu Packages
+## Updating Ubuntu Packages
 
 Refresh package information.
 
@@ -285,7 +285,7 @@ Review the list of packages before confirming upgrades on production servers.
 
 ---
 
-# Upgrading Nginx
+## Upgrading Nginx
 
 Update package information.
 
@@ -315,7 +315,7 @@ Configuration validation should always precede reloading.
 
 ---
 
-# Updating PM2
+## Updating PM2
 
 Install the latest PM2 version globally.
 
@@ -333,7 +333,7 @@ Verify applications remain online after the update.
 
 ---
 
-# Environment Variable Changes
+## Environment Variable Changes
 
 If `.env` values change:
 
@@ -353,7 +353,7 @@ Changes to environment variables generally require the application to be reloade
 
 ---
 
-# Database Migrations
+## Database Migrations
 
 Some releases include database schema changes.
 
@@ -379,7 +379,7 @@ Database migrations should be tested carefully because they may be difficult to 
 
 ---
 
-# Upgrade Verification
+## Upgrade Verification
 
 After every upgrade, verify:
 
@@ -397,7 +397,7 @@ Verification is a mandatory part of the upgrade process.
 
 ---
 
-# Monitoring After Upgrade
+## Monitoring After Upgrade
 
 Continue monitoring after deployment.
 
@@ -425,7 +425,7 @@ Some issues appear only after users begin interacting with the updated applicati
 
 ---
 
-# Upgrade Workflow
+## Upgrade Workflow
 
 ```text id="up08"
 Backup
@@ -459,7 +459,7 @@ This workflow provides a structured and repeatable deployment process.
 
 ---
 
-# Complete Production Architecture
+## Complete Production Architecture
 
 ```text id="up09"
 Users
@@ -484,7 +484,7 @@ Every layer should be validated after an upgrade.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an online shopping platform releases version **2.5** of its backend.
 
@@ -504,7 +504,7 @@ Because the upgrade was planned and verified, users continue using the platform 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Upgrade during periods of low user activity whenever possible.
 - Create backups before every production upgrade.
@@ -517,44 +517,44 @@ Because the upgrade was planned and verified, users continue using the platform 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Upgrading Directly in Production
+#### Upgrading Directly in Production
 
 Deploying untested changes directly to production increases the risk of outages and unexpected behavior.
 
 ---
 
-### Skipping Backups
+#### Skipping Backups
 
 Without backups, recovering from a failed upgrade may be slow or impossible.
 
 ---
 
-### Upgrading Everything Simultaneously
+#### Upgrading Everything Simultaneously
 
 Updating the operating system, runtime, dependencies, and application in a single deployment makes troubleshooting significantly more difficult.
 
 ---
 
-### Ignoring Compatibility
+#### Ignoring Compatibility
 
 A newer Node.js version or dependency may introduce breaking changes that affect the application.
 
 ---
 
-### Leaving Immediately After Deployment
+#### Leaving Immediately After Deployment
 
 Production upgrades should be monitored for a period after completion to detect issues that appear under real user traffic.
 
 ---
 
-# Summary
+## Summary
 
 Production upgrades are a routine but critical aspect of operating reliable software systems. Whether upgrading application code, Node.js, Ubuntu, Nginx, PM2, or project dependencies, every change should follow a structured process: plan, back up, test, deploy, verify, and monitor. By upgrading components carefully and validating the entire application after each change, administrators can reduce risk while keeping production services stable and available.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **10 - Backup and Rollback**

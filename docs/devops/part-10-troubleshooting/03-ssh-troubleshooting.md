@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # SSH Troubleshooting
 
-## Overview
+### Overview
 
 Secure Shell (SSH) is the primary method used by Linux administrators to remotely access servers. If SSH becomes unavailable, administrators may lose the ability to manage production systems remotely.
 
@@ -25,7 +25,7 @@ Because SSH is often the only remote management interface, administrators must t
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# SSH Connection Flow
+## SSH Connection Flow
 
 Understanding the SSH connection process helps identify where failures occur.
 
@@ -76,7 +76,7 @@ A failure at any stage prevents successful login.
 
 ---
 
-# SSH Troubleshooting Workflow
+## SSH Troubleshooting Workflow
 
 Follow a consistent workflow.
 
@@ -120,7 +120,7 @@ Avoid making configuration changes before determining where the failure occurs.
 
 ---
 
-# Step 1 – Verify Network Connectivity
+## Step 1 – Verify Network Connectivity
 
 Before troubleshooting SSH itself, confirm that the server is reachable.
 
@@ -141,7 +141,7 @@ SSH cannot work if the server is unreachable.
 
 ---
 
-# Step 2 – Verify SSH Port
+## Step 2 – Verify SSH Port
 
 SSH normally listens on port **22**, although some environments use custom ports.
 
@@ -165,7 +165,7 @@ If the port is closed:
 
 ---
 
-# Step 3 – Verify SSH Service
+## Step 3 – Verify SSH Service
 
 Check whether the SSH daemon is running.
 
@@ -195,7 +195,7 @@ sudo systemctl enable ssh
 
 ---
 
-# Step 4 – Verify Listening Port
+## Step 4 – Verify Listening Port
 
 Confirm that SSH is listening.
 
@@ -215,7 +215,7 @@ If no listening port appears, review the SSH configuration.
 
 ---
 
-# Step 5 – Verify SSH Configuration
+## Step 5 – Verify SSH Configuration
 
 The primary SSH configuration file is:
 
@@ -249,7 +249,7 @@ sudo sshd -t
 
 ---
 
-# Step 6 – Troubleshoot Authentication
+## Step 6 – Troubleshoot Authentication
 
 Common authentication failures include:
 
@@ -271,7 +271,7 @@ Authentication failures are among the most common SSH issues.
 
 ---
 
-# Password Authentication Problems
+## Password Authentication Problems
 
 If password authentication is enabled:
 
@@ -302,7 +302,7 @@ Authentication
 
 ---
 
-# SSH Key Authentication
+## SSH Key Authentication
 
 SSH keys are preferred for production environments.
 
@@ -336,7 +336,7 @@ If login fails:
 
 ---
 
-# Verify File Permissions
+## Verify File Permissions
 
 SSH enforces strict permissions.
 
@@ -354,7 +354,7 @@ Incorrect permissions may cause SSH to reject valid keys.
 
 ---
 
-# Verify User Permissions
+## Verify User Permissions
 
 Ensure the user account exists.
 
@@ -372,7 +372,7 @@ A missing home directory or incorrect ownership can prevent login.
 
 ---
 
-# Review SSH Logs
+## Review SSH Logs
 
 SSH logs provide valuable diagnostic information.
 
@@ -400,7 +400,7 @@ Always review logs before changing configuration.
 
 ---
 
-# Debugging SSH Client
+## Debugging SSH Client
 
 Increase client-side logging.
 
@@ -428,7 +428,7 @@ Verbose mode shows every stage of the SSH connection process.
 
 ---
 
-# Firewall Troubleshooting
+## Firewall Troubleshooting
 
 Verify that the firewall allows SSH.
 
@@ -454,7 +454,7 @@ Cloud firewalls or security groups should also be verified.
 
 ---
 
-# Custom SSH Port
+## Custom SSH Port
 
 Many production servers use a non-default SSH port.
 
@@ -478,7 +478,7 @@ Ensure both the SSH daemon configuration and firewall allow the custom port.
 
 ---
 
-# SSH Troubleshooting Decision Tree
+## SSH Troubleshooting Decision Tree
 
 ```text id="ssh13"
 Cannot Connect
@@ -528,7 +528,7 @@ Following this sequence prevents unnecessary troubleshooting steps.
 
 ---
 
-# Common SSH Errors
+## Common SSH Errors
 
 | Error                        | Possible Cause                   |
 | ---------------------------- | -------------------------------- |
@@ -541,7 +541,7 @@ Following this sequence prevents unnecessary troubleshooting steps.
 
 ---
 
-# Useful SSH Commands
+## Useful SSH Commands
 
 | Command                     | Purpose                      |
 | --------------------------- | ---------------------------- |
@@ -558,7 +558,7 @@ Following this sequence prevents unnecessary troubleshooting steps.
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text id="ssh14"
 Cannot Login
@@ -604,7 +604,7 @@ This workflow minimizes the risk of overlooking a common cause.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A developer reports that they can no longer connect to a production server using SSH.
 
@@ -657,7 +657,7 @@ The issue was caused by file permissions rather than an SSH service failure.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Prefer SSH keys over passwords.
 - Validate SSH configuration before restarting the service.
@@ -670,44 +670,44 @@ The issue was caused by file permissions rather than an SSH service failure.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting SSH Without Validating Configuration
+#### Restarting SSH Without Validating Configuration
 
 An invalid configuration may prevent the SSH service from starting, potentially locking administrators out of the server.
 
 ---
 
-### Incorrect File Permissions
+#### Incorrect File Permissions
 
 SSH requires strict permissions for the `.ssh` directory and `authorized_keys` file.
 
 ---
 
-### Forgetting Firewall Rules
+#### Forgetting Firewall Rules
 
 The SSH service may be running correctly while the firewall blocks access.
 
 ---
 
-### Closing the Only Active SSH Session
+#### Closing the Only Active SSH Session
 
 Always keep an existing session open while modifying SSH settings to avoid losing remote access.
 
 ---
 
-### Assuming Authentication Is the Problem
+#### Assuming Authentication Is the Problem
 
 Many SSH failures are caused by networking, firewall, or service issues rather than invalid credentials.
 
 ---
 
-# Summary
+## Summary
 
 SSH troubleshooting involves systematically verifying connectivity, port availability, SSH service status, configuration, authentication, file permissions, and logs. By following a structured workflow and using tools such as `systemctl`, `ss`, `journalctl`, and verbose SSH client output, administrators can efficiently diagnose and resolve remote access issues while minimizing the risk of server lockout.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Nginx Troubleshooting**

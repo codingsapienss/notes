@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Zero Downtime Deployment
 
-## Overview
+### Overview
 
 In the previous chapter, we learned how PM2 manages Node.js applications in production.
 
@@ -42,7 +42,7 @@ To solve this problem, production environments use **Zero Downtime Deployment**.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -56,7 +56,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Downtime?
+## What is Downtime?
 
 Downtime is any period during which users cannot access the application.
 
@@ -78,7 +78,7 @@ Even a short interruption can impact user experience.
 
 ---
 
-# Traditional Deployment
+## Traditional Deployment
 
 A simple deployment often looks like this:
 
@@ -122,7 +122,7 @@ The **Stopped** phase causes downtime.
 
 ---
 
-# Why Downtime Happens
+## Why Downtime Happens
 
 Suppose the application runs as a single process.
 
@@ -152,7 +152,7 @@ Since no process is available during the restart, incoming requests cannot be ha
 
 ---
 
-# What is Zero Downtime Deployment?
+## What is Zero Downtime Deployment?
 
 Zero Downtime Deployment updates an application while continuing to serve user requests.
 
@@ -178,7 +178,7 @@ Users continue accessing the application throughout the deployment.
 
 ---
 
-# PM2 Reload
+## PM2 Reload
 
 PM2 provides the `reload` command.
 
@@ -196,7 +196,7 @@ Unlike `restart`, `reload` attempts to replace processes gradually, reducing ser
 
 ---
 
-# Restart vs Reload
+## Restart vs Reload
 
 | Command       | Behaviour                                           |
 | ------------- | --------------------------------------------------- |
@@ -207,7 +207,7 @@ For production deployments using multiple instances, `reload` is generally prefe
 
 ---
 
-# Why Cluster Mode Matters
+## Why Cluster Mode Matters
 
 Zero downtime requires more than one running application instance.
 
@@ -245,7 +245,7 @@ While one instance is restarting, the remaining instances continue serving reque
 
 ---
 
-# How Reload Works
+## How Reload Works
 
 Simplified workflow:
 
@@ -271,7 +271,7 @@ Users continue receiving responses during the deployment.
 
 ---
 
-# Deployment Workflow
+## Deployment Workflow
 
 Typical production deployment:
 
@@ -303,7 +303,7 @@ Each step should complete successfully before moving to the next.
 
 ---
 
-# Graceful Shutdown
+## Graceful Shutdown
 
 A production application should shut down gracefully.
 
@@ -335,7 +335,7 @@ This reduces the likelihood of interrupted requests or incomplete operations.
 
 ---
 
-# Health Checks
+## Health Checks
 
 After deployment, verify that the application is healthy.
 
@@ -367,7 +367,7 @@ Typical health checks include:
 
 ---
 
-# Handling Failures
+## Handling Failures
 
 If deployment verification fails:
 
@@ -391,7 +391,7 @@ A rollback plan should exist before every production deployment.
 
 ---
 
-# Production Deployment Flow
+## Production Deployment Flow
 
 ```text id="zero16"
 Developer
@@ -433,7 +433,7 @@ This minimizes service interruption while deploying new code.
 
 ---
 
-# Zero Downtime Architecture
+## Zero Downtime Architecture
 
 ```text id="zero17"
 Users
@@ -456,7 +456,7 @@ PM2 distributes application processes, allowing updates to occur without stoppin
 
 ---
 
-# Deployment Verification Checklist
+## Deployment Verification Checklist
 
 After deployment, verify:
 
@@ -474,7 +474,7 @@ Deployment is not complete until these checks pass.
 
 ---
 
-# When Zero Downtime Is Not Possible
+## When Zero Downtime Is Not Possible
 
 Some deployments may still require brief maintenance windows.
 
@@ -490,7 +490,7 @@ Even in these cases, careful planning can minimize disruption.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an e-commerce website receives thousands of visitors every hour.
 
@@ -516,7 +516,7 @@ Customers continue shopping without noticing the deployment.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use PM2 cluster mode for production deployments.
 - Prefer `pm2 reload` over `pm2 restart` when appropriate.
@@ -528,44 +528,44 @@ Customers continue shopping without noticing the deployment.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using `pm2 restart` for Every Deployment
+#### Using `pm2 restart` for Every Deployment
 
 Restarting all application processes at once can temporarily interrupt user requests.
 
 ---
 
-### Running Only One Application Instance
+#### Running Only One Application Instance
 
 A single instance cannot provide zero-downtime reloads because there is no second instance available to handle requests during replacement.
 
 ---
 
-### Skipping Health Checks
+#### Skipping Health Checks
 
 Completing a deployment without verifying application health may allow production issues to remain undetected.
 
 ---
 
-### Deploying Without a Rollback Plan
+#### Deploying Without a Rollback Plan
 
 If a deployment introduces critical issues, recovery becomes slower and more difficult without a prepared rollback strategy.
 
 ---
 
-### Ignoring Application Logs
+#### Ignoring Application Logs
 
 Startup warnings and runtime errors often appear in logs immediately after deployment and should be reviewed before considering the deployment complete.
 
 ---
 
-# Summary
+## Summary
 
 Zero Downtime Deployment is a deployment strategy that minimizes or eliminates service interruption while releasing new application versions. By using PM2 cluster mode and the `reload` command, new application instances can replace existing ones gradually while continuing to serve user requests. Combined with graceful shutdowns, health checks, and rollback planning, this approach provides a reliable deployment process suitable for production environments with continuous user traffic.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Upgrading Production**

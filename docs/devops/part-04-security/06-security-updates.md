@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Security Updates
 
-## Overview
+### Overview
 
 One of the simplest yet most effective ways to secure a Linux server is to **keep it updated**.
 
@@ -20,7 +20,7 @@ This chapter explains how Linux security updates work, how to install them safel
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -33,7 +33,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Security Updates Matter
+## Why Security Updates Matter
 
 Every software package contains code.
 
@@ -69,7 +69,7 @@ Installing updates promptly significantly reduces risk.
 
 ---
 
-# Types of Updates
+## Types of Updates
 
 Not every update has the same purpose.
 
@@ -85,7 +85,7 @@ Production environments generally prioritize **security updates**.
 
 ---
 
-# Updating Package Information
+## Updating Package Information
 
 Before installing updates, refresh the package index.
 
@@ -99,7 +99,7 @@ It **does not** install any updates.
 
 ---
 
-# Upgrading Installed Packages
+## Upgrading Installed Packages
 
 Install available updates:
 
@@ -127,7 +127,7 @@ sudo apt clean
 
 ---
 
-# Typical Update Workflow
+## Typical Update Workflow
 
 A common update process is:
 
@@ -156,7 +156,7 @@ Reboot Server
 
 ---
 
-# Checking Available Updates
+## Checking Available Updates
 
 View packages that can be upgraded:
 
@@ -177,7 +177,7 @@ Review updates before installing them on production servers.
 
 ---
 
-# Kernel Updates
+## Kernel Updates
 
 The Linux kernel controls:
 
@@ -205,7 +205,7 @@ Most kernel updates require a reboot before they become active.
 
 ---
 
-# Checking the Running Kernel
+## Checking the Running Kernel
 
 Display the current kernel version:
 
@@ -223,7 +223,7 @@ This is useful when verifying whether a reboot is required after a kernel update
 
 ---
 
-# Automatic Security Updates
+## Automatic Security Updates
 
 Ubuntu provides **Unattended Upgrades**, which can automatically install security patches.
 
@@ -245,7 +245,7 @@ Large production environments often use staged update processes instead.
 
 ---
 
-# Updating a Production Server Safely
+## Updating a Production Server Safely
 
 Avoid updating a production server blindly.
 
@@ -269,7 +269,7 @@ Testing first reduces the risk of unexpected downtime.
 
 ---
 
-# Restarting Services
+## Restarting Services
 
 Some updates affect running services.
 
@@ -291,7 +291,7 @@ Restart only the services that require it whenever possible.
 
 ---
 
-# When Should You Reboot?
+## When Should You Reboot?
 
 A reboot is commonly required after:
 
@@ -309,7 +309,7 @@ Always schedule production reboots during maintenance windows whenever possible.
 
 ---
 
-# Risks of Delaying Updates
+## Risks of Delaying Updates
 
 Running outdated software can expose your server to:
 
@@ -323,7 +323,7 @@ Attackers often automate scans for systems running vulnerable software versions.
 
 ---
 
-# Production Example
+## Production Example
 
 Suppose your Node.js application is deployed on an Ubuntu Azure VM.
 
@@ -356,7 +356,7 @@ This minimizes downtime while maintaining security.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Install security updates regularly.
 - Keep package repositories up to date.
@@ -368,15 +368,15 @@ This minimizes downtime while maintaining security.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Ignoring Security Updates
+#### Ignoring Security Updates
 
 Leaving known vulnerabilities unpatched increases the likelihood of compromise.
 
 ---
 
-### Updating Production Without Testing
+#### Updating Production Without Testing
 
 Major updates may introduce compatibility issues.
 
@@ -384,7 +384,7 @@ Test critical updates before deploying them to production.
 
 ---
 
-### Forgetting to Reboot After Kernel Updates
+#### Forgetting to Reboot After Kernel Updates
 
 Installing a new kernel is not enough.
 
@@ -392,18 +392,18 @@ The server must reboot to begin using the updated kernel.
 
 ---
 
-### Updating Without Backups
+#### Updating Without Backups
 
 Always ensure recent backups are available before performing major system updates.
 
 ---
 
-# Summary
+## Summary
 
 Keeping a Linux server updated is one of the most effective ways to maintain its security. Regularly installing security patches protects the system against known vulnerabilities, while kernel updates strengthen the operating system itself. Production servers should follow a structured update process that includes testing, controlled deployment, service verification, and scheduled reboots when necessary. A disciplined update strategy greatly reduces the risk of successful attacks.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Secrets and Environment Variables**

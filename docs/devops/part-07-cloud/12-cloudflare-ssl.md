@@ -6,7 +6,7 @@ sidebar_position: 12
 
 # Cloudflare SSL/TLS
 
-## Overview
+### Overview
 
 In the previous chapter, we learned that Cloudflare acts as a reverse proxy between users and the origin server.
 
@@ -49,7 +49,7 @@ Understanding these modes is essential for deploying secure production applicati
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -63,7 +63,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is SSL/TLS?
+## What is SSL/TLS?
 
 **SSL (Secure Sockets Layer)** and **TLS (Transport Layer Security)** are protocols used to encrypt communication between systems.
 
@@ -79,7 +79,7 @@ Encryption protects data such as:
 
 ---
 
-# HTTP vs HTTPS
+## HTTP vs HTTPS
 
 Without encryption:
 
@@ -119,7 +119,7 @@ Even if traffic is intercepted, the encrypted content cannot be easily read.
 
 ---
 
-# TLS Communication
+## TLS Communication
 
 When using Cloudflare, there are two separate network connections.
 
@@ -147,7 +147,7 @@ Cloudflare independently manages each connection.
 
 ---
 
-# Why Two Connections?
+## Why Two Connections?
 
 Cloudflare sits between users and the origin server.
 
@@ -174,7 +174,7 @@ These two connections may use different SSL/TLS configurations.
 
 ---
 
-# SSL/TLS Modes
+## SSL/TLS Modes
 
 Cloudflare supports several encryption modes.
 
@@ -189,7 +189,7 @@ Choosing the appropriate mode is critical for security.
 
 ---
 
-# Off Mode
+## Off Mode
 
 Architecture:
 
@@ -221,7 +221,7 @@ Characteristics:
 
 ---
 
-# Flexible Mode
+## Flexible Mode
 
 Architecture:
 
@@ -257,7 +257,7 @@ Disadvantages:
 
 ---
 
-# Full Mode
+## Full Mode
 
 Architecture:
 
@@ -291,7 +291,7 @@ This mode provides encryption but not full certificate validation.
 
 ---
 
-# Full (Strict) Mode
+## Full (Strict) Mode
 
 Architecture:
 
@@ -329,7 +329,7 @@ This is the recommended configuration for production deployments.
 
 ---
 
-# Comparing SSL Modes
+## Comparing SSL Modes
 
 | Feature                   | Flexible | Full | Full (Strict) |
 | ------------------------- | -------- | ---- | ------------- |
@@ -340,7 +340,7 @@ This is the recommended configuration for production deployments.
 
 ---
 
-# What is an SSL Certificate?
+## What is an SSL Certificate?
 
 An SSL/TLS certificate proves the identity of a server.
 
@@ -362,7 +362,7 @@ Certificates also contain the public keys used during encrypted communication.
 
 ---
 
-# Certificate Authorities (CAs)
+## Certificate Authorities (CAs)
 
 Certificates are typically issued by **Certificate Authorities (CAs)**.
 
@@ -384,7 +384,7 @@ Browsers trust certificates issued by recognized CAs.
 
 ---
 
-# Cloudflare Origin Certificate
+## Cloudflare Origin Certificate
 
 Cloudflare can generate a certificate specifically for communication between Cloudflare and the origin server.
 
@@ -406,7 +406,7 @@ This certificate is intended for the connection between Cloudflare and your orig
 
 ---
 
-# End-to-End Encryption
+## End-to-End Encryption
 
 Production architecture:
 
@@ -438,7 +438,7 @@ Data remains encrypted while traveling across public networks.
 
 ---
 
-# TLS Handshake (Simplified)
+## TLS Handshake (Simplified)
 
 Before encrypted communication begins:
 
@@ -466,7 +466,7 @@ The TLS handshake establishes a secure session between the communicating parties
 
 ---
 
-# HTTPS Request Flow
+## HTTPS Request Flow
 
 Example:
 
@@ -494,7 +494,7 @@ All traffic uses encrypted HTTPS connections when Full (Strict) mode is correctl
 
 ---
 
-# Typical Production Deployment
+## Typical Production Deployment
 
 ```text id="ssl16"
 Users
@@ -521,7 +521,7 @@ This architecture provides encrypted communication throughout the network path.
 
 ---
 
-# Common SSL Errors
+## Common SSL Errors
 
 Administrators may encounter SSL configuration issues.
 
@@ -537,7 +537,7 @@ Understanding these errors simplifies troubleshooting.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy a Node.js application on an Azure Virtual Machine.
 
@@ -566,7 +566,7 @@ This is a common production architecture for modern web applications.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use **Full (Strict)** mode for production.
 - Install valid certificates on the origin server.
@@ -578,44 +578,44 @@ This is a common production architecture for modern web applications.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using Flexible Mode in Production
+#### Using Flexible Mode in Production
 
 Flexible mode leaves the connection between Cloudflare and the origin server unencrypted.
 
 ---
 
-### Forgetting to Install a Certificate on the Origin Server
+#### Forgetting to Install a Certificate on the Origin Server
 
 Full and Full (Strict) modes require HTTPS support on the origin server.
 
 ---
 
-### Ignoring Certificate Expiration
+#### Ignoring Certificate Expiration
 
 Expired certificates can make websites inaccessible or produce browser security warnings.
 
 ---
 
-### Serving Mixed Content
+#### Serving Mixed Content
 
 Loading scripts, images, or stylesheets over HTTP from an HTTPS page causes browser warnings and may block those resources.
 
 ---
 
-### Choosing the Wrong SSL Mode
+#### Choosing the Wrong SSL Mode
 
 Using a mode that does not match the origin server's configuration can result in connection failures or security weaknesses.
 
 ---
 
-# Summary
+## Summary
 
 Cloudflare SSL/TLS protects communication between users and origin servers by encrypting network traffic. Because Cloudflare acts as a reverse proxy, it manages two separate TLS connections: one with the browser and another with the origin server. Cloudflare offers multiple SSL modes, ranging from unencrypted communication to fully validated end-to-end encryption. For production deployments, **Full (Strict)** mode, combined with a valid origin certificate, provides the strongest security and ensures encrypted communication across the entire request path.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **13 - Cloudflare CDN**

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Server Blocks
 
-## Overview
+### Overview
 
 In the previous chapter, we explored the Nginx directory structure and learned how configuration files are organized.
 
@@ -27,7 +27,7 @@ without requiring separate servers.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Server Block?
+## What is a Server Block?
 
 A **Server Block** is a section of an Nginx configuration file that tells Nginx:
 
@@ -66,7 +66,7 @@ A single Nginx installation can contain many Server Blocks.
 
 ---
 
-# Why Are Server Blocks Needed?
+## Why Are Server Blocks Needed?
 
 Imagine a company hosting three applications.
 
@@ -104,7 +104,7 @@ Each application has its own configuration.
 
 ---
 
-# Virtual Hosting
+## Virtual Hosting
 
 Server Blocks implement **virtual hosting**.
 
@@ -122,7 +122,7 @@ Although all three domains point to the same server, Nginx routes each request t
 
 ---
 
-# How Nginx Chooses a Server Block
+## How Nginx Chooses a Server Block
 
 When a request arrives, Nginx checks:
 
@@ -152,7 +152,7 @@ The selected Server Block processes the request.
 
 ---
 
-# Basic Server Block
+## Basic Server Block
 
 Example:
 
@@ -176,7 +176,7 @@ This tells Nginx:
 
 ---
 
-# The listen Directive
+## The listen Directive
 
 The `listen` directive specifies which port Nginx should accept requests on.
 
@@ -211,7 +211,7 @@ listen [::]:80;
 
 ---
 
-# The server_name Directive
+## The server_name Directive
 
 The `server_name` directive defines which domain names belong to the Server Block.
 
@@ -241,7 +241,7 @@ server_name api.example.com admin.example.com;
 
 ---
 
-# Hosting Multiple Websites
+## Hosting Multiple Websites
 
 Suppose one server hosts three websites.
 
@@ -272,7 +272,7 @@ Each file contains one or more Server Blocks.
 
 ---
 
-# Default Server
+## Default Server
 
 What happens if a request doesn't match any configured domain?
 
@@ -302,7 +302,7 @@ The default server often displays a default page or returns an error depending o
 
 ---
 
-# Typical Production Layout
+## Typical Production Layout
 
 ```text
 /etc/nginx/
@@ -328,7 +328,7 @@ Each configuration file usually represents one application or website.
 
 ---
 
-# Example: Company Website
+## Example: Company Website
 
 ```nginx
 server {
@@ -360,7 +360,7 @@ Nginx
 
 ---
 
-# Example: API
+## Example: API
 
 ```nginx
 server {
@@ -378,7 +378,7 @@ Instead of serving static files, the API Server Block usually forwards requests 
 
 ---
 
-# Example: Admin Dashboard
+## Example: Admin Dashboard
 
 ```nginx
 server {
@@ -396,7 +396,7 @@ The dashboard has its own independent configuration.
 
 ---
 
-# Server Block Selection Example
+## Server Block Selection Example
 
 Suppose Nginx has three Server Blocks.
 
@@ -442,7 +442,7 @@ Nginx performs this matching automatically.
 
 ---
 
-# Configuration Workflow
+## Configuration Workflow
 
 Creating a new website usually follows this process.
 
@@ -477,7 +477,7 @@ Always test the configuration before reloading.
 
 ---
 
-# Relationship with Location Blocks
+## Relationship with Location Blocks
 
 A Server Block decides **which website or application** should receive the request.
 
@@ -500,7 +500,7 @@ The next chapter explores Location Blocks in detail.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company owns the following domains:
 
@@ -530,7 +530,7 @@ This approach allows multiple independent applications to run on a single server
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Create one configuration file per website or application.
 - Use descriptive file names inside `sites-available`.
@@ -542,33 +542,33 @@ This approach allows multiple independent applications to run on a single server
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Putting Multiple Applications Inside One Server Block
+#### Putting Multiple Applications Inside One Server Block
 
 Separate applications should generally have separate Server Blocks to simplify maintenance and troubleshooting.
 
 ---
 
-### Forgetting server_name
+#### Forgetting server_name
 
 Without the correct `server_name`, Nginx may route requests to the wrong Server Block or fall back to the default server.
 
 ---
 
-### Editing Enabled Configurations Directly
+#### Editing Enabled Configurations Directly
 
 Edit the original configuration file in `sites-available` rather than the symbolic link in `sites-enabled`.
 
 ---
 
-### Forgetting to Reload Nginx
+#### Forgetting to Reload Nginx
 
 Configuration changes are not applied until Nginx is reloaded or restarted.
 
 ---
 
-### Skipping Configuration Validation
+#### Skipping Configuration Validation
 
 Always run:
 
@@ -580,12 +580,12 @@ before reloading the service.
 
 ---
 
-# Summary
+## Summary
 
 Server Blocks are the foundation of Nginx virtual hosting. They allow a single Nginx instance to host multiple websites, APIs, and applications by matching incoming requests based on ports and domain names. By organizing each application into its own Server Block, administrators can build scalable, maintainable, and production-ready web server configurations.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Location Blocks**

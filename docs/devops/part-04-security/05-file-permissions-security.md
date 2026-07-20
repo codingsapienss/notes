@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # File Permissions Security
 
-## Overview
+### Overview
 
 Every file and directory on a Linux system has permissions that determine **who can access it and what actions they are allowed to perform**.
 
@@ -24,7 +24,7 @@ This chapter explains how Linux file permissions help secure production servers 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -38,7 +38,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why File Permissions Matter
+## Why File Permissions Matter
 
 Imagine a production server containing:
 
@@ -67,7 +67,7 @@ Proper permissions ensure that only authorized users and services can access sen
 
 ---
 
-# Linux Ownership Model
+## Linux Ownership Model
 
 Every file belongs to:
 
@@ -88,7 +88,7 @@ Linux evaluates permissions based on these three categories.
 
 ---
 
-# Permission Types
+## Permission Types
 
 Each category can have three permissions.
 
@@ -100,7 +100,7 @@ Each category can have three permissions.
 
 ---
 
-# Viewing File Permissions
+## Viewing File Permissions
 
 Display permissions:
 
@@ -127,7 +127,7 @@ Breakdown:
 
 ---
 
-# Understanding Permission Bits
+## Understanding Permission Bits
 
 Example:
 
@@ -147,7 +147,7 @@ Only the owner can modify the file.
 
 ---
 
-# Numeric Permission Values
+## Numeric Permission Values
 
 Permissions can also be represented numerically.
 
@@ -170,7 +170,7 @@ Examples:
 
 ---
 
-# Changing Permissions with chmod
+## Changing Permissions with chmod
 
 Grant execute permission:
 
@@ -198,7 +198,7 @@ chmod 600 .env
 
 ---
 
-# Changing File Ownership
+## Changing File Ownership
 
 Change owner:
 
@@ -214,7 +214,7 @@ sudo chown ubuntu:developers app.js
 
 ---
 
-# Changing Group Ownership
+## Changing Group Ownership
 
 ```bash
 sudo chgrp developers app.js
@@ -224,7 +224,7 @@ Useful when multiple administrators need shared access.
 
 ---
 
-# Secure Permissions for Common Files
+## Secure Permissions for Common Files
 
 | File               | Recommended Permissions      |
 | ------------------ | ---------------------------- |
@@ -239,7 +239,7 @@ Sensitive files should never be world-readable.
 
 ---
 
-# Directory Permissions
+## Directory Permissions
 
 Directory permissions behave differently from file permissions.
 
@@ -259,7 +259,7 @@ Only the owner and group can access the directory.
 
 ---
 
-# Special Permissions
+## Special Permissions
 
 Linux also supports special permission bits.
 
@@ -287,9 +287,9 @@ where users can create files but cannot delete files owned by other users.
 
 ---
 
-# Common Permission Mistakes
+## Common Permission Mistakes
 
-## Using 777 Everywhere
+### Using 777 Everywhere
 
 ```bash
 chmod 777 app.js
@@ -311,7 +311,7 @@ This should almost never be used on production servers.
 
 ---
 
-## Exposing Private Keys
+### Exposing Private Keys
 
 Example:
 
@@ -329,7 +329,7 @@ chmod 600 ~/.ssh/id_ed25519
 
 ---
 
-## Exposing Environment Variables
+### Exposing Environment Variables
 
 Example:
 
@@ -345,7 +345,7 @@ Never make `.env` files publicly readable.
 
 ---
 
-# Production Example
+## Production Example
 
 Suppose you deploy a Node.js application.
 
@@ -375,7 +375,7 @@ Only the application user can read sensitive configuration files.
 
 ---
 
-# Permission Verification
+## Permission Verification
 
 Useful commands:
 
@@ -413,7 +413,7 @@ These commands are commonly used during security audits.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow the Principle of Least Privilege.
 - Never use `777` unless absolutely necessary.
@@ -425,38 +425,38 @@ These commands are commonly used during security audits.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Running Everything as Root
+#### Running Everything as Root
 
 Applications should run under dedicated service accounts whenever possible.
 
 ---
 
-### Making Sensitive Files World-Readable
+#### Making Sensitive Files World-Readable
 
 Files containing passwords, API keys, certificates, or private keys should only be readable by authorized users.
 
 ---
 
-### Ignoring Directory Permissions
+#### Ignoring Directory Permissions
 
 A secure file inside an insecure directory may still be vulnerable if unauthorized users can access the directory.
 
 ---
 
-### Copying Permissions Blindly
+#### Copying Permissions Blindly
 
 Different files require different permission levels. Avoid applying the same permissions to every file without understanding their purpose.
 
 ---
 
-# Summary
+## Summary
 
 Linux file permissions are a fundamental security mechanism that controls access to files and directories. By combining ownership, groups, and read/write/execute permissions, Linux ensures that users and applications have only the access they require. Correct use of `chmod`, `chown`, and `chgrp`, along with careful protection of sensitive files such as SSH keys and environment variables, significantly strengthens the security of a production Linux server.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Security Updates**

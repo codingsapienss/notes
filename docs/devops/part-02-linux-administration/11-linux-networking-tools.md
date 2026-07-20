@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Linux Networking Tools
 
-## Overview
+### Overview
 
 Networking is at the core of almost every modern Linux server. Whether you are hosting a website, deploying APIs, connecting to databases, using cloud services, or managing remote servers, understanding networking tools is essential.
 
@@ -16,7 +16,7 @@ These tools are among the most frequently used utilities by Linux system adminis
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Basic Networking Concepts
+## Basic Networking Concepts
 
 Before learning the tools, it is useful to understand a few common networking terms.
 
@@ -60,7 +60,7 @@ Server
 
 ---
 
-# Viewing Network Interfaces
+## Viewing Network Interfaces
 
 Modern Linux systems use the `ip` command.
 
@@ -93,7 +93,7 @@ This displays:
 
 ---
 
-# Viewing Routing Information
+## Viewing Routing Information
 
 Display the routing table:
 
@@ -112,7 +112,7 @@ The **default gateway** determines where traffic is sent when the destination is
 
 ---
 
-# Testing Connectivity with `ping`
+## Testing Connectivity with `ping`
 
 The simplest networking test is:
 
@@ -141,7 +141,7 @@ Common uses:
 
 ---
 
-# Testing Specific Packet Counts
+## Testing Specific Packet Counts
 
 Instead of running indefinitely:
 
@@ -153,7 +153,7 @@ This sends exactly four packets.
 
 ---
 
-# Checking DNS Resolution
+## Checking DNS Resolution
 
 If `ping` fails because of a hostname, DNS may be the issue.
 
@@ -185,7 +185,7 @@ dig google.com
 
 ---
 
-# Testing HTTP Requests with `curl`
+## Testing HTTP Requests with `curl`
 
 `curl` is one of the most useful networking tools.
 
@@ -216,7 +216,7 @@ Common uses include:
 
 ---
 
-# Downloading Files with `wget`
+## Downloading Files with `wget`
 
 Download a file:
 
@@ -233,7 +233,7 @@ Useful for:
 
 ---
 
-# Viewing Listening Ports
+## Viewing Listening Ports
 
 Modern Linux systems use:
 
@@ -264,7 +264,7 @@ This shows which ports are currently accepting incoming connections.
 
 ---
 
-# Finding Which Process Uses a Port
+## Finding Which Process Uses a Port
 
 Display process information:
 
@@ -286,7 +286,7 @@ Useful when determining which application owns a particular port.
 
 ---
 
-# The Older `netstat` Command
+## The Older `netstat` Command
 
 Older systems often use:
 
@@ -298,7 +298,7 @@ Although still available on some distributions, `ss` is faster and recommended f
 
 ---
 
-# Viewing Active Connections
+## Viewing Active Connections
 
 Display established connections:
 
@@ -314,7 +314,7 @@ Useful for identifying:
 
 ---
 
-# Tracing Network Paths
+## Tracing Network Paths
 
 If packets fail to reach a destination:
 
@@ -332,7 +332,7 @@ Typical uses:
 
 ---
 
-# Viewing Host Information
+## Viewing Host Information
 
 Display local hostname:
 
@@ -354,7 +354,7 @@ Example:
 
 ---
 
-# Testing Port Connectivity
+## Testing Port Connectivity
 
 Sometimes a server responds to `ping`, but a specific service is unavailable.
 
@@ -374,7 +374,7 @@ These commands help determine whether a particular port is reachable.
 
 ---
 
-# Useful Networking Commands
+## Useful Networking Commands
 
 | Command       | Purpose                  |
 | ------------- | ------------------------ |
@@ -392,7 +392,7 @@ These commands help determine whether a particular port is reachable.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Node.js application is deployed behind Nginx.
 
@@ -434,7 +434,7 @@ By combining these tools, the administrator can quickly determine whether the pr
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Prefer the `ip` command instead of deprecated networking tools.
 - Use `ss` rather than `netstat` on modern systems.
@@ -444,9 +444,9 @@ By combining these tools, the administrator can quickly determine whether the pr
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming `ping` Tests Everything
+#### Assuming `ping` Tests Everything
 
 A successful `ping` only confirms basic network reachability.
 
@@ -454,7 +454,7 @@ It does not verify that HTTP, SSH, or database services are working.
 
 ---
 
-### Ignoring DNS
+#### Ignoring DNS
 
 Many connectivity issues are caused by incorrect DNS configuration rather than network failures.
 
@@ -462,7 +462,7 @@ Use `nslookup` or `dig` to verify name resolution.
 
 ---
 
-### Forgetting Firewalls
+#### Forgetting Firewalls
 
 A service may be running correctly but remain inaccessible because a firewall blocks the required port.
 
@@ -470,7 +470,7 @@ Always verify firewall rules when troubleshooting connectivity.
 
 ---
 
-### Confusing Listening Ports with Active Connections
+#### Confusing Listening Ports with Active Connections
 
 A listening port indicates that an application is ready to accept connections.
 
@@ -480,7 +480,7 @@ These are different concepts and should not be interpreted interchangeably.
 
 ---
 
-# Summary
+## Summary
 
 Linux includes a comprehensive set of networking tools for monitoring, testing, and troubleshooting network communication.
 
@@ -490,6 +490,6 @@ These utilities form the foundation of Linux network administration and are used
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **12 - Essential Linux Commands**

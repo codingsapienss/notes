@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # Production Checklists
 
-## Overview
+### Overview
 
 Production systems require consistency. A small oversight—such as forgetting to configure a firewall rule, renew an SSL certificate, or back up a database—can lead to outages, security incidents, or data loss.
 
@@ -14,7 +14,7 @@ This chapter provides practical checklists that can be followed before deploymen
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -28,7 +28,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Production Workflow
+## Production Workflow
 
 ```text id="p1d4rw"
 Development
@@ -64,7 +64,7 @@ Continuous Improvement
 
 ---
 
-# New Server Checklist
+## New Server Checklist
 
 Before using a newly created server:
 
@@ -95,7 +95,7 @@ sudo apt upgrade -y
 
 ---
 
-# Security Checklist
+## Security Checklist
 
 Verify the following before exposing a server to the internet.
 
@@ -114,7 +114,7 @@ Verify the following before exposing a server to the internet.
 
 ---
 
-# Firewall Checklist
+## Firewall Checklist
 
 Ensure only required ports are open.
 
@@ -134,7 +134,7 @@ sudo ufw status
 
 ---
 
-# Deployment Checklist
+## Deployment Checklist
 
 Before deployment:
 
@@ -177,7 +177,7 @@ Verify Website
 
 ---
 
-# Node.js Deployment Checklist
+## Node.js Deployment Checklist
 
 Before restarting the application:
 
@@ -199,7 +199,7 @@ pm2 reload ecosystem.config.js
 
 ---
 
-# Nginx Checklist
+## Nginx Checklist
 
 Before reloading Nginx:
 
@@ -225,7 +225,7 @@ sudo systemctl reload nginx
 
 ---
 
-# SSL Checklist
+## SSL Checklist
 
 | Task                           | Status |
 | ------------------------------ | ------ |
@@ -243,7 +243,7 @@ openssl x509 -in fullchain.pem -text -noout
 
 ---
 
-# Database Checklist
+## Database Checklist
 
 Before deploying database changes:
 
@@ -275,7 +275,7 @@ Application Restart
 
 ---
 
-# Backup Checklist
+## Backup Checklist
 
 | Item                        | Status |
 | --------------------------- | ------ |
@@ -304,7 +304,7 @@ Database
 
 ---
 
-# Monitoring Checklist
+## Monitoring Checklist
 
 Verify monitoring after deployment.
 
@@ -330,7 +330,7 @@ df -h
 
 ---
 
-# Log Verification Checklist
+## Log Verification Checklist
 
 Review logs after every deployment.
 
@@ -354,7 +354,7 @@ pm2 logs
 
 ---
 
-# Networking Checklist
+## Networking Checklist
 
 | Task                      | Status |
 | ------------------------- | ------ |
@@ -381,7 +381,7 @@ ss -tulpn
 
 ---
 
-# Application Verification Checklist
+## Application Verification Checklist
 
 Immediately after deployment:
 
@@ -397,7 +397,7 @@ Immediately after deployment:
 
 ---
 
-# Production Maintenance Checklist
+## Production Maintenance Checklist
 
 Perform regularly.
 
@@ -414,7 +414,7 @@ Perform regularly.
 
 ---
 
-# Incident Response Checklist
+## Incident Response Checklist
 
 ```text id="srv016"
 Incident
@@ -462,7 +462,7 @@ During an incident:
 
 ---
 
-# Rollback Checklist
+## Rollback Checklist
 
 If deployment fails:
 
@@ -477,7 +477,7 @@ If deployment fails:
 
 ---
 
-# Server Health Checklist
+## Server Health Checklist
 
 Run daily.
 
@@ -506,7 +506,7 @@ Verify:
 
 ---
 
-# Daily Administrator Checklist
+## Daily Administrator Checklist
 
 ```text id="srv021"
 Login
@@ -538,7 +538,7 @@ End of Day
 
 ---
 
-# Weekly Checklist
+## Weekly Checklist
 
 - □ Apply operating system updates.
 - □ Review authentication logs.
@@ -551,7 +551,7 @@ End of Day
 
 ---
 
-# Monthly Checklist
+## Monthly Checklist
 
 - □ Test disaster recovery procedure.
 - □ Rotate credentials if required.
@@ -564,7 +564,7 @@ End of Day
 
 ---
 
-# Production Readiness Checklist
+## Production Readiness Checklist
 
 Before going live:
 
@@ -583,7 +583,7 @@ Before going live:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Node.js API is scheduled for deployment.
 
@@ -634,7 +634,7 @@ The deployment completes successfully with no downtime.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always follow written deployment procedures.
 - Test backups by restoring them periodically.
@@ -647,39 +647,39 @@ The deployment completes successfully with no downtime.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Deploying Without a Backup
+#### Deploying Without a Backup
 
 Always create and verify backups before making changes that affect production systems.
 
 ---
 
-### Restarting Services Without Validation
+#### Restarting Services Without Validation
 
 Configuration syntax should be tested before restarting or reloading services.
 
 ---
 
-### Ignoring Monitoring Alerts
+#### Ignoring Monitoring Alerts
 
 Investigate alerts promptly to prevent minor issues from becoming outages.
 
 ---
 
-### Making Manual Changes Without Documentation
+#### Making Manual Changes Without Documentation
 
 Undocumented changes complicate troubleshooting and future maintenance.
 
 ---
 
-### Skipping Rollback Planning
+#### Skipping Rollback Planning
 
 Every deployment should include a tested rollback strategy in case unexpected issues occur.
 
 ---
 
-# Summary
+## Summary
 
 Reliable production environments are built on repeatable processes rather than memory. Standardized checklists help ensure consistent deployments, stronger security, verified backups, effective monitoring, and faster incident response. By following these procedures, administrators can reduce operational risk and improve overall system reliability.
 

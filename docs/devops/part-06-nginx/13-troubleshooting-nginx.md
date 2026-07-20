@@ -6,7 +6,7 @@ sidebar_position: 13
 
 # Troubleshooting Nginx
 
-## Overview
+### Overview
 
 No matter how carefully a server is configured, problems will eventually occur.
 
@@ -36,7 +36,7 @@ This chapter focuses on practical techniques and common problems encountered in 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -51,7 +51,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Troubleshooting Workflow
+## Troubleshooting Workflow
 
 A good troubleshooting process is repeatable.
 
@@ -81,7 +81,7 @@ Avoid making multiple unrelated changes at once.
 
 ---
 
-# Step 1: Check Nginx Configuration
+## Step 1: Check Nginx Configuration
 
 Before restarting or reloading Nginx, always validate the configuration.
 
@@ -107,7 +107,7 @@ Fix configuration errors before proceeding.
 
 ---
 
-# Step 2: Check Nginx Status
+## Step 2: Check Nginx Status
 
 Verify whether Nginx is running.
 
@@ -144,7 +144,7 @@ sudo systemctl reload nginx
 
 ---
 
-# Step 3: Check Error Logs
+## Step 3: Check Error Logs
 
 Most problems are recorded in the Error Log.
 
@@ -164,7 +164,7 @@ This often indicates that the upstream application is unavailable.
 
 ---
 
-# Step 4: Check Access Logs
+## Step 4: Check Access Logs
 
 Verify whether requests are reaching Nginx.
 
@@ -182,7 +182,7 @@ Repeated error codes such as **404**, **500**, or **502** provide useful clues.
 
 ---
 
-# Step 5: Verify Backend Application
+## Step 5: Verify Backend Application
 
 Suppose Nginx proxies requests to:
 
@@ -206,7 +206,7 @@ the issue is likely with the application rather than Nginx.
 
 ---
 
-# Step 6: Verify Listening Ports
+## Step 6: Verify Listening Ports
 
 Check whether Nginx is listening on the expected ports.
 
@@ -234,7 +234,7 @@ If a required port is missing, investigate the corresponding service.
 
 ---
 
-# Common Error: 404 Not Found
+## Common Error: 404 Not Found
 
 Meaning:
 
@@ -269,7 +269,7 @@ Verify that the requested file exists.
 
 ---
 
-# Common Error: 403 Forbidden
+## Common Error: 403 Forbidden
 
 Meaning:
 
@@ -296,7 +296,7 @@ ls -l /var/www/html
 
 ---
 
-# Common Error: 500 Internal Server Error
+## Common Error: 500 Internal Server Error
 
 Meaning:
 
@@ -319,7 +319,7 @@ Then inspect the backend application's logs.
 
 ---
 
-# Common Error: 502 Bad Gateway
+## Common Error: 502 Bad Gateway
 
 One of the most common production errors.
 
@@ -369,7 +369,7 @@ pm2 restart all
 
 ---
 
-# Common Error: 503 Service Unavailable
+## Common Error: 503 Service Unavailable
 
 Meaning:
 
@@ -401,7 +401,7 @@ df -h
 
 ---
 
-# Common Error: SSL Problems
+## Common Error: SSL Problems
 
 Users may receive browser warnings.
 
@@ -432,7 +432,7 @@ sudo certbot renew --dry-run
 
 ---
 
-# Common Error: Port Already in Use
+## Common Error: Port Already in Use
 
 Example:
 
@@ -456,7 +456,7 @@ Another application may already be using the port.
 
 ---
 
-# Common Error: Permission Denied
+## Common Error: Permission Denied
 
 Example:
 
@@ -492,7 +492,7 @@ Always ensure permission changes are appropriate for your environment.
 
 ---
 
-# Checking DNS
+## Checking DNS
 
 If the website is unreachable:
 
@@ -516,7 +516,7 @@ Ensure the domain resolves to the correct server IP.
 
 ---
 
-# Checking Firewall
+## Checking Firewall
 
 Verify firewall rules:
 
@@ -536,7 +536,7 @@ should be allowed for incoming traffic.
 
 ---
 
-# Testing from the Server
+## Testing from the Server
 
 Test locally:
 
@@ -554,7 +554,7 @@ Testing locally helps determine whether the issue is with Nginx itself or an ext
 
 ---
 
-# Useful Linux Commands
+## Useful Linux Commands
 
 | Command                  | Purpose                |
 | ------------------------ | ---------------------- |
@@ -571,7 +571,7 @@ Testing locally helps determine whether the issue is with Nginx itself or an ext
 
 ---
 
-# Complete Troubleshooting Flow
+## Complete Troubleshooting Flow
 
 ```text id="jlwm44"
 Website Problem
@@ -608,7 +608,7 @@ Following the same sequence reduces the chances of overlooking the actual cause.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose users report:
 
@@ -672,7 +672,7 @@ The problem was not Nginx itself—it was the unavailable backend application.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always validate configurations before reloading Nginx.
 - Read the Error Log before making configuration changes.
@@ -685,33 +685,33 @@ The problem was not Nginx itself—it was the unavailable backend application.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting Services Without Investigation
+#### Restarting Services Without Investigation
 
 Restarting may temporarily hide the issue without identifying the root cause.
 
 ---
 
-### Ignoring Error Logs
+#### Ignoring Error Logs
 
 Most production problems leave useful information in the Error Log.
 
 ---
 
-### Assuming Nginx Is Always the Problem
+#### Assuming Nginx Is Always the Problem
 
 Many "Nginx" issues are actually caused by backend applications, databases, DNS, or firewall configuration.
 
 ---
 
-### Changing Multiple Settings Simultaneously
+#### Changing Multiple Settings Simultaneously
 
 Making many changes at once makes it difficult to determine which one resolved—or introduced—the problem.
 
 ---
 
-### Skipping Configuration Validation
+#### Skipping Configuration Validation
 
 Never reload Nginx without first running:
 
@@ -721,7 +721,7 @@ sudo nginx -t
 
 ---
 
-# Summary
+## Summary
 
 Troubleshooting Nginx requires a structured approach rather than trial and error. Begin by validating the configuration, checking the service status, reviewing access and error logs, verifying backend connectivity, inspecting listening ports, and confirming DNS and firewall settings. Most production issues—including 404, 403, 500, 502, and SSL-related problems—can be diagnosed efficiently using this workflow. Developing a consistent troubleshooting process reduces downtime, improves reliability, and makes production systems significantly easier to maintain.
 

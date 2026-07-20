@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # PM2 Troubleshooting
 
-## Overview
+### Overview
 
 PM2 is one of the most widely used process managers for Node.js applications. It keeps applications running, restarts crashed processes, supports cluster mode, and provides monitoring capabilities.
 
@@ -25,7 +25,7 @@ When an application managed by PM2 becomes unstable, administrators must determi
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# PM2 Architecture
+## PM2 Architecture
 
 PM2 sits between the operating system and the Node.js application.
 
@@ -64,7 +64,7 @@ If PM2 is healthy but the application fails, PM2 will attempt to restart it auto
 
 ---
 
-# PM2 Troubleshooting Workflow
+## PM2 Troubleshooting Workflow
 
 Always follow a structured workflow.
 
@@ -104,7 +104,7 @@ Avoid restarting applications repeatedly without understanding why they are fail
 
 ---
 
-# Step 1 – Check PM2 Status
+## Step 1 – Check PM2 Status
 
 View all managed applications.
 
@@ -138,7 +138,7 @@ Status information provides the first indication of the application's health.
 
 ---
 
-# Step 2 – Review PM2 Logs
+## Step 2 – Review PM2 Logs
 
 Logs contain valuable diagnostic information.
 
@@ -166,7 +166,7 @@ Always review logs before restarting applications.
 
 ---
 
-# Step 3 – Check Restart Count
+## Step 3 – Check Restart Count
 
 Repeated restarts indicate recurring failures.
 
@@ -193,7 +193,7 @@ The restart count is often one of the quickest indicators of application instabi
 
 ---
 
-# Restart Loop
+## Restart Loop
 
 Example:
 
@@ -223,7 +223,7 @@ Restart loops should be investigated immediately because they consume CPU resour
 
 ---
 
-# Step 4 – Verify Application
+## Step 4 – Verify Application
 
 PM2 manages applications but does not fix application bugs.
 
@@ -237,7 +237,7 @@ If the application also fails outside PM2, the problem lies in the application r
 
 ---
 
-# Step 5 – Verify Environment Variables
+## Step 5 – Verify Environment Variables
 
 PM2 loads environment variables when starting an application.
 
@@ -266,7 +266,7 @@ Incorrect environment configuration is a common cause of startup failures.
 
 ---
 
-# Step 6 – Verify Ecosystem Configuration
+## Step 6 – Verify Ecosystem Configuration
 
 Many production deployments use an ecosystem configuration file.
 
@@ -287,7 +287,7 @@ Verify configuration carefully before restarting.
 
 ---
 
-# Step 7 – Monitor Resource Usage
+## Step 7 – Monitor Resource Usage
 
 Launch the monitoring dashboard.
 
@@ -306,7 +306,7 @@ Resource trends often reveal issues before applications fail.
 
 ---
 
-# Memory Limit Exceeded
+## Memory Limit Exceeded
 
 Applications may restart because of memory limits.
 
@@ -338,7 +338,7 @@ Increasing the memory limit should not replace fixing memory leaks.
 
 ---
 
-# High CPU Usage
+## High CPU Usage
 
 Symptoms:
 
@@ -366,7 +366,7 @@ top
 
 ---
 
-# Cluster Mode Issues
+## Cluster Mode Issues
 
 Cluster Mode runs multiple workers.
 
@@ -393,7 +393,7 @@ Each worker should be investigated independently.
 
 ---
 
-# Startup Problems After Reboot
+## Startup Problems After Reboot
 
 Applications may not restart after server reboot.
 
@@ -413,7 +413,7 @@ Without these commands, PM2 may not automatically restore applications after reb
 
 ---
 
-# Application Not Updating
+## Application Not Updating
 
 Sometimes deployments appear successful but the old version continues running.
 
@@ -433,7 +433,7 @@ Reloading is preferred because it minimizes downtime.
 
 ---
 
-# Deleting and Recreating Processes
+## Deleting and Recreating Processes
 
 Occasionally, recreating a PM2 process resolves configuration inconsistencies.
 
@@ -453,7 +453,7 @@ This should only be done after understanding the reason for the failure.
 
 ---
 
-# PM2 Troubleshooting Decision Tree
+## PM2 Troubleshooting Decision Tree
 
 ```text id="pm2t11"
 Application Down
@@ -507,7 +507,7 @@ This workflow helps distinguish PM2 problems from application problems.
 
 ---
 
-# Common PM2 Errors
+## Common PM2 Errors
 
 | Error                        | Possible Cause      |
 | ---------------------------- | ------------------- |
@@ -521,7 +521,7 @@ This workflow helps distinguish PM2 problems from application problems.
 
 ---
 
-# Useful PM2 Commands
+## Useful PM2 Commands
 
 | Command        | Purpose                      |
 | -------------- | ---------------------------- |
@@ -538,7 +538,7 @@ This workflow helps distinguish PM2 problems from application problems.
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text id="pm2t12"
 Application Failure
@@ -580,7 +580,7 @@ A disciplined workflow helps reduce downtime and prevents unnecessary restarts.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production API becomes unavailable every few hours.
 
@@ -620,7 +620,7 @@ The PM2 restart loop was a symptom; the root cause was a memory leak in the appl
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Review logs before restarting applications.
 - Investigate increasing restart counts immediately.
@@ -634,44 +634,44 @@ The PM2 restart loop was a symptom; the root cause was a memory leak in the appl
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming PM2 Is the Problem
+#### Assuming PM2 Is the Problem
 
 Most PM2 incidents are actually caused by application bugs, configuration errors, or resource exhaustion.
 
 ---
 
-### Ignoring Restart Counts
+#### Ignoring Restart Counts
 
 Frequent restarts are early warning signs of instability and should not be ignored.
 
 ---
 
-### Repeatedly Restarting the Application
+#### Repeatedly Restarting the Application
 
 Restarting may temporarily restore service without addressing the underlying cause.
 
 ---
 
-### Forgetting `pm2 save`
+#### Forgetting `pm2 save`
 
 Without saving the process list, applications may not restart automatically after a server reboot.
 
 ---
 
-### Increasing Memory Limits Instead of Fixing Leaks
+#### Increasing Memory Limits Instead of Fixing Leaks
 
 Allocating more memory may delay failures but does not resolve the underlying memory leak.
 
 ---
 
-# Summary
+## Summary
 
 PM2 troubleshooting focuses on determining whether an issue originates from the process manager or the application itself. By checking process status, logs, restart counts, environment variables, resource usage, and ecosystem configuration, administrators can efficiently diagnose production issues. A structured troubleshooting process ensures that recurring failures are resolved at their root cause rather than temporarily masked through repeated restarts.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Cloudflare Troubleshooting**

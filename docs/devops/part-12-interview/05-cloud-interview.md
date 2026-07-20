@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Cloud Interview Preparation
 
-## Overview
+### Overview
 
 Cloud Computing has become a fundamental skill for Backend Developers, DevOps Engineers, Cloud Engineers, Site Reliability Engineers (SREs), and Full Stack Developers.
 
@@ -27,7 +27,7 @@ This chapter covers:
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Cloud Architecture
+## Cloud Architecture
 
 ```text id="cloud001"
 Users
@@ -76,7 +76,7 @@ Storage
 
 ---
 
-# Cloud Knowledge Roadmap
+## Cloud Knowledge Roadmap
 
 ```text id="cloud002"
 Cloud Basics
@@ -116,9 +116,9 @@ Production
 
 ---
 
-# Beginner Interview Questions
+## Beginner Interview Questions
 
-## Q1. What is Cloud Computing?
+### Q1. What is Cloud Computing?
 
 **Answer**
 
@@ -134,7 +134,7 @@ Benefits:
 
 ---
 
-## Q2. What are the Major Cloud Providers?
+### Q2. What are the Major Cloud Providers?
 
 The three largest public cloud providers are:
 
@@ -146,7 +146,7 @@ The three largest public cloud providers are:
 
 ---
 
-## Q3. What is a Virtual Machine?
+### Q3. What is a Virtual Machine?
 
 A Virtual Machine (VM) is a software-based computer that runs its own operating system on shared physical hardware using a hypervisor.
 
@@ -159,7 +159,7 @@ Benefits:
 
 ---
 
-## Q4. Difference Between Physical Server and Virtual Machine
+### Q4. Difference Between Physical Server and Virtual Machine
 
 | Physical Server     | Virtual Machine          |
 | ------------------- | ------------------------ |
@@ -170,7 +170,7 @@ Benefits:
 
 ---
 
-## Q5. What is a Hypervisor?
+### Q5. What is a Hypervisor?
 
 A hypervisor is software that creates and manages virtual machines.
 
@@ -183,9 +183,9 @@ Examples:
 
 ---
 
-# Service Models
+## Service Models
 
-## Q6. Difference Between IaaS, PaaS, and SaaS
+### Q6. Difference Between IaaS, PaaS, and SaaS
 
 | Model | Customer Manages | Example                              |
 | ----- | ---------------- | ------------------------------------ |
@@ -195,7 +195,7 @@ Examples:
 
 ---
 
-## Q7. What is Serverless Computing?
+### Q7. What is Serverless Computing?
 
 Serverless allows developers to run code without managing servers.
 
@@ -213,15 +213,15 @@ Benefits:
 
 ---
 
-# Networking Questions
+## Networking Questions
 
-## Q8. What is a VPC or Virtual Network?
+### Q8. What is a VPC or Virtual Network?
 
 A Virtual Private Cloud (AWS) or Virtual Network (Azure) is an isolated private network in the cloud where resources such as virtual machines and databases communicate securely.
 
 ---
 
-## Q9. What is a Subnet?
+### Q9. What is a Subnet?
 
 A subnet divides a larger network into smaller logical segments.
 
@@ -239,7 +239,7 @@ Public subnets host internet-facing resources, while private subnets typically h
 
 ---
 
-## Q10. What is a Public IP?
+### Q10. What is a Public IP?
 
 A public IP address is reachable from the internet.
 
@@ -251,13 +251,13 @@ Example use cases:
 
 ---
 
-## Q11. What is a Private IP?
+### Q11. What is a Private IP?
 
 Private IP addresses are used for internal communication within a cloud network and are not directly reachable from the internet.
 
 ---
 
-## Q12. Difference Between Security Group and Firewall
+### Q12. Difference Between Security Group and Firewall
 
 | Security Group                          | Firewall                           |
 | --------------------------------------- | ---------------------------------- |
@@ -267,9 +267,9 @@ Private IP addresses are used for internal communication within a cloud network 
 
 ---
 
-# Storage Questions
+## Storage Questions
 
-## Q13. Difference Between Object Storage and Block Storage
+### Q13. Difference Between Object Storage and Block Storage
 
 | Object Storage                       | Block Storage                                |
 | ------------------------------------ | -------------------------------------------- |
@@ -284,15 +284,15 @@ Examples:
 
 ---
 
-## Q14. What is Persistent Storage?
+### Q14. What is Persistent Storage?
 
 Persistent storage retains data after a virtual machine is restarted or powered off.
 
 ---
 
-# Scaling Questions
+## Scaling Questions
 
-## Q15. What is Horizontal Scaling?
+### Q15. What is Horizontal Scaling?
 
 Horizontal scaling adds more servers.
 
@@ -314,13 +314,13 @@ VM3
 
 ---
 
-## Q16. What is Vertical Scaling?
+### Q16. What is Vertical Scaling?
 
 Vertical scaling increases the resources (CPU, memory, storage) of an existing server.
 
 ---
 
-## Q17. Difference Between Horizontal and Vertical Scaling
+### Q17. Difference Between Horizontal and Vertical Scaling
 
 | Horizontal             | Vertical                     |
 | ---------------------- | ---------------------------- |
@@ -330,9 +330,9 @@ Vertical scaling increases the resources (CPU, memory, storage) of an existing s
 
 ---
 
-# Load Balancer Questions
+## Load Balancer Questions
 
-## Q18. Why Use a Load Balancer?
+### Q18. Why Use a Load Balancer?
 
 Benefits:
 
@@ -344,15 +344,15 @@ Benefits:
 
 ---
 
-## Q19. What is Auto Scaling?
+### Q19. What is Auto Scaling?
 
 Auto Scaling automatically adds or removes compute resources based on metrics such as CPU utilization, memory usage, or request volume.
 
 ---
 
-# Database Questions
+## Database Questions
 
-## Q20. Why Place Databases in Private Networks?
+### Q20. Why Place Databases in Private Networks?
 
 Reasons:
 
@@ -363,15 +363,15 @@ Reasons:
 
 ---
 
-## Q21. Why Avoid Exposing MongoDB or MySQL Publicly?
+### Q21. Why Avoid Exposing MongoDB or MySQL Publicly?
 
 Direct public exposure increases the risk of unauthorized access and attacks. Databases should generally be accessible only from trusted application servers or administrative hosts.
 
 ---
 
-# CDN Questions
+## CDN Questions
 
-## Q22. What is a CDN?
+### Q22. What is a CDN?
 
 A Content Delivery Network stores cached copies of static content at geographically distributed edge locations.
 
@@ -384,9 +384,9 @@ Benefits:
 
 ---
 
-# Security Questions
+## Security Questions
 
-## Q23. Why Use HTTPS?
+### Q23. Why Use HTTPS?
 
 Reasons:
 
@@ -397,7 +397,7 @@ Reasons:
 
 ---
 
-## Q24. What is IAM?
+### Q24. What is IAM?
 
 Identity and Access Management (IAM) controls who can access cloud resources and what actions they are allowed to perform.
 
@@ -405,9 +405,9 @@ Follow the principle of least privilege when assigning permissions.
 
 ---
 
-# Monitoring Questions
+## Monitoring Questions
 
-## Q25. Why Monitor Cloud Resources?
+### Q25. Why Monitor Cloud Resources?
 
 Monitoring helps detect:
 
@@ -420,7 +420,7 @@ Monitoring helps detect:
 
 ---
 
-## Q26. What Should Be Monitored?
+### Q26. What Should Be Monitored?
 
 | Resource    | Metrics                           |
 | ----------- | --------------------------------- |
@@ -433,15 +433,15 @@ Monitoring helps detect:
 
 ---
 
-# Containers Questions
+## Containers Questions
 
-## Q27. What is Docker?
+### Q27. What is Docker?
 
 Docker packages applications and their dependencies into portable containers that run consistently across environments.
 
 ---
 
-## Q28. Difference Between Virtual Machine and Container
+### Q28. Difference Between Virtual Machine and Container
 
 | Virtual Machine       | Container            |
 | --------------------- | -------------------- |
@@ -452,15 +452,15 @@ Docker packages applications and their dependencies into portable containers tha
 
 ---
 
-## Q29. What is Kubernetes?
+### Q29. What is Kubernetes?
 
 Kubernetes is a container orchestration platform that automates deployment, scaling, networking, and management of containerized applications.
 
 ---
 
-# High Availability Questions
+## High Availability Questions
 
-## Q30. What is High Availability?
+### Q30. What is High Availability?
 
 High Availability (HA) ensures that applications remain operational even if one or more infrastructure components fail.
 
@@ -486,15 +486,15 @@ Database
 
 ---
 
-## Q31. What is Disaster Recovery?
+### Q31. What is Disaster Recovery?
 
 Disaster Recovery (DR) is the process of restoring applications and data after a major failure or outage using backups, replication, and recovery procedures.
 
 ---
 
-# Production Deployment Questions
+## Production Deployment Questions
 
-## Q32. Explain a Typical Cloud Deployment
+### Q32. Explain a Typical Cloud Deployment
 
 ```text id="cloud006"
 Git
@@ -535,7 +535,7 @@ Typical deployment steps:
 
 ---
 
-## Q33. Why Use a Reverse Proxy?
+### Q33. Why Use a Reverse Proxy?
 
 Advantages:
 
@@ -547,9 +547,9 @@ Advantages:
 
 ---
 
-# Scenario-Based Questions
+## Scenario-Based Questions
 
-## Scenario 1
+### Scenario 1
 
 **Question**
 
@@ -596,7 +596,7 @@ Typical checks:
 
 ---
 
-## Scenario 2
+### Scenario 2
 
 **Question**
 
@@ -612,7 +612,7 @@ Investigation:
 
 ---
 
-## Scenario 3
+### Scenario 3
 
 **Question**
 
@@ -628,7 +628,7 @@ Possible causes:
 
 ---
 
-## Scenario 4
+### Scenario 4
 
 **Question**
 
@@ -662,7 +662,7 @@ Verify
 
 ---
 
-# Production Experience Questions
+## Production Experience Questions
 
 Interviewers may ask:
 
@@ -678,7 +678,7 @@ Demonstrating a structured operational approach is typically more valuable than 
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Understand cloud concepts before memorizing provider-specific services.
 - Explain complete request flow from client to server.
@@ -689,44 +689,44 @@ Demonstrating a structured operational approach is typically more valuable than 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing Virtual Machines with Containers
+#### Confusing Virtual Machines with Containers
 
 Containers share the host kernel, while virtual machines run separate operating systems.
 
 ---
 
-### Exposing Databases to the Internet
+#### Exposing Databases to the Internet
 
 Production databases should generally remain in private networks with restricted access.
 
 ---
 
-### Assuming Cloud Resources Are Automatically Secure
+#### Assuming Cloud Resources Are Automatically Secure
 
 Security groups, firewalls, IAM policies, and operating system hardening must still be configured.
 
 ---
 
-### Ignoring Monitoring
+#### Ignoring Monitoring
 
 Without monitoring and alerting, failures may go undetected until users report them.
 
 ---
 
-### Designing Without Redundancy
+#### Designing Without Redundancy
 
 Production systems should avoid single points of failure wherever practical.
 
 ---
 
-# Summary
+## Summary
 
 Cloud interviews assess understanding of infrastructure, networking, storage, security, scalability, and production operations. Strong candidates explain architectural decisions, understand trade-offs between services, and approach troubleshooting with a systematic methodology rather than relying on provider-specific terminology alone.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Scenario-Based Interview Questions**

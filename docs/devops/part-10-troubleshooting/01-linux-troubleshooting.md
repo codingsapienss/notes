@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Linux Troubleshooting
 
-## Overview
+### Overview
 
 No production server runs perfectly forever. Regardless of how well a system is configured, problems eventually occur due to software bugs, hardware failures, configuration changes, resource exhaustion, network issues, or human error.
 
@@ -25,7 +25,7 @@ A structured troubleshooting process prevents guesswork and minimizes downtime.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Troubleshooting?
+## What is Troubleshooting?
 
 Troubleshooting is the systematic process of discovering **why something is not working as expected**.
 
@@ -70,7 +70,7 @@ The goal is not simply to restart services until they work again. The goal is to
 
 ---
 
-# Reactive vs Proactive Troubleshooting
+## Reactive vs Proactive Troubleshooting
 
 | Reactive                      | Proactive                          |
 | ----------------------------- | ---------------------------------- |
@@ -83,7 +83,7 @@ A good administrator combines both approaches.
 
 ---
 
-# The Troubleshooting Mindset
+## The Troubleshooting Mindset
 
 When a production issue occurs:
 
@@ -107,7 +107,7 @@ This disciplined approach reduces the risk of making the situation worse.
 
 ---
 
-# Standard Troubleshooting Workflow
+## Standard Troubleshooting Workflow
 
 Every production issue should follow a consistent workflow.
 
@@ -143,7 +143,7 @@ Following the same process for every incident improves consistency and reduces m
 
 ---
 
-# Step 1 – Confirm the Problem
+## Step 1 – Confirm the Problem
 
 Before making any changes, verify that the reported issue actually exists.
 
@@ -175,7 +175,7 @@ Never rely solely on user reports.
 
 ---
 
-# Step 2 – Collect Information
+## Step 2 – Collect Information
 
 Collect as much information as possible before making changes.
 
@@ -217,7 +217,7 @@ Good troubleshooting begins with good evidence.
 
 ---
 
-# Step 3 – Check System Health
+## Step 3 – Check System Health
 
 Always verify the overall health of the server.
 
@@ -247,7 +247,7 @@ These commands quickly reveal whether the issue is related to CPU, memory, stora
 
 ---
 
-# Step 4 – Check Running Services
+## Step 4 – Check Running Services
 
 Many production issues occur because required services have stopped.
 
@@ -269,7 +269,7 @@ If a required service is not running, determine **why** before restarting it.
 
 ---
 
-# Step 5 – Check Logs
+## Step 5 – Check Logs
 
 Logs often contain the exact cause of a problem.
 
@@ -300,7 +300,7 @@ Always review logs before restarting applications.
 
 ---
 
-# Step 6 – Identify the Root Cause
+## Step 6 – Identify the Root Cause
 
 Symptoms and causes are different.
 
@@ -331,7 +331,7 @@ Fixing only the symptom usually results in the issue returning.
 
 ---
 
-# Root Cause Analysis (RCA)
+## Root Cause Analysis (RCA)
 
 Root Cause Analysis is the process of identifying the fundamental reason an incident occurred.
 
@@ -357,7 +357,7 @@ The actual problem is not the crash—it is the memory leak.
 
 ---
 
-# Common Linux Problems
+## Common Linux Problems
 
 Production administrators frequently encounter issues such as:
 
@@ -376,7 +376,7 @@ A structured approach can be applied to all of these scenarios.
 
 ---
 
-# The "Change" Principle
+## The "Change" Principle
 
 One of the first questions to ask is:
 
@@ -396,7 +396,7 @@ Many production incidents are directly related to a recent change.
 
 ---
 
-# Change Analysis Workflow
+## Change Analysis Workflow
 
 ```text id="lts07"
 Issue Started
@@ -418,7 +418,7 @@ Always review deployment history and configuration changes before assuming hardw
 
 ---
 
-# Verifying the Fix
+## Verifying the Fix
 
 Applying a fix is not the final step.
 
@@ -456,7 +456,7 @@ Never assume a problem is solved without verification.
 
 ---
 
-# Document Every Incident
+## Document Every Incident
 
 Every production issue should be documented.
 
@@ -474,7 +474,7 @@ Documentation improves future troubleshooting and knowledge sharing.
 
 ---
 
-# Essential Troubleshooting Commands
+## Essential Troubleshooting Commands
 
 | Command            | Purpose                        |
 | ------------------ | ------------------------------ |
@@ -493,7 +493,7 @@ Documentation improves future troubleshooting and knowledge sharing.
 
 ---
 
-# Production Troubleshooting Flow
+## Production Troubleshooting Flow
 
 ```text id="lts09"
 Alert
@@ -535,7 +535,7 @@ A structured workflow minimizes downtime and reduces unnecessary actions.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A customer reports that the company website is unavailable.
 
@@ -576,7 +576,7 @@ The issue was resolved by identifying the root cause rather than repeatedly rest
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow the same troubleshooting workflow for every incident.
 - Verify problems before making changes.
@@ -590,44 +590,44 @@ The issue was resolved by identifying the root cause rather than repeatedly rest
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting Services Immediately
+#### Restarting Services Immediately
 
 Restarting services may temporarily hide the problem without resolving the underlying cause.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Most production issues leave evidence in log files. Skipping log analysis often delays resolution.
 
 ---
 
-### Making Multiple Changes Simultaneously
+#### Making Multiple Changes Simultaneously
 
 Changing several settings at once makes it difficult to determine which change resolved—or caused—the issue.
 
 ---
 
-### Assuming the First Error Is the Root Cause
+#### Assuming the First Error Is the Root Cause
 
 The first visible error is often only a symptom of a deeper issue.
 
 ---
 
-### Closing Incidents Without Verification
+#### Closing Incidents Without Verification
 
 Always confirm that the system is functioning correctly before considering the incident resolved.
 
 ---
 
-# Summary
+## Summary
 
 Linux troubleshooting is a structured process of identifying, diagnosing, and resolving production issues. Successful troubleshooting depends on collecting evidence, analyzing logs, checking system health, identifying the root cause, verifying the solution, and documenting the incident. Following a consistent methodology leads to faster resolutions, fewer mistakes, and more reliable production systems.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Network Troubleshooting**

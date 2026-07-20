@@ -12,7 +12,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -26,7 +26,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## The Golden Rule
+### The Golden Rule
 
 Remember this forever.
 
@@ -66,7 +66,7 @@ reference.
 
 ---
 
-## Why is This Important?
+### Why is This Important?
 
 Consider
 
@@ -102,7 +102,7 @@ Let's find out.
 
 ---
 
-## Scenario 1 — Replacing `F.prototype`
+### Scenario 1 — Replacing `F.prototype`
 
 ```javascript
 function Rabbit() {}
@@ -120,7 +120,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Step 1
+#### Step 1
 
 Initially
 
@@ -140,7 +140,7 @@ eats : true
 
 ---
 
-### Step 2
+#### Step 2
 
 Create object
 
@@ -164,7 +164,7 @@ Object A
 
 ---
 
-### Step 3
+#### Step 3
 
 Replace prototype
 
@@ -210,7 +210,7 @@ changes.
 
 ---
 
-### Memory Diagram
+#### Memory Diagram
 
 ```text
 Rabbit Function
@@ -251,7 +251,7 @@ Two completely different objects.
 
 ---
 
-### Output
+#### Output
 
 ```javascript
 console.log(rabbit.eats);
@@ -265,7 +265,7 @@ true
 
 ---
 
-## Why?
+### Why?
 
 Because
 
@@ -295,7 +295,7 @@ rabbit.[[Prototype]]
 
 ---
 
-## Rule
+### Rule
 
 Replacing
 
@@ -309,7 +309,7 @@ It only changes the prototype used by **future objects**.
 
 ---
 
-## Scenario 2 — New Objects After Replacement
+### Scenario 2 — New Objects After Replacement
 
 ```javascript
 function Rabbit() {}
@@ -401,13 +401,13 @@ true
 
 ---
 
-## Important Observation
+### Important Observation
 
 Objects created before and after replacing the prototype can have **different prototype chains**.
 
 ---
 
-## Scenario 3 — Modifying the Existing Prototype
+### Scenario 3 — Modifying the Existing Prototype
 
 Now consider
 
@@ -489,13 +489,13 @@ false
 
 ---
 
-## Rule
+### Rule
 
 Modifying properties inside the prototype affects every object sharing that prototype.
 
 ---
 
-## Scenario 4 — Deleting an Own Property
+### Scenario 4 — Deleting an Own Property
 
 ```javascript
 const animal = {
@@ -587,13 +587,13 @@ true
 
 ---
 
-## Rule
+### Rule
 
 Deleting an own property exposes the inherited property again.
 
 ---
 
-## Scenario 5 — Deleting Prototype Property
+### Scenario 5 — Deleting Prototype Property
 
 ```javascript
 function Rabbit() {}
@@ -647,19 +647,19 @@ undefined
 
 ---
 
-## Rule
+### Rule
 
 Deleting a property from the prototype removes it for every object sharing that prototype.
 
 ---
 
-## Replacing vs Modifying
+### Replacing vs Modifying
 
 This is one of the most important interview questions.
 
 ---
 
-### Replacing
+#### Replacing
 
 ```javascript
 Rabbit.prototype = {};
@@ -679,7 +679,7 @@ UNCHANGED
 
 ---
 
-### Modifying
+#### Modifying
 
 ```javascript
 Rabbit.prototype.eats = false;
@@ -697,7 +697,7 @@ Every object sees update
 
 ---
 
-## Complete Comparison
+### Complete Comparison
 
 | Operation                       | Existing Objects        | Future Objects    |
 | ------------------------------- | ----------------------- | ----------------- |
@@ -708,7 +708,7 @@ Every object sees update
 
 ---
 
-## Visual Summary
+### Visual Summary
 
 Replacing
 
@@ -802,7 +802,7 @@ undefined
 
 ---
 
-## How JavaScript Thinks
+### How JavaScript Thinks
 
 When
 
@@ -850,9 +850,9 @@ reference forever (unless changed explicitly).
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -868,7 +868,7 @@ It only changes what future objects will inherit from.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -884,7 +884,7 @@ It changes the existing shared prototype object.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Confusing
 
@@ -904,7 +904,7 @@ The other modifies it.
 
 ---
 
-### Mistake 4
+#### Mistake 4
 
 Thinking objects "watch" their constructor's prototype.
 
@@ -924,7 +924,7 @@ Constructor.prototype;
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Avoid replacing a constructor's prototype after instances have already been created.
 - Prefer adding or modifying methods on the existing prototype.
@@ -933,9 +933,9 @@ Constructor.prototype;
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. When is `F.prototype` used?
+#### Q1. When is `F.prototype` used?
 
 **Answer**
 
@@ -943,7 +943,7 @@ Only during the execution of `new F()`, when JavaScript assigns the new object's
 
 ---
 
-### Q2. What happens if `F.prototype` is replaced after objects are created?
+#### Q2. What happens if `F.prototype` is replaced after objects are created?
 
 **Answer**
 
@@ -951,7 +951,7 @@ Existing objects continue using their original prototype. Only future objects cr
 
 ---
 
-### Q3. What happens if you modify a property on the existing prototype?
+#### Q3. What happens if you modify a property on the existing prototype?
 
 **Answer**
 
@@ -959,7 +959,7 @@ All objects sharing that prototype immediately observe the updated property beca
 
 ---
 
-### Q4. Why does deleting an object's own property expose the prototype property?
+#### Q4. Why does deleting an object's own property expose the prototype property?
 
 **Answer**
 
@@ -967,7 +967,7 @@ Once the own property is removed, JavaScript resumes its normal prototype-chain 
 
 ---
 
-### Q5. Why is replacing a prototype different from modifying it?
+#### Q5. Why is replacing a prototype different from modifying it?
 
 **Answer**
 
@@ -975,7 +975,7 @@ Replacing creates a brand-new prototype object. Modifying changes the existing p
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `F.prototype` is used only during object creation with `new`.
 - Objects store a reference to their own `[[Prototype]]`; they do not continuously consult `F.prototype`.

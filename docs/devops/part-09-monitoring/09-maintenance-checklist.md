@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Maintenance Checklist
 
-## Overview
+### Overview
 
 Deploying and monitoring a server are only part of a Linux administrator's responsibilities.
 
@@ -34,7 +34,7 @@ This chapter provides a practical maintenance checklist that can be used for mos
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Server Maintenance?
+## What is Server Maintenance?
 
 Server maintenance is the routine process of inspecting, updating, optimizing, and securing a production server.
 
@@ -77,7 +77,7 @@ Instead of waiting for failures, administrators regularly inspect the system to 
 
 ---
 
-# Why Maintenance Matters
+## Why Maintenance Matters
 
 Imagine a production server that receives no maintenance.
 
@@ -131,7 +131,7 @@ Regular maintenance significantly reduces downtime and operational risk.
 
 ---
 
-# Maintenance Workflow
+## Maintenance Workflow
 
 A typical maintenance cycle:
 
@@ -163,7 +163,7 @@ Every maintenance task should be documented for future reference.
 
 ---
 
-# Daily Maintenance Checklist
+## Daily Maintenance Checklist
 
 Daily tasks focus on identifying urgent production issues.
 
@@ -204,7 +204,7 @@ sudo systemctl status nginx
 
 ---
 
-# Weekly Maintenance Checklist
+## Weekly Maintenance Checklist
 
 Weekly tasks focus on housekeeping and system health.
 
@@ -234,7 +234,7 @@ sudo apt clean
 
 ---
 
-# Monthly Maintenance Checklist
+## Monthly Maintenance Checklist
 
 Monthly maintenance involves deeper inspections.
 
@@ -260,7 +260,7 @@ crontab -l
 
 ---
 
-# Quarterly Maintenance Checklist
+## Quarterly Maintenance Checklist
 
 Quarterly maintenance focuses on infrastructure improvements.
 
@@ -279,7 +279,7 @@ Quarterly reviews help ensure the infrastructure continues to meet business requ
 
 ---
 
-# Yearly Maintenance Checklist
+## Yearly Maintenance Checklist
 
 Annual maintenance is strategic rather than operational.
 
@@ -298,7 +298,7 @@ These activities prepare the infrastructure for long-term reliability.
 
 ---
 
-# Security Maintenance
+## Security Maintenance
 
 Security should be reviewed continuously.
 
@@ -329,7 +329,7 @@ Lower Risk
 
 ---
 
-# Storage Maintenance
+## Storage Maintenance
 
 Storage should be monitored regularly.
 
@@ -358,7 +358,7 @@ du -sh /*
 
 ---
 
-# Application Maintenance
+## Application Maintenance
 
 Applications also require routine care.
 
@@ -384,7 +384,7 @@ pm2 logs
 
 ---
 
-# Database Maintenance
+## Database Maintenance
 
 Database health directly affects application performance.
 
@@ -419,7 +419,7 @@ A backup is valuable only if it can be restored successfully.
 
 ---
 
-# Documentation Maintenance
+## Documentation Maintenance
 
 Documentation should evolve with the infrastructure.
 
@@ -438,7 +438,7 @@ Well-maintained documentation reduces recovery time during incidents.
 
 ---
 
-# Maintenance Calendar
+## Maintenance Calendar
 
 ```text id="maint07"
 Daily
@@ -460,7 +460,7 @@ Different maintenance activities occur at different intervals.
 
 ---
 
-# Complete Production Checklist
+## Complete Production Checklist
 
 ```text id="maint08"
 Server
@@ -490,7 +490,7 @@ Every production server should be reviewed systematically.
 
 ---
 
-# Useful Maintenance Commands
+## Useful Maintenance Commands
 
 | Command                  | Purpose                    |
 | ------------------------ | -------------------------- |
@@ -509,7 +509,7 @@ Every production server should be reviewed systematically.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A software company hosts several production Node.js applications on an Ubuntu server.
 
@@ -538,7 +538,7 @@ Because these maintenance tasks are performed consistently, the production envir
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow a documented maintenance schedule.
 - Automate repetitive maintenance tasks where appropriate.
@@ -552,39 +552,39 @@ Because these maintenance tasks are performed consistently, the production envir
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Skipping Routine Maintenance
+#### Skipping Routine Maintenance
 
 Small issues accumulate over time and can eventually cause major production failures.
 
 ---
 
-### Never Testing Backups
+#### Never Testing Backups
 
 A backup that cannot be restored is effectively useless.
 
 ---
 
-### Ignoring Security Updates
+#### Ignoring Security Updates
 
 Delaying security patches increases exposure to known vulnerabilities.
 
 ---
 
-### Performing Maintenance Without Documentation
+#### Performing Maintenance Without Documentation
 
 Undocumented changes make troubleshooting and future maintenance more difficult.
 
 ---
 
-### Waiting for Users to Report Problems
+#### Waiting for Users to Report Problems
 
 Maintenance should prevent incidents rather than respond only after users notice them.
 
 ---
 
-# Summary
+## Summary
 
 Routine maintenance is essential for keeping Linux production servers secure, stable, and performant. By following structured daily, weekly, monthly, quarterly, and yearly maintenance checklists, administrators can detect issues early, reduce downtime, maintain security, and extend the life of their infrastructure. Preventive maintenance, combined with monitoring and documentation, forms the foundation of reliable production operations.
 

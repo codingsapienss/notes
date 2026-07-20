@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Complete Deployment Walkthrough
 
-## Overview
+### Overview
 
 Throughout this part, we learned every individual component involved in deploying a Node.js application to production.
 
@@ -28,7 +28,7 @@ By the end of this chapter, you will understand the complete lifecycle of deploy
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Production Architecture
+## Production Architecture
 
 Complete deployment architecture:
 
@@ -81,7 +81,7 @@ Every request follows this path before reaching the application.
 
 ---
 
-# Step 1 — Create the Virtual Machine
+## Step 1 — Create the Virtual Machine
 
 Provision an Ubuntu Virtual Machine.
 
@@ -98,7 +98,7 @@ Recommended configuration:
 
 ---
 
-# Step 2 — Connect to the Server
+## Step 2 — Connect to the Server
 
 Connect using SSH.
 
@@ -120,7 +120,7 @@ lsb_release -a
 
 ---
 
-# Step 3 — Update the Server
+## Step 3 — Update the Server
 
 Update package information.
 
@@ -138,7 +138,7 @@ This ensures the server starts from an up-to-date state.
 
 ---
 
-# Step 4 — Install Required Software
+## Step 4 — Install Required Software
 
 Install Git.
 
@@ -172,7 +172,7 @@ sudo systemctl status nginx
 
 ---
 
-# Step 5 — Clone the Project
+## Step 5 — Clone the Project
 
 Navigate to the application directory.
 
@@ -198,7 +198,7 @@ cd project
 
 ---
 
-# Step 6 — Install Dependencies
+## Step 6 — Install Dependencies
 
 ```bash id="walkcmd15"
 npm install
@@ -214,7 +214,7 @@ Verify package installation completes successfully.
 
 ---
 
-# Step 7 — Configure Environment Variables
+## Step 7 — Configure Environment Variables
 
 Create the environment file.
 
@@ -235,7 +235,7 @@ Save the file.
 
 ---
 
-# Step 8 — Start the Application
+## Step 8 — Start the Application
 
 Start using PM2.
 
@@ -257,7 +257,7 @@ pm2 logs ecommerce-api
 
 ---
 
-# Step 9 — Configure Nginx
+## Step 9 — Configure Nginx
 
 Create a Server Block.
 
@@ -299,7 +299,7 @@ sudo systemctl reload nginx
 
 ---
 
-# Step 10 — Configure the Domain
+## Step 10 — Configure the Domain
 
 Configure DNS records.
 
@@ -318,7 +318,7 @@ Wait for propagation before continuing.
 
 ---
 
-# Step 11 — Enable HTTPS
+## Step 11 — Enable HTTPS
 
 Install Certbot.
 
@@ -340,7 +340,7 @@ https://example.com
 
 ---
 
-# Step 12 — Configure Cloudflare
+## Step 12 — Configure Cloudflare
 
 Enable:
 
@@ -369,7 +369,7 @@ Nginx
 
 ---
 
-# Step 13 — Save PM2 Configuration
+## Step 13 — Save PM2 Configuration
 
 Save running applications.
 
@@ -389,7 +389,7 @@ This ensures applications start automatically after server reboots.
 
 ---
 
-# Step 14 — Verify Deployment
+## Step 14 — Verify Deployment
 
 Check:
 
@@ -406,7 +406,7 @@ Verify every component before considering deployment complete.
 
 ---
 
-# Complete Deployment Flow
+## Complete Deployment Flow
 
 ```text id="walk05"
 Create VM
@@ -458,7 +458,7 @@ Production Ready
 
 ---
 
-# Deployment Verification Commands
+## Deployment Verification Commands
 
 Useful commands after deployment.
 
@@ -500,7 +500,7 @@ ss -tulpn
 
 ---
 
-# Troubleshooting Workflow
+## Troubleshooting Workflow
 
 ```text id="walk06"
 Website Not Working
@@ -538,7 +538,7 @@ Troubleshoot from the outermost layer inward rather than beginning with the appl
 
 ---
 
-# Deployment Checklist
+## Deployment Checklist
 
 | Task                             | Completed |
 | -------------------------------- | --------- |
@@ -561,7 +561,7 @@ Troubleshoot from the outermost layer inward rather than beginning with the appl
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A company wants to launch a new customer portal.
 
@@ -586,7 +586,7 @@ The customer portal is now securely available to users over the Internet.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Automate repetitive deployment tasks where possible.
 - Use a Static Public IP in production.
@@ -601,44 +601,44 @@ The customer portal is now securely available to users over the Internet.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Deploying Without Verification
+#### Deploying Without Verification
 
 A deployment should not be considered complete until every critical service has been verified.
 
 ---
 
-### Exposing Node.js Directly
+#### Exposing Node.js Directly
 
 Production traffic should pass through Nginx rather than connecting directly to the Node.js application.
 
 ---
 
-### Forgetting Environment Variables
+#### Forgetting Environment Variables
 
 Missing or incorrect `.env` values are a common cause of startup failures.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Deployment issues often become immediately apparent in PM2 or Nginx logs.
 
 ---
 
-### Skipping Backups
+#### Skipping Backups
 
 Creating backups before deployments and upgrades provides a recovery path if unexpected issues occur.
 
 ---
 
-# Summary
+## Summary
 
 This chapter combined every concept from the Deployment section into a complete production workflow. Beginning with provisioning an Ubuntu Virtual Machine, the process continued through software installation, application deployment, Nginx configuration, DNS setup, HTTPS enablement, Cloudflare integration, PM2 configuration, and deployment verification. Following this structured sequence helps produce reliable, secure, and maintainable Node.js deployments suitable for real-world production environments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 9 — Monitoring and Logging**

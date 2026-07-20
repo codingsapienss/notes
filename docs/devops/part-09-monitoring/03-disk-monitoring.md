@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Disk Monitoring
 
-## Overview
+### Overview
 
 Disk storage is one of the most critical resources on a Linux server.
 
@@ -24,7 +24,7 @@ Monitoring disk usage helps administrators detect storage problems early and mai
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -39,7 +39,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Disk Monitoring Matters
+## Why Disk Monitoring Matters
 
 Imagine an application server.
 
@@ -89,7 +89,7 @@ Continuous monitoring prevents storage-related failures.
 
 ---
 
-# Understanding Linux Storage
+## Understanding Linux Storage
 
 A Linux server may contain multiple storage devices.
 
@@ -119,7 +119,7 @@ Each filesystem should be monitored independently.
 
 ---
 
-# Filesystems
+## Filesystems
 
 A filesystem organizes data on a storage device.
 
@@ -137,7 +137,7 @@ Production Linux servers commonly use **ext4** or **XFS**.
 
 ---
 
-# Mount Points
+## Mount Points
 
 Linux attaches filesystems to directories called **mount points**.
 
@@ -159,7 +159,7 @@ Each mount point may belong to a different partition or storage device.
 
 ---
 
-# Viewing Filesystems
+## Viewing Filesystems
 
 Display mounted filesystems.
 
@@ -178,7 +178,7 @@ The `-h` option displays values in a human-readable format.
 
 ---
 
-# Understanding df Output
+## Understanding df Output
 
 Important columns:
 
@@ -195,7 +195,7 @@ Administrators should pay particular attention to the **Use%** column.
 
 ---
 
-# Disk Usage by Directory
+## Disk Usage by Directory
 
 Sometimes the filesystem has enough space, but one directory consumes most of it.
 
@@ -225,7 +225,7 @@ This helps identify storage-heavy directories.
 
 ---
 
-# Finding Large Files
+## Finding Large Files
 
 Large files can unexpectedly consume storage.
 
@@ -253,7 +253,7 @@ Removing unnecessary large files can quickly recover storage space.
 
 ---
 
-# Viewing Block Devices
+## Viewing Block Devices
 
 Display disks and partitions.
 
@@ -279,7 +279,7 @@ This command provides an overview of attached storage devices.
 
 ---
 
-# Viewing Mounted Filesystems
+## Viewing Mounted Filesystems
 
 Display mount information.
 
@@ -297,7 +297,7 @@ Understanding mounted storage is important during troubleshooting.
 
 ---
 
-# Disk I/O
+## Disk I/O
 
 Disk I/O measures how frequently the operating system reads from and writes to storage.
 
@@ -321,7 +321,7 @@ High disk utilization may slow application performance even when plenty of disk 
 
 ---
 
-# Monitoring Disk I/O
+## Monitoring Disk I/O
 
 View disk statistics.
 
@@ -344,7 +344,7 @@ Important metrics include:
 
 ---
 
-# Inodes
+## Inodes
 
 Linux stores metadata about every file using **inodes**.
 
@@ -374,7 +374,7 @@ Monitor both disk space and inode usage.
 
 ---
 
-# Disk Cleanup
+## Disk Cleanup
 
 Temporary files and logs often consume storage over time.
 
@@ -390,7 +390,7 @@ Always verify files before deleting them.
 
 ---
 
-# Package Cache
+## Package Cache
 
 Clean downloaded package files.
 
@@ -408,7 +408,7 @@ These commands help recover disk space safely.
 
 ---
 
-# Using ncdu
+## Using ncdu
 
 `ncdu` provides an interactive disk usage viewer.
 
@@ -432,7 +432,7 @@ Advantages:
 
 ---
 
-# Storage Monitoring Workflow
+## Storage Monitoring Workflow
 
 ```text id="disk11"
 Check Disk Usage
@@ -458,7 +458,7 @@ This workflow helps maintain healthy storage usage.
 
 ---
 
-# Production Storage Architecture
+## Production Storage Architecture
 
 ```text id="disk12"
 Linux Server
@@ -480,7 +480,7 @@ Every storage layer contributes to overall system performance.
 
 ---
 
-# Useful Disk Monitoring Commands
+## Useful Disk Monitoring Commands
 
 | Command     | Purpose                       |
 | ----------- | ----------------------------- |
@@ -497,7 +497,7 @@ Every storage layer contributes to overall system performance.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production Node.js application suddenly begins failing to upload user images.
 
@@ -514,7 +514,7 @@ The issue was caused by insufficient disk space rather than a problem in the app
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor disk usage regularly.
 - Keep filesystem utilization below critical levels.
@@ -527,44 +527,44 @@ The issue was caused by insufficient disk space rather than a problem in the app
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Monitoring Only Free Disk Space
+#### Monitoring Only Free Disk Space
 
 A filesystem can exhaust its available inodes even when significant storage capacity remains.
 
 ---
 
-### Ignoring Log Growth
+#### Ignoring Log Growth
 
 Application and web server logs often grow continuously and can consume large amounts of storage if not managed.
 
 ---
 
-### Deleting Files Without Investigation
+#### Deleting Files Without Investigation
 
 Removing files without understanding their purpose may break applications or eliminate important diagnostic information.
 
 ---
 
-### Ignoring Disk I/O
+#### Ignoring Disk I/O
 
 A server may have plenty of available storage but still perform poorly due to excessive read or write activity.
 
 ---
 
-### Waiting Until the Disk Is Full
+#### Waiting Until the Disk Is Full
 
 Storage issues should be addressed proactively before they begin affecting production applications.
 
 ---
 
-# Summary
+## Summary
 
 Disk monitoring is an essential aspect of Linux server administration. By monitoring filesystem usage, partitions, mount points, directory sizes, disk I/O, and inode consumption, administrators can prevent storage-related outages and maintain healthy production systems. Regular inspections, timely cleanup, and continuous monitoring help ensure that applications always have the storage resources they require.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Memory Monitoring**

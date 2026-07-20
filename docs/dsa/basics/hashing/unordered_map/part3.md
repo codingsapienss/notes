@@ -10,7 +10,7 @@
 
 ---
 
-## What is a Collision?
+### What is a Collision?
 
 A **Collision** occurs when **two or more different keys** are mapped to the **same bucket** by the hash function.
 
@@ -56,7 +56,7 @@ Collision
 
 ---
 
-## Why Do Collisions Happen?
+### Why Do Collisions Happen?
 
 A hash table has a **fixed number of buckets**.
 
@@ -110,7 +110,7 @@ collisions are **unavoidable**.
 
 ---
 
-## Visual Example
+### Visual Example
 
 Hash Function
 
@@ -188,7 +188,7 @@ all collide.
 
 ---
 
-## How Does unordered_map Handle Collisions?
+### How Does unordered_map Handle Collisions?
 
 The most common technique is
 
@@ -234,7 +234,7 @@ NULL
 
 ---
 
-## Searching
+### Searching
 
 Suppose we need
 
@@ -286,7 +286,7 @@ Found
 
 ---
 
-## Why is Average Time Complexity O(1)?
+### Why is Average Time Complexity O(1)?
 
 Most of the time,
 
@@ -346,7 +346,7 @@ Average.
 
 ---
 
-## Worst Case
+### Worst Case
 
 Imagine a poor hash function.
 
@@ -422,7 +422,7 @@ O(N)
 
 ---
 
-## Why Does Worst Case Rarely Happen?
+### Why Does Worst Case Rarely Happen?
 
 Modern STL implementations use
 
@@ -438,7 +438,7 @@ the worst case is **possible**, but **rare** under normal conditions.
 
 ---
 
-## What is a Load Factor?
+### What is a Load Factor?
 
 The **Load Factor** measures how full the hash table is.
 
@@ -486,7 +486,7 @@ each bucket contains
 
 ---
 
-## Why is Load Factor Important?
+### Why is Load Factor Important?
 
 As the load factor increases,
 
@@ -512,7 +512,7 @@ Searching becomes slower.
 
 ---
 
-## Rehashing
+### Rehashing
 
 When the load factor becomes too large,
 
@@ -524,7 +524,7 @@ Rehashing
 
 ---
 
-## What is Rehashing?
+### What is Rehashing?
 
 Rehashing means
 
@@ -576,7 +576,7 @@ The elements become more evenly distributed.
 
 ---
 
-## Why is Rehashing Useful?
+### Why is Rehashing Useful?
 
 Without rehashing
 
@@ -608,13 +608,13 @@ Fast Searching
 
 ---
 
-## Collision Resolution Techniques
+### Collision Resolution Techniques
 
 There are several methods.
 
 ---
 
-### 1. Separate Chaining ✅
+#### 1. Separate Chaining ✅
 
 Uses
 
@@ -628,19 +628,19 @@ Used by many `unordered_map` implementations.
 
 ---
 
-### 2. Open Addressing
+#### 2. Open Addressing
 
 Stores collided elements in another empty bucket.
 
 ---
 
-### 3. Quadratic Probing
+#### 3. Quadratic Probing
 
 Searches for another bucket using a quadratic formula.
 
 ---
 
-### 4. Double Hashing
+#### 4. Double Hashing
 
 Uses a second hash function to find another bucket.
 
@@ -658,7 +658,7 @@ is usually sufficient.
 
 ---
 
-## Complexity
+### Complexity
 
 | Operation | Average | Worst |
 | --------- | ------- | ----- |
@@ -668,7 +668,7 @@ is usually sufficient.
 
 ---
 
-## Space Complexity
+### Space Complexity
 
 ```text
 O(N)
@@ -682,7 +682,7 @@ N = Number of Stored Elements
 
 ---
 
-## map vs unordered_map
+### map vs unordered_map
 
 | Feature            | map            | unordered_map |
 | ------------------ | -------------- | ------------- |
@@ -695,7 +695,7 @@ N = Number of Stored Elements
 
 ---
 
-## When Should You Use map?
+### When Should You Use map?
 
 Use `map` when:
 
@@ -705,7 +705,7 @@ Use `map` when:
 
 ---
 
-## When Should You Use unordered_map?
+### When Should You Use unordered_map?
 
 Use `unordered_map` when:
 
@@ -716,7 +716,7 @@ Use `unordered_map` when:
 
 ---
 
-## Common Misconception
+### Common Misconception
 
 Many students say:
 
@@ -737,9 +737,9 @@ collision-heavy inputs.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is a collision?
+#### Q1. What is a collision?
 
 **Answer**
 
@@ -747,7 +747,7 @@ A collision occurs when two or more different keys are mapped to the same bucket
 
 ---
 
-### Q2. Why are collisions unavoidable?
+#### Q2. Why are collisions unavoidable?
 
 **Answer**
 
@@ -755,7 +755,7 @@ Because the number of possible keys is much larger than the fixed number of buck
 
 ---
 
-### Q3. How does `unordered_map` resolve collisions?
+#### Q3. How does `unordered_map` resolve collisions?
 
 **Answer**
 
@@ -763,7 +763,7 @@ Most implementations use **Separate Chaining**, where each bucket stores a linke
 
 ---
 
-### Q4. What is a load factor?
+#### Q4. What is a load factor?
 
 **Answer**
 
@@ -781,7 +781,7 @@ It indicates how full the hash table is.
 
 ---
 
-### Q5. What is rehashing?
+#### Q5. What is rehashing?
 
 **Answer**
 
@@ -789,7 +789,7 @@ Rehashing increases the number of buckets and redistributes all existing element
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - A **collision** occurs when multiple keys map to the same bucket.
 - Collisions are unavoidable because hash tables have a limited number of buckets.

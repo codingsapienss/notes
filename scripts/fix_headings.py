@@ -3,7 +3,8 @@ import re
 
 directories = [
     r"docs/dsa/basics/hashing",
-    r"docs/web-dev/javascript/Prototypes & Inheritance"
+    r"docs/web-dev/javascript/Prototypes & Inheritance",
+    r"docs/devops"
 ]
 
 def fix_file(filepath):

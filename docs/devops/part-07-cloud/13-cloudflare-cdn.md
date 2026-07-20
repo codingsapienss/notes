@@ -6,7 +6,7 @@ sidebar_position: 13
 
 # Cloudflare CDN
 
-## Overview
+### Overview
 
 In the previous chapter, we learned how Cloudflare provides secure HTTPS communication using SSL/TLS.
 
@@ -38,7 +38,7 @@ Users receive content from the nearest Cloudflare data center rather than waitin
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -52,7 +52,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a CDN?
+## What is a CDN?
 
 A **Content Delivery Network (CDN)** is a globally distributed network of servers that stores copies of content closer to users.
 
@@ -84,7 +84,7 @@ The goal is to reduce latency and improve performance.
 
 ---
 
-# Why Do We Need a CDN?
+## Why Do We Need a CDN?
 
 Suppose your application is hosted in India.
 
@@ -126,7 +126,7 @@ The request is served much closer to the user.
 
 ---
 
-# Cloudflare Edge Network
+## Cloudflare Edge Network
 
 Cloudflare operates a large global network of edge data centers.
 
@@ -148,7 +148,7 @@ Every edge location can store cached copies of static resources.
 
 ---
 
-# What is an Edge Server?
+## What is an Edge Server?
 
 An **Edge Server** is a Cloudflare server located closer to end users.
 
@@ -170,7 +170,7 @@ The Edge Server can respond immediately if it already has the requested content.
 
 ---
 
-# First Request
+## First Request
 
 Suppose a user requests:
 
@@ -198,7 +198,7 @@ Cloudflare stores a copy.
 
 ---
 
-# Second Request
+## Second Request
 
 Later, another nearby user requests the same file.
 
@@ -220,7 +220,7 @@ This reduces server workload and improves response times.
 
 ---
 
-# Cache Hit
+## Cache Hit
 
 A **Cache Hit** occurs when Cloudflare already has the requested resource.
 
@@ -244,7 +244,7 @@ Advantages:
 
 ---
 
-# Cache Miss
+## Cache Miss
 
 A **Cache Miss** occurs when the requested content is not yet cached.
 
@@ -272,7 +272,7 @@ After retrieving the content, Cloudflare stores it for future requests.
 
 ---
 
-# Cache Lifecycle
+## Cache Lifecycle
 
 A simplified cache lifecycle:
 
@@ -308,7 +308,7 @@ Cloudflare repeats this process continuously for cacheable resources.
 
 ---
 
-# What Can Be Cached?
+## What Can Be Cached?
 
 Typical cacheable resources include:
 
@@ -324,7 +324,7 @@ These files usually change infrequently.
 
 ---
 
-# What Should Not Be Cached?
+## What Should Not Be Cached?
 
 Dynamic content is generally served by the origin server.
 
@@ -341,7 +341,7 @@ Serving outdated dynamic content can lead to incorrect application behavior.
 
 ---
 
-# Static vs Dynamic Content
+## Static vs Dynamic Content
 
 | Static Content | Dynamic Content |
 | -------------- | --------------- |
@@ -356,7 +356,7 @@ Understanding this distinction is essential for effective caching.
 
 ---
 
-# Cache Expiration
+## Cache Expiration
 
 Cached content should eventually be refreshed.
 
@@ -376,7 +376,7 @@ Cloudflare uses cache-control information and caching policies to determine when
 
 ---
 
-# Cache-Control Headers
+## Cache-Control Headers
 
 Origin servers can influence caching behavior using HTTP response headers.
 
@@ -393,7 +393,7 @@ These headers allow the origin server to communicate caching policies to interme
 
 ---
 
-# CDN Performance Benefits
+## CDN Performance Benefits
 
 Without CDN:
 
@@ -433,7 +433,7 @@ Benefits include:
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="cdn16"
 Users
@@ -460,7 +460,7 @@ Only requests that cannot be served from the cache reach the origin server.
 
 ---
 
-# CDN and Global Traffic
+## CDN and Global Traffic
 
 Suppose users are located in multiple countries.
 
@@ -492,7 +492,7 @@ Each region receives content from its nearest Cloudflare edge location whenever 
 
 ---
 
-# CDN and Origin Server Load
+## CDN and Origin Server Load
 
 Without Cloudflare CDN:
 
@@ -530,7 +530,7 @@ The exact reduction depends on the application's cacheability, but serving repea
 
 ---
 
-# Typical Deployment Example
+## Typical Deployment Example
 
 Suppose your Node.js application serves:
 
@@ -558,7 +558,7 @@ Dynamic API requests continue to the origin server, while static assets are deli
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an e-commerce company hosts its application in Central India.
 
@@ -587,7 +587,7 @@ As a result:
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Cache static assets such as images, CSS, JavaScript, and fonts.
 - Avoid caching sensitive or personalized content unless explicitly designed for it.
@@ -599,44 +599,44 @@ As a result:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Caching Dynamic Pages
+#### Caching Dynamic Pages
 
 Caching personalized or frequently changing content can result in users seeing outdated or incorrect information.
 
 ---
 
-### Forgetting Cache Invalidation
+#### Forgetting Cache Invalidation
 
 After updating static files, failing to invalidate or version cached assets may cause users to receive older versions.
 
 ---
 
-### Assuming Every Request Is Cached
+#### Assuming Every Request Is Cached
 
 Only cacheable resources are served from Cloudflare's edge. Dynamic requests usually continue to the origin server unless explicitly configured otherwise.
 
 ---
 
-### Ignoring HTTP Cache Headers
+#### Ignoring HTTP Cache Headers
 
 Poor cache-control settings can reduce CDN effectiveness or keep outdated content in cache longer than intended.
 
 ---
 
-### Using the Origin Server for All Static Assets
+#### Using the Origin Server for All Static Assets
 
 Serving large static resources directly from the origin increases bandwidth usage and unnecessary server load.
 
 ---
 
-# Summary
+## Summary
 
 A Content Delivery Network (CDN) improves website performance by storing cacheable content on geographically distributed edge servers. Cloudflare's CDN serves static resources such as images, CSS, JavaScript, fonts, and documents from locations closer to users, reducing latency and decreasing load on the origin server. Understanding concepts such as edge servers, cache hits, cache misses, cache expiration, and cache-control headers enables administrators to build faster, more scalable web applications while using cloud resources more efficiently.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 8 - Monitoring & Logging**

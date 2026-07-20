@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Linux Cheat Sheet
 
-## Overview
+### Overview
 
 This chapter provides a **quick-reference cheat sheet** for the commands used most frequently by Linux administrators, backend developers, DevOps engineers, and cloud engineers.
 
@@ -14,7 +14,7 @@ Unlike previous chapters that explain concepts in detail, this chapter is design
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -28,7 +28,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Linux Administration Workflow
+## Linux Administration Workflow
 
 ```text id="1vy7hk"
 Login
@@ -60,7 +60,7 @@ Troubleshoot
 
 ---
 
-# Directory Navigation
+## Directory Navigation
 
 | Command        | Purpose                |
 | -------------- | ---------------------- |
@@ -85,7 +85,7 @@ cd /var/www
 
 ---
 
-# File Management
+## File Management
 
 | Command               | Purpose                   |
 | --------------------- | ------------------------- |
@@ -102,7 +102,7 @@ cd /var/www
 
 ---
 
-# File Viewing
+## File Viewing
 
 | Command          | Purpose        |
 | ---------------- | -------------- |
@@ -126,7 +126,7 @@ grep ERROR app.log
 
 ---
 
-# Permissions
+## Permissions
 
 | Command                | Purpose             |
 | ---------------------- | ------------------- |
@@ -149,7 +149,7 @@ Permission example:
 
 ---
 
-# User Management
+## User Management
 
 | Command        | Purpose         |
 | -------------- | --------------- |
@@ -163,7 +163,7 @@ Permission example:
 
 ---
 
-# Process Management
+## Process Management
 
 | Command       | Purpose             |
 | ------------- | ------------------- |
@@ -177,7 +177,7 @@ Permission example:
 
 ---
 
-# Disk Usage
+## Disk Usage
 
 | Command         | Purpose         |
 | --------------- | --------------- |
@@ -189,7 +189,7 @@ Permission example:
 
 ---
 
-# Networking
+## Networking
 
 | Command               | Purpose         |
 | --------------------- | --------------- |
@@ -205,7 +205,7 @@ Permission example:
 
 ---
 
-# SSH
+## SSH
 
 | Command                    | Purpose         |
 | -------------------------- | --------------- |
@@ -222,7 +222,7 @@ SSH keys:
 
 ---
 
-# Package Management (APT)
+## Package Management (APT)
 
 | Command           | Purpose                |
 | ----------------- | ---------------------- |
@@ -235,7 +235,7 @@ SSH keys:
 
 ---
 
-# systemctl
+## systemctl
 
 | Command                   | Purpose         |
 | ------------------------- | --------------- |
@@ -249,7 +249,7 @@ SSH keys:
 
 ---
 
-# journalctl
+## journalctl
 
 | Command               | Purpose           |
 | --------------------- | ----------------- |
@@ -261,7 +261,7 @@ SSH keys:
 
 ---
 
-# Nginx
+## Nginx
 
 | Command                   | Purpose            |
 | ------------------------- | ------------------ |
@@ -281,7 +281,7 @@ Logs:
 
 ---
 
-# PM2
+## PM2
 
 | Command            | Purpose           |
 | ------------------ | ----------------- |
@@ -297,7 +297,7 @@ Logs:
 
 ---
 
-# Git
+## Git
 
 | Command               | Purpose  |
 | --------------------- | -------- |
@@ -314,7 +314,7 @@ Logs:
 
 ---
 
-# Docker (Basic)
+## Docker (Basic)
 
 | Command                   | Purpose            |
 | ------------------------- | ------------------ |
@@ -328,7 +328,7 @@ Logs:
 
 ---
 
-# File Compression
+## File Compression
 
 | Command                         | Purpose         |
 | ------------------------------- | --------------- |
@@ -341,7 +341,7 @@ Logs:
 
 ---
 
-# Firewall (UFW)
+## Firewall (UFW)
 
 | Command         | Purpose      |
 | --------------- | ------------ |
@@ -354,7 +354,7 @@ Logs:
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 Current shell:
 
@@ -378,7 +378,7 @@ Persistent variables:
 
 ---
 
-# Monitoring
+## Monitoring
 
 | Command   | Purpose             |
 | --------- | ------------------- |
@@ -393,7 +393,7 @@ Persistent variables:
 
 ---
 
-# Logs
+## Logs
 
 | Log            | Location                    |
 | -------------- | --------------------------- |
@@ -411,7 +411,7 @@ tail -f /var/log/syslog
 
 ---
 
-# Useful Shortcuts
+## Useful Shortcuts
 
 | Shortcut   | Action                  |
 | ---------- | ----------------------- |
@@ -425,7 +425,7 @@ tail -f /var/log/syslog
 
 ---
 
-# Common File Locations
+## Common File Locations
 
 | Location              | Purpose             |
 | --------------------- | ------------------- |
@@ -442,7 +442,7 @@ tail -f /var/log/syslog
 
 ---
 
-# Daily Production Workflow
+## Daily Production Workflow
 
 ```text id="jlwm11"
 SSH
@@ -474,7 +474,7 @@ Verify Website
 
 ---
 
-# Troubleshooting Workflow
+## Troubleshooting Workflow
 
 ```text id="jlwm12"
 Website Down
@@ -514,7 +514,7 @@ Resolved
 
 ---
 
-# Daily Command Checklist
+## Daily Command Checklist
 
 ```text id="jlwm13"
 Navigation
@@ -553,7 +553,7 @@ Logs
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A deployment has completed, but users report that the website is unavailable.
 
@@ -583,7 +583,7 @@ Within a few minutes, these commands identify whether the issue lies with Nginx,
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn frequently used commands instead of memorizing every available option.
 - Prefer modern commands such as `ip` and `ss` over deprecated alternatives.
@@ -594,44 +594,44 @@ Within a few minutes, these commands identify whether the issue lies with Nginx,
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Running Destructive Commands Without Verification
+#### Running Destructive Commands Without Verification
 
 Commands such as `rm -rf` and `git reset --hard` should always be reviewed before execution.
 
 ---
 
-### Ignoring Exit Status
+#### Ignoring Exit Status
 
 Always verify whether a command completed successfully before moving to the next step.
 
 ---
 
-### Restarting Services Before Reading Logs
+#### Restarting Services Before Reading Logs
 
 Inspect logs first to identify the root cause instead of restarting services immediately.
 
 ---
 
-### Forgetting to Check Resource Usage
+#### Forgetting to Check Resource Usage
 
 High CPU, memory, or disk utilization can cause application failures that appear unrelated.
 
 ---
 
-### Memorizing Commands Without Understanding Them
+#### Memorizing Commands Without Understanding Them
 
 Understanding the purpose of each command is more valuable than remembering syntax alone.
 
 ---
 
-# Summary
+## Summary
 
 This Linux Cheat Sheet consolidates the commands most frequently used in Linux administration, networking, deployments, monitoring, and troubleshooting. It is intended as a rapid-reference guide for everyday production work, allowing administrators and developers to quickly locate essential commands without consulting extensive documentation.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **10 - Production Checklists**

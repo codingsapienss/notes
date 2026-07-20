@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # Backup and Rollback
 
-## Overview
+### Overview
 
 No matter how carefully a deployment is planned, failures can still occur.
 
@@ -29,7 +29,7 @@ In this chapter, we will learn how to create reliable backups and perform safe r
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -44,7 +44,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Backups Matter
+## Why Backups Matter
 
 Imagine the following deployment:
 
@@ -84,7 +84,7 @@ Backups reduce downtime and protect valuable data.
 
 ---
 
-# What Should Be Backed Up?
+## What Should Be Backed Up?
 
 Production systems contain several important components.
 
@@ -102,7 +102,7 @@ A complete recovery often requires more than just the application code.
 
 ---
 
-# Types of Backups
+## Types of Backups
 
 | Backup Type         | Description                                    |
 | ------------------- | ---------------------------------------------- |
@@ -115,7 +115,7 @@ Different backup types serve different operational needs.
 
 ---
 
-# Production Backup Architecture
+## Production Backup Architecture
 
 ```text id="bk04"
 Production Server
@@ -135,7 +135,7 @@ A reliable backup includes both the application and its associated data.
 
 ---
 
-# Backing Up Application Files
+## Backing Up Application Files
 
 Compress the project directory.
 
@@ -156,7 +156,7 @@ This creates a compressed archive of the application files.
 
 ---
 
-# Backing Up Environment Files
+## Backing Up Environment Files
 
 The `.env` file contains important configuration such as:
 
@@ -175,7 +175,7 @@ Environment files should be stored securely because they often contain sensitive
 
 ---
 
-# Backing Up Nginx Configuration
+## Backing Up Nginx Configuration
 
 Backup the Nginx configuration.
 
@@ -192,7 +192,7 @@ This preserves:
 
 ---
 
-# Backing Up SSL Certificates
+## Backing Up SSL Certificates
 
 If certificates are stored locally:
 
@@ -204,7 +204,7 @@ This allows certificate restoration if the server must be rebuilt.
 
 ---
 
-# Database Backup
+## Database Backup
 
 For MongoDB:
 
@@ -230,7 +230,7 @@ For relational databases, use the database's recommended backup tools.
 
 ---
 
-# Server Snapshot
+## Server Snapshot
 
 Cloud providers often support virtual machine snapshots.
 
@@ -259,7 +259,7 @@ Snapshots are especially useful before major operating system upgrades.
 
 ---
 
-# Backup Workflow
+## Backup Workflow
 
 ```text id="bk07"
 Stop Risky Changes
@@ -285,7 +285,7 @@ A backup should always be completed before making significant production changes
 
 ---
 
-# What is Rollback?
+## What is Rollback?
 
 Rollback means returning the system to the last known working version.
 
@@ -315,7 +315,7 @@ Rollback minimizes downtime when deployments fail.
 
 ---
 
-# Application Rollback
+## Application Rollback
 
 Suppose deployment introduces an error.
 
@@ -345,7 +345,7 @@ A successful rollback restores service quickly while the issue is investigated.
 
 ---
 
-# Database Rollback
+## Database Rollback
 
 Database changes require extra care.
 
@@ -371,7 +371,7 @@ Some migrations cannot be automatically reversed, making backups especially impo
 
 ---
 
-# Restoring Application Files
+## Restoring Application Files
 
 Extract the archived backup.
 
@@ -389,7 +389,7 @@ Verify the application after restoration.
 
 ---
 
-# Disaster Recovery Workflow
+## Disaster Recovery Workflow
 
 ```text id="bk11"
 Failure Detected
@@ -415,7 +415,7 @@ Recovery should follow a documented process rather than ad hoc decisions.
 
 ---
 
-# Backup Storage
+## Backup Storage
 
 Never store the only backup on the same production server.
 
@@ -441,7 +441,7 @@ Off-site or cloud storage protects backups from hardware failures affecting the 
 
 ---
 
-# Backup Schedule
+## Backup Schedule
 
 Typical production schedule:
 
@@ -456,7 +456,7 @@ Actual schedules depend on business requirements and acceptable data loss.
 
 ---
 
-# Verification
+## Verification
 
 A backup is useful only if it can be restored.
 
@@ -474,7 +474,7 @@ Regular restoration testing is as important as creating backups.
 
 ---
 
-# Complete Backup Architecture
+## Complete Backup Architecture
 
 ```text id="bk13"
 Users
@@ -504,7 +504,7 @@ The backup system protects every critical layer of the deployment.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An online learning platform deploys a new version of its backend.
 
@@ -523,7 +523,7 @@ The engineer immediately restores the previous application version, reloads PM2,
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Create backups before every production deployment.
 - Store backups outside the production server.
@@ -536,44 +536,44 @@ The engineer immediately restores the previous application version, reloads PM2,
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Not Testing Backups
+#### Not Testing Backups
 
 Creating backups without verifying that they can be restored provides a false sense of security.
 
 ---
 
-### Storing Backups on the Same Server
+#### Storing Backups on the Same Server
 
 If the production server fails completely, locally stored backups may be lost as well.
 
 ---
 
-### Forgetting Configuration Files
+#### Forgetting Configuration Files
 
 Recovering only the application code may not restore the production environment if configuration files are missing.
 
 ---
 
-### Deploying Without a Rollback Plan
+#### Deploying Without a Rollback Plan
 
 Every production deployment should have a documented recovery procedure before changes begin.
 
 ---
 
-### Keeping Only One Backup
+#### Keeping Only One Backup
 
 A single backup may already contain corrupted data or accidental changes. Maintaining multiple backup versions improves recovery options.
 
 ---
 
-# Summary
+## Summary
 
 Backups and rollbacks are fundamental components of production operations. A comprehensive backup strategy includes application files, databases, configuration files, SSL certificates, and environment variables. Combined with well-tested rollback procedures and secure off-site storage, these practices allow administrators to recover quickly from deployment failures, configuration mistakes, and unexpected system issues while minimizing downtime and data loss.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **11 - Complete Deployment Walkthrough**

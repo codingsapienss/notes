@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Port Reference
 
-## Overview
+### Overview
 
 Every network service communicates through one or more **ports**. A port acts as a logical communication endpoint that allows multiple services to operate on a single IP address simultaneously.
 
@@ -23,7 +23,7 @@ This chapter serves as a quick-reference guide to the most commonly used TCP and
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -37,7 +37,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Port?
+## What is a Port?
 
 A **port** is a 16-bit logical communication endpoint associated with an IP address.
 
@@ -59,7 +59,7 @@ A single server can host thousands of services by assigning each one a different
 
 ---
 
-# Communication Flow
+## Communication Flow
 
 ```text
 Browser
@@ -109,7 +109,7 @@ Node.js
 
 ---
 
-# Port Number Ranges
+## Port Number Ranges
 
 | Range       | Category            | Purpose                       |
 | ----------- | ------------------- | ----------------------------- |
@@ -119,7 +119,7 @@ Node.js
 
 ---
 
-# TCP vs UDP
+## TCP vs UDP
 
 | Feature         | TCP              | UDP                        |
 | --------------- | ---------------- | -------------------------- |
@@ -132,7 +132,7 @@ Node.js
 
 ---
 
-# Well-Known Ports
+## Well-Known Ports
 
 | Port | Protocol | Service          | Typical Use              |
 | ---- | -------- | ---------------- | ------------------------ |
@@ -170,7 +170,7 @@ Node.js
 
 ---
 
-# Database Ports
+## Database Ports
 
 | Port  | Database              |
 | ----- | --------------------- |
@@ -187,7 +187,7 @@ Node.js
 
 ---
 
-# Application Ports
+## Application Ports
 
 | Port | Application            |
 | ---- | ---------------------- |
@@ -207,7 +207,7 @@ Node.js
 
 ---
 
-# Cloud & DevOps Ports
+## Cloud & DevOps Ports
 
 | Port | Service                    |
 | ---- | -------------------------- |
@@ -222,7 +222,7 @@ Node.js
 
 ---
 
-# Secure Shell (SSH)
+## Secure Shell (SSH)
 
 Default SSH port:
 
@@ -256,7 +256,7 @@ sudo systemctl restart ssh
 
 ---
 
-# HTTP & HTTPS
+## HTTP & HTTPS
 
 | Port | Purpose |
 | ---- | ------- |
@@ -289,7 +289,7 @@ Users only access ports **80** and **443**, while internal services remain priva
 
 ---
 
-# Email Ports
+## Email Ports
 
 | Port | Protocol        |
 | ---- | --------------- |
@@ -303,7 +303,7 @@ Users only access ports **80** and **443**, while internal services remain priva
 
 ---
 
-# View Listening Ports
+## View Listening Ports
 
 Using `ss`:
 
@@ -339,7 +339,7 @@ LISTEN
 
 ---
 
-# Using lsof
+## Using lsof
 
 Find which process uses a port.
 
@@ -359,7 +359,7 @@ TCP *:3000
 
 ---
 
-# Using netstat
+## Using netstat
 
 ```bash
 netstat -tulpn
@@ -369,7 +369,7 @@ Although `ss` is preferred, `netstat` remains common on older systems.
 
 ---
 
-# Test Port Connectivity
+## Test Port Connectivity
 
 Using `nc` (Netcat):
 
@@ -391,7 +391,7 @@ Connection succeeded
 
 ---
 
-# Firewall Configuration
+## Firewall Configuration
 
 Allow SSH.
 
@@ -425,7 +425,7 @@ sudo ufw status numbered
 
 ---
 
-# Reserved Ports
+## Reserved Ports
 
 Ports below **1024** are considered privileged ports.
 
@@ -442,7 +442,7 @@ On Linux, binding to these ports typically requires elevated privileges or appro
 
 ---
 
-# Private Application Ports
+## Private Application Ports
 
 Typical production setup:
 
@@ -475,7 +475,7 @@ This improves security by preventing direct access to the application server.
 
 ---
 
-# Port Troubleshooting Workflow
+## Port Troubleshooting Workflow
 
 ```text
 Application Unreachable
@@ -507,7 +507,7 @@ Resolved
 
 ---
 
-# Daily Port Commands
+## Daily Port Commands
 
 ```text
 Ports
@@ -530,7 +530,7 @@ Firewall
 
 ---
 
-# Useful Port Commands
+## Useful Port Commands
 
 | Command          | Purpose                   |
 | ---------------- | ------------------------- |
@@ -544,7 +544,7 @@ Firewall
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production website returns **502 Bad Gateway**.
 
@@ -606,7 +606,7 @@ The application is now accepting connections, allowing Nginx to proxy requests s
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Expose only required ports to the internet.
 - Keep databases on private networks whenever possible.
@@ -618,44 +618,44 @@ The application is now accepting connections, allowing Nginx to proxy requests s
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Exposing Database Ports Publicly
+#### Exposing Database Ports Publicly
 
 Database services such as MySQL, PostgreSQL, MongoDB, and Redis should generally not be accessible directly from the internet.
 
 ---
 
-### Running Applications on Privileged Ports
+#### Running Applications on Privileged Ports
 
 Bind applications to higher-numbered ports (for example, 3000 or 8080) and let Nginx handle ports 80 and 443.
 
 ---
 
-### Forgetting Firewall Rules
+#### Forgetting Firewall Rules
 
 An application may be running correctly but remain inaccessible because the firewall blocks its port.
 
 ---
 
-### Ignoring Listening Addresses
+#### Ignoring Listening Addresses
 
 Applications bound only to `127.0.0.1` cannot be reached from external hosts unless accessed through a reverse proxy.
 
 ---
 
-### Assuming a Port Is Open
+#### Assuming a Port Is Open
 
 Always verify with tools such as `ss`, `lsof`, or `nc` instead of relying on assumptions.
 
 ---
 
-# Summary
+## Summary
 
 Ports are the foundation of network communication. Understanding common port numbers, associated services, firewall rules, and diagnostic commands enables administrators to deploy secure services, troubleshoot connectivity issues, and maintain production environments with confidence.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Linux Cheat Sheet**

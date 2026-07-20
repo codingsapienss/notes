@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Linux Architecture
 
-## Overview
+### Overview
 
 To become comfortable with Linux administration, it is important to understand what happens inside the operating system when you execute a command.
 
@@ -16,7 +16,7 @@ Understanding these layers makes it easier to troubleshoot problems, configure s
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -29,7 +29,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# High-Level Linux Architecture
+## High-Level Linux Architecture
 
 A simplified Linux system can be represented as:
 
@@ -58,9 +58,9 @@ Every command you execute eventually travels through these layers before interac
 
 ---
 
-# The Major Components
+## The Major Components
 
-## 1. User Applications
+### 1. User Applications
 
 This is the software you interact with every day.
 
@@ -83,7 +83,7 @@ Instead, they request these services from the operating system.
 
 ---
 
-## 2. Shell
+### 2. Shell
 
 The shell is a **command interpreter**.
 
@@ -114,7 +114,7 @@ The shell itself does not list files—it simply tells Linux what the user wants
 
 ---
 
-## 3. System Libraries
+### 3. System Libraries
 
 System libraries provide reusable functions that applications can call instead of interacting directly with the kernel.
 
@@ -136,7 +136,7 @@ Using libraries simplifies application development and improves portability.
 
 ---
 
-## 4. System Calls
+### 4. System Calls
 
 Applications cannot directly communicate with the kernel.
 
@@ -156,7 +156,7 @@ Without system calls, user applications would have unrestricted access to hardwa
 
 ---
 
-## 5. Linux Kernel
+### 5. Linux Kernel
 
 The kernel is the **core of the Linux operating system**.
 
@@ -178,9 +178,9 @@ The kernel is the only software component that can communicate directly with har
 
 ---
 
-# Responsibilities of the Kernel
+## Responsibilities of the Kernel
 
-## Process Management
+### Process Management
 
 Every running program is a process.
 
@@ -196,7 +196,7 @@ Without process management, only one application could run at a time.
 
 ---
 
-## Memory Management
+### Memory Management
 
 The kernel manages:
 
@@ -212,7 +212,7 @@ This prevents one application from accidentally modifying another application's 
 
 ---
 
-## File System Management
+### File System Management
 
 The kernel manages storage devices and file systems.
 
@@ -228,7 +228,7 @@ Whenever you save a file, the kernel determines where the data is stored on the 
 
 ---
 
-## Device Drivers
+### Device Drivers
 
 Every hardware device requires software that knows how to communicate with it.
 
@@ -246,7 +246,7 @@ The kernel loads the appropriate driver and provides a common interface to appli
 
 ---
 
-## Networking
+### Networking
 
 The Linux kernel contains a complete networking stack.
 
@@ -264,11 +264,11 @@ When a browser requests a webpage or a server receives an API request, the netwo
 
 ---
 
-# User Space vs Kernel Space
+## User Space vs Kernel Space
 
 Linux separates software into two execution environments.
 
-## User Space
+### User Space
 
 Applications run in **User Space**.
 
@@ -288,7 +288,7 @@ Examples:
 
 ---
 
-## Kernel Space
+### Kernel Space
 
 The kernel runs in **Kernel Space**.
 
@@ -305,7 +305,7 @@ This separation improves security by preventing ordinary applications from damag
 
 ---
 
-# How a Command Travels Through Linux
+## How a Command Travels Through Linux
 
 Consider the following command:
 
@@ -350,7 +350,7 @@ Although the command appears simple, multiple Linux components work together to 
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy a Node.js application using:
 
@@ -374,7 +374,7 @@ This entire workflow happens within milliseconds.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Understand the responsibility of each Linux layer before learning advanced administration.
 - Remember that applications should communicate with hardware only through the operating system.
@@ -383,27 +383,27 @@ This entire workflow happens within milliseconds.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming the Shell Is the Operating System
+#### Assuming the Shell Is the Operating System
 
 The shell is simply a command interpreter. It provides a convenient interface to interact with the operating system but is not the operating system itself.
 
 ---
 
-### Confusing the Kernel with Linux Distributions
+#### Confusing the Kernel with Linux Distributions
 
 The kernel is only one component. Distributions such as Ubuntu include the kernel along with system libraries, package managers, utilities, and additional software.
 
 ---
 
-### Assuming Applications Access Hardware Directly
+#### Assuming Applications Access Hardware Directly
 
 Applications typically communicate with the kernel using system calls. The kernel then interacts with hardware on their behalf.
 
 ---
 
-# Summary
+## Summary
 
 Linux is built using a layered architecture that separates applications, system libraries, the kernel, and hardware into well-defined components.
 
@@ -413,6 +413,6 @@ In the next chapter, you will learn how a Linux system starts from the moment th
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Linux Boot Process**

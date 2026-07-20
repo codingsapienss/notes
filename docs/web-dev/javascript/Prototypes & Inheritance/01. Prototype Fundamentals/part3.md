@@ -21,7 +21,7 @@
 
 ---
 
-## Why Should We Learn This?
+### Why Should We Learn This?
 
 Consider this example:
 
@@ -63,7 +63,7 @@ Because JavaScript searched the **Prototype Chain**.
 
 ---
 
-## Reading a Property
+### Reading a Property
 
 Suppose
 
@@ -182,7 +182,7 @@ undefined
 
 ---
 
-## Property Lookup Algorithm
+### Property Lookup Algorithm
 
 Whenever JavaScript evaluates
 
@@ -192,13 +192,13 @@ object.property;
 
 it performs the following steps.
 
-#### Step 1
+##### Step 1
 
 Look inside the object itself.
 
 ---
 
-#### Step 2
+##### Step 2
 
 If found
 
@@ -208,7 +208,7 @@ Return immediately.
 
 ---
 
-#### Step 3
+##### Step 3
 
 Otherwise,
 
@@ -222,7 +222,7 @@ to the next object.
 
 ---
 
-#### Step 4
+##### Step 4
 
 Repeat until
 
@@ -232,7 +232,7 @@ null
 
 ---
 
-#### Step 5
+##### Step 5
 
 If nowhere found
 
@@ -244,7 +244,7 @@ is returned.
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 rabbit
@@ -334,7 +334,7 @@ undefined
 
 ---
 
-## Writing a Property
+### Writing a Property
 
 Reading and writing behave differently.
 
@@ -408,7 +408,7 @@ The prototype remains unchanged.
 
 ---
 
-## Why?
+### Why?
 
 JavaScript follows this rule:
 
@@ -433,7 +433,7 @@ This prevents accidental modification of shared prototype objects.
 
 ---
 
-## Property Shadowing
+### Property Shadowing
 
 When an object creates a property with the same name as one in its prototype,
 
@@ -520,7 +520,7 @@ animal.eats
 
 ---
 
-## Deleting Properties
+### Deleting Properties
 
 Suppose
 
@@ -576,7 +576,7 @@ because JavaScript again searches the prototype.
 
 ---
 
-## Deleting Prototype Properties
+### Deleting Prototype Properties
 
 Suppose
 
@@ -612,7 +612,7 @@ undefined;
 
 ---
 
-## Reading vs Writing Summary
+### Reading vs Writing Summary
 
 | Operation | Prototype Chain Used? |
 | --------- | --------------------- |
@@ -623,7 +623,7 @@ undefined;
 
 ---
 
-## Getters and Setters
+### Getters and Setters
 
 There is one important exception.
 
@@ -685,7 +685,7 @@ Execute Setter
 
 ---
 
-## Getters
+### Getters
 
 Similarly
 
@@ -715,7 +715,7 @@ JavaScript finds the getter through the prototype chain.
 
 ---
 
-## Complete Algorithm
+### Complete Algorithm
 
 Reading
 
@@ -798,7 +798,7 @@ Own Property
 
 ---
 
-## Real-World Example
+### Real-World Example
 
 ```javascript
 const person = {
@@ -840,9 +840,9 @@ Execute
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -866,7 +866,7 @@ rabbit
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -882,7 +882,7 @@ Only the object's own property is removed.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking property lookup copies properties.
 
@@ -894,7 +894,7 @@ It simply follows references through the prototype chain.
 
 ---
 
-## Advantages of This Design
+### Advantages of This Design
 
 - Prevents accidental modification of shared prototypes.
 - Supports inheritance.
@@ -904,9 +904,9 @@ It simply follows references through the prototype chain.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. How does JavaScript search for a property?
+#### Q1. How does JavaScript search for a property?
 
 **Answer**
 
@@ -914,7 +914,7 @@ It first checks the object itself. If the property is not found, it follows the 
 
 ---
 
-### Q2. What happens when writing to an inherited property?
+#### Q2. What happens when writing to an inherited property?
 
 **Answer**
 
@@ -922,7 +922,7 @@ JavaScript creates or updates the property on the current object. The prototype 
 
 ---
 
-### Q3. What is Property Shadowing?
+#### Q3. What is Property Shadowing?
 
 **Answer**
 
@@ -930,7 +930,7 @@ Property shadowing occurs when an object defines a property with the same name a
 
 ---
 
-### Q4. What does `delete` remove?
+#### Q4. What does `delete` remove?
 
 **Answer**
 
@@ -938,7 +938,7 @@ Property shadowing occurs when an object defines a property with the same name a
 
 ---
 
-### Q5. Why are getters and setters special?
+#### Q5. Why are getters and setters special?
 
 **Answer**
 
@@ -946,7 +946,7 @@ During assignment or access, JavaScript can find getters and setters through the
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Reading a property follows the **prototype chain** until the property is found or `null` is reached.
 - Writing to a property creates or updates it on the **current object**, not on its prototype.

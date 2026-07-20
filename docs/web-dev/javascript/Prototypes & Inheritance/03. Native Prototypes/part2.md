@@ -38,7 +38,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -51,7 +51,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## What are Native Prototypes?
+### What are Native Prototypes?
 
 JavaScript contains many built-in constructor functions.
 
@@ -101,7 +101,7 @@ These prototypes store methods shared by every object created from that construc
 
 ---
 
-## Why Do Native Prototypes Exist?
+### Why Do Native Prototypes Exist?
 
 Imagine one million arrays.
 
@@ -169,7 +169,7 @@ Every array shares these methods.
 
 ---
 
-## Built-in Constructors
+### Built-in Constructors
 
 Suppose
 
@@ -213,7 +213,7 @@ Array.prototype
 
 ---
 
-## Array Prototype
+### Array Prototype
 
 Example
 
@@ -291,7 +291,7 @@ null
 
 ---
 
-## Another Example
+### Another Example
 
 ```javascript
 const numbers = [1, 2, 3];
@@ -323,7 +323,7 @@ Execute
 
 ---
 
-## Array Methods are Shared
+### Array Methods are Shared
 
 ```javascript
 const a = [];
@@ -365,7 +365,7 @@ function exists.
 
 ---
 
-## Function Prototype
+### Function Prototype
 
 Functions are objects too.
 
@@ -465,7 +465,7 @@ Found
 
 ---
 
-## Date Prototype
+### Date Prototype
 
 ```javascript
 const today = new Date();
@@ -509,7 +509,7 @@ Date.prototype;
 
 ---
 
-## String Prototype
+### String Prototype
 
 Strings are primitives.
 
@@ -577,7 +577,7 @@ String.prototype;
 
 ---
 
-## Number Prototype
+### Number Prototype
 
 ```javascript
 const num = 10;
@@ -615,7 +615,7 @@ Number.prototype;
 
 ---
 
-## Boolean Prototype
+### Boolean Prototype
 
 ```javascript
 const value = true;
@@ -633,9 +633,9 @@ Boolean.prototype
 
 ---
 
-## Complete Built-in Hierarchy
+### Complete Built-in Hierarchy
 
-### Object
+#### Object
 
 ```text
 Object
@@ -651,7 +651,7 @@ null
 
 ---
 
-### Array
+#### Array
 
 ```text
 Array Instance
@@ -671,7 +671,7 @@ null
 
 ---
 
-### Function
+#### Function
 
 ```text
 Function Instance
@@ -691,7 +691,7 @@ null
 
 ---
 
-### Date
+#### Date
 
 ```text
 Date Instance
@@ -711,7 +711,7 @@ null
 
 ---
 
-### Map
+#### Map
 
 ```text
 Map Instance
@@ -731,7 +731,7 @@ null
 
 ---
 
-### Set
+#### Set
 
 ```text
 Set Instance
@@ -751,7 +751,7 @@ null
 
 ---
 
-### RegExp
+#### RegExp
 
 ```text
 RegExp Instance
@@ -771,7 +771,7 @@ null
 
 ---
 
-## Why Does an Array Have `toString()`?
+### Why Does an Array Have `toString()`?
 
 Suppose
 
@@ -811,7 +811,7 @@ Object.prototype.toString();
 
 ---
 
-## Method Overriding
+### Method Overriding
 
 Suppose
 
@@ -879,7 +879,7 @@ Object.prototype
 
 ---
 
-## Verifying
+### Verifying
 
 ```javascript
 const arr = [];
@@ -911,7 +911,7 @@ true
 
 ---
 
-## Complete Prototype Tree
+### Complete Prototype Tree
 
 ```text
                  Object.prototype
@@ -933,9 +933,9 @@ Object.prototype
 
 ---
 
-## Common Misconceptions
+### Common Misconceptions
 
-### Misconception 1
+#### Misconception 1
 
 ```text
 Arrays store push()
@@ -957,7 +957,7 @@ Array.prototype;
 
 ---
 
-### Misconception 2
+#### Misconception 2
 
 Functions are not objects.
 
@@ -973,7 +973,7 @@ They can be called.
 
 ---
 
-### Misconception 3
+#### Misconception 3
 
 Strings are objects.
 
@@ -985,7 +985,7 @@ JavaScript temporarily creates wrapper objects when methods are accessed.
 
 ---
 
-### Misconception 4
+#### Misconception 4
 
 Every built-in method belongs to
 
@@ -999,9 +999,9 @@ Every constructor has its own prototype.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking every array owns
 
@@ -1013,7 +1013,7 @@ It doesn't.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -1031,7 +1031,7 @@ Function.prototype;
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking primitives permanently become objects.
 
@@ -1041,7 +1041,7 @@ They are created only for property or method access.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Understand where built-in methods come from instead of memorizing them.
 - Remember that arrays, functions, dates, maps, and other built-in objects each have their own prototype.
@@ -1050,9 +1050,9 @@ They are created only for property or method access.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Where is `Array.prototype.push()` stored?
+#### Q1. Where is `Array.prototype.push()` stored?
 
 **Answer**
 
@@ -1060,7 +1060,7 @@ It is stored once inside `Array.prototype` and shared by every array.
 
 ---
 
-### Q2. Why do all arrays share the same `push()` function?
+#### Q2. Why do all arrays share the same `push()` function?
 
 **Answer**
 
@@ -1068,7 +1068,7 @@ Because each array's `[[Prototype]]` points to the same `Array.prototype` object
 
 ---
 
-### Q3. Where do `call()`, `apply()`, and `bind()` come from?
+#### Q3. Where do `call()`, `apply()`, and `bind()` come from?
 
 **Answer**
 
@@ -1076,7 +1076,7 @@ They are methods defined on `Function.prototype`.
 
 ---
 
-### Q4. Why can strings call methods like `toUpperCase()`?
+#### Q4. Why can strings call methods like `toUpperCase()`?
 
 **Answer**
 
@@ -1084,7 +1084,7 @@ Strings are primitives, but JavaScript temporarily creates a wrapper object link
 
 ---
 
-### Q5. Why does an array use `Array.prototype.toString()` instead of `Object.prototype.toString()`?
+#### Q5. Why does an array use `Array.prototype.toString()` instead of `Object.prototype.toString()`?
 
 **Answer**
 
@@ -1092,7 +1092,7 @@ JavaScript searches the prototype chain from nearest to farthest. Since `Array.p
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Every built-in constructor has its own prototype object.
 - Arrays inherit methods from `Array.prototype`.

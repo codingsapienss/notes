@@ -18,7 +18,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -32,7 +32,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## Why Do We Need `F.prototype`?
+### Why Do We Need `F.prototype`?
 
 Suppose we have
 
@@ -64,7 +64,7 @@ Rabbit.prototype
 
 ---
 
-## What is `F.prototype`?
+### What is `F.prototype`?
 
 `F.prototype` is simply a **normal property** that exists on every function.
 
@@ -106,13 +106,13 @@ it is an object that **will become the prototype of future objects created using
 
 ---
 
-## Definition
+### Definition
 
 `F.prototype` is a property of a constructor function that specifies the object to be assigned as the `[[Prototype]]` of every new object created with `new F()`.
 
 ---
 
-## Important Rule
+### Important Rule
 
 The most important sentence in this entire chapter is:
 
@@ -128,7 +128,7 @@ new F()
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 function Rabbit
@@ -163,7 +163,7 @@ rabbit.[[Prototype]]
 
 ---
 
-## Step-by-Step Example
+### Step-by-Step Example
 
 Constructor
 
@@ -189,11 +189,11 @@ const rabbit = new Rabbit("White");
 
 ---
 
-## What Happens Internally?
+### What Happens Internally?
 
 JavaScript performs
 
-#### Step 1
+##### Step 1
 
 Create
 
@@ -204,7 +204,7 @@ Create
 
 ---
 
-#### Step 2
+##### Step 2
 
 Set
 
@@ -218,7 +218,7 @@ Rabbit.prototype
 
 ---
 
-#### Step 3
+##### Step 3
 
 Execute
 
@@ -228,7 +228,7 @@ Rabbit.call(newObject, "White");
 
 ---
 
-#### Step 4
+##### Step 4
 
 Return
 
@@ -270,7 +270,7 @@ rabbit
 
 ---
 
-## Complete Memory Diagram
+### Complete Memory Diagram
 
 ```text
 Rabbit Function
@@ -310,7 +310,7 @@ rabbit
 
 ---
 
-## Accessing Prototype Properties
+### Accessing Prototype Properties
 
 ```javascript
 function Rabbit(name) {
@@ -352,7 +352,7 @@ Found
 
 ---
 
-## Every New Object Shares the Same Prototype
+### Every New Object Shares the Same Prototype
 
 ```javascript
 const rabbit1 = new Rabbit("White");
@@ -380,7 +380,7 @@ Many objects.
 
 ---
 
-## Why Is This Useful?
+### Why Is This Useful?
 
 Suppose
 
@@ -434,7 +434,7 @@ Thousands of objects.
 
 ---
 
-## `F.prototype` Is Used Only Once
+### `F.prototype` Is Used Only Once
 
 This is another extremely important rule.
 
@@ -564,7 +564,7 @@ Different prototypes.
 
 ---
 
-## Replacing vs Modifying
+### Replacing vs Modifying
 
 These two statements are very different.
 
@@ -602,7 +602,7 @@ Every object sharing that prototype sees the update.
 
 ---
 
-## Common Mistake
+### Common Mistake
 
 Many beginners think
 
@@ -640,7 +640,7 @@ rabbit
 
 ---
 
-## Another Example
+### Another Example
 
 ```javascript
 function Animal() {}
@@ -680,7 +680,7 @@ Execute
 
 ---
 
-## Internal Algorithm
+### Internal Algorithm
 
 Suppose
 
@@ -732,7 +732,7 @@ reference.
 
 ---
 
-## Why Doesn't JavaScript Copy Methods?
+### Why Doesn't JavaScript Copy Methods?
 
 Suppose
 
@@ -768,9 +768,9 @@ Huge memory savings.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -786,7 +786,7 @@ It becomes the prototype of objects created by that function.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking changing
 
@@ -802,7 +802,7 @@ Only future objects use the new prototype.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Confusing
 
@@ -816,7 +816,7 @@ They all have different purposes.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Store shared methods on the prototype rather than inside the constructor.
 - Avoid replacing the entire prototype after creating instances unless necessary.
@@ -825,9 +825,9 @@ They all have different purposes.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is `F.prototype`?
+#### Q1. What is `F.prototype`?
 
 **Answer**
 
@@ -835,7 +835,7 @@ It is a property of a constructor function. When `new F()` is called, the newly 
 
 ---
 
-### Q2. Does every function have a `prototype` property?
+#### Q2. Does every function have a `prototype` property?
 
 **Answer**
 
@@ -843,7 +843,7 @@ Yes. Every normal function automatically has a `prototype` property. (Arrow func
 
 ---
 
-### Q3. When is `F.prototype` used?
+#### Q3. When is `F.prototype` used?
 
 **Answer**
 
@@ -851,7 +851,7 @@ Only during object creation with `new F()`. After that, the object follows its o
 
 ---
 
-### Q4. What happens if `F.prototype` changes after objects are created?
+#### Q4. What happens if `F.prototype` changes after objects are created?
 
 **Answer**
 
@@ -859,7 +859,7 @@ Existing objects continue using the old prototype object. Only future objects cr
 
 ---
 
-### Q5. What is the difference between replacing and modifying `F.prototype`?
+#### Q5. What is the difference between replacing and modifying `F.prototype`?
 
 **Answer**
 
@@ -867,7 +867,7 @@ Replacing `F.prototype` creates a new prototype object and affects only future i
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `F.prototype` is a **property of constructor functions**, not of ordinary objects.
 - It is **not** the prototype of the function itself.

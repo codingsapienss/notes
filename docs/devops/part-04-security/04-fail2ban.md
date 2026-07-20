@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Fail2Ban
 
-## Overview
+### Overview
 
 Even after securing SSH with SSH keys and configuring a firewall, your server will continue receiving thousands of automated login attempts from bots across the Internet.
 
@@ -27,7 +27,7 @@ It acts as an **Intrusion Prevention System (IPS)** for Linux servers.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Do We Need Fail2Ban?
+## Why Do We Need Fail2Ban?
 
 Imagine exposing SSH to the Internet.
 
@@ -71,7 +71,7 @@ Fail2Ban automatically detects this behavior and blocks the offending IP.
 
 ---
 
-# What is a Brute-Force Attack?
+## What is a Brute-Force Attack?
 
 A brute-force attack repeatedly tries different passwords until one succeeds.
 
@@ -97,7 +97,7 @@ Without protection, attackers can continue indefinitely.
 
 ---
 
-# What is Fail2Ban?
+## What is Fail2Ban?
 
 Fail2Ban is an intrusion prevention tool that:
 
@@ -124,7 +124,7 @@ The attacker can no longer reach the protected service during the ban period.
 
 ---
 
-# How Fail2Ban Works
+## How Fail2Ban Works
 
 The workflow is straightforward.
 
@@ -150,7 +150,7 @@ Everything happens automatically.
 
 ---
 
-# Fail2Ban Components
+## Fail2Ban Components
 
 Fail2Ban is organized into several components.
 
@@ -163,7 +163,7 @@ Fail2Ban is organized into several components.
 
 ---
 
-# What is a Jail?
+## What is a Jail?
 
 A **jail** combines:
 
@@ -201,7 +201,7 @@ Examples include:
 
 ---
 
-# Installing Fail2Ban
+## Installing Fail2Ban
 
 On Ubuntu:
 
@@ -225,7 +225,7 @@ sudo systemctl status fail2ban
 
 ---
 
-# Configuration Files
+## Configuration Files
 
 Main configuration:
 
@@ -245,7 +245,7 @@ Instead, create or edit `jail.local` so updates do not overwrite your configurat
 
 ---
 
-# Example SSH Jail
+## Example SSH Jail
 
 A common configuration:
 
@@ -272,7 +272,7 @@ Explanation:
 
 ---
 
-# Understanding the Configuration
+## Understanding the Configuration
 
 Suppose:
 
@@ -290,7 +290,7 @@ If an IP address fails authentication **five times within ten minutes**, it will
 
 ---
 
-# Checking Fail2Ban Status
+## Checking Fail2Ban Status
 
 Overall status:
 
@@ -326,7 +326,7 @@ Banned IP List:
 
 ---
 
-# Unbanning an IP
+## Unbanning an IP
 
 Remove a banned address:
 
@@ -338,7 +338,7 @@ Useful if a legitimate administrator is accidentally blocked.
 
 ---
 
-# How Fail2Ban Works with UFW
+## How Fail2Ban Works with UFW
 
 ```text id="x6k3qy"
 Internet
@@ -360,7 +360,7 @@ Instead, it dynamically updates firewall rules based on suspicious activity.
 
 ---
 
-# What Services Can Fail2Ban Protect?
+## What Services Can Fail2Ban Protect?
 
 Although commonly used for SSH, Fail2Ban supports many services.
 
@@ -379,7 +379,7 @@ Custom filters can also be created for applications.
 
 ---
 
-# Typical Production Security Stack
+## Typical Production Security Stack
 
 ```text id="b9m5wp"
 Internet
@@ -409,7 +409,7 @@ Each layer serves a different purpose.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your Azure VM hosts a production application.
 
@@ -469,7 +469,7 @@ The server continues operating normally while the attacker is denied access.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use Fail2Ban together with SSH keys.
 - Keep Fail2Ban updated.
@@ -480,9 +480,9 @@ The server continues operating normally while the attacker is denied access.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Thinking Fail2Ban Replaces SSH Keys
+#### Thinking Fail2Ban Replaces SSH Keys
 
 Fail2Ban is an additional security layer.
 
@@ -490,7 +490,7 @@ SSH key authentication should still be the primary authentication method.
 
 ---
 
-### Setting Extremely Long Ban Times
+#### Setting Extremely Long Ban Times
 
 Very long bans may accidentally block legitimate administrators.
 
@@ -498,7 +498,7 @@ Choose ban durations appropriate for your environment.
 
 ---
 
-### Editing jail.conf Directly
+#### Editing jail.conf Directly
 
 Package updates may overwrite `jail.conf`.
 
@@ -506,18 +506,18 @@ Use `jail.local` for custom configurations.
 
 ---
 
-### Ignoring Authentication Logs
+#### Ignoring Authentication Logs
 
 Fail2Ban blocks attacks, but reviewing authentication logs remains important for detecting unusual activity and understanding attack patterns.
 
 ---
 
-# Summary
+## Summary
 
 Fail2Ban is an intrusion prevention tool that strengthens Linux server security by monitoring log files for suspicious activity and automatically blocking IP addresses that repeatedly fail authentication. Working alongside UFW, SSH security, and cloud firewalls, it provides an additional layer of defense against brute-force attacks without requiring constant administrator intervention. In production environments, Fail2Ban is a lightweight yet highly effective component of a layered security strategy.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - File Permissions Security**

@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Nginx Logs
 
-## Overview
+### Overview
 
 Nginx is the first component that receives requests from users before forwarding them to your application.
 
@@ -25,7 +25,7 @@ Logs are one of the most important tools for troubleshooting production servers.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What Are Nginx Logs?
+## What Are Nginx Logs?
 
 Whenever Nginx receives a request, it records information about that request.
 
@@ -70,7 +70,7 @@ Every request leaves a record that can later be analyzed.
 
 ---
 
-# Why Nginx Logs Matter
+## Why Nginx Logs Matter
 
 Imagine users report:
 
@@ -116,7 +116,7 @@ Logs eliminate guesswork.
 
 ---
 
-# Types of Nginx Logs
+## Types of Nginx Logs
 
 Nginx primarily maintains two log files.
 
@@ -129,7 +129,7 @@ Both logs are essential during troubleshooting.
 
 ---
 
-# Access Log
+## Access Log
 
 The Access Log records every HTTP request handled by Nginx.
 
@@ -163,7 +163,7 @@ Logged
 
 ---
 
-# Default Access Log Location
+## Default Access Log Location
 
 On Ubuntu:
 
@@ -179,7 +179,7 @@ cat /var/log/nginx/access.log
 
 ---
 
-# Viewing Recent Requests
+## Viewing Recent Requests
 
 Display the last 20 entries.
 
@@ -197,7 +197,7 @@ tail -f /var/log/nginx/access.log
 
 ---
 
-# Understanding Access Log Entries
+## Understanding Access Log Entries
 
 Example entry:
 
@@ -227,7 +227,7 @@ Every request follows this structure.
 
 ---
 
-# Error Log
+## Error Log
 
 The Error Log records problems encountered by Nginx.
 
@@ -260,7 +260,7 @@ error.log
 
 ---
 
-# Default Error Log Location
+## Default Error Log Location
 
 On Ubuntu:
 
@@ -282,7 +282,7 @@ tail -f /var/log/nginx/error.log
 
 ---
 
-# Common HTTP Status Codes
+## Common HTTP Status Codes
 
 The Access Log records HTTP response codes.
 
@@ -307,7 +307,7 @@ Status codes quickly indicate the nature of a request outcome.
 
 ---
 
-# Finding 404 Errors
+## Finding 404 Errors
 
 Search for missing resources.
 
@@ -327,7 +327,7 @@ This often indicates missing files or incorrect URLs.
 
 ---
 
-# Finding 500 Errors
+## Finding 500 Errors
 
 Search for internal server errors.
 
@@ -339,7 +339,7 @@ grep "500" /var/log/nginx/access.log
 
 ---
 
-# Searching Logs
+## Searching Logs
 
 Find requests containing a keyword.
 
@@ -357,7 +357,7 @@ Searching logs efficiently is an essential Linux administration skill.
 
 ---
 
-# Counting Requests
+## Counting Requests
 
 Count total requests.
 
@@ -375,7 +375,7 @@ This helps measure the frequency of errors.
 
 ---
 
-# Viewing Logs Page by Page
+## Viewing Logs Page by Page
 
 Large log files should not be opened using a text editor.
 
@@ -396,7 +396,7 @@ Useful navigation:
 
 ---
 
-# Using awk
+## Using awk
 
 Extract specific fields.
 
@@ -418,7 +418,7 @@ This prints client IP addresses.
 
 ---
 
-# Log Monitoring Workflow
+## Log Monitoring Workflow
 
 ```text id="nglog10"
 User Reports Problem
@@ -442,7 +442,7 @@ Resolve Issue
 
 ---
 
-# Nginx Logging Architecture
+## Nginx Logging Architecture
 
 ```text id="nglog11"
 Users
@@ -466,7 +466,7 @@ Logs provide visibility into every request reaching the web server.
 
 ---
 
-# Common Errors Found in Error Logs
+## Common Errors Found in Error Logs
 
 | Error                 | Possible Cause                      |
 | --------------------- | ----------------------------------- |
@@ -481,7 +481,7 @@ Recognizing these messages speeds up troubleshooting.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users begin reporting **502 Bad Gateway** errors.
 
@@ -519,7 +519,7 @@ The issue was resolved without modifying the Nginx configuration because the log
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor both Access and Error Logs.
 - Use `tail -f` during live troubleshooting.
@@ -532,44 +532,44 @@ The issue was resolved without modifying the Nginx configuration because the log
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Checking Only the Access Log
+#### Checking Only the Access Log
 
 Many production issues are recorded exclusively in the Error Log.
 
 ---
 
-### Ignoring Repeated 404 Errors
+#### Ignoring Repeated 404 Errors
 
 Frequent 404 responses may indicate broken links, missing assets, or malicious scanning.
 
 ---
 
-### Opening Huge Logs in a Text Editor
+#### Opening Huge Logs in a Text Editor
 
 Large log files should be viewed using tools such as `tail`, `less`, `grep`, or `awk`.
 
 ---
 
-### Deleting Logs Without Review
+#### Deleting Logs Without Review
 
 Log files contain valuable information for troubleshooting and auditing.
 
 ---
 
-### Ignoring Backend Errors
+#### Ignoring Backend Errors
 
 A healthy Nginx server can still return errors if the backend application is unavailable.
 
 ---
 
-# Summary
+## Summary
 
 Nginx logs provide a detailed record of every request and every server-side issue encountered by the web server. By understanding Access Logs, Error Logs, HTTP status codes, and Linux log analysis tools such as `tail`, `grep`, `awk`, and `less`, administrators can quickly diagnose production issues and maintain reliable web services. Mastering Nginx logs is an essential skill for operating production Linux servers.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Node.js Logs**

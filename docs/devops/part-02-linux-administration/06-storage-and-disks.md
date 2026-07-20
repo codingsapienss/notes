@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Storage and Disks
 
-## Overview
+### Overview
 
 Every Linux system relies on storage devices to persist data. Whether it is the operating system, application source code, databases, log files, or user documents, everything is ultimately stored on a disk.
 
@@ -14,7 +14,7 @@ Linux provides a flexible storage architecture that separates **physical storage
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -27,7 +27,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# How Linux Views Storage
+## How Linux Views Storage
 
 Unlike Windows, Linux does not use drive letters such as:
 
@@ -62,7 +62,7 @@ it becomes accessible somewhere within the Linux directory hierarchy.
 
 ---
 
-# Physical Storage Devices
+## Physical Storage Devices
 
 A storage device is the actual hardware used to store data.
 
@@ -89,7 +89,7 @@ These names represent physical storage devices.
 
 ---
 
-# Disk Naming Convention
+## Disk Naming Convention
 
 Linux follows a consistent naming convention.
 
@@ -120,7 +120,7 @@ These names may differ depending on the hardware attached to the system.
 
 ---
 
-# Partitions
+## Partitions
 
 A **partition** is a logical section of a storage device.
 
@@ -165,7 +165,7 @@ For NVMe drives:
 
 ---
 
-# Filesystems
+## Filesystems
 
 Before data can be stored on a partition, it must contain a **filesystem**.
 
@@ -185,7 +185,7 @@ A partition without a filesystem cannot be used to store normal files.
 
 ---
 
-# Mounting
+## Mounting
 
 Linux does not automatically assign a drive letter to a new disk.
 
@@ -216,7 +216,7 @@ The new storage becomes accessible through `/data`.
 
 ---
 
-# Mount Points
+## Mount Points
 
 A **mount point** is simply an existing directory where another filesystem is attached.
 
@@ -233,7 +233,7 @@ These directories become the entry point for the mounted storage.
 
 ---
 
-# Temporary Mounting
+## Temporary Mounting
 
 Mount a filesystem manually:
 
@@ -258,7 +258,7 @@ shows the contents of that partition.
 
 ---
 
-# Unmounting
+## Unmounting
 
 To safely detach a mounted filesystem:
 
@@ -282,7 +282,7 @@ The filesystem should not be actively in use before unmounting.
 
 ---
 
-# Automatic Mounting
+## Automatic Mounting
 
 Linux stores automatic mount information inside:
 
@@ -302,9 +302,9 @@ Improper configuration of `/etc/fstab` can prevent a system from booting correct
 
 ---
 
-# Viewing Storage Devices
+## Viewing Storage Devices
 
-## Using `lsblk`
+### Using `lsblk`
 
 Display available storage devices:
 
@@ -327,9 +327,9 @@ This command provides a clear overview of disks, partitions, and mount points.
 
 ---
 
-# Viewing Disk Usage
+## Viewing Disk Usage
 
-## Using `df`
+### Using `df`
 
 Display filesystem usage:
 
@@ -357,7 +357,7 @@ The `-h` option displays sizes in a human-readable format.
 
 ---
 
-# Finding Large Directories
+## Finding Large Directories
 
 Use:
 
@@ -387,7 +387,7 @@ du -sh /home/*
 
 ---
 
-# Viewing Partition Information
+## Viewing Partition Information
 
 Display partition information:
 
@@ -406,7 +406,7 @@ This command is useful when configuring new storage devices.
 
 ---
 
-# Viewing Mounted Filesystems
+## Viewing Mounted Filesystems
 
 Display mounted filesystems:
 
@@ -424,7 +424,7 @@ These commands help verify whether storage devices have been mounted successfull
 
 ---
 
-# Common Storage Commands
+## Common Storage Commands
 
 | Command    | Purpose                       |
 | ---------- | ----------------------------- |
@@ -438,7 +438,7 @@ These commands help verify whether storage devices have been mounted successfull
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your production server contains:
 
@@ -479,7 +479,7 @@ This is a common architecture for production servers.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor disk usage regularly using `df -h`.
 - Use `du` to identify large directories.
@@ -489,9 +489,9 @@ This is a common architecture for production servers.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing a Disk with a Partition
+#### Confusing a Disk with a Partition
 
 A physical disk can contain multiple partitions.
 
@@ -507,7 +507,7 @@ Disk
 
 ---
 
-### Forgetting to Mount a New Disk
+#### Forgetting to Mount a New Disk
 
 Creating a partition and filesystem is not enough.
 
@@ -515,7 +515,7 @@ The filesystem must also be mounted before it can be used.
 
 ---
 
-### Filling the Root Filesystem
+#### Filling the Root Filesystem
 
 Allowing the root filesystem (`/`) to reach 100% usage can prevent services from writing logs, creating temporary files, or even starting correctly.
 
@@ -523,7 +523,7 @@ Monitor root disk usage carefully.
 
 ---
 
-### Editing `/etc/fstab` Without Verification
+#### Editing `/etc/fstab` Without Verification
 
 An incorrect entry in `/etc/fstab` can cause boot failures.
 
@@ -531,7 +531,7 @@ Always verify configuration changes before restarting a production server.
 
 ---
 
-# Summary
+## Summary
 
 Linux separates storage into **physical disks**, **partitions**, **filesystems**, and **mount points**, providing a flexible and scalable storage architecture.
 
@@ -539,6 +539,6 @@ Understanding how storage devices are identified, mounted, monitored, and manage
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Package Management**

@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # TCP/IP
 
-## Overview
+### Overview
 
 Every time you open a website, send an email, stream a video, or make an API request, your data travels using the **TCP/IP protocol suite**.
 
@@ -18,7 +18,7 @@ Understanding TCP/IP is essential before learning ports, DNS, HTTP, SSL/TLS, rev
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -32,7 +32,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is TCP/IP?
+## What is TCP/IP?
 
 **TCP/IP** stands for:
 
@@ -45,7 +45,7 @@ Think of TCP/IP as a universal language that allows computers to exchange inform
 
 ---
 
-# Why Do We Need TCP/IP?
+## Why Do We Need TCP/IP?
 
 Imagine sending a large file from your laptop in India to a server in Europe.
 
@@ -61,7 +61,7 @@ TCP/IP provides standardized solutions to all of these problems.
 
 ---
 
-# The TCP/IP Model
+## The TCP/IP Model
 
 The TCP/IP model consists of four layers.
 
@@ -81,7 +81,7 @@ Each layer has a specific responsibility.
 
 ---
 
-# Layer 1 — Application Layer
+## Layer 1 — Application Layer
 
 The Application Layer is where users and applications interact with the network.
 
@@ -109,7 +109,7 @@ This layer generates the data that will be transmitted.
 
 ---
 
-# Layer 2 — Transport Layer
+## Layer 2 — Transport Layer
 
 The Transport Layer ensures communication between applications.
 
@@ -130,7 +130,7 @@ UDP will be discussed in later chapters.
 
 ---
 
-# Layer 3 — Internet Layer
+## Layer 3 — Internet Layer
 
 The Internet Layer is responsible for delivering data across different networks.
 
@@ -151,7 +151,7 @@ Routers primarily operate at this layer.
 
 ---
 
-# Layer 4 — Network Access Layer
+## Layer 4 — Network Access Layer
 
 This layer handles communication with the physical network.
 
@@ -173,7 +173,7 @@ This is the layer closest to the hardware.
 
 ---
 
-# How Data Travels Through the TCP/IP Model
+## How Data Travels Through the TCP/IP Model
 
 Suppose you visit:
 
@@ -213,7 +213,7 @@ Web Server
 
 ---
 
-# What is IP?
+## What is IP?
 
 **IP (Internet Protocol)** is responsible for identifying devices and routing packets across networks.
 
@@ -235,7 +235,7 @@ Without IP addresses, routers would not know where to send packets.
 
 ---
 
-# What is TCP?
+## What is TCP?
 
 TCP is responsible for **reliable communication**.
 
@@ -252,7 +252,7 @@ TCP guarantees that data arrives accurately and completely.
 
 ---
 
-# TCP vs IP
+## TCP vs IP
 
 | TCP               | IP                       |
 | ----------------- | ------------------------ |
@@ -265,7 +265,7 @@ TCP and IP work together rather than replacing each other.
 
 ---
 
-# Encapsulation
+## Encapsulation
 
 As data moves down the TCP/IP layers, each layer adds its own information.
 
@@ -288,7 +288,7 @@ Each header contains information required by the corresponding layer.
 
 ---
 
-# Decapsulation
+## Decapsulation
 
 When the destination receives the data, the headers are removed one by one.
 
@@ -306,7 +306,7 @@ This process is called **decapsulation**.
 
 ---
 
-# Example: Opening a Website
+## Example: Opening a Website
 
 Suppose you open:
 
@@ -334,7 +334,7 @@ The server processes the request and returns the response using the same TCP/IP 
 
 ---
 
-# Why Layers Matter
+## Why Layers Matter
 
 Dividing networking into layers provides several advantages.
 
@@ -354,7 +354,7 @@ Each layer focuses on a specific responsibility.
 
 ---
 
-# Common Protocols by Layer
+## Common Protocols by Layer
 
 | Layer          | Common Protocols                 |
 | -------------- | -------------------------------- |
@@ -365,7 +365,7 @@ Each layer focuses on a specific responsibility.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider a user opening your Node.js application hosted on Azure.
 
@@ -398,7 +398,7 @@ Without every layer working together, the request would never reach your applica
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn the purpose of each TCP/IP layer before memorizing protocols.
 - Understand that multiple protocols work together during every network request.
@@ -407,15 +407,15 @@ Without every layer working together, the request would never reach your applica
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Thinking TCP/IP Is Only Two Protocols
+#### Thinking TCP/IP Is Only Two Protocols
 
 Although named after TCP and IP, the TCP/IP suite includes many protocols such as HTTP, HTTPS, DNS, SSH, FTP, ICMP, and UDP.
 
 ---
 
-### Confusing TCP with IP
+#### Confusing TCP with IP
 
 TCP provides reliable communication.
 
@@ -425,7 +425,7 @@ They perform different roles.
 
 ---
 
-### Assuming Data Travels as One Large File
+#### Assuming Data Travels as One Large File
 
 Large files are divided into smaller segments and packets before transmission.
 
@@ -433,7 +433,7 @@ The destination reassembles them into the original data.
 
 ---
 
-### Ignoring the Layered Model
+#### Ignoring the Layered Model
 
 Each networking problem typically belongs to a specific layer.
 
@@ -441,7 +441,7 @@ Understanding the layers makes troubleshooting much easier.
 
 ---
 
-# Summary
+## Summary
 
 TCP/IP is the foundation of modern computer networking. Its layered architecture enables devices across the world to communicate reliably by separating responsibilities such as application communication, reliable transport, addressing, routing, and physical transmission.
 
@@ -449,6 +449,6 @@ Understanding the TCP/IP model provides the conceptual framework required for st
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Ports and Sockets**

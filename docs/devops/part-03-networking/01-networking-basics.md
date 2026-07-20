@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Networking Basics
 
-## Overview
+### Overview
 
 Every modern application depends on networking.
 
@@ -18,7 +18,7 @@ This chapter introduces the building blocks of computer networks and explains ho
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -32,7 +32,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Computer Network?
+## What is a Computer Network?
 
 A **computer network** is a collection of two or more devices connected together so they can exchange information.
 
@@ -65,7 +65,7 @@ Every time information moves between devices, networking is involved.
 
 ---
 
-# Why Do We Need Networking?
+## Why Do We Need Networking?
 
 Imagine if computers could not communicate.
 
@@ -84,7 +84,7 @@ Networking allows devices to exchange information quickly, securely, and reliabl
 
 ---
 
-# Real-World Examples
+## Real-World Examples
 
 You already use networking hundreds of times every day.
 
@@ -103,11 +103,11 @@ All of these rely on networking.
 
 ---
 
-# Types of Networks
+## Types of Networks
 
 Networks are commonly classified based on their size.
 
-## Personal Area Network (PAN)
+### Personal Area Network (PAN)
 
 A **PAN** connects devices located very close to each other.
 
@@ -128,7 +128,7 @@ Headphones
 
 ---
 
-## Local Area Network (LAN)
+### Local Area Network (LAN)
 
 A **LAN** connects devices within a limited area.
 
@@ -154,7 +154,7 @@ Devices communicate at high speed because they are physically close.
 
 ---
 
-## Metropolitan Area Network (MAN)
+### Metropolitan Area Network (MAN)
 
 A **MAN** connects multiple LANs across a city.
 
@@ -166,7 +166,7 @@ Examples:
 
 ---
 
-## Wide Area Network (WAN)
+### Wide Area Network (WAN)
 
 A **WAN** connects devices over very large geographical distances.
 
@@ -188,7 +188,7 @@ Cloud providers such as Azure, AWS, and Google Cloud operate global WANs connect
 
 ---
 
-# Client and Server
+## Client and Server
 
 Networking commonly follows the **Client-Server Model**.
 
@@ -202,7 +202,7 @@ Server
 Client
 ```
 
-### Client
+#### Client
 
 A client requests information.
 
@@ -214,7 +214,7 @@ Examples:
 - Postman
 - curl
 
-### Server
+#### Server
 
 A server provides information.
 
@@ -228,7 +228,7 @@ Examples:
 
 ---
 
-# Example: Opening a Website
+## Example: Opening a Website
 
 Suppose you visit:
 
@@ -256,7 +256,7 @@ Your browser acts as the client, while the web server processes the request and 
 
 ---
 
-# Data Communication
+## Data Communication
 
 Networking is simply the exchange of data.
 
@@ -281,9 +281,9 @@ The sender transmits data, and the receiver processes it.
 
 ---
 
-# Wired vs Wireless Networks
+## Wired vs Wireless Networks
 
-## Wired Network
+### Wired Network
 
 Uses physical cables.
 
@@ -301,7 +301,7 @@ Advantages:
 
 ---
 
-## Wireless Network
+### Wireless Network
 
 Uses radio waves.
 
@@ -321,11 +321,11 @@ Trade-offs include higher latency and possible interference compared with wired 
 
 ---
 
-# Network Devices
+## Network Devices
 
 Several devices work together to make networking possible.
 
-## Router
+### Router
 
 A router connects different networks together.
 
@@ -345,7 +345,7 @@ Every home and office network typically has a router.
 
 ---
 
-## Switch
+### Switch
 
 A switch connects devices within the same LAN.
 
@@ -363,7 +363,7 @@ Unlike a router, a switch does not route traffic between different networks.
 
 ---
 
-## Modem
+### Modem
 
 A modem connects your local network to your Internet Service Provider (ISP).
 
@@ -381,7 +381,7 @@ In many home networks, the modem and router are combined into a single device.
 
 ---
 
-# Network Topology
+## Network Topology
 
 A topology describes how devices are connected.
 
@@ -402,7 +402,7 @@ The most common topology today is the **Star Topology**, where all devices conne
 
 ---
 
-# How Data Travels
+## How Data Travels
 
 Suppose your browser requests a webpage.
 
@@ -426,7 +426,7 @@ Although this happens in milliseconds, the data may travel through many routers 
 
 ---
 
-# Common Networking Terms
+## Common Networking Terms
 
 | Term     | Description                                     |
 | -------- | ----------------------------------------------- |
@@ -442,7 +442,7 @@ Although this happens in milliseconds, the data may travel through many routers 
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 You deploy a Node.js application to an Azure Virtual Machine.
 
@@ -478,7 +478,7 @@ Although users only see a webpage, multiple networking components are involved b
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn networking concepts before studying protocols such as TCP/IP and HTTP.
 - Understand the difference between clients and servers.
@@ -488,15 +488,15 @@ Although users only see a webpage, multiple networking components are involved b
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Thinking the Internet Is a Single Computer
+#### Thinking the Internet Is a Single Computer
 
 The Internet is a massive collection of interconnected networks spread across the world.
 
 ---
 
-### Confusing the Internet with Wi-Fi
+#### Confusing the Internet with Wi-Fi
 
 Wi-Fi is only a method of connecting a device to a local network.
 
@@ -504,7 +504,7 @@ Internet access is provided through an ISP and routed beyond the local network.
 
 ---
 
-### Assuming Every Server Is Physical
+#### Assuming Every Server Is Physical
 
 Modern servers are often virtual machines or containers running inside cloud data centers.
 
@@ -512,7 +512,7 @@ Applications interact with them the same way regardless of the underlying hardwa
 
 ---
 
-### Believing Data Travels Directly Between Devices
+#### Believing Data Travels Directly Between Devices
 
 Data typically passes through multiple routers, switches, ISPs, and cloud networks before reaching its destination.
 
@@ -520,7 +520,7 @@ Understanding this path is essential for troubleshooting network issues.
 
 ---
 
-# Summary
+## Summary
 
 Computer networking enables devices to exchange information across local and global networks. Concepts such as clients, servers, LANs, WANs, routers, switches, and communication paths form the foundation of every modern application and cloud infrastructure.
 
@@ -528,6 +528,6 @@ A solid understanding of these basics makes advanced topics such as TCP/IP, DNS,
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - TCP/IP**

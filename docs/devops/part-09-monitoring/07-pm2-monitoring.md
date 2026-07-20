@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # PM2 Monitoring
 
-## Overview
+### Overview
 
 In production environments, simply starting a Node.js application is not enough. Administrators must continuously monitor the application's health to ensure it remains available, responsive, and stable.
 
@@ -25,7 +25,7 @@ Using PM2, administrators can quickly determine whether an application is health
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Monitor Applications?
+## Why Monitor Applications?
 
 A running server does not necessarily mean the application is healthy.
 
@@ -68,7 +68,7 @@ Monitoring ensures that administrators detect such issues immediately.
 
 ---
 
-# PM2 Architecture
+## PM2 Architecture
 
 ```text id="pm202"
 Users
@@ -90,7 +90,7 @@ PM2 sits between the operating system and the application, continuously monitori
 
 ---
 
-# Checking Running Applications
+## Checking Running Applications
 
 Display all managed applications.
 
@@ -112,7 +112,7 @@ This command provides a quick overview of all running applications.
 
 ---
 
-# Understanding PM2 Status
+## Understanding PM2 Status
 
 Common application states:
 
@@ -129,7 +129,7 @@ The **online** status indicates that the application is actively running.
 
 ---
 
-# Monitoring CPU Usage
+## Monitoring CPU Usage
 
 PM2 displays CPU utilization for each application.
 
@@ -156,7 +156,7 @@ CPU usage should be interpreted alongside other system metrics.
 
 ---
 
-# Monitoring Memory Usage
+## Monitoring Memory Usage
 
 Memory usage is displayed for every running process.
 
@@ -182,7 +182,7 @@ Memory trends are often more important than individual values.
 
 ---
 
-# Interactive Monitoring
+## Interactive Monitoring
 
 PM2 includes a built-in monitoring dashboard.
 
@@ -210,7 +210,7 @@ The dashboard refreshes continuously and is useful during live troubleshooting.
 
 ---
 
-# Viewing Application Logs
+## Viewing Application Logs
 
 Display logs for every application.
 
@@ -228,7 +228,7 @@ Logs help explain why an application restarted or encountered errors.
 
 ---
 
-# Describing an Application
+## Describing an Application
 
 View detailed information.
 
@@ -250,7 +250,7 @@ This command provides a complete overview of a single application.
 
 ---
 
-# Monitoring Restarts
+## Monitoring Restarts
 
 Unexpected restarts often indicate underlying issues.
 
@@ -283,7 +283,7 @@ Possible causes include:
 
 ---
 
-# Monitoring Uptime
+## Monitoring Uptime
 
 PM2 tracks how long an application has been running.
 
@@ -305,7 +305,7 @@ Short uptimes combined with high restart counts may indicate instability.
 
 ---
 
-# Cluster Monitoring
+## Cluster Monitoring
 
 When running in Cluster Mode, multiple Node.js processes handle incoming requests.
 
@@ -329,7 +329,7 @@ One unhealthy worker can reduce application performance even if others remain on
 
 ---
 
-# Viewing Cluster Processes
+## Viewing Cluster Processes
 
 Display running processes.
 
@@ -341,7 +341,7 @@ Each cluster worker appears as a separate process with its own resource usage.
 
 ---
 
-# Restarting Applications
+## Restarting Applications
 
 Restart a single application.
 
@@ -359,7 +359,7 @@ Restarting should be used carefully in production and only after understanding t
 
 ---
 
-# Reloading Applications
+## Reloading Applications
 
 For applications running in Cluster Mode:
 
@@ -371,7 +371,7 @@ Reloading performs a **zero-downtime restart**, allowing new workers to start be
 
 ---
 
-# Viewing Process Status
+## Viewing Process Status
 
 Display detailed process information.
 
@@ -383,7 +383,7 @@ This provides another quick way to verify that applications are running correctl
 
 ---
 
-# Saving Process List
+## Saving Process List
 
 Save current processes.
 
@@ -395,7 +395,7 @@ This allows PM2 to restore applications automatically after a server reboot.
 
 ---
 
-# Startup Configuration
+## Startup Configuration
 
 Generate startup configuration.
 
@@ -407,7 +407,7 @@ Follow the generated command to register PM2 with the operating system.
 
 ---
 
-# PM2 Monitoring Workflow
+## PM2 Monitoring Workflow
 
 ```text id="pm210"
 Application Running
@@ -435,7 +435,7 @@ PM2 continuously collects operational information about managed applications.
 
 ---
 
-# Production Monitoring Architecture
+## Production Monitoring Architecture
 
 ```text id="pm211"
 Users
@@ -458,7 +458,7 @@ PM2 provides application-level monitoring, complementing system monitoring tools
 
 ---
 
-# Useful PM2 Commands
+## Useful PM2 Commands
 
 | Command              | Purpose                          |
 | -------------------- | -------------------------------- |
@@ -474,7 +474,7 @@ PM2 provides application-level monitoring, complementing system monitoring tools
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An Express.js API occasionally becomes unavailable.
 
@@ -512,7 +512,7 @@ PM2 monitoring quickly identified the application's instability and provided the
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor applications continuously using `pm2 monit`.
 - Investigate unexpected restarts immediately.
@@ -525,44 +525,44 @@ PM2 monitoring quickly identified the application's instability and provided the
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Ignoring Restart Count
+#### Ignoring Restart Count
 
 A high restart count often indicates recurring application failures that require investigation.
 
 ---
 
-### Monitoring Only CPU Usage
+#### Monitoring Only CPU Usage
 
 CPU usage alone does not reveal memory leaks, crashes, or restart behavior.
 
 ---
 
-### Restarting Without Reading Logs
+#### Restarting Without Reading Logs
 
 Restarting an application may temporarily hide the issue without resolving the underlying problem.
 
 ---
 
-### Forgetting to Save PM2 Configuration
+#### Forgetting to Save PM2 Configuration
 
 Failing to run `pm2 save` can prevent applications from restarting automatically after a reboot.
 
 ---
 
-### Using Restart Instead of Reload in Cluster Mode
+#### Using Restart Instead of Reload in Cluster Mode
 
 For production cluster deployments, `pm2 reload` minimizes downtime by replacing worker processes gracefully.
 
 ---
 
-# Summary
+## Summary
 
 PM2 is both a process manager and a powerful application monitoring tool. It provides real-time visibility into application status, CPU usage, memory consumption, uptime, restart counts, logs, and cluster workers. By regularly monitoring these metrics and investigating abnormal behavior, administrators can maintain reliable Node.js applications and respond quickly to production issues.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Performance Tuning**

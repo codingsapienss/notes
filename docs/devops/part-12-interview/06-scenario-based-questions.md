@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Scenario-Based Interview Questions
 
-## Overview
+### Overview
 
 Most experienced developers fail interviews **not because they don't know commands**, but because they cannot solve real production problems.
 
@@ -22,7 +22,7 @@ This chapter teaches a structured way of thinking through production incidents r
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -34,7 +34,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Golden Rule of Production Debugging
+## Golden Rule of Production Debugging
 
 Never guess.
 
@@ -74,7 +74,7 @@ Interviewers generally evaluate your reasoning process more than whether your fi
 
 ---
 
-# Universal Troubleshooting Framework
+## Universal Troubleshooting Framework
 
 Use this order whenever possible:
 
@@ -122,9 +122,9 @@ Avoid skipping directly to restarting services unless there is a clear reason.
 
 ---
 
-# Scenario 1
+## Scenario 1
 
-## Website is Down
+### Website is Down
 
 **Question**
 
@@ -132,7 +132,7 @@ Users report that the website is not opening.
 
 ---
 
-### Investigation Flow
+#### Investigation Flow
 
 ```text id="sc003"
 Can Server Be Reached?
@@ -164,7 +164,7 @@ Logs
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="sc004"
 ping example.com
@@ -192,7 +192,7 @@ ss -tulpn
 
 ---
 
-### Interview Answer
+#### Interview Answer
 
 A strong answer demonstrates a layered investigation:
 
@@ -207,9 +207,9 @@ A strong answer demonstrates a layered investigation:
 
 ---
 
-# Scenario 2
+## Scenario 2
 
-## 502 Bad Gateway
+### 502 Bad Gateway
 
 **Question**
 
@@ -221,7 +221,7 @@ Users receive:
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 | Cause           | Description                     |
 | --------------- | ------------------------------- |
@@ -233,7 +233,7 @@ Users receive:
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc011"
 Nginx
@@ -261,7 +261,7 @@ Resolved
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="sc012"
 systemctl status nginx
@@ -281,15 +281,15 @@ curl http://localhost:3000
 
 ---
 
-### Interview Tip
+#### Interview Tip
 
 Explain why you are checking each layer instead of listing commands without context.
 
 ---
 
-# Scenario 3
+## Scenario 3
 
-## High CPU Usage
+### High CPU Usage
 
 **Question**
 
@@ -297,7 +297,7 @@ Production CPU suddenly reaches 100%.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc016"
 CPU
@@ -325,7 +325,7 @@ Fix
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="sc017"
 top
@@ -341,7 +341,7 @@ ps aux --sort=-%cpu
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Infinite loop
 - Traffic spike
@@ -351,15 +351,15 @@ ps aux --sort=-%cpu
 
 ---
 
-### Interview Answer
+#### Interview Answer
 
 Describe how you would identify the process first, determine whether the load is expected or abnormal, inspect application logs, and decide whether scaling or optimization is the appropriate response.
 
 ---
 
-# Scenario 4
+## Scenario 4
 
-## High Memory Usage
+### High Memory Usage
 
 **Question**
 
@@ -367,7 +367,7 @@ Memory usage continues increasing until the application crashes.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc020"
 Memory
@@ -399,7 +399,7 @@ Monitor
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Memory leak
 - Large cache
@@ -409,7 +409,7 @@ Monitor
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="sc021"
 free -h
@@ -425,9 +425,9 @@ pm2 monit
 
 ---
 
-# Scenario 5
+## Scenario 5
 
-## Database Connection Failure
+### Database Connection Failure
 
 **Question**
 
@@ -435,7 +435,7 @@ Your API suddenly cannot connect to MongoDB.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc024"
 Application
@@ -463,7 +463,7 @@ Logs
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Wrong credentials
 - Database offline
@@ -474,7 +474,7 @@ Logs
 
 ---
 
-### Verification
+#### Verification
 
 Check:
 
@@ -486,9 +486,9 @@ Check:
 
 ---
 
-# Scenario 6
+## Scenario 6
 
-## SSL Certificate Error
+### SSL Certificate Error
 
 **Question**
 
@@ -496,7 +496,7 @@ Users report browser security warnings.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc025"
 DNS
@@ -520,7 +520,7 @@ Browser
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Expired certificate
 - Incorrect certificate path
@@ -530,15 +530,15 @@ Browser
 
 ---
 
-### Interview Answer
+#### Interview Answer
 
 Verify certificate validity, confirm domain resolution, inspect Nginx configuration, and test HTTPS after applying any changes.
 
 ---
 
-# Scenario 7
+## Scenario 7
 
-## Website Loads Slowly
+### Website Loads Slowly
 
 **Question**
 
@@ -546,7 +546,7 @@ Users report slow page loads.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc026"
 Browser
@@ -574,7 +574,7 @@ External APIs
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Slow database queries
 - Missing indexes
@@ -585,7 +585,7 @@ External APIs
 
 ---
 
-### Useful Checks
+#### Useful Checks
 
 - Response time
 - Database query duration
@@ -595,9 +595,9 @@ External APIs
 
 ---
 
-# Scenario 8
+## Scenario 8
 
-## Server Disk is Full
+### Server Disk is Full
 
 **Question**
 
@@ -605,7 +605,7 @@ Production disk usage reaches 100%.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc027"
 Disk
@@ -633,7 +633,7 @@ Verify
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="sc028"
 df -h
@@ -645,7 +645,7 @@ du -sh /*
 
 ---
 
-### Common Causes
+#### Common Causes
 
 - Log growth
 - Large uploads
@@ -655,9 +655,9 @@ du -sh /*
 
 ---
 
-# Scenario 9
+## Scenario 9
 
-## Users Cannot Log In
+### Users Cannot Log In
 
 **Question**
 
@@ -665,7 +665,7 @@ Authentication suddenly stops working.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc030"
 Frontend
@@ -689,7 +689,7 @@ Logs
 
 ---
 
-### Possible Causes
+#### Possible Causes
 
 - Invalid JWT secret
 - Expired tokens
@@ -700,9 +700,9 @@ Logs
 
 ---
 
-# Scenario 10
+## Scenario 10
 
-## Deployment Failed
+### Deployment Failed
 
 **Question**
 
@@ -710,7 +710,7 @@ After deployment, the application no longer works.
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc031"
 Git
@@ -738,7 +738,7 @@ Logs
 
 ---
 
-### Typical Checks
+#### Typical Checks
 
 - Was the correct branch deployed?
 - Were dependencies installed?
@@ -749,9 +749,9 @@ Logs
 
 ---
 
-# Scenario 11
+## Scenario 11
 
-## API Works Locally but Not Publicly
+### API Works Locally but Not Publicly
 
 Possible causes:
 
@@ -764,7 +764,7 @@ Possible causes:
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc032"
 localhost
@@ -788,9 +788,9 @@ Resolved
 
 ---
 
-# Scenario 12
+## Scenario 12
 
-## Application Keeps Restarting
+### Application Keeps Restarting
 
 Possible causes:
 
@@ -802,7 +802,7 @@ Possible causes:
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc033"
 PM2
@@ -830,9 +830,9 @@ Verify
 
 ---
 
-# Scenario 13
+## Scenario 13
 
-## DNS is Not Working
+### DNS is Not Working
 
 Possible causes:
 
@@ -844,7 +844,7 @@ Possible causes:
 
 ---
 
-### Investigation
+#### Investigation
 
 ```text id="sc034"
 Domain
@@ -868,9 +868,9 @@ Application
 
 ---
 
-# Scenario 14
+## Scenario 14
 
-## Cloud Server is Reachable but Website Isn't
+### Cloud Server is Reachable but Website Isn't
 
 Possible causes:
 
@@ -883,9 +883,9 @@ Possible causes:
 
 ---
 
-# Scenario 15
+## Scenario 15
 
-## One Server is Slow in a Cluster
+### One Server is Slow in a Cluster
 
 Possible causes:
 
@@ -898,9 +898,9 @@ Possible causes:
 
 ---
 
-# Architecture Design Questions
+## Architecture Design Questions
 
-## Question
+### Question
 
 Design a production architecture for a Node.js application.
 
@@ -954,7 +954,7 @@ Discuss:
 
 ---
 
-# Behavioral Production Questions
+## Behavioral Production Questions
 
 Interviewers may ask:
 
@@ -977,7 +977,7 @@ A strong response includes:
 
 ---
 
-# What Interviewers Look For
+## What Interviewers Look For
 
 | Quality                  | Why It Matters                  |
 | ------------------------ | ------------------------------- |
@@ -990,7 +990,7 @@ A strong response includes:
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Think aloud while solving scenarios.
 - Explain each investigation step.
@@ -1001,44 +1001,44 @@ A strong response includes:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Guessing the Root Cause
+#### Guessing the Root Cause
 
 Start with evidence instead of assumptions.
 
 ---
 
-### Skipping Layers
+#### Skipping Layers
 
 Investigate from the client toward the application rather than jumping directly to the backend.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Logs often provide the fastest path to identifying failures.
 
 ---
 
-### Restarting Everything Immediately
+#### Restarting Everything Immediately
 
 Restarting may temporarily hide symptoms without addressing the underlying issue.
 
 ---
 
-### Forgetting Verification
+#### Forgetting Verification
 
 Always confirm that the issue has been resolved and monitor the system afterward.
 
 ---
 
-# Summary
+## Summary
 
 Scenario-based interviews assess analytical thinking, production experience, and communication. Strong candidates investigate methodically, explain why each step is taken, verify their conclusions with evidence, and describe how they would prevent similar incidents in the future.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Production Case Studies**

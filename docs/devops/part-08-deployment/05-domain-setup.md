@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Domain Setup
 
-## Overview
+### Overview
 
 In the previous chapter, we configured Nginx as a reverse proxy for our Node.js application.
 
@@ -34,7 +34,7 @@ In this chapter, we will connect a domain to an Azure Virtual Machine and prepar
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Deployment Before Domain Setup
+## Deployment Before Domain Setup
 
 Current architecture:
 
@@ -76,7 +76,7 @@ Users access the application using the server's IP address.
 
 ---
 
-# Deployment After Domain Setup
+## Deployment After Domain Setup
 
 Once the domain is configured:
 
@@ -108,7 +108,7 @@ The domain replaces the Public IP as the user-facing address.
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before configuring a domain, ensure the following are ready.
 
@@ -124,7 +124,7 @@ Without these components, the domain setup may not function correctly.
 
 ---
 
-# Registering a Domain
+## Registering a Domain
 
 The first step is purchasing or registering a domain.
 
@@ -156,7 +156,7 @@ Once registered, you can configure its DNS records.
 
 ---
 
-# Understanding DNS Records
+## Understanding DNS Records
 
 DNS records determine where traffic should be routed.
 
@@ -174,7 +174,7 @@ For a basic website deployment, the **A Record** is the most important.
 
 ---
 
-# Configuring an A Record
+## Configuring an A Record
 
 Suppose the Azure Virtual Machine has the Public IP:
 
@@ -202,7 +202,7 @@ When users visit the domain, DNS resolves it to the server's Public IP.
 
 ---
 
-# Configuring the WWW Subdomain
+## Configuring the WWW Subdomain
 
 Many websites also support:
 
@@ -234,7 +234,7 @@ Both addresses now reach the same website.
 
 ---
 
-# DNS Flow
+## DNS Flow
 
 When a user opens:
 
@@ -268,7 +268,7 @@ DNS converts the domain into an IP address before the browser connects to the se
 
 ---
 
-# DNS Propagation
+## DNS Propagation
 
 DNS changes are not visible immediately across the Internet.
 
@@ -294,7 +294,7 @@ Depending on caching and TTL values, propagation may take anywhere from a few mi
 
 ---
 
-# Verifying DNS
+## Verifying DNS
 
 One way to verify DNS resolution is with the `nslookup` command.
 
@@ -324,7 +324,7 @@ These tools help confirm that DNS is pointing to the correct server.
 
 ---
 
-# Configuring Nginx for the Domain
+## Configuring Nginx for the Domain
 
 Update the Server Block.
 
@@ -346,7 +346,7 @@ The `server_name` directive tells Nginx which domain names this configuration sh
 
 ---
 
-# Testing the Configuration
+## Testing the Configuration
 
 Validate the Nginx configuration.
 
@@ -370,7 +370,7 @@ If DNS propagation has completed, the application should load successfully.
 
 ---
 
-# Preparing for HTTPS
+## Preparing for HTTPS
 
 At this stage, traffic is still using HTTP.
 
@@ -416,7 +416,7 @@ This will be covered in the next chapter.
 
 ---
 
-# Domain Setup Workflow
+## Domain Setup Workflow
 
 ```text id="dom18"
 Purchase Domain
@@ -448,7 +448,7 @@ Ready for HTTPS
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="dom19"
 Users
@@ -476,7 +476,7 @@ The domain becomes the public entry point for the application.
 
 ---
 
-# Deployment Verification Checklist
+## Deployment Verification Checklist
 
 | Check                      | Expected Result |
 | -------------------------- | --------------- |
@@ -489,7 +489,7 @@ The domain becomes the public entry point for the application.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application on an Azure Virtual Machine with the Public IP:
 
@@ -511,7 +511,7 @@ After propagation completes, users can access the application using the domain n
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use a Static Public IP for production servers.
 - Configure both the root domain and the `www` subdomain if required.
@@ -523,44 +523,44 @@ After propagation completes, users can access the application using the domain n
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using a Dynamic Public IP
+#### Using a Dynamic Public IP
 
 If the server's IP address changes, the DNS records become invalid and users can no longer reach the website.
 
 ---
 
-### Incorrect DNS Records
+#### Incorrect DNS Records
 
 A typo in an A Record or CNAME record can prevent the domain from resolving correctly.
 
 ---
 
-### Forgetting to Update `server_name`
+#### Forgetting to Update `server_name`
 
 If the Nginx Server Block does not include the domain, requests may be handled by the wrong configuration.
 
 ---
 
-### Testing Before DNS Propagation Completes
+#### Testing Before DNS Propagation Completes
 
 DNS updates require time to propagate across the Internet. Immediate testing may produce inconsistent results.
 
 ---
 
-### Confusing DNS Issues with Application Issues
+#### Confusing DNS Issues with Application Issues
 
 If the application works using the server's Public IP but not the domain, the issue is often related to DNS configuration rather than the application itself.
 
 ---
 
-# Summary
+## Summary
 
 Connecting a domain to a production server involves registering a domain, configuring DNS records, pointing them to the server's Static Public IP, updating the Nginx Server Block, and verifying DNS propagation. Once these steps are complete, users can access the application using a human-readable domain name. This also prepares the deployment for the next stage: enabling secure HTTPS communication.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - SSL Setup**

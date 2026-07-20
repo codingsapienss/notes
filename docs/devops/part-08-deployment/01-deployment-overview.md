@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Deployment Overview
 
-## Overview
+### Overview
 
 So far in this handbook, we have learned how to:
 
@@ -63,7 +63,7 @@ Deployment is one of the most important responsibilities of a backend or full-st
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -77,7 +77,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Deployment?
+## What is Deployment?
 
 Deployment is the process of moving an application from the developer's machine to a server where users can access it.
 
@@ -111,7 +111,7 @@ Deployment involves much more than copying files. It also includes:
 
 ---
 
-# Why Do We Need Deployment?
+## Why Do We Need Deployment?
 
 Applications running only on a developer's laptop are not accessible to users.
 
@@ -151,7 +151,7 @@ Deployment makes the application available to customers, clients, or internal us
 
 ---
 
-# Development vs Production
+## Development vs Production
 
 Software is usually developed in different environments.
 
@@ -165,7 +165,7 @@ Each environment serves a different purpose.
 
 ---
 
-# Development Environment
+## Development Environment
 
 The development environment is where programmers build the application.
 
@@ -197,7 +197,7 @@ Characteristics:
 
 ---
 
-# Staging Environment
+## Staging Environment
 
 The staging environment closely resembles production.
 
@@ -228,7 +228,7 @@ Common uses include:
 
 ---
 
-# Production Environment
+## Production Environment
 
 Production is the live environment accessed by users.
 
@@ -255,7 +255,7 @@ Characteristics:
 
 ---
 
-# Typical Deployment Lifecycle
+## Typical Deployment Lifecycle
 
 Most deployments follow a similar sequence.
 
@@ -287,7 +287,7 @@ Larger organizations may include additional approval and testing stages.
 
 ---
 
-# Components of a Production Deployment
+## Components of a Production Deployment
 
 A typical Node.js deployment includes multiple components.
 
@@ -314,7 +314,7 @@ Each component performs a specific responsibility.
 
 ---
 
-# Production Architecture
+## Production Architecture
 
 A complete deployment may look like this:
 
@@ -349,7 +349,7 @@ This architecture combines the technologies covered throughout the previous part
 
 ---
 
-# Deployment Strategies
+## Deployment Strategies
 
 There are several ways to deploy applications.
 
@@ -365,7 +365,7 @@ For this handbook, the focus will primarily be on **manual deployment**, as it p
 
 ---
 
-# Manual Deployment Workflow
+## Manual Deployment Workflow
 
 A simple deployment process:
 
@@ -393,7 +393,7 @@ This is suitable for small projects and learning environments.
 
 ---
 
-# Automated Deployment (Overview)
+## Automated Deployment (Overview)
 
 In larger organizations, deployments are often automated.
 
@@ -421,7 +421,7 @@ Automation reduces manual effort and helps maintain consistency.
 
 ---
 
-# What Happens During Deployment?
+## What Happens During Deployment?
 
 Deployment involves several tasks.
 
@@ -439,7 +439,7 @@ Each step is important for a successful deployment.
 
 ---
 
-# Deployment Checklist
+## Deployment Checklist
 
 Before deploying an application, administrators should verify:
 
@@ -458,7 +458,7 @@ A checklist helps reduce deployment errors.
 
 ---
 
-# Goals of a Good Deployment
+## Goals of a Good Deployment
 
 A successful deployment should provide:
 
@@ -475,7 +475,7 @@ These goals guide production deployment practices.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company develops an Express.js application locally.
 
@@ -504,7 +504,7 @@ This transforms a locally developed application into a production-ready service 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep development and production environments separate.
 - Test thoroughly before deploying.
@@ -518,44 +518,44 @@ This transforms a locally developed application into a production-ready service 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Deploying Without Testing
+#### Deploying Without Testing
 
 Unverified changes can introduce production issues and downtime.
 
 ---
 
-### Editing Files Directly in Production
+#### Editing Files Directly in Production
 
 Production servers should not become the primary place for development. Make changes in version control and deploy them properly.
 
 ---
 
-### Forgetting Environment Variables
+#### Forgetting Environment Variables
 
 Missing or incorrect environment variables can prevent the application from starting.
 
 ---
 
-### Restarting Instead of Planning
+#### Restarting Instead of Planning
 
 Restarting services without understanding the impact can disconnect users unnecessarily. Use controlled deployment procedures whenever possible.
 
 ---
 
-### Ignoring Rollback Plans
+#### Ignoring Rollback Plans
 
 Every deployment should have a strategy to restore the previous working version if something goes wrong.
 
 ---
 
-# Summary
+## Summary
 
 Deployment is the process of making an application available to users by moving it from a development environment to a production server. A successful deployment involves much more than transferring application files—it includes configuring servers, web servers, environment variables, security, monitoring, and process management. Understanding the deployment lifecycle, production architecture, and deployment strategies provides the foundation for the practical chapters that follow, where we will deploy a complete Node.js application step by step.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Preparing Server**

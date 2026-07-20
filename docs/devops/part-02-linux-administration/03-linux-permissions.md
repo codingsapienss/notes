@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Linux Permissions
 
-## Overview
+### Overview
 
 One of the most powerful security features of Linux is its **permission system**.
 
@@ -18,7 +18,7 @@ Whether you are hosting a website with Nginx, running a Node.js application, or 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -33,7 +33,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Linux Uses Permissions
+## Why Linux Uses Permissions
 
 Imagine a server used by multiple developers.
 
@@ -48,7 +48,7 @@ Linux prevents these problems by assigning permissions to every file and directo
 
 ---
 
-# File Ownership
+## File Ownership
 
 Every file in Linux has three ownership attributes:
 
@@ -70,7 +70,7 @@ Every permission decision is based on these three categories.
 
 ---
 
-# Viewing File Permissions
+## Viewing File Permissions
 
 Use the following command:
 
@@ -96,7 +96,7 @@ Breaking it down:
 
 ---
 
-# Understanding the Permission String
+## Understanding the Permission String
 
 Example:
 
@@ -106,7 +106,7 @@ Example:
 
 Let's examine each part.
 
-## First Character
+### First Character
 
 The first character represents the file type.
 
@@ -128,7 +128,7 @@ The first `-` indicates a regular file.
 
 ---
 
-# Permission Groups
+## Permission Groups
 
 The remaining nine characters are divided into three groups.
 
@@ -148,7 +148,7 @@ Each group contains three permissions.
 
 ---
 
-# Read Permission (r)
+## Read Permission (r)
 
 Symbol:
 
@@ -175,7 +175,7 @@ The user can read but cannot modify or execute.
 
 ---
 
-# Write Permission (w)
+## Write Permission (w)
 
 Symbol:
 
@@ -204,7 +204,7 @@ The user can read and modify the file.
 
 ---
 
-# Execute Permission (x)
+## Execute Permission (x)
 
 Symbol:
 
@@ -230,9 +230,9 @@ The user has full access.
 
 ---
 
-# Permission Examples
+## Permission Examples
 
-## Example 1
+### Example 1
 
 ```text
 rw-r--r--
@@ -246,7 +246,7 @@ rw-r--r--
 
 ---
 
-## Example 2
+### Example 2
 
 ```text
 rwxr-xr-x
@@ -262,7 +262,7 @@ This is a common permission for executable programs.
 
 ---
 
-## Example 3
+### Example 3
 
 ```text
 rw-------
@@ -274,7 +274,7 @@ This is commonly used for private files.
 
 ---
 
-# Changing Permissions
+## Changing Permissions
 
 Linux uses the `chmod` command.
 
@@ -286,7 +286,7 @@ chmod permissions file
 
 ---
 
-## Symbolic Mode
+### Symbolic Mode
 
 Add execute permission:
 
@@ -329,7 +329,7 @@ Where:
 
 ---
 
-# Numeric (Octal) Permissions
+## Numeric (Octal) Permissions
 
 Linux also supports numeric permission values.
 
@@ -353,7 +353,7 @@ Read + Write + Execute
 
 ---
 
-# Common Numeric Permissions
+## Common Numeric Permissions
 
 | Numeric | Permission |
 | ------: | ---------- |
@@ -366,7 +366,7 @@ Read + Write + Execute
 
 ---
 
-## Example
+### Example
 
 ```bash
 chmod 755 app.sh
@@ -380,7 +380,7 @@ rwxr-xr-x
 
 ---
 
-## Another Example
+### Another Example
 
 ```bash
 chmod 644 config.json
@@ -394,7 +394,7 @@ rw-r--r--
 
 ---
 
-# Changing Ownership
+## Changing Ownership
 
 Ownership is managed using `chown`.
 
@@ -418,7 +418,7 @@ sudo chown developer:developers app.js
 
 ---
 
-# Changing Group Only
+## Changing Group Only
 
 Use `chgrp`.
 
@@ -430,7 +430,7 @@ sudo chgrp developers app.js
 
 ---
 
-# Recursive Changes
+## Recursive Changes
 
 To apply changes to an entire directory:
 
@@ -450,7 +450,7 @@ Be cautious when using recursive operations on production systems.
 
 ---
 
-# File Permissions vs Directory Permissions
+## File Permissions vs Directory Permissions
 
 Many beginners assume permissions work the same for files and directories.
 
@@ -466,7 +466,7 @@ Understanding this distinction helps explain why you may be able to see a direct
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your Node.js application is stored here:
 
@@ -509,7 +509,7 @@ The configuration is writable only by its owner but readable by other processes 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow the **principle of least privilege**—grant only the permissions required.
 - Prefer `755` for executable scripts and directories that need public read access.
@@ -520,9 +520,9 @@ The configuration is writable only by its owner but readable by other processes 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using `777` Everywhere
+#### Using `777` Everywhere
 
 Setting permissions to:
 
@@ -536,7 +536,7 @@ Although it may temporarily solve a permission problem, it creates a serious sec
 
 ---
 
-### Confusing Ownership with Permissions
+#### Confusing Ownership with Permissions
 
 Changing permissions does not change ownership.
 
@@ -546,7 +546,7 @@ These are separate concepts.
 
 ---
 
-### Forgetting Recursive Operations
+#### Forgetting Recursive Operations
 
 Changing permissions on a directory without `-R` affects only the directory itself, not the files inside it.
 
@@ -554,7 +554,7 @@ Always verify whether recursive changes are appropriate before using them.
 
 ---
 
-### Giving Execute Permission to Every File
+#### Giving Execute Permission to Every File
 
 Not every file should be executable.
 
@@ -562,7 +562,7 @@ Source code, configuration files, and text files generally do not require execut
 
 ---
 
-# Summary
+## Summary
 
 Linux secures files and directories through a combination of **ownership** and **permissions**.
 
@@ -579,6 +579,6 @@ A solid understanding of Linux permissions is fundamental for securely managing 
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Process Management**

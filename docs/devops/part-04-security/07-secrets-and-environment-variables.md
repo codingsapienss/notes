@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Secrets and Environment Variables
 
-## Overview
+### Overview
 
 Modern applications require various sensitive pieces of information to function, such as:
 
@@ -35,7 +35,7 @@ Instead, production applications keep secrets **outside the source code** using 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What Are Secrets?
+## What Are Secrets?
 
 A **secret** is any confidential information that should only be accessible to authorized users or applications.
 
@@ -68,7 +68,7 @@ If attackers obtain these values, they may gain unauthorized access to your syst
 
 ---
 
-# Why Hardcoding Secrets is Dangerous
+## Why Hardcoding Secrets is Dangerous
 
 Suppose a developer writes:
 
@@ -100,7 +100,7 @@ Secrets should never be embedded directly into application code.
 
 ---
 
-# What are Environment Variables?
+## What are Environment Variables?
 
 Environment variables are key-value pairs provided by the operating system to running applications.
 
@@ -128,7 +128,7 @@ This keeps configuration separate from the application source code.
 
 ---
 
-# Accessing Environment Variables
+## Accessing Environment Variables
 
 In Linux:
 
@@ -156,7 +156,7 @@ env
 
 ---
 
-# Using Environment Variables in Node.js
+## Using Environment Variables in Node.js
 
 Node.js applications access environment variables through:
 
@@ -177,7 +177,7 @@ Only the environment variables differ.
 
 ---
 
-# The .env File
+## The .env File
 
 During development, many applications store environment variables inside a `.env` file.
 
@@ -196,7 +196,7 @@ For Node.js applications, packages such as `dotenv` are commonly used.
 
 ---
 
-# Why .env Files Must Be Protected
+## Why .env Files Must Be Protected
 
 A `.env` file often contains:
 
@@ -218,7 +218,7 @@ This allows only the owner to read and modify the file.
 
 ---
 
-# Never Commit Secrets to Git
+## Never Commit Secrets to Git
 
 A common beginner mistake:
 
@@ -257,7 +257,7 @@ Once a secret has been committed to Git, it should be considered compromised and
 
 ---
 
-# Different Environments
+## Different Environments
 
 Applications typically run in multiple environments.
 
@@ -285,7 +285,7 @@ Only the environment variables change.
 
 ---
 
-# Environment Variables vs Hardcoded Values
+## Environment Variables vs Hardcoded Values
 
 | Hardcoded Values               | Environment Variables          |
 | ------------------------------ | ------------------------------ |
@@ -298,7 +298,7 @@ Using environment variables is the industry standard.
 
 ---
 
-# Secret Rotation
+## Secret Rotation
 
 Secrets should not remain unchanged forever.
 
@@ -323,7 +323,7 @@ Regular secret rotation limits the impact of credential leaks.
 
 ---
 
-# Production Secret Management
+## Production Secret Management
 
 Large organizations often avoid `.env` files on production servers.
 
@@ -343,7 +343,7 @@ Applications retrieve secrets securely at runtime.
 
 ---
 
-# Production Example
+## Production Example
 
 Suppose you deploy a Node.js application.
 
@@ -385,7 +385,7 @@ In larger production environments, the secrets are retrieved from a secret manag
 
 ---
 
-# Common Secrets Found in Applications
+## Common Secrets Found in Applications
 
 | Secret              | Should Be Stored As  |
 | ------------------- | -------------------- |
@@ -398,7 +398,7 @@ In larger production environments, the secrets are retrieved from a secret manag
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Never hardcode secrets into source code.
 - Keep `.env` files outside version control.
@@ -410,9 +410,9 @@ In larger production environments, the secrets are retrieved from a secret manag
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Uploading `.env` to GitHub
+#### Uploading `.env` to GitHub
 
 This is one of the most common causes of credential leaks.
 
@@ -420,7 +420,7 @@ Always include `.env` in `.gitignore`.
 
 ---
 
-### Reusing Secrets Across Environments
+#### Reusing Secrets Across Environments
 
 If the development environment is compromised, production credentials should remain protected.
 
@@ -428,13 +428,13 @@ Use separate secrets for each environment.
 
 ---
 
-### Giving Everyone Access to Secret Files
+#### Giving Everyone Access to Secret Files
 
 Only the application and authorized administrators should be able to read secret files.
 
 ---
 
-### Forgetting to Rotate Exposed Secrets
+#### Forgetting to Rotate Exposed Secrets
 
 If a secret is accidentally exposed, replacing it is essential.
 
@@ -442,12 +442,12 @@ Simply deleting it from Git does not guarantee that it has not already been copi
 
 ---
 
-# Summary
+## Summary
 
 Applications rely on secrets such as passwords, API keys, and encryption keys to interact with external systems securely. Storing these values directly in source code creates unnecessary risk. Environment variables separate configuration from code, making applications easier to deploy across multiple environments while reducing the chance of accidental exposure. In production, secret files should be protected with strict permissions, excluded from version control, and, where possible, replaced with dedicated secret management services such as Azure Key Vault or AWS Secrets Manager.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Backups**

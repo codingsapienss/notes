@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Node.js Interview Preparation
 
-## Overview
+### Overview
 
 Node.js is one of the most widely used backend technologies for building APIs, web applications, real-time systems, and microservices.
 
@@ -27,7 +27,7 @@ Interviewers expect candidates to explain **how Node.js works internally**, not 
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Backend Architecture
+## Backend Architecture
 
 ```text id="node001"
 Browser
@@ -73,7 +73,7 @@ Response
 
 ---
 
-# Node.js Knowledge Roadmap
+## Node.js Knowledge Roadmap
 
 ```text id="node002"
 JavaScript
@@ -117,9 +117,9 @@ Production
 
 ---
 
-# Beginner Interview Questions
+## Beginner Interview Questions
 
-## Q1. What is Node.js?
+### Q1. What is Node.js?
 
 **Answer**
 
@@ -127,7 +127,7 @@ Node.js is an open-source JavaScript runtime built on Google's V8 JavaScript eng
 
 ---
 
-## Q2. Why is Node.js Popular?
+### Q2. Why is Node.js Popular?
 
 Reasons include:
 
@@ -140,13 +140,13 @@ Reasons include:
 
 ---
 
-## Q3. What is V8?
+### Q3. What is V8?
 
 V8 is Google's JavaScript engine that compiles JavaScript into machine code for fast execution.
 
 ---
 
-## Q4. Is Node.js Single-Threaded?
+### Q4. Is Node.js Single-Threaded?
 
 **Answer**
 
@@ -161,9 +161,9 @@ to efficiently handle many concurrent operations.
 
 ---
 
-# Event Loop Questions
+## Event Loop Questions
 
-## Q5. What is the Event Loop?
+### Q5. What is the Event Loop?
 
 The Event Loop continuously checks whether asynchronous operations have completed and executes their callbacks when the call stack is empty.
 
@@ -185,7 +185,7 @@ Execute
 
 ---
 
-## Q6. Why is the Event Loop Important?
+### Q6. Why is the Event Loop Important?
 
 Without the Event Loop:
 
@@ -198,15 +198,15 @@ With the Event Loop:
 
 ---
 
-## Q7. Explain Non-Blocking I/O
+### Q7. Explain Non-Blocking I/O
 
 Instead of waiting for slow operations such as file reads or database queries to complete, Node.js continues processing other work and executes callbacks or resolves promises when the operation finishes.
 
 ---
 
-# Asynchronous Programming
+## Asynchronous Programming
 
-## Q8. Difference Between Synchronous and Asynchronous Code
+### Q8. Difference Between Synchronous and Asynchronous Code
 
 | Synchronous      | Asynchronous             |
 | ---------------- | ------------------------ |
@@ -216,7 +216,7 @@ Instead of waiting for slow operations such as file reads or database queries to
 
 ---
 
-## Q9. Difference Between Callback, Promise, and Async/Await
+### Q9. Difference Between Callback, Promise, and Async/Await
 
 | Callback                  | Promise               | Async/Await       |
 | ------------------------- | --------------------- | ----------------- |
@@ -234,9 +234,9 @@ async function getUser() {
 
 ---
 
-# Express.js Questions
+## Express.js Questions
 
-## Q10. What is Express.js?
+### Q10. What is Express.js?
 
 Express.js is a minimal web framework for Node.js used to build APIs and web applications.
 
@@ -250,7 +250,7 @@ Features:
 
 ---
 
-## Q11. What is Middleware?
+### Q11. What is Middleware?
 
 Middleware functions execute during the request-response cycle.
 
@@ -280,7 +280,7 @@ Examples:
 
 ---
 
-## Q12. Difference Between app.use() and app.get()
+### Q12. Difference Between app.use() and app.get()
 
 | app.use()                   | app.get()                      |
 | --------------------------- | ------------------------------ |
@@ -289,15 +289,15 @@ Examples:
 
 ---
 
-# REST API Questions
+## REST API Questions
 
-## Q13. What is REST?
+### Q13. What is REST?
 
 REST is an architectural style for designing web APIs using standard HTTP methods.
 
 ---
 
-## Q14. Common HTTP Methods
+### Q14. Common HTTP Methods
 
 | Method | Purpose        |
 | ------ | -------------- |
@@ -309,15 +309,15 @@ REST is an architectural style for designing web APIs using standard HTTP method
 
 ---
 
-## Q15. What is Statelessness?
+### Q15. What is Statelessness?
 
 Each request contains all information needed to process it. The server does not rely on previous requests to understand the current one.
 
 ---
 
-# Authentication Questions
+## Authentication Questions
 
-## Q16. Difference Between Authentication and Authorization
+### Q16. Difference Between Authentication and Authorization
 
 | Authentication    | Authorization          |
 | ----------------- | ---------------------- |
@@ -331,7 +331,7 @@ Admin Dashboard Access → Authorization
 
 ---
 
-## Q17. What is JWT?
+### Q17. What is JWT?
 
 JWT (JSON Web Token) is a compact token format commonly used for stateless authentication between clients and servers.
 
@@ -363,9 +363,9 @@ Response
 
 ---
 
-# Database Questions
+## Database Questions
 
-## Q18. Difference Between SQL and NoSQL
+### Q18. Difference Between SQL and NoSQL
 
 | SQL          | NoSQL                         |
 | ------------ | ----------------------------- |
@@ -387,7 +387,7 @@ NoSQL:
 
 ---
 
-## Q19. Why Use MongoDB with Node.js?
+### Q19. Why Use MongoDB with Node.js?
 
 Advantages:
 
@@ -398,9 +398,9 @@ Advantages:
 
 ---
 
-# Performance Questions
+## Performance Questions
 
-## Q20. Why is Node.js Fast?
+### Q20. Why is Node.js Fast?
 
 Reasons:
 
@@ -412,7 +412,7 @@ Reasons:
 
 ---
 
-## Q21. What is Clustering?
+### Q21. What is Clustering?
 
 Clustering allows multiple Node.js processes to run simultaneously, often using multiple CPU cores.
 
@@ -432,7 +432,7 @@ Worker 4
 
 ---
 
-## Q22. What is PM2?
+### Q22. What is PM2?
 
 PM2 is a production process manager for Node.js applications.
 
@@ -446,9 +446,9 @@ Features:
 
 ---
 
-# Error Handling Questions
+## Error Handling Questions
 
-## Q23. How Do You Handle Errors in Express?
+### Q23. How Do You Handle Errors in Express?
 
 Centralized error-handling middleware is commonly used.
 
@@ -464,7 +464,7 @@ app.use((err, req, res, next) => {
 
 ---
 
-## Q24. Difference Between throw and next(err)
+### Q24. Difference Between throw and next(err)
 
 | throw                              | next(err)                          |
 | ---------------------------------- | ---------------------------------- |
@@ -473,9 +473,9 @@ app.use((err, req, res, next) => {
 
 ---
 
-# Production Questions
+## Production Questions
 
-## Q25. Why Put Nginx in Front of Node.js?
+### Q25. Why Put Nginx in Front of Node.js?
 
 Reasons:
 
@@ -506,7 +506,7 @@ MongoDB
 
 ---
 
-## Q26. Why Should Environment Variables Be Used?
+### Q26. Why Should Environment Variables Be Used?
 
 Environment variables keep configuration separate from source code.
 
@@ -519,7 +519,7 @@ Examples:
 
 ---
 
-## Q27. Why Should Secrets Not Be Committed to Git?
+### Q27. Why Should Secrets Not Be Committed to Git?
 
 Reasons:
 
@@ -530,9 +530,9 @@ Reasons:
 
 ---
 
-# Scaling Questions
+## Scaling Questions
 
-## Q28. How Can Node.js Applications Be Scaled?
+### Q28. How Can Node.js Applications Be Scaled?
 
 Options:
 
@@ -545,7 +545,7 @@ Options:
 
 ---
 
-## Q29. What is Redis Used For?
+### Q29. What is Redis Used For?
 
 Common uses:
 
@@ -557,9 +557,9 @@ Common uses:
 
 ---
 
-# Advanced Questions
+## Advanced Questions
 
-## Q30. Explain the Request Lifecycle
+### Q30. Explain the Request Lifecycle
 
 ```text id="node010"
 HTTP Request
@@ -595,7 +595,7 @@ Response
 
 ---
 
-## Q31. Difference Between process.nextTick() and setImmediate()
+### Q31. Difference Between process.nextTick() and setImmediate()
 
 | process.nextTick()                    | setImmediate()              |
 | ------------------------------------- | --------------------------- |
@@ -606,7 +606,7 @@ Interviewers may ask this to assess understanding of the Event Loop.
 
 ---
 
-## Q32. What Causes Memory Leaks?
+### Q32. What Causes Memory Leaks?
 
 Examples:
 
@@ -618,9 +618,9 @@ Examples:
 
 ---
 
-# Scenario-Based Questions
+## Scenario-Based Questions
 
-## Scenario 1
+### Scenario 1
 
 **Question**
 
@@ -668,7 +668,7 @@ systemctl status nginx
 
 ---
 
-## Scenario 2
+### Scenario 2
 
 **Question**
 
@@ -685,7 +685,7 @@ Possible investigation:
 
 ---
 
-## Scenario 3
+### Scenario 3
 
 **Question**
 
@@ -723,7 +723,7 @@ Root Cause
 
 ---
 
-## Scenario 4
+### Scenario 4
 
 **Question**
 
@@ -742,7 +742,7 @@ Typical steps:
 
 ---
 
-# Production Experience Questions
+## Production Experience Questions
 
 Interviewers may ask:
 
@@ -759,7 +759,7 @@ Focus on describing your reasoning, trade-offs, and verification steps rather th
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Understand the Event Loop thoroughly.
 - Explain asynchronous programming clearly.
@@ -770,44 +770,44 @@ Focus on describing your reasoning, trade-offs, and verification steps rather th
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Calling Node.js Multithreaded
+#### Calling Node.js Multithreaded
 
 JavaScript execution is single-threaded, while Node.js uses additional mechanisms such as libuv and worker threads for concurrency.
 
 ---
 
-### Blocking the Event Loop
+#### Blocking the Event Loop
 
 CPU-intensive synchronous operations can prevent the server from processing other requests efficiently.
 
 ---
 
-### Hardcoding Secrets
+#### Hardcoding Secrets
 
 Sensitive configuration should be stored in environment variables or a secure secrets management solution.
 
 ---
 
-### Ignoring Error Handling
+#### Ignoring Error Handling
 
 Unhandled errors can crash applications or expose sensitive information.
 
 ---
 
-### Forgetting Production Verification
+#### Forgetting Production Verification
 
 Always verify application health, logs, and endpoints after deployment.
 
 ---
 
-# Summary
+## Summary
 
 Node.js interviews focus on runtime architecture, asynchronous programming, the Event Loop, Express.js, REST APIs, authentication, scaling, and production troubleshooting. Strong candidates explain how Node.js works internally, design maintainable backend systems, and approach debugging with a structured, evidence-based methodology.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Cloud Interview Preparation**

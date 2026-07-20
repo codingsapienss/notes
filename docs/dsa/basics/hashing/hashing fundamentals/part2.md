@@ -12,7 +12,7 @@
 
 ---
 
-## What is Array Hashing?
+### What is Array Hashing?
 
 Array Hashing uses an **array as a hash table**.
 
@@ -63,7 +63,7 @@ Meaning
 
 ---
 
-## Why Does This Work?
+### Why Does This Work?
 
 The number itself becomes the array index.
 
@@ -95,7 +95,7 @@ Frequency of 5
 
 ---
 
-## Example
+### Example
 
 Array
 
@@ -139,7 +139,7 @@ Output
 
 ---
 
-## Complete Example
+### Complete Example
 
 ```cpp
 #include <iostream>
@@ -177,7 +177,7 @@ int main() {
 
 ---
 
-## Time Complexity
+### Time Complexity
 
 Building hash table
 
@@ -211,7 +211,7 @@ Q = number of queries
 
 ---
 
-## Space Complexity
+### Space Complexity
 
 If maximum value is
 
@@ -227,7 +227,7 @@ Space = O(M)
 
 ---
 
-## When Can We Use Array Hashing?
+### When Can We Use Array Hashing?
 
 Array hashing is useful only when
 
@@ -273,13 +273,13 @@ is impossible.
 
 ---
 
-## Local Arrays vs Global Arrays
+### Local Arrays vs Global Arrays
 
 One of the most common interview questions.
 
 ---
 
-### Local Array
+#### Local Array
 
 Declared inside
 
@@ -309,7 +309,7 @@ Stack Memory
 
 ---
 
-### Global Array
+#### Global Array
 
 Declared outside every function.
 
@@ -333,9 +333,9 @@ Global/Data Segment
 
 ---
 
-## Initialization Difference
+### Initialization Difference
 
-### Local Array
+#### Local Array
 
 ```cpp
 int arr[5];
@@ -363,7 +363,7 @@ because local arrays are **not initialized automatically**.
 
 ---
 
-### Global Array
+#### Global Array
 
 ```cpp
 int arr[5];
@@ -381,7 +381,7 @@ because global variables are automatically initialized to zero.
 
 ---
 
-## Why?
+### Why?
 
 Global variables are initialized by the operating system before `main()` starts.
 
@@ -389,13 +389,13 @@ Local variables are allocated when the function is called and are **left uniniti
 
 ---
 
-## Maximum Array Size
+### Maximum Array Size
 
 Another very common interview topic.
 
 ---
 
-### Inside main()
+#### Inside main()
 
 Arrays are stored in
 
@@ -448,7 +448,7 @@ May crash immediately.
 
 ---
 
-## Global Arrays
+### Global Arrays
 
 Global arrays are **not stored on the stack**.
 
@@ -468,7 +468,7 @@ is commonly accepted in competitive programming.
 
 ---
 
-## Why Does a Segmentation Fault Occur?
+### Why Does a Segmentation Fault Occur?
 
 Suppose
 
@@ -502,7 +502,7 @@ Segmentation Fault
 
 ---
 
-## Approximate Safe Limits
+### Approximate Safe Limits
 
 | Data Type   |               Local Array (Stack) |            Global Array |
 | ----------- | --------------------------------: | ----------------------: |
@@ -515,7 +515,7 @@ Segmentation Fault
 
 ---
 
-## Advantages of Array Hashing
+### Advantages of Array Hashing
 
 - Extremely simple
 - Very fast
@@ -524,7 +524,7 @@ Segmentation Fault
 
 ---
 
-## Limitations
+### Limitations
 
 Cannot be used when
 
@@ -563,9 +563,9 @@ which will be covered in the next parts.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Why is array hashing so fast?
+#### Q1. Why is array hashing so fast?
 
 **Answer**
 
@@ -573,7 +573,7 @@ Because array indexing is a direct memory access operation, giving **O(1)** look
 
 ---
 
-### Q2. Why are global arrays initialized to zero?
+#### Q2. Why are global arrays initialized to zero?
 
 **Answer**
 
@@ -581,7 +581,7 @@ Global variables are automatically initialized by the runtime before the program
 
 ---
 
-### Q3. Why do local arrays contain garbage values?
+#### Q3. Why do local arrays contain garbage values?
 
 **Answer**
 
@@ -589,7 +589,7 @@ Local variables are not initialized automatically and contain whatever data alre
 
 ---
 
-### Q4. Why do very large arrays inside `main()` cause a segmentation fault?
+#### Q4. Why do very large arrays inside `main()` cause a segmentation fault?
 
 **Answer**
 
@@ -597,7 +597,7 @@ Because local arrays are allocated on the stack, which has limited memory. Excee
 
 ---
 
-### Q5. When should array hashing be used?
+#### Q5. When should array hashing be used?
 
 **Answer**
 
@@ -605,7 +605,7 @@ When the range of possible values is small, known beforehand, and memory usage r
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Array hashing uses an array as a hash table.
 - The element itself acts as the array index.

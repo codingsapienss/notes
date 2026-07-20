@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Storage
 
-## Overview
+### Overview
 
 Every application stores data.
 
@@ -41,7 +41,7 @@ In this chapter, you will learn the most commonly used Azure storage services an
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -55,7 +55,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Cloud Storage?
+## What is Cloud Storage?
 
 Cloud Storage is a service that stores data on infrastructure managed by the cloud provider.
 
@@ -85,7 +85,7 @@ Customers simply store and retrieve data.
 
 ---
 
-# Azure Storage Overview
+## Azure Storage Overview
 
 Azure Storage consists of multiple storage services.
 
@@ -103,7 +103,7 @@ Each service is designed for a different type of data.
 
 ---
 
-# What is a Storage Account?
+## What is a Storage Account?
 
 Almost every Azure storage service begins with a **Storage Account**.
 
@@ -130,7 +130,7 @@ Most Azure storage resources are created inside a Storage Account.
 
 ---
 
-# Managed Disks
+## Managed Disks
 
 Virtual Machines require disks.
 
@@ -161,7 +161,7 @@ Administrators no longer manage physical storage hardware.
 
 ---
 
-# Types of Managed Disks
+## Types of Managed Disks
 
 Azure offers multiple disk options.
 
@@ -177,7 +177,7 @@ Choosing the correct disk depends on performance requirements and budget.
 
 ---
 
-# Blob Storage
+## Blob Storage
 
 Blob Storage is Azure's object storage service.
 
@@ -209,7 +209,7 @@ Unlike a traditional file system, Blob Storage stores objects rather than direct
 
 ---
 
-# Blob Containers
+## Blob Containers
 
 Inside Blob Storage, data is organized into **Containers**.
 
@@ -232,7 +232,7 @@ Containers help organize related blobs.
 
 ---
 
-# Blob Storage Access Levels
+## Blob Storage Access Levels
 
 Azure Blob Storage supports different access tiers.
 
@@ -247,7 +247,7 @@ Lower-cost tiers generally have higher retrieval times or access costs.
 
 ---
 
-# Azure Files
+## Azure Files
 
 Azure Files provides managed network file shares.
 
@@ -276,7 +276,7 @@ Multiple virtual machines can access the same file share simultaneously.
 
 ---
 
-# Queue Storage
+## Queue Storage
 
 Queue Storage enables applications to exchange messages asynchronously.
 
@@ -298,7 +298,7 @@ Queues are commonly used to decouple application components and process backgrou
 
 ---
 
-# Table Storage
+## Table Storage
 
 Table Storage stores structured NoSQL data.
 
@@ -318,7 +318,7 @@ It is designed for large volumes of simple key-value or attribute-based data.
 
 ---
 
-# Storage Redundancy
+## Storage Redundancy
 
 Hardware failures happen.
 
@@ -335,7 +335,7 @@ Common redundancy options include:
 
 ---
 
-# Locally Redundant Storage (LRS)
+## Locally Redundant Storage (LRS)
 
 LRS stores multiple copies of data within a single Azure data center.
 
@@ -351,7 +351,7 @@ Suitable for many development and production workloads where regional redundancy
 
 ---
 
-# Zone-Redundant Storage (ZRS)
+## Zone-Redundant Storage (ZRS)
 
 ZRS stores copies across multiple Availability Zones within the same region.
 
@@ -367,7 +367,7 @@ If one Availability Zone becomes unavailable, the data remains accessible from t
 
 ---
 
-# Geo-Redundant Storage (GRS)
+## Geo-Redundant Storage (GRS)
 
 GRS stores data in one region and asynchronously replicates it to a paired region.
 
@@ -387,7 +387,7 @@ This provides protection against regional outages.
 
 ---
 
-# Storage Security
+## Storage Security
 
 Azure Storage supports multiple security features.
 
@@ -404,7 +404,7 @@ These features help protect stored data from unauthorized access.
 
 ---
 
-# Typical Web Application Storage
+## Typical Web Application Storage
 
 Suppose an application allows users to upload profile pictures.
 
@@ -434,7 +434,7 @@ The application stores metadata in a database while the image itself resides in 
 
 ---
 
-# Storage for Virtual Machines
+## Storage for Virtual Machines
 
 Virtual Machines typically use:
 
@@ -462,7 +462,7 @@ Separating operating system and application data simplifies maintenance and reco
 
 ---
 
-# Choosing the Right Storage
+## Choosing the Right Storage
 
 | Requirement          | Recommended Service |
 | -------------------- | ------------------- |
@@ -476,7 +476,7 @@ Selecting the correct service improves performance, scalability, and cost effici
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="st15"
 Internet
@@ -501,7 +501,7 @@ Different types of application data are stored using the storage service best su
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your company develops an e-commerce platform.
 
@@ -518,7 +518,7 @@ Each storage service addresses a different requirement, resulting in a scalable 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Choose the storage service that matches your workload.
 - Use Blob Storage for large static files.
@@ -530,44 +530,44 @@ Each storage service addresses a different requirement, resulting in a scalable 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using Managed Disks for Large Media Libraries
+#### Using Managed Disks for Large Media Libraries
 
 Managed Disks are designed for Virtual Machines. Large collections of images or videos are generally better suited to Blob Storage.
 
 ---
 
-### Choosing Expensive Storage Without Need
+#### Choosing Expensive Storage Without Need
 
 High-performance storage increases costs. Match the storage tier to the application's actual requirements.
 
 ---
 
-### Ignoring Redundancy
+#### Ignoring Redundancy
 
 Critical production data should be protected with an appropriate redundancy strategy.
 
 ---
 
-### Mixing Different Types of Data
+#### Mixing Different Types of Data
 
 Operating system files, user uploads, backups, and shared documents often have different storage requirements and should be stored using the appropriate Azure service.
 
 ---
 
-### Forgetting Security
+#### Forgetting Security
 
 Storage accounts should be secured with proper authentication, encryption, and access controls to prevent unauthorized access.
 
 ---
 
-# Summary
+## Summary
 
 Azure provides multiple storage services to support different application needs. Storage Accounts act as the foundation for services such as Blob Storage, Azure Files, Queue Storage, and Table Storage, while Managed Disks provide persistent storage for Virtual Machines. By understanding redundancy options, storage tiers, and workload-specific services, administrators can build cloud solutions that are reliable, scalable, secure, and cost-effective.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Networking in Azure**

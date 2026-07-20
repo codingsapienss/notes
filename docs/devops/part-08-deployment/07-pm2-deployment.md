@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # PM2 Deployment
 
-## Overview
+### Overview
 
 In the previous chapter, we secured our application using HTTPS and configured Nginx to serve requests securely.
 
@@ -40,7 +40,7 @@ PM2 is a production-grade process manager for Node.js applications. It keeps app
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -55,7 +55,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is PM2?
+## What is PM2?
 
 PM2 is a process manager designed for Node.js applications.
 
@@ -83,7 +83,7 @@ PM2 manages the application's lifecycle.
 
 ---
 
-# Why Use PM2?
+## Why Use PM2?
 
 Without PM2:
 
@@ -113,7 +113,7 @@ This improves application availability without requiring manual intervention.
 
 ---
 
-# PM2 in Production
+## PM2 in Production
 
 Typical architecture:
 
@@ -141,7 +141,7 @@ PM2 sits between the operating system and the Node.js process, ensuring that the
 
 ---
 
-# Starting an Application
+## Starting an Application
 
 Start an application directly.
 
@@ -153,7 +153,7 @@ PM2 launches the application in the background.
 
 ---
 
-# Starting with a Name
+## Starting with a Name
 
 Assign a meaningful name.
 
@@ -175,7 +175,7 @@ Meaningful names simplify administration when multiple applications run on the s
 
 ---
 
-# Starting an npm Application
+## Starting an npm Application
 
 Many projects use npm scripts.
 
@@ -189,7 +189,7 @@ PM2 executes the `start` script defined in `package.json`.
 
 ---
 
-# Viewing Running Applications
+## Viewing Running Applications
 
 List managed applications.
 
@@ -210,7 +210,7 @@ Typical information displayed:
 
 ---
 
-# Application Status
+## Application Status
 
 PM2 continuously monitors process state.
 
@@ -242,7 +242,7 @@ Running Again
 
 ---
 
-# Restarting an Application
+## Restarting an Application
 
 Restart an application.
 
@@ -254,7 +254,7 @@ Use this after configuration changes or updates that require a full restart.
 
 ---
 
-# Reloading an Application
+## Reloading an Application
 
 Reload an application.
 
@@ -266,7 +266,7 @@ Reloading is especially useful when running in cluster mode because it can updat
 
 ---
 
-# Stopping an Application
+## Stopping an Application
 
 Stop an application.
 
@@ -278,7 +278,7 @@ The application remains registered with PM2 but is no longer running.
 
 ---
 
-# Deleting an Application
+## Deleting an Application
 
 Remove it from PM2.
 
@@ -290,7 +290,7 @@ The process is removed from PM2's process list.
 
 ---
 
-# Viewing Logs
+## Viewing Logs
 
 Display application logs.
 
@@ -307,7 +307,7 @@ Logs help diagnose:
 
 ---
 
-# Monitoring Applications
+## Monitoring Applications
 
 PM2 provides a built-in monitoring interface.
 
@@ -331,7 +331,7 @@ Monitoring helps identify performance issues before they affect users.
 
 ---
 
-# Saving the Process List
+## Saving the Process List
 
 After configuring applications:
 
@@ -357,7 +357,7 @@ This stores the current PM2 process list.
 
 ---
 
-# Starting Applications After Reboot
+## Starting Applications After Reboot
 
 Generate the startup configuration.
 
@@ -391,7 +391,7 @@ Without this configuration, applications will not restart automatically after a 
 
 ---
 
-# PM2 Ecosystem File
+## PM2 Ecosystem File
 
 For larger projects, PM2 supports ecosystem configuration files.
 
@@ -423,7 +423,7 @@ An ecosystem file centralizes deployment configuration.
 
 ---
 
-# PM2 and Environment Variables
+## PM2 and Environment Variables
 
 PM2 loads environment variables before starting the application.
 
@@ -443,7 +443,7 @@ This ensures the application starts with the correct production configuration.
 
 ---
 
-# PM2 and Nginx
+## PM2 and Nginx
 
 Production request flow:
 
@@ -471,7 +471,7 @@ Nginx forwards requests to the application managed by PM2.
 
 ---
 
-# PM2 Deployment Workflow
+## PM2 Deployment Workflow
 
 ```text id="pm216"
 Clone Repository
@@ -505,7 +505,7 @@ This prepares the application for long-term production operation.
 
 ---
 
-# Deployment Verification Checklist
+## Deployment Verification Checklist
 
 | Check                   | Expected Result |
 | ----------------------- | --------------- |
@@ -518,7 +518,7 @@ This prepares the application for long-term production operation.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application on an Ubuntu server.
 
@@ -542,7 +542,7 @@ If the server reboots or the application crashes unexpectedly, PM2 automatically
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Give every application a descriptive PM2 name.
 - Save the process list after deployment.
@@ -554,44 +554,44 @@ If the server reboots or the application crashes unexpectedly, PM2 automatically
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Running Applications with `node app.js` in Production
+#### Running Applications with `node app.js` in Production
 
 Applications started directly from the terminal stop when the session ends or the process crashes.
 
 ---
 
-### Forgetting `pm2 save`
+#### Forgetting `pm2 save`
 
 Without saving the process list, PM2 may not restore applications after a reboot.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Application logs often provide the quickest way to diagnose deployment failures or runtime errors.
 
 ---
 
-### Using Generic Process Names
+#### Using Generic Process Names
 
 Names such as `app` or `server` become confusing when managing multiple applications.
 
 ---
 
-### Forgetting Automatic Startup
+#### Forgetting Automatic Startup
 
 Installing PM2 alone does not ensure applications restart after a system reboot. The startup service must also be configured.
 
 ---
 
-# Summary
+## Summary
 
 PM2 is a production-grade process manager that keeps Node.js applications running reliably. It automatically restarts crashed processes, manages logs, provides monitoring tools, and restores applications after server reboots. By starting applications through PM2, saving the process list, and configuring automatic startup, administrators can significantly improve the reliability and maintainability of production deployments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Zero Downtime Deployment**

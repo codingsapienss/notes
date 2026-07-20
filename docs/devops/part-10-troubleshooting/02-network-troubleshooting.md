@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Network Troubleshooting
 
-## Overview
+### Overview
 
 Networking is the backbone of every modern server. Regardless of how well an application is built, it becomes inaccessible if network communication fails.
 
@@ -25,7 +25,7 @@ Unlike application bugs, network issues often affect multiple services simultane
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Understanding Network Communication
+## Understanding Network Communication
 
 Before troubleshooting, understand the communication flow.
 
@@ -80,7 +80,7 @@ A failure at any layer can prevent users from accessing the application.
 
 ---
 
-# Network Troubleshooting Workflow
+## Network Troubleshooting Workflow
 
 Always troubleshoot from the outermost layer toward the application.
 
@@ -124,7 +124,7 @@ Avoid skipping steps, as doing so can lead to incorrect conclusions.
 
 ---
 
-# Step 1 – Verify Basic Connectivity
+## Step 1 – Verify Basic Connectivity
 
 The first step is determining whether the server is reachable.
 
@@ -151,7 +151,7 @@ If the ping fails, the server may have:
 
 ---
 
-# Testing Connectivity to an IP Address
+## Testing Connectivity to an IP Address
 
 Sometimes DNS fails while networking is still functional.
 
@@ -173,7 +173,7 @@ This simple comparison quickly narrows the scope of investigation.
 
 ---
 
-# Step 2 – Verify DNS Resolution
+## Step 2 – Verify DNS Resolution
 
 Check whether domain names resolve correctly.
 
@@ -209,7 +209,7 @@ Without DNS resolution, applications cannot locate remote servers by hostname.
 
 ---
 
-# Step 3 – Verify Network Interfaces
+## Step 3 – Verify Network Interfaces
 
 Display available network interfaces.
 
@@ -233,7 +233,7 @@ Verify:
 
 ---
 
-# Step 4 – Verify Routing
+## Step 4 – Verify Routing
 
 Display the routing table.
 
@@ -253,7 +253,7 @@ Without a valid default route, internet access usually fails.
 
 ---
 
-# Step 5 – Test the Network Path
+## Step 5 – Test the Network Path
 
 Sometimes connectivity exists, but packets fail somewhere along the route.
 
@@ -295,7 +295,7 @@ Traceroute identifies where packets stop progressing.
 
 ---
 
-# Step 6 – Verify Listening Ports
+## Step 6 – Verify Listening Ports
 
 Even if the server is reachable, the required service may not be listening.
 
@@ -325,7 +325,7 @@ Common ports:
 
 ---
 
-# Step 7 – Verify Open Ports
+## Step 7 – Verify Open Ports
 
 Test whether a port is accessible.
 
@@ -349,7 +349,7 @@ If the port is closed:
 
 ---
 
-# Step 8 – Check Firewall
+## Step 8 – Check Firewall
 
 Firewall rules may prevent legitimate traffic.
 
@@ -383,7 +383,7 @@ Always verify firewall rules before assuming an application problem.
 
 ---
 
-# Step 9 – Check Active Connections
+## Step 9 – Check Active Connections
 
 Display active TCP connections.
 
@@ -399,7 +399,7 @@ This helps determine:
 
 ---
 
-# Step 10 – Test HTTP Requests
+## Step 10 – Test HTTP Requests
 
 Use `curl` to verify web services.
 
@@ -425,7 +425,7 @@ This confirms that the web server is responding correctly.
 
 ---
 
-# DNS Troubleshooting
+## DNS Troubleshooting
 
 Common DNS problems include:
 
@@ -457,7 +457,7 @@ No → Fix DNS
 
 ---
 
-# Network Troubleshooting Decision Tree
+## Network Troubleshooting Decision Tree
 
 ```text id="net13"
 Cannot Reach Server
@@ -493,7 +493,7 @@ This decision tree helps isolate failures efficiently.
 
 ---
 
-# Common Network Problems
+## Common Network Problems
 
 | Problem              | Possible Cause                     |
 | -------------------- | ---------------------------------- |
@@ -507,7 +507,7 @@ This decision tree helps isolate failures efficiently.
 
 ---
 
-# Useful Network Commands
+## Useful Network Commands
 
 | Command      | Purpose                     |
 | ------------ | --------------------------- |
@@ -526,7 +526,7 @@ This decision tree helps isolate failures efficiently.
 
 ---
 
-# Production Network Troubleshooting Flow
+## Production Network Troubleshooting Flow
 
 ```text id="net14"
 User Reports Issue
@@ -572,7 +572,7 @@ Following this sequence avoids unnecessary troubleshooting steps.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users report that `https://example.com` is unavailable.
 
@@ -642,7 +642,7 @@ The outage was caused by an invalid Nginx configuration rather than a network fa
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow a structured troubleshooting workflow.
 - Start with basic connectivity tests.
@@ -656,44 +656,44 @@ The outage was caused by an invalid Nginx configuration rather than a network fa
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Every Problem Is a DNS Issue
+#### Assuming Every Problem Is a DNS Issue
 
 Many connectivity problems are caused by firewall rules, routing errors, or stopped services.
 
 ---
 
-### Skipping Basic Connectivity Tests
+#### Skipping Basic Connectivity Tests
 
 Simple commands like `ping` and `curl` often eliminate multiple possibilities within seconds.
 
 ---
 
-### Ignoring the Routing Table
+#### Ignoring the Routing Table
 
 A missing or incorrect default gateway can make a server appear completely offline.
 
 ---
 
-### Restarting Services Without Diagnosis
+#### Restarting Services Without Diagnosis
 
 Restarting services without understanding the problem may temporarily hide the underlying issue.
 
 ---
 
-### Changing Firewall Rules Randomly
+#### Changing Firewall Rules Randomly
 
 Always verify which traffic is actually blocked before modifying firewall configurations.
 
 ---
 
-# Summary
+## Summary
 
 Network troubleshooting is the process of systematically identifying communication failures between systems. By verifying connectivity, DNS resolution, routing, firewall rules, listening ports, and running services in a logical order, administrators can quickly isolate and resolve production networking issues. A disciplined methodology minimizes downtime and reduces unnecessary configuration changes.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - SSH Troubleshooting**

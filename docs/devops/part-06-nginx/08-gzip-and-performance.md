@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Gzip and Performance
 
-## Overview
+### Overview
 
 By now, our Nginx server can:
 
@@ -34,7 +34,7 @@ In this chapter, we will learn how Gzip works, how to enable it, and explore sev
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Performance Matters
+## Why Performance Matters
 
 Suppose a webpage contains:
 
@@ -86,7 +86,7 @@ Smaller responses generally mean less data transferred across the network.
 
 ---
 
-# What is Gzip?
+## What is Gzip?
 
 **Gzip** is a compression algorithm.
 
@@ -114,7 +114,7 @@ Modern browsers automatically decompress Gzip-compressed responses.
 
 ---
 
-# Why Compress Files?
+## Why Compress Files?
 
 Suppose a JavaScript bundle is:
 
@@ -151,7 +151,7 @@ The exact reduction depends on the file's contents.
 
 ---
 
-# Which Files Should Be Compressed?
+## Which Files Should Be Compressed?
 
 Text-based files usually compress very well.
 
@@ -169,7 +169,7 @@ Examples:
 
 ---
 
-# Which Files Should NOT Be Compressed?
+## Which Files Should NOT Be Compressed?
 
 Many binary formats are already compressed.
 
@@ -189,7 +189,7 @@ Compressing these files often provides little benefit while increasing CPU usage
 
 ---
 
-# Enabling Gzip
+## Enabling Gzip
 
 Basic configuration:
 
@@ -203,7 +203,7 @@ However, production systems typically use additional settings.
 
 ---
 
-# Production Gzip Configuration
+## Production Gzip Configuration
 
 Example:
 
@@ -234,7 +234,7 @@ Explanation:
 
 ---
 
-# Understanding Compression Levels
+## Understanding Compression Levels
 
 Compression level ranges from:
 
@@ -258,7 +258,7 @@ For most production servers, levels around **4–6** provide a good balance betw
 
 ---
 
-# gzip_min_length
+## gzip_min_length
 
 Example:
 
@@ -274,7 +274,7 @@ Small responses often do not benefit enough from compression to justify the addi
 
 ---
 
-# gzip_types
+## gzip_types
 
 By default, only a limited set of responses may be compressed.
 
@@ -296,7 +296,7 @@ This tells Nginx which MIME types should be compressed before being sent to clie
 
 ---
 
-# Compression Workflow
+## Compression Workflow
 
 ```text
 Browser
@@ -323,7 +323,7 @@ Browser
 
 ---
 
-# Worker Processes
+## Worker Processes
 
 Performance is not only about compression.
 
@@ -355,7 +355,7 @@ This allows Nginx to efficiently utilize multi-core systems.
 
 ---
 
-# Worker Connections
+## Worker Connections
 
 Each worker process can handle many simultaneous connections.
 
@@ -391,7 +391,7 @@ Actual capacity also depends on operating system limits and available resources.
 
 ---
 
-# sendfile
+## sendfile
 
 Example:
 
@@ -407,7 +407,7 @@ This improves performance when serving static files.
 
 ---
 
-# tcp_nopush
+## tcp_nopush
 
 Example:
 
@@ -423,7 +423,7 @@ It is commonly used together with `sendfile`.
 
 ---
 
-# tcp_nodelay
+## tcp_nodelay
 
 Example:
 
@@ -437,7 +437,7 @@ Reduces delays for small, interactive responses by sending packets promptly inst
 
 ---
 
-# keepalive_timeout
+## keepalive_timeout
 
 Example:
 
@@ -477,7 +477,7 @@ This reduces the overhead of establishing new TCP connections for subsequent req
 
 ---
 
-# Typical Performance Configuration
+## Typical Performance Configuration
 
 Example:
 
@@ -509,7 +509,7 @@ These settings provide a solid foundation for many production deployments.
 
 ---
 
-# Request Lifecycle with Gzip
+## Request Lifecycle with Gzip
 
 ```text
 Browser
@@ -539,7 +539,7 @@ Compression is transparent to users.
 
 ---
 
-# Measuring Performance
+## Measuring Performance
 
 Useful commands:
 
@@ -577,7 +577,7 @@ These tools help verify that performance settings are applied correctly and that
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company hosts an Express.js application behind Nginx.
 
@@ -618,7 +618,7 @@ As a result:
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Enable Gzip for text-based responses.
 - Do not compress already compressed file formats.
@@ -631,33 +631,33 @@ As a result:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Compressing Already Compressed Files
+#### Compressing Already Compressed Files
 
 Applying Gzip to formats such as JPEG, PNG, MP4, or ZIP usually wastes CPU time without meaningful size reduction.
 
 ---
 
-### Using Maximum Compression Everywhere
+#### Using Maximum Compression Everywhere
 
 Higher compression levels consume more CPU and may not provide proportionally better results.
 
 ---
 
-### Setting Worker Connections Too Low
+#### Setting Worker Connections Too Low
 
 An unnecessarily small limit can reduce the number of concurrent clients the server can handle.
 
 ---
 
-### Forgetting to Reload Nginx
+#### Forgetting to Reload Nginx
 
 Configuration changes are applied only after reloading or restarting the service.
 
 ---
 
-### Skipping Configuration Validation
+#### Skipping Configuration Validation
 
 Always verify configuration before reloading:
 
@@ -667,12 +667,12 @@ sudo nginx -t
 
 ---
 
-# Summary
+## Summary
 
 Performance optimization is a key responsibility of Nginx in production environments. Gzip compression reduces the size of text-based responses, resulting in faster page loads and lower bandwidth usage. Additional settings such as `worker_processes`, `worker_connections`, `sendfile`, `tcp_nopush`, `tcp_nodelay`, and `keepalive_timeout` improve request handling and resource utilization. Together, these optimizations help Nginx deliver fast, efficient, and scalable web services.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Caching**

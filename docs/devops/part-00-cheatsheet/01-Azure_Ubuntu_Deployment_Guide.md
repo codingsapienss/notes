@@ -9,7 +9,7 @@ sidebar_position: 1
 
 ---
 
-# 1. Update Server
+## 1. Update Server
 
 ```bash
 sudo apt update
@@ -19,7 +19,7 @@ sudo reboot
 
 ---
 
-# 2. Install Basic Packages
+## 2. Install Basic Packages
 
 ```bash
 sudo apt install -y git curl wget unzip zip build-essential ufw fail2ban
@@ -35,7 +35,7 @@ wget --version
 
 ---
 
-# 3. Configure Firewall (UFW)
+## 3. Configure Firewall (UFW)
 
 Allow
 
@@ -54,7 +54,7 @@ sudo ufw status
 
 ---
 
-# 4. Enable Fail2Ban
+## 4. Enable Fail2Ban
 
 ```bash
 sudo systemctl enable fail2ban
@@ -81,7 +81,7 @@ sudo fail2ban-client get sshd bantime
 
 ---
 
-# 5. Verify SSH
+## 5. Verify SSH
 
 ```bash
 sudo grep -E '^(#)?(PasswordAuthentication|PubkeyAuthentication|PermitRootLogin|ChallengeResponseAuthentication|KbdInteractiveAuthentication|UsePAM)' /etc/ssh/sshd_config
@@ -91,7 +91,7 @@ sudo grep -E '^(#)?(PasswordAuthentication|PubkeyAuthentication|PermitRootLogin|
 
 ---
 
-# 6. Install NVM
+## 6. Install NVM
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -106,7 +106,7 @@ nvm --version
 
 ---
 
-# 7. Install Node.js LTS
+## 7. Install Node.js LTS
 
 ```bash
 nvm install --lts
@@ -123,7 +123,7 @@ npm -v
 
 ---
 
-# 8. Install PM2
+## 8. Install PM2
 
 ```bash
 npm install -g pm2
@@ -131,7 +131,7 @@ npm install -g pm2
 
 ---
 
-# 9. Install Nginx
+## 9. Install Nginx
 
 ```bash
 sudo apt install nginx -y
@@ -152,7 +152,7 @@ curl http://localhost
 
 ---
 
-# 10. Clone Project
+## 10. Clone Project
 
 ```bash
 mkdir ~/apps
@@ -163,7 +163,7 @@ git clone <repo>
 
 ---
 
-# 11. Start Application
+## 11. Start Application
 
 ```bash
 pm2 start app.js --name uat
@@ -181,7 +181,7 @@ pm2 logs uat
 
 ---
 
-# 12. Configure Nginx Reverse Proxy
+## 12. Configure Nginx Reverse Proxy
 
 Create
 
@@ -235,7 +235,7 @@ sudo systemctl reload nginx
 
 ---
 
-# 13. DNS (Cloudflare)
+## 13. DNS (Cloudflare)
 
 Added
 
@@ -251,7 +251,7 @@ www.uat.makear.co.in
 
 ---
 
-# 14. Install Certbot
+## 14. Install Certbot
 
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
@@ -265,7 +265,7 @@ certbot --version
 
 ---
 
-# 15. Generate 4096-bit SSL Certificate
+## 15. Generate 4096-bit SSL Certificate
 
 ```bash
 sudo certbot --nginx \
@@ -284,7 +284,7 @@ Certbot automatically
 
 ---
 
-# 16. Verify SSL
+## 16. Verify SSL
 
 Confirm 4096-bit key
 
@@ -310,7 +310,7 @@ sudo openssl x509 \
 
 ---
 
-# 17. Auto Renewal
+## 17. Auto Renewal
 
 Verify
 
@@ -326,7 +326,7 @@ sudo certbot renew --dry-run
 
 ---
 
-# 18. ICICI Onboarding Information Collected
+## 18. ICICI Onboarding Information Collected
 
 - Azure Public IP
 - Domain
@@ -355,7 +355,7 @@ privkey.pem
 
 ---
 
-# 19. Useful Commands
+## 19. Useful Commands
 
 ```bash
 pm2 status
@@ -379,7 +379,7 @@ sudo certbot renew --dry-run
 
 ---
 
-# Status
+## Status
 
 ✅ Ubuntu Updated
 

@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Log Management
 
-## Overview
+### Overview
 
 Logs are one of the most valuable sources of information when troubleshooting a Linux system. Almost every application, service, and component of the operating system records events such as startup, shutdown, warnings, errors, authentication attempts, and system activities.
 
@@ -16,7 +16,7 @@ Modern Linux systems primarily use **systemd-journald** for collecting logs, whi
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What Are Logs?
+## What Are Logs?
 
 A **log** is a record of an event that occurred on the system.
 
@@ -55,7 +55,7 @@ Every log entry provides information about **what happened**, **when it happened
 
 ---
 
-# Why Are Logs Important?
+## Why Are Logs Important?
 
 Logs help administrators answer questions such as:
 
@@ -70,7 +70,7 @@ Without logs, diagnosing production issues becomes significantly more difficult.
 
 ---
 
-# Linux Logging Architecture
+## Linux Logging Architecture
 
 A simplified logging flow looks like this:
 
@@ -99,7 +99,7 @@ Many modern distributions use both together.
 
 ---
 
-# The `/var/log` Directory
+## The `/var/log` Directory
 
 Most traditional log files are stored inside:
 
@@ -130,7 +130,7 @@ Different applications may create their own subdirectories.
 
 ---
 
-# Common Log Files
+## Common Log Files
 
 | File                | Purpose                      |
 | ------------------- | ---------------------------- |
@@ -146,7 +146,7 @@ Some distributions use different filenames depending on the logging system.
 
 ---
 
-# systemd-journald
+## systemd-journald
 
 Modern Linux distributions use **systemd-journald** to collect logs.
 
@@ -166,7 +166,7 @@ journalctl
 
 ---
 
-# Viewing All Journal Logs
+## Viewing All Journal Logs
 
 Display all collected logs:
 
@@ -178,7 +178,7 @@ Since the output can be very large, it is often combined with filters.
 
 ---
 
-# Viewing Recent Logs
+## Viewing Recent Logs
 
 Display the latest log entries:
 
@@ -196,7 +196,7 @@ Jul 19 11:24:45 docker started
 
 ---
 
-# Following Logs in Real Time
+## Following Logs in Real Time
 
 Monitor logs as new events occur:
 
@@ -214,7 +214,7 @@ and is useful while debugging applications.
 
 ---
 
-# Viewing Logs for a Specific Service
+## Viewing Logs for a Specific Service
 
 Example:
 
@@ -238,7 +238,7 @@ This is one of the most frequently used commands by Linux administrators.
 
 ---
 
-# Viewing Boot Logs
+## Viewing Boot Logs
 
 Display logs from the current boot:
 
@@ -256,7 +256,7 @@ Useful when investigating crashes after a reboot.
 
 ---
 
-# Filtering by Time
+## Filtering by Time
 
 View logs since a specific time:
 
@@ -280,7 +280,7 @@ These filters help narrow down large log datasets.
 
 ---
 
-# Reading Traditional Log Files
+## Reading Traditional Log Files
 
 View an entire file:
 
@@ -308,7 +308,7 @@ tail -f /var/log/syslog
 
 ---
 
-# Application Logs
+## Application Logs
 
 Many applications create dedicated log files.
 
@@ -333,7 +333,7 @@ Application-specific logs are often the fastest way to identify configuration or
 
 ---
 
-# Log Rotation
+## Log Rotation
 
 Log files continuously grow over time.
 
@@ -361,7 +361,7 @@ Typical tasks include:
 
 ---
 
-# Example Rotated Logs
+## Example Rotated Logs
 
 Inside `/var/log`:
 
@@ -376,7 +376,7 @@ Older logs are compressed to save disk space.
 
 ---
 
-# Logrotate Configuration
+## Logrotate Configuration
 
 Main configuration:
 
@@ -394,7 +394,7 @@ Many installed applications include their own rotation rules.
 
 ---
 
-# Useful Log Commands
+## Useful Log Commands
 
 | Command                 | Purpose               |
 | ----------------------- | --------------------- |
@@ -409,7 +409,7 @@ Many installed applications include their own rotation rules.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Node.js application behind Nginx suddenly begins returning **502 Bad Gateway** errors.
 
@@ -437,7 +437,7 @@ Without the logs, identifying the root cause would have taken much longer.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Check logs before restarting services.
 - Monitor application logs during deployments.
@@ -447,9 +447,9 @@ Without the logs, identifying the root cause would have taken much longer.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Ignoring Logs During Troubleshooting
+#### Ignoring Logs During Troubleshooting
 
 Restarting services without reviewing logs often hides the original cause of a failure.
 
@@ -457,7 +457,7 @@ Always inspect relevant logs first.
 
 ---
 
-### Deleting Large Log Files Manually
+#### Deleting Large Log Files Manually
 
 Removing active log files can confuse running applications.
 
@@ -465,7 +465,7 @@ Allow `logrotate` to manage log rotation whenever possible.
 
 ---
 
-### Looking Only at Application Logs
+#### Looking Only at Application Logs
 
 Many problems originate in system services, networking, or permissions.
 
@@ -473,7 +473,7 @@ Check both application logs and system logs when troubleshooting.
 
 ---
 
-### Forgetting Historical Logs
+#### Forgetting Historical Logs
 
 Some problems occurred hours or days earlier.
 
@@ -481,7 +481,7 @@ Use time-based filters and previous boot logs instead of examining only the late
 
 ---
 
-# Summary
+## Summary
 
 Logs provide a detailed history of system and application events, making them indispensable for troubleshooting, monitoring, and security investigations.
 
@@ -491,6 +491,6 @@ Developing the habit of checking logs first is one of the most valuable skills f
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **10 - Cron and Scheduling**

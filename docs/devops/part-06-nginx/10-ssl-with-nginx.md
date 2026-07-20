@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # SSL with Nginx
 
-## Overview
+### Overview
 
 So far, we have built a production-ready Nginx server capable of:
 
@@ -34,7 +34,7 @@ In this chapter, you will learn how SSL works, how Nginx handles HTTPS, and how 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is HTTP?
+## What is HTTP?
 
 HTTP (HyperText Transfer Protocol) is the standard protocol used for communication between web browsers and web servers.
 
@@ -72,7 +72,7 @@ The problem:
 
 ---
 
-# What is HTTPS?
+## What is HTTPS?
 
 HTTPS is simply:
 
@@ -111,7 +111,7 @@ Anyone intercepting the traffic sees encrypted data rather than the original con
 
 ---
 
-# Why HTTPS is Important
+## Why HTTPS is Important
 
 Without HTTPS:
 
@@ -153,7 +153,7 @@ Encryption protects data while it travels across the network.
 
 ---
 
-# What is SSL/TLS?
+## What is SSL/TLS?
 
 Historically:
 
@@ -166,7 +166,7 @@ For simplicity, administrators often refer to SSL certificates even though moder
 
 ---
 
-# What is an SSL Certificate?
+## What is an SSL Certificate?
 
 An SSL certificate is a digital certificate that proves the identity of a website.
 
@@ -196,7 +196,7 @@ Browsers use certificates to establish secure connections with servers.
 
 ---
 
-# HTTPS Connection Workflow
+## HTTPS Connection Workflow
 
 ```text id="91m7lj"
 Browser
@@ -219,7 +219,7 @@ Nginx terminates the HTTPS connection and forwards requests to the backend appli
 
 ---
 
-# What is Let's Encrypt?
+## What is Let's Encrypt?
 
 **Let's Encrypt** is a free Certificate Authority (CA) that issues trusted SSL/TLS certificates.
 
@@ -235,7 +235,7 @@ Let's Encrypt has made HTTPS accessible for websites of all sizes.
 
 ---
 
-# Installing Certbot
+## Installing Certbot
 
 On Ubuntu:
 
@@ -253,7 +253,7 @@ certbot --version
 
 ---
 
-# Obtaining a Certificate
+## Obtaining a Certificate
 
 Assume your domain:
 
@@ -276,7 +276,7 @@ Certbot will:
 
 ---
 
-# Certificate Files
+## Certificate Files
 
 After successful installation, certificates are typically stored in:
 
@@ -299,7 +299,7 @@ The private key must be protected and should never be shared publicly.
 
 ---
 
-# Basic HTTPS Server Block
+## Basic HTTPS Server Block
 
 Example:
 
@@ -334,7 +334,7 @@ Explanation:
 
 ---
 
-# HTTP to HTTPS Redirect
+## HTTP to HTTPS Redirect
 
 Users may still visit:
 
@@ -384,7 +384,7 @@ This ensures all users access the secure version of the website.
 
 ---
 
-# HTTPS Request Lifecycle
+## HTTPS Request Lifecycle
 
 ```text id="plx4sq"
 Browser
@@ -415,7 +415,7 @@ Encryption and decryption occur at the Nginx layer.
 
 ---
 
-# SSL Termination
+## SSL Termination
 
 One of Nginx's major responsibilities is **SSL Termination**.
 
@@ -452,7 +452,7 @@ Benefits:
 
 ---
 
-# Automatic Certificate Renewal
+## Automatic Certificate Renewal
 
 Let's Encrypt certificates are valid for approximately **90 days**.
 
@@ -472,7 +472,7 @@ Many Linux distributions automatically configure scheduled renewal jobs when Cer
 
 ---
 
-# Checking HTTPS
+## Checking HTTPS
 
 Test Nginx configuration:
 
@@ -500,7 +500,7 @@ echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noo
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="xl5jsk"
 Browser
@@ -531,7 +531,7 @@ Some deployments also use HTTPS between Nginx and the backend, particularly when
 
 ---
 
-# Common SSL Ports
+## Common SSL Ports
 
 | Port | Purpose |
 | ---- | ------- |
@@ -542,7 +542,7 @@ Port **80** is commonly used only to redirect clients to HTTPS.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js application runs on:
 
@@ -594,7 +594,7 @@ The backend application never needs to manage SSL certificates directly because 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always use HTTPS in production.
 - Redirect HTTP traffic to HTTPS.
@@ -606,33 +606,33 @@ The backend application never needs to manage SSL certificates directly because 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Exposing Websites Over HTTP Only
+#### Exposing Websites Over HTTP Only
 
 Modern websites should serve users over HTTPS to protect transmitted data.
 
 ---
 
-### Forgetting Certificate Renewal
+#### Forgetting Certificate Renewal
 
 Expired certificates cause browsers to display security warnings and may block access.
 
 ---
 
-### Sharing Private Keys
+#### Sharing Private Keys
 
 The private key should remain confidential and accessible only to authorized processes.
 
 ---
 
-### Not Redirecting HTTP
+#### Not Redirecting HTTP
 
 Allowing both HTTP and HTTPS can lead to inconsistent user experiences and reduced security.
 
 ---
 
-### Ignoring Configuration Validation
+#### Ignoring Configuration Validation
 
 Always test the configuration before reloading Nginx.
 
@@ -642,12 +642,12 @@ sudo nginx -t
 
 ---
 
-# Summary
+## Summary
 
 HTTPS is an essential component of modern web infrastructure. By using SSL/TLS certificates, Nginx encrypts communication between browsers and servers, protecting sensitive information during transmission. Let's Encrypt provides trusted certificates at no cost, while Certbot automates certificate issuance and renewal. Nginx performs SSL termination, allowing backend applications to focus on business logic while the web server manages encryption, certificate handling, and secure client communication.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **11 - Logging**

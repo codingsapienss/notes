@@ -2,9 +2,9 @@
 
 ---
 
-## Section 1 — Property Lookup & Prototype Chain
+### Section 1 — Property Lookup & Prototype Chain
 
-### Exercise 1 — Basic Property Lookup
+#### Exercise 1 — Basic Property Lookup
 
 ```javascript
 const animal = {
@@ -20,7 +20,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 2 — Own Property vs Prototype
+#### Exercise 2 — Own Property vs Prototype
 
 ```javascript
 const animal = {
@@ -37,7 +37,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 3 — Writing Property
+#### Exercise 3 — Writing Property
 
 ```javascript
 const animal = {
@@ -56,7 +56,7 @@ console.log(animal.eats);
 
 ---
 
-### Exercise 4 — Delete Own Property
+#### Exercise 4 — Delete Own Property
 
 ```javascript
 const animal = {
@@ -75,7 +75,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 5 — Delete Prototype Property
+#### Exercise 5 — Delete Prototype Property
 
 ```javascript
 const animal = {
@@ -93,7 +93,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 6 — Deep Prototype Chain
+#### Exercise 6 — Deep Prototype Chain
 
 ```javascript
 const grandParent = {
@@ -113,7 +113,7 @@ console.log(child.a);
 
 ---
 
-### Exercise 7 — Property Shadowing
+#### Exercise 7 — Property Shadowing
 
 ```javascript
 const grandParent = {
@@ -134,7 +134,7 @@ console.log(child.name);
 
 ---
 
-### Exercise 8 — in Operator
+#### Exercise 8 — in Operator
 
 ```javascript
 const animal = {
@@ -151,7 +151,7 @@ console.log("jump" in rabbit);
 
 ---
 
-### Exercise 9 — hasOwnProperty
+#### Exercise 9 — hasOwnProperty
 
 ```javascript
 const animal = {
@@ -168,7 +168,7 @@ console.log("eats" in rabbit);
 
 ---
 
-### Exercise 10 — Reading Undefined Property
+#### Exercise 10 — Reading Undefined Property
 
 ```javascript
 const animal = {};
@@ -182,9 +182,9 @@ console.log(rabbit.walk);
 
 ---
 
-## Section 2 — Constructor Functions & F.prototype
+### Section 2 — Constructor Functions & F.prototype
 
-### Exercise 11 — Basic Constructor
+#### Exercise 11 — Basic Constructor
 
 ```javascript
 function Rabbit() {}
@@ -200,7 +200,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 12 — Change Prototype After Object Creation
+#### Exercise 12 — Change Prototype After Object Creation
 
 ```javascript
 function Rabbit() {}
@@ -221,7 +221,7 @@ console.log(rabbit.jumps);
 
 ---
 
-### Exercise 13 — Modify Existing Prototype
+#### Exercise 13 — Modify Existing Prototype
 
 ```javascript
 function Rabbit() {}
@@ -239,7 +239,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 14 — Delete Prototype Property
+#### Exercise 14 — Delete Prototype Property
 
 ```javascript
 function Rabbit() {}
@@ -257,7 +257,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 15 — Constructor Property
+#### Exercise 15 — Constructor Property
 
 ```javascript
 function Rabbit() {}
@@ -269,7 +269,7 @@ console.log(rabbit.constructor === Rabbit);
 
 ---
 
-### Exercise 16 — Replacing Prototype
+#### Exercise 16 — Replacing Prototype
 
 ```javascript
 function Rabbit() {}
@@ -285,7 +285,7 @@ console.log(rabbit.constructor === Rabbit);
 
 ---
 
-### Exercise 17 — Fix Constructor
+#### Exercise 17 — Fix Constructor
 
 ```javascript
 function Rabbit() {}
@@ -302,7 +302,7 @@ console.log(rabbit.constructor === Rabbit);
 
 ---
 
-### Exercise 18 — Create Object Using Constructor
+#### Exercise 18 — Create Object Using Constructor
 
 ```javascript
 function Rabbit(name) {
@@ -318,9 +318,9 @@ console.log(rabbit2.name);
 
 ---
 
-## Section 3 — Native Prototypes
+### Section 3 — Native Prototypes
 
-### Exercise 19 — Object Prototype
+#### Exercise 19 — Object Prototype
 
 ```javascript
 const obj = {};
@@ -330,7 +330,7 @@ console.log(obj.toString);
 
 ---
 
-### Exercise 20 — Array Prototype
+#### Exercise 20 — Array Prototype
 
 ```javascript
 const arr = [1, 2, 3];
@@ -340,7 +340,7 @@ console.log(arr.map);
 
 ---
 
-### Exercise 21 — Function Prototype
+#### Exercise 21 — Function Prototype
 
 ```javascript
 function hello() {}
@@ -350,7 +350,7 @@ console.log(hello.call);
 
 ---
 
-### Exercise 22 — Wrapper Objects
+#### Exercise 22 — Wrapper Objects
 
 ```javascript
 const str = "Hello";
@@ -360,7 +360,7 @@ console.log(str.toUpperCase());
 
 ---
 
-### Exercise 23 — Temporary Wrapper
+#### Exercise 23 — Temporary Wrapper
 
 ```javascript
 const str = "Hello";
@@ -372,7 +372,7 @@ console.log(str.test);
 
 ---
 
-### Exercise 24 — Null Wrapper
+#### Exercise 24 — Null Wrapper
 
 ```javascript
 const value = null;
@@ -382,7 +382,7 @@ console.log(value.toString());
 
 ---
 
-### Exercise 25 — Undefined Wrapper
+#### Exercise 25 — Undefined Wrapper
 
 ```javascript
 const value = undefined;
@@ -392,9 +392,9 @@ console.log(value.valueOf());
 
 ---
 
-## Section 4 — Native Prototype Modification
+### Section 4 — Native Prototype Modification
 
-### Exercise 26 — Add Method
+#### Exercise 26 — Add Method
 
 ```javascript
 Array.prototype.first = function () {
@@ -408,7 +408,7 @@ console.log(arr.first());
 
 ---
 
-### Exercise 27 — Modify String Prototype
+#### Exercise 27 — Modify String Prototype
 
 ```javascript
 String.prototype.sayHi = function () {
@@ -420,7 +420,7 @@ console.log("JavaScript".sayHi());
 
 ---
 
-### Exercise 28 — Prototype Pollution
+#### Exercise 28 — Prototype Pollution
 
 ```javascript
 Object.prototype.country = "India";
@@ -434,7 +434,7 @@ console.log(user.country);
 
 ---
 
-### Exercise 29 — for...in
+#### Exercise 29 — for...in
 
 ```javascript
 Object.prototype.country = "India";
@@ -450,7 +450,7 @@ for (const key in user) {
 
 ---
 
-### Exercise 30 — Polyfill
+#### Exercise 30 — Polyfill
 
 Implement your own polyfill for:
 
@@ -460,9 +460,9 @@ String.prototype.repeat();
 
 ---
 
-## Section 5 — Borrowing Methods
+### Section 5 — Borrowing Methods
 
-### Exercise 31
+#### Exercise 31
 
 ```javascript
 const obj = {
@@ -478,7 +478,7 @@ console.log(obj.join(" "));
 
 ---
 
-### Exercise 32
+#### Exercise 32
 
 ```javascript
 const obj = {
@@ -492,7 +492,7 @@ console.log(Array.prototype.join.call(obj, "-"));
 
 ---
 
-### Exercise 33
+#### Exercise 33
 
 ```javascript
 const obj = {
@@ -508,7 +508,7 @@ console.log(arr);
 
 ---
 
-### Exercise 34
+#### Exercise 34
 
 ```javascript
 const obj = {
@@ -522,7 +522,7 @@ Array.prototype.forEach.call(obj, console.log);
 
 ---
 
-### Exercise 35
+#### Exercise 35
 
 ```javascript
 const obj = Object.create(null);
@@ -532,7 +532,7 @@ console.log(Object.prototype.hasOwnProperty.call(obj, "name"));
 
 ---
 
-## Section 6 — Interview Questions
+### Section 6 — Interview Questions
 
 36. Explain the difference between `prototype` and `[[Prototype]]`.
 
@@ -574,9 +574,9 @@ console.log(Object.prototype.hasOwnProperty.call(obj, "name"));
 - Number
 - Boolean
 
-## Section 7 — Debugging Exercises
+### Section 7 — Debugging Exercises
 
-### Exercise 51 — Reading vs Writing
+#### Exercise 51 — Reading vs Writing
 
 Predict the output.
 
@@ -598,7 +598,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Exercise 52 — Prototype Shadowing
+#### Exercise 52 — Prototype Shadowing
 
 ```javascript
 const animal = {
@@ -617,7 +617,7 @@ console.log(animal.speed);
 
 ---
 
-### Exercise 53 — Constructor Puzzle
+#### Exercise 53 — Constructor Puzzle
 
 ```javascript
 function User() {}
@@ -636,7 +636,7 @@ console.log(u2.age);
 
 ---
 
-### Exercise 54 — Constructor Property
+#### Exercise 54 — Constructor Property
 
 ```javascript
 function User() {}
@@ -652,7 +652,7 @@ console.log(user.constructor);
 
 ---
 
-### Exercise 55 — Lost Constructor
+#### Exercise 55 — Lost Constructor
 
 Fix the following code.
 
@@ -670,7 +670,7 @@ const another = new user.constructor();
 
 ---
 
-### Exercise 56 — Prototype Chain
+#### Exercise 56 — Prototype Chain
 
 Draw the complete prototype chain.
 
@@ -680,7 +680,7 @@ const arr = [];
 
 ---
 
-### Exercise 57 — Function Prototype
+#### Exercise 57 — Function Prototype
 
 Draw the complete prototype chain.
 
@@ -690,7 +690,7 @@ function hello() {}
 
 ---
 
-### Exercise 58 — Date Prototype
+#### Exercise 58 — Date Prototype
 
 Draw the prototype chain.
 
@@ -700,7 +700,7 @@ const today = new Date();
 
 ---
 
-### Exercise 59 — Wrapper Objects
+#### Exercise 59 — Wrapper Objects
 
 Draw the prototype chain.
 
@@ -710,7 +710,7 @@ const str = "Hello";
 
 ---
 
-### Exercise 60 — Explain
+#### Exercise 60 — Explain
 
 Why does this work?
 
@@ -720,7 +720,7 @@ Why does this work?
 
 ---
 
-### Exercise 61 — Explain
+#### Exercise 61 — Explain
 
 Why does this fail?
 
@@ -730,7 +730,7 @@ null.toString();
 
 ---
 
-### Exercise 62 — Explain
+#### Exercise 62 — Explain
 
 ```javascript
 const arr = [];
@@ -742,7 +742,7 @@ Which object actually owns `toString()`?
 
 ---
 
-### Exercise 63 — Explain
+#### Exercise 63 — Explain
 
 ```javascript
 const arr = [];
@@ -754,7 +754,7 @@ Why?
 
 ---
 
-### Exercise 64 — Explain
+#### Exercise 64 — Explain
 
 ```javascript
 console.log(Array.prototype.__proto__);
@@ -762,7 +762,7 @@ console.log(Array.prototype.__proto__);
 
 ---
 
-### Exercise 65 — Explain
+#### Exercise 65 — Explain
 
 ```javascript
 console.log(Function.prototype.__proto__);
@@ -770,7 +770,7 @@ console.log(Function.prototype.__proto__);
 
 ---
 
-### Exercise 66 — Explain
+#### Exercise 66 — Explain
 
 ```javascript
 console.log(Object.prototype.__proto__);
@@ -778,7 +778,7 @@ console.log(Object.prototype.__proto__);
 
 ---
 
-### Exercise 67 — Explain
+#### Exercise 67 — Explain
 
 ```javascript
 console.log(Array.__proto__);
@@ -786,7 +786,7 @@ console.log(Array.__proto__);
 
 ---
 
-### Exercise 68 — Explain
+#### Exercise 68 — Explain
 
 ```javascript
 console.log(Function.__proto__);
@@ -794,7 +794,7 @@ console.log(Function.__proto__);
 
 ---
 
-### Exercise 69 — Explain
+#### Exercise 69 — Explain
 
 ```javascript
 console.log(Object.__proto__);
@@ -802,7 +802,7 @@ console.log(Object.__proto__);
 
 ---
 
-### Exercise 70 — Explain
+#### Exercise 70 — Explain
 
 What is the difference between
 
@@ -818,9 +818,9 @@ Array.__proto__;
 
 ---
 
-## Section 8 — Memory Diagram Exercises
+### Section 8 — Memory Diagram Exercises
 
-### Exercise 71
+#### Exercise 71
 
 Draw the memory diagram.
 
@@ -836,7 +836,7 @@ const rabbit = {
 
 ---
 
-### Exercise 72
+#### Exercise 72
 
 Draw the memory diagram.
 
@@ -848,7 +848,7 @@ const user = new User();
 
 ---
 
-### Exercise 73
+#### Exercise 73
 
 Draw the memory diagram.
 
@@ -860,7 +860,7 @@ const user = new User();
 
 ---
 
-### Exercise 74
+#### Exercise 74
 
 Draw the memory diagram.
 
@@ -870,7 +870,7 @@ const arr = [1, 2, 3];
 
 ---
 
-### Exercise 75
+#### Exercise 75
 
 Draw the complete lookup path.
 
@@ -882,7 +882,7 @@ arr.map((x) => x * 2);
 
 ---
 
-### Exercise 76
+#### Exercise 76
 
 Draw the lookup path.
 
@@ -894,7 +894,7 @@ obj.toString();
 
 ---
 
-### Exercise 77
+#### Exercise 77
 
 Draw the lookup path.
 
@@ -906,7 +906,7 @@ hello.call(null);
 
 ---
 
-### Exercise 78
+#### Exercise 78
 
 Draw the lookup path.
 
@@ -916,7 +916,7 @@ Draw the lookup path.
 
 ---
 
-### Exercise 79
+#### Exercise 79
 
 Draw the lookup path.
 
@@ -926,7 +926,7 @@ new Date().getFullYear();
 
 ---
 
-### Exercise 80
+#### Exercise 80
 
 Draw the lookup path.
 
@@ -936,9 +936,9 @@ new Map().set("a", 1);
 
 ---
 
-## Section 9 — Coding Exercises
+### Section 9 — Coding Exercises
 
-### Exercise 81
+#### Exercise 81
 
 Implement your own constructor function.
 
@@ -954,7 +954,7 @@ with
 
 ---
 
-### Exercise 82
+#### Exercise 82
 
 Implement inheritance manually using
 
@@ -964,7 +964,7 @@ Object.create();
 
 ---
 
-### Exercise 83
+#### Exercise 83
 
 Implement
 
@@ -982,7 +982,7 @@ without using `class`.
 
 ---
 
-### Exercise 84
+#### Exercise 84
 
 Write a polyfill for
 
@@ -992,7 +992,7 @@ Array.prototype.first();
 
 ---
 
-### Exercise 85
+#### Exercise 85
 
 Write a polyfill for
 
@@ -1002,7 +1002,7 @@ String.prototype.reverse();
 
 ---
 
-### Exercise 86
+#### Exercise 86
 
 Implement your own
 
@@ -1014,7 +1014,7 @@ function.
 
 ---
 
-### Exercise 87
+#### Exercise 87
 
 Create an object with **no prototype**.
 
@@ -1028,7 +1028,7 @@ constructor;
 
 ---
 
-### Exercise 88
+#### Exercise 88
 
 Borrow
 
@@ -1040,7 +1040,7 @@ for an array-like object.
 
 ---
 
-### Exercise 89
+#### Exercise 89
 
 Borrow
 
@@ -1052,7 +1052,7 @@ for an array-like object.
 
 ---
 
-### Exercise 90
+#### Exercise 90
 
 Borrow
 
@@ -1064,9 +1064,9 @@ for an array-like object.
 
 ---
 
-## Section 10 — Challenge Problems
+### Section 10 — Challenge Problems
 
-### Challenge 91
+#### Challenge 91
 
 Predict every output.
 
@@ -1090,7 +1090,7 @@ console.log(rabbit.eat());
 
 ---
 
-### Challenge 92
+#### Challenge 92
 
 Without executing the code, draw the prototype chain.
 
@@ -1106,7 +1106,7 @@ const obj = new B();
 
 ---
 
-### Challenge 93
+#### Challenge 93
 
 Explain exactly what happens internally.
 
@@ -1118,7 +1118,7 @@ Include every step performed by the JavaScript engine.
 
 ---
 
-### Challenge 94
+#### Challenge 94
 
 Explain the complete lookup process.
 
@@ -1128,7 +1128,7 @@ user.sayHello();
 
 ---
 
-### Challenge 95
+#### Challenge 95
 
 Draw the prototype hierarchy for:
 
@@ -1143,13 +1143,13 @@ Draw the prototype hierarchy for:
 
 ---
 
-### Challenge 96
+#### Challenge 96
 
 Explain why JavaScript classes still use prototypes internally.
 
 ---
 
-### Challenge 97
+#### Challenge 97
 
 Explain why
 
@@ -1167,7 +1167,7 @@ for a class.
 
 ---
 
-### Challenge 98
+#### Challenge 98
 
 Explain the difference between:
 
@@ -1177,7 +1177,7 @@ Explain the difference between:
 
 ---
 
-### Challenge 99
+#### Challenge 99
 
 Trace the execution of
 
@@ -1189,7 +1189,7 @@ step by step.
 
 ---
 
-### Challenge 100 — Master Question
+#### Challenge 100 — Master Question
 
 Without executing the code, explain every memory allocation, every prototype link, every property lookup, and every function call.
 

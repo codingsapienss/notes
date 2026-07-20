@@ -26,7 +26,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -39,7 +39,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## Can We Modify Native Prototypes?
+### Can We Modify Native Prototypes?
 
 Yes.
 
@@ -77,7 +77,7 @@ The method became available on **every string**.
 
 ---
 
-## How Did This Work?
+### How Did This Work?
 
 Suppose
 
@@ -139,7 +139,7 @@ Execute
 
 ---
 
-## Another Example
+### Another Example
 
 Adding a custom method
 
@@ -171,7 +171,7 @@ first();
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 Array.prototype
@@ -203,7 +203,7 @@ first();
 
 ---
 
-## Why is This Possible?
+### Why is This Possible?
 
 Because
 
@@ -237,7 +237,7 @@ obj.x = 10;
 
 ---
 
-## Then Why Is It Considered Bad Practice?
+### Then Why Is It Considered Bad Practice?
 
 Imagine two different libraries.
 
@@ -307,7 +307,7 @@ Library A breaks.
 
 ---
 
-## Global Effect
+### Global Effect
 
 Native prototypes are shared globally.
 
@@ -371,7 +371,7 @@ One modification affects every array.
 
 ---
 
-## Prototype Pollution
+### Prototype Pollution
 
 This phenomenon is called
 
@@ -395,7 +395,7 @@ Everywhere
 
 ---
 
-## Example
+### Example
 
 ```javascript
 Object.prototype.country = "India";
@@ -451,7 +451,7 @@ Found
 
 ---
 
-## Another Problem
+### Another Problem
 
 Suppose
 
@@ -493,7 +493,7 @@ iterates over inherited enumerable properties.
 
 ---
 
-## Real-World Problems
+### Real-World Problems
 
 Imagine adding
 
@@ -515,7 +515,7 @@ Applications become unpredictable.
 
 ---
 
-## Why Doesn't JavaScript Prevent This?
+### Why Doesn't JavaScript Prevent This?
 
 Because prototypes are ordinary objects.
 
@@ -525,7 +525,7 @@ With flexibility comes responsibility.
 
 ---
 
-## The One Acceptable Exception
+### The One Acceptable Exception
 
 There is one situation where modifying native prototypes is considered acceptable.
 
@@ -537,7 +537,7 @@ Polyfills
 
 ---
 
-## What is a Polyfill?
+### What is a Polyfill?
 
 A Polyfill is
 
@@ -589,7 +589,7 @@ HiHiHi
 
 ---
 
-## Why Is This Safe?
+### Why Is This Safe?
 
 Notice
 
@@ -611,7 +611,7 @@ This avoids overwriting the native implementation.
 
 ---
 
-## Polyfill Flow
+### Polyfill Flow
 
 ```text
 Method Exists?
@@ -639,7 +639,7 @@ Everyone Can Use It
 
 ---
 
-## Modern Example
+### Modern Example
 
 Suppose an older browser doesn't support
 
@@ -651,9 +651,9 @@ A polyfill could provide the same behavior until the browser is updated.
 
 ---
 
-## Difference Between Custom Methods and Polyfills
+### Difference Between Custom Methods and Polyfills
 
-### Custom Method
+#### Custom Method
 
 ```javascript
 Array.prototype.myMethod = function () {};
@@ -671,7 +671,7 @@ Not recommended.
 
 ---
 
-### Polyfill
+#### Polyfill
 
 ```javascript
 if (!Array.prototype.flat) {
@@ -691,7 +691,7 @@ Accepted.
 
 ---
 
-## Why Frameworks Rarely Modify Prototypes
+### Why Frameworks Rarely Modify Prototypes
 
 Modern frameworks like
 
@@ -734,7 +734,7 @@ This avoids global side effects.
 
 ---
 
-## Prototype Pollution vs Utility Functions
+### Prototype Pollution vs Utility Functions
 
 Instead of
 
@@ -762,7 +762,7 @@ No global modifications.
 
 ---
 
-## Security Concerns
+### Security Concerns
 
 Prototype pollution is not only a design issue.
 
@@ -808,9 +808,9 @@ This is why prototype pollution is treated seriously in secure applications.
 
 ---
 
-## Common Misconceptions
+### Common Misconceptions
 
-### Misconception 1
+#### Misconception 1
 
 JavaScript forbids modifying prototypes.
 
@@ -822,7 +822,7 @@ It is simply discouraged.
 
 ---
 
-### Misconception 2
+#### Misconception 2
 
 Polyfills are hacks.
 
@@ -832,7 +832,7 @@ Polyfills are widely accepted when implementing standardized features for older 
 
 ---
 
-### Misconception 3
+#### Misconception 3
 
 Only `Object.prototype` can be modified.
 
@@ -858,9 +858,9 @@ Set.prototype;
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Adding custom methods to
 
@@ -874,7 +874,7 @@ Avoid it.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Overwriting existing methods.
 
@@ -890,7 +890,7 @@ Never do this.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Adding enumerable properties.
 
@@ -906,7 +906,7 @@ If you must define a property, use `Object.defineProperty()` with `enumerable: f
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Avoid modifying native prototypes in application code.
 - Never overwrite existing built-in methods.
@@ -917,9 +917,9 @@ If you must define a property, use `Object.defineProperty()` with `enumerable: f
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Can native prototypes be modified?
+#### Q1. Can native prototypes be modified?
 
 **Answer**
 
@@ -927,7 +927,7 @@ Yes. Native prototypes are ordinary JavaScript objects, so properties and method
 
 ---
 
-### Q2. Why is modifying native prototypes discouraged?
+#### Q2. Why is modifying native prototypes discouraged?
 
 **Answer**
 
@@ -935,7 +935,7 @@ Because native prototypes are shared globally. Changes affect every object of th
 
 ---
 
-### Q3. What is a polyfill?
+#### Q3. What is a polyfill?
 
 **Answer**
 
@@ -943,7 +943,7 @@ A polyfill is code that implements a JavaScript feature defined in the specifica
 
 ---
 
-### Q4. Why do polyfills check whether a method already exists?
+#### Q4. Why do polyfills check whether a method already exists?
 
 **Answer**
 
@@ -951,7 +951,7 @@ To avoid overwriting native implementations in environments that already support
 
 ---
 
-### Q5. What is prototype pollution?
+#### Q5. What is prototype pollution?
 
 **Answer**
 
@@ -959,7 +959,7 @@ Prototype pollution is the modification of shared prototype objects—intentiona
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Native prototypes such as `Array.prototype` and `String.prototype` are ordinary objects and can be modified.
 - Modifying native prototypes affects every object that inherits from them.

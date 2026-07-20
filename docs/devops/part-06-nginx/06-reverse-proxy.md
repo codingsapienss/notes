@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Reverse Proxy
 
-## Overview
+### Overview
 
 So far in this part, we have learned:
 
@@ -34,7 +34,7 @@ This architecture improves:
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Proxy?
+## What is a Proxy?
 
 A **proxy** is an intermediary between two systems.
 
@@ -73,7 +73,7 @@ There are two common types:
 
 ---
 
-# Forward Proxy
+## Forward Proxy
 
 A **Forward Proxy** represents the client.
 
@@ -101,7 +101,7 @@ The destination server usually sees the proxy rather than the original client.
 
 ---
 
-# Reverse Proxy
+## Reverse Proxy
 
 A **Reverse Proxy** represents the server.
 
@@ -121,7 +121,7 @@ Nginx is one of the most widely used reverse proxies.
 
 ---
 
-# Why Do We Need a Reverse Proxy?
+## Why Do We Need a Reverse Proxy?
 
 Suppose an Express application is running.
 
@@ -157,7 +157,7 @@ A reverse proxy addresses these concerns.
 
 ---
 
-# Reverse Proxy Architecture
+## Reverse Proxy Architecture
 
 With Nginx:
 
@@ -181,7 +181,7 @@ The backend application communicates only with Nginx.
 
 ---
 
-# Request Flow
+## Request Flow
 
 Suppose a browser requests:
 
@@ -220,7 +220,7 @@ To the user, it appears as though Nginx itself generated the response.
 
 ---
 
-# Basic Reverse Proxy Configuration
+## Basic Reverse Proxy Configuration
 
 A simple reverse proxy:
 
@@ -253,7 +253,7 @@ Every request matching `/` is forwarded to the Node.js application running on po
 
 ---
 
-# Understanding proxy_pass
+## Understanding proxy_pass
 
 The most important directive is:
 
@@ -279,7 +279,7 @@ Nginx acts as the intermediary while the backend processes the request.
 
 ---
 
-# Reverse Proxy with PM2
+## Reverse Proxy with PM2
 
 Most production applications use PM2.
 
@@ -302,7 +302,7 @@ PM2 manages the application processes, while Nginx manages incoming web traffic.
 
 ---
 
-# Proxy Headers
+## Proxy Headers
 
 When forwarding requests, Nginx can include additional HTTP headers so the backend receives information about the original request.
 
@@ -337,7 +337,7 @@ These headers allow backend applications to make decisions based on the original
 
 ---
 
-# Why Proxy Headers Matter
+## Why Proxy Headers Matter
 
 Without proxy headers:
 
@@ -379,7 +379,7 @@ This information is useful for logging, authentication, rate limiting, and secur
 
 ---
 
-# Proxying WebSocket Connections
+## Proxying WebSocket Connections
 
 Applications using WebSockets require additional configuration.
 
@@ -410,7 +410,7 @@ Examples include:
 
 ---
 
-# Reverse Proxy for APIs
+## Reverse Proxy for APIs
 
 Many production APIs use:
 
@@ -437,7 +437,7 @@ Clients never communicate directly with the Express application.
 
 ---
 
-# Reverse Proxy for Multiple Applications
+## Reverse Proxy for Multiple Applications
 
 One Nginx server can proxy multiple backend services.
 
@@ -459,7 +459,7 @@ Each application listens on a different internal port, while Nginx presents a un
 
 ---
 
-# Production Architecture
+## Production Architecture
 
 A common production deployment:
 
@@ -494,7 +494,7 @@ Each component has a distinct responsibility:
 
 ---
 
-# Benefits of a Reverse Proxy
+## Benefits of a Reverse Proxy
 
 - Hides backend application ports.
 - Centralizes HTTPS termination.
@@ -507,7 +507,7 @@ Each component has a distinct responsibility:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js application runs on:
 
@@ -539,7 +539,7 @@ Nginx receives the request, terminates HTTPS, forwards it to `localhost:3000`, r
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Place all backend applications behind Nginx.
 - Use `localhost` or private network addresses for backend services.
@@ -551,33 +551,33 @@ Nginx receives the request, terminates HTTPS, forwards it to `localhost:3000`, r
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Exposing Backend Ports Publicly
+#### Exposing Backend Ports Publicly
 
 Applications listening on ports such as **3000** or **5000** should generally not be directly accessible from the internet.
 
 ---
 
-### Forgetting Proxy Headers
+#### Forgetting Proxy Headers
 
 Without forwarding client information, backend logs and application logic may not accurately reflect the original request.
 
 ---
 
-### Using Restart Instead of Reload
+#### Using Restart Instead of Reload
 
 Configuration changes usually require only a reload, reducing disruption to active connections.
 
 ---
 
-### Mixing Multiple Applications in One Location Block
+#### Mixing Multiple Applications in One Location Block
 
 Each backend service should have clear and maintainable proxy rules.
 
 ---
 
-### Not Testing Configuration
+#### Not Testing Configuration
 
 Always validate changes with:
 
@@ -589,12 +589,12 @@ before reloading Nginx.
 
 ---
 
-# Summary
+## Summary
 
 A reverse proxy is one of Nginx's most important production features. It receives client requests, applies routing and security policies, and forwards traffic to backend applications such as Node.js running under PM2. By centralizing HTTPS, request routing, static file delivery, logging, and client metadata through proxy headers, Nginx provides a secure and scalable architecture that allows backend applications to focus on business logic while remaining protected from direct public access.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Static File Serving**

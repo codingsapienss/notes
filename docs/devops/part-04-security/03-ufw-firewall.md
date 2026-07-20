@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # UFW Firewall
 
-## Overview
+### Overview
 
 A firewall is one of the first lines of defense for any Linux server.
 
@@ -27,7 +27,7 @@ A properly configured firewall significantly reduces your server's attack surfac
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Firewall?
+## What is a Firewall?
 
 A firewall is software (or hardware) that filters incoming and outgoing network traffic based on predefined rules.
 
@@ -61,7 +61,7 @@ Otherwise, it is rejected or ignored.
 
 ---
 
-# Why Do We Need a Firewall?
+## Why Do We Need a Firewall?
 
 Imagine a newly deployed server.
 
@@ -99,7 +99,7 @@ This dramatically reduces the attack surface.
 
 ---
 
-# Linux Firewall Architecture
+## Linux Firewall Architecture
 
 On Linux, packet filtering is performed by the kernel.
 
@@ -137,7 +137,7 @@ You manage UFW, and UFW manages the underlying firewall rules.
 
 ---
 
-# What is UFW?
+## What is UFW?
 
 **UFW** stands for:
 
@@ -155,7 +155,7 @@ Benefits include:
 
 ---
 
-# Checking UFW Status
+## Checking UFW Status
 
 Check whether UFW is enabled.
 
@@ -177,7 +177,7 @@ sudo ufw status verbose
 
 ---
 
-# Default Firewall Policies
+## Default Firewall Policies
 
 A secure firewall begins with sensible defaults.
 
@@ -212,7 +212,7 @@ sudo ufw status verbose
 
 ---
 
-# Enabling UFW
+## Enabling UFW
 
 Enable the firewall:
 
@@ -234,7 +234,7 @@ sudo ufw reload
 
 ---
 
-# Allowing Services
+## Allowing Services
 
 Allow SSH:
 
@@ -262,7 +262,7 @@ sudo ufw allow 443
 
 ---
 
-# Blocking Services
+## Blocking Services
 
 Deny a port:
 
@@ -278,7 +278,7 @@ sudo ufw delete allow 3000
 
 ---
 
-# Allowing Specific IP Addresses
+## Allowing Specific IP Addresses
 
 Sometimes only trusted administrators should access SSH.
 
@@ -294,7 +294,7 @@ This is much safer than exposing SSH to the entire Internet.
 
 ---
 
-# Allowing Port Ranges
+## Allowing Port Ranges
 
 Example:
 
@@ -304,7 +304,7 @@ sudo ufw allow 8000:8100/tcp
 
 ---
 
-# TCP vs UDP Rules
+## TCP vs UDP Rules
 
 Allow TCP:
 
@@ -322,7 +322,7 @@ Always specify the protocol when required.
 
 ---
 
-# Viewing Firewall Rules
+## Viewing Firewall Rules
 
 Numbered list:
 
@@ -348,7 +348,7 @@ sudo ufw delete 1
 
 ---
 
-# Typical Production Firewall Rules
+## Typical Production Firewall Rules
 
 For a Node.js application behind Nginx:
 
@@ -365,7 +365,7 @@ Node.js, MongoDB, and Redis should normally listen only on private interfaces or
 
 ---
 
-# Cloud Firewalls vs UFW
+## Cloud Firewalls vs UFW
 
 Cloud platforms provide their own firewall layer.
 
@@ -395,7 +395,7 @@ Traffic must be permitted by both the cloud firewall and UFW.
 
 ---
 
-# Example Production Configuration
+## Example Production Configuration
 
 Suppose your server hosts:
 
@@ -438,7 +438,7 @@ Backend services remain inaccessible from the Internet.
 
 ---
 
-# Checking Listening Ports
+## Checking Listening Ports
 
 Before creating firewall rules, identify active services.
 
@@ -470,7 +470,7 @@ This helps ensure only required services are exposed.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider an Azure deployment.
 
@@ -502,7 +502,7 @@ Even if someone scans the server, only the intended services are reachable.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use a default **deny incoming** policy.
 - Open only the ports your application requires.
@@ -513,9 +513,9 @@ Even if someone scans the server, only the intended services are reachable.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Allowing Every Port
+#### Allowing Every Port
 
 Opening unnecessary ports increases the attack surface.
 
@@ -523,7 +523,7 @@ Expose only services that users genuinely need.
 
 ---
 
-### Forgetting the Cloud Firewall
+#### Forgetting the Cloud Firewall
 
 Opening a port in UFW is not enough if the cloud firewall blocks it.
 
@@ -533,7 +533,7 @@ Both layers must be configured correctly.
 
 ---
 
-### Exposing Backend Services
+#### Exposing Backend Services
 
 Services such as MongoDB, Redis, or Node.js should rarely be directly accessible from the Internet.
 
@@ -541,7 +541,7 @@ Place them behind a reverse proxy or bind them to private interfaces.
 
 ---
 
-### Enabling UFW Before Allowing SSH
+#### Enabling UFW Before Allowing SSH
 
 If SSH is not allowed before enabling the firewall, remote administrators may lock themselves out of the server.
 
@@ -549,12 +549,12 @@ Always allow SSH access first.
 
 ---
 
-# Summary
+## Summary
 
 A firewall controls which network traffic is permitted to reach a Linux server, making it one of the most important security mechanisms in production environments. Ubuntu's UFW provides a simple interface for managing firewall rules while relying on the Linux kernel's packet filtering capabilities. By allowing only required services, restricting administrative access, and combining UFW with cloud firewall rules, administrators can significantly reduce a server's attack surface and improve overall security.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Fail2Ban**

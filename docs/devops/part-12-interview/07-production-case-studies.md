@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Production Case Studies
 
-## Overview
+### Overview
 
 Technical interviews for experienced engineers often include discussions about production incidents rather than theoretical questions.
 
@@ -22,7 +22,7 @@ This chapter presents realistic production case studies that demonstrate structu
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -35,7 +35,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Production Incident Lifecycle
+## Production Incident Lifecycle
 
 Every production incident follows a similar pattern.
 
@@ -73,7 +73,7 @@ Prevention
 
 ---
 
-# Incident Investigation Framework
+## Incident Investigation Framework
 
 Whenever a production issue occurs, use a structured approach.
 
@@ -111,11 +111,11 @@ Document
 
 ---
 
-# Case Study 1
+## Case Study 1
 
-# Website Completely Down
+## Website Completely Down
 
-## Situation
+### Situation
 
 Users report:
 
@@ -125,7 +125,7 @@ Users report:
 
 ---
 
-## Initial Symptoms
+### Initial Symptoms
 
 ```text id="case003"
 Browser
@@ -141,7 +141,7 @@ No Response
 
 ---
 
-## Investigation
+### Investigation
 
 The investigation begins from the outermost layer.
 
@@ -171,7 +171,7 @@ Database
 
 ---
 
-### Commands Used
+#### Commands Used
 
 ```bash id="case005"
 ping example.com
@@ -195,13 +195,13 @@ ss -tulpn
 
 ---
 
-## Root Cause
+### Root Cause
 
 The Node.js process had crashed because of an unhandled exception. Nginx continued running, but it could not reach the backend application, resulting in **502 Bad Gateway** responses.
 
 ---
 
-## Resolution
+### Resolution
 
 - Fixed the application error.
 - Restarted the application.
@@ -210,7 +210,7 @@ The Node.js process had crashed because of an unhandled exception. Nginx continu
 
 ---
 
-## Prevention
+### Prevention
 
 - Add centralized error handling.
 - Configure automatic process restarts with PM2.
@@ -219,11 +219,11 @@ The Node.js process had crashed because of an unhandled exception. Nginx continu
 
 ---
 
-# Case Study 2
+## Case Study 2
 
-# High CPU Usage
+## High CPU Usage
 
-## Situation
+### Situation
 
 CPU utilization suddenly reached 100%.
 
@@ -235,7 +235,7 @@ Users experienced:
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case010"
 top
@@ -259,7 +259,7 @@ Code Review
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="case011"
 top
@@ -275,13 +275,13 @@ ps aux --sort=-%cpu
 
 ---
 
-## Root Cause
+### Root Cause
 
 A recently deployed feature contained an inefficient loop that repeatedly processed the same data set, consuming excessive CPU.
 
 ---
 
-## Resolution
+### Resolution
 
 - Rolled back the deployment.
 - Optimized the algorithm.
@@ -290,7 +290,7 @@ A recently deployed feature contained an inefficient loop that repeatedly proces
 
 ---
 
-## Lessons Learned
+### Lessons Learned
 
 - Review algorithm complexity.
 - Load test new features.
@@ -298,17 +298,17 @@ A recently deployed feature contained an inefficient loop that repeatedly proces
 
 ---
 
-# Case Study 3
+## Case Study 3
 
-# Memory Leak
+## Memory Leak
 
-## Situation
+### Situation
 
 The application restarted every few hours.
 
 ---
 
-## Symptoms
+### Symptoms
 
 ```text id="case014"
 Memory
@@ -328,7 +328,7 @@ Application Crash
 
 ---
 
-## Investigation
+### Investigation
 
 Commands:
 
@@ -342,13 +342,13 @@ pm2 monit
 
 ---
 
-## Root Cause
+### Root Cause
 
 A cache stored data indefinitely without any expiration or eviction strategy.
 
 ---
 
-## Resolution
+### Resolution
 
 - Added cache expiration.
 - Limited cache size.
@@ -357,7 +357,7 @@ A cache stored data indefinitely without any expiration or eviction strategy.
 
 ---
 
-## Prevention
+### Prevention
 
 - Monitor heap usage.
 - Review caching strategy.
@@ -365,17 +365,17 @@ A cache stored data indefinitely without any expiration or eviction strategy.
 
 ---
 
-# Case Study 4
+## Case Study 4
 
-# Database Connectivity Failure
+## Database Connectivity Failure
 
-## Situation
+### Situation
 
 The API started returning database connection errors.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case017"
 Application
@@ -399,7 +399,7 @@ Network
 
 ---
 
-## Checks Performed
+### Checks Performed
 
 - Verified database availability.
 - Validated credentials.
@@ -409,13 +409,13 @@ Network
 
 ---
 
-## Root Cause
+### Root Cause
 
 The production database password had been rotated, but the application configuration had not been updated.
 
 ---
 
-## Resolution
+### Resolution
 
 - Updated environment variables.
 - Restarted the application.
@@ -423,7 +423,7 @@ The production database password had been rotated, but the application configura
 
 ---
 
-## Prevention
+### Prevention
 
 - Use secret management.
 - Document credential rotation procedures.
@@ -431,17 +431,17 @@ The production database password had been rotated, but the application configura
 
 ---
 
-# Case Study 5
+## Case Study 5
 
-# SSL Certificate Expired
+## SSL Certificate Expired
 
-## Situation
+### Situation
 
 Users received browser security warnings.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case018"
 Browser
@@ -465,13 +465,13 @@ HTTPS
 
 ---
 
-## Root Cause
+### Root Cause
 
 Automatic certificate renewal had failed, allowing the certificate to expire.
 
 ---
 
-## Resolution
+### Resolution
 
 - Renewed the certificate.
 - Reloaded Nginx.
@@ -479,7 +479,7 @@ Automatic certificate renewal had failed, allowing the certificate to expire.
 
 ---
 
-## Prevention
+### Prevention
 
 - Monitor certificate expiration.
 - Configure renewal alerts.
@@ -487,17 +487,17 @@ Automatic certificate renewal had failed, allowing the certificate to expire.
 
 ---
 
-# Case Study 6
+## Case Study 6
 
-# Disk Full
+## Disk Full
 
-## Situation
+### Situation
 
 Deployments began failing unexpectedly.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case019"
 Disk
@@ -521,7 +521,7 @@ Cleanup
 
 ---
 
-### Commands
+#### Commands
 
 ```bash id="case020"
 df -h
@@ -533,13 +533,13 @@ du -sh /*
 
 ---
 
-## Root Cause
+### Root Cause
 
 Old log files had accumulated without rotation, consuming nearly all available storage.
 
 ---
 
-## Resolution
+### Resolution
 
 - Archived and removed old logs.
 - Configured log rotation.
@@ -547,7 +547,7 @@ Old log files had accumulated without rotation, consuming nearly all available s
 
 ---
 
-## Prevention
+### Prevention
 
 - Enable automatic log rotation.
 - Monitor disk usage.
@@ -555,17 +555,17 @@ Old log files had accumulated without rotation, consuming nearly all available s
 
 ---
 
-# Case Study 7
+## Case Study 7
 
-# Slow Website
+## Slow Website
 
-## Situation
+### Situation
 
 Users reported that the website loaded slowly despite no outages.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case022"
 Browser
@@ -589,13 +589,13 @@ Database
 
 ---
 
-## Findings
+### Findings
 
 The database lacked an index on a frequently queried field, causing full collection scans and increased response times.
 
 ---
 
-## Resolution
+### Resolution
 
 - Added the appropriate index.
 - Verified improved query performance.
@@ -603,7 +603,7 @@ The database lacked an index on a frequently queried field, causing full collect
 
 ---
 
-## Prevention
+### Prevention
 
 - Review slow query logs.
 - Analyze query execution plans.
@@ -611,17 +611,17 @@ The database lacked an index on a frequently queried field, causing full collect
 
 ---
 
-# Case Study 8
+## Case Study 8
 
-# Deployment Failure
+## Deployment Failure
 
-## Situation
+### Situation
 
 A deployment completed successfully, but the application would not start.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case023"
 Git
@@ -645,13 +645,13 @@ Logs
 
 ---
 
-## Root Cause
+### Root Cause
 
 A required environment variable was missing on the production server.
 
 ---
 
-## Resolution
+### Resolution
 
 - Restored the missing configuration.
 - Restarted the application.
@@ -659,7 +659,7 @@ A required environment variable was missing on the production server.
 
 ---
 
-## Prevention
+### Prevention
 
 - Validate environment variables during deployment.
 - Maintain deployment checklists.
@@ -667,17 +667,17 @@ A required environment variable was missing on the production server.
 
 ---
 
-# Case Study 9
+## Case Study 9
 
-# DNS Misconfiguration
+## DNS Misconfiguration
 
-## Situation
+### Situation
 
 Users could not reach the website after a DNS update.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case024"
 DNS
@@ -701,13 +701,13 @@ Server
 
 ---
 
-## Root Cause
+### Root Cause
 
 The domain pointed to an outdated IP address after infrastructure changes.
 
 ---
 
-## Resolution
+### Resolution
 
 - Updated DNS records.
 - Verified propagation.
@@ -715,7 +715,7 @@ The domain pointed to an outdated IP address after infrastructure changes.
 
 ---
 
-## Prevention
+### Prevention
 
 - Review DNS before infrastructure changes.
 - Lower TTL before planned migrations when appropriate.
@@ -723,17 +723,17 @@ The domain pointed to an outdated IP address after infrastructure changes.
 
 ---
 
-# Case Study 10
+## Case Study 10
 
-# Traffic Spike
+## Traffic Spike
 
-## Situation
+### Situation
 
 A marketing campaign caused a sudden increase in traffic.
 
 ---
 
-## Symptoms
+### Symptoms
 
 - Increased response times
 - High CPU utilization
@@ -741,7 +741,7 @@ A marketing campaign caused a sudden increase in traffic.
 
 ---
 
-## Investigation
+### Investigation
 
 ```text id="case025"
 Traffic
@@ -765,7 +765,7 @@ Scaling
 
 ---
 
-## Resolution
+### Resolution
 
 - Added additional application instances.
 - Enabled caching where appropriate.
@@ -774,7 +774,7 @@ Scaling
 
 ---
 
-## Prevention
+### Prevention
 
 - Perform load testing.
 - Configure auto scaling where available.
@@ -783,7 +783,7 @@ Scaling
 
 ---
 
-# Root Cause Analysis (RCA)
+## Root Cause Analysis (RCA)
 
 After resolving an incident, perform a structured RCA.
 
@@ -800,7 +800,7 @@ Example format:
 
 ---
 
-# Production Postmortem Template
+## Production Postmortem Template
 
 ```text id="case026"
 Incident
@@ -838,7 +838,7 @@ A good postmortem focuses on improving systems and processes rather than assigni
 
 ---
 
-# Common Interview Questions
+## Common Interview Questions
 
 Interviewers may ask:
 
@@ -862,7 +862,7 @@ A strong response typically follows this structure:
 
 ---
 
-# What Interviewers Evaluate
+## What Interviewers Evaluate
 
 | Skill             | Evaluation                      |
 | ----------------- | ------------------------------- |
@@ -875,7 +875,7 @@ A strong response typically follows this structure:
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Explain your investigation chronologically.
 - Mention the evidence that guided each decision.
@@ -886,44 +886,44 @@ A strong response typically follows this structure:
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Jumping Directly to a Fix
+#### Jumping Directly to a Fix
 
 Investigate before changing production systems.
 
 ---
 
-### Treating Symptoms as Root Causes
+#### Treating Symptoms as Root Causes
 
 For example, restarting a crashed process restores service but does not explain why it crashed.
 
 ---
 
-### Skipping Verification
+#### Skipping Verification
 
 Always confirm that the issue is resolved after applying a fix.
 
 ---
 
-### Ignoring Long-Term Improvements
+#### Ignoring Long-Term Improvements
 
 Every production incident should result in operational or technical improvements.
 
 ---
 
-### Poor Communication
+#### Poor Communication
 
 During incidents, communicate status updates, impact, and expected next steps clearly.
 
 ---
 
-# Summary
+## Summary
 
 Production case studies demonstrate far more than technical knowledge—they showcase analytical thinking, operational discipline, communication, and ownership. Strong interview candidates explain incidents using a structured narrative, support conclusions with evidence, verify resolutions, and describe how they reduced the likelihood of future occurrences through monitoring, automation, testing, and process improvements.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Congratulations! You have completed the Linux Server Engineering Handbook.**

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Nginx Introduction
 
-## Overview
+### Overview
 
 So far, we have prepared our Linux server by:
 
@@ -35,7 +35,7 @@ Nginx is one of the world's most popular web servers and reverse proxies. It is 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Nginx?
+## What is Nginx?
 
 **Nginx** (pronounced **"Engine-X"**) is an open-source web server first released in **2004**.
 
@@ -68,7 +68,7 @@ Today, Nginx is commonly used as:
 
 ---
 
-# Why Do We Need a Web Server?
+## Why Do We Need a Web Server?
 
 Suppose you start a Node.js application.
 
@@ -95,7 +95,7 @@ A dedicated web server solves these problems.
 
 ---
 
-# Where Does Nginx Fit?
+## Where Does Nginx Fit?
 
 Without Nginx:
 
@@ -132,7 +132,7 @@ The Node.js application remains protected behind it.
 
 ---
 
-# What Does Nginx Do?
+## What Does Nginx Do?
 
 Nginx performs several important responsibilities.
 
@@ -154,9 +154,9 @@ Instead of simply forwarding requests, Nginx can inspect, modify, secure, and op
 
 ---
 
-# Primary Uses of Nginx
+## Primary Uses of Nginx
 
-## 1. Web Server
+### 1. Web Server
 
 Nginx can directly serve web pages and static content.
 
@@ -177,7 +177,7 @@ Images
 
 ---
 
-## 2. Reverse Proxy
+### 2. Reverse Proxy
 
 Nginx forwards requests to backend applications.
 
@@ -203,7 +203,7 @@ Users never communicate directly with the backend application.
 
 ---
 
-## 3. Load Balancer
+### 3. Load Balancer
 
 If multiple backend servers exist, Nginx distributes requests.
 
@@ -221,7 +221,7 @@ This improves scalability and availability.
 
 ---
 
-## 4. SSL/TLS Termination
+### 4. SSL/TLS Termination
 
 Instead of every application managing certificates:
 
@@ -249,7 +249,7 @@ Nginx decrypts HTTPS traffic and forwards requests internally.
 
 ---
 
-## 5. Static File Serving
+### 5. Static File Serving
 
 Static files are delivered directly.
 
@@ -275,7 +275,7 @@ Serving static files through Nginx is generally faster and more efficient than s
 
 ---
 
-# Why Not Expose Node.js Directly?
+## Why Not Expose Node.js Directly?
 
 Running:
 
@@ -314,7 +314,7 @@ Each component focuses on its own responsibility.
 
 ---
 
-# Nginx Request Lifecycle
+## Nginx Request Lifecycle
 
 Every incoming request follows a predictable path.
 
@@ -347,7 +347,7 @@ Nginx decides what should happen to every request before it reaches the applicat
 
 ---
 
-# Nginx vs Apache
+## Nginx vs Apache
 
 Nginx and Apache are both widely used web servers.
 
@@ -366,7 +366,7 @@ Nginx is particularly well known for handling large numbers of simultaneous conn
 
 ---
 
-# Event-Driven Architecture
+## Event-Driven Architecture
 
 One of Nginx's defining characteristics is its **event-driven architecture**.
 
@@ -406,7 +406,7 @@ This architecture contributes to Nginx's low memory usage and strong performance
 
 ---
 
-# Nginx in a Production Environment
+## Nginx in a Production Environment
 
 A common production deployment:
 
@@ -443,7 +443,7 @@ This separation improves security, scalability, and maintainability.
 
 ---
 
-# Advantages of Using Nginx
+## Advantages of Using Nginx
 
 - High performance
 - Low memory usage
@@ -458,7 +458,7 @@ This separation improves security, scalability, and maintainability.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js application is running on an Ubuntu server.
 
@@ -495,7 +495,7 @@ Nginx accepts all public traffic, terminates HTTPS, serves static assets, and fo
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Place Nginx in front of backend applications.
 - Expose only ports **80** and **443** to the public.
@@ -507,38 +507,38 @@ Nginx accepts all public traffic, terminates HTTPS, serves static assets, and fo
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Exposing the Application Directly
+#### Exposing the Application Directly
 
 Allowing users to connect directly to Node.js bypasses many of the security and performance features provided by Nginx.
 
 ---
 
-### Treating Nginx as the Application Server
+#### Treating Nginx as the Application Server
 
 Nginx handles HTTP traffic, routing, and static content. The application's business logic still runs inside Node.js.
 
 ---
 
-### Assuming Nginx Replaces PM2
+#### Assuming Nginx Replaces PM2
 
 Nginx manages web traffic, while PM2 manages application processes. They serve different purposes and are commonly used together.
 
 ---
 
-### Ignoring the Layered Architecture
+#### Ignoring the Layered Architecture
 
 Production systems benefit from separating responsibilities across Cloudflare, Nginx, PM2, the application, and the database rather than combining everything into a single component.
 
 ---
 
-# Summary
+## Summary
 
 Nginx is a high-performance web server and reverse proxy that sits between users and backend applications. It accepts incoming HTTP and HTTPS requests, serves static content efficiently, forwards dynamic requests to application servers, and provides features such as SSL termination, load balancing, compression, and logging. In modern Linux deployments, Nginx is a core component that improves security, scalability, and reliability while allowing backend applications such as Node.js to focus solely on business logic.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Installing Nginx**

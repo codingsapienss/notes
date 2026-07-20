@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Networking Reference
 
-## Overview
+### Overview
 
 Networking is one of the most important aspects of Linux server administration. Every web request, API call, SSH connection, database query, and cloud service depends on a functioning network.
 
@@ -14,7 +14,7 @@ This chapter serves as a quick-reference guide covering networking commands, pro
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -28,7 +28,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Network Communication Flow
+## Network Communication Flow
 
 ```text id="4h9x2k"
 Client
@@ -66,7 +66,7 @@ Every network request follows multiple layers before reaching the application.
 
 ---
 
-# OSI Model Reference
+## OSI Model Reference
 
 | Layer | Name         | Example             |
 | ----- | ------------ | ------------------- |
@@ -80,7 +80,7 @@ Every network request follows multiple layers before reaching the application.
 
 ---
 
-# TCP/IP Model
+## TCP/IP Model
 
 | Layer          | Protocols                  |
 | -------------- | -------------------------- |
@@ -91,7 +91,7 @@ Every network request follows multiple layers before reaching the application.
 
 ---
 
-# View IP Addresses
+## View IP Addresses
 
 Display all network interfaces.
 
@@ -115,7 +115,7 @@ eth0
 
 ---
 
-# View Routing Table
+## View Routing Table
 
 ```bash id="nb7jhu"
 ip route
@@ -131,7 +131,7 @@ This identifies the system's default gateway.
 
 ---
 
-# Display Network Interfaces
+## Display Network Interfaces
 
 ```bash id="u0hv55"
 ip link
@@ -149,7 +149,7 @@ A DOWN interface cannot transmit or receive packets.
 
 ---
 
-# Test Connectivity
+## Test Connectivity
 
 Ping another host.
 
@@ -171,7 +171,7 @@ Purpose:
 
 ---
 
-# DNS Lookup
+## DNS Lookup
 
 Using `dig`.
 
@@ -193,7 +193,7 @@ dig example.com MX
 
 ---
 
-# nslookup
+## nslookup
 
 Alternative DNS lookup tool.
 
@@ -209,7 +209,7 @@ nslookup example.com 8.8.8.8
 
 ---
 
-# Reverse DNS Lookup
+## Reverse DNS Lookup
 
 ```bash id="4gwnc3"
 dig -x 8.8.8.8
@@ -219,7 +219,7 @@ Useful when investigating unknown IP addresses.
 
 ---
 
-# Download Web Content
+## Download Web Content
 
 Using curl.
 
@@ -241,7 +241,7 @@ curl -v https://example.com
 
 ---
 
-# Download Files
+## Download Files
 
 Using wget.
 
@@ -257,7 +257,7 @@ wget -c https://example.com/file.zip
 
 ---
 
-# View Open Ports
+## View Open Ports
 
 Using `ss`.
 
@@ -279,7 +279,7 @@ ss -ulpn
 
 ---
 
-# netstat (Legacy)
+## netstat (Legacy)
 
 ```bash id="xtf89j"
 netstat -tulpn
@@ -289,7 +289,7 @@ Although `ss` is recommended, `netstat` is still commonly found in older systems
 
 ---
 
-# Trace Network Path
+## Trace Network Path
 
 ```bash id="8xjlwm"
 traceroute google.com
@@ -317,7 +317,7 @@ Destination
 
 ---
 
-# ARP Table
+## ARP Table
 
 Display cached MAC address mappings.
 
@@ -335,7 +335,7 @@ aa:bb:cc:dd:ee:ff
 
 ---
 
-# Check Active Connections
+## Check Active Connections
 
 ```bash id="92jlwm"
 ss -tan
@@ -349,7 +349,7 @@ Useful for:
 
 ---
 
-# Network Statistics
+## Network Statistics
 
 Interface statistics.
 
@@ -367,7 +367,7 @@ Bandwidth monitoring tools help identify network bottlenecks.
 
 ---
 
-# Firewall (UFW)
+## Firewall (UFW)
 
 View status.
 
@@ -401,7 +401,7 @@ sudo ufw reload
 
 ---
 
-# Common Network Ports
+## Common Network Ports
 
 | Port  | Protocol | Service                 |
 | ----- | -------- | ----------------------- |
@@ -435,7 +435,7 @@ sudo ufw reload
 
 ---
 
-# Useful ICMP Commands
+## Useful ICMP Commands
 
 | Command      | Purpose        |
 | ------------ | -------------- |
@@ -445,7 +445,7 @@ sudo ufw reload
 
 ---
 
-# Hostname Commands
+## Hostname Commands
 
 View hostname.
 
@@ -467,7 +467,7 @@ sudo hostnamectl set-hostname production-api
 
 ---
 
-# DNS Configuration
+## DNS Configuration
 
 System DNS resolver.
 
@@ -491,7 +491,7 @@ localhost
 
 ---
 
-# Test Application Port
+## Test Application Port
 
 Check a local application.
 
@@ -507,7 +507,7 @@ curl -I https://example.com
 
 ---
 
-# Network Troubleshooting Workflow
+## Network Troubleshooting Workflow
 
 ```text id="jlwm19"
 Application Down
@@ -549,7 +549,7 @@ Always troubleshoot layer by layer.
 
 ---
 
-# Daily Networking Commands
+## Daily Networking Commands
 
 ```text id="jlwm20"
 Connectivity
@@ -583,7 +583,7 @@ Routing
 
 ---
 
-# Useful Networking Commands
+## Useful Networking Commands
 
 | Command          | Purpose             |
 | ---------------- | ------------------- |
@@ -604,7 +604,7 @@ Routing
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users report that an API is unreachable from the internet.
 
@@ -666,7 +666,7 @@ The application is now accessible.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use `ip` commands instead of deprecated networking tools whenever possible.
 - Verify DNS before troubleshooting applications.
@@ -679,44 +679,44 @@ The application is now accessible.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming DNS Is Working
+#### Assuming DNS Is Working
 
 Always verify DNS resolution before investigating the application.
 
 ---
 
-### Ignoring Firewall Rules
+#### Ignoring Firewall Rules
 
 Many connectivity issues result from blocked ports rather than application failures.
 
 ---
 
-### Confusing Local and External Connectivity
+#### Confusing Local and External Connectivity
 
 A service that responds on `localhost` may still be inaccessible externally because of firewall, routing, or reverse proxy issues.
 
 ---
 
-### Forgetting to Check Listening Ports
+#### Forgetting to Check Listening Ports
 
 Applications that are not listening on the expected port cannot receive traffic.
 
 ---
 
-### Skipping Layer-by-Layer Troubleshooting
+#### Skipping Layer-by-Layer Troubleshooting
 
 Jumping directly to application debugging often wastes time when the actual issue exists in the network stack.
 
 ---
 
-# Summary
+## Summary
 
 Linux networking is the foundation of modern server infrastructure. Understanding IP addressing, routing, DNS, ports, firewalls, and diagnostic tools allows administrators to identify and resolve connectivity issues efficiently. This reference chapter consolidates the most commonly used networking commands and workflows into a practical guide for day-to-day operations and production troubleshooting.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Common File Locations**

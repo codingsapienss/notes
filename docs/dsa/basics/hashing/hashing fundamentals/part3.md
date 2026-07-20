@@ -26,7 +26,7 @@
 
 ---
 
-## What is Character Hashing?
+### What is Character Hashing?
 
 Character hashing is the process of storing the frequency of characters using a hash table.
 
@@ -34,7 +34,7 @@ Since every character has an **ASCII value**, we can use an array to store their
 
 ---
 
-## ASCII Values
+### ASCII Values
 
 Every character is internally represented as an integer.
 
@@ -85,7 +85,7 @@ Output
 
 ---
 
-## Why Does Character Hashing Work?
+### Why Does Character Hashing Work?
 
 Since every character is converted into its ASCII value,
 
@@ -111,7 +111,7 @@ hash[65]++;
 
 ---
 
-## Important Point
+### Important Point
 
 Characters are **automatically converted to their ASCII integer values** whenever an integer is expected.
 
@@ -165,7 +165,7 @@ Implicit Type Conversion
 
 ---
 
-## Character Frequency Example
+### Character Frequency Example
 
 String
 
@@ -212,7 +212,7 @@ Output
 
 ---
 
-## Hash Table Visualization
+### Hash Table Visualization
 
 String
 
@@ -234,7 +234,7 @@ ASCII
 
 ---
 
-## Lowercase Character Hashing (a-z)
+### Lowercase Character Hashing (a-z)
 
 Sometimes,
 
@@ -262,7 +262,7 @@ int hash[26];
 
 ---
 
-## Mapping
+### Mapping
 
 Formula
 
@@ -358,7 +358,7 @@ Frequency of c
 
 ---
 
-## Uppercase Character Hashing (A-Z)
+### Uppercase Character Hashing (A-Z)
 
 Formula
 
@@ -391,7 +391,7 @@ for(char ch : s) {
 
 ---
 
-## What if the String Contains Both Uppercase and Lowercase?
+### What if the String Contains Both Uppercase and Lowercase?
 
 Example
 
@@ -423,7 +423,7 @@ Different ranges.
 
 ---
 
-#### Solution 1 (Recommended)
+##### Solution 1 (Recommended)
 
 Use
 
@@ -456,7 +456,7 @@ Spaces
 
 ---
 
-#### Solution 2
+##### Solution 2
 
 Create two arrays
 
@@ -470,7 +470,7 @@ This is useful when uppercase and lowercase need to be counted separately.
 
 ---
 
-## Why Do We Use an int Array Instead of a char Array?
+### Why Do We Use an int Array Instead of a char Array?
 
 Suppose
 
@@ -516,7 +516,7 @@ Integer
 
 ---
 
-## Array Size
+### Array Size
 
 Most commonly,
 
@@ -544,7 +544,7 @@ So every ASCII character has its own index.
 
 ---
 
-## Time Complexity
+### Time Complexity
 
 Building frequency table
 
@@ -576,7 +576,7 @@ O(N + Q)
 
 ---
 
-## Space Complexity
+### Space Complexity
 
 Using ASCII
 
@@ -598,7 +598,7 @@ because
 
 ---
 
-## Advantages
+### Advantages
 
 - Extremely fast.
 - Very easy to implement.
@@ -607,7 +607,7 @@ because
 
 ---
 
-## Limitations
+### Limitations
 
 Array hashing works only when
 
@@ -648,7 +648,7 @@ depending on the problem.
 
 ---
 
-## Character Hashing Using map
+### Character Hashing Using map
 
 Instead of arrays,
 
@@ -678,7 +678,7 @@ per operation.
 
 ---
 
-## Character Hashing Using unordered_map
+### Character Hashing Using unordered_map
 
 ```cpp
 unordered_map<char, int> freq;
@@ -696,7 +696,7 @@ Advantages
 
 ---
 
-## Array vs map vs unordered_map
+### Array vs map vs unordered_map
 
 | Feature                      | Array | map      | unordered_map |
 | ---------------------------- | ----- | -------- | ------------- |
@@ -708,9 +708,9 @@ Advantages
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Why can characters be used as array indices?
+#### Q1. Why can characters be used as array indices?
 
 **Answer**
 
@@ -718,7 +718,7 @@ Because every character has an ASCII integer value, and C++ automatically conver
 
 ---
 
-### Q2. Why do we use `ch - 'a'`?
+#### Q2. Why do we use `ch - 'a'`?
 
 **Answer**
 
@@ -726,7 +726,7 @@ It maps lowercase letters from `'a'`–`'z'` to indices `0`–`25`, allowing us 
 
 ---
 
-### Q3. Why use `int hash[256]` instead of `char hash[256]`?
+#### Q3. Why use `int hash[256]` instead of `char hash[256]`?
 
 **Answer**
 
@@ -734,7 +734,7 @@ We store frequencies, which are integers. A `char` array is meant for storing ch
 
 ---
 
-### Q4. When should we use array hashing for characters?
+#### Q4. When should we use array hashing for characters?
 
 **Answer**
 
@@ -742,7 +742,7 @@ When the character set is small and known (for example, ASCII or only lowercase 
 
 ---
 
-### Q5. When should we use `map` or `unordered_map` instead?
+#### Q5. When should we use `map` or `unordered_map` instead?
 
 **Answer**
 
@@ -750,7 +750,7 @@ When the character range is unknown, very large, or when working with Unicode or
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Every character has a unique ASCII integer value.
 - Characters are automatically converted to their ASCII values when used as array indices.

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Linux Filesystem
 
-## Overview
+### Overview
 
 Unlike Windows, which organizes storage around **drive letters** such as `C:\`, `D:\`, and `E:\`, Linux follows a **single hierarchical directory structure**.
 
@@ -18,7 +18,7 @@ Understanding the Linux filesystem is one of the most important skills for Linux
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Understanding the Linux Filesystem
+## Understanding the Linux Filesystem
 
 The Linux filesystem follows a tree structure.
 
@@ -72,7 +72,7 @@ Additional disks are simply **mounted** somewhere inside this directory tree.
 
 ---
 
-# The Root Directory (/)
+## The Root Directory (/)
 
 The **Root Directory (`/`)** is the highest level of the Linux filesystem.
 
@@ -92,9 +92,9 @@ Think of it as the starting point of the entire operating system.
 
 ---
 
-# Major Linux Directories
+## Major Linux Directories
 
-## /bin
+### /bin
 
 The `/bin` directory contains **essential user commands** required for basic system operation.
 
@@ -111,7 +111,7 @@ These commands are available even if other filesystems have not yet been mounted
 
 ---
 
-## /boot
+### /boot
 
 Contains files required during the boot process.
 
@@ -135,7 +135,7 @@ Normally, users rarely modify this directory manually.
 
 ---
 
-## /dev
+### /dev
 
 Linux treats hardware devices as files.
 
@@ -163,7 +163,7 @@ This design allows hardware to be accessed using standard file operations.
 
 ---
 
-## /etc
+### /etc
 
 One of the most important directories for Linux administrators.
 
@@ -193,7 +193,7 @@ Examples include:
 
 ---
 
-## /home
+### /home
 
 Contains personal directories for normal users.
 
@@ -216,7 +216,7 @@ Example:
 
 ---
 
-## /lib
+### /lib
 
 Contains shared libraries required by programs.
 
@@ -226,7 +226,7 @@ Instead of every application including identical code, they share common librari
 
 ---
 
-## /media
+### /media
 
 Used for automatically mounted removable devices.
 
@@ -244,7 +244,7 @@ Example:
 
 ---
 
-## /mnt
+### /mnt
 
 Traditionally used for manually mounted filesystems.
 
@@ -258,7 +258,7 @@ System administrators often mount temporary storage here.
 
 ---
 
-## /opt
+### /opt
 
 Contains optional third-party software.
 
@@ -273,7 +273,7 @@ Example:
 
 ---
 
-## /proc
+### /proc
 
 Unlike normal directories, `/proc` is a **virtual filesystem**.
 
@@ -298,7 +298,7 @@ Many Linux monitoring tools read information from `/proc`.
 
 ---
 
-## /root
+### /root
 
 The home directory of the **root user**.
 
@@ -320,7 +320,7 @@ The `/root` directory is simply the home folder for the root user.
 
 ---
 
-## /run
+### /run
 
 Contains temporary runtime information.
 
@@ -335,7 +335,7 @@ Contents are typically recreated every time the system boots.
 
 ---
 
-## /sbin
+### /sbin
 
 Contains essential system administration commands.
 
@@ -350,7 +350,7 @@ Many commands here require administrative privileges.
 
 ---
 
-## /srv
+### /srv
 
 Stores data served by system services.
 
@@ -364,7 +364,7 @@ Although not always heavily used, it follows the Linux Filesystem Hierarchy Stan
 
 ---
 
-## /sys
+### /sys
 
 Like `/proc`, `/sys` is a virtual filesystem.
 
@@ -379,7 +379,7 @@ Administrators use this directory for advanced hardware configuration and diagno
 
 ---
 
-## /tmp
+### /tmp
 
 Stores temporary files.
 
@@ -397,7 +397,7 @@ Example:
 
 ---
 
-## /usr
+### /usr
 
 Contains the majority of user-installed software and shared resources.
 
@@ -422,7 +422,7 @@ Most software installed using package managers eventually places files somewhere
 
 ---
 
-## /var
+### /var
 
 Stores data that changes while the system is running.
 
@@ -454,7 +454,7 @@ For example:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy a Node.js application with Nginx.
 
@@ -491,7 +491,7 @@ Understanding where files belong makes server management much easier.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn the purpose of each major directory instead of memorizing paths.
 - Store personal projects inside your home directory unless there is a specific reason not to.
@@ -501,9 +501,9 @@ Understanding where files belong makes server management much easier.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing `/` with `/root`
+#### Confusing `/` with `/root`
 
 `/` is the root of the filesystem.
 
@@ -513,7 +513,7 @@ They are different directories.
 
 ---
 
-### Editing Files Without Understanding Their Purpose
+#### Editing Files Without Understanding Their Purpose
 
 Many configuration files inside `/etc` directly affect system behavior.
 
@@ -521,7 +521,7 @@ Always understand a file before modifying it.
 
 ---
 
-### Storing Permanent Files in `/tmp`
+#### Storing Permanent Files in `/tmp`
 
 Files in `/tmp` are temporary and may be removed automatically by the operating system.
 
@@ -529,7 +529,7 @@ Do not rely on this directory for permanent storage.
 
 ---
 
-# Summary
+## Summary
 
 The Linux filesystem follows a single hierarchical structure rooted at `/`. Every file, directory, device, and mounted storage location exists somewhere beneath this root.
 
@@ -539,6 +539,6 @@ As you continue through this handbook, you will repeatedly work with these direc
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Users and Groups**

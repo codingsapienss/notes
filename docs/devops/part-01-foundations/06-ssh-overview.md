@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # SSH Overview
 
-## Overview
+### Overview
 
 Most Linux servers do not have a monitor, keyboard, or mouse attached to them. Instead, they are managed remotely over a network.
 
@@ -18,7 +18,7 @@ Throughout this handbook, every server configuration and deployment task will be
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is SSH?
+## What is SSH?
 
 **SSH (Secure Shell)** is a secure network protocol that allows you to access and manage a remote computer over a network.
 
@@ -51,7 +51,7 @@ All communication between your computer and the server is encrypted.
 
 ---
 
-# Why Do We Need SSH?
+## Why Do We Need SSH?
 
 Imagine your server is running in a cloud data center located hundreds or even thousands of kilometers away.
 
@@ -78,7 +78,7 @@ This allows administrators to manage servers from anywhere while keeping communi
 
 ---
 
-# SSH vs Telnet
+## SSH vs Telnet
 
 Before SSH became popular, many systems used **Telnet** for remote access.
 
@@ -97,7 +97,7 @@ Today, SSH has almost completely replaced Telnet for Linux server administration
 
 ---
 
-# How SSH Works
+## How SSH Works
 
 When you connect to a server, the following sequence occurs:
 
@@ -124,13 +124,13 @@ Once the secure session is established, all communication between the client and
 
 ---
 
-# SSH Authentication
+## SSH Authentication
 
 SSH supports multiple authentication methods.
 
 The two most common are:
 
-## Password Authentication
+### Password Authentication
 
 The user provides:
 
@@ -143,7 +143,7 @@ Although simple, password authentication is more vulnerable to brute-force attac
 
 ---
 
-## Key-Based Authentication
+### Key-Based Authentication
 
 Modern Linux servers typically use **SSH keys** instead of passwords.
 
@@ -156,11 +156,11 @@ Key-based authentication is both more secure and more convenient for production 
 
 ---
 
-# Public Key and Private Key
+## Public Key and Private Key
 
 SSH key authentication is based on a key pair.
 
-## Public Key
+### Public Key
 
 The public key is copied to the server.
 
@@ -170,7 +170,7 @@ The server uses it to verify your identity.
 
 ---
 
-## Private Key
+### Private Key
 
 The private key remains on your local computer.
 
@@ -180,7 +180,7 @@ If someone gains access to your private key, they may be able to access your ser
 
 ---
 
-## How They Work Together
+### How They Work Together
 
 ```text
 Private Key (Your Computer)
@@ -204,7 +204,7 @@ Instead, it verifies that your private key matches the stored public key.
 
 ---
 
-# PEM Files
+## PEM Files
 
 Cloud providers often generate SSH private keys with a `.pem` extension.
 
@@ -227,7 +227,7 @@ If the private key is lost and no alternative authentication method exists, acce
 
 ---
 
-# Connecting to a Linux Server
+## Connecting to a Linux Server
 
 A typical SSH command looks like:
 
@@ -259,7 +259,7 @@ Breaking down the command:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Throughout this handbook, you will work with cloud servers.
 
@@ -288,7 +288,7 @@ Once connected, you can execute commands exactly as if you were sitting in front
 
 ---
 
-# Common SSH Operations
+## Common SSH Operations
 
 After connecting, administrators commonly perform tasks such as:
 
@@ -306,7 +306,7 @@ SSH simply provides the secure channel through which these commands are executed
 
 ---
 
-# SSH Security Best Practices
+## SSH Security Best Practices
 
 To keep your servers secure:
 
@@ -322,21 +322,21 @@ Good SSH practices significantly reduce the risk of unauthorized access.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Sharing the Private Key
+#### Sharing the Private Key
 
 The private key should never be emailed, uploaded to public repositories, or shared with others.
 
 ---
 
-### Losing the Private Key
+#### Losing the Private Key
 
 If the private key is lost and no backup authentication method exists, accessing the server may require recovery procedures provided by the cloud platform.
 
 ---
 
-### Confusing Public and Private Keys
+#### Confusing Public and Private Keys
 
 The **public key** is stored on the server.
 
@@ -346,13 +346,13 @@ Never copy the private key to the server.
 
 ---
 
-### Using Password Authentication Everywhere
+#### Using Password Authentication Everywhere
 
 Password authentication is convenient for testing but key-based authentication is generally recommended for production servers.
 
 ---
 
-# Summary
+## Summary
 
 SSH is the foundation of remote Linux administration. It provides an encrypted and secure method of connecting to remote systems, allowing administrators and developers to manage servers from anywhere.
 
@@ -362,6 +362,6 @@ Understanding SSH is therefore the first practical step toward becoming proficie
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 2 - Linux Administration**

@@ -6,7 +6,7 @@
 
 ---
 
-## What is Hashing?
+### What is Hashing?
 
 **Hashing** is a technique used to **store and retrieve data efficiently** by mapping a key to a specific location in memory.
 
@@ -29,7 +29,7 @@ Stored Value
 
 ---
 
-## Why Do We Need Hashing?
+### Why Do We Need Hashing?
 
 Suppose we have an array:
 
@@ -51,7 +51,7 @@ One way is to scan the array every time.
 
 ---
 
-### Brute Force Approach
+#### Brute Force Approach
 
 For every query:
 
@@ -74,7 +74,7 @@ for (int i = 0; i < n; i++) {
 
 ---
 
-#### Time Complexity
+##### Time Complexity
 
 If
 
@@ -93,7 +93,7 @@ Q queries  -> O(N × Q)
 
 ---
 
-#### Example
+##### Example
 
 ```text
 N = 100000
@@ -115,7 +115,7 @@ This is far too slow for competitive programming or real-world applications.
 
 ---
 
-## Better Idea
+### Better Idea
 
 Instead of searching every time,
 
@@ -129,7 +129,7 @@ This is the basic idea behind hashing.
 
 ---
 
-## Frequency Table
+### Frequency Table
 
 Suppose
 
@@ -158,7 +158,7 @@ No need to search again.
 
 ---
 
-## Hashing Concept
+### Hashing Concept
 
 Instead of storing only the array,
 
@@ -192,7 +192,7 @@ Hashing
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 Original Array
 
@@ -222,7 +222,7 @@ Key      Frequency
 
 ---
 
-## General Definition
+### General Definition
 
 Hashing is the process of:
 
@@ -244,7 +244,7 @@ Where information is stored
 
 ---
 
-## What is a Key?
+### What is a Key?
 
 A **key** is simply the value we want to search.
 
@@ -266,7 +266,7 @@ All of these can be keys.
 
 ---
 
-## What Can We Store?
+### What Can We Store?
 
 Hashing is not limited to frequencies.
 
@@ -304,7 +304,7 @@ Number of Occurrences
 
 ---
 
-## Real-Life Analogy
+### Real-Life Analogy
 
 Imagine a library.
 
@@ -348,7 +348,7 @@ Much faster.
 
 ---
 
-## Why is Hashing Fast?
+### Why is Hashing Fast?
 
 The goal of hashing is:
 
@@ -378,7 +378,7 @@ we directly access the stored information.
 
 ---
 
-## Basic Hashing Workflow
+### Basic Hashing Workflow
 
 ```text
 Input Array
@@ -398,7 +398,7 @@ Answer Multiple Queries Quickly
 
 ---
 
-## Hashing Example
+### Hashing Example
 
 Array
 
@@ -448,7 +448,7 @@ Answer:
 
 ---
 
-## Advantages of Hashing
+### Advantages of Hashing
 
 - Very fast searching.
 - Efficient frequency counting.
@@ -458,7 +458,7 @@ Answer:
 
 ---
 
-## Applications of Hashing
+### Applications of Hashing
 
 Hashing is used in many problems, including:
 
@@ -475,7 +475,7 @@ Hashing is used in many problems, including:
 
 ---
 
-## Brute Force vs Hashing
+### Brute Force vs Hashing
 
 | Feature                  | Brute Force | Hashing        |
 | ------------------------ | ----------- | -------------- |
@@ -486,7 +486,7 @@ Hashing is used in many problems, including:
 
 ---
 
-## Time Complexity
+### Time Complexity
 
 Suppose
 
@@ -496,7 +496,7 @@ N = Number of Elements
 Q = Number of Queries
 ```
 
-#### Brute Force
+##### Brute Force
 
 ```text
 Build
@@ -516,7 +516,7 @@ O(N × Q)
 
 ---
 
-#### Hashing
+##### Hashing
 
 ```text
 Build Hash Table
@@ -538,7 +538,7 @@ O(N + Q)
 
 ---
 
-## Important Observation
+### Important Observation
 
 Hashing usually requires:
 
@@ -555,9 +555,9 @@ We use more memory to achieve much faster lookups.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is Hashing?
+#### Q1. What is Hashing?
 
 **Answer**
 
@@ -565,7 +565,7 @@ Hashing is a technique of mapping a key to a storage location so that data can b
 
 ---
 
-### Q2. Why do we use Hashing?
+#### Q2. Why do we use Hashing?
 
 **Answer**
 
@@ -573,7 +573,7 @@ To reduce searching time and answer repeated queries efficiently.
 
 ---
 
-### Q3. What is Frequency Counting?
+#### Q3. What is Frequency Counting?
 
 **Answer**
 
@@ -581,7 +581,7 @@ Frequency counting is the process of storing how many times each element appears
 
 ---
 
-### Q4. What is the biggest advantage of Hashing?
+#### Q4. What is the biggest advantage of Hashing?
 
 **Answer**
 
@@ -589,7 +589,7 @@ Fast lookup, insertion and retrieval of data.
 
 ---
 
-### Q5. What is the main tradeoff in Hashing?
+#### Q5. What is the main tradeoff in Hashing?
 
 **Answer**
 
@@ -597,7 +597,7 @@ Hashing uses extra memory to reduce execution time.
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Hashing maps a key to a storage location for fast access.
 - It is primarily used to avoid repeated searching.

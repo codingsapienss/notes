@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Networking Interview Preparation
 
-## Overview
+### Overview
 
 Networking is one of the most important topics in Backend, DevOps, Cloud, Site Reliability Engineering (SRE), and System Administration interviews.
 
@@ -24,7 +24,7 @@ This chapter covers:
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -37,7 +37,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Internet Communication
+## Internet Communication
 
 ```text id="net001"
 Browser
@@ -79,7 +79,7 @@ Understanding this complete request flow is essential for networking interviews.
 
 ---
 
-# Networking Knowledge Roadmap
+## Networking Knowledge Roadmap
 
 ```text id="net002"
 OSI Model
@@ -127,9 +127,9 @@ Troubleshooting
 
 ---
 
-# Beginner Interview Questions
+## Beginner Interview Questions
 
-## Q1. What is a Computer Network?
+### Q1. What is a Computer Network?
 
 **Answer**
 
@@ -144,7 +144,7 @@ Examples include:
 
 ---
 
-## Q2. What is an IP Address?
+### Q2. What is an IP Address?
 
 An IP address uniquely identifies a device on a network.
 
@@ -162,7 +162,7 @@ Public example:
 
 ---
 
-## Q3. Difference Between IPv4 and IPv6
+### Q3. Difference Between IPv4 and IPv6
 
 | IPv4                   | IPv6                          |
 | ---------------------- | ----------------------------- |
@@ -186,7 +186,7 @@ IPv6
 
 ---
 
-## Q4. What is DNS?
+### Q4. What is DNS?
 
 DNS (Domain Name System) converts domain names into IP addresses.
 
@@ -204,7 +204,7 @@ Without DNS, users would have to remember IP addresses instead of domain names.
 
 ---
 
-## Q5. What is a Domain Name?
+### Q5. What is a Domain Name?
 
 A human-readable name mapped to an IP address.
 
@@ -216,9 +216,9 @@ Examples:
 
 ---
 
-# OSI Model Questions
+## OSI Model Questions
 
-## Q6. Explain the OSI Model.
+### Q6. Explain the OSI Model.
 
 | Layer | Name         | Example        |
 | ----- | ------------ | -------------- |
@@ -236,7 +236,7 @@ You do not usually need to memorize every detail of each layer, but you should u
 
 ---
 
-## Q7. Difference Between OSI and TCP/IP?
+### Q7. Difference Between OSI and TCP/IP?
 
 | OSI             | TCP/IP               |
 | --------------- | -------------------- |
@@ -246,9 +246,9 @@ You do not usually need to memorize every detail of each layer, but you should u
 
 ---
 
-# TCP/IP Questions
+## TCP/IP Questions
 
-## Q8. Difference Between TCP and UDP?
+### Q8. Difference Between TCP and UDP?
 
 | TCP                 | UDP                   |
 | ------------------- | --------------------- |
@@ -272,7 +272,7 @@ Typical UDP examples:
 
 ---
 
-## Q9. What is the Three-Way Handshake?
+### Q9. What is the Three-Way Handshake?
 
 ```text id="net008"
 Client
@@ -296,7 +296,7 @@ This process establishes a TCP connection before data transfer begins.
 
 ---
 
-## Q10. Why is TCP Slower than UDP?
+### Q10. Why is TCP Slower than UDP?
 
 TCP performs:
 
@@ -309,9 +309,9 @@ UDP skips these features, reducing overhead.
 
 ---
 
-# IP Address Questions
+## IP Address Questions
 
-## Q11. Difference Between Public and Private IP?
+### Q11. Difference Between Public and Private IP?
 
 | Public                | Private                   |
 | --------------------- | ------------------------- |
@@ -331,7 +331,7 @@ Private ranges:
 
 ---
 
-## Q12. What is NAT?
+### Q12. What is NAT?
 
 Network Address Translation allows multiple private devices to share a single public IP address.
 
@@ -357,9 +357,9 @@ Internet
 
 ---
 
-# Port Questions
+## Port Questions
 
-## Q13. What is a Port?
+### Q13. What is a Port?
 
 A logical communication endpoint for network services.
 
@@ -377,7 +377,7 @@ Examples:
 
 ---
 
-## Q14. Why Doesn't a Website Use Port 3000 Directly?
+### Q14. Why Doesn't a Website Use Port 3000 Directly?
 
 In production:
 
@@ -405,9 +405,9 @@ The reverse proxy handles public traffic, while the application listens on a pri
 
 ---
 
-# HTTP Questions
+## HTTP Questions
 
-## Q15. Difference Between HTTP and HTTPS?
+### Q15. Difference Between HTTP and HTTPS?
 
 | HTTP        | HTTPS     |
 | ----------- | --------- |
@@ -417,7 +417,7 @@ The reverse proxy handles public traffic, while the application listens on a pri
 
 ---
 
-## Q16. Common HTTP Methods
+### Q16. Common HTTP Methods
 
 | Method | Purpose |
 | ------ | ------- |
@@ -429,7 +429,7 @@ The reverse proxy handles public traffic, while the application listens on a pri
 
 ---
 
-## Q17. Common HTTP Status Codes
+### Q17. Common HTTP Status Codes
 
 | Code | Meaning               |
 | ---- | --------------------- |
@@ -448,9 +448,9 @@ The reverse proxy handles public traffic, while the application listens on a pri
 
 ---
 
-# DNS Questions
+## DNS Questions
 
-## Q18. What Happens When You Open google.com?
+### Q18. What Happens When You Open google.com?
 
 ```text id="net012"
 Browser
@@ -486,29 +486,29 @@ Page Rendered
 
 ---
 
-## Q19. What is DNS Caching?
+### Q19. What is DNS Caching?
 
 DNS responses are cached by browsers, operating systems, and DNS resolvers to reduce lookup time and network traffic.
 
 ---
 
-# Routing Questions
+## Routing Questions
 
-## Q20. What is a Router?
+### Q20. What is a Router?
 
 A router forwards packets between different networks by determining the best available path.
 
 ---
 
-## Q21. What is a Gateway?
+### Q21. What is a Gateway?
 
 A gateway is the device that allows a local network to communicate with external networks.
 
 ---
 
-# Firewall Questions
+## Firewall Questions
 
-## Q22. What Does a Firewall Do?
+### Q22. What Does a Firewall Do?
 
 A firewall filters incoming and outgoing network traffic based on configured rules.
 
@@ -532,7 +532,7 @@ Server
 
 ---
 
-## Q23. Why Close Unused Ports?
+### Q23. Why Close Unused Ports?
 
 Reasons:
 
@@ -542,9 +542,9 @@ Reasons:
 
 ---
 
-# Load Balancer Questions
+## Load Balancer Questions
 
-## Q24. What is a Load Balancer?
+### Q24. What is a Load Balancer?
 
 A load balancer distributes incoming requests across multiple backend servers.
 
@@ -572,9 +572,9 @@ Benefits:
 
 ---
 
-# Linux Networking Questions
+## Linux Networking Questions
 
-## Q25. How Do You Check Your IP Address?
+### Q25. How Do You Check Your IP Address?
 
 ```bash id="net015"
 ip addr
@@ -582,7 +582,7 @@ ip addr
 
 ---
 
-## Q26. Which Command Shows Open Ports?
+### Q26. Which Command Shows Open Ports?
 
 ```bash id="net016"
 ss -tulpn
@@ -590,7 +590,7 @@ ss -tulpn
 
 ---
 
-## Q27. How Do You Test DNS?
+### Q27. How Do You Test DNS?
 
 ```bash id="net017"
 dig example.com
@@ -604,7 +604,7 @@ nslookup example.com
 
 ---
 
-## Q28. How Do You Test HTTP?
+### Q28. How Do You Test HTTP?
 
 ```bash id="net019"
 curl https://example.com
@@ -612,15 +612,15 @@ curl https://example.com
 
 ---
 
-# Cloud Networking Questions
+## Cloud Networking Questions
 
-## Q29. What is a Security Group?
+### Q29. What is a Security Group?
 
 A security group is a virtual firewall used by cloud providers to control inbound and outbound traffic to cloud resources.
 
 ---
 
-## Q30. Difference Between Security Group and Firewall?
+### Q30. Difference Between Security Group and Firewall?
 
 | Security Group              | Firewall                   |
 | --------------------------- | -------------------------- |
@@ -630,9 +630,9 @@ A security group is a virtual firewall used by cloud providers to control inboun
 
 ---
 
-# Advanced Questions
+## Advanced Questions
 
-## Q31. Why Does HTTPS Need Certificates?
+### Q31. Why Does HTTPS Need Certificates?
 
 Certificates:
 
@@ -642,13 +642,13 @@ Certificates:
 
 ---
 
-## Q32. What is SSL/TLS?
+### Q32. What is SSL/TLS?
 
 TLS (Transport Layer Security) encrypts communication between clients and servers. SSL is the older protocol name that is still commonly used in conversation, although modern deployments use TLS.
 
 ---
 
-## Q33. Explain Reverse Proxy.
+### Q33. Explain Reverse Proxy.
 
 ```text id="net020"
 Users
@@ -675,9 +675,9 @@ The reverse proxy:
 
 ---
 
-# Scenario-Based Questions
+## Scenario-Based Questions
 
-## Scenario 1
+### Scenario 1
 
 **Question**
 
@@ -712,7 +712,7 @@ ss -tulpn
 
 ---
 
-## Scenario 2
+### Scenario 2
 
 **Question**
 
@@ -729,7 +729,7 @@ Possible causes:
 
 ---
 
-## Scenario 3
+### Scenario 3
 
 **Question**
 
@@ -765,7 +765,7 @@ Potential causes include network congestion, overloaded servers, slow database q
 
 ---
 
-## Scenario 4
+### Scenario 4
 
 **Question**
 
@@ -781,7 +781,7 @@ Possible checks:
 
 ---
 
-# Production Experience Questions
+## Production Experience Questions
 
 Interviewers may ask:
 
@@ -796,7 +796,7 @@ Focus on explaining your reasoning step by step rather than jumping directly to 
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Draw simple diagrams when explaining networking.
 - Explain packet flow from client to server.
@@ -807,44 +807,44 @@ Focus on explaining your reasoning step by step rather than jumping directly to 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing IP Addresses with Domain Names
+#### Confusing IP Addresses with Domain Names
 
 A domain name is resolved to an IP address through DNS; they are not the same thing.
 
 ---
 
-### Memorizing Port Numbers Without Understanding Their Purpose
+#### Memorizing Port Numbers Without Understanding Their Purpose
 
 Know why a service uses a particular port, not just the number.
 
 ---
 
-### Ignoring DNS During Troubleshooting
+#### Ignoring DNS During Troubleshooting
 
 Many connectivity problems originate from incorrect or outdated DNS records.
 
 ---
 
-### Assuming Network Connectivity Means the Application Is Healthy
+#### Assuming Network Connectivity Means the Application Is Healthy
 
 A successful ping does not guarantee that the application is responding correctly.
 
 ---
 
-### Skipping Layer-by-Layer Investigation
+#### Skipping Layer-by-Layer Investigation
 
 Troubleshoot systematically: DNS → Network → Firewall → Reverse Proxy → Application → Database.
 
 ---
 
-# Summary
+## Summary
 
 Networking interviews emphasize understanding how systems communicate, how protocols interact, and how production issues are diagnosed. Strong candidates combine conceptual knowledge with practical troubleshooting skills and explain their reasoning using structured, step-by-step approaches.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Nginx Interview Preparation**

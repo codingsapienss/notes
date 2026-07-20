@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Public IP and Private IP
 
-## Overview
+### Overview
 
 In the previous chapters, we learned about:
 
@@ -36,7 +36,7 @@ Understanding the difference between these two types of addresses is fundamental
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is an IP Address?
+## What is an IP Address?
 
 An **IP (Internet Protocol) Address** is a unique network identifier assigned to a device.
 
@@ -73,7 +73,7 @@ Without an IP address, devices cannot communicate over a network.
 
 ---
 
-# Public IP Address
+## Public IP Address
 
 A **Public IP Address** is reachable from the Internet.
 
@@ -103,7 +103,7 @@ Typical uses include:
 
 ---
 
-# Private IP Address
+## Private IP Address
 
 A **Private IP Address** is used only inside a private network such as an Azure Virtual Network.
 
@@ -135,7 +135,7 @@ Communication occurs entirely within the Virtual Network.
 
 ---
 
-# Public vs Private IP
+## Public vs Private IP
 
 | Feature                  | Public IP         | Private IP             |
 | ------------------------ | ----------------- | ---------------------- |
@@ -149,7 +149,7 @@ Each serves a different purpose in cloud networking.
 
 ---
 
-# How Azure Assigns IP Addresses
+## How Azure Assigns IP Addresses
 
 Every Network Interface receives a private IP address when connected to a Virtual Network.
 
@@ -183,7 +183,7 @@ Not every Virtual Machine requires one.
 
 ---
 
-# Static vs Dynamic Public IP
+## Static vs Dynamic Public IP
 
 Azure supports two allocation methods.
 
@@ -196,7 +196,7 @@ For production applications, Static Public IP addresses are generally preferred 
 
 ---
 
-# Static vs Dynamic Private IP
+## Static vs Dynamic Private IP
 
 Private IP addresses can also be configured.
 
@@ -209,7 +209,7 @@ Dynamic allocation is common, while static private IPs are useful when a resourc
 
 ---
 
-# Communication Flow
+## Communication Flow
 
 Suppose a user opens a website.
 
@@ -230,7 +230,7 @@ The browser never sees the server's private IP.
 
 ---
 
-# Internal Communication
+## Internal Communication
 
 Resources inside a Virtual Network communicate using private IP addresses.
 
@@ -254,7 +254,7 @@ This communication does not pass through the public Internet.
 
 ---
 
-# Why Not Give Every VM a Public IP?
+## Why Not Give Every VM a Public IP?
 
 Consider this architecture:
 
@@ -290,7 +290,7 @@ Only the web server is reachable from the Internet.
 
 ---
 
-# Public IP with Network Security Group
+## Public IP with Network Security Group
 
 A Public IP alone does not determine accessibility.
 
@@ -313,7 +313,7 @@ If the NSG blocks a port, the Public IP cannot be used to access that service.
 
 ---
 
-# Private Communication Architecture
+## Private Communication Architecture
 
 Example:
 
@@ -330,7 +330,7 @@ Each resource communicates over private IP addresses, improving security and red
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="ip13"
 Users
@@ -359,7 +359,7 @@ This layered architecture is widely used in production cloud deployments.
 
 ---
 
-# Public IP and Domain Names
+## Public IP and Domain Names
 
 Users rarely access applications by entering IP addresses directly.
 
@@ -387,7 +387,7 @@ In later chapters, you will learn how DNS and Cloudflare simplify this process.
 
 ---
 
-# Azure Resources That Use Public IPs
+## Azure Resources That Use Public IPs
 
 Common resources that may use Public IP addresses include:
 
@@ -401,7 +401,7 @@ Many backend resources operate entirely with private IP addresses.
 
 ---
 
-# Azure Resources That Typically Use Only Private IPs
+## Azure Resources That Typically Use Only Private IPs
 
 Examples include:
 
@@ -416,7 +416,7 @@ Keeping these resources private reduces the attack surface.
 
 ---
 
-# Typical Deployment Example
+## Typical Deployment Example
 
 Suppose you deploy a Node.js application.
 
@@ -448,7 +448,7 @@ Users access the application through the Public IP (or domain), while applicatio
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A company hosts an e-commerce website.
 
@@ -470,7 +470,7 @@ This architecture improves security without affecting application functionality.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Assign Public IPs only to resources that require direct Internet access.
 - Use Private IPs for internal communication.
@@ -482,44 +482,44 @@ This architecture improves security without affecting application functionality.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assigning Public IPs to Every Resource
+#### Assigning Public IPs to Every Resource
 
 Most backend services should remain private.
 
 ---
 
-### Confusing Public and Private IP Addresses
+#### Confusing Public and Private IP Addresses
 
 A Public IP is Internet-routable, while a Private IP is intended for communication within private networks.
 
 ---
 
-### Forgetting Network Security Groups
+#### Forgetting Network Security Groups
 
 Even with a Public IP, access should be restricted through properly configured NSG rules.
 
 ---
 
-### Exposing Databases Directly
+#### Exposing Databases Directly
 
 Production databases should typically use private networking rather than public endpoints.
 
 ---
 
-### Using Dynamic Public IPs for Production DNS
+#### Using Dynamic Public IPs for Production DNS
 
 If a Public IP changes unexpectedly, DNS records may no longer point to the correct resource. Static Public IPs help avoid this issue.
 
 ---
 
-# Summary
+## Summary
 
 Public and Private IP addresses serve different roles in Azure networking. Public IPs allow Internet users to reach cloud resources such as web servers, while Private IPs enable secure communication within a Virtual Network. By exposing only the necessary services through Public IPs and keeping backend systems on Private IPs, organizations can build cloud environments that are both secure and scalable. Combined with Network Security Groups and proper network design, this approach forms the basis of modern production infrastructure.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **10 - DNS and Domain**

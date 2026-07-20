@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # SSL Setup
 
-## Overview
+### Overview
 
 In the previous chapter, we connected our domain to the server.
 
@@ -34,7 +34,7 @@ In this chapter, we will configure HTTPS using SSL/TLS certificates and prepare 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -48,7 +48,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# HTTP vs HTTPS
+## HTTP vs HTTPS
 
 Without HTTPS:
 
@@ -96,7 +96,7 @@ Sensitive information remains encrypted while traveling across the network.
 
 ---
 
-# SSL Certificate
+## SSL Certificate
 
 An SSL/TLS certificate proves the identity of a website and enables encrypted communication.
 
@@ -118,7 +118,7 @@ Browsers verify the certificate before establishing a secure connection.
 
 ---
 
-# Let's Encrypt
+## Let's Encrypt
 
 **Let's Encrypt** is a free Certificate Authority (CA) that issues trusted SSL/TLS certificates.
 
@@ -133,7 +133,7 @@ It is one of the most common choices for production web servers.
 
 ---
 
-# What is Certbot?
+## What is Certbot?
 
 **Certbot** is a tool that automatically obtains and installs SSL certificates from Let's Encrypt.
 
@@ -159,7 +159,7 @@ Certbot can also modify Nginx configurations to enable HTTPS automatically.
 
 ---
 
-# Installing Certbot
+## Installing Certbot
 
 Update package information.
 
@@ -181,7 +181,7 @@ certbot --version
 
 ---
 
-# Obtaining an SSL Certificate
+## Obtaining an SSL Certificate
 
 Ensure that:
 
@@ -205,7 +205,7 @@ Certbot performs the following tasks:
 
 ---
 
-# Certificate Installation Process
+## Certificate Installation Process
 
 ```text id="sslsetup06"
 Domain
@@ -231,7 +231,7 @@ After successful validation, the website can serve secure HTTPS traffic.
 
 ---
 
-# Nginx After SSL
+## Nginx After SSL
 
 A simplified configuration:
 
@@ -253,7 +253,7 @@ Nginx terminates the HTTPS connection and forwards requests to the Node.js appli
 
 ---
 
-# Redirecting HTTP to HTTPS
+## Redirecting HTTP to HTTPS
 
 Users may still access:
 
@@ -292,7 +292,7 @@ This ensures all users use encrypted connections.
 
 ---
 
-# Testing the Configuration
+## Testing the Configuration
 
 Validate the Nginx configuration.
 
@@ -316,7 +316,7 @@ A successful configuration displays the browser's secure connection indicator.
 
 ---
 
-# Automatic Certificate Renewal
+## Automatic Certificate Renewal
 
 Let's Encrypt certificates are valid for a limited period and must be renewed.
 
@@ -348,7 +348,7 @@ Most Certbot installations configure automatic renewal through a scheduled syste
 
 ---
 
-# Certificate Files
+## Certificate Files
 
 Common certificate locations:
 
@@ -367,7 +367,7 @@ These files are typically stored under:
 
 ---
 
-# Firewall Configuration
+## Firewall Configuration
 
 Ensure HTTPS traffic is allowed.
 
@@ -391,7 +391,7 @@ Typical firewall configuration:
 
 ---
 
-# Integrating with Cloudflare
+## Integrating with Cloudflare
 
 If Cloudflare is used:
 
@@ -428,7 +428,7 @@ This provides encrypted communication between:
 
 ---
 
-# Complete HTTPS Architecture
+## Complete HTTPS Architecture
 
 ```text id="sslsetup14"
 Users
@@ -454,7 +454,7 @@ HTTPS protects communication across the entire public network path.
 
 ---
 
-# SSL Deployment Workflow
+## SSL Deployment Workflow
 
 ```text id="sslsetup15"
 Domain Ready
@@ -486,7 +486,7 @@ Test Website
 
 ---
 
-# Deployment Verification Checklist
+## Deployment Verification Checklist
 
 | Check                     | Expected Result |
 | ------------------------- | --------------- |
@@ -499,7 +499,7 @@ Test Website
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company hosts an Express.js application on an Azure Virtual Machine.
 
@@ -518,7 +518,7 @@ Users now access the application securely using HTTPS.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always use HTTPS in production.
 - Redirect all HTTP traffic to HTTPS.
@@ -530,44 +530,44 @@ Users now access the application securely using HTTPS.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Requesting a Certificate Before DNS Is Ready
+#### Requesting a Certificate Before DNS Is Ready
 
 Let's Encrypt must verify domain ownership. If DNS has not propagated correctly, certificate issuance will fail.
 
 ---
 
-### Forgetting to Open Port 443
+#### Forgetting to Open Port 443
 
 Even with a valid certificate, HTTPS will not work if firewall rules block incoming traffic.
 
 ---
 
-### Not Redirecting HTTP to HTTPS
+#### Not Redirecting HTTP to HTTPS
 
 Users may continue accessing the insecure HTTP version of the website.
 
 ---
 
-### Ignoring Certificate Renewal
+#### Ignoring Certificate Renewal
 
 Expired certificates produce browser warnings and may prevent users from accessing the website.
 
 ---
 
-### Using Flexible SSL with Cloudflare Unnecessarily
+#### Using Flexible SSL with Cloudflare Unnecessarily
 
 For production environments where the origin server supports HTTPS, **Full (Strict)** provides stronger security by encrypting and validating both connections.
 
 ---
 
-# Summary
+## Summary
 
 SSL/TLS enables secure HTTPS communication by encrypting data exchanged between browsers and web servers. During deployment, Certbot and Let's Encrypt simplify obtaining and installing trusted certificates for Nginx. After configuring HTTPS, redirecting HTTP traffic, enabling automatic renewal, and using Cloudflare's **Full (Strict)** mode when applicable, a production Node.js application can provide secure, encrypted communication for all users.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - PM2 Deployment**

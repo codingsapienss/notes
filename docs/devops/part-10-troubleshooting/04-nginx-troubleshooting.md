@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Nginx Troubleshooting
 
-## Overview
+### Overview
 
 Nginx is one of the most reliable web servers and reverse proxies, but production issues can still occur due to configuration mistakes, application failures, SSL problems, networking issues, or resource exhaustion.
 
@@ -28,7 +28,7 @@ Understanding how Nginx processes requests makes troubleshooting much easier.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Nginx Request Flow
+## Nginx Request Flow
 
 Every request follows a sequence before reaching the application.
 
@@ -79,7 +79,7 @@ A failure at any stage affects the final response returned to the user.
 
 ---
 
-# Nginx Troubleshooting Workflow
+## Nginx Troubleshooting Workflow
 
 Always troubleshoot in a structured manner.
 
@@ -123,7 +123,7 @@ Never modify configurations before understanding the actual problem.
 
 ---
 
-# Step 1 – Verify the Problem
+## Step 1 – Verify the Problem
 
 First, reproduce the issue.
 
@@ -149,7 +149,7 @@ The status code provides an important clue about where to begin.
 
 ---
 
-# Step 2 – Check Nginx Service
+## Step 2 – Check Nginx Service
 
 Verify that Nginx is running.
 
@@ -177,7 +177,7 @@ sudo systemctl enable nginx
 
 ---
 
-# Step 3 – Validate Configuration
+## Step 3 – Validate Configuration
 
 Before restarting Nginx, always validate the configuration.
 
@@ -203,7 +203,7 @@ sudo systemctl reload nginx
 
 ---
 
-# Step 4 – Review Nginx Logs
+## Step 4 – Review Nginx Logs
 
 Nginx provides two primary log files.
 
@@ -228,7 +228,7 @@ The error log is often the fastest way to identify configuration or proxy issues
 
 ---
 
-# Step 5 – Verify Listening Ports
+## Step 5 – Verify Listening Ports
 
 Ensure Nginx is listening on the expected ports.
 
@@ -248,7 +248,7 @@ If no listening ports appear, Nginx is not accepting requests.
 
 ---
 
-# Step 6 – Test Locally
+## Step 6 – Test Locally
 
 Test the web server from the server itself.
 
@@ -266,7 +266,7 @@ If localhost works but remote access fails, investigate networking or firewall i
 
 ---
 
-# Step 7 – Verify Reverse Proxy
+## Step 7 – Verify Reverse Proxy
 
 Many production deployments use Nginx as a reverse proxy.
 
@@ -304,9 +304,9 @@ curl http://localhost:3000
 
 ---
 
-# Understanding Common HTTP Errors
+## Understanding Common HTTP Errors
 
-## 400 Bad Request
+### 400 Bad Request
 
 Possible causes:
 
@@ -316,7 +316,7 @@ Possible causes:
 
 ---
 
-## 403 Forbidden
+### 403 Forbidden
 
 Possible causes:
 
@@ -341,7 +341,7 @@ Permission Denied
 
 ---
 
-## 404 Not Found
+### 404 Not Found
 
 Possible causes:
 
@@ -352,7 +352,7 @@ Possible causes:
 
 ---
 
-## 500 Internal Server Error
+### 500 Internal Server Error
 
 Usually indicates an application-side failure.
 
@@ -365,7 +365,7 @@ Possible causes:
 
 ---
 
-## 502 Bad Gateway
+### 502 Bad Gateway
 
 One of the most common production errors.
 
@@ -398,7 +398,7 @@ Always verify the backend before modifying Nginx.
 
 ---
 
-## 503 Service Unavailable
+### 503 Service Unavailable
 
 Possible causes:
 
@@ -408,7 +408,7 @@ Possible causes:
 
 ---
 
-## 504 Gateway Timeout
+### 504 Gateway Timeout
 
 Flow:
 
@@ -441,7 +441,7 @@ Possible causes:
 
 ---
 
-# SSL Troubleshooting
+## SSL Troubleshooting
 
 Common SSL issues include:
 
@@ -464,7 +464,7 @@ curl -I https://localhost -k
 
 ---
 
-# File Permission Problems
+## File Permission Problems
 
 Static websites often fail because Nginx cannot access files.
 
@@ -490,7 +490,7 @@ Permission Denied
 
 ---
 
-# Firewall Verification
+## Firewall Verification
 
 Even if Nginx is running, firewall rules may block access.
 
@@ -509,7 +509,7 @@ Cloud firewalls or security groups should also be checked.
 
 ---
 
-# Configuration Verification Checklist
+## Configuration Verification Checklist
 
 Before restarting Nginx, verify:
 
@@ -525,7 +525,7 @@ This checklist prevents many production outages.
 
 ---
 
-# Nginx Troubleshooting Decision Tree
+## Nginx Troubleshooting Decision Tree
 
 ```text id="ngt12"
 Website Down
@@ -571,7 +571,7 @@ Fix
 
 ---
 
-# Useful Nginx Commands
+## Useful Nginx Commands
 
 | Command                   | Purpose                    |
 | ------------------------- | -------------------------- |
@@ -587,7 +587,7 @@ Fix
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text id="ngt13"
 Website Error
@@ -629,7 +629,7 @@ Following this workflow avoids unnecessary configuration changes.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users begin reporting **502 Bad Gateway** errors after a new deployment.
 
@@ -682,7 +682,7 @@ The root cause was the backend application, not Nginx.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always validate the configuration using `nginx -t` before reloading.
 - Check the backend application before modifying reverse proxy settings.
@@ -695,44 +695,44 @@ The root cause was the backend application, not Nginx.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting Nginx Without Validation
+#### Restarting Nginx Without Validation
 
 An invalid configuration can prevent Nginx from starting.
 
 ---
 
-### Assuming Every 502 Error Is an Nginx Problem
+#### Assuming Every 502 Error Is an Nginx Problem
 
 Most 502 errors originate from the backend application rather than Nginx itself.
 
 ---
 
-### Ignoring Error Logs
+#### Ignoring Error Logs
 
 The error log often identifies the exact configuration or runtime issue.
 
 ---
 
-### Forgetting Firewall Rules
+#### Forgetting Firewall Rules
 
 Ports 80 and 443 may be blocked even though Nginx is functioning correctly.
 
 ---
 
-### Changing Multiple Configurations Simultaneously
+#### Changing Multiple Configurations Simultaneously
 
 Making several changes at once complicates troubleshooting and increases the risk of introducing new issues.
 
 ---
 
-# Summary
+## Summary
 
 Nginx troubleshooting requires a systematic approach that begins with verifying the reported issue, checking the Nginx service, validating the configuration, reviewing logs, confirming listening ports, testing the reverse proxy, and verifying backend application health. By following a structured workflow and relying on evidence rather than assumptions, administrators can efficiently resolve production web server issues while minimizing downtime.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Node.js Troubleshooting**

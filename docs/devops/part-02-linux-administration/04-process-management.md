@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Process Management
 
-## Overview
+### Overview
 
 Every program running on a Linux system is executed as a **process**.
 
@@ -18,7 +18,7 @@ Understanding how processes work is a fundamental skill for system administrator
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -33,7 +33,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Process?
+## What is a Process?
 
 A **process** is an instance of a running program.
 
@@ -57,7 +57,7 @@ A single program can create multiple processes depending on its design.
 
 ---
 
-# Program vs Process
+## Program vs Process
 
 These terms are often confused.
 
@@ -72,7 +72,7 @@ Think of a program as a recipe and a process as the meal currently being prepare
 
 ---
 
-# Process Lifecycle
+## Process Lifecycle
 
 Every process follows a basic lifecycle.
 
@@ -102,7 +102,7 @@ The Linux scheduler manages transitions between these stages.
 
 ---
 
-# Process ID (PID)
+## Process ID (PID)
 
 Every process receives a unique **Process ID (PID)**.
 
@@ -124,7 +124,7 @@ echo $$
 
 ---
 
-# Parent and Child Processes
+## Parent and Child Processes
 
 Processes can create other processes.
 
@@ -148,7 +148,7 @@ The newly created process is the **child process**.
 
 ---
 
-# The init Process (systemd)
+## The init Process (systemd)
 
 On modern Linux systems, the first userspace process started by the kernel is:
 
@@ -174,7 +174,7 @@ Almost every running process can ultimately be traced back to PID 1.
 
 ---
 
-# Foreground Processes
+## Foreground Processes
 
 A foreground process occupies the terminal until it completes.
 
@@ -194,7 +194,7 @@ Foreground processes are common for interactive programs.
 
 ---
 
-# Background Processes
+## Background Processes
 
 A background process runs independently of the terminal.
 
@@ -214,9 +214,9 @@ Advantages:
 
 ---
 
-# Viewing Running Processes
+## Viewing Running Processes
 
-## Using `ps`
+### Using `ps`
 
 Display running processes:
 
@@ -247,7 +247,7 @@ ubuntu 931   1.2  2.5 node
 
 ---
 
-# Real-Time Monitoring with `top`
+## Real-Time Monitoring with `top`
 
 To monitor running processes in real time:
 
@@ -275,7 +275,7 @@ to exit.
 
 ---
 
-# Using `htop`
+## Using `htop`
 
 Many administrators prefer:
 
@@ -300,7 +300,7 @@ sudo apt install htop
 
 ---
 
-# Finding a Process
+## Finding a Process
 
 Search for a process by name:
 
@@ -320,7 +320,7 @@ This is commonly used while troubleshooting servers.
 
 ---
 
-# Process States
+## Process States
 
 Linux processes can exist in different states.
 
@@ -336,7 +336,7 @@ Most processes spend a large portion of their time in the **Sleeping** state whi
 
 ---
 
-# Process Scheduling
+## Process Scheduling
 
 The Linux scheduler decides:
 
@@ -350,7 +350,7 @@ The goal is to keep the system responsive while sharing CPU time fairly among pr
 
 ---
 
-# Signals
+## Signals
 
 Processes can receive **signals**, which are messages sent by the operating system or another process.
 
@@ -367,7 +367,7 @@ Signals allow administrators to control running processes without rebooting the 
 
 ---
 
-# Terminating Processes
+## Terminating Processes
 
 Terminate a process gracefully:
 
@@ -389,7 +389,7 @@ Use force termination only when a process does not respond to normal termination
 
 ---
 
-# Terminating by Name
+## Terminating by Name
 
 Instead of using the PID:
 
@@ -409,7 +409,7 @@ Use them carefully on production systems because they may affect multiple proces
 
 ---
 
-# Jobs
+## Jobs
 
 The shell can manage background jobs.
 
@@ -435,7 +435,7 @@ These commands work only for jobs started from the current shell.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your Node.js application is running on a production server.
 
@@ -467,7 +467,7 @@ In many production environments, process managers such as **PM2** are used to au
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use `ps`, `top`, or `htop` before terminating a process.
 - Prefer graceful termination (`kill`) before using `kill -9`.
@@ -477,9 +477,9 @@ In many production environments, process managers such as **PM2** are used to au
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using `kill -9` Immediately
+#### Using `kill -9` Immediately
 
 `kill -9` forces immediate termination and prevents the process from cleaning up resources.
 
@@ -487,7 +487,7 @@ Always attempt a normal `kill` first.
 
 ---
 
-### Killing the Wrong Process
+#### Killing the Wrong Process
 
 Always verify the PID before terminating a process, especially on production servers.
 
@@ -495,7 +495,7 @@ Stopping the wrong service can cause application downtime.
 
 ---
 
-### Assuming High CPU Usage Always Indicates a Problem
+#### Assuming High CPU Usage Always Indicates a Problem
 
 Some applications legitimately consume significant CPU resources during startup, backups, or data processing.
 
@@ -503,7 +503,7 @@ Investigate before taking action.
 
 ---
 
-### Confusing Services with Processes
+#### Confusing Services with Processes
 
 A service (such as Nginx or SSH) may consist of multiple processes managed by `systemd`.
 
@@ -511,7 +511,7 @@ Stopping one process does not necessarily stop the entire service.
 
 ---
 
-# Summary
+## Summary
 
 Processes are the foundation of application execution in Linux.
 
@@ -521,6 +521,6 @@ Understanding process management is essential for troubleshooting applications, 
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Memory Management**

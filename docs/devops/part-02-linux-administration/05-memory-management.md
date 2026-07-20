@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Memory Management
 
-## Overview
+### Overview
 
 Memory is one of the most critical resources in any operating system. Every running application, service, and process requires memory to execute.
 
@@ -16,7 +16,7 @@ Unlike some operating systems, Linux tries to utilize available RAM effectively.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -29,7 +29,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Memory?
+## What is Memory?
 
 Memory (RAM - Random Access Memory) is temporary storage used by the CPU while programs are running.
 
@@ -43,7 +43,7 @@ When you launch an application, Linux loads the required code and data into RAM 
 
 ---
 
-# Why Memory Management is Important
+## Why Memory Management is Important
 
 Imagine a server running:
 
@@ -65,7 +65,7 @@ The Linux kernel must ensure:
 
 ---
 
-# Types of Memory in Linux
+## Types of Memory in Linux
 
 Linux primarily works with:
 
@@ -86,7 +86,7 @@ Each serves a different purpose.
 
 ---
 
-# Physical Memory (RAM)
+## Physical Memory (RAM)
 
 Physical memory refers to the actual RAM installed in the system.
 
@@ -109,7 +109,7 @@ When RAM becomes scarce, Linux uses additional techniques such as swapping.
 
 ---
 
-# Virtual Memory
+## Virtual Memory
 
 Linux provides every process with its own **virtual address space**.
 
@@ -128,7 +128,7 @@ Applications do not need to know where their data is physically stored.
 
 ---
 
-# Memory Allocation
+## Memory Allocation
 
 When an application starts:
 
@@ -148,7 +148,7 @@ When the process exits, the kernel reclaims the allocated memory.
 
 ---
 
-# Swap Space
+## Swap Space
 
 Swap is disk space that Linux can use as an extension of RAM.
 
@@ -172,7 +172,7 @@ Although swap helps prevent crashes caused by memory exhaustion, excessive swapp
 
 ---
 
-# Memory Pages
+## Memory Pages
 
 Linux divides memory into fixed-size units called **pages**.
 
@@ -196,7 +196,7 @@ Managing memory in pages allows Linux to allocate, move, and reclaim memory effi
 
 ---
 
-# Caching
+## Caching
 
 Linux uses available RAM to cache frequently accessed data.
 
@@ -218,7 +218,7 @@ Unused RAM is therefore often used as cache rather than left empty.
 
 ---
 
-# Why Linux Uses Most of the RAM
+## Why Linux Uses Most of the RAM
 
 Many beginners become concerned after running:
 
@@ -242,9 +242,9 @@ Cached memory is released automatically when applications need additional RAM.
 
 ---
 
-# Viewing Memory Usage
+## Viewing Memory Usage
 
-## Using `free`
+### Using `free`
 
 Display memory usage:
 
@@ -274,7 +274,7 @@ The **available** value is often more useful than **free** when evaluating memor
 
 ---
 
-# Monitoring Memory with `top`
+## Monitoring Memory with `top`
 
 Run:
 
@@ -294,7 +294,7 @@ It also shows memory usage for each running process.
 
 ---
 
-# Using `htop`
+## Using `htop`
 
 Many administrators prefer:
 
@@ -313,7 +313,7 @@ It provides a clearer view of memory consumption than `top`.
 
 ---
 
-# Using `vmstat`
+## Using `vmstat`
 
 Display virtual memory statistics:
 
@@ -333,7 +333,7 @@ This tool is particularly useful when diagnosing performance issues.
 
 ---
 
-# Memory Leaks
+## Memory Leaks
 
 A **memory leak** occurs when an application allocates memory but fails to release it after it is no longer needed.
 
@@ -349,7 +349,7 @@ Memory leaks are caused by software bugs rather than Linux itself.
 
 ---
 
-# Out of Memory (OOM)
+## Out of Memory (OOM)
 
 If Linux cannot allocate additional memory and swap is exhausted, the kernel may invoke the **Out Of Memory (OOM) Killer**.
 
@@ -359,7 +359,7 @@ Although this prevents a complete system crash, the affected applications stop r
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Ubuntu server hosts:
 
@@ -401,7 +401,7 @@ If memory continues to run out, the OOM Killer may terminate one of the running 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor memory usage regularly using `free`, `top`, or `htop`.
 - Focus on **available** memory rather than only **free** memory.
@@ -411,9 +411,9 @@ If memory continues to run out, the OOM Killer may terminate one of the running 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming High RAM Usage Means a Problem
+#### Assuming High RAM Usage Means a Problem
 
 Linux intentionally uses available RAM for caching.
 
@@ -421,7 +421,7 @@ High RAM usage is normal if sufficient memory remains available.
 
 ---
 
-### Ignoring Swap Activity
+#### Ignoring Swap Activity
 
 Occasional swap usage is normal.
 
@@ -429,7 +429,7 @@ Continuous heavy swapping often indicates insufficient RAM or an application con
 
 ---
 
-### Confusing Cache with Memory Leaks
+#### Confusing Cache with Memory Leaks
 
 Cached memory is released automatically when applications require it.
 
@@ -437,13 +437,13 @@ A cache is a performance optimization, not a memory leak.
 
 ---
 
-### Restarting Applications Without Investigation
+#### Restarting Applications Without Investigation
 
 Restarting an application may temporarily free memory, but it does not solve underlying issues such as memory leaks or poor resource planning.
 
 ---
 
-# Summary
+## Summary
 
 Linux memory management is designed to maximize performance while protecting system stability.
 
@@ -453,6 +453,6 @@ Understanding how Linux uses RAM, virtual memory, swap, and cache enables admini
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Storage and Disks**

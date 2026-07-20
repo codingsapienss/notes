@@ -6,7 +6,7 @@ sidebar_position: 12
 
 # Essential Linux Commands
 
-## Overview
+### Overview
 
 Throughout this handbook, you have encountered dozens of Linux commands. While each command serves a specific purpose, some are used so frequently that they become part of every Linux administrator's daily workflow.
 
@@ -14,7 +14,7 @@ This chapter brings together the most essential commands into a single reference
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -29,7 +29,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Command Structure
+## Command Structure
 
 Most Linux commands follow the same format:
 
@@ -53,9 +53,9 @@ Where:
 
 ---
 
-# Navigation Commands
+## Navigation Commands
 
-## Display Current Directory
+### Display Current Directory
 
 ```bash id="c8p1zn"
 pwd
@@ -69,7 +69,7 @@ Example output:
 
 ---
 
-## List Files
+### List Files
 
 ```bash id="f5y3mc"
 ls
@@ -95,7 +95,7 @@ ls -lh
 
 ---
 
-## Change Directory
+### Change Directory
 
 ```bash id="e4q2kt"
 cd /var/log
@@ -121,9 +121,9 @@ cd -
 
 ---
 
-# File and Directory Management
+## File and Directory Management
 
-## Create Directory
+### Create Directory
 
 ```bash id="h5n1tv"
 mkdir project
@@ -137,7 +137,7 @@ mkdir -p projects/node/api
 
 ---
 
-## Create Empty File
+### Create Empty File
 
 ```bash id="r4w7jy"
 touch notes.txt
@@ -145,7 +145,7 @@ touch notes.txt
 
 ---
 
-## Copy Files
+### Copy Files
 
 ```bash id="x6q9bc"
 cp file.txt backup.txt
@@ -159,7 +159,7 @@ cp -r project backup
 
 ---
 
-## Move or Rename Files
+### Move or Rename Files
 
 Move:
 
@@ -175,7 +175,7 @@ mv old.txt new.txt
 
 ---
 
-## Remove Files
+### Remove Files
 
 Delete file:
 
@@ -193,9 +193,9 @@ rm -rf project
 
 ---
 
-# Viewing File Contents
+## Viewing File Contents
 
-## Display Entire File
+### Display Entire File
 
 ```bash id="f9h2cw"
 cat file.txt
@@ -203,7 +203,7 @@ cat file.txt
 
 ---
 
-## View Beginning of a File
+### View Beginning of a File
 
 ```bash id="p7m4jq"
 head file.txt
@@ -217,7 +217,7 @@ head -20 file.txt
 
 ---
 
-## View End of a File
+### View End of a File
 
 ```bash id="g3n8sd"
 tail file.txt
@@ -231,7 +231,7 @@ tail -f /var/log/syslog
 
 ---
 
-## View Large Files
+### View Large Files
 
 ```bash id="m6q2pz"
 less file.txt
@@ -248,9 +248,9 @@ Useful shortcuts:
 
 ---
 
-# Searching
+## Searching
 
-## Find Files
+### Find Files
 
 ```bash id="r1d6fa"
 find /home -name "*.js"
@@ -264,7 +264,7 @@ find . -type d
 
 ---
 
-## Search Inside Files
+### Search Inside Files
 
 ```bash id="c2t7ke"
 grep "error" app.log
@@ -284,7 +284,7 @@ grep -i "warning" app.log
 
 ---
 
-# File Permissions
+## File Permissions
 
 View permissions:
 
@@ -306,7 +306,7 @@ chown developer:developers app.js
 
 ---
 
-# Disk Usage
+## Disk Usage
 
 Filesystem usage:
 
@@ -322,7 +322,7 @@ du -sh project
 
 ---
 
-# Memory Usage
+## Memory Usage
 
 Display memory:
 
@@ -338,7 +338,7 @@ vmstat
 
 ---
 
-# Process Management
+## Process Management
 
 Running processes:
 
@@ -372,7 +372,7 @@ kill -9 PID
 
 ---
 
-# Networking
+## Networking
 
 View interfaces:
 
@@ -412,7 +412,7 @@ ss -tuln
 
 ---
 
-# Package Management
+## Package Management
 
 Refresh repositories:
 
@@ -440,7 +440,7 @@ sudo apt remove nginx
 
 ---
 
-# Service Management
+## Service Management
 
 Check status:
 
@@ -468,7 +468,7 @@ sudo systemctl enable nginx
 
 ---
 
-# User Management
+## User Management
 
 Current user:
 
@@ -502,7 +502,7 @@ sudo command
 
 ---
 
-# Archiving and Compression
+## Archiving and Compression
 
 Create a tar archive:
 
@@ -530,7 +530,7 @@ tar -xzvf backup.tar.gz
 
 ---
 
-# Useful Keyboard Shortcuts
+## Useful Keyboard Shortcuts
 
 | Shortcut   | Purpose                 |
 | ---------- | ----------------------- |
@@ -546,7 +546,7 @@ tar -xzvf backup.tar.gz
 
 ---
 
-# Common Administration Workflow
+## Common Administration Workflow
 
 A Linux administrator troubleshooting a web server might use:
 
@@ -586,7 +586,7 @@ These commands provide a quick overview of service status, logs, networking, sto
 
 ---
 
-# Command Categories
+## Command Categories
 
 | Category        | Common Commands                    |
 | --------------- | ---------------------------------- |
@@ -605,7 +605,7 @@ These commands provide a quick overview of service status, logs, networking, sto
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn commands by understanding their purpose rather than memorizing them.
 - Use `--help` and the `man` pages to explore available options.
@@ -615,9 +615,9 @@ These commands provide a quick overview of service status, logs, networking, sto
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Running Destructive Commands Without Verification
+#### Running Destructive Commands Without Verification
 
 Commands such as:
 
@@ -631,7 +631,7 @@ Always verify the target path before executing destructive operations.
 
 ---
 
-### Forgetting `sudo`
+#### Forgetting `sudo`
 
 Administrative commands require elevated privileges.
 
@@ -639,7 +639,7 @@ If a command fails with **Permission denied**, verify whether it should be execu
 
 ---
 
-### Using Wildcards Carelessly
+#### Using Wildcards Carelessly
 
 Commands such as:
 
@@ -653,7 +653,7 @@ Review wildcard matches before running destructive commands.
 
 ---
 
-### Ignoring Command Documentation
+#### Ignoring Command Documentation
 
 Nearly every Linux command includes built-in documentation.
 
@@ -671,7 +671,7 @@ Learning to use these resources is an important skill for every administrator.
 
 ---
 
-# Summary
+## Summary
 
 This chapter consolidated the most commonly used Linux commands into a practical reference for daily administration. Together, these commands provide the foundation for navigating the filesystem, managing users, monitoring processes, troubleshooting networks, inspecting logs, administering services, and maintaining Linux servers.
 
@@ -679,6 +679,6 @@ While Linux includes hundreds of commands, mastering the utilities covered throu
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 3 – Shell Scripting**

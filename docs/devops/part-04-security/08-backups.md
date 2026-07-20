@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Backups
 
-## Overview
+### Overview
 
 No matter how secure a Linux server is, failures can still occur.
 
@@ -31,7 +31,7 @@ In production environments, backups are not optional—they are a fundamental pa
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -45,7 +45,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Are Backups Important?
+## Why Are Backups Important?
 
 Imagine running a production application.
 
@@ -97,7 +97,7 @@ Backups transform a potentially catastrophic event into a recoverable one.
 
 ---
 
-# What Should Be Backed Up?
+## What Should Be Backed Up?
 
 Not everything on a server needs to be backed up.
 
@@ -123,9 +123,9 @@ Items that usually **do not** need backups:
 
 ---
 
-# Types of Backups
+## Types of Backups
 
-## Full Backup
+### Full Backup
 
 A full backup copies all selected data.
 
@@ -153,7 +153,7 @@ Disadvantages:
 
 ---
 
-## Incremental Backup
+### Incremental Backup
 
 Only changes since the previous backup are copied.
 
@@ -186,7 +186,7 @@ Disadvantages:
 
 ---
 
-## Differential Backup
+### Differential Backup
 
 Copies changes made since the last full backup.
 
@@ -216,7 +216,7 @@ Disadvantages:
 
 ---
 
-# The 3-2-1 Backup Rule
+## The 3-2-1 Backup Rule
 
 One of the most widely accepted backup strategies is the **3-2-1 Rule**.
 
@@ -240,7 +240,7 @@ This protects against hardware failure, accidental deletion, and site-wide disas
 
 ---
 
-# Local vs Remote Backups
+## Local vs Remote Backups
 
 | Local Backup               | Remote Backup                       |
 | -------------------------- | ----------------------------------- |
@@ -253,7 +253,7 @@ Production environments often use **both**.
 
 ---
 
-# Backup Frequency
+## Backup Frequency
 
 How often backups should run depends on how frequently data changes.
 
@@ -269,7 +269,7 @@ Critical production databases may require continuous replication in addition to 
 
 ---
 
-# Creating Backups with tar
+## Creating Backups with tar
 
 Create a compressed backup:
 
@@ -293,7 +293,7 @@ tar -xzf backup.tar.gz
 
 ---
 
-# Creating Backups with rsync
+## Creating Backups with rsync
 
 `rsync` is commonly used for efficient backups.
 
@@ -312,7 +312,7 @@ Advantages:
 
 ---
 
-# Database Backups
+## Database Backups
 
 Application files alone are not enough.
 
@@ -334,7 +334,7 @@ A restored application without its database is often unusable.
 
 ---
 
-# Verifying Backups
+## Verifying Backups
 
 Creating a backup is only the first step.
 
@@ -365,7 +365,7 @@ Backup Trusted
 
 ---
 
-# Automating Backups
+## Automating Backups
 
 Backups should not depend on manual execution.
 
@@ -392,7 +392,7 @@ Automation reduces the risk of missed backups.
 
 ---
 
-# Backup Retention
+## Backup Retention
 
 Keeping every backup forever is impractical.
 
@@ -410,7 +410,7 @@ Retention policies balance storage usage and recovery requirements.
 
 ---
 
-# Production Example
+## Production Example
 
 Suppose your application is hosted on an Azure Virtual Machine.
 
@@ -439,7 +439,7 @@ This approach provides protection against accidental deletion, server failure, a
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow the 3-2-1 backup rule.
 - Automate backups.
@@ -451,15 +451,15 @@ This approach provides protection against accidental deletion, server failure, a
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Never Testing Restores
+#### Never Testing Restores
 
 A backup should not be considered reliable until it has been successfully restored.
 
 ---
 
-### Storing Backups on the Same Server
+#### Storing Backups on the Same Server
 
 If the server's disk fails, both the original data and the backup may be lost.
 
@@ -467,13 +467,13 @@ Always maintain at least one separate backup location.
 
 ---
 
-### Backing Up Only Application Files
+#### Backing Up Only Application Files
 
 Databases, configuration files, SSL certificates, and environment variables are equally important.
 
 ---
 
-### No Backup Schedule
+#### No Backup Schedule
 
 Manual backups are easy to forget.
 
@@ -481,12 +481,12 @@ Automated backup jobs provide more consistent protection.
 
 ---
 
-# Summary
+## Summary
 
 Backups are a critical component of Linux server security and disaster recovery. They protect against hardware failures, accidental deletion, software issues, ransomware, and other unexpected events. A well-designed backup strategy includes regular automated backups, secure offsite storage, verification through test restores, and clear retention policies. Following practices such as the 3-2-1 rule ensures that important data can be recovered quickly when failures occur.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Production Security Checklist**

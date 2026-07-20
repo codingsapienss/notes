@@ -28,7 +28,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -40,7 +40,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## Why Does JavaScript Create a Default Prototype?
+### Why Does JavaScript Create a Default Prototype?
 
 Suppose we write
 
@@ -86,7 +86,7 @@ JavaScript automatically creates a prototype object for it.
 
 ---
 
-## Default Prototype
+### Default Prototype
 
 Internally,
 
@@ -108,7 +108,7 @@ but JavaScript behaves as if it did.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
           Rabbit Function
@@ -134,7 +134,7 @@ Every constructor function starts with this object.
 
 ---
 
-## What is the `constructor` Property?
+### What is the `constructor` Property?
 
 The
 
@@ -202,7 +202,7 @@ Rabbit
 
 ---
 
-## Why Does JavaScript Need It?
+### Why Does JavaScript Need It?
 
 Imagine creating an object
 
@@ -248,7 +248,7 @@ it can still access it through the prototype chain.
 
 ---
 
-## Example
+### Example
 
 ```javascript
 function Rabbit() {}
@@ -292,7 +292,7 @@ Found constructor
 
 ---
 
-## Property Lookup
+### Property Lookup
 
 Memory
 
@@ -346,7 +346,7 @@ Return Rabbit
 
 ---
 
-## Verifying the Constructor
+### Verifying the Constructor
 
 ```javascript
 function Rabbit() {}
@@ -382,7 +382,7 @@ true
 
 ---
 
-## Creating Objects Using `constructor`
+### Creating Objects Using `constructor`
 
 One useful feature of the
 
@@ -472,7 +472,7 @@ new Rabbit(...)
 
 ---
 
-## Real-World Use Case
+### Real-World Use Case
 
 Suppose
 
@@ -505,7 +505,7 @@ to create another object of the same type.
 
 ---
 
-## Important Warning
+### Important Warning
 
 JavaScript does **not** guarantee that
 
@@ -519,7 +519,7 @@ It works only because of the default prototype.
 
 ---
 
-## Losing the `constructor`
+### Losing the `constructor`
 
 Consider
 
@@ -627,7 +627,7 @@ property disappeared.
 
 ---
 
-## Verifying
+### Verifying
 
 ```javascript
 function Rabbit() {}
@@ -679,7 +679,7 @@ JavaScript continues searching up the prototype chain until it reaches `Object.p
 
 ---
 
-## How to Preserve `constructor`
+### How to Preserve `constructor`
 
 Instead of replacing the entire prototype,
 
@@ -719,7 +719,7 @@ jumps : true
 
 ---
 
-## Alternative Solution
+### Alternative Solution
 
 If you replace the prototype,
 
@@ -759,9 +759,9 @@ true
 
 ---
 
-## Two Ways to Add Methods
+### Two Ways to Add Methods
 
-### Method 1 (Recommended)
+#### Method 1 (Recommended)
 
 ```javascript
 Rabbit.prototype.jump = function () {};
@@ -777,7 +777,7 @@ preserved
 
 ---
 
-### Method 2
+#### Method 2
 
 ```javascript
 Rabbit.prototype = {
@@ -797,7 +797,7 @@ Unless you add it manually.
 
 ---
 
-## Comparison
+### Comparison
 
 | Technique                                 | `constructor` Preserved? |
 | ----------------------------------------- | ------------------------ |
@@ -807,9 +807,9 @@ Unless you add it manually.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -825,7 +825,7 @@ It is simply a property.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Replacing
 
@@ -847,7 +847,7 @@ obj.constructor;
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking JavaScript automatically fixes
 
@@ -863,7 +863,7 @@ you're responsible for restoring it.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Prefer extending the existing prototype instead of replacing it.
 - If replacing the prototype is necessary, explicitly restore the `constructor` property.
@@ -871,9 +871,9 @@ you're responsible for restoring it.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Why does every constructor function have a default prototype?
+#### Q1. Why does every constructor function have a default prototype?
 
 **Answer**
 
@@ -881,7 +881,7 @@ JavaScript automatically creates a prototype object so that objects created with
 
 ---
 
-### Q2. What is the purpose of the `constructor` property?
+#### Q2. What is the purpose of the `constructor` property?
 
 **Answer**
 
@@ -889,7 +889,7 @@ It points back to the constructor function that created the prototype object, al
 
 ---
 
-### Q3. Why does `rabbit.constructor === Rabbit` return `true`?
+#### Q3. Why does `rabbit.constructor === Rabbit` return `true`?
 
 **Answer**
 
@@ -897,7 +897,7 @@ Because `rabbit` inherits the `constructor` property from `Rabbit.prototype`, an
 
 ---
 
-### Q4. When can the `constructor` property be lost?
+#### Q4. When can the `constructor` property be lost?
 
 **Answer**
 
@@ -905,7 +905,7 @@ When the entire prototype object is replaced with a new object that does not def
 
 ---
 
-### Q5. How do you preserve the `constructor` property?
+#### Q5. How do you preserve the `constructor` property?
 
 **Answer**
 
@@ -916,7 +916,7 @@ Either:
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Every normal constructor function automatically receives a default `prototype` object.
 - That default prototype contains a `constructor` property pointing back to the constructor function.

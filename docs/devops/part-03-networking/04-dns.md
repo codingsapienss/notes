@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Domain Name System (DNS)
 
-## Overview
+### Overview
 
 Imagine trying to browse the Internet if every website had to be accessed using its IP address.
 
@@ -32,7 +32,7 @@ Without DNS, browsing websites, sending emails, connecting APIs, and accessing c
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -46,7 +46,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Do We Need DNS?
+## Why Do We Need DNS?
 
 Computers communicate using IP addresses.
 
@@ -64,7 +64,7 @@ DNS acts as the translator between these two worlds.
 
 ---
 
-# What is DNS?
+## What is DNS?
 
 **DNS (Domain Name System)** is a distributed system that translates:
 
@@ -90,7 +90,7 @@ Once the IP address is known, the browser can connect to the destination server.
 
 ---
 
-# What is a Domain Name?
+## What is a Domain Name?
 
 A **domain name** is the human-friendly name of a website.
 
@@ -105,7 +105,7 @@ A domain is easier to remember than an IP address.
 
 ---
 
-# Domain Structure
+## Domain Structure
 
 A domain consists of multiple parts.
 
@@ -131,7 +131,7 @@ Subdomain   Domain      Top-Level Domain
 
 ---
 
-# What Happens When You Open a Website?
+## What Happens When You Open a Website?
 
 Suppose you type:
 
@@ -169,7 +169,7 @@ Only after receiving the IP address does the browser establish a TCP connection.
 
 ---
 
-# DNS Resolution Process
+## DNS Resolution Process
 
 The complete DNS lookup involves several components.
 
@@ -209,7 +209,7 @@ Let's understand each step.
 
 ---
 
-## Step 1 — Browser Cache
+### Step 1 — Browser Cache
 
 Modern browsers cache recently visited domains.
 
@@ -227,7 +227,7 @@ If found, the browser immediately uses the cached IP address.
 
 ---
 
-## Step 2 — Operating System Cache
+### Step 2 — Operating System Cache
 
 If the browser cache misses, the operating system checks its own DNS cache.
 
@@ -235,7 +235,7 @@ Linux, Windows, and macOS all maintain DNS caches to improve performance.
 
 ---
 
-## Step 3 — Recursive DNS Resolver
+### Step 3 — Recursive DNS Resolver
 
 If no cache entry exists, the request is sent to a **recursive DNS resolver**.
 
@@ -249,7 +249,7 @@ The resolver performs the lookup on behalf of the client.
 
 ---
 
-## Step 4 — Root Name Server
+### Step 4 — Root Name Server
 
 The root server knows where to find Top-Level Domain (TLD) servers.
 
@@ -273,7 +273,7 @@ It only directs the resolver to the correct TLD server.
 
 ---
 
-## Step 5 — TLD Server
+### Step 5 — TLD Server
 
 The Top-Level Domain server handles domains ending in:
 
@@ -299,7 +299,7 @@ Authoritative Name Server
 
 ---
 
-## Step 6 — Authoritative Name Server
+### Step 6 — Authoritative Name Server
 
 The authoritative name server stores the actual DNS records for the domain.
 
@@ -317,7 +317,7 @@ The resolver receives the IP address and returns it to the browser.
 
 ---
 
-# DNS Resolution Summary
+## DNS Resolution Summary
 
 ```text id="v9m4pd"
 Browser
@@ -341,13 +341,13 @@ This entire process usually completes in a few milliseconds.
 
 ---
 
-# DNS Records
+## DNS Records
 
 DNS stores different types of information using **records**.
 
 ---
 
-## A Record
+### A Record
 
 Maps a domain to an IPv4 address.
 
@@ -363,13 +363,13 @@ example.com
 
 ---
 
-## AAAA Record
+### AAAA Record
 
 Maps a domain to an IPv6 address.
 
 ---
 
-## CNAME Record
+### CNAME Record
 
 Creates an alias for another domain.
 
@@ -385,7 +385,7 @@ example.com
 
 ---
 
-## MX Record
+### MX Record
 
 Specifies which mail server receives email.
 
@@ -401,7 +401,7 @@ mail.example.com
 
 ---
 
-## NS Record
+### NS Record
 
 Specifies the authoritative name servers.
 
@@ -418,7 +418,7 @@ ns2.cloudflare.com
 
 ---
 
-## TXT Record
+### TXT Record
 
 Stores arbitrary text information.
 
@@ -432,7 +432,7 @@ Common uses include:
 
 ---
 
-# DNS TTL (Time To Live)
+## DNS TTL (Time To Live)
 
 Each DNS record includes a **TTL** value.
 
@@ -448,7 +448,7 @@ A shorter TTL allows faster propagation of changes but increases DNS queries.
 
 ---
 
-# DNS Caching
+## DNS Caching
 
 Caching improves performance.
 
@@ -480,7 +480,7 @@ This significantly reduces lookup time.
 
 ---
 
-# DNS Propagation
+## DNS Propagation
 
 When you update a DNS record, changes are not visible everywhere immediately.
 
@@ -497,7 +497,7 @@ Depending on the TTL and resolver behavior, changes may become visible within mi
 
 ---
 
-# DNS in Cloud Deployments
+## DNS in Cloud Deployments
 
 Suppose you deploy a Node.js application on Azure.
 
@@ -530,7 +530,7 @@ When users visit the domain, DNS directs them to your Azure server.
 
 ---
 
-# Checking DNS from Linux
+## Checking DNS from Linux
 
 Resolve a domain:
 
@@ -568,7 +568,7 @@ dig NS example.com
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider your production deployment using Cloudflare and Azure.
 
@@ -590,7 +590,7 @@ When you changed your domain's nameservers to Cloudflare, the registrar delegate
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use a reliable DNS provider with global infrastructure.
 - Configure appropriate TTL values for your environment.
@@ -600,9 +600,9 @@ When you changed your domain's nameservers to Cloudflare, the registrar delegate
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing Domains with IP Addresses
+#### Confusing Domains with IP Addresses
 
 A domain name is a human-readable identifier.
 
@@ -610,19 +610,19 @@ An IP address is the numeric network address that computers use.
 
 ---
 
-### Assuming DNS Changes Are Instant
+#### Assuming DNS Changes Are Instant
 
 DNS changes take time to propagate because of caching and TTL values.
 
 ---
 
-### Forgetting to Update Name Servers
+#### Forgetting to Update Name Servers
 
 If you move DNS management to another provider, update the domain's NS records at the registrar. Otherwise, DNS queries will continue to be answered by the previous provider.
 
 ---
 
-### Misconfiguring DNS Records
+#### Misconfiguring DNS Records
 
 Incorrect A, CNAME, MX, or NS records can make websites, email, or APIs inaccessible.
 
@@ -630,7 +630,7 @@ Always verify records after making changes.
 
 ---
 
-# Summary
+## Summary
 
 The Domain Name System (DNS) is the Internet's distributed naming service. It translates human-friendly domain names into IP addresses, allowing browsers and applications to locate servers across the world. Through components such as recursive resolvers, root servers, TLD servers, and authoritative name servers, DNS performs fast and reliable name resolution for billions of requests every day.
 
@@ -638,6 +638,6 @@ A strong understanding of DNS is essential for managing domains, configuring clo
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - HTTP and HTTPS**

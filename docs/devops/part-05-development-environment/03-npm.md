@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # npm (Node Package Manager)
 
-## Overview
+### Overview
 
 After installing Node.js, the next essential tool is **npm (Node Package Manager)**.
 
@@ -28,7 +28,7 @@ This chapter explains how npm works, how packages are managed, and how to use np
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is npm?
+## What is npm?
 
 npm stands for:
 
@@ -70,7 +70,7 @@ The npm registry contains millions of publicly available JavaScript packages.
 
 ---
 
-# Why Do We Need npm?
+## Why Do We Need npm?
 
 Imagine building an API server without npm.
 
@@ -103,7 +103,7 @@ This dramatically reduces development time.
 
 ---
 
-# The npm Registry
+## The npm Registry
 
 The npm registry is an online repository containing JavaScript packages.
 
@@ -134,7 +134,7 @@ Common packages include:
 
 ---
 
-# package.json
+## package.json
 
 Every Node.js project contains a file named:
 
@@ -162,7 +162,7 @@ Example:
 
 ---
 
-# Important Fields in package.json
+## Important Fields in package.json
 
 | Field             | Purpose                   |
 | ----------------- | ------------------------- |
@@ -175,7 +175,7 @@ Example:
 
 ---
 
-# package-lock.json
+## package-lock.json
 
 When packages are installed, npm generates:
 
@@ -200,7 +200,7 @@ This ensures every developer and production server installs the same dependency 
 
 ---
 
-# node_modules
+## node_modules
 
 When packages are installed, npm creates:
 
@@ -225,7 +225,7 @@ It should **not** be committed to Git.
 
 ---
 
-# Installing Dependencies
+## Installing Dependencies
 
 Install all project dependencies:
 
@@ -243,7 +243,7 @@ and downloads all required packages.
 
 ---
 
-# Installing a Package
+## Installing a Package
 
 Example:
 
@@ -260,7 +260,7 @@ npm:
 
 ---
 
-# Installing Development Dependencies
+## Installing Development Dependencies
 
 Development-only packages:
 
@@ -279,9 +279,9 @@ These packages are generally **not required** in production.
 
 ---
 
-# Local vs Global Packages
+## Local vs Global Packages
 
-## Local Installation
+### Local Installation
 
 ```bash
 npm install express
@@ -293,7 +293,7 @@ Preferred for almost every application dependency.
 
 ---
 
-## Global Installation
+### Global Installation
 
 ```bash
 npm install -g pm2
@@ -310,7 +310,7 @@ Examples:
 
 ---
 
-# npm Scripts
+## npm Scripts
 
 Applications often define reusable commands.
 
@@ -342,7 +342,7 @@ Scripts provide a consistent interface for developers and deployment pipelines.
 
 ---
 
-# Installing Production Dependencies
+## Installing Production Dependencies
 
 For production deployments:
 
@@ -364,7 +364,7 @@ This skips development dependencies and reduces:
 
 ---
 
-# npm ci
+## npm ci
 
 Production deployments often use:
 
@@ -391,7 +391,7 @@ Why?
 
 ---
 
-# Updating Packages
+## Updating Packages
 
 Check outdated packages:
 
@@ -409,7 +409,7 @@ Be cautious when updating major versions, as they may introduce breaking changes
 
 ---
 
-# Viewing Installed Packages
+## Viewing Installed Packages
 
 Project packages:
 
@@ -425,7 +425,7 @@ npm list -g --depth=0
 
 ---
 
-# Project Structure After Installation
+## Project Structure After Installation
 
 ```text
 my-app/
@@ -441,7 +441,7 @@ my-app/
 
 ---
 
-# Typical Production Workflow
+## Typical Production Workflow
 
 ```text
 Git Pull
@@ -463,7 +463,7 @@ Every deployment begins by ensuring the correct dependency versions are installe
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your Express application depends on:
 
@@ -492,7 +492,7 @@ If a new dependency is added in GitHub, running `npm ci` installs the exact vers
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Commit both `package.json` and `package-lock.json`.
 - Do not commit `node_modules`.
@@ -504,15 +504,15 @@ If a new dependency is added in GitHub, running `npm ci` installs the exact vers
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Committing node_modules
+#### Committing node_modules
 
 The `node_modules` directory can contain thousands of files and should be regenerated using npm instead of being stored in version control.
 
 ---
 
-### Deleting package-lock.json
+#### Deleting package-lock.json
 
 The lock file ensures consistent dependency versions.
 
@@ -520,7 +520,7 @@ Removing it may cause different environments to install different package versio
 
 ---
 
-### Installing Everything Globally
+#### Installing Everything Globally
 
 Most application packages should be installed locally within the project.
 
@@ -528,7 +528,7 @@ Global installations should be limited to tools that are intended to be used sys
 
 ---
 
-### Blindly Updating Dependencies
+#### Blindly Updating Dependencies
 
 Major package updates may introduce breaking changes.
 
@@ -536,12 +536,12 @@ Always review release notes and test updates before deploying to production.
 
 ---
 
-# Summary
+## Summary
 
 npm is the package manager that powers the Node.js ecosystem. It enables developers to install, manage, and update project dependencies while ensuring applications remain consistent across different environments. Files such as `package.json` and `package-lock.json` play a central role in dependency management, and commands like `npm ci` provide reliable, repeatable installations for production deployments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Environment Variables**

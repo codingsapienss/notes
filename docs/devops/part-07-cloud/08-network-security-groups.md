@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Network Security Groups
 
-## Overview
+### Overview
 
 In the previous chapter, we learned how Azure resources communicate through:
 
@@ -31,7 +31,7 @@ It controls **which traffic is allowed and which traffic is denied** before the 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -45,7 +45,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Network Security Group?
+## What is a Network Security Group?
 
 A **Network Security Group (NSG)** is a collection of firewall rules that control network traffic.
 
@@ -74,7 +74,7 @@ Every packet entering or leaving a protected resource is evaluated against the N
 
 ---
 
-# Why Do We Need an NSG?
+## Why Do We Need an NSG?
 
 Suppose your Virtual Machine has a Public IP.
 
@@ -114,7 +114,7 @@ Only approved traffic is permitted.
 
 ---
 
-# Firewall Analogy
+## Firewall Analogy
 
 Think of an office building.
 
@@ -148,7 +148,7 @@ Allow or Deny
 
 ---
 
-# Traffic Direction
+## Traffic Direction
 
 NSGs evaluate traffic in two directions.
 
@@ -183,7 +183,7 @@ Separate rules can be configured for each direction.
 
 ---
 
-# Inbound Rules
+## Inbound Rules
 
 Inbound rules control who can access your resources.
 
@@ -214,7 +214,7 @@ Only expose the ports your application actually requires.
 
 ---
 
-# Outbound Rules
+## Outbound Rules
 
 Outbound rules control where your resources can send traffic.
 
@@ -243,7 +243,7 @@ Many applications use the default outbound rules unless stricter controls are re
 
 ---
 
-# NSG Rules
+## NSG Rules
 
 Each NSG consists of multiple rules.
 
@@ -262,7 +262,7 @@ Each rule defines whether specific traffic should be allowed or denied.
 
 ---
 
-# Components of an NSG Rule
+## Components of an NSG Rule
 
 Every rule contains several properties.
 
@@ -280,7 +280,7 @@ Azure evaluates these fields to decide whether a packet matches the rule.
 
 ---
 
-# Rule Priority
+## Rule Priority
 
 Azure evaluates rules from the **lowest priority number** to the highest.
 
@@ -311,7 +311,7 @@ This makes rule ordering very important.
 
 ---
 
-# Example Rules
+## Example Rules
 
 Example configuration:
 
@@ -326,7 +326,7 @@ This configuration allows HTTPS, HTTP, and SSH from a trusted administrative IP 
 
 ---
 
-# NSG Processing Flow
+## NSG Processing Flow
 
 ```text id="nsg11"
 Incoming Packet
@@ -356,7 +356,7 @@ If a rule does not match, Azure continues evaluating the next rule.
 
 ---
 
-# Applying an NSG
+## Applying an NSG
 
 An NSG can be associated with either:
 
@@ -395,7 +395,7 @@ Applying an NSG to a subnet protects multiple resources, while applying it to a 
 
 ---
 
-# Default Security Rules
+## Default Security Rules
 
 Every NSG includes default rules.
 
@@ -409,7 +409,7 @@ These defaults provide a secure baseline while allowing normal network operation
 
 ---
 
-# Web Server Example
+## Web Server Example
 
 Suppose you deploy a Node.js application behind Nginx.
 
@@ -442,7 +442,7 @@ Production configuration:
 
 ---
 
-# Database Example
+## Database Example
 
 A database server should remain private.
 
@@ -472,7 +472,7 @@ The database accepts connections only from trusted resources inside the Virtual 
 
 ---
 
-# Layered Security
+## Layered Security
 
 NSGs work together with other Azure networking components.
 
@@ -496,7 +496,7 @@ Each layer provides additional protection.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="nsg20"
 Internet
@@ -530,7 +530,7 @@ Backend systems remain protected within the Virtual Network.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application.
 
@@ -553,7 +553,7 @@ The application is publicly accessible over HTTPS, while SSH administration is r
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Allow only the ports required by your application.
 - Restrict SSH and Remote Desktop access to trusted IP addresses.
@@ -565,44 +565,44 @@ The application is publicly accessible over HTTPS, while SSH administration is r
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Allowing Every Port
+#### Allowing Every Port
 
 Opening unnecessary ports increases the attack surface and should be avoided.
 
 ---
 
-### Leaving SSH Open to the Entire Internet
+#### Leaving SSH Open to the Entire Internet
 
 Restrict SSH access to trusted IP addresses whenever practical.
 
 ---
 
-### Ignoring Rule Priority
+#### Ignoring Rule Priority
 
 A higher-priority rule can prevent lower-priority rules from ever being evaluated.
 
 ---
 
-### Exposing Databases Publicly
+#### Exposing Databases Publicly
 
 Databases should generally be accessible only through private networking.
 
 ---
 
-### Creating Duplicate Rules
+#### Creating Duplicate Rules
 
 Overlapping or redundant rules make NSGs harder to understand and maintain.
 
 ---
 
-# Summary
+## Summary
 
 Network Security Groups (NSGs) are Azure's primary network-level firewall mechanism. They protect resources by filtering inbound and outbound traffic based on configurable rules that consider source, destination, ports, protocols, and priority. By applying NSGs to subnets or network interfaces and allowing only the traffic required for an application, administrators can significantly improve the security of Azure environments while maintaining reliable network communication.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Public IP and Private IP**

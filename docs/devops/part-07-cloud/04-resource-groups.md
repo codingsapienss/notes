@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Resource Groups
 
-## Overview
+### Overview
 
 In the previous chapter, we learned about Azure's hierarchy:
 
@@ -50,7 +50,7 @@ A Resource Group acts as a logical container that groups related Azure resources
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -63,7 +63,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Resource Group?
+## What is a Resource Group?
 
 A **Resource Group (RG)** is a logical container used to organize related Azure resources.
 
@@ -88,7 +88,7 @@ It simply organizes resources.
 
 ---
 
-# Why Resource Groups?
+## Why Resource Groups?
 
 Suppose your company hosts three applications.
 
@@ -149,7 +149,7 @@ Resources are much easier to locate and manage.
 
 ---
 
-# Resource Group Hierarchy
+## Resource Group Hierarchy
 
 Every Azure resource belongs to exactly one Resource Group.
 
@@ -168,7 +168,7 @@ Although resources inside a Resource Group can interact with resources in other 
 
 ---
 
-# What Can Be Stored in a Resource Group?
+## What Can Be Stored in a Resource Group?
 
 Almost every Azure service is created inside a Resource Group.
 
@@ -189,7 +189,7 @@ This makes the Resource Group the primary organizational unit for Azure deployme
 
 ---
 
-# Creating a Resource Group
+## Creating a Resource Group
 
 Using the Azure Portal, the basic workflow is:
 
@@ -225,7 +225,7 @@ After creation, resources can be deployed into the group.
 
 ---
 
-# Resource Group Region
+## Resource Group Region
 
 When creating a Resource Group, Azure asks for a region.
 
@@ -259,7 +259,7 @@ Although technically possible, keeping related resources in the same region is g
 
 ---
 
-# Resource Group Naming
+## Resource Group Naming
 
 A consistent naming convention makes cloud environments easier to manage.
 
@@ -295,7 +295,7 @@ Meaningful names reduce confusion as the number of resources grows.
 
 ---
 
-# Lifecycle Management
+## Lifecycle Management
 
 One major advantage of Resource Groups is lifecycle management.
 
@@ -329,7 +329,7 @@ This simplifies cleanup of temporary environments such as development or testing
 
 ---
 
-# Permissions
+## Permissions
 
 Permissions can be assigned at the Resource Group level.
 
@@ -361,7 +361,7 @@ Azure uses Role-Based Access Control (RBAC) to manage these permissions, which i
 
 ---
 
-# Tags vs Resource Groups
+## Tags vs Resource Groups
 
 Both Resource Groups and Tags help organize resources, but they serve different purposes.
 
@@ -388,7 +388,7 @@ Tags complement Resource Groups rather than replacing them.
 
 ---
 
-# Resource Group Architecture
+## Resource Group Architecture
 
 Example deployment:
 
@@ -413,7 +413,7 @@ Everything related to the application remains together.
 
 ---
 
-# Multiple Applications
+## Multiple Applications
 
 Large organizations often create one Resource Group per application or environment.
 
@@ -432,7 +432,7 @@ This structure improves organization and access control.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="azrg19"
 Azure Subscription
@@ -458,7 +458,7 @@ The Resource Group serves as the logical boundary for the application's Azure re
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your company hosts two products:
 
@@ -487,7 +487,7 @@ When the HR system is retired, only its Resource Group is removed. The Customer 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Create separate Resource Groups for different applications or environments.
 - Use consistent naming conventions.
@@ -499,44 +499,44 @@ When the HR system is retired, only its Resource Group is removed. The Customer 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Putting Every Resource into One Resource Group
+#### Putting Every Resource into One Resource Group
 
 Large Resource Groups become difficult to manage and reduce organizational clarity.
 
 ---
 
-### Creating Too Many Small Resource Groups
+#### Creating Too Many Small Resource Groups
 
 Avoid creating a separate Resource Group for every individual resource unless there is a specific operational reason.
 
 ---
 
-### Using Unclear Names
+#### Using Unclear Names
 
 Names such as `test1`, `newgroup`, or `temp` make environments difficult to understand over time.
 
 ---
 
-### Deleting a Resource Group Without Reviewing Its Contents
+#### Deleting a Resource Group Without Reviewing Its Contents
 
 Deleting a Resource Group removes all contained resources, which may include production workloads.
 
 ---
 
-### Ignoring Tags
+#### Ignoring Tags
 
 Tags make it easier to filter resources, allocate costs, and identify ownership across large Azure environments.
 
 ---
 
-# Summary
+## Summary
 
 Resource Groups are the primary organizational building block in Microsoft Azure. They provide a logical container for related resources, simplify lifecycle management, support permission assignment, and improve the organization of cloud environments. By grouping resources according to applications or environments and following consistent naming and tagging strategies, administrators can manage Azure infrastructure more effectively and reduce operational complexity.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Virtual Machines**

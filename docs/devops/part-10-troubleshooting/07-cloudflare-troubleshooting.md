@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Cloudflare Troubleshooting
 
-## Overview
+### Overview
 
 Cloudflare sits between your users and your origin server, acting as a reverse proxy, CDN, DNS provider, firewall, and SSL termination point.
 
@@ -34,7 +34,7 @@ A systematic approach significantly reduces troubleshooting time.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Cloudflare Request Flow
+## Cloudflare Request Flow
 
 Every request passes through multiple layers.
 
@@ -93,7 +93,7 @@ A problem at any layer may result in an unavailable website.
 
 ---
 
-# Cloudflare Troubleshooting Workflow
+## Cloudflare Troubleshooting Workflow
 
 Follow a structured workflow.
 
@@ -137,7 +137,7 @@ Never assume Cloudflare is the source of every issue.
 
 ---
 
-# Step 1 – Identify the Error
+## Step 1 – Identify the Error
 
 Cloudflare provides informative error pages.
 
@@ -157,7 +157,7 @@ The displayed error code usually indicates where troubleshooting should begin.
 
 ---
 
-# Step 2 – Verify DNS Records
+## Step 2 – Verify DNS Records
 
 Cloudflare depends on correct DNS configuration.
 
@@ -187,7 +187,7 @@ Incorrect DNS records are one of the most common deployment mistakes.
 
 ---
 
-# Step 3 – Verify DNS Propagation
+## Step 3 – Verify DNS Propagation
 
 After changing DNS records, propagation may take time.
 
@@ -206,7 +206,7 @@ Possible symptoms:
 
 ---
 
-# Step 4 – Verify Cloudflare Proxy Status
+## Step 4 – Verify Cloudflare Proxy Status
 
 Cloudflare supports two modes.
 
@@ -245,7 +245,7 @@ If troubleshooting Cloudflare-specific issues, temporarily switching to **DNS On
 
 ---
 
-# Step 5 – Verify Origin Server
+## Step 5 – Verify Origin Server
 
 Cloudflare cannot serve dynamic requests if the origin server is unavailable.
 
@@ -271,7 +271,7 @@ If the origin server is unreachable directly, Cloudflare cannot reach it either.
 
 ---
 
-# Step 6 – Verify Nginx
+## Step 6 – Verify Nginx
 
 Confirm that Nginx is operational.
 
@@ -295,7 +295,7 @@ Cloudflare frequently reports origin errors that are actually caused by Nginx fa
 
 ---
 
-# Step 7 – Verify Application
+## Step 7 – Verify Application
 
 Test the backend application directly.
 
@@ -313,7 +313,7 @@ If the application is unavailable, Cloudflare will eventually return an origin-r
 
 ---
 
-# Understanding Cloudflare Error 521
+## Understanding Cloudflare Error 521
 
 **Error 521** means Cloudflare successfully reached the server but the server refused the connection.
 
@@ -344,7 +344,7 @@ Connection Refused
 
 ---
 
-# Understanding Cloudflare Error 522
+## Understanding Cloudflare Error 522
 
 **Error 522** indicates that Cloudflare could not establish a TCP connection before the timeout.
 
@@ -375,7 +375,7 @@ Timeout
 
 ---
 
-# Understanding Cloudflare Error 523
+## Understanding Cloudflare Error 523
 
 **Error 523** means Cloudflare cannot locate the origin server.
 
@@ -388,7 +388,7 @@ Possible causes:
 
 ---
 
-# Understanding Cloudflare Error 524
+## Understanding Cloudflare Error 524
 
 **Error 524** occurs when Cloudflare connects successfully but the origin takes too long to respond.
 
@@ -419,7 +419,7 @@ Slow Response
 
 ---
 
-# Understanding Cloudflare Error 525
+## Understanding Cloudflare Error 525
 
 **Error 525** indicates an SSL handshake failure.
 
@@ -450,7 +450,7 @@ Failed
 
 ---
 
-# Understanding Cloudflare Error 526
+## Understanding Cloudflare Error 526
 
 **Error 526** means the origin certificate is invalid while using **Full (Strict)** SSL mode.
 
@@ -462,7 +462,7 @@ Possible causes:
 
 ---
 
-# SSL Troubleshooting
+## SSL Troubleshooting
 
 Verify:
 
@@ -484,7 +484,7 @@ The SSL mode configured in Cloudflare must match the origin server's SSL configu
 
 ---
 
-# Cache Troubleshooting
+## Cache Troubleshooting
 
 Cloudflare caches static assets.
 
@@ -518,7 +518,7 @@ Possible solutions:
 
 ---
 
-# Firewall Troubleshooting
+## Firewall Troubleshooting
 
 Cloudflare may block requests because of:
 
@@ -544,7 +544,7 @@ Cloud providers may additionally enforce:
 
 ---
 
-# Cloudflare Troubleshooting Decision Tree
+## Cloudflare Troubleshooting Decision Tree
 
 ```text
 Website Down
@@ -598,7 +598,7 @@ Following this order reduces unnecessary configuration changes.
 
 ---
 
-# Useful Commands
+## Useful Commands
 
 | Command                     | Purpose                    |
 | --------------------------- | -------------------------- |
@@ -614,7 +614,7 @@ Following this order reduces unnecessary configuration changes.
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text
 User Reports Website Down
@@ -660,7 +660,7 @@ A structured workflow helps isolate the failing layer efficiently.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users report **Error 522 Connection Timed Out** when accessing a production website.
 
@@ -715,7 +715,7 @@ The root cause was the server firewall blocking HTTP and HTTPS traffic rather th
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Start with the Cloudflare error code before changing configurations.
 - Verify DNS records after every deployment.
@@ -728,44 +728,44 @@ The root cause was the server firewall blocking HTTP and HTTPS traffic rather th
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Cloudflare Is Always the Problem
+#### Assuming Cloudflare Is Always the Problem
 
 Most Cloudflare error pages indicate issues with the origin server rather than Cloudflare itself.
 
 ---
 
-### Ignoring DNS Configuration
+#### Ignoring DNS Configuration
 
 An incorrect DNS record can make an otherwise healthy server unreachable.
 
 ---
 
-### Using the Wrong SSL Mode
+#### Using the Wrong SSL Mode
 
 A mismatch between Cloudflare SSL mode and the origin server configuration commonly causes SSL handshake failures.
 
 ---
 
-### Forgetting the Origin Firewall
+#### Forgetting the Origin Firewall
 
 Even if Cloudflare is configured correctly, blocked ports on the origin server will prevent successful connections.
 
 ---
 
-### Purging Cache for Every Issue
+#### Purging Cache for Every Issue
 
 Caching problems are only one category of Cloudflare issues. Always identify the root cause before clearing the cache.
 
 ---
 
-# Summary
+## Summary
 
 Cloudflare troubleshooting requires understanding the complete request path from the client to the origin server. By identifying the Cloudflare error code, verifying DNS records, checking SSL configuration, testing origin connectivity, reviewing Nginx and application health, and validating firewall rules, administrators can efficiently resolve most production issues. A structured troubleshooting methodology minimizes downtime and avoids unnecessary configuration changes.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - SSL Troubleshooting**

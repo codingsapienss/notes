@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Reverse Proxy
 
-## Overview
+### Overview
 
 Modern web applications rarely expose their backend applications directly to the Internet.
 
@@ -29,7 +29,7 @@ Understanding reverse proxies is essential before learning Nginx configuration a
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Proxy?
+## What is a Proxy?
 
 A **proxy** is an intermediary that receives requests from one party and forwards them to another.
 
@@ -67,7 +67,7 @@ There are two common types:
 
 ---
 
-# Forward Proxy
+## Forward Proxy
 
 A **Forward Proxy** represents the **client**.
 
@@ -100,7 +100,7 @@ The destination server sees the proxy instead of the original client.
 
 ---
 
-# Reverse Proxy
+## Reverse Proxy
 
 A **Reverse Proxy** represents the **server**.
 
@@ -122,7 +122,7 @@ The backend server is usually hidden from public access.
 
 ---
 
-# Why Do We Need a Reverse Proxy?
+## Why Do We Need a Reverse Proxy?
 
 Imagine a Node.js application running directly on port **3000**.
 
@@ -165,7 +165,7 @@ Now the Node.js application is private while Nginx handles all external traffic.
 
 ---
 
-# How a Reverse Proxy Works
+## How a Reverse Proxy Works
 
 Suppose a user visits:
 
@@ -199,7 +199,7 @@ The browser never communicates directly with the backend application.
 
 ---
 
-# Reverse Proxy Request Flow
+## Reverse Proxy Request Flow
 
 A complete request typically follows this path.
 
@@ -243,7 +243,7 @@ Each component has a dedicated responsibility.
 
 ---
 
-# Responsibilities of a Reverse Proxy
+## Responsibilities of a Reverse Proxy
 
 A reverse proxy performs much more than simple request forwarding.
 
@@ -262,7 +262,7 @@ Common responsibilities include:
 
 ---
 
-# Request Routing
+## Request Routing
 
 Different requests can be sent to different backend applications.
 
@@ -296,7 +296,7 @@ A single reverse proxy can distribute traffic to multiple backend services.
 
 ---
 
-# SSL Termination
+## SSL Termination
 
 Instead of every backend application managing TLS certificates, the reverse proxy handles HTTPS.
 
@@ -329,7 +329,7 @@ Benefits:
 
 ---
 
-# Static File Serving
+## Static File Serving
 
 Reverse proxies efficiently serve static assets.
 
@@ -357,7 +357,7 @@ This reduces the workload on backend applications.
 
 ---
 
-# Compression
+## Compression
 
 Nginx can compress responses before sending them.
 
@@ -389,7 +389,7 @@ Benefits:
 
 ---
 
-# Caching
+## Caching
 
 Frequently requested content can be cached.
 
@@ -409,7 +409,7 @@ Instead of repeatedly contacting the backend, Nginx serves cached responses when
 
 ---
 
-# Security
+## Security
 
 A reverse proxy provides an additional security layer.
 
@@ -426,7 +426,7 @@ The backend application remains inaccessible from the public Internet.
 
 ---
 
-# Logging
+## Logging
 
 Every incoming request can be logged.
 
@@ -442,9 +442,9 @@ These logs are invaluable for monitoring and troubleshooting.
 
 ---
 
-# Reverse Proxy vs Direct Access
+## Reverse Proxy vs Direct Access
 
-## Without Reverse Proxy
+### Without Reverse Proxy
 
 ```text id="u2m6fj"
 Browser
@@ -466,7 +466,7 @@ Problems:
 
 ---
 
-## With Reverse Proxy
+### With Reverse Proxy
 
 ```text id="q7p4zd"
 Browser
@@ -490,7 +490,7 @@ Benefits:
 
 ---
 
-# Reverse Proxy vs Load Balancer
+## Reverse Proxy vs Load Balancer
 
 A reverse proxy forwards requests to backend services.
 
@@ -518,7 +518,7 @@ The next chapter explores this capability in detail.
 
 ---
 
-# Example: Nginx Reverse Proxy
+## Example: Nginx Reverse Proxy
 
 A common production architecture:
 
@@ -564,7 +564,7 @@ Only Nginx is exposed to the Internet.
 
 ---
 
-# Why Not Expose Node.js Directly?
+## Why Not Expose Node.js Directly?
 
 Although Node.js can serve HTTP traffic directly, using it as the public-facing server is uncommon in production.
 
@@ -580,7 +580,7 @@ Using a reverse proxy allows the application to focus solely on business logic.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 This closely matches a production deployment.
 
@@ -631,7 +631,7 @@ This architecture is widely used for production Node.js deployments.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Never expose backend applications directly unless necessary.
 - Place a reverse proxy in front of application servers.
@@ -642,9 +642,9 @@ This architecture is widely used for production Node.js deployments.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Exposing Backend Ports Publicly
+#### Exposing Backend Ports Publicly
 
 Allowing direct access to ports such as **3000**, **5000**, or **8000** increases the attack surface.
 
@@ -652,7 +652,7 @@ Expose only the reverse proxy to the public Internet.
 
 ---
 
-### Terminating HTTPS in Every Application
+#### Terminating HTTPS in Every Application
 
 Managing certificates individually for multiple applications becomes difficult.
 
@@ -660,19 +660,19 @@ Centralize TLS termination at the reverse proxy whenever practical.
 
 ---
 
-### Forgetting to Forward Client Information
+#### Forgetting to Forward Client Information
 
 When forwarding requests, ensure the backend receives the original client IP using headers such as `X-Forwarded-For` and the original protocol using `X-Forwarded-Proto`.
 
 ---
 
-### Assuming a Reverse Proxy Replaces Application Security
+#### Assuming a Reverse Proxy Replaces Application Security
 
 A reverse proxy improves security but does not eliminate the need for secure application code, authentication, authorization, or input validation.
 
 ---
 
-# Summary
+## Summary
 
 A reverse proxy sits between clients and backend servers, receiving requests and forwarding them to the appropriate application. Beyond request forwarding, reverse proxies provide TLS termination, routing, caching, compression, logging, security, and static file serving. In production environments, Nginx commonly performs this role, allowing backend applications such as Node.js to remain private and focused on application logic.
 
@@ -680,6 +680,6 @@ Understanding reverse proxies is essential before learning Nginx configuration, 
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Load Balancing**

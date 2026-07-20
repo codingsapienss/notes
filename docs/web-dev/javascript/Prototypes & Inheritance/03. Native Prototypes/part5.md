@@ -14,7 +14,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -29,7 +29,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## The Problem
+### The Problem
 
 Consider this object.
 
@@ -80,7 +80,7 @@ is **not** an array.
 
 ---
 
-## Surprisingly...
+### Surprisingly...
 
 This works.
 
@@ -114,7 +114,7 @@ obj is NOT an array.
 
 ---
 
-## The Secret
+### The Secret
 
 JavaScript methods usually don't care
 
@@ -140,7 +140,7 @@ the method works.
 
 ---
 
-## What Does `join()` Need?
+### What Does `join()` Need?
 
 Internally,
 
@@ -170,7 +170,7 @@ it simply accesses indexed properties and the `length` property.
 
 ---
 
-## Memory Diagram
+### Memory Diagram
 
 ```text
 obj
@@ -210,7 +210,7 @@ obj
 
 ---
 
-## Internal Execution
+### Internal Execution
 
 Conceptually
 
@@ -252,7 +252,7 @@ So it works.
 
 ---
 
-## Method Borrowing Using `call()`
+### Method Borrowing Using `call()`
 
 Instead of copying the method,
 
@@ -278,7 +278,7 @@ JavaScript Prototype
 
 ---
 
-## Why Does This Work?
+### Why Does This Work?
 
 Because
 
@@ -332,7 +332,7 @@ Result
 
 ---
 
-## Array-Like Objects
+### Array-Like Objects
 
 Objects like this
 
@@ -354,7 +354,7 @@ Array-Like Objects
 
 ---
 
-## Definition
+### Definition
 
 An **array-like object** is any object that has:
 
@@ -391,9 +391,9 @@ many array methods still work.
 
 ---
 
-## Borrowing Other Methods
+### Borrowing Other Methods
 
-### `slice()`
+#### `slice()`
 
 ```javascript
 const obj = {
@@ -419,7 +419,7 @@ Output
 
 ---
 
-### `forEach()`
+#### `forEach()`
 
 ```javascript
 Array.prototype.forEach.call(
@@ -441,7 +441,7 @@ C
 
 ---
 
-### `map()`
+#### `map()`
 
 ```javascript
 const result = Array.prototype.map.call(
@@ -461,7 +461,7 @@ Output
 
 ---
 
-### `filter()`
+#### `filter()`
 
 ```javascript
 const numbers = {
@@ -491,7 +491,7 @@ Output
 
 ---
 
-## Method Borrowing Isn't Limited to Arrays
+### Method Borrowing Isn't Limited to Arrays
 
 Suppose
 
@@ -529,7 +529,7 @@ without attaching it to the object.
 
 ---
 
-## Why Is This Useful?
+### Why Is This Useful?
 
 Suppose
 
@@ -567,7 +567,7 @@ This pattern is common in older JavaScript code, although `Object.hasOwn()` is n
 
 ---
 
-## Why Doesn't Every Method Work?
+### Why Doesn't Every Method Work?
 
 Some methods require
 
@@ -613,7 +613,7 @@ Many built-in methods perform internal brand checks to ensure they are operating
 
 ---
 
-## Generic Methods
+### Generic Methods
 
 Some methods are
 
@@ -649,7 +649,7 @@ These methods work with many array-like objects.
 
 ---
 
-## Non-Generic Methods
+### Non-Generic Methods
 
 Some methods require
 
@@ -669,7 +669,7 @@ These cannot usually be borrowed for unrelated objects.
 
 ---
 
-## Borrowing vs Copying
+### Borrowing vs Copying
 
 Copying
 
@@ -707,7 +707,7 @@ obj;
 
 ---
 
-## Visual Comparison
+### Visual Comparison
 
 Copy
 
@@ -743,7 +743,7 @@ Done
 
 ---
 
-## Why Is This Possible?
+### Why Is This Possible?
 
 Remember
 
@@ -781,7 +781,7 @@ just like any other value.
 
 ---
 
-## Real-World Example
+### Real-World Example
 
 Older browser APIs often returned
 
@@ -809,9 +809,9 @@ Today, `Array.from(arguments)` or the spread operator (`[...arguments]`) is gene
 
 ---
 
-## Common Misconceptions
+### Common Misconceptions
 
-### Misconception 1
+#### Misconception 1
 
 Methods belong permanently to their objects.
 
@@ -821,7 +821,7 @@ Methods are simply function values.
 
 ---
 
-### Misconception 2
+#### Misconception 2
 
 Only arrays can use array methods.
 
@@ -831,7 +831,7 @@ Many array methods are generic.
 
 ---
 
-### Misconception 3
+#### Misconception 3
 
 Every native method can be borrowed.
 
@@ -841,9 +841,9 @@ Some require internal engine data.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Trying to borrow
 
@@ -861,7 +861,7 @@ TypeError
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Confusing
 
@@ -881,7 +881,7 @@ unless you explicitly set their prototype.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking
 
@@ -903,7 +903,7 @@ for that invocation.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Use method borrowing only when it makes the code clearer.
 - Prefer modern APIs like `Array.from()` and the spread operator over older borrowing patterns for converting array-like objects.
@@ -912,9 +912,9 @@ for that invocation.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is method borrowing?
+#### Q1. What is method borrowing?
 
 **Answer**
 
@@ -922,7 +922,7 @@ Method borrowing is the practice of using a method from one object on another ob
 
 ---
 
-### Q2. Why does `Array.prototype.join.call(obj)` work?
+#### Q2. Why does `Array.prototype.join.call(obj)` work?
 
 **Answer**
 
@@ -930,7 +930,7 @@ Because `join()` mainly relies on indexed properties (`this[0]`, `this[1]`, ...)
 
 ---
 
-### Q3. What is an array-like object?
+#### Q3. What is an array-like object?
 
 **Answer**
 
@@ -938,7 +938,7 @@ An object with numeric keys and a `length` property that resembles an array but 
 
 ---
 
-### Q4. Can every native method be borrowed?
+#### Q4. Can every native method be borrowed?
 
 **Answer**
 
@@ -946,7 +946,7 @@ No. Some methods, such as those on `Map`, `Set`, and `Date`, require internal ob
 
 ---
 
-### Q5. Why is `Array.prototype.slice.call(arguments)` commonly seen in older code?
+#### Q5. Why is `Array.prototype.slice.call(arguments)` commonly seen in older code?
 
 **Answer**
 
@@ -954,7 +954,7 @@ Because `arguments` is array-like, not a real array. Borrowing `slice()` creates
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Methods in JavaScript are simply function values stored on objects.
 - Method borrowing allows one object to temporarily use another object's method by changing `this`.

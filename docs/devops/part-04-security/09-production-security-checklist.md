@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Production Security Checklist
 
-## Overview
+### Overview
 
 Throughout this part, you learned how to secure a Linux server using multiple layers of protection.
 
@@ -18,7 +18,7 @@ Think of it as the final inspection before opening your server to the Internet.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Production Security Workflow
+## Production Security Workflow
 
 A typical deployment should follow this sequence.
 
@@ -66,9 +66,9 @@ Skipping any step increases operational and security risks.
 
 ---
 
-# 1. Operating System
+## 1. Operating System
 
-## Checklist
+### Checklist
 
 | Check                             | Status |
 | --------------------------------- | ------ |
@@ -90,9 +90,9 @@ systemctl list-unit-files --state=enabled
 
 ---
 
-# 2. User Accounts
+## 2. User Accounts
 
-## Checklist
+### Checklist
 
 | Check                                                  | Status |
 | ------------------------------------------------------ | ------ |
@@ -114,9 +114,9 @@ sudo -l
 
 ---
 
-# 3. SSH Security
+## 3. SSH Security
 
-## Checklist
+### Checklist
 
 | Check                                                   | Status |
 | ------------------------------------------------------- | ------ |
@@ -136,9 +136,9 @@ cat /etc/ssh/sshd_config
 
 ---
 
-# 4. Firewall
+## 4. Firewall
 
-## Checklist
+### Checklist
 
 | Check                                    | Status |
 | ---------------------------------------- | ------ |
@@ -169,9 +169,9 @@ Blocked
 
 ---
 
-# 5. Fail2Ban
+## 5. Fail2Ban
 
-## Checklist
+### Checklist
 
 | Check                 | Status |
 | --------------------- | ------ |
@@ -190,9 +190,9 @@ sudo fail2ban-client status sshd
 
 ---
 
-# 6. File Permissions
+## 6. File Permissions
 
-## Checklist
+### Checklist
 
 | Check                                   | Status |
 | --------------------------------------- | ------ |
@@ -221,9 +221,9 @@ Recommended permissions:
 
 ---
 
-# 7. Secrets
+## 7. Secrets
 
-## Checklist
+### Checklist
 
 | Check                                         | Status |
 | --------------------------------------------- | ------ |
@@ -248,9 +248,9 @@ Stored Securely
 
 ---
 
-# 8. Backups
+## 8. Backups
 
-## Checklist
+### Checklist
 
 | Check                         | Status |
 | ----------------------------- | ------ |
@@ -277,7 +277,7 @@ Remember:
 
 ---
 
-# 9. Application Security
+## 9. Application Security
 
 Before exposing the application publicly:
 
@@ -305,7 +305,7 @@ MongoDB Atlas
 
 ---
 
-# 10. Monitoring
+## 10. Monitoring
 
 A production server should always be monitored.
 
@@ -331,7 +331,7 @@ journalctl
 
 ---
 
-# 11. Final Security Audit
+## 11. Final Security Audit
 
 Before deployment, verify:
 
@@ -377,7 +377,7 @@ Only after every major area has been reviewed should the server be exposed to th
 
 ---
 
-# Example: Production Deployment
+## Example: Production Deployment
 
 Suppose you deploy a Node.js application on an Azure Virtual Machine.
 
@@ -422,7 +422,7 @@ This layered approach significantly reduces the server's attack surface while im
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Treat security as an ongoing process rather than a one-time setup.
 - Follow the Principle of Least Privilege.
@@ -435,33 +435,33 @@ This layered approach significantly reduces the server's attack surface while im
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Deployment Means Security
+#### Assuming Deployment Means Security
 
 A working application is not necessarily a secure application.
 
 ---
 
-### Ignoring Routine Maintenance
+#### Ignoring Routine Maintenance
 
 Security updates, log reviews, and backup verification should continue throughout the server's lifecycle.
 
 ---
 
-### Depending on a Single Security Layer
+#### Depending on a Single Security Layer
 
 No individual control—such as a firewall or SSH keys—provides complete protection. Security depends on multiple independent layers working together.
 
 ---
 
-### Never Reviewing Configurations
+#### Never Reviewing Configurations
 
 As applications evolve, firewall rules, users, secrets, and permissions should be reviewed to ensure they remain appropriate.
 
 ---
 
-# Summary
+## Summary
 
 Securing a Linux server requires more than installing individual tools. A production-ready system combines updated software, secure SSH configuration, firewall rules, intrusion prevention, proper file permissions, protected secrets, reliable backups, HTTPS, and continuous monitoring. By following a structured deployment checklist, administrators can reduce security risks, improve operational stability, and create a repeatable process for deploying production Linux servers.
 
@@ -469,6 +469,6 @@ This concludes **Part 4 – Server Security**.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 5 – Development Environment** (`README.md`)

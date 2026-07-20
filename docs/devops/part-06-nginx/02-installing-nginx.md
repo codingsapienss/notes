@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Installing Nginx
 
-## Overview
+### Overview
 
 In the previous chapter, we learned what Nginx is and why it is an essential component of a production server.
 
@@ -16,7 +16,7 @@ By the end of this chapter, you will have a running Nginx web server capable of 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Before installing Nginx, ensure:
 
@@ -53,7 +53,7 @@ cat /etc/os-release
 
 ---
 
-# Updating Package Information
+## Updating Package Information
 
 Before installing any software, update the package index.
 
@@ -67,7 +67,7 @@ It does **not** install or upgrade software.
 
 ---
 
-# Installing Nginx
+## Installing Nginx
 
 Install Nginx using Ubuntu's package manager.
 
@@ -95,7 +95,7 @@ Once installation completes, Ubuntu automatically creates the Nginx service.
 
 ---
 
-# Verifying Installation
+## Verifying Installation
 
 Check the installed version.
 
@@ -125,7 +125,7 @@ Example output includes:
 
 ---
 
-# Understanding the Nginx Service
+## Understanding the Nginx Service
 
 After installation, Nginx runs as a **systemd service**.
 
@@ -146,7 +146,7 @@ The operating system starts and manages Nginx through systemd.
 
 ---
 
-# Checking Service Status
+## Checking Service Status
 
 Verify whether Nginx is running.
 
@@ -166,7 +166,7 @@ If you see **active (running)**, the installation was successful.
 
 ---
 
-# Starting Nginx
+## Starting Nginx
 
 If the service is stopped:
 
@@ -182,7 +182,7 @@ sudo systemctl status nginx
 
 ---
 
-# Stopping Nginx
+## Stopping Nginx
 
 Stop the web server.
 
@@ -194,7 +194,7 @@ This immediately stops serving HTTP requests.
 
 ---
 
-# Restarting Nginx
+## Restarting Nginx
 
 Restart the service.
 
@@ -212,7 +212,7 @@ Restart briefly interrupts active connections.
 
 ---
 
-# Reloading Nginx
+## Reloading Nginx
 
 Reload configuration without fully stopping the service.
 
@@ -236,7 +236,7 @@ Reload is generally preferred over restart for routine configuration updates bec
 
 ---
 
-# Enabling Nginx at Boot
+## Enabling Nginx at Boot
 
 Enable automatic startup.
 
@@ -272,7 +272,7 @@ Nginx Starts Automatically
 
 ---
 
-# Disabling Automatic Startup
+## Disabling Automatic Startup
 
 Disable startup:
 
@@ -284,7 +284,7 @@ This prevents Nginx from starting automatically after future reboots.
 
 ---
 
-# Testing Nginx
+## Testing Nginx
 
 One of the simplest ways to verify installation is through a web browser.
 
@@ -319,7 +319,7 @@ Default Welcome Page
 
 ---
 
-# Testing from the Terminal
+## Testing from the Terminal
 
 If you have terminal access to the server:
 
@@ -344,7 +344,7 @@ This confirms that Nginx is responding to HTTP requests.
 
 ---
 
-# Checking Listening Ports
+## Checking Listening Ports
 
 Verify which ports Nginx is using.
 
@@ -371,7 +371,7 @@ Initially, only port **80** may be active until SSL is configured.
 
 ---
 
-# Checking Firewall Rules
+## Checking Firewall Rules
 
 If UFW is enabled:
 
@@ -401,7 +401,7 @@ Typical profiles:
 
 ---
 
-# Updating Nginx
+## Updating Nginx
 
 Update package information:
 
@@ -425,7 +425,7 @@ Keeping Nginx updated ensures you receive the latest security patches and bug fi
 
 ---
 
-# Configuration Testing
+## Configuration Testing
 
 Before applying configuration changes, always validate them.
 
@@ -460,7 +460,7 @@ Testing configuration before reloading prevents service outages caused by syntax
 
 ---
 
-# Common systemctl Commands
+## Common systemctl Commands
 
 | Command                   | Purpose              |
 | ------------------------- | -------------------- |
@@ -474,7 +474,7 @@ Testing configuration before reloading prevents service outages caused by syntax
 
 ---
 
-# Typical Installation Workflow
+## Typical Installation Workflow
 
 ```text
 Ubuntu Server
@@ -500,7 +500,7 @@ Ready for Configuration
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you provision a fresh Ubuntu virtual machine for hosting an Express.js application.
 
@@ -534,7 +534,7 @@ The next step is replacing the default site with a configuration that proxies re
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Update package repositories before installation.
 - Install Nginx from Ubuntu's official repositories unless a newer version is specifically required.
@@ -546,44 +546,44 @@ The next step is replacing the default site with a configuration that proxies re
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Editing Configuration Without Testing
+#### Editing Configuration Without Testing
 
 Always run `nginx -t` before reloading to avoid downtime caused by configuration errors.
 
 ---
 
-### Forgetting the Firewall
+#### Forgetting the Firewall
 
 Nginx may be running correctly, but firewall rules can still prevent external access.
 
 ---
 
-### Using Restart for Every Change
+#### Using Restart for Every Change
 
 Restarting unnecessarily interrupts active connections. Reload is usually sufficient after configuration updates.
 
 ---
 
-### Ignoring Service Status
+#### Ignoring Service Status
 
 If Nginx fails to start, check `systemctl status nginx` before troubleshooting other components.
 
 ---
 
-### Exposing Unnecessary Ports
+#### Exposing Unnecessary Ports
 
 Only ports required by the application—typically **80** and **443**—should be publicly accessible.
 
 ---
 
-# Summary
+## Summary
 
 Installing Nginx on Ubuntu is straightforward using the APT package manager. Once installed, Nginx is managed through systemd, allowing administrators to start, stop, reload, and monitor the service. Validating configuration changes with `nginx -t`, enabling automatic startup, and confirming that the server responds to HTTP requests establish a solid foundation for configuring Nginx as a production web server.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Nginx Directory Structure**

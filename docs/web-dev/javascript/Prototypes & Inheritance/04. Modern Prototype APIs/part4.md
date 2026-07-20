@@ -12,7 +12,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -24,7 +24,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## The Evolution of JavaScript
+### The Evolution of JavaScript
 
 JavaScript has evolved through multiple versions while keeping the same inheritance model.
 
@@ -95,7 +95,7 @@ Only the syntax improved.
 
 ---
 
-## 1995 — The Beginning
+### 1995 — The Beginning
 
 When Brendan Eich created JavaScript,
 
@@ -133,7 +133,7 @@ This idea became the foundation of JavaScript.
 
 ---
 
-## Why Not Classes?
+### Why Not Classes?
 
 At the time,
 
@@ -147,7 +147,7 @@ Prototype inheritance required much less language complexity than traditional cl
 
 ---
 
-## Prototype-Based Inheritance
+### Prototype-Based Inheritance
 
 Unlike Java,
 
@@ -175,7 +175,7 @@ No class exists.
 
 ---
 
-## Constructor Functions
+### Constructor Functions
 
 As applications became larger,
 
@@ -219,7 +219,7 @@ This pattern dominated JavaScript for many years.
 
 ---
 
-## F.prototype
+### F.prototype
 
 Constructor functions introduced
 
@@ -249,7 +249,7 @@ This solved memory duplication problems.
 
 ---
 
-## Challenges with Constructor Functions
+### Challenges with Constructor Functions
 
 Although powerful,
 
@@ -277,13 +277,13 @@ Developers wanted cleaner syntax.
 
 ---
 
-## ES5 (2009)
+### ES5 (2009)
 
 ECMAScript 5 introduced several important improvements.
 
 ---
 
-### Object.create()
+#### Object.create()
 
 Developers could now create objects without constructors.
 
@@ -305,7 +305,7 @@ Advantages
 
 ---
 
-### Property Descriptors
+#### Property Descriptors
 
 ES5 introduced
 
@@ -327,7 +327,7 @@ Developers gained precise control over object properties.
 
 ---
 
-### Object.getPrototypeOf()
+#### Object.getPrototypeOf()
 
 Instead of
 
@@ -345,7 +345,7 @@ Official API.
 
 ---
 
-## ES6 (2015)
+### ES6 (2015)
 
 ES6 introduced
 
@@ -385,7 +385,7 @@ Prototype chain remains unchanged.
 
 ---
 
-## extends
+### extends
 
 Inheritance became easier.
 
@@ -407,7 +407,7 @@ Same prototype chain.
 
 ---
 
-## super
+### super
 
 Calling parent constructors became easier.
 
@@ -431,7 +431,7 @@ Different syntax.
 
 ---
 
-## Modern JavaScript
+### Modern JavaScript
 
 Recent versions introduced
 
@@ -447,7 +447,7 @@ They simply improved developer experience.
 
 ---
 
-## Reflect API
+### Reflect API
 
 Modern equivalent of
 
@@ -465,7 +465,7 @@ Designed for meta-programming.
 
 ---
 
-## Object.hasOwn()
+### Object.hasOwn()
 
 Instead of
 
@@ -485,7 +485,7 @@ Works with prototype-less objects.
 
 ---
 
-## Private Fields
+### Private Fields
 
 Modern JavaScript supports
 
@@ -503,7 +503,7 @@ private fields do not change the prototype system.
 
 ---
 
-## Did Classes Replace Prototypes?
+### Did Classes Replace Prototypes?
 
 No.
 
@@ -553,7 +553,7 @@ Exactly the same as constructor functions.
 
 ---
 
-## Constructor Functions vs Classes
+### Constructor Functions vs Classes
 
 | Constructor Functions | ES6 Classes        |
 | --------------------- | ------------------ |
@@ -565,7 +565,7 @@ Exactly the same as constructor functions.
 
 ---
 
-## Why JavaScript Kept Prototypes
+### Why JavaScript Kept Prototypes
 
 Changing the inheritance model would have broken millions of existing websites.
 
@@ -577,7 +577,7 @@ new features are built on top of existing mechanisms instead of replacing them.
 
 ---
 
-## Historical Summary
+### Historical Summary
 
 | Version    | Major Addition                          |
 | ---------- | --------------------------------------- |
@@ -589,7 +589,7 @@ new features are built on top of existing mechanisms instead of replacing them.
 
 ---
 
-## Why Understanding History Matters
+### Why Understanding History Matters
 
 Developers often encounter:
 
@@ -613,9 +613,9 @@ Understanding both styles is essential because they compile to the same prototyp
 
 ---
 
-## Common Misconceptions
+### Common Misconceptions
 
-### Misconception 1
+#### Misconception 1
 
 JavaScript became class-based after ES6.
 
@@ -627,7 +627,7 @@ Classes only provide cleaner syntax.
 
 ---
 
-### Misconception 2
+#### Misconception 2
 
 Constructor functions are obsolete.
 
@@ -639,7 +639,7 @@ Understanding them is important for interviews and maintenance.
 
 ---
 
-### Misconception 3
+#### Misconception 3
 
 Classes use a different inheritance mechanism.
 
@@ -649,9 +649,9 @@ Classes still create and use prototype chains.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Ignoring prototype fundamentals and learning only classes.
 
@@ -661,7 +661,7 @@ class behavior becomes difficult to reason about.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking `extends` copies methods.
 
@@ -669,7 +669,7 @@ It links prototype chains.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Confusing `prototype` with `__proto__`.
 
@@ -679,7 +679,7 @@ Confusing `prototype` with `__proto__`.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Learn prototypes before classes.
 - Use ES6 classes for modern application code.
@@ -689,31 +689,31 @@ Confusing `prototype` with `__proto__`.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Is JavaScript class-based?
+#### Q1. Is JavaScript class-based?
 
-### Q2. What changed in ES6 regarding inheritance?
+#### Q2. What changed in ES6 regarding inheritance?
 
-### Q3. Are classes implemented using prototypes?
+#### Q3. Are classes implemented using prototypes?
 
-### Q4. Why were classes introduced if prototypes already existed?
+#### Q4. Why were classes introduced if prototypes already existed?
 
-### Q5. What advantages does `Object.create()` provide over constructor functions?
+#### Q5. What advantages does `Object.create()` provide over constructor functions?
 
-### Q6. Why was `Object.getPrototypeOf()` introduced?
+#### Q6. Why was `Object.getPrototypeOf()` introduced?
 
-### Q7. What problem does `Object.hasOwn()` solve?
+#### Q7. What problem does `Object.hasOwn()` solve?
 
-### Q8. Why did JavaScript keep prototypes instead of switching to a true class model?
+#### Q8. Why did JavaScript keep prototypes instead of switching to a true class model?
 
-### Q9. What is "syntax sugar" in the context of ES6 classes?
+#### Q9. What is "syntax sugar" in the context of ES6 classes?
 
-### Q10. Should modern developers still learn constructor functions?
+#### Q10. Should modern developers still learn constructor functions?
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - JavaScript has always been a prototype-based language.
 - Constructor functions were the original pattern for reusable object creation.

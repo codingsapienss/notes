@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Configuring Nginx
 
-## Overview
+### Overview
 
 In the previous chapter, we deployed our Node.js application onto the server and verified that it was running correctly.
 
@@ -30,7 +30,7 @@ In production, users never communicate directly with the Node.js process.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -45,7 +45,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Production Architecture
+## Production Architecture
 
 Without Nginx:
 
@@ -79,7 +79,7 @@ Nginx becomes the public-facing web server.
 
 ---
 
-# Why Use Nginx?
+## Why Use Nginx?
 
 Node.js can serve HTTP requests directly.
 
@@ -97,7 +97,7 @@ However, Nginx provides several production advantages.
 
 ---
 
-# Application Before Configuration
+## Application Before Configuration
 
 Suppose our application is running:
 
@@ -121,7 +121,7 @@ Nginx will expose the application on standard web ports instead.
 
 ---
 
-# Nginx Server Blocks
+## Nginx Server Blocks
 
 Each website usually has its own Server Block.
 
@@ -147,7 +147,7 @@ Each file contains the configuration for one website or application.
 
 ---
 
-# Creating a Server Block
+## Creating a Server Block
 
 Create a configuration file.
 
@@ -181,7 +181,7 @@ This configuration forwards incoming requests to the Node.js application.
 
 ---
 
-# Understanding the Configuration
+## Understanding the Configuration
 
 | Directive          | Purpose                                       |
 | ------------------ | --------------------------------------------- |
@@ -193,7 +193,7 @@ This configuration forwards incoming requests to the Node.js application.
 
 ---
 
-# Enabling the Configuration
+## Enabling the Configuration
 
 Create a symbolic link.
 
@@ -219,7 +219,7 @@ Only configurations inside `sites-enabled` are loaded by Nginx.
 
 ---
 
-# Removing the Default Configuration
+## Removing the Default Configuration
 
 Many deployments remove the default website.
 
@@ -231,7 +231,7 @@ This prevents the default Nginx page from being served.
 
 ---
 
-# Testing the Configuration
+## Testing the Configuration
 
 Before reloading Nginx, validate the configuration.
 
@@ -251,7 +251,7 @@ Always test the configuration before reloading the service.
 
 ---
 
-# Reloading Nginx
+## Reloading Nginx
 
 Apply configuration changes.
 
@@ -263,7 +263,7 @@ Reloading applies the new configuration without stopping the service.
 
 ---
 
-# Restart vs Reload
+## Restart vs Reload
 
 | Command   | Effect                                               |
 | --------- | ---------------------------------------------------- |
@@ -274,7 +274,7 @@ Reloading is generally preferred for configuration updates.
 
 ---
 
-# Request Flow
+## Request Flow
 
 Once configured:
 
@@ -302,7 +302,7 @@ Nginx forwards requests to the application running locally.
 
 ---
 
-# Serving Static Files
+## Serving Static Files
 
 Suppose static files are stored here:
 
@@ -328,7 +328,7 @@ Benefits:
 
 ---
 
-# Handling Large File Uploads
+## Handling Large File Uploads
 
 Some applications allow users to upload files.
 
@@ -342,7 +342,7 @@ Without this configuration, large uploads may be rejected.
 
 ---
 
-# Forwarding Client Information
+## Forwarding Client Information
 
 Nginx forwards useful request details.
 
@@ -374,7 +374,7 @@ Applications often use these headers for logging, security, and generating corre
 
 ---
 
-# Complete Request Flow
+## Complete Request Flow
 
 ```text id="ngdep14"
 Users
@@ -396,7 +396,7 @@ Only Nginx is directly exposed to incoming web traffic.
 
 ---
 
-# Deployment Verification
+## Deployment Verification
 
 Verify the following after configuration.
 
@@ -411,7 +411,7 @@ Verify the following after configuration.
 
 ---
 
-# Typical Deployment Workflow
+## Typical Deployment Workflow
 
 ```text id="ngdep15"
 Node.js Running
@@ -439,7 +439,7 @@ Verify Website
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application on an Ubuntu Virtual Machine.
 
@@ -463,7 +463,7 @@ Users now access the application through the domain name without needing to know
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep one Server Block per application.
 - Always test configurations using `nginx -t`.
@@ -475,44 +475,44 @@ Users now access the application through the domain name without needing to know
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Forgetting to Enable the Server Block
+#### Forgetting to Enable the Server Block
 
 Creating a configuration file in `sites-available` alone is not sufficient. It must also be enabled through `sites-enabled`.
 
 ---
 
-### Skipping Configuration Testing
+#### Skipping Configuration Testing
 
 Reloading Nginx without running `nginx -t` may result in service failures caused by configuration errors.
 
 ---
 
-### Incorrect `proxy_pass` Port
+#### Incorrect `proxy_pass` Port
 
 If the Node.js application runs on a different port than configured, requests will fail because Nginx cannot reach the application.
 
 ---
 
-### Restarting Instead of Reloading
+#### Restarting Instead of Reloading
 
 Using `restart` unnecessarily can briefly interrupt active connections, whereas `reload` applies configuration changes with minimal disruption.
 
 ---
 
-### Exposing the Application Port Publicly
+#### Exposing the Application Port Publicly
 
 Node.js applications should typically listen only on `localhost`, allowing Nginx to be the only component exposed to public web traffic.
 
 ---
 
-# Summary
+## Summary
 
 Nginx acts as the public-facing web server for production Node.js applications. It receives incoming HTTP and HTTPS requests, forwards them to the application using a reverse proxy, serves static files efficiently, and provides features such as request routing and upload handling. By creating and enabling Server Blocks, validating configurations, and reloading Nginx safely, administrators can deploy applications in a secure, maintainable, and production-ready manner.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Domain Setup**

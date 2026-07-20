@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Logging
 
-## Overview
+### Overview
 
 A production server should never be treated as a "black box."
 
@@ -27,7 +27,7 @@ In this chapter, we will learn how Nginx logs requests and errors, where log fil
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Logging Matters
+## Why Logging Matters
 
 Imagine a user reports:
 
@@ -87,7 +87,7 @@ Logs provide evidence of what actually happened instead of relying on assumption
 
 ---
 
-# Types of Nginx Logs
+## Types of Nginx Logs
 
 Nginx primarily maintains two types of logs.
 
@@ -100,7 +100,7 @@ These logs work together to help administrators understand server behavior.
 
 ---
 
-# Access Log
+## Access Log
 
 The **Access Log** records information about every HTTP request handled by Nginx.
 
@@ -118,7 +118,7 @@ Every successful or unsuccessful request can generate an access log entry.
 
 ---
 
-# Error Log
+## Error Log
 
 The **Error Log** records problems encountered while processing requests.
 
@@ -135,7 +135,7 @@ Unlike the Access Log, the Error Log focuses on issues rather than normal traffi
 
 ---
 
-# Default Log Locations
+## Default Log Locations
 
 On Ubuntu, the default log directory is:
 
@@ -169,7 +169,7 @@ error.log
 
 ---
 
-# Access Log Example
+## Access Log Example
 
 A sample access log entry:
 
@@ -191,7 +191,7 @@ Breakdown:
 
 ---
 
-# Error Log Example
+## Error Log Example
 
 Example:
 
@@ -210,7 +210,7 @@ Explanation:
 
 ---
 
-# Logging Workflow
+## Logging Workflow
 
 ```text
 Browser
@@ -236,7 +236,7 @@ Problems are written to the Error Log.
 
 ---
 
-# Configuring Access Logs
+## Configuring Access Logs
 
 Basic configuration:
 
@@ -264,7 +264,7 @@ This allows each application to maintain its own access log.
 
 ---
 
-# Configuring Error Logs
+## Configuring Error Logs
 
 Example:
 
@@ -288,7 +288,7 @@ server {
 
 ---
 
-# Error Log Levels
+## Error Log Levels
 
 Nginx supports multiple logging levels.
 
@@ -313,7 +313,7 @@ Higher severity levels generate fewer log entries.
 
 ---
 
-# Custom Log Format
+## Custom Log Format
 
 Nginx allows custom access log formats.
 
@@ -338,7 +338,7 @@ This makes it possible to include only the information required for analysis.
 
 ---
 
-# Common Log Variables
+## Common Log Variables
 
 | Variable           | Description           |
 | ------------------ | --------------------- |
@@ -356,7 +356,7 @@ These variables can be combined to build custom log formats.
 
 ---
 
-# Monitoring Logs in Real Time
+## Monitoring Logs in Real Time
 
 View new log entries continuously:
 
@@ -392,7 +392,7 @@ This is especially useful during deployments and troubleshooting.
 
 ---
 
-# Searching Logs
+## Searching Logs
 
 Find requests containing a keyword:
 
@@ -428,7 +428,7 @@ These standard Linux tools make log analysis much easier.
 
 ---
 
-# Understanding HTTP Status Codes
+## Understanding HTTP Status Codes
 
 Common status codes:
 
@@ -452,7 +452,7 @@ Access logs make it easy to identify frequent error responses.
 
 ---
 
-# Troubleshooting Example
+## Troubleshooting Example
 
 Suppose users report:
 
@@ -490,7 +490,7 @@ Logs significantly reduce troubleshooting time.
 
 ---
 
-# Typical Production Logging
+## Typical Production Logging
 
 ```text
 Internet
@@ -511,7 +511,7 @@ Many organizations forward these logs to centralized logging platforms for long-
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an e-commerce website suddenly experiences slow response times.
 
@@ -535,7 +535,7 @@ The logs reveal that the backend application is overloaded. The team can then in
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep separate access and error logs.
 - Use meaningful custom log formats when needed.
@@ -548,44 +548,44 @@ The logs reveal that the backend application is overloaded. The team can then in
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Ignoring Error Logs
+#### Ignoring Error Logs
 
 Many production issues can be diagnosed quickly by checking the error log first.
 
 ---
 
-### Logging Sensitive Information
+#### Logging Sensitive Information
 
 Passwords, session tokens, API keys, and personal data should never appear in log files.
 
 ---
 
-### Allowing Logs to Grow Indefinitely
+#### Allowing Logs to Grow Indefinitely
 
 Large log files can consume disk space and impact server management. Configure log rotation.
 
 ---
 
-### Deleting Logs During Troubleshooting
+#### Deleting Logs During Troubleshooting
 
 Historical logs often contain valuable information for identifying the root cause of problems.
 
 ---
 
-### Forgetting to Monitor Logs
+#### Forgetting to Monitor Logs
 
 Logs are only useful if they are reviewed or monitored regularly.
 
 ---
 
-# Summary
+## Summary
 
 Logging provides essential visibility into the operation of an Nginx server. Access Logs record every request, while Error Logs capture problems encountered by the server. Together with custom log formats and Linux command-line tools such as `tail`, `grep`, `head`, and `wc`, logs become one of the most valuable resources for monitoring traffic, diagnosing failures, analyzing performance, and maintaining reliable production systems.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **12 - Common Configurations**

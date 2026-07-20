@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Deploying Node.js Application
 
-## Overview
+### Overview
 
 In the previous chapter, we prepared our Linux server by:
 
@@ -26,7 +26,7 @@ Deployment involves much more than simply copying files. A proper deployment inc
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Deployment Architecture
+## Deployment Architecture
 
 A typical deployment looks like this:
 
@@ -67,7 +67,7 @@ At this stage, the application is installed but not yet exposed to users.
 
 ---
 
-# Application Directory
+## Application Directory
 
 Suppose we organize applications like this:
 
@@ -92,7 +92,7 @@ Keeping projects organized simplifies future maintenance.
 
 ---
 
-# Cloning the Project
+## Cloning the Project
 
 Most deployments begin by cloning a Git repository.
 
@@ -124,7 +124,7 @@ Application Files
 
 ---
 
-# Typical Project Structure
+## Typical Project Structure
 
 A typical Express.js project might look like this:
 
@@ -149,7 +149,7 @@ Different frameworks may use different structures, but the deployment process is
 
 ---
 
-# Understanding package.json
+## Understanding package.json
 
 Every Node.js project contains a `package.json` file.
 
@@ -175,7 +175,7 @@ It tells npm which packages the application requires.
 
 ---
 
-# Installing Dependencies
+## Installing Dependencies
 
 Install all project dependencies.
 
@@ -203,7 +203,7 @@ The `node_modules` directory contains all required libraries.
 
 ---
 
-# Production Dependencies
+## Production Dependencies
 
 Some projects distinguish between:
 
@@ -228,7 +228,7 @@ This reduces disk usage and avoids installing unnecessary development tools on p
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 Production applications should not hardcode sensitive information.
 
@@ -262,7 +262,7 @@ Never commit the `.env` file to version control.
 
 ---
 
-# Verifying the Environment
+## Verifying the Environment
 
 Ensure required environment variables exist before starting the application.
 
@@ -284,7 +284,7 @@ Missing variables may prevent the application from starting correctly.
 
 ---
 
-# Building the Application
+## Building the Application
 
 Some frameworks require a production build.
 
@@ -312,7 +312,7 @@ Frameworks such as Express.js often do not require a build step unless additiona
 
 ---
 
-# Running the Application for Testing
+## Running the Application for Testing
 
 Before using PM2, test the application manually.
 
@@ -337,7 +337,7 @@ Testing verifies that:
 
 ---
 
-# Testing the Application
+## Testing the Application
 
 Once running, open:
 
@@ -363,7 +363,7 @@ If the application responds correctly, deployment is progressing successfully.
 
 ---
 
-# Common Deployment Files
+## Common Deployment Files
 
 | File                | Purpose                           |
 | ------------------- | --------------------------------- |
@@ -375,7 +375,7 @@ If the application responds correctly, deployment is progressing successfully.
 
 ---
 
-# Using Git for Updates
+## Using Git for Updates
 
 When a new version is released:
 
@@ -405,7 +405,7 @@ This downloads the latest application code.
 
 ---
 
-# Handling Dependency Updates
+## Handling Dependency Updates
 
 If `package.json` changes after pulling new code:
 
@@ -417,7 +417,7 @@ This installs any newly added packages.
 
 ---
 
-# File Permissions
+## File Permissions
 
 Ensure the deployment user owns the project.
 
@@ -431,7 +431,7 @@ Correct ownership helps avoid permission-related deployment issues.
 
 ---
 
-# Typical Deployment Workflow
+## Typical Deployment Workflow
 
 ```text id="node13"
 SSH
@@ -467,7 +467,7 @@ Ready for PM2
 
 ---
 
-# Preparing for Production
+## Preparing for Production
 
 Before moving to PM2, verify:
 
@@ -484,7 +484,7 @@ Once these checks pass, the application is ready to be managed by PM2.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application to an Ubuntu Virtual Machine.
 
@@ -503,7 +503,7 @@ At this point, the application is running correctly and is ready to be managed b
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Store projects in a consistent directory structure.
 - Keep the `.env` file outside version control.
@@ -515,44 +515,44 @@ At this point, the application is running correctly and is ready to be managed b
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Skipping `npm install`
+#### Skipping `npm install`
 
 Running the application without installing dependencies results in missing module errors.
 
 ---
 
-### Committing the `.env` File
+#### Committing the `.env` File
 
 Sensitive information such as database passwords and API keys should never be stored in the Git repository.
 
 ---
 
-### Forgetting to Reinstall Dependencies After Updates
+#### Forgetting to Reinstall Dependencies After Updates
 
 If new packages are added to `package.json`, running only `git pull` is insufficient.
 
 ---
 
-### Assuming Every Framework Requires a Build
+#### Assuming Every Framework Requires a Build
 
 Frameworks like Express.js usually run directly, while frameworks such as Next.js or TypeScript projects often require a build step.
 
 ---
 
-### Deploying Without Testing
+#### Deploying Without Testing
 
 Always verify the application starts successfully before introducing PM2 or Nginx into the deployment process.
 
 ---
 
-# Summary
+## Summary
 
 Deploying a Node.js application begins by organizing the server, cloning the project from a Git repository, installing dependencies, configuring environment variables, and building the application if necessary. Before moving to production, the application should be tested manually to confirm that it starts correctly, connects to required services, and functions as expected. Completing these steps ensures the application is ready for process management with PM2 and exposure through Nginx.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Configuring Nginx**

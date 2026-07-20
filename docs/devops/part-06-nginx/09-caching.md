@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Caching
 
-## Overview
+### Overview
 
 In the previous chapter, we optimized Nginx using:
 
@@ -32,7 +32,7 @@ Caching is one of the simplest ways to significantly improve the performance of 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -46,7 +46,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Caching?
+## What is Caching?
 
 Caching is the process of **temporarily storing data so it can be reused instead of generating or downloading it again**.
 
@@ -88,7 +88,7 @@ If a valid cached copy exists, the server may not need to process the request ag
 
 ---
 
-# Why is Caching Important?
+## Why is Caching Important?
 
 Suppose a website contains:
 
@@ -143,7 +143,7 @@ Only new or changed resources need to be downloaded.
 
 ---
 
-# Types of Caching
+## Types of Caching
 
 Nginx commonly works with two types of caching.
 
@@ -154,7 +154,7 @@ Nginx commonly works with two types of caching.
 
 ---
 
-# Browser Caching
+## Browser Caching
 
 Browser caching tells the user's browser:
 
@@ -182,7 +182,7 @@ On future visits, the browser can use the local copy if it is still valid.
 
 ---
 
-# Cache-Control Header
+## Cache-Control Header
 
 One of the most important HTTP headers is:
 
@@ -203,7 +203,7 @@ Meaning:
 
 ---
 
-# Expires Header
+## Expires Header
 
 Another commonly used header is:
 
@@ -223,7 +223,7 @@ Modern applications often rely primarily on `Cache-Control`, but `Expires` is st
 
 ---
 
-# Configuring Browser Caching
+## Configuring Browser Caching
 
 Example:
 
@@ -263,7 +263,7 @@ Browser Cache
 
 ---
 
-# Caching CSS and JavaScript
+## Caching CSS and JavaScript
 
 Example:
 
@@ -289,7 +289,7 @@ may be cached for **7 days**.
 
 ---
 
-# Caching Images
+## Caching Images
 
 Example:
 
@@ -307,7 +307,7 @@ Longer cache durations are therefore common.
 
 ---
 
-# Cache-Control Example
+## Cache-Control Example
 
 Example configuration:
 
@@ -333,7 +333,7 @@ The browser can reuse the response for up to one hour before checking for an upd
 
 ---
 
-# Browser Cache Workflow
+## Browser Cache Workflow
 
 ```text
 First Visit
@@ -361,7 +361,7 @@ This reduces network traffic and improves loading speed.
 
 ---
 
-# Proxy Caching
+## Proxy Caching
 
 Unlike browser caching, **Proxy Caching** stores responses on the Nginx server itself.
 
@@ -385,7 +385,7 @@ If the requested content already exists in the proxy cache and is still valid, N
 
 ---
 
-# Why Proxy Cache?
+## Why Proxy Cache?
 
 Suppose an API endpoint returns the same data repeatedly.
 
@@ -421,7 +421,7 @@ This significantly reduces backend workload for cacheable responses.
 
 ---
 
-# Basic Proxy Cache Configuration
+## Basic Proxy Cache Configuration
 
 A simplified example:
 
@@ -456,7 +456,7 @@ This configuration introduces the basic concept of proxy caching. Production dep
 
 ---
 
-# Cache Hit vs Cache Miss
+## Cache Hit vs Cache Miss
 
 ```text
 Request
@@ -482,7 +482,7 @@ A higher cache hit rate generally improves performance.
 
 ---
 
-# What Should Be Cached?
+## What Should Be Cached?
 
 Good candidates:
 
@@ -498,7 +498,7 @@ These resources typically change infrequently or can tolerate short periods of c
 
 ---
 
-# What Should NOT Be Cached?
+## What Should NOT Be Cached?
 
 Avoid caching:
 
@@ -513,7 +513,7 @@ These resources often contain personalized or frequently changing information.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text
 Browser
@@ -539,7 +539,7 @@ Caching can occur at multiple layers, each reducing work for the layer beneath i
 
 ---
 
-# Measuring Cache Benefits
+## Measuring Cache Benefits
 
 Without caching:
 
@@ -569,7 +569,7 @@ This reduces CPU usage, memory consumption, and database activity.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an online shopping website serves:
 
@@ -597,7 +597,7 @@ This combination improves performance while ensuring users always receive accura
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Cache static assets aggressively.
 - Use `Cache-Control` and `Expires` headers appropriately.
@@ -609,33 +609,33 @@ This combination improves performance while ensuring users always receive accura
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Caching Dynamic User Data
+#### Caching Dynamic User Data
 
 Personalized pages should generally not be cached unless the application explicitly supports it.
 
 ---
 
-### Using Excessively Long Cache Durations
+#### Using Excessively Long Cache Durations
 
 Frequently updated resources may continue to display outdated content if cache lifetimes are too long.
 
 ---
 
-### Forgetting Cache Invalidation
+#### Forgetting Cache Invalidation
 
 When content changes, cached copies may need to expire or be replaced so users receive the latest version.
 
 ---
 
-### Caching Sensitive Information
+#### Caching Sensitive Information
 
 Responses containing authentication details, personal information, or payment data should never be cached publicly.
 
 ---
 
-### Skipping Configuration Validation
+#### Skipping Configuration Validation
 
 Always verify configuration changes before reloading Nginx.
 
@@ -645,12 +645,12 @@ sudo nginx -t
 
 ---
 
-# Summary
+## Summary
 
 Caching is one of the most effective performance optimizations available in Nginx. Browser caching stores resources on the client, while proxy caching stores responses on the server. Together, these mechanisms reduce bandwidth usage, improve response times, decrease backend workload, and enhance scalability. By understanding cache headers, expiration policies, cache hits, and cache misses, administrators can design efficient caching strategies that improve performance without compromising data accuracy.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **10 - SSL with Nginx**

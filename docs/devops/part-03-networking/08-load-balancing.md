@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Load Balancing
 
-## Overview
+### Overview
 
 Imagine you deploy a Node.js application on a single server.
 
@@ -38,7 +38,7 @@ Modern cloud platforms and web infrastructures rely heavily on load balancing to
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -52,7 +52,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Do We Need Load Balancing?
+## Why Do We Need Load Balancing?
 
 Consider a single application server.
 
@@ -92,7 +92,7 @@ Each server handles only a portion of the total traffic.
 
 ---
 
-# What is a Load Balancer?
+## What is a Load Balancer?
 
 A **Load Balancer** is a system that receives incoming client requests and distributes them across multiple backend servers.
 
@@ -116,7 +116,7 @@ The client is unaware of which backend server processed the request.
 
 ---
 
-# Load Balancer vs Reverse Proxy
+## Load Balancer vs Reverse Proxy
 
 Many beginners confuse these concepts.
 
@@ -133,9 +133,9 @@ Many modern reverse proxies (including **Nginx**) can also function as load bala
 
 ---
 
-# Vertical Scaling vs Horizontal Scaling
+## Vertical Scaling vs Horizontal Scaling
 
-## Vertical Scaling
+### Vertical Scaling
 
 Increase the resources of an existing server.
 
@@ -172,7 +172,7 @@ Disadvantages:
 
 ---
 
-## Horizontal Scaling
+### Horizontal Scaling
 
 Instead of upgrading one server, add more servers.
 
@@ -199,7 +199,7 @@ Most production cloud systems prefer horizontal scaling.
 
 ---
 
-# Basic Architecture
+## Basic Architecture
 
 ```text id="g5n2vm"
 Internet
@@ -221,7 +221,7 @@ If 900 users connect simultaneously, each server may receive approximately 300 r
 
 ---
 
-# Common Load Balancing Algorithms
+## Common Load Balancing Algorithms
 
 A load balancer decides where to send each request.
 
@@ -229,7 +229,7 @@ Different algorithms make this decision differently.
 
 ---
 
-## Round Robin
+### Round Robin
 
 The simplest algorithm.
 
@@ -257,7 +257,7 @@ Suitable when backend servers have similar capacity.
 
 ---
 
-## Least Connections
+### Least Connections
 
 The request goes to the server handling the fewest active connections.
 
@@ -281,7 +281,7 @@ Useful when request durations vary significantly.
 
 ---
 
-## IP Hash
+### IP Hash
 
 The client's IP address determines the backend server.
 
@@ -299,7 +299,7 @@ This helps maintain user sessions without additional storage.
 
 ---
 
-## Weighted Round Robin
+### Weighted Round Robin
 
 Some servers may have greater processing capacity.
 
@@ -323,7 +323,7 @@ Server A receives more requests because it has a higher weight.
 
 ---
 
-# Health Checks
+## Health Checks
 
 What happens if one backend server crashes?
 
@@ -345,7 +345,7 @@ This improves availability.
 
 ---
 
-# Failover
+## Failover
 
 Suppose three backend servers exist.
 
@@ -379,7 +379,7 @@ Users may never notice the failure.
 
 ---
 
-# Session Persistence (Sticky Sessions)
+## Session Persistence (Sticky Sessions)
 
 Some applications store user session data in server memory.
 
@@ -411,7 +411,7 @@ However, modern applications often avoid this requirement by storing sessions in
 
 ---
 
-# Load Balancing with Nginx
+## Load Balancing with Nginx
 
 Nginx can distribute requests across multiple Node.js servers.
 
@@ -437,7 +437,7 @@ Nginx receives requests and forwards them according to the configured balancing 
 
 ---
 
-# PM2 Cluster Mode vs Load Balancer
+## PM2 Cluster Mode vs Load Balancer
 
 These concepts complement each other but solve different problems.
 
@@ -468,7 +468,7 @@ VM 3 (PM2 Cluster)
 
 ---
 
-# Cloud Load Balancers
+## Cloud Load Balancers
 
 Major cloud providers offer managed load balancers.
 
@@ -490,7 +490,7 @@ Managed services provide:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Imagine your application receives **200,000 users** during a promotional campaign.
 
@@ -550,7 +550,7 @@ This architecture supports high traffic while maintaining availability.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Design applications to be stateless whenever possible.
 - Use shared storage (such as Redis or databases) for session data.
@@ -561,9 +561,9 @@ This architecture supports high traffic while maintaining availability.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Bigger Servers Solve Every Problem
+#### Assuming Bigger Servers Solve Every Problem
 
 Vertical scaling has practical limits.
 
@@ -571,7 +571,7 @@ Horizontal scaling is generally more flexible and resilient for growing applicat
 
 ---
 
-### Storing Sessions Only in Memory
+#### Storing Sessions Only in Memory
 
 When using multiple backend servers, in-memory sessions may lead to inconsistent user experiences.
 
@@ -579,13 +579,13 @@ Use shared session storage or token-based authentication where appropriate.
 
 ---
 
-### Ignoring Health Checks
+#### Ignoring Health Checks
 
 Without health checks, a load balancer may continue sending requests to failed servers.
 
 ---
 
-### Confusing PM2 Cluster with Load Balancing
+#### Confusing PM2 Cluster with Load Balancing
 
 PM2 Cluster distributes work across CPU cores on a single machine.
 
@@ -595,12 +595,12 @@ They solve different scaling problems.
 
 ---
 
-# Summary
+## Summary
 
 Load balancing distributes incoming requests across multiple backend servers, improving scalability, performance, and fault tolerance. Modern load balancers support algorithms such as Round Robin, Least Connections, IP Hash, and Weighted Round Robin while providing health checks and failover capabilities. Nginx can act as both a reverse proxy and a load balancer, making it a common choice for production deployments. Combined with stateless application design and shared session storage, load balancing forms the foundation of highly available web architectures.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Network Troubleshooting**

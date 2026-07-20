@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Node.js Troubleshooting
 
-## Overview
+### Overview
 
 A Node.js application can fail even when the Linux server, Nginx, and networking are functioning correctly.
 
@@ -25,7 +25,7 @@ Understanding how to systematically troubleshoot Node.js applications is essenti
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Node.js Request Flow
+## Node.js Request Flow
 
 Understanding the request flow helps identify where failures occur.
 
@@ -76,7 +76,7 @@ A failure at any stage may cause the application to return an error.
 
 ---
 
-# Node.js Troubleshooting Workflow
+## Node.js Troubleshooting Workflow
 
 Follow the same structured approach for every incident.
 
@@ -120,7 +120,7 @@ Avoid making multiple changes simultaneously.
 
 ---
 
-# Step 1 – Verify Application Status
+## Step 1 – Verify Application Status
 
 Check whether the application is running.
 
@@ -144,7 +144,7 @@ If the application is offline or restarting repeatedly, investigate before attem
 
 ---
 
-# Step 2 – Review Application Logs
+## Step 2 – Review Application Logs
 
 Logs often contain the exact cause of an application failure.
 
@@ -172,7 +172,7 @@ Logs should always be reviewed before modifying application code or configuratio
 
 ---
 
-# Step 3 – Verify Environment Variables
+## Step 3 – Verify Environment Variables
 
 Many production issues occur because required environment variables are missing or incorrect.
 
@@ -197,7 +197,7 @@ A missing environment variable can prevent an application from starting.
 
 ---
 
-# Step 4 – Verify Dependencies
+## Step 4 – Verify Dependencies
 
 Applications may fail after deployment if dependencies are missing.
 
@@ -227,7 +227,7 @@ This usually indicates:
 
 ---
 
-# Step 5 – Verify Database Connectivity
+## Step 5 – Verify Database Connectivity
 
 Many Node.js applications depend on databases.
 
@@ -259,7 +259,7 @@ If the database cannot be reached:
 
 ---
 
-# Step 6 – Check Listening Port
+## Step 6 – Check Listening Port
 
 Verify that the application is listening.
 
@@ -283,7 +283,7 @@ If the application is not listening:
 
 ---
 
-# Step 7 – Test the API Directly
+## Step 7 – Test the API Directly
 
 Bypass Nginx and test the application.
 
@@ -304,7 +304,7 @@ Testing locally helps isolate Nginx from application issues.
 
 ---
 
-# Step 8 – Monitor CPU Usage
+## Step 8 – Monitor CPU Usage
 
 High CPU usage often indicates inefficient code.
 
@@ -329,7 +329,7 @@ Possible causes:
 
 ---
 
-# Step 9 – Monitor Memory Usage
+## Step 9 – Monitor Memory Usage
 
 Gradually increasing memory usage may indicate a memory leak.
 
@@ -371,7 +371,7 @@ Investigate applications that continuously consume more memory over time.
 
 ---
 
-# Step 10 – Check Restart Count
+## Step 10 – Check Restart Count
 
 Unexpected restarts often indicate instability.
 
@@ -391,7 +391,7 @@ Frequent restarts usually require further investigation rather than repeated res
 
 ---
 
-# Common Startup Errors
+## Common Startup Errors
 
 Typical startup failures include:
 
@@ -423,7 +423,7 @@ These errors usually appear immediately in application logs.
 
 ---
 
-# Port Conflict
+## Port Conflict
 
 If another process is already using the application's port:
 
@@ -447,7 +447,7 @@ Resolve the conflict by:
 
 ---
 
-# Unhandled Exceptions
+## Unhandled Exceptions
 
 Unhandled exceptions can terminate a Node.js process.
 
@@ -475,7 +475,7 @@ Applications should log exceptions and fail gracefully whenever possible.
 
 ---
 
-# Debugging with Node.js
+## Debugging with Node.js
 
 Run the application manually.
 
@@ -493,7 +493,7 @@ Running outside PM2 can simplify debugging during development or testing.
 
 ---
 
-# Dependency Problems After Deployment
+## Dependency Problems After Deployment
 
 Common deployment issues include:
 
@@ -518,7 +518,7 @@ Ensure the production environment matches the application's requirements.
 
 ---
 
-# Node.js Troubleshooting Decision Tree
+## Node.js Troubleshooting Decision Tree
 
 ```text id="node16"
 Application Down
@@ -566,7 +566,7 @@ Following this sequence helps isolate the root cause efficiently.
 
 ---
 
-# Useful Node.js Commands
+## Useful Node.js Commands
 
 | Command                 | Purpose                  |
 | ----------------------- | ------------------------ |
@@ -583,7 +583,7 @@ Following this sequence helps isolate the root cause efficiently.
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text id="node17"
 Application Failure
@@ -625,7 +625,7 @@ This workflow minimizes unnecessary changes and speeds up diagnosis.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production API begins returning **500 Internal Server Error** responses after a deployment.
 
@@ -679,7 +679,7 @@ The issue was caused by an incorrect environment variable rather than a problem 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Review application logs before restarting services.
 - Keep environment variables synchronized across environments.
@@ -693,44 +693,44 @@ The issue was caused by an incorrect environment variable rather than a problem 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Restarting the Application Without Reading Logs
+#### Restarting the Application Without Reading Logs
 
 Restarting may temporarily restore service but rarely explains why the failure occurred.
 
 ---
 
-### Ignoring Environment Variables
+#### Ignoring Environment Variables
 
 Many production outages result from incorrect or missing configuration values.
 
 ---
 
-### Assuming Nginx Is the Problem
+#### Assuming Nginx Is the Problem
 
 If Nginx returns a 502 or 500 error, the underlying issue often originates in the Node.js application.
 
 ---
 
-### Overlooking Database Connectivity
+#### Overlooking Database Connectivity
 
 An unavailable database can make an otherwise healthy application appear broken.
 
 ---
 
-### Ignoring Memory Growth
+#### Ignoring Memory Growth
 
 A gradual increase in memory usage often indicates a memory leak that should be addressed before it causes repeated crashes.
 
 ---
 
-# Summary
+## Summary
 
 Node.js troubleshooting requires a systematic approach that begins with verifying the application's status, reviewing logs, checking environment variables, validating dependencies, confirming database connectivity, monitoring system resources, and identifying the root cause. By relying on evidence rather than assumptions, administrators can resolve production issues more efficiently and improve application reliability.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - PM2 Troubleshooting**

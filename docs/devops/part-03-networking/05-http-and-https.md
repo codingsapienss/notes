@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # HTTP and HTTPS
 
-## Overview
+### Overview
 
 After learning about TCP/IP, ports, and DNS, the next step is understanding **how web browsers communicate with web servers**.
 
@@ -20,7 +20,7 @@ Understanding HTTP and HTTPS is essential for web development, APIs, cloud deplo
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -35,7 +35,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is HTTP?
+## What is HTTP?
 
 **HTTP** stands for:
 
@@ -75,7 +75,7 @@ Although HTTP is commonly used for websites, it is also used for:
 
 ---
 
-# Why Do We Need HTTP?
+## Why Do We Need HTTP?
 
 Suppose you enter:
 
@@ -96,7 +96,7 @@ HTTP defines the rules for this communication.
 
 ---
 
-# The Client-Server Model
+## The Client-Server Model
 
 HTTP follows a **request-response model**.
 
@@ -123,7 +123,7 @@ The server waits for incoming requests and sends responses.
 
 ---
 
-# The Lifecycle of an HTTP Request
+## The Lifecycle of an HTTP Request
 
 Consider visiting:
 
@@ -169,7 +169,7 @@ Each step builds upon concepts learned in previous chapters.
 
 ---
 
-# HTTP Request Structure
+## HTTP Request Structure
 
 An HTTP request contains several components.
 
@@ -194,7 +194,7 @@ User-Agent: Chrome
 
 ---
 
-# HTTP Response Structure
+## HTTP Response Structure
 
 The server responds with:
 
@@ -219,7 +219,7 @@ Content-Type: text/html
 
 ---
 
-# HTTP Methods
+## HTTP Methods
 
 HTTP methods define the action the client wants the server to perform.
 
@@ -235,7 +235,7 @@ HTTP methods define the action the client wants the server to perform.
 
 ---
 
-## GET
+### GET
 
 Retrieves information.
 
@@ -255,7 +255,7 @@ GET requests should not modify server data.
 
 ---
 
-## POST
+### POST
 
 Creates new resources.
 
@@ -274,7 +274,7 @@ Typical use cases:
 
 ---
 
-## PUT
+### PUT
 
 Replaces an existing resource.
 
@@ -286,7 +286,7 @@ PUT /users/15
 
 ---
 
-## PATCH
+### PATCH
 
 Updates part of a resource.
 
@@ -298,7 +298,7 @@ PATCH /users/15
 
 ---
 
-## DELETE
+### DELETE
 
 Removes a resource.
 
@@ -310,7 +310,7 @@ DELETE /users/15
 
 ---
 
-# HTTP Headers
+## HTTP Headers
 
 Headers provide additional information about requests and responses.
 
@@ -337,13 +337,13 @@ Headers allow clients and servers to exchange metadata without changing the mess
 
 ---
 
-# HTTP Status Codes
+## HTTP Status Codes
 
 Every HTTP response includes a **status code** indicating the result.
 
 ---
 
-## 1xx — Informational
+### 1xx — Informational
 
 Example:
 
@@ -353,7 +353,7 @@ Example:
 
 ---
 
-## 2xx — Success
+### 2xx — Success
 
 | Code | Meaning    |
 | ---- | ---------- |
@@ -363,7 +363,7 @@ Example:
 
 ---
 
-## 3xx — Redirection
+### 3xx — Redirection
 
 | Code | Meaning            |
 | ---- | ------------------ |
@@ -373,7 +373,7 @@ Example:
 
 ---
 
-## 4xx — Client Errors
+### 4xx — Client Errors
 
 | Code | Meaning            |
 | ---- | ------------------ |
@@ -386,7 +386,7 @@ Example:
 
 ---
 
-## 5xx — Server Errors
+### 5xx — Server Errors
 
 | Code | Meaning               |
 | ---- | --------------------- |
@@ -397,7 +397,7 @@ Example:
 
 ---
 
-# Cookies
+## Cookies
 
 HTTP is **stateless**.
 
@@ -430,7 +430,7 @@ The browser automatically sends the cookie with future requests.
 
 ---
 
-# Sessions
+## Sessions
 
 A **session** stores user-specific information on the server.
 
@@ -464,7 +464,7 @@ This enables features such as:
 
 ---
 
-# What is HTTPS?
+## What is HTTPS?
 
 HTTPS stands for:
 
@@ -488,7 +488,7 @@ HTTPS encrypts all communication between the client and server.
 
 ---
 
-# Why HTTPS is Necessary
+## Why HTTPS is Necessary
 
 Without HTTPS:
 
@@ -532,7 +532,7 @@ Only the intended server can decrypt the data.
 
 ---
 
-# Benefits of HTTPS
+## Benefits of HTTPS
 
 HTTPS provides:
 
@@ -551,7 +551,7 @@ TLS makes HTTPS suitable for production environments.
 
 ---
 
-# HTTP vs HTTPS
+## HTTP vs HTTPS
 
 | HTTP                                | HTTPS                                   |
 | ----------------------------------- | --------------------------------------- |
@@ -563,7 +563,7 @@ TLS makes HTTPS suitable for production environments.
 
 ---
 
-# HTTP Keep-Alive
+## HTTP Keep-Alive
 
 Without Keep-Alive:
 
@@ -599,7 +599,7 @@ This improves performance by reducing connection overhead.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider your production deployment on Azure.
 
@@ -632,7 +632,7 @@ This architecture is commonly used in production systems.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Always use HTTPS for public-facing applications.
 - Return appropriate HTTP status codes.
@@ -643,9 +643,9 @@ This architecture is commonly used in production systems.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming HTTP Is Secure
+#### Assuming HTTP Is Secure
 
 HTTP transmits data in plain text.
 
@@ -653,7 +653,7 @@ Sensitive information should never be sent over HTTP in production.
 
 ---
 
-### Misusing HTTP Methods
+#### Misusing HTTP Methods
 
 For example:
 
@@ -664,7 +664,7 @@ Choose methods based on their intended semantics.
 
 ---
 
-### Ignoring Status Codes
+#### Ignoring Status Codes
 
 Returning `200 OK` for every response makes debugging and client-side error handling difficult.
 
@@ -672,7 +672,7 @@ Use appropriate status codes to accurately reflect the outcome of each request.
 
 ---
 
-### Storing Sensitive Data in Cookies
+#### Storing Sensitive Data in Cookies
 
 Cookies should not contain passwords or confidential information.
 
@@ -680,7 +680,7 @@ Instead, store a session identifier or secure token, and keep sensitive data on 
 
 ---
 
-# Summary
+## Summary
 
 HTTP is the standard protocol that enables communication between clients and servers using a request-response model. It defines methods, headers, status codes, and message formats that power websites and APIs across the Internet. HTTPS extends HTTP by adding TLS encryption, ensuring confidentiality, authentication, and data integrity during transmission.
 
@@ -688,6 +688,6 @@ A solid understanding of HTTP and HTTPS is essential for web development, API de
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - SSL and TLS**

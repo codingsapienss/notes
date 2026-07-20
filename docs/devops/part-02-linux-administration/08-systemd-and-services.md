@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # systemd and Services
 
-## Overview
+### Overview
 
 Modern Linux distributions use **systemd** as their initialization system and service manager.
 
@@ -18,7 +18,7 @@ Understanding systemd is one of the most important skills for Linux administrato
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -33,7 +33,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is systemd?
+## What is systemd?
 
 **systemd** is the initialization system used by most modern Linux distributions.
 
@@ -58,7 +58,7 @@ Every major service on the system is either started directly or indirectly by sy
 
 ---
 
-# What is a Service?
+## What is a Service?
 
 A **service** is a program that runs in the background to perform a specific task.
 
@@ -79,7 +79,7 @@ These services often start automatically during system boot.
 
 ---
 
-# Daemons
+## Daemons
 
 Background services in Linux are commonly called **daemons**.
 
@@ -104,7 +104,7 @@ For example, the SSH daemon continuously waits for incoming SSH connections.
 
 ---
 
-# How systemd Works
+## How systemd Works
 
 The startup sequence is:
 
@@ -132,7 +132,7 @@ systemd ensures that services start in the correct order and only after their de
 
 ---
 
-# What Are Units?
+## What Are Units?
 
 systemd manages different types of resources using **unit files**.
 
@@ -161,7 +161,7 @@ docker.service
 
 ---
 
-# Managing Services
+## Managing Services
 
 systemd is controlled using the `systemctl` command.
 
@@ -173,7 +173,7 @@ sudo systemctl <command> <service>
 
 ---
 
-# Starting a Service
+## Starting a Service
 
 Start Nginx:
 
@@ -185,7 +185,7 @@ The service starts immediately but will not automatically start after a reboot u
 
 ---
 
-# Stopping a Service
+## Stopping a Service
 
 Stop Nginx:
 
@@ -197,7 +197,7 @@ This terminates the running service.
 
 ---
 
-# Restarting a Service
+## Restarting a Service
 
 Restart Nginx:
 
@@ -209,7 +209,7 @@ This is commonly used after changing configuration files.
 
 ---
 
-# Reloading a Service
+## Reloading a Service
 
 Some services support reloading configuration without stopping the process.
 
@@ -223,7 +223,7 @@ Reloading is generally preferred when supported because it avoids interrupting a
 
 ---
 
-# Viewing Service Status
+## Viewing Service Status
 
 Check service status:
 
@@ -251,7 +251,7 @@ Important fields:
 
 ---
 
-# Enabling a Service
+## Enabling a Service
 
 Enable automatic startup during boot:
 
@@ -263,7 +263,7 @@ Now, every time the system starts, systemd automatically starts Nginx.
 
 ---
 
-# Disabling a Service
+## Disabling a Service
 
 Prevent automatic startup:
 
@@ -275,7 +275,7 @@ The service remains installed but will not start automatically during boot.
 
 ---
 
-# Checking Whether a Service Is Enabled
+## Checking Whether a Service Is Enabled
 
 ```bash id="w4z9te"
 systemctl is-enabled nginx
@@ -295,7 +295,7 @@ disabled
 
 ---
 
-# Listing Running Services
+## Listing Running Services
 
 Display active services:
 
@@ -311,7 +311,7 @@ systemctl list-unit-files --type=service
 
 ---
 
-# Viewing Service Logs
+## Viewing Service Logs
 
 systemd integrates with the system journal.
 
@@ -337,7 +337,7 @@ This functionality is extremely useful for troubleshooting.
 
 ---
 
-# System Targets
+## System Targets
 
 Older Linux systems used **runlevels**.
 
@@ -366,7 +366,7 @@ sudo systemctl set-default multi-user.target
 
 ---
 
-# Creating a Custom Service
+## Creating a Custom Service
 
 Suppose you have a Node.js application.
 
@@ -423,7 +423,7 @@ The application now starts automatically after every reboot.
 
 ---
 
-# Common systemctl Commands
+## Common systemctl Commands
 
 | Command                        | Purpose                     |
 | ------------------------------ | --------------------------- |
@@ -440,7 +440,7 @@ The application now starts automatically after every reboot.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 After deploying a Node.js application, a production server might run:
 
@@ -463,7 +463,7 @@ systemd automatically restarts the application, improving reliability without re
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Manage long-running applications using systemd rather than manual terminal sessions.
 - Enable essential services to start automatically during boot.
@@ -473,9 +473,9 @@ systemd automatically restarts the application, improving reliability without re
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Starting a Service Without Enabling It
+#### Starting a Service Without Enabling It
 
 Running:
 
@@ -495,7 +495,7 @@ if automatic startup is required.
 
 ---
 
-### Forgetting `daemon-reload`
+#### Forgetting `daemon-reload`
 
 After creating or modifying a service file, systemd must reload its configuration.
 
@@ -507,7 +507,7 @@ Without this step, systemd may continue using the old configuration.
 
 ---
 
-### Ignoring Service Logs
+#### Ignoring Service Logs
 
 When a service fails to start, the logs often provide the exact cause.
 
@@ -521,7 +521,7 @@ before making configuration changes.
 
 ---
 
-### Running Production Applications Manually
+#### Running Production Applications Manually
 
 Starting applications directly from the terminal means they stop when the terminal session ends or the user logs out.
 
@@ -529,7 +529,7 @@ Use systemd (or a dedicated process manager such as PM2) for production workload
 
 ---
 
-# Summary
+## Summary
 
 systemd is the foundation of service management on modern Linux systems.
 
@@ -539,6 +539,6 @@ Mastering `systemctl`, service units, and `journalctl` is essential for managing
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Log Management**

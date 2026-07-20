@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # PM2 Cluster Mode
 
-## Overview
+### Overview
 
 Modern servers typically have multiple CPU cores.
 
@@ -26,7 +26,7 @@ For CPU-intensive or high-traffic applications, this significantly improves perf
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Single Process vs Cluster Mode
+## Single Process vs Cluster Mode
 
 Without Cluster Mode:
 
@@ -76,7 +76,7 @@ Every CPU core participates in processing requests.
 
 ---
 
-# Why Cluster Mode?
+## Why Cluster Mode?
 
 Suppose your application receives:
 
@@ -114,7 +114,7 @@ Instead of one process doing all the work, multiple processes share the load.
 
 ---
 
-# How PM2 Cluster Mode Works
+## How PM2 Cluster Mode Works
 
 PM2 internally uses the Node.js **Cluster Module**.
 
@@ -142,7 +142,7 @@ Each worker runs an independent instance of the application.
 
 ---
 
-# Starting Cluster Mode
+## Starting Cluster Mode
 
 Start an application using all available CPU cores:
 
@@ -164,7 +164,7 @@ PM2 automatically detects the number of CPU cores.
 
 ---
 
-# Specifying the Number of Instances
+## Specifying the Number of Instances
 
 Instead of using every core:
 
@@ -182,7 +182,7 @@ Useful when:
 
 ---
 
-# Viewing Cluster Processes
+## Viewing Cluster Processes
 
 List running processes:
 
@@ -207,7 +207,7 @@ Each row represents one worker process.
 
 ---
 
-# Request Distribution
+## Request Distribution
 
 Incoming requests are distributed among worker processes.
 
@@ -228,7 +228,7 @@ This prevents a single process from becoming overloaded.
 
 ---
 
-# Worker Failure
+## Worker Failure
 
 Suppose one worker crashes.
 
@@ -258,7 +258,7 @@ The remaining workers continue serving traffic while the failed worker is replac
 
 ---
 
-# Zero-Downtime Reload
+## Zero-Downtime Reload
 
 One of the biggest advantages of Cluster Mode is **zero-downtime reloads**.
 
@@ -292,7 +292,7 @@ This minimizes service interruptions during application updates.
 
 ---
 
-# Restart vs Reload
+## Restart vs Reload
 
 | Restart                      | Reload                           |
 | ---------------------------- | -------------------------------- |
@@ -304,7 +304,7 @@ For clustered production applications, `reload` is generally preferred over `res
 
 ---
 
-# Cluster Mode with Ecosystem Configuration
+## Cluster Mode with Ecosystem Configuration
 
 PM2 also supports Cluster Mode through an ecosystem configuration file.
 
@@ -333,7 +333,7 @@ This approach is preferred for production deployments because configuration rema
 
 ---
 
-# Cluster Mode and Shared Resources
+## Cluster Mode and Shared Resources
 
 Although worker processes execute the same application, they do **not** share memory.
 
@@ -365,7 +365,7 @@ Shared services such as Redis or databases are commonly used when workers need c
 
 ---
 
-# When Should You Use Cluster Mode?
+## When Should You Use Cluster Mode?
 
 Cluster Mode is recommended when:
 
@@ -382,7 +382,7 @@ Cluster Mode may not provide significant benefits for:
 
 ---
 
-# Production Deployment Workflow
+## Production Deployment Workflow
 
 ```text
 Developer
@@ -416,7 +416,7 @@ This workflow minimizes downtime during deployments.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js API is deployed on a virtual machine with **8 CPU cores**.
 
@@ -456,7 +456,7 @@ If one worker crashes due to an unexpected application error, PM2 automatically 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use Cluster Mode on multi-core production servers.
 - Prefer `instances: "max"` unless there is a reason to reserve CPU resources.
@@ -467,44 +467,44 @@ If one worker crashes due to an unexpected application error, PM2 automatically 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming Workers Share Memory
+#### Assuming Workers Share Memory
 
 Each worker is an independent process with its own memory space.
 
 ---
 
-### Using Global Variables for Shared State
+#### Using Global Variables for Shared State
 
 Changes to global variables in one worker are not visible to other workers.
 
 ---
 
-### Using Restart Instead of Reload
+#### Using Restart Instead of Reload
 
 Restarting every worker simultaneously can interrupt active user requests.
 
 ---
 
-### Running Cluster Mode on Single-Core Systems
+#### Running Cluster Mode on Single-Core Systems
 
 Cluster Mode offers little or no performance benefit on servers with only one CPU core.
 
 ---
 
-### Ignoring Worker Crashes
+#### Ignoring Worker Crashes
 
 Repeated worker crashes indicate an application issue that should be investigated rather than relying solely on PM2's automatic restart capability.
 
 ---
 
-# Summary
+## Summary
 
 PM2 Cluster Mode enables Node.js applications to utilize multiple CPU cores by running several worker processes simultaneously. It distributes incoming requests across workers, improves scalability, automatically replaces failed workers, and supports near zero-downtime deployments through sequential reloads. For production environments running on multi-core servers, Cluster Mode is a key feature for improving both performance and reliability.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **07 - Building Node Applications**

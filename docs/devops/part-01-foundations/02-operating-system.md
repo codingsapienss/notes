@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Operating System
 
-## Overview
+### Overview
 
 Before learning Linux administration, it is important to understand what an **Operating System (OS)** actually is.
 
@@ -18,7 +18,7 @@ The operating system acts as a bridge between **hardware** and **software**, mak
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is an Operating System?
+## What is an Operating System?
 
 An **Operating System (OS)** is system software that manages a computer's hardware and provides services that allow applications to run safely and efficiently.
 
@@ -50,7 +50,7 @@ Without an operating system, modern computers would be extremely difficult to us
 
 ---
 
-# Why Do We Need an Operating System?
+## Why Do We Need an Operating System?
 
 Imagine writing a simple program that prints:
 
@@ -72,7 +72,7 @@ This allows developers to focus on building applications rather than managing ha
 
 ---
 
-# Computer Architecture
+## Computer Architecture
 
 A simplified computer system looks like this:
 
@@ -96,11 +96,11 @@ Applications generally do **not** communicate directly with hardware.
 
 ---
 
-# Major Responsibilities of an Operating System
+## Major Responsibilities of an Operating System
 
 An operating system performs many important tasks.
 
-## 1. Process Management
+### 1. Process Management
 
 Every running application becomes a **process**.
 
@@ -118,7 +118,7 @@ If Google Chrome, Spotify, VS Code, and Node.js are running simultaneously, the 
 
 ---
 
-## 2. Memory Management
+### 2. Memory Management
 
 RAM is a limited resource.
 
@@ -133,7 +133,7 @@ Without proper memory management, one faulty application could crash the entire 
 
 ---
 
-## 3. File Management
+### 3. File Management
 
 The operating system organizes data using a **file system**.
 
@@ -149,7 +149,7 @@ When you save a document, the operating system decides where it is physically st
 
 ---
 
-## 4. Device Management
+### 4. Device Management
 
 A computer contains many hardware devices, including:
 
@@ -167,7 +167,7 @@ Applications do not need to know how each hardware component works internally.
 
 ---
 
-## 5. Security
+### 5. Security
 
 The operating system protects the computer by providing:
 
@@ -182,7 +182,7 @@ Linux is particularly well known for its robust security model.
 
 ---
 
-## 6. Networking
+### 6. Networking
 
 Modern operating systems include built-in networking capabilities.
 
@@ -199,7 +199,7 @@ Without these services, accessing websites or communicating with remote servers 
 
 ---
 
-# How Applications Communicate with Hardware
+## How Applications Communicate with Hardware
 
 Applications cannot normally control hardware directly.
 
@@ -232,11 +232,11 @@ This layered approach improves both security and reliability.
 
 ---
 
-# Operating System vs Kernel
+## Operating System vs Kernel
 
 These two terms are often confused.
 
-## Operating System
+### Operating System
 
 The operating system includes:
 
@@ -252,7 +252,7 @@ It provides the complete environment required to operate a computer.
 
 ---
 
-## Kernel
+### Kernel
 
 The **kernel** is the core component of the operating system.
 
@@ -271,7 +271,7 @@ It acts as the bridge between software and hardware.
 
 ---
 
-# Common Operating Systems
+## Common Operating Systems
 
 Some popular operating systems include:
 
@@ -287,7 +287,7 @@ Although these operating systems serve similar purposes, they differ significant
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you start an Express.js application on an Ubuntu server.
 
@@ -309,7 +309,7 @@ Although you only executed one command, the operating system coordinated every s
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Learn operating system fundamentals before studying server administration.
 - Understand that applications rely on the operating system for hardware access.
@@ -318,27 +318,27 @@ Although you only executed one command, the operating system coordinated every s
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Mistaking Linux for a Complete Operating System
+#### Mistaking Linux for a Complete Operating System
 
 Linux is technically the **kernel**, while distributions such as Ubuntu provide the complete operating system.
 
 ---
 
-### Assuming Applications Access Hardware Directly
+#### Assuming Applications Access Hardware Directly
 
 Most applications communicate with hardware through the operating system, not directly.
 
 ---
 
-### Ignoring Operating System Responsibilities
+#### Ignoring Operating System Responsibilities
 
 Tasks such as memory allocation, process scheduling, networking, and file management are handled automatically by the operating system, allowing applications to remain portable and secure.
 
 ---
 
-# Summary
+## Summary
 
 The operating system is the foundation upon which every application runs. It manages hardware resources, provides common services, enforces security, and creates a consistent environment for software development.
 
@@ -348,6 +348,6 @@ In the next chapter, you will learn how the Linux operating system is structured
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Linux Architecture**

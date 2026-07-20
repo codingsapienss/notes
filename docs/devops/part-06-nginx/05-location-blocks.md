@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Location Blocks
 
-## Overview
+### Overview
 
 In the previous chapter, we learned that **Server Blocks** determine **which website or application** should handle an incoming request.
 
@@ -35,7 +35,7 @@ Location Blocks allow Nginx to match URL paths and decide exactly how each reque
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Location Block?
+## What is a Location Block?
 
 A Location Block defines **how Nginx should process requests for a specific URL path**.
 
@@ -67,7 +67,7 @@ Every request entering a Server Block is compared against one or more Location B
 
 ---
 
-# Server Block vs Location Block
+## Server Block vs Location Block
 
 It is important to understand the difference.
 
@@ -95,7 +95,7 @@ Think of it as two stages:
 
 ---
 
-# Basic Example
+## Basic Example
 
 ```nginx
 server {
@@ -133,7 +133,7 @@ and serves content from:
 
 ---
 
-# Request Matching Process
+## Request Matching Process
 
 Every incoming request follows this workflow.
 
@@ -157,7 +157,7 @@ Only one Location Block ultimately handles the request.
 
 ---
 
-# Prefix Match
+## Prefix Match
 
 The most common type is the **prefix match**.
 
@@ -191,7 +191,7 @@ Therefore, this Location Block is selected.
 
 ---
 
-# Root Location
+## Root Location
 
 The root location:
 
@@ -225,7 +225,7 @@ All are initially eligible for this block.
 
 ---
 
-# Exact Match
+## Exact Match
 
 Sometimes only one URL should match.
 
@@ -259,7 +259,7 @@ Exact matching is useful for handling a single endpoint efficiently.
 
 ---
 
-# Longest Prefix Match
+## Longest Prefix Match
 
 Suppose Nginx has:
 
@@ -305,7 +305,7 @@ Nginx chooses the **longest matching prefix**.
 
 ---
 
-# Regular Expression Matching
+## Regular Expression Matching
 
 Nginx also supports regular expressions.
 
@@ -339,7 +339,7 @@ Regular expressions provide flexible matching but should be used carefully becau
 
 ---
 
-# Common Match Types
+## Common Match Types
 
 | Modifier | Meaning                                     |
 | -------- | ------------------------------------------- |
@@ -351,7 +351,7 @@ Regular expressions provide flexible matching but should be used carefully becau
 
 ---
 
-# Example: Static Images
+## Example: Static Images
 
 ```nginx
 location /images/ {
@@ -383,7 +383,7 @@ No backend application is required.
 
 ---
 
-# Example: API Requests
+## Example: API Requests
 
 ```nginx
 location /api/ {
@@ -415,7 +415,7 @@ Nginx forwards matching requests to the backend application.
 
 ---
 
-# Example: Downloads
+## Example: Downloads
 
 ```nginx
 location /downloads/ {
@@ -435,7 +435,7 @@ Nginx serves the file directly from the filesystem.
 
 ---
 
-# Multiple Location Blocks
+## Multiple Location Blocks
 
 One Server Block can contain many Location Blocks.
 
@@ -455,7 +455,7 @@ Each URL can be handled differently.
 
 ---
 
-# Example Configuration
+## Example Configuration
 
 ```nginx
 server {
@@ -495,7 +495,7 @@ all from the same domain.
 
 ---
 
-# Request Flow Example
+## Request Flow Example
 
 Suppose the following request arrives:
 
@@ -551,7 +551,7 @@ No request reaches the Node.js application.
 
 ---
 
-# Location Matching Priority
+## Location Matching Priority
 
 Simplified matching order:
 
@@ -575,7 +575,7 @@ This priority ensures that the most appropriate Location Block handles the reque
 
 ---
 
-# Typical Production Configuration
+## Typical Production Configuration
 
 ```text
 Server Block
@@ -605,7 +605,7 @@ A single website often combines static assets, backend APIs, and downloadable co
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an e-commerce website uses the following URLs:
 
@@ -631,7 +631,7 @@ Static assets are served directly by Nginx, while requests beginning with `/api/
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep Location Blocks organized and easy to read.
 - Use prefix matching whenever possible.
@@ -643,44 +643,44 @@ Static assets are served directly by Nginx, while requests beginning with `/api/
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using Regular Expressions Unnecessarily
+#### Using Regular Expressions Unnecessarily
 
 Simple prefix matches are usually easier to understand and maintain.
 
 ---
 
-### Creating Overlapping Rules
+#### Creating Overlapping Rules
 
 Multiple similar Location Blocks can make request routing confusing if their matching behavior is not clearly understood.
 
 ---
 
-### Serving Static Files Through the Backend
+#### Serving Static Files Through the Backend
 
 Images, CSS, JavaScript, and other static assets should generally be served directly by Nginx instead of passing through Node.js.
 
 ---
 
-### Forgetting to Reload Nginx
+#### Forgetting to Reload Nginx
 
 Configuration changes do not take effect until Nginx is reloaded.
 
 ---
 
-### Ignoring Match Priority
+#### Ignoring Match Priority
 
 A broader Location Block such as `/` may be overridden by a more specific rule, so understanding the matching order is essential.
 
 ---
 
-# Summary
+## Summary
 
 Location Blocks define how Nginx handles individual URL paths after a request has been assigned to a Server Block. They enable administrators to route requests to backend applications, serve static content, deliver downloads, and apply different behaviors to different parts of a website. By understanding prefix matching, exact matching, regular expressions, and match priority, you can build flexible and efficient Nginx configurations for production environments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Reverse Proxy**

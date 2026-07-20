@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Linux Boot Process
 
-## Overview
+### Overview
 
 Every time you power on a Linux computer or virtual machine, a sequence of events takes place before you can log in and start using the system.
 
@@ -18,7 +18,7 @@ Understanding the boot process helps in troubleshooting startup issues, recoveri
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# The Complete Boot Process
+## The Complete Boot Process
 
 The Linux boot sequence can be summarized as:
 
@@ -66,7 +66,7 @@ Each stage depends on the previous one completing successfully.
 
 ---
 
-# Step 1 - Power On
+## Step 1 - Power On
 
 The boot process begins when the computer or virtual machine receives power.
 
@@ -81,13 +81,13 @@ For cloud virtual machines, this process is simulated by the virtualization plat
 
 ---
 
-# Step 2 - BIOS or UEFI
+## Step 2 - BIOS or UEFI
 
 The firmware is responsible for preparing the system before the operating system starts.
 
 Modern systems typically use **UEFI**, while older systems use **BIOS**.
 
-### BIOS
+#### BIOS
 
 BIOS (Basic Input/Output System) is older firmware that:
 
@@ -96,7 +96,7 @@ BIOS (Basic Input/Output System) is older firmware that:
 - Searches for a bootable disk.
 - Transfers control to the bootloader.
 
-### UEFI
+#### UEFI
 
 UEFI (Unified Extensible Firmware Interface) is the modern replacement for BIOS.
 
@@ -112,7 +112,7 @@ Most modern Linux servers use UEFI.
 
 ---
 
-# Step 3 - POST (Power-On Self-Test)
+## Step 3 - POST (Power-On Self-Test)
 
 Before loading the operating system, the firmware performs a hardware check known as the **Power-On Self-Test (POST)**.
 
@@ -131,7 +131,7 @@ If a critical hardware issue is detected, the boot process stops before Linux is
 
 ---
 
-# Step 4 - Bootloader (GRUB)
+## Step 4 - Bootloader (GRUB)
 
 Once the firmware finds a bootable device, it loads the **bootloader**.
 
@@ -148,7 +148,7 @@ On systems with multiple operating systems, GRUB allows the user to choose which
 
 ---
 
-# Step 5 - Linux Kernel
+## Step 5 - Linux Kernel
 
 After GRUB loads the kernel into memory, the Linux kernel takes control of the system.
 
@@ -166,7 +166,7 @@ At this stage, Linux officially begins running.
 
 ---
 
-# Step 6 - initramfs
+## Step 6 - initramfs
 
 The kernel next loads the **Initial RAM File System (initramfs).**
 
@@ -185,7 +185,7 @@ Once the real root file system is mounted, `initramfs` is no longer needed.
 
 ---
 
-# Step 7 - systemd
+## Step 7 - systemd
 
 After mounting the root file system, Linux starts **systemd**.
 
@@ -212,7 +212,7 @@ Examples of services started by systemd include:
 
 ---
 
-# Step 8 - System Services
+## Step 8 - System Services
 
 Once systemd starts, it launches all required services for the operating system.
 
@@ -230,7 +230,7 @@ Some services start automatically during boot, while others start only when need
 
 ---
 
-# Step 9 - Login Prompt
+## Step 9 - Login Prompt
 
 Once startup is complete, Linux presents a login interface.
 
@@ -244,7 +244,7 @@ For cloud servers such as Azure or AWS, users typically connect remotely using S
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 When you start an Ubuntu Virtual Machine in Azure, the following sequence occurs:
 
@@ -289,7 +289,7 @@ the boot process has already completed, networking is active, and the SSH servic
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep the Linux kernel updated with stable releases.
 - Avoid modifying bootloader settings unless necessary.
@@ -299,9 +299,9 @@ the boot process has already completed, networking is active, and the SSH servic
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing BIOS with GRUB
+#### Confusing BIOS with GRUB
 
 BIOS or UEFI prepares the hardware and locates a bootable device.
 
@@ -311,7 +311,7 @@ They perform different roles.
 
 ---
 
-### Assuming systemd Is the Operating System
+#### Assuming systemd Is the Operating System
 
 systemd is the initialization and service manager.
 
@@ -319,13 +319,13 @@ It starts and manages services but is only one component of the operating system
 
 ---
 
-### Thinking Applications Start Immediately After Power On
+#### Thinking Applications Start Immediately After Power On
 
 Before applications can run, Linux must initialize hardware, load the kernel, mount the file system, and start essential services.
 
 ---
 
-# Summary
+## Summary
 
 The Linux boot process is a carefully organized sequence that transforms an inactive computer into a fully operational system.
 
@@ -343,6 +343,6 @@ Understanding this sequence provides a strong foundation for troubleshooting boo
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Terminal, Shell and Bash**

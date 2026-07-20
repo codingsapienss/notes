@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # System Metrics
 
-## Overview
+### Overview
 
 In the previous chapter, we learned why monitoring is essential for production servers.
 
@@ -26,7 +26,7 @@ Understanding these metrics is one of the most important skills for Linux admini
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -41,7 +41,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What Are System Metrics?
+## What Are System Metrics?
 
 System metrics are numerical measurements that describe how a server is performing.
 
@@ -71,7 +71,7 @@ These metrics continuously change as users interact with the server.
 
 ---
 
-# Why System Metrics Matter
+## Why System Metrics Matter
 
 Suppose users report that a website has become slow.
 
@@ -111,7 +111,7 @@ Metrics replace guesswork with measurable information.
 
 ---
 
-# CPU Usage
+## CPU Usage
 
 The CPU performs calculations required by the operating system and applications.
 
@@ -146,7 +146,7 @@ High CPU usage is not always a problem. A busy CPU serving many legitimate reque
 
 ---
 
-# Viewing CPU Usage
+## Viewing CPU Usage
 
 Use:
 
@@ -169,7 +169,7 @@ Example output may display:
 
 ---
 
-# Load Average
+## Load Average
 
 One of Linux's most misunderstood metrics is **Load Average**.
 
@@ -215,7 +215,7 @@ These represent averages over:
 
 ---
 
-# Understanding Load Average
+## Understanding Load Average
 
 Suppose a server has **4 CPU cores**.
 
@@ -231,7 +231,7 @@ Load Average should always be interpreted relative to the number of CPU cores.
 
 ---
 
-# Viewing Load Average
+## Viewing Load Average
 
 Use:
 
@@ -253,7 +253,7 @@ A steadily increasing Load Average may indicate CPU contention or blocked proces
 
 ---
 
-# Running Processes
+## Running Processes
 
 Every running program is represented by one or more processes.
 
@@ -282,7 +282,7 @@ Monitoring processes helps detect:
 
 ---
 
-# Viewing Processes
+## Viewing Processes
 
 List all processes.
 
@@ -306,7 +306,7 @@ Each tool provides a different perspective on process activity.
 
 ---
 
-# Server Uptime
+## Server Uptime
 
 Uptime indicates how long the server has been running since the last reboot.
 
@@ -334,7 +334,7 @@ Long uptimes are common in stable production environments, though occasional reb
 
 ---
 
-# Context Switching
+## Context Switching
 
 A CPU can execute only a limited number of instructions at any given moment.
 
@@ -366,7 +366,7 @@ vmstat
 
 ---
 
-# Disk I/O
+## Disk I/O
 
 Disk I/O measures how quickly data is read from and written to storage.
 
@@ -392,7 +392,7 @@ High disk utilization can become a bottleneck even when CPU usage is low.
 
 ---
 
-# Viewing Disk I/O
+## Viewing Disk I/O
 
 Use:
 
@@ -415,7 +415,7 @@ Useful metrics include:
 
 ---
 
-# Network Activity
+## Network Activity
 
 Servers continuously exchange data with clients.
 
@@ -445,7 +445,7 @@ Monitoring network activity helps identify congestion or unusual traffic pattern
 
 ---
 
-# Viewing Network Information
+## Viewing Network Information
 
 Display network statistics.
 
@@ -469,7 +469,7 @@ These commands help monitor connectivity and interface activity.
 
 ---
 
-# File Descriptors
+## File Descriptors
 
 Linux represents many resources as file descriptors, including:
 
@@ -489,7 +489,7 @@ Administrators should monitor file descriptor usage on high-traffic systems.
 
 ---
 
-# System Metrics Workflow
+## System Metrics Workflow
 
 ```text id="sys13"
 Collect Metrics
@@ -519,7 +519,7 @@ Interpreting metrics requires understanding what is normal for a specific server
 
 ---
 
-# Production Monitoring Architecture
+## Production Monitoring Architecture
 
 ```text id="sys14"
 Users
@@ -539,7 +539,7 @@ Multiple metrics should always be evaluated together rather than in isolation.
 
 ---
 
-# Useful Monitoring Commands
+## Useful Monitoring Commands
 
 | Command      | Purpose                              |
 | ------------ | ------------------------------------ |
@@ -556,7 +556,7 @@ Multiple metrics should always be evaluated together rather than in isolation.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An online ticket booking platform begins responding slowly during a major event.
 
@@ -572,7 +572,7 @@ Based on these metrics, the engineer determines that the primary bottleneck is C
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor multiple metrics together rather than relying on a single value.
 - Establish baseline performance during normal operation.
@@ -584,44 +584,44 @@ Based on these metrics, the engineer determines that the primary bottleneck is C
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming High CPU Usage Is Always Bad
+#### Assuming High CPU Usage Is Always Bad
 
 High CPU usage may simply indicate that the server is actively processing legitimate requests.
 
 ---
 
-### Ignoring Load Average
+#### Ignoring Load Average
 
 CPU utilization alone does not reveal how many processes are waiting for execution.
 
 ---
 
-### Looking at Only One Metric
+#### Looking at Only One Metric
 
 Performance problems often involve multiple system resources. CPU, memory, disk, and network metrics should be analyzed together.
 
 ---
 
-### Ignoring I/O Wait
+#### Ignoring I/O Wait
 
 A server with low CPU utilization can still perform poorly if processes spend significant time waiting for storage operations.
 
 ---
 
-### Troubleshooting Without a Baseline
+#### Troubleshooting Without a Baseline
 
 Without knowing what normal system behavior looks like, it is difficult to determine whether current metrics indicate a genuine problem.
 
 ---
 
-# Summary
+## Summary
 
 System metrics provide a quantitative view of a Linux server's health and performance. By monitoring CPU usage, Load Average, processes, uptime, disk I/O, network activity, and file descriptors, administrators can identify bottlenecks, diagnose issues, and maintain reliable production systems. Understanding how these metrics relate to one another is a fundamental skill for operating Linux servers effectively.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Disk Monitoring**

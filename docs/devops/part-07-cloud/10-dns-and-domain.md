@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # DNS and Domain
 
-## Overview
+### Overview
 
 In the previous chapter, we learned about **Public IP Addresses** and **Private IP Addresses**.
 
@@ -40,7 +40,7 @@ Every website you visit—from search engines to online stores—relies on DNS.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -54,7 +54,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Domain?
+## What is a Domain?
 
 A **Domain Name** is a human-readable name that identifies a website or service on the Internet.
 
@@ -74,7 +74,7 @@ A domain replaces the need to remember numerical IP addresses.
 
 ---
 
-# Why Do We Need DNS?
+## Why Do We Need DNS?
 
 Computers communicate using IP addresses.
 
@@ -108,7 +108,7 @@ DNS bridges the gap between human-friendly names and machine-readable addresses.
 
 ---
 
-# What is DNS?
+## What is DNS?
 
 **DNS (Domain Name System)** is a distributed system that translates domain names into IP addresses.
 
@@ -144,7 +144,7 @@ Applications use the returned IP address to establish network connections.
 
 ---
 
-# How DNS Resolution Works
+## How DNS Resolution Works
 
 Suppose a user enters:
 
@@ -174,7 +174,7 @@ The browser then connects to the server using the resolved IP address.
 
 ---
 
-# DNS Resolution Step-by-Step
+## DNS Resolution Step-by-Step
 
 A more detailed flow is:
 
@@ -206,7 +206,7 @@ This entire process usually completes within milliseconds.
 
 ---
 
-# Domain Registration
+## Domain Registration
 
 A domain must be registered before it can be used.
 
@@ -236,7 +236,7 @@ Once registered, you become responsible for managing its DNS settings.
 
 ---
 
-# Domain Structure
+## Domain Structure
 
 A domain consists of multiple parts.
 
@@ -267,7 +267,7 @@ Here:
 
 ---
 
-# Common DNS Records
+## Common DNS Records
 
 DNS uses different record types for different purposes.
 
@@ -284,7 +284,7 @@ Each record serves a specific role in DNS management.
 
 ---
 
-# A Record
+## A Record
 
 An **A Record** maps a domain directly to an IPv4 address.
 
@@ -302,7 +302,7 @@ When users visit the domain, DNS returns that IP address.
 
 ---
 
-# CNAME Record
+## CNAME Record
 
 A **CNAME (Canonical Name)** points one hostname to another.
 
@@ -320,7 +320,7 @@ Instead of storing another IP address, the DNS lookup continues using the target
 
 ---
 
-# MX Record
+## MX Record
 
 MX records specify which mail servers receive email for a domain.
 
@@ -338,7 +338,7 @@ These records are essential for email services.
 
 ---
 
-# TXT Record
+## TXT Record
 
 TXT records store text information associated with a domain.
 
@@ -361,7 +361,7 @@ Verification Code
 
 ---
 
-# NS Record
+## NS Record
 
 NS records specify the authoritative nameservers for a domain.
 
@@ -383,7 +383,7 @@ These nameservers answer DNS queries for the domain.
 
 ---
 
-# DNS TTL (Time To Live)
+## DNS TTL (Time To Live)
 
 Every DNS record has a **Time To Live (TTL)** value.
 
@@ -409,7 +409,7 @@ Higher TTL values reduce DNS lookups but make changes propagate more slowly.
 
 ---
 
-# Connecting a Domain to Azure
+## Connecting a Domain to Azure
 
 Suppose your Azure Virtual Machine has the Public IP:
 
@@ -431,7 +431,7 @@ Users can now access the website using the domain name instead of the IP address
 
 ---
 
-# DNS in a Typical Deployment
+## DNS in a Typical Deployment
 
 ```text id="dns23"
 Browser
@@ -453,7 +453,7 @@ DNS acts as the bridge between the domain name and the server.
 
 ---
 
-# Subdomains
+## Subdomains
 
 Organizations often use subdomains for different services.
 
@@ -473,7 +473,7 @@ Each subdomain can point to a different service or server.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="dns25"
 Users
@@ -501,7 +501,7 @@ The user interacts only with the domain name while DNS and networking direct the
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company deploys an Express.js application on an Azure Virtual Machine.
 
@@ -527,7 +527,7 @@ The customer never needs to know the server's IP address.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use meaningful domain names that represent your brand or application.
 - Prefer Static Public IP addresses for production websites.
@@ -539,44 +539,44 @@ The customer never needs to know the server's IP address.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using Dynamic Public IPs with Production Domains
+#### Using Dynamic Public IPs with Production Domains
 
 If the Public IP changes, DNS records may point to the wrong server.
 
 ---
 
-### Deleting Important DNS Records
+#### Deleting Important DNS Records
 
 Removing records such as A, MX, or NS can make websites or email services unavailable.
 
 ---
 
-### Setting Extremely High TTL Values During Migration
+#### Setting Extremely High TTL Values During Migration
 
 High TTL values can delay the propagation of DNS changes.
 
 ---
 
-### Creating Duplicate or Unused Records
+#### Creating Duplicate or Unused Records
 
 Unused records make DNS zones more difficult to manage and may create confusion.
 
 ---
 
-### Confusing Domain Registration with DNS Hosting
+#### Confusing Domain Registration with DNS Hosting
 
 Registering a domain gives you ownership of the name, while DNS hosting is the service that stores and answers DNS records for that domain.
 
 ---
 
-# Summary
+## Summary
 
 The Domain Name System (DNS) translates human-readable domain names into IP addresses, allowing users to access Internet services without memorizing numerical addresses. Domains are registered through registrars, while DNS records such as A, CNAME, MX, TXT, and NS determine how traffic and services are routed. By pointing a domain to an Azure-hosted application using the appropriate DNS records, organizations make their services accessible, reliable, and easy for users to reach.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **11 - Cloudflare**

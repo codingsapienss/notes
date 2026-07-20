@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # PM2 Reference
 
-## Overview
+### Overview
 
 PM2 (Process Manager 2) is one of the most popular production process managers for Node.js applications. It ensures applications remain available by automatically restarting crashed processes, supporting zero-downtime reloads, clustering, monitoring, log management, and startup on system boot.
 
@@ -16,7 +16,7 @@ This chapter serves as a complete reference for the most commonly used PM2 comma
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -30,7 +30,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# PM2 Architecture
+## PM2 Architecture
 
 ```text
 Internet
@@ -57,7 +57,7 @@ PM2 manages one or more application instances while ensuring high availability.
 
 ---
 
-# Installing PM2
+## Installing PM2
 
 Install globally using npm.
 
@@ -73,7 +73,7 @@ pm2 -v
 
 ---
 
-# Starting an Application
+## Starting an Application
 
 Start a Node.js application.
 
@@ -99,7 +99,7 @@ Example output:
 
 ---
 
-# Listing Applications
+## Listing Applications
 
 Display all managed processes.
 
@@ -126,7 +126,7 @@ Typical columns:
 
 ---
 
-# Viewing Process Information
+## Viewing Process Information
 
 Display detailed information.
 
@@ -153,7 +153,7 @@ Information includes:
 
 ---
 
-# Restarting Applications
+## Restarting Applications
 
 Restart one application.
 
@@ -175,7 +175,7 @@ pm2 restart all
 
 ---
 
-# Reloading Applications
+## Reloading Applications
 
 Reload without dropping existing connections (cluster mode).
 
@@ -193,7 +193,7 @@ Reload should be preferred over restart for production cluster deployments whene
 
 ---
 
-# Stopping Applications
+## Stopping Applications
 
 Stop an application.
 
@@ -211,7 +211,7 @@ Stopped applications remain registered inside PM2.
 
 ---
 
-# Deleting Applications
+## Deleting Applications
 
 Remove an application from PM2.
 
@@ -229,7 +229,7 @@ Deleting removes the process from PM2's process list.
 
 ---
 
-# Cluster Mode
+## Cluster Mode
 
 Cluster mode utilizes multiple CPU cores.
 
@@ -266,7 +266,7 @@ Cluster mode improves throughput and fault tolerance.
 
 ---
 
-# Monitoring Applications
+## Monitoring Applications
 
 Launch the monitoring dashboard.
 
@@ -284,7 +284,7 @@ Displays:
 
 ---
 
-# Viewing Logs
+## Viewing Logs
 
 View logs for every application.
 
@@ -312,7 +312,7 @@ pm2 flush
 
 ---
 
-# Log Locations
+## Log Locations
 
 Default log directory:
 
@@ -330,7 +330,7 @@ Typical files:
 
 ---
 
-# Saving Process List
+## Saving Process List
 
 Save the current process configuration.
 
@@ -363,7 +363,7 @@ Processes Restored
 
 ---
 
-# Startup Script
+## Startup Script
 
 Generate startup configuration.
 
@@ -387,7 +387,7 @@ pm2 save
 
 ---
 
-# Startup Workflow
+## Startup Workflow
 
 ```text
 Boot
@@ -411,7 +411,7 @@ Applications Online
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 Pass variables directly.
 
@@ -423,7 +423,7 @@ Or define them inside an ecosystem file.
 
 ---
 
-# Ecosystem Configuration
+## Ecosystem Configuration
 
 Example:
 
@@ -455,7 +455,7 @@ This is the recommended approach for production deployments.
 
 ---
 
-# Reload Ecosystem
+## Reload Ecosystem
 
 ```bash
 pm2 reload ecosystem.config.js
@@ -469,7 +469,7 @@ pm2 restart ecosystem.config.js
 
 ---
 
-# Memory Limit Restart
+## Memory Limit Restart
 
 Automatically restart when memory exceeds a threshold.
 
@@ -481,7 +481,7 @@ Useful for protecting production servers from memory leaks.
 
 ---
 
-# Watching Files
+## Watching Files
 
 Automatically restart when files change.
 
@@ -501,7 +501,7 @@ Watching files in production may trigger unnecessary restarts.
 
 ---
 
-# Viewing PM2 Version
+## Viewing PM2 Version
 
 ```bash
 pm2 -v
@@ -515,7 +515,7 @@ pm2 update
 
 ---
 
-# Common PM2 Commands
+## Common PM2 Commands
 
 | Command       | Purpose                      |
 | ------------- | ---------------------------- |
@@ -535,7 +535,7 @@ pm2 update
 
 ---
 
-# PM2 Status Values
+## PM2 Status Values
 
 | Status            | Meaning                |
 | ----------------- | ---------------------- |
@@ -548,7 +548,7 @@ pm2 update
 
 ---
 
-# Production Deployment Workflow
+## Production Deployment Workflow
 
 ```text
 Pull Latest Code
@@ -578,7 +578,7 @@ Reloading avoids unnecessary downtime during deployments.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A production API is returning **502 Bad Gateway** through Nginx.
 
@@ -644,7 +644,7 @@ The upstream application is now reachable and Nginx returns normal responses.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use meaningful application names.
 - Prefer ecosystem configuration files for production.
@@ -659,44 +659,44 @@ The upstream application is now reachable and Nginx returns normal responses.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Forgetting `pm2 save`
+#### Forgetting `pm2 save`
 
 Processes will not automatically restart after a reboot if they are not saved.
 
 ---
 
-### Not Configuring Startup
+#### Not Configuring Startup
 
 Applications that run manually but disappear after reboot usually lack a startup configuration.
 
 ---
 
-### Using Watch Mode in Production
+#### Using Watch Mode in Production
 
 Frequent file changes may cause unnecessary application restarts.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Most PM2-related issues can be diagnosed quickly using `pm2 logs`.
 
 ---
 
-### Restarting Instead of Reloading
+#### Restarting Instead of Reloading
 
 Restarting terminates existing processes before starting new ones, while reloading provides a smoother deployment experience in cluster mode.
 
 ---
 
-# Summary
+## Summary
 
 PM2 is a powerful production process manager that simplifies running, monitoring, and maintaining Node.js applications. Its capabilities—including automatic restarts, clustering, logging, monitoring, startup integration, and zero-downtime reloads—make it an essential tool for modern Node.js deployments. This reference chapter provides a centralized guide to the commands and workflows most commonly used in day-to-day production operations.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **05 - Git Reference**

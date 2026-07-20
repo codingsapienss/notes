@@ -16,7 +16,7 @@
 
 ---
 
-## Why Learn These Scenarios?
+### Why Learn These Scenarios?
 
 Many developers memorize prototype rules without understanding them.
 
@@ -54,7 +54,7 @@ To answer correctly, we need to understand **how JavaScript stores prototype ref
 
 ---
 
-## Mental Model Before We Start
+### Mental Model Before We Start
 
 Always remember one thing:
 
@@ -91,7 +91,7 @@ This single idea explains almost every prototype question.
 
 ---
 
-## Scenario 1 — Replacing the Prototype Object
+### Scenario 1 — Replacing the Prototype Object
 
 Consider
 
@@ -111,7 +111,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Step 1
+#### Step 1
 
 Initially
 
@@ -137,7 +137,7 @@ Object A
 
 ---
 
-### Step 2
+#### Step 2
 
 Create
 
@@ -167,7 +167,7 @@ not a copy.
 
 ---
 
-### Step 3
+#### Step 3
 
 Now execute
 
@@ -209,7 +209,7 @@ Nothing changed inside rabbit.
 
 ---
 
-### Final Memory Diagram
+#### Final Memory Diagram
 
 ```text
                 Rabbit.prototype
@@ -238,7 +238,7 @@ Object A
 
 ---
 
-### Output
+#### Output
 
 ```javascript
 console.log(rabbit.eats);
@@ -252,7 +252,7 @@ true
 
 ---
 
-## Rule
+### Rule
 
 Replacing
 
@@ -268,7 +268,7 @@ Only **future objects** use the new prototype.
 
 ---
 
-## Scenario 2 — Modifying the Existing Prototype
+### Scenario 2 — Modifying the Existing Prototype
 
 Now consider
 
@@ -288,7 +288,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Step 1
+#### Step 1
 
 Initially
 
@@ -306,7 +306,7 @@ Object A
 
 ---
 
-### Step 2
+#### Step 2
 
 Rabbit stores
 
@@ -320,7 +320,7 @@ Object A
 
 ---
 
-### Step 3
+#### Step 3
 
 Execute
 
@@ -367,7 +367,7 @@ Both still reference the same object.
 
 ---
 
-### Output
+#### Output
 
 ```text
 false
@@ -375,7 +375,7 @@ false
 
 ---
 
-## Rule
+### Rule
 
 Changing
 
@@ -389,7 +389,7 @@ Every existing object immediately sees the change.
 
 ---
 
-## Replace vs Modify
+### Replace vs Modify
 
 These two statements are completely different.
 
@@ -423,7 +423,7 @@ This difference is one of the most frequently asked interview questions.
 
 ---
 
-## Scenario 3 — Deleting an Own Property
+### Scenario 3 — Deleting an Own Property
 
 Suppose
 
@@ -445,7 +445,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Before Deletion
+#### Before Deletion
 
 Memory
 
@@ -483,7 +483,7 @@ first.
 
 ---
 
-### Delete
+#### Delete
 
 ```javascript
 delete rabbit.eats;
@@ -547,7 +547,7 @@ true
 
 ---
 
-## Rule
+### Rule
 
 Deleting an own property simply exposes the inherited property again.
 
@@ -555,7 +555,7 @@ Nothing inside the prototype changes.
 
 ---
 
-## Scenario 4 — Deleting the Prototype Property
+### Scenario 4 — Deleting the Prototype Property
 
 Consider
 
@@ -575,7 +575,7 @@ console.log(rabbit.eats);
 
 ---
 
-### Memory Before
+#### Memory Before
 
 ```text
 rabbit
@@ -649,7 +649,7 @@ undefined
 
 ---
 
-## Complete Comparison
+### Complete Comparison
 
 | Operation                   | Existing Objects Affected? | Explanation                                                |
 | --------------------------- | -------------------------- | ---------------------------------------------------------- |
@@ -660,7 +660,7 @@ undefined
 
 ---
 
-## Visualization
+### Visualization
 
 Replacing Prototype
 
@@ -758,7 +758,7 @@ undefined
 
 ---
 
-## Why Does JavaScript Behave This Way?
+### Why Does JavaScript Behave This Way?
 
 Because JavaScript objects store
 
@@ -778,9 +778,9 @@ Replacing the reference affects only future users.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -796,7 +796,7 @@ Only future objects use the new prototype.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking
 
@@ -812,7 +812,7 @@ It modifies the existing prototype object.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking
 
@@ -828,7 +828,7 @@ Only the object's own property is deleted.
 
 ---
 
-### Mistake 4
+#### Mistake 4
 
 Confusing
 
@@ -848,7 +848,7 @@ The other modifies the existing object.
 
 ---
 
-## Best Practices
+### Best Practices
 
 - Avoid replacing a constructor's prototype after creating instances unless you understand the consequences.
 - Prefer modifying the existing prototype if you need to add shared methods.
@@ -857,9 +857,9 @@ The other modifies the existing object.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. Does changing `Constructor.prototype` affect existing objects?
+#### Q1. Does changing `Constructor.prototype` affect existing objects?
 
 **Answer**
 
@@ -867,7 +867,7 @@ No. Existing objects keep their original `[[Prototype]]` reference. Only objects
 
 ---
 
-### Q2. Why does changing `Rabbit.prototype.eats` affect all rabbits?
+#### Q2. Why does changing `Rabbit.prototype.eats` affect all rabbits?
 
 **Answer**
 
@@ -875,7 +875,7 @@ Because all rabbits reference the same prototype object. Modifying that object c
 
 ---
 
-### Q3. What happens after deleting an object's own property?
+#### Q3. What happens after deleting an object's own property?
 
 **Answer**
 
@@ -883,7 +883,7 @@ JavaScript searches the prototype chain. If the property exists in the prototype
 
 ---
 
-### Q4. What happens after deleting a prototype property?
+#### Q4. What happens after deleting a prototype property?
 
 **Answer**
 
@@ -891,7 +891,7 @@ Every object sharing that prototype loses access to that property unless it exis
 
 ---
 
-### Q5. Which is more dangerous: replacing a prototype or modifying it?
+#### Q5. Which is more dangerous: replacing a prototype or modifying it?
 
 **Answer**
 
@@ -899,7 +899,7 @@ They have different effects. Replacing the prototype disconnects future instance
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - JavaScript objects store **references** to prototype objects, not copies.
 - Replacing `Constructor.prototype` creates a new prototype object and does **not** affect existing instances.

@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # SSH Security
 
-## Overview
+### Overview
 
 After deploying a Linux server, the first service most administrators configure is **SSH (Secure Shell)**.
 
@@ -28,7 +28,7 @@ This chapter explains how SSH works and how to configure it securely for product
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is SSH?
+## What is SSH?
 
 SSH stands for:
 
@@ -73,7 +73,7 @@ SSH is commonly used for:
 
 ---
 
-# Why SSH Replaced Telnet
+## Why SSH Replaced Telnet
 
 Before SSH, administrators commonly used **Telnet**.
 
@@ -116,7 +116,7 @@ Today, Telnet is considered insecure for remote administration and has largely b
 
 ---
 
-# How SSH Works
+## How SSH Works
 
 A typical SSH connection follows these steps:
 
@@ -148,7 +148,7 @@ Once authentication succeeds, every command and response is encrypted.
 
 ---
 
-# Default SSH Port
+## Default SSH Port
 
 By default, SSH listens on:
 
@@ -170,7 +170,7 @@ sudo systemctl status ssh
 
 ---
 
-# SSH Authentication Methods
+## SSH Authentication Methods
 
 SSH supports multiple authentication methods.
 
@@ -182,7 +182,7 @@ SSH supports multiple authentication methods.
 
 ---
 
-# Password Authentication
+## Password Authentication
 
 Traditional authentication requires:
 
@@ -216,7 +216,7 @@ Production servers generally avoid password-based authentication.
 
 ---
 
-# SSH Key Authentication
+## SSH Key Authentication
 
 SSH keys use public-key cryptography instead of passwords.
 
@@ -243,7 +243,7 @@ The server verifies that the administrator owns the corresponding private key wi
 
 ---
 
-# Generating SSH Keys
+## Generating SSH Keys
 
 Generate an Ed25519 key pair:
 
@@ -261,7 +261,7 @@ Modern Linux distributions generally recommend **Ed25519** for new deployments.
 
 ---
 
-# SSH Key Files
+## SSH Key Files
 
 Typical files:
 
@@ -274,7 +274,7 @@ Typical files:
 
 ---
 
-## authorized_keys
+### authorized_keys
 
 The server stores trusted public keys inside:
 
@@ -286,7 +286,7 @@ Only users possessing the matching private key can authenticate.
 
 ---
 
-## known_hosts
+### known_hosts
 
 The client stores information about servers it has connected to.
 
@@ -298,7 +298,7 @@ This helps detect situations where a server's identity unexpectedly changes, whi
 
 ---
 
-# OpenSSH Server Configuration
+## OpenSSH Server Configuration
 
 The SSH server configuration file is:
 
@@ -319,9 +319,9 @@ Any configuration changes should be validated before restarting the SSH service.
 
 ---
 
-# Important SSH Configuration Options
+## Important SSH Configuration Options
 
-## Disable Root Login
+### Disable Root Login
 
 ```text id="r3v7kh"
 PermitRootLogin no
@@ -343,7 +343,7 @@ Administrative Tasks
 
 ---
 
-## Disable Password Authentication
+### Disable Password Authentication
 
 If all administrators use SSH keys:
 
@@ -361,7 +361,7 @@ Benefits:
 
 ---
 
-## Allow Specific Users
+### Allow Specific Users
 
 Restrict SSH access:
 
@@ -373,7 +373,7 @@ Only listed users may log in.
 
 ---
 
-## Change the SSH Port
+### Change the SSH Port
 
 Example:
 
@@ -387,7 +387,7 @@ Attackers can discover non-standard ports through port scanning.
 
 ---
 
-## Configure Idle Timeouts
+### Configure Idle Timeouts
 
 Example settings:
 
@@ -401,7 +401,7 @@ Inactive sessions are automatically closed after a defined period.
 
 ---
 
-# Restarting the SSH Service
+## Restarting the SSH Service
 
 After modifying the configuration:
 
@@ -419,7 +419,7 @@ Always verify that the service starts successfully after configuration changes.
 
 ---
 
-# Viewing SSH Logs
+## Viewing SSH Logs
 
 View SSH service logs:
 
@@ -442,7 +442,7 @@ These logs help investigate:
 
 ---
 
-# Production SSH Workflow
+## Production SSH Workflow
 
 A secure SSH connection typically looks like this:
 
@@ -468,11 +468,11 @@ Only administrators connect through SSH.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy a Node.js application on an Azure Virtual Machine.
 
-### Initial Configuration
+#### Initial Configuration
 
 ```text id="q7v2mx"
 Public IP
@@ -503,7 +503,7 @@ This approach is used by many production Linux environments.
 
 ---
 
-# SSH Security Checklist
+## SSH Security Checklist
 
 ```text id="l2k5tw"
 ✓ Use SSH Keys
@@ -525,7 +525,7 @@ This approach is used by many production Linux environments.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use Ed25519 SSH keys for new deployments.
 - Keep private keys secure and never share them.
@@ -537,9 +537,9 @@ This approach is used by many production Linux environments.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Sharing Private Keys
+#### Sharing Private Keys
 
 Every administrator should use a unique SSH key pair.
 
@@ -547,19 +547,19 @@ Sharing private keys reduces accountability and increases security risk.
 
 ---
 
-### Leaving Password Authentication Enabled Unnecessarily
+#### Leaving Password Authentication Enabled Unnecessarily
 
 If all administrators use SSH keys, disabling password authentication significantly reduces the attack surface.
 
 ---
 
-### Disabling Root Login Before Creating Another Administrator
+#### Disabling Root Login Before Creating Another Administrator
 
 Always ensure another user has `sudo` privileges before disabling root access.
 
 ---
 
-### Assuming a Different SSH Port Makes the Server Secure
+#### Assuming a Different SSH Port Makes the Server Secure
 
 Changing the SSH port only reduces automated scanning noise.
 
@@ -567,12 +567,12 @@ Strong authentication and proper configuration remain the primary security contr
 
 ---
 
-# Summary
+## Summary
 
 SSH is the standard protocol for securely administering Linux servers over encrypted connections. By using public-key authentication, disabling direct root and password-based logins where appropriate, configuring OpenSSH securely, and following production best practices, administrators can greatly reduce the risk of unauthorized access. A properly secured SSH configuration forms the foundation of secure remote server management.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - UFW Firewall**

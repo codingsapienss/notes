@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Nginx Directory Structure
 
-## Overview
+### Overview
 
 After installing Nginx, it is important to understand **where everything is stored**.
 
@@ -22,7 +22,7 @@ Before creating reverse proxies or hosting websites, you should become familiar 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -36,7 +36,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Nginx Installation Layout
+## Nginx Installation Layout
 
 A default Ubuntu installation creates several directories.
 
@@ -68,7 +68,7 @@ The web root is typically:
 
 ---
 
-# Overall Directory Structure
+## Overall Directory Structure
 
 A simplified view:
 
@@ -94,7 +94,7 @@ Each directory has a dedicated responsibility.
 
 ---
 
-# The Main Configuration File
+## The Main Configuration File
 
 The central configuration file is:
 
@@ -133,7 +133,7 @@ Almost every other configuration file is eventually loaded from `nginx.conf`.
 
 ---
 
-# Configuration Hierarchy
+## Configuration Hierarchy
 
 The configuration loading process looks like this.
 
@@ -154,7 +154,7 @@ Nginx starts by reading `nginx.conf`, which then includes additional configurati
 
 ---
 
-# The sites-available Directory
+## The sites-available Directory
 
 Location:
 
@@ -183,7 +183,7 @@ Think of this directory as a library of available site configurations.
 
 ---
 
-# The sites-enabled Directory
+## The sites-enabled Directory
 
 Location:
 
@@ -208,7 +208,7 @@ Only the configurations present in this directory are loaded by Nginx.
 
 ---
 
-# How Sites are Enabled
+## How Sites are Enabled
 
 ```text
 sites-available
@@ -229,7 +229,7 @@ This approach allows administrators to enable or disable websites without deleti
 
 ---
 
-# Creating a Symbolic Link
+## Creating a Symbolic Link
 
 Enable a site:
 
@@ -252,7 +252,7 @@ my-app -> /etc/nginx/sites-available/my-app
 
 ---
 
-# Disabling a Site
+## Disabling a Site
 
 Remove the symbolic link.
 
@@ -270,7 +270,7 @@ The configuration file remains safely stored inside `sites-available`.
 
 ---
 
-# The conf.d Directory
+## The conf.d Directory
 
 Location:
 
@@ -296,7 +296,7 @@ Many organizations use this directory for shared configuration that applies acro
 
 ---
 
-# The snippets Directory
+## The snippets Directory
 
 Location:
 
@@ -322,7 +322,7 @@ Instead of duplicating configuration across many sites, snippets allow common se
 
 ---
 
-# The modules-enabled Directory
+## The modules-enabled Directory
 
 Location:
 
@@ -347,7 +347,7 @@ Most standard deployments rarely require manual changes here.
 
 ---
 
-# MIME Types
+## MIME Types
 
 Location:
 
@@ -370,7 +370,7 @@ When a browser requests a file, Nginx uses these mappings to send the correct `C
 
 ---
 
-# Proxy Parameters
+## Proxy Parameters
 
 Useful helper files include:
 
@@ -388,7 +388,7 @@ For Node.js applications, `proxy_params` is commonly included in reverse proxy c
 
 ---
 
-# Log Directory
+## Log Directory
 
 Logs are stored separately.
 
@@ -414,7 +414,7 @@ These logs are essential for troubleshooting.
 
 ---
 
-# Web Root
+## Web Root
 
 The default web root is:
 
@@ -439,7 +439,7 @@ For Node.js applications using a reverse proxy, the application code is usually 
 
 ---
 
-# Viewing the Directory Structure
+## Viewing the Directory Structure
 
 List the configuration directory:
 
@@ -469,7 +469,7 @@ These commands help you quickly inspect an Nginx installation.
 
 ---
 
-# Configuration Workflow
+## Configuration Workflow
 
 A common workflow when adding a new application:
 
@@ -496,7 +496,7 @@ This minimizes the risk of configuration errors affecting existing websites.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy an Express.js application named `inventory-api`.
 
@@ -535,7 +535,7 @@ If the configuration contains no errors, Nginx begins serving requests for the n
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep global settings inside `nginx.conf`.
 - Store individual website configurations in `sites-available`.
@@ -547,44 +547,44 @@ If the configuration contains no errors, Nginx begins serving requests for the n
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Editing Files in sites-enabled Directly
+#### Editing Files in sites-enabled Directly
 
 Since files in `sites-enabled` are symbolic links, edit the original configuration in `sites-available` instead.
 
 ---
 
-### Deleting Configuration Files Instead of Disabling Them
+#### Deleting Configuration Files Instead of Disabling Them
 
 Removing the symbolic link is safer than deleting the configuration file.
 
 ---
 
-### Ignoring Configuration Organization
+#### Ignoring Configuration Organization
 
 Placing every setting inside `nginx.conf` makes large deployments difficult to maintain.
 
 ---
 
-### Forgetting to Test Configuration
+#### Forgetting to Test Configuration
 
 Always validate configuration with `nginx -t` before reloading the service.
 
 ---
 
-### Mixing Application Code with Web Server Configuration
+#### Mixing Application Code with Web Server Configuration
 
 Keep application source code under directories such as `/var/www/my-app` and Nginx configuration under `/etc/nginx`.
 
 ---
 
-# Summary
+## Summary
 
 Nginx organizes its configuration into a modular directory structure that separates global settings, individual site configurations, reusable snippets, logs, and web content. Understanding directories such as `sites-available`, `sites-enabled`, `conf.d`, `snippets`, and `/var/log/nginx` is essential for managing production servers efficiently. This structure allows administrators to enable, disable, and maintain websites with minimal risk while keeping configurations clean and scalable.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - Server Blocks**

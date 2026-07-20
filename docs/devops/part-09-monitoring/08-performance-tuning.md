@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Performance Tuning
 
-## Overview
+### Overview
 
 Monitoring helps administrators identify performance problems, but **performance tuning** focuses on improving the system after those problems have been identified.
 
@@ -54,7 +54,7 @@ A bottleneck in any one of these layers can affect the overall performance of th
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -69,7 +69,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Performance Tuning?
+## What is Performance Tuning?
 
 Performance tuning is the process of improving system efficiency by reducing resource usage and increasing throughput.
 
@@ -99,7 +99,7 @@ The objective is not simply to make the server faster, but to make it **more eff
 
 ---
 
-# Performance Bottlenecks
+## Performance Bottlenecks
 
 Every production system has bottlenecks.
 
@@ -141,7 +141,7 @@ Improving CPU performance will not solve a database bottleneck.
 
 ---
 
-# Performance Tuning Workflow
+## Performance Tuning Workflow
 
 A systematic approach should always be followed.
 
@@ -171,7 +171,7 @@ Always measure before and after making changes.
 
 ---
 
-# Linux Performance Optimization
+## Linux Performance Optimization
 
 Start by ensuring the operating system is healthy.
 
@@ -211,7 +211,7 @@ Optimizing applications without understanding system health often leads to ineff
 
 ---
 
-# Nginx Performance Tuning
+## Nginx Performance Tuning
 
 Nginx is designed for high performance, but proper configuration improves efficiency.
 
@@ -246,7 +246,7 @@ Serving static files directly from Nginx reduces the workload on the application
 
 ---
 
-# PM2 Optimization
+## PM2 Optimization
 
 PM2 improves performance through process management.
 
@@ -280,7 +280,7 @@ Cluster Mode is especially beneficial on multi-core servers.
 
 ---
 
-# Node.js Optimization
+## Node.js Optimization
 
 Node.js performance depends on writing efficient application code.
 
@@ -313,7 +313,7 @@ A blocked event loop delays all incoming requests.
 
 ---
 
-# Increasing Node.js Memory
+## Increasing Node.js Memory
 
 Applications handling large datasets may require additional memory.
 
@@ -329,7 +329,7 @@ Only increase memory limits after confirming that memory usage is legitimate and
 
 ---
 
-# Database Optimization
+## Database Optimization
 
 Many performance problems originate in the database rather than the application.
 
@@ -364,7 +364,7 @@ A single slow query can delay every request that depends on it.
 
 ---
 
-# Connection Pooling
+## Connection Pooling
 
 Opening a new database connection for every request is inefficient.
 
@@ -386,7 +386,7 @@ Connection pooling reduces latency and conserves database resources.
 
 ---
 
-# Caching
+## Caching
 
 Caching stores frequently requested data for faster retrieval.
 
@@ -417,7 +417,7 @@ Caching reduces load on backend services.
 
 ---
 
-# Compression
+## Compression
 
 Compressing responses reduces bandwidth usage.
 
@@ -448,7 +448,7 @@ Compression reduces response size without changing application behavior.
 
 ---
 
-# Performance Testing
+## Performance Testing
 
 After optimization, verify the results.
 
@@ -466,7 +466,7 @@ Optimization without measurement provides little value.
 
 ---
 
-# Scaling vs Optimization
+## Scaling vs Optimization
 
 Optimization and scaling are different approaches.
 
@@ -481,7 +481,7 @@ Optimize the application before increasing server size whenever practical.
 
 ---
 
-# Useful Commands
+## Useful Commands
 
 | Command                     | Purpose                       |
 | --------------------------- | ----------------------------- |
@@ -497,7 +497,7 @@ Optimize the application before increasing server size whenever practical.
 
 ---
 
-# Performance Optimization Workflow
+## Performance Optimization Workflow
 
 ```text id="perf14"
 Users Report Slowness
@@ -531,7 +531,7 @@ Continuous monitoring ensures that optimizations produce measurable improvements
 
 ---
 
-# Production Architecture
+## Production Architecture
 
 ```text id="perf15"
 Users
@@ -556,7 +556,7 @@ Each layer contributes to the application's overall performance.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 An e-commerce website becomes slow during a seasonal sale.
 
@@ -575,7 +575,7 @@ The bottleneck was the database, not the operating system.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Measure performance before making changes.
 - Optimize the identified bottleneck first.
@@ -589,44 +589,44 @@ The bottleneck was the database, not the operating system.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Optimizing Without Measuring
+#### Optimizing Without Measuring
 
 Making changes without collecting baseline metrics makes it impossible to determine whether performance has improved.
 
 ---
 
-### Assuming the CPU Is the Problem
+#### Assuming the CPU Is the Problem
 
 Performance bottlenecks frequently originate in memory, storage, networking, or the database.
 
 ---
 
-### Increasing Server Size Too Early
+#### Increasing Server Size Too Early
 
 Scaling infrastructure before optimizing software can unnecessarily increase operational costs.
 
 ---
 
-### Ignoring Database Performance
+#### Ignoring Database Performance
 
 Poorly optimized queries often have a greater impact than application code.
 
 ---
 
-### Making Multiple Changes Simultaneously
+#### Making Multiple Changes Simultaneously
 
 Changing several components at once makes it difficult to determine which optimization produced the observed results.
 
 ---
 
-# Summary
+## Summary
 
 Performance tuning is the process of improving the efficiency of a production system by identifying and removing bottlenecks. Effective optimization involves monitoring system metrics, analyzing application behavior, improving Nginx configuration, optimizing PM2 and Node.js, tuning database queries, implementing caching, and validating every change through measurement. Performance tuning is an ongoing process rather than a one-time activity.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Maintenance Checklist**

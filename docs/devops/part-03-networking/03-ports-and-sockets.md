@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Ports and Sockets
 
-## Overview
+### Overview
 
 In the previous chapter, you learned that **IP addresses** identify devices on a network. However, an IP address alone is not enough.
 
@@ -29,7 +29,7 @@ Ports and sockets form the backbone of application-level networking.
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Are Ports Needed?
+## Why Are Ports Needed?
 
 Imagine a company office.
 
@@ -83,7 +83,7 @@ The IP address identifies the **device**, while the port identifies the **applic
 
 ---
 
-# What is a Port?
+## What is a Port?
 
 A **port** is a logical communication endpoint assigned to an application.
 
@@ -103,7 +103,7 @@ The operating system receives the packet and forwards it to the application list
 
 ---
 
-# Port Number Range
+## Port Number Range
 
 Ports are represented by **16-bit numbers**.
 
@@ -123,7 +123,7 @@ They are divided into three categories.
 
 ---
 
-# Common Port Numbers
+## Common Port Numbers
 
 | Port  | Service     |
 | ----- | ----------- |
@@ -145,7 +145,7 @@ Knowing these ports is extremely useful during deployment and troubleshooting.
 
 ---
 
-# One Server, Multiple Applications
+## One Server, Multiple Applications
 
 Consider an Azure Virtual Machine running several services.
 
@@ -164,7 +164,7 @@ All applications share the same IP address but listen on different ports.
 
 ---
 
-# What Does "Listening on a Port" Mean?
+## What Does "Listening on a Port" Mean?
 
 When an application starts, it asks the operating system to reserve a port.
 
@@ -182,7 +182,7 @@ The operating system records this information and waits for requests on that por
 
 ---
 
-# What is a Socket?
+## What is a Socket?
 
 A **socket** is one endpoint of a network communication.
 
@@ -204,7 +204,7 @@ When two applications communicate, they do so through sockets.
 
 ---
 
-# Client Socket and Server Socket
+## Client Socket and Server Socket
 
 A connection always has two endpoints.
 
@@ -237,7 +237,7 @@ Notice that:
 
 ---
 
-# Ephemeral Ports
+## Ephemeral Ports
 
 Clients usually do **not** use ports like 80 or 443.
 
@@ -261,7 +261,7 @@ After the communication ends, the temporary port is released.
 
 ---
 
-# How a Connection is Established
+## How a Connection is Established
 
 Suppose you visit:
 
@@ -289,7 +289,7 @@ Nginx listens on port **443**.
 
 ---
 
-# TCP Socket Lifecycle
+## TCP Socket Lifecycle
 
 A typical TCP connection follows these stages.
 
@@ -313,7 +313,7 @@ Once closed, the socket is destroyed.
 
 ---
 
-# TCP vs UDP Ports
+## TCP vs UDP Ports
 
 Both TCP and UDP use port numbers.
 
@@ -331,7 +331,7 @@ Port **53**, for example, can exist for both TCP and UDP because they are differ
 
 ---
 
-# Viewing Open Ports in Linux
+## Viewing Open Ports in Linux
 
 Display listening sockets:
 
@@ -374,7 +374,7 @@ netstat -tuln
 
 ---
 
-# Finding Which Process Uses a Port
+## Finding Which Process Uses a Port
 
 Using `lsof`:
 
@@ -394,7 +394,7 @@ This is useful when troubleshooting port conflicts.
 
 ---
 
-# Port Conflicts
+## Port Conflicts
 
 Only one process can normally bind to the same IP address, port, and protocol combination.
 
@@ -416,7 +416,7 @@ The second application will fail to start unless configured to use a different p
 
 ---
 
-# Firewalls and Ports
+## Firewalls and Ports
 
 A service may be listening on a port, but external users still cannot access it if the firewall blocks the traffic.
 
@@ -436,7 +436,7 @@ Both the application **and** the firewall must allow the connection.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider your production deployment.
 
@@ -469,7 +469,7 @@ Nginx listens on ports **80** and **443**, while forwarding requests internally 
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use standard ports whenever practical.
 - Avoid exposing databases directly to the public Internet.
@@ -479,9 +479,9 @@ Nginx listens on ports **80** and **443**, while forwarding requests internally 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing IP Addresses with Ports
+#### Confusing IP Addresses with Ports
 
 An IP address identifies the device.
 
@@ -489,7 +489,7 @@ A port identifies the application running on that device.
 
 ---
 
-### Assuming an Open Port Means an Application Is Reachable
+#### Assuming an Open Port Means an Application Is Reachable
 
 Firewalls, security groups, reverse proxies, or routing issues can still prevent access.
 
@@ -497,13 +497,13 @@ Always verify the complete network path.
 
 ---
 
-### Exposing Internal Services
+#### Exposing Internal Services
 
 Services such as MongoDB, Redis, and PostgreSQL should generally only be accessible from trusted internal networks.
 
 ---
 
-### Forgetting to Check Port Conflicts
+#### Forgetting to Check Port Conflicts
 
 If an application fails to start with an "Address already in use" error, inspect the port using:
 
@@ -519,7 +519,7 @@ sudo lsof -i :PORT
 
 ---
 
-# Summary
+## Summary
 
 Ports enable multiple applications to share the same IP address by directing incoming traffic to the correct service. Sockets represent the communication endpoints that applications use to exchange data. Together, ports and sockets allow web servers, databases, APIs, SSH servers, and countless other applications to communicate efficiently over TCP or UDP.
 
@@ -527,6 +527,6 @@ Understanding ports and sockets is fundamental for deploying applications, confi
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - DNS**

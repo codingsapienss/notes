@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Linux Interview Preparation
 
-## Overview
+### Overview
 
 Linux is one of the most frequently tested topics in Backend, DevOps, Cloud, Site Reliability Engineering (SRE), and System Administration interviews.
 
@@ -23,7 +23,7 @@ This chapter covers:
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -35,7 +35,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Linux Knowledge Roadmap
+## Linux Knowledge Roadmap
 
 ```text id="l1road"
 Linux Basics
@@ -79,7 +79,7 @@ Production Scenarios
 
 ---
 
-# Interview Expectations
+## Interview Expectations
 
 Interviewers usually evaluate:
 
@@ -96,9 +96,9 @@ Interviewers usually evaluate:
 
 ---
 
-# Beginner Interview Questions
+## Beginner Interview Questions
 
-## Q1. What is Linux?
+### Q1. What is Linux?
 
 **Answer**
 
@@ -106,7 +106,7 @@ Linux is an open-source Unix-like operating system kernel created by Linus Torva
 
 ---
 
-## Q2. What is a Linux Distribution?
+### Q2. What is a Linux Distribution?
 
 Examples:
 
@@ -122,7 +122,7 @@ A distribution packages the Linux kernel together with software, libraries, inst
 
 ---
 
-## Q3. Difference between Linux Kernel and Operating System?
+### Q3. Difference between Linux Kernel and Operating System?
 
 | Linux Kernel       | Operating System          |
 | ------------------ | ------------------------- |
@@ -134,7 +134,7 @@ A distribution packages the Linux kernel together with software, libraries, inst
 
 ---
 
-## Q4. What is the Linux Shell?
+### Q4. What is the Linux Shell?
 
 A shell is a command interpreter that allows users to interact with the operating system.
 
@@ -147,15 +147,15 @@ Popular shells include:
 
 ---
 
-## Q5. What is the Root Directory?
+### Q5. What is the Root Directory?
 
 The root directory (`/`) is the top-level directory of the Linux filesystem hierarchy. Every file and directory originates from it.
 
 ---
 
-# Filesystem Questions
+## Filesystem Questions
 
-## Q6. Difference between `/` and `/root`
+### Q6. Difference between `/` and `/root`
 
 | `/`                      | `/root`                     |
 | ------------------------ | --------------------------- |
@@ -164,7 +164,7 @@ The root directory (`/`) is the top-level directory of the Linux filesystem hier
 
 ---
 
-## Q7. What is stored inside `/etc`?
+### Q7. What is stored inside `/etc`?
 
 Configuration files for:
 
@@ -177,7 +177,7 @@ Configuration files for:
 
 ---
 
-## Q8. What is `/proc`?
+### Q8. What is `/proc`?
 
 `/proc` is a virtual filesystem that provides runtime information about the kernel and currently running processes.
 
@@ -193,7 +193,7 @@ cat /proc/meminfo
 
 ---
 
-## Q9. Difference between Hard Link and Soft Link?
+### Q9. Difference between Hard Link and Soft Link?
 
 | Hard Link                 | Soft Link                  |
 | ------------------------- | -------------------------- |
@@ -209,9 +209,9 @@ ln -s original.txt shortcut.txt
 
 ---
 
-# File Permission Questions
+## File Permission Questions
 
-## Q10. Explain Linux permissions.
+### Q10. Explain Linux permissions.
 
 Example:
 
@@ -235,7 +235,7 @@ Permission values:
 
 ---
 
-## Q11. What does `chmod 755` mean?
+### Q11. What does `chmod 755` mean?
 
 Owner:
 
@@ -255,7 +255,7 @@ Others:
 
 ---
 
-## Q12. Difference between chmod and chown?
+### Q12. Difference between chmod and chown?
 
 | chmod               | chown             |
 | ------------------- | ----------------- |
@@ -273,9 +273,9 @@ chown ubuntu:ubuntu app.js
 
 ---
 
-# Process Questions
+## Process Questions
 
-## Q13. How do you view running processes?
+### Q13. How do you view running processes?
 
 ```bash id="lq007"
 ps aux
@@ -289,7 +289,7 @@ top
 
 ---
 
-## Q14. Difference between process and service?
+### Q14. Difference between process and service?
 
 | Process         | Service                    |
 | --------------- | -------------------------- |
@@ -298,7 +298,7 @@ top
 
 ---
 
-## Q15. How do you stop a process?
+### Q15. How do you stop a process?
 
 ```bash id="lq009"
 kill PID
@@ -312,15 +312,15 @@ kill -9 PID
 
 ---
 
-# Systemd Questions
+## Systemd Questions
 
-## Q16. What is systemd?
+### Q16. What is systemd?
 
 systemd is the initialization and service management system used by most modern Linux distributions.
 
 ---
 
-## Q17. Common systemctl commands?
+### Q17. Common systemctl commands?
 
 ```bash id="lq011"
 systemctl status nginx
@@ -336,9 +336,9 @@ systemctl enable nginx
 
 ---
 
-# Networking Questions
+## Networking Questions
 
-## Q18. Difference between TCP and UDP?
+### Q18. Difference between TCP and UDP?
 
 | TCP                 | UDP                   |
 | ------------------- | --------------------- |
@@ -348,7 +348,7 @@ systemctl enable nginx
 
 ---
 
-## Q19. How do you find your IP address?
+### Q19. How do you find your IP address?
 
 ```bash id="lq014"
 ip addr
@@ -356,7 +356,7 @@ ip addr
 
 ---
 
-## Q20. How do you verify if a server is reachable?
+### Q20. How do you verify if a server is reachable?
 
 ```bash id="lq015"
 ping google.com
@@ -364,7 +364,7 @@ ping google.com
 
 ---
 
-## Q21. Which command shows listening ports?
+### Q21. Which command shows listening ports?
 
 ```bash id="lq016"
 ss -tulpn
@@ -372,7 +372,7 @@ ss -tulpn
 
 ---
 
-## Q22. What does DNS do?
+### Q22. What does DNS do?
 
 DNS converts domain names into IP addresses.
 
@@ -388,9 +388,9 @@ example.com
 
 ---
 
-# Storage Questions
+## Storage Questions
 
-## Q23. Difference between df and du?
+### Q23. Difference between df and du?
 
 | df         | du               |
 | ---------- | ---------------- |
@@ -408,7 +408,7 @@ du -sh /var/www
 
 ---
 
-## Q24. What happens if disk becomes full?
+### Q24. What happens if disk becomes full?
 
 Possible effects:
 
@@ -420,9 +420,9 @@ Possible effects:
 
 ---
 
-# Logging Questions
+## Logging Questions
 
-## Q25. Where are system logs stored?
+### Q25. Where are system logs stored?
 
 Typically:
 
@@ -432,7 +432,7 @@ Typically:
 
 ---
 
-## Q26. How do you continuously monitor logs?
+### Q26. How do you continuously monitor logs?
 
 ```bash id="lq021"
 tail -f /var/log/syslog
@@ -440,9 +440,9 @@ tail -f /var/log/syslog
 
 ---
 
-# Security Questions
+## Security Questions
 
-## Q27. Why disable root SSH login?
+### Q27. Why disable root SSH login?
 
 Reasons:
 
@@ -453,7 +453,7 @@ Reasons:
 
 ---
 
-## Q28. Why use SSH keys?
+### Q28. Why use SSH keys?
 
 Advantages:
 
@@ -463,9 +463,9 @@ Advantages:
 
 ---
 
-# Intermediate Questions
+## Intermediate Questions
 
-## Q29. Difference between reboot and shutdown?
+### Q29. Difference between reboot and shutdown?
 
 | reboot          | shutdown          |
 | --------------- | ----------------- |
@@ -473,13 +473,13 @@ Advantages:
 
 ---
 
-## Q30. What is swap memory?
+### Q30. What is swap memory?
 
 Swap is disk space used as an extension of RAM when physical memory becomes insufficient.
 
 ---
 
-## Q31. What is a daemon?
+### Q31. What is a daemon?
 
 A daemon is a background process that runs continuously to provide services.
 
@@ -491,9 +491,9 @@ Examples:
 
 ---
 
-# Advanced Interview Questions
+## Advanced Interview Questions
 
-## Q32. Why is Linux preferred for servers?
+### Q32. Why is Linux preferred for servers?
 
 Typical reasons include:
 
@@ -506,7 +506,7 @@ Typical reasons include:
 
 ---
 
-## Q33. What happens when you run a command?
+### Q33. What happens when you run a command?
 
 ```text id="lq022"
 Shell
@@ -532,7 +532,7 @@ The shell parses the command, the kernel performs the requested operations throu
 
 ---
 
-## Q34. What happens during system boot?
+### Q34. What happens during system boot?
 
 ```text id="lq023"
 Power On
@@ -564,9 +564,9 @@ Login Prompt
 
 ---
 
-# Scenario-Based Questions
+## Scenario-Based Questions
 
-## Scenario 1
+### Scenario 1
 
 **Question**
 
@@ -607,7 +607,7 @@ Interviewers generally value a logical troubleshooting sequence more than immedi
 
 ---
 
-## Scenario 2
+### Scenario 2
 
 **Question**
 
@@ -625,7 +625,7 @@ Possible checks:
 
 ---
 
-## Scenario 3
+### Scenario 3
 
 **Question**
 
@@ -659,7 +659,7 @@ Monitor
 
 ---
 
-# Production Experience Questions
+## Production Experience Questions
 
 Examples:
 
@@ -675,7 +675,7 @@ Interviewers often look for structured reasoning, risk awareness, and practical 
 
 ---
 
-# Interview Tips
+## Interview Tips
 
 - Explain _why_, not just _what_.
 - Think aloud during troubleshooting questions.
@@ -686,44 +686,44 @@ Interviewers often look for structured reasoning, risk awareness, and practical 
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Memorizing Commands Without Understanding Them
+#### Memorizing Commands Without Understanding Them
 
 Interviewers usually ask follow-up questions that require conceptual understanding.
 
 ---
 
-### Jumping Directly to a Solution
+#### Jumping Directly to a Solution
 
 Describe your investigation process before proposing a fix.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Logs are often the first place to gather evidence during troubleshooting.
 
 ---
 
-### Not Verifying Changes
+#### Not Verifying Changes
 
 After applying a fix, always explain how you would confirm the issue is resolved.
 
 ---
 
-### Giving One-Word Answers
+#### Giving One-Word Answers
 
 Expand your responses with reasoning, examples, and trade-offs.
 
 ---
 
-# Summary
+## Summary
 
 Linux interviews focus on practical system administration, troubleshooting methodology, and real-world production experience. Strong candidates demonstrate an understanding of Linux internals, networking, permissions, services, and structured debugging rather than relying solely on memorized commands.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Networking Interview Preparation**

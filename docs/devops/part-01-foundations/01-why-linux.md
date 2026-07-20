@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Why Linux?
 
-## Overview
+### Overview
 
 Linux is one of the most influential technologies in modern computing. It powers websites, cloud platforms, smartphones, supercomputers, embedded devices, networking equipment, and millions of servers around the world.
 
@@ -16,7 +16,7 @@ This chapter introduces Linux from a beginner's perspective and explains why lea
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -29,7 +29,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Linux?
+## What is Linux?
 
 Linux is an **open-source operating system kernel** originally created by **Linus Torvalds** in 1991.
 
@@ -54,7 +54,7 @@ Each of these distributions uses the Linux kernel but provides different tools, 
 
 ---
 
-# A Brief History of Linux
+## A Brief History of Linux
 
 Before Linux existed, UNIX was the dominant operating system used in universities, research institutions, and enterprise environments.
 
@@ -80,11 +80,11 @@ Over time, the GNU tools combined with the Linux kernel became what we commonly 
 
 ---
 
-# Why Linux Became So Popular
+## Why Linux Became So Popular
 
 Linux grew rapidly because it solved many problems faced by developers and organizations.
 
-## 1. Open Source
+### 1. Open Source
 
 Anyone can:
 
@@ -97,7 +97,7 @@ This encourages innovation and allows companies to customize Linux for their own
 
 ---
 
-## 2. Stability
+### 2. Stability
 
 Linux systems are designed to run continuously for long periods without requiring frequent restarts.
 
@@ -107,7 +107,7 @@ This makes Linux ideal for production workloads.
 
 ---
 
-## 3. Performance
+### 3. Performance
 
 Linux is lightweight and efficient.
 
@@ -124,7 +124,7 @@ These characteristics are especially valuable for cloud servers where resources 
 
 ---
 
-## 4. Security
+### 4. Security
 
 Linux follows a strong security model based on:
 
@@ -138,7 +138,7 @@ Because Linux is open source, vulnerabilities are often discovered and patched q
 
 ---
 
-## 5. Flexibility
+### 5. Flexibility
 
 Linux can run on devices ranging from tiny embedded boards with limited memory to large cloud servers with hundreds of CPU cores.
 
@@ -153,7 +153,7 @@ The same operating system family powers:
 
 ---
 
-## 6. Community Support
+### 6. Community Support
 
 Linux has one of the largest technical communities in the world.
 
@@ -170,7 +170,7 @@ This makes troubleshooting and learning significantly easier.
 
 ---
 
-# Where Linux Is Used Today
+## Where Linux Is Used Today
 
 Linux is used in almost every major area of computing.
 
@@ -189,7 +189,7 @@ Learning Linux opens opportunities across all of these domains.
 
 ---
 
-# Why Developers Should Learn Linux
+## Why Developers Should Learn Linux
 
 Even if you primarily develop applications on Windows or macOS, production deployments are commonly performed on Linux.
 
@@ -230,7 +230,7 @@ Without Linux knowledge, many deployment tasks become dependent on tutorials rat
 
 ---
 
-# Why We Are Using Ubuntu Server
+## Why We Are Using Ubuntu Server
 
 Throughout this handbook, the primary examples will use **Ubuntu Server**.
 
@@ -249,7 +249,7 @@ For beginners, Ubuntu provides an excellent balance between simplicity and produ
 
 ---
 
-# Key Takeaways
+## Key Takeaways
 
 - Linux is the foundation of modern server infrastructure.
 - Technically, Linux refers to the kernel, while distributions provide the complete operating system.
@@ -260,7 +260,7 @@ For beginners, Ubuntu provides an excellent balance between simplicity and produ
 
 ---
 
-# Summary
+## Summary
 
 Linux has transformed from a student project into the operating system that powers much of the modern internet. Its reliability, performance, security model, and flexibility have made it the preferred choice for servers, cloud computing, and enterprise infrastructure.
 

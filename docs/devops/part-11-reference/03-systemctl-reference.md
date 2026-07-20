@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # systemctl Reference
 
-## Overview
+### Overview
 
 `systemctl` is the command-line interface for **systemd**, the default init system used by most modern Linux distributions, including Ubuntu, Debian, CentOS, Rocky Linux, AlmaLinux, Fedora, and RHEL.
 
@@ -24,7 +24,7 @@ This chapter serves as a complete reference for the most commonly used `systemct
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -38,7 +38,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# systemd Architecture
+## systemd Architecture
 
 ```text
 Linux Kernel
@@ -60,7 +60,7 @@ Every system service is managed through **systemd**.
 
 ---
 
-# What is a Unit?
+## What is a Unit?
 
 A **Unit** is an object managed by systemd.
 
@@ -90,7 +90,7 @@ pm2-root.service
 
 ---
 
-# Service Lifecycle
+## Service Lifecycle
 
 ```text
 Stopped
@@ -120,7 +120,7 @@ Understanding the lifecycle helps avoid unnecessary downtime.
 
 ---
 
-# View Service Status
+## View Service Status
 
 Check the status of a service.
 
@@ -144,7 +144,7 @@ This command is the starting point for most troubleshooting tasks.
 
 ---
 
-# Start a Service
+## Start a Service
 
 ```bash
 sudo systemctl start nginx
@@ -157,7 +157,7 @@ Purpose:
 
 ---
 
-# Stop a Service
+## Stop a Service
 
 ```bash
 sudo systemctl stop nginx
@@ -171,7 +171,7 @@ Use with caution on production servers.
 
 ---
 
-# Restart a Service
+## Restart a Service
 
 ```bash
 sudo systemctl restart nginx
@@ -189,7 +189,7 @@ Use restart when:
 
 ---
 
-# Reload a Service
+## Reload a Service
 
 ```bash
 sudo systemctl reload nginx
@@ -204,7 +204,7 @@ Prefer `reload` over `restart` whenever possible.
 
 ---
 
-# Enable a Service
+## Enable a Service
 
 Enable automatic startup during boot.
 
@@ -226,7 +226,7 @@ nginx.service
 
 ---
 
-# Disable a Service
+## Disable a Service
 
 Prevent automatic startup.
 
@@ -238,7 +238,7 @@ The service can still be started manually.
 
 ---
 
-# Restart vs Reload
+## Restart vs Reload
 
 | Command   | Downtime | Configuration Reload | Process Restart |
 | --------- | -------- | -------------------- | --------------- |
@@ -249,7 +249,7 @@ Use **reload** whenever the application supports it.
 
 ---
 
-# Check if Service is Enabled
+## Check if Service is Enabled
 
 ```bash
 systemctl is-enabled nginx
@@ -269,7 +269,7 @@ disabled
 
 ---
 
-# Check if Service is Active
+## Check if Service is Active
 
 ```bash
 systemctl is-active nginx
@@ -289,7 +289,7 @@ inactive
 
 ---
 
-# List Running Services
+## List Running Services
 
 ```bash
 systemctl list-units --type=service
@@ -307,7 +307,7 @@ cron.service
 
 ---
 
-# List All Installed Services
+## List All Installed Services
 
 ```bash
 systemctl list-unit-files --type=service
@@ -317,7 +317,7 @@ Useful for discovering available services.
 
 ---
 
-# View Failed Services
+## View Failed Services
 
 ```bash
 systemctl --failed
@@ -335,7 +335,7 @@ Checking failed services should be part of routine troubleshooting.
 
 ---
 
-# Reload systemd Configuration
+## Reload systemd Configuration
 
 After modifying unit files:
 
@@ -361,7 +361,7 @@ Without `daemon-reload`, systemd continues using the previous configuration.
 
 ---
 
-# Mask a Service
+## Mask a Service
 
 Prevent a service from starting under any circumstances.
 
@@ -375,7 +375,7 @@ Purpose:
 
 ---
 
-# Unmask a Service
+## Unmask a Service
 
 ```bash
 sudo systemctl unmask apache2
@@ -385,7 +385,7 @@ Allows the service to be started again.
 
 ---
 
-# View Boot Time
+## View Boot Time
 
 ```bash
 systemd-analyze
@@ -403,7 +403,7 @@ Useful for boot performance analysis.
 
 ---
 
-# Analyze Slow Boot
+## Analyze Slow Boot
 
 ```bash
 systemd-analyze blame
@@ -421,7 +421,7 @@ This identifies services that delay system startup.
 
 ---
 
-# View Service Logs
+## View Service Logs
 
 Systemd integrates with the journal.
 
@@ -445,7 +445,7 @@ Logs are one of the most valuable debugging resources.
 
 ---
 
-# View System Logs
+## View System Logs
 
 ```bash
 journalctl
@@ -471,7 +471,7 @@ journalctl -b -1
 
 ---
 
-# Check Dependencies
+## Check Dependencies
 
 Display service dependencies.
 
@@ -495,7 +495,7 @@ Dependencies determine startup order.
 
 ---
 
-# Service File Locations
+## Service File Locations
 
 | Location               | Purpose              |
 | ---------------------- | -------------------- |
@@ -511,7 +511,7 @@ Custom services should generally be stored in:
 
 ---
 
-# Example Custom Service
+## Example Custom Service
 
 ```ini
 [Unit]
@@ -548,7 +548,7 @@ sudo systemctl start node-api
 
 ---
 
-# Common systemctl Commands
+## Common systemctl Commands
 
 | Command                   | Purpose             |
 | ------------------------- | ------------------- |
@@ -569,7 +569,7 @@ sudo systemctl start node-api
 
 ---
 
-# Production Administration Workflow
+## Production Administration Workflow
 
 ```text
 Service Issue
@@ -607,7 +607,7 @@ Following a consistent workflow simplifies troubleshooting.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Node.js API does not start automatically after a server reboot.
 
@@ -653,7 +653,7 @@ The issue was caused by the service not being enabled during system boot.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use `reload` instead of `restart` whenever supported.
 - Run `daemon-reload` after modifying unit files.
@@ -666,44 +666,44 @@ The issue was caused by the service not being enabled during system boot.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Forgetting `daemon-reload`
+#### Forgetting `daemon-reload`
 
 Changes to service files are ignored until systemd reloads its configuration.
 
 ---
 
-### Restarting Instead of Reloading
+#### Restarting Instead of Reloading
 
 Restarting may interrupt active connections unnecessarily.
 
 ---
 
-### Ignoring Journal Logs
+#### Ignoring Journal Logs
 
 Most service failures can be diagnosed by reviewing `journalctl` output.
 
 ---
 
-### Creating Unit Files in the Wrong Location
+#### Creating Unit Files in the Wrong Location
 
 Custom service definitions should be stored in `/etc/systemd/system/`, not in system-managed directories.
 
 ---
 
-### Forgetting to Enable the Service
+#### Forgetting to Enable the Service
 
 A service that starts manually but not after reboot is often simply not enabled.
 
 ---
 
-# Summary
+## Summary
 
 `systemctl` is the primary interface for managing services with systemd. It provides commands to start, stop, restart, reload, enable, disable, inspect, and troubleshoot services, making it an essential tool for Linux administrators. Combined with `journalctl`, it offers powerful capabilities for monitoring and maintaining production servers.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **04 - PM2 Reference**

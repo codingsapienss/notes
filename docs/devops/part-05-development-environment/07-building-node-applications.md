@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Building Node.js Applications
 
-## Overview
+### Overview
 
 Installing Node.js, npm, and PM2 prepares a Linux server to run applications. However, before an application can serve users, it must be **built, configured, verified, and deployed correctly**.
 
@@ -21,7 +21,7 @@ This chapter focuses on the **general production workflow** used to prepare and 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -35,7 +35,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What Does "Building" Mean?
+## What Does "Building" Mean?
 
 Building is the process of preparing an application for production.
 
@@ -65,7 +65,7 @@ Not every Node.js application requires every step.
 
 ---
 
-# Types of Node.js Applications
+## Types of Node.js Applications
 
 Different projects have different build requirements.
 
@@ -110,7 +110,7 @@ Run
 
 ---
 
-# Typical Production Deployment Workflow
+## Typical Production Deployment Workflow
 
 A production deployment generally follows this order.
 
@@ -140,7 +140,7 @@ Each step should complete successfully before moving to the next.
 
 ---
 
-# Step 1 — Pull the Latest Code
+## Step 1 — Pull the Latest Code
 
 Navigate to the project directory.
 
@@ -158,7 +158,7 @@ This downloads the latest application code.
 
 ---
 
-# Step 2 — Install Dependencies
+## Step 2 — Install Dependencies
 
 Install packages.
 
@@ -183,7 +183,7 @@ Why use `npm ci`?
 
 ---
 
-# Step 3 — Build the Application
+## Step 3 — Build the Application
 
 Some projects require a build step.
 
@@ -217,7 +217,7 @@ Ready to Run
 
 ---
 
-# Step 4 — Verify Build Output
+## Step 4 — Verify Build Output
 
 Confirm that the expected output exists.
 
@@ -244,7 +244,7 @@ Verification ensures the application was built successfully.
 
 ---
 
-# Step 5 — Start the Application
+## Step 5 — Start the Application
 
 Start using PM2.
 
@@ -268,7 +268,7 @@ Reloading minimizes downtime.
 
 ---
 
-# Step 6 — Verify the Application
+## Step 6 — Verify the Application
 
 Confirm that the application is running.
 
@@ -310,7 +310,7 @@ Healthy
 
 ---
 
-# Health Checks
+## Health Checks
 
 Before exposing an application to users, verify:
 
@@ -336,7 +336,7 @@ pm2 logs
 
 ---
 
-# Production Deployment Example
+## Production Deployment Example
 
 Suppose a new version is released.
 
@@ -382,7 +382,7 @@ Users Receive Updated Version
 
 ---
 
-# Build Failures
+## Build Failures
 
 Sometimes builds fail.
 
@@ -417,7 +417,7 @@ Never ignore build errors.
 
 ---
 
-# Build vs Runtime Errors
+## Build vs Runtime Errors
 
 These are different types of problems.
 
@@ -431,7 +431,7 @@ Understanding the difference helps narrow down troubleshooting efforts.
 
 ---
 
-# Deployment Verification Checklist
+## Deployment Verification Checklist
 
 After deployment, verify:
 
@@ -450,7 +450,7 @@ Only expose the application after every verification passes.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js API is deployed on Ubuntu.
 
@@ -494,7 +494,7 @@ Because this Express application does not require compilation, the deployment sk
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use `npm ci` in production whenever possible.
 - Build applications before restarting services.
@@ -506,44 +506,44 @@ Because this Express application does not require compilation, the deployment sk
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Deploying Without Installing Dependencies
+#### Deploying Without Installing Dependencies
 
 New releases often introduce additional packages. Forgetting to install them can cause application startup failures.
 
 ---
 
-### Ignoring Build Errors
+#### Ignoring Build Errors
 
 A successful deployment requires a successful build. Fix build errors before continuing.
 
 ---
 
-### Restarting Before the Build Completes
+#### Restarting Before the Build Completes
 
 Restarting the application before verifying the build can result in serving incomplete or broken code.
 
 ---
 
-### Skipping Health Checks
+#### Skipping Health Checks
 
 An application that starts successfully is not necessarily functioning correctly. Always verify connectivity, logs, and responses.
 
 ---
 
-### Deploying Directly to Production Without Testing
+#### Deploying Directly to Production Without Testing
 
 Changes should be validated in a development or staging environment before reaching production whenever practical.
 
 ---
 
-# Summary
+## Summary
 
 Building a Node.js application is the process of preparing it for production by installing dependencies, compiling code when necessary, verifying the output, and deploying it through a process manager such as PM2. While some applications require compilation and others do not, the overall deployment workflow remains consistent: update the source code, install dependencies, build if required, verify the application, and confirm that it is healthy before making it available to users.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Project Structure**

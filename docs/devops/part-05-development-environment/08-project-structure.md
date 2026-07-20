@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # Project Structure
 
-## Overview
+### Overview
 
 As applications grow, organizing files and directories becomes increasingly important.
 
@@ -25,7 +25,7 @@ This chapter introduces a practical project structure for Node.js applications r
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -38,7 +38,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Does Project Structure Matter?
+## Why Does Project Structure Matter?
 
 Imagine a project where every file is placed in one directory.
 
@@ -96,7 +96,7 @@ A logical structure makes development and maintenance much easier.
 
 ---
 
-# Typical Node.js Project Structure
+## Typical Node.js Project Structure
 
 A common Express.js project might look like:
 
@@ -127,7 +127,7 @@ Each directory has a specific responsibility.
 
 ---
 
-# Root Directory
+## Root Directory
 
 The root directory usually contains project-level configuration.
 
@@ -151,7 +151,7 @@ my-app/
 
 ---
 
-# Configuration Directory
+## Configuration Directory
 
 ```text
 config/
@@ -174,7 +174,7 @@ Configuration logic should remain separate from business logic.
 
 ---
 
-# Routes
+## Routes
 
 Routes define the application's endpoints.
 
@@ -203,7 +203,7 @@ Routes receive requests and forward them to controllers.
 
 ---
 
-# Controllers
+## Controllers
 
 Controllers process incoming requests.
 
@@ -241,7 +241,7 @@ Controllers should contain request handling logic, not server configuration.
 
 ---
 
-# Models
+## Models
 
 Models define how data is stored and retrieved.
 
@@ -257,7 +257,7 @@ For MongoDB applications, models often contain Mongoose schemas.
 
 ---
 
-# Middleware
+## Middleware
 
 Middleware executes before requests reach controllers.
 
@@ -280,7 +280,7 @@ Examples include:
 
 ---
 
-# Services
+## Services
 
 Services contain reusable business logic.
 
@@ -296,7 +296,7 @@ Instead of placing large amounts of business logic inside controllers, services 
 
 ---
 
-# Utilities
+## Utilities
 
 Utility functions are shared across the project.
 
@@ -318,7 +318,7 @@ Examples:
 
 ---
 
-# Public Directory
+## Public Directory
 
 Static files are commonly stored here.
 
@@ -335,7 +335,7 @@ These files are served directly to users.
 
 ---
 
-# Views
+## Views
 
 Projects using server-side rendering (such as Express with EJS) store templates here.
 
@@ -351,7 +351,7 @@ Frontend frameworks like React or Next.js typically do not use this directory in
 
 ---
 
-# Uploads
+## Uploads
 
 User-uploaded content is often stored separately.
 
@@ -367,7 +367,7 @@ In larger production systems, uploaded files are commonly stored in cloud object
 
 ---
 
-# Logs
+## Logs
 
 Application logs should be separated from application code.
 
@@ -389,7 +389,7 @@ Many production environments centralize logs using dedicated logging platforms.
 
 ---
 
-# node_modules
+## node_modules
 
 Installed dependencies are stored in:
 
@@ -405,7 +405,7 @@ It is also excluded from Git using `.gitignore`.
 
 ---
 
-# Linux Deployment Structure
+## Linux Deployment Structure
 
 While the project itself has an internal structure, Linux servers also benefit from a consistent deployment layout.
 
@@ -432,7 +432,7 @@ Many organizations store web applications under `/var/www`, although the exact l
 
 ---
 
-# Separating Application and Data
+## Separating Application and Data
 
 Application code and persistent data should not always reside together.
 
@@ -456,7 +456,7 @@ Separating these components simplifies deployments and backup strategies.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text
                     Internet
@@ -489,7 +489,7 @@ A clear project structure mirrors the application's architecture and improves lo
 
 ---
 
-# Deployment Workflow
+## Deployment Workflow
 
 ```text
 GitHub Repository
@@ -514,7 +514,7 @@ A predictable directory layout makes deployments safer and easier to automate.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an Express.js application is deployed on an Ubuntu server.
 
@@ -551,7 +551,7 @@ Because configuration, business logic, static assets, and logs are clearly separ
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow a consistent directory structure across projects.
 - Separate routes, controllers, models, and services.
@@ -564,44 +564,44 @@ Because configuration, business logic, static assets, and logs are clearly separ
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Putting Everything in app.js
+#### Putting Everything in app.js
 
 As projects grow, a single large file becomes difficult to maintain and debug.
 
 ---
 
-### Mixing Business Logic with Routes
+#### Mixing Business Logic with Routes
 
 Routes should primarily handle request routing, while business logic belongs in controllers and services.
 
 ---
 
-### Committing Generated Files
+#### Committing Generated Files
 
 Directories such as `node_modules` and log files should not be committed to version control.
 
 ---
 
-### Storing Sensitive Files in Public Directories
+#### Storing Sensitive Files in Public Directories
 
 Configuration files, secrets, and private documents should never be accessible through publicly served directories.
 
 ---
 
-### Ignoring Consistency
+#### Ignoring Consistency
 
 Using different structures for every project increases onboarding time and makes maintenance more difficult.
 
 ---
 
-# Summary
+## Summary
 
 A well-organized project structure is fundamental to building maintainable Node.js applications. By separating configuration, routing, business logic, data models, static assets, uploads, and logs into dedicated directories, developers create applications that are easier to understand, deploy, scale, and troubleshoot. Consistent project organization also simplifies collaboration and prepares applications for reliable production deployments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 6 – Nginx**

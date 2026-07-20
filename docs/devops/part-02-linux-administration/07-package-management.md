@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Package Management
 
-## Overview
+### Overview
 
 One of the biggest advantages of Linux is its centralized software management system.
 
@@ -18,7 +18,7 @@ For Ubuntu and Debian-based systems, the primary package manager is **APT (Advan
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is a Package?
+## What is a Package?
 
 A **package** is a compressed file that contains everything required to install a piece of software.
 
@@ -48,7 +48,7 @@ Instead of manually copying files into various system directories, the package m
 
 ---
 
-# Why Package Management?
+## Why Package Management?
 
 Imagine installing Nginx manually.
 
@@ -71,7 +71,7 @@ sudo apt install nginx
 
 ---
 
-# How Package Management Works
+## How Package Management Works
 
 The installation process generally follows this sequence:
 
@@ -101,7 +101,7 @@ APT downloads packages from trusted repositories, verifies them, installs requir
 
 ---
 
-# What is APT?
+## What is APT?
 
 **APT (Advanced Package Tool)** is the default package management system for Ubuntu and Debian-based Linux distributions.
 
@@ -118,7 +118,7 @@ APT works with packages in the `.deb` format.
 
 ---
 
-# What is a Repository?
+## What is a Repository?
 
 A **repository** is a server that stores software packages.
 
@@ -141,7 +141,7 @@ Repositories are maintained by distribution maintainers and are regularly update
 
 ---
 
-# Package Installation Workflow
+## Package Installation Workflow
 
 Suppose you install Git.
 
@@ -163,7 +163,7 @@ The user only needs to execute a single command.
 
 ---
 
-# Updating Package Information
+## Updating Package Information
 
 Before installing software, update the local package index.
 
@@ -181,7 +181,7 @@ Think of it as refreshing the catalog of available software.
 
 ---
 
-# Upgrading Installed Packages
+## Upgrading Installed Packages
 
 Upgrade installed packages:
 
@@ -202,7 +202,7 @@ The first command refreshes package information, and the second installs availab
 
 ---
 
-# Installing Packages
+## Installing Packages
 
 Install software using:
 
@@ -234,7 +234,7 @@ APT automatically installs required dependencies.
 
 ---
 
-# Removing Packages
+## Removing Packages
 
 Remove a package while keeping configuration files:
 
@@ -252,7 +252,7 @@ After removing packages, unused dependencies can be cleaned up.
 
 ---
 
-# Removing Unused Dependencies
+## Removing Unused Dependencies
 
 Run:
 
@@ -266,7 +266,7 @@ This helps keep the system clean.
 
 ---
 
-# Searching for Packages
+## Searching for Packages
 
 Search repositories:
 
@@ -287,7 +287,7 @@ This command is useful when you know part of a package name but not the exact pa
 
 ---
 
-# Viewing Installed Packages
+## Viewing Installed Packages
 
 List installed packages:
 
@@ -303,7 +303,7 @@ apt list --installed | grep nginx
 
 ---
 
-# Package Information
+## Package Information
 
 View detailed information:
 
@@ -321,7 +321,7 @@ Example information includes:
 
 ---
 
-# What is dpkg?
+## What is dpkg?
 
 `dpkg` is the low-level package management tool used by Debian-based systems.
 
@@ -338,7 +338,7 @@ Normally, administrators interact with APT rather than `dpkg`.
 
 ---
 
-# Installing a Local Package
+## Installing a Local Package
 
 If you download a `.deb` file manually:
 
@@ -362,7 +362,7 @@ APT downloads the required packages automatically.
 
 ---
 
-# Where Packages Are Installed
+## Where Packages Are Installed
 
 Package files are distributed across multiple directories.
 
@@ -380,7 +380,7 @@ The package manager places files in the appropriate locations automatically.
 
 ---
 
-# Common APT Commands
+## Common APT Commands
 
 | Command                    | Purpose                          |
 | -------------------------- | -------------------------------- |
@@ -396,7 +396,7 @@ The package manager places files in the appropriate locations automatically.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A newly created Ubuntu server often begins with:
 
@@ -426,7 +426,7 @@ Most of these components are installed through the package management system.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Run `sudo apt update` before installing new software.
 - Keep systems updated with security patches.
@@ -436,9 +436,9 @@ Most of these components are installed through the package management system.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing `apt update` with `apt upgrade`
+#### Confusing `apt update` with `apt upgrade`
 
 `apt update` refreshes the package index.
 
@@ -448,7 +448,7 @@ They perform different tasks.
 
 ---
 
-### Installing Software from Untrusted Sources
+#### Installing Software from Untrusted Sources
 
 Downloading packages from unofficial websites increases the risk of installing malicious or outdated software.
 
@@ -456,7 +456,7 @@ Prefer trusted repositories whenever possible.
 
 ---
 
-### Forgetting to Remove Unused Dependencies
+#### Forgetting to Remove Unused Dependencies
 
 After uninstalling applications, unused libraries may remain on the system.
 
@@ -470,7 +470,7 @@ periodically to clean them up.
 
 ---
 
-### Using `dpkg` for Normal Installations
+#### Using `dpkg` for Normal Installations
 
 `dpkg` installs local `.deb` files but does not automatically resolve dependencies.
 
@@ -478,7 +478,7 @@ For most software installations, prefer `apt`.
 
 ---
 
-# Summary
+## Summary
 
 Package management is one of Linux's greatest strengths.
 
@@ -488,6 +488,6 @@ Throughout the remainder of this handbook, most software installations will use 
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - systemd and Services**

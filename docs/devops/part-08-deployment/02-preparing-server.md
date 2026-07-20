@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Preparing Server
 
-## Overview
+### Overview
 
 In the previous chapter, we learned about the deployment process and the overall production architecture.
 
@@ -29,7 +29,7 @@ Preparing the server correctly ensures that future deployments are secure, relia
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -44,7 +44,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# A Fresh Ubuntu Server
+## A Fresh Ubuntu Server
 
 When you create an Azure Virtual Machine, the operating system is installed automatically.
 
@@ -74,7 +74,7 @@ Everything must be configured before deployment.
 
 ---
 
-# Connecting to the Server
+## Connecting to the Server
 
 The first step is connecting to the server using SSH.
 
@@ -100,7 +100,7 @@ Once connected, all server administration is performed from the terminal.
 
 ---
 
-# Updating the Operating System
+## Updating the Operating System
 
 Before installing anything else, update the package lists.
 
@@ -131,7 +131,7 @@ Updating should be one of the first tasks performed on a new server.
 
 ---
 
-# Keeping the Server Updated
+## Keeping the Server Updated
 
 A production server should be updated regularly.
 
@@ -157,7 +157,7 @@ Operating system updates reduce the risk of known vulnerabilities.
 
 ---
 
-# Creating a Deployment User
+## Creating a Deployment User
 
 Many cloud providers create a default user during VM creation.
 
@@ -185,7 +185,7 @@ Using dedicated users makes access management easier and improves accountability
 
 ---
 
-# Why Avoid Daily Work as Root?
+## Why Avoid Daily Work as Root?
 
 The **root** account has unrestricted access to the operating system.
 
@@ -217,7 +217,7 @@ This follows the **Principle of Least Privilege**, where users operate with only
 
 ---
 
-# Understanding File Permissions
+## Understanding File Permissions
 
 Linux controls access using:
 
@@ -247,7 +247,7 @@ Proper permissions help protect application files from accidental or unauthorize
 
 ---
 
-# Configuring SSH
+## Configuring SSH
 
 SSH provides secure remote access to the server.
 
@@ -280,7 +280,7 @@ Ubuntu Server
 
 ---
 
-# SSH Keys
+## SSH Keys
 
 Instead of passwords, production servers commonly use SSH key pairs.
 
@@ -308,7 +308,7 @@ Advantages:
 
 ---
 
-# Configuring the Firewall
+## Configuring the Firewall
 
 Ubuntu commonly uses **UFW (Uncomplicated Firewall)**.
 
@@ -344,7 +344,7 @@ sudo ufw enable
 
 ---
 
-# Typical Firewall Rules
+## Typical Firewall Rules
 
 | Port | Purpose |
 | ---- | ------- |
@@ -356,7 +356,7 @@ Avoid opening unnecessary ports to the Internet.
 
 ---
 
-# Installing Git
+## Installing Git
 
 Git is used to download and update application code.
 
@@ -376,7 +376,7 @@ Git allows production servers to retrieve code directly from repositories.
 
 ---
 
-# Installing Node.js
+## Installing Node.js
 
 Node.js executes JavaScript applications on the server.
 
@@ -398,7 +398,7 @@ npm -v
 
 ---
 
-# Installing PM2
+## Installing PM2
 
 PM2 manages Node.js applications.
 
@@ -418,7 +418,7 @@ PM2 automatically restarts applications if they crash and supports zero-downtime
 
 ---
 
-# Installing Nginx
+## Installing Nginx
 
 Install Nginx.
 
@@ -446,7 +446,7 @@ sudo systemctl status nginx
 
 ---
 
-# Suggested Directory Structure
+## Suggested Directory Structure
 
 A common project layout:
 
@@ -469,7 +469,7 @@ Keeping projects organized simplifies maintenance.
 
 ---
 
-# Environment Files
+## Environment Files
 
 Production applications usually use environment variables stored in a `.env` file.
 
@@ -499,7 +499,7 @@ It should **never** be committed to version control.
 
 ---
 
-# Verifying the Server
+## Verifying the Server
 
 Before deploying an application, verify that all required software is installed.
 
@@ -517,7 +517,7 @@ A quick verification prevents unnecessary troubleshooting later.
 
 ---
 
-# Typical Production Preparation Workflow
+## Typical Production Preparation Workflow
 
 ```text id="prep12"
 Create VM
@@ -561,7 +561,7 @@ Server Ready
 
 ---
 
-# Server Preparation Checklist
+## Server Preparation Checklist
 
 | Task                      | Status |
 | ------------------------- | ------ |
@@ -577,7 +577,7 @@ Server Ready
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company provisions a new Ubuntu Virtual Machine in Azure.
 
@@ -595,7 +595,7 @@ At this point, the server is fully prepared for deploying production Node.js app
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Update the operating system before installing software.
 - Use SSH keys instead of passwords.
@@ -608,44 +608,44 @@ At this point, the server is fully prepared for deploying production Node.js app
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Deploying Without Updating the Server
+#### Deploying Without Updating the Server
 
 Older packages may contain known security vulnerabilities or bugs.
 
 ---
 
-### Using the Root Account for Daily Administration
+#### Using the Root Account for Daily Administration
 
 Operating as root increases the risk of accidental or destructive changes.
 
 ---
 
-### Opening Too Many Firewall Ports
+#### Opening Too Many Firewall Ports
 
 Every exposed port increases the server's attack surface.
 
 ---
 
-### Storing Secrets in Source Code
+#### Storing Secrets in Source Code
 
 API keys, passwords, and credentials should be stored in environment variables rather than application code.
 
 ---
 
-### Skipping Installation Verification
+#### Skipping Installation Verification
 
 Assuming software is installed correctly without checking versions can lead to deployment failures later.
 
 ---
 
-# Summary
+## Summary
 
 Preparing a server is the first practical step in deploying a production application. It involves updating the operating system, creating appropriate users, securing SSH access, configuring the firewall, installing essential software such as Git, Node.js, PM2, and Nginx, and organizing the server's directory structure. A properly prepared server provides a secure and stable foundation for reliable application deployments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Deploying Node.js Application**

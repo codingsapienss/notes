@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Users and Groups
 
-## Overview
+### Overview
 
 Linux is a **multi-user operating system**, meaning multiple users can use the same system while keeping their files, settings, and permissions separate.
 
@@ -16,7 +16,7 @@ Understanding users and groups is essential for system administration because ev
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -29,7 +29,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Why Linux Uses Users
+## Why Linux Uses Users
 
 Imagine a server used by several developers.
 
@@ -52,11 +52,11 @@ Each user has:
 
 ---
 
-# Types of Users
+## Types of Users
 
 Linux categorizes users into three main types.
 
-## 1. Root User
+### 1. Root User
 
 The **root** user is the superuser of the system.
 
@@ -84,7 +84,7 @@ Because root has unrestricted access, it should be used only when necessary.
 
 ---
 
-## 2. Regular Users
+### 2. Regular Users
 
 Regular users are created for people who use the system.
 
@@ -111,7 +111,7 @@ Example:
 
 ---
 
-## 3. System Users
+### 3. System Users
 
 Some applications and services require their own dedicated accounts.
 
@@ -135,7 +135,7 @@ For example, the Nginx web server often runs as the `www-data` user on Ubuntu.
 
 ---
 
-# Understanding User IDs (UID)
+## Understanding User IDs (UID)
 
 Internally, Linux identifies users using **User IDs (UIDs)** rather than usernames.
 
@@ -165,7 +165,7 @@ uid=1000(developer) gid=1000(developer) groups=1000(developer),27(sudo)
 
 ---
 
-# What Are Groups?
+## What Are Groups?
 
 A **group** is a collection of users who share common permissions.
 
@@ -184,7 +184,7 @@ If all developers require access to the same project directory, assigning permis
 
 ---
 
-# Primary Group and Secondary Groups
+## Primary Group and Secondary Groups
 
 Every user has:
 
@@ -209,7 +209,7 @@ Primary groups are generally used when creating new files, while secondary group
 
 ---
 
-# Understanding Group IDs (GID)
+## Understanding Group IDs (GID)
 
 Just as users have UIDs, groups have **Group IDs (GIDs)**.
 
@@ -226,7 +226,7 @@ Linux uses the GID internally instead of the group name.
 
 ---
 
-# Viewing Current User Information
+## Viewing Current User Information
 
 To display information about the current user:
 
@@ -262,7 +262,7 @@ who
 
 ---
 
-# Creating Users
+## Creating Users
 
 A new user can be created using:
 
@@ -286,7 +286,7 @@ The new home directory becomes:
 
 ---
 
-# Deleting Users
+## Deleting Users
 
 To remove a user:
 
@@ -304,7 +304,7 @@ Be careful, as deleting a home directory permanently removes the user's files.
 
 ---
 
-# Creating Groups
+## Creating Groups
 
 Create a new group:
 
@@ -326,7 +326,7 @@ developers:x:1002:
 
 ---
 
-# Adding a User to a Group
+## Adding a User to a Group
 
 To add a user to an existing group:
 
@@ -345,7 +345,7 @@ Explanation:
 
 ---
 
-# Viewing Groups
+## Viewing Groups
 
 To list groups for the current user:
 
@@ -361,7 +361,7 @@ groups john
 
 ---
 
-# The sudo Group
+## The sudo Group
 
 Most Linux distributions discourage logging in directly as the root user.
 
@@ -388,7 +388,7 @@ This approach improves security because administrative actions are explicit and 
 
 ---
 
-# User Home Directories
+## User Home Directories
 
 Each regular user receives a personal home directory.
 
@@ -412,7 +412,7 @@ When a user logs in, the shell usually starts in their home directory.
 
 ---
 
-# Important User-Related Files
+## Important User-Related Files
 
 Linux stores user and group information in several important files.
 
@@ -427,7 +427,7 @@ Administrators should understand these files but avoid editing them manually unl
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a company has three developers working on the same application.
 
@@ -455,7 +455,7 @@ This separation improves both organization and security.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use regular user accounts for daily work.
 - Use `sudo` instead of logging in directly as the root user.
@@ -465,9 +465,9 @@ This separation improves both organization and security.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Working as the Root User All the Time
+#### Working as the Root User All the Time
 
 Using the root account for everyday tasks increases the risk of accidental system changes.
 
@@ -475,7 +475,7 @@ Prefer a regular user account with `sudo` privileges.
 
 ---
 
-### Forgetting the `-a` Option with `usermod`
+#### Forgetting the `-a` Option with `usermod`
 
 Running:
 
@@ -495,7 +495,7 @@ to append the new group while preserving existing memberships.
 
 ---
 
-### Sharing User Accounts
+#### Sharing User Accounts
 
 Each person should have an individual account.
 
@@ -503,7 +503,7 @@ Shared accounts reduce accountability and make auditing difficult.
 
 ---
 
-# Summary
+## Summary
 
 Linux uses a robust user and group model to provide secure, multi-user access to system resources.
 
@@ -516,6 +516,6 @@ A solid understanding of users and groups is essential before learning Linux fil
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - Linux Permissions**

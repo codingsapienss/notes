@@ -6,7 +6,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before reading this chapter, you should understand:
 
@@ -18,7 +18,7 @@ Before reading this chapter, you should understand:
 
 ---
 
-## Why Should We Learn This?
+### Why Should We Learn This?
 
 Consider the following code.
 
@@ -57,13 +57,13 @@ This happens because JavaScript's property enumeration rules are different for d
 
 ---
 
-## Own Properties vs Inherited Properties
+### Own Properties vs Inherited Properties
 
 Before learning enumeration, we must understand two kinds of properties.
 
 ---
 
-### Own Properties
+#### Own Properties
 
 These are properties stored directly inside the object.
 
@@ -86,7 +86,7 @@ jumps
 
 ---
 
-### Inherited Properties
+#### Inherited Properties
 
 Properties that come from the prototype.
 
@@ -118,7 +118,7 @@ eats
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 rabbit
@@ -139,7 +139,7 @@ null
 
 ---
 
-## Property Enumeration
+### Property Enumeration
 
 Enumeration simply means
 
@@ -159,7 +159,7 @@ Each behaves differently.
 
 ---
 
-## 1. for...in Loop
+### 1. for...in Loop
 
 The
 
@@ -210,7 +210,7 @@ comes from the prototype.
 
 ---
 
-## Search Process
+### Search Process
 
 ```text
 rabbit
@@ -230,7 +230,7 @@ Print All Enumerable Properties
 
 ---
 
-## 2. Object.keys()
+### 2. Object.keys()
 
 Unlike
 
@@ -276,7 +276,7 @@ is missing.
 
 ---
 
-## 3. Object.values()
+### 3. Object.values()
 
 Returns
 
@@ -298,7 +298,7 @@ Output
 
 ---
 
-## 4. Object.entries()
+### 4. Object.entries()
 
 Returns
 
@@ -326,7 +326,7 @@ Output
 
 ---
 
-## Comparison
+### Comparison
 
 | Method             | Own Properties | Inherited Properties |
 | ------------------ | -------------- | -------------------- |
@@ -337,7 +337,7 @@ Output
 
 ---
 
-## Why Does `for...in` Include Prototype Properties?
+### Why Does `for...in` Include Prototype Properties?
 
 Historically,
 
@@ -379,7 +379,7 @@ Every enumerable property is visited.
 
 ---
 
-## Enumerable Properties
+### Enumerable Properties
 
 Not every property can be enumerated.
 
@@ -443,7 +443,7 @@ Non-Enumerable
 
 ---
 
-## Checking Own Properties
+### Checking Own Properties
 
 Sometimes
 
@@ -491,7 +491,7 @@ is ignored.
 
 ---
 
-## Modern Alternative
+### Modern Alternative
 
 ES2022 introduced
 
@@ -519,7 +519,7 @@ Unlike `hasOwnProperty()`, this works even if an object overrides or lacks that 
 
 ---
 
-## Why Prefer `Object.hasOwn()`?
+### Why Prefer `Object.hasOwn()`?
 
 Consider
 
@@ -551,7 +551,7 @@ still works.
 
 ---
 
-## Enumerating Arrays
+### Enumerating Arrays
 
 Example
 
@@ -615,7 +615,7 @@ for arrays.
 
 ---
 
-## Complete Comparison
+### Complete Comparison
 
 ```javascript
 const animal = {
@@ -691,9 +691,9 @@ Output
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -709,7 +709,7 @@ It also loops over inherited enumerable properties.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Using
 
@@ -729,7 +729,7 @@ instead.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Forgetting to filter inherited properties.
 
@@ -753,7 +753,7 @@ if only own properties are required.
 
 ---
 
-## Best Practices
+### Best Practices
 
 ✅ Use
 
@@ -795,9 +795,9 @@ for arrays.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is the difference between `for...in` and `Object.keys()`?
+#### Q1. What is the difference between `for...in` and `Object.keys()`?
 
 **Answer**
 
@@ -805,7 +805,7 @@ for arrays.
 
 ---
 
-### Q2. Why doesn't `Object.keys()` return prototype properties?
+#### Q2. Why doesn't `Object.keys()` return prototype properties?
 
 **Answer**
 
@@ -813,7 +813,7 @@ Because it is designed to return only the object's own enumerable properties, ig
 
 ---
 
-### Q3. Why don't methods like `toString()` appear in `for...in`?
+#### Q3. Why don't methods like `toString()` appear in `for...in`?
 
 **Answer**
 
@@ -821,7 +821,7 @@ Because they are **non-enumerable** properties on `Object.prototype`.
 
 ---
 
-### Q4. Why is `Object.hasOwn()` preferred over `hasOwnProperty()`?
+#### Q4. Why is `Object.hasOwn()` preferred over `hasOwnProperty()`?
 
 **Answer**
 
@@ -829,7 +829,7 @@ Because they are **non-enumerable** properties on `Object.prototype`.
 
 ---
 
-### Q5. Should `for...in` be used with arrays?
+#### Q5. Should `for...in` be used with arrays?
 
 **Answer**
 
@@ -837,7 +837,7 @@ Generally, no. Use `for...of` or array iteration methods (`forEach`, `map`, etc.
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Properties are classified as **own** or **inherited**.
 - `for...in` iterates over both own and inherited **enumerable** properties.

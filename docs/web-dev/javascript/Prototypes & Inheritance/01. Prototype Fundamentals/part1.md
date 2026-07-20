@@ -6,7 +6,7 @@
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before learning this chapter, you should know:
 
@@ -18,7 +18,7 @@ Before learning this chapter, you should know:
 
 ---
 
-## Why Do We Need Prototypes?
+### Why Do We Need Prototypes?
 
 Imagine creating 10,000 user objects.
 
@@ -62,7 +62,7 @@ This wastes memory.
 
 ---
 
-### Better Idea
+#### Better Idea
 
 Instead of storing
 
@@ -86,7 +86,7 @@ That is exactly what JavaScript Prototypes do.
 
 ---
 
-## What is a Prototype?
+### What is a Prototype?
 
 A **prototype** is another object from which an object can inherit properties and methods.
 
@@ -122,13 +122,13 @@ Prototype Chain
 
 ---
 
-## Definition
+### Definition
 
 A prototype is an object that another object delegates property and method lookups to when the property does not exist on itself.
 
 ---
 
-## Real-Life Analogy
+### Real-Life Analogy
 
 Imagine a school.
 
@@ -166,7 +166,7 @@ Prototype works exactly like this.
 
 ---
 
-## Prototype vs Copy
+### Prototype vs Copy
 
 Without prototypes
 
@@ -220,7 +220,7 @@ Every object uses them.
 
 ---
 
-## Prototypal Inheritance
+### Prototypal Inheritance
 
 JavaScript does **not** copy properties from one object to another.
 
@@ -278,7 +278,7 @@ undefined;
 
 ---
 
-## Prototype Chain
+### Prototype Chain
 
 Every JavaScript object has an internal reference to another object.
 
@@ -308,7 +308,7 @@ Prototype Chain
 
 ---
 
-## Property Lookup
+### Property Lookup
 
 Suppose
 
@@ -408,7 +408,7 @@ undefined
 
 ---
 
-## The Property Lookup Algorithm
+### The Property Lookup Algorithm
 
 Whenever JavaScript evaluates
 
@@ -418,7 +418,7 @@ obj.property;
 
 it follows this algorithm.
 
-### Step 1
+#### Step 1
 
 Look inside the object itself.
 
@@ -436,7 +436,7 @@ Return
 
 ---
 
-### Step 2
+#### Step 2
 
 Otherwise,
 
@@ -444,7 +444,7 @@ look inside its prototype.
 
 ---
 
-### Step 3
+#### Step 3
 
 Still not found?
 
@@ -452,7 +452,7 @@ Go to the prototype's prototype.
 
 ---
 
-### Step 4
+#### Step 4
 
 Repeat until
 
@@ -464,7 +464,7 @@ is reached.
 
 ---
 
-### Step 5
+#### Step 5
 
 Return
 
@@ -476,7 +476,7 @@ if the property doesn't exist anywhere.
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```text
 rabbit
@@ -550,7 +550,7 @@ undefined
 
 ---
 
-## Why Does JavaScript Use Prototypes?
+### Why Does JavaScript Use Prototypes?
 
 Because they provide
 
@@ -562,7 +562,7 @@ Because they provide
 
 ---
 
-## Memory Comparison
+### Memory Comparison
 
 Without prototypes
 
@@ -594,7 +594,7 @@ Huge memory saving.
 
 ---
 
-## Dynamic Nature
+### Dynamic Nature
 
 Unlike many programming languages,
 
@@ -624,7 +624,7 @@ This flexibility is one reason JavaScript is so dynamic.
 
 ---
 
-## Prototype vs Classical Inheritance
+### Prototype vs Classical Inheritance
 
 | Classical Inheritance       | Prototype Inheritance       |
 | --------------------------- | --------------------------- |
@@ -635,7 +635,7 @@ This flexibility is one reason JavaScript is so dynamic.
 
 ---
 
-## Where Are Prototypes Used?
+### Where Are Prototypes Used?
 
 Prototypes power almost every JavaScript feature.
 
@@ -659,9 +659,9 @@ internally uses prototypes.
 
 ---
 
-## Common Misconceptions
+### Common Misconceptions
 
-## Misconception 1
+### Misconception 1
 
 > Prototype copies properties.
 
@@ -673,7 +673,7 @@ No copying happens.
 
 ---
 
-## Misconception 2
+### Misconception 2
 
 > Every object stores all methods.
 
@@ -683,7 +683,7 @@ Methods usually exist only once in the prototype.
 
 ---
 
-## Misconception 3
+### Misconception 3
 
 > Classes replaced prototypes.
 
@@ -697,7 +697,7 @@ JavaScript still uses prototypes.
 
 ---
 
-## Advantages
+### Advantages
 
 - Memory efficient
 - Supports inheritance
@@ -707,7 +707,7 @@ JavaScript still uses prototypes.
 
 ---
 
-## Limitations
+### Limitations
 
 - Only one prototype can be linked to an object.
 - Deep prototype chains can make debugging harder.
@@ -716,7 +716,7 @@ JavaScript still uses prototypes.
 
 ---
 
-## Real-World Applications
+### Real-World Applications
 
 Prototypes are used everywhere in JavaScript.
 
@@ -742,9 +742,9 @@ Array.prototype.map();
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-## Q1. What is a prototype in JavaScript?
+### Q1. What is a prototype in JavaScript?
 
 **Answer**
 
@@ -752,7 +752,7 @@ A prototype is an object from which another object inherits properties and metho
 
 ---
 
-## Q2. What is the Prototype Chain?
+### Q2. What is the Prototype Chain?
 
 **Answer**
 
@@ -760,7 +760,7 @@ The prototype chain is the sequence of objects JavaScript follows while searchin
 
 ---
 
-## Q3. Why are prototypes used?
+### Q3. Why are prototypes used?
 
 **Answer**
 
@@ -768,7 +768,7 @@ To enable code reuse, memory efficiency, and inheritance by sharing methods betw
 
 ---
 
-## Q4. Does JavaScript copy methods from prototypes?
+### Q4. Does JavaScript copy methods from prototypes?
 
 **Answer**
 
@@ -776,7 +776,7 @@ No. JavaScript links objects through the prototype chain. Methods are shared, no
 
 ---
 
-## Q5. Do JavaScript classes replace prototypes?
+### Q5. Do JavaScript classes replace prototypes?
 
 **Answer**
 
@@ -784,7 +784,7 @@ No. JavaScript classes are syntactic sugar. They are implemented internally usin
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - JavaScript uses **prototal inheritance**, not traditional class-based inheritance.
 - A prototype is another object that provides inherited properties and methods.

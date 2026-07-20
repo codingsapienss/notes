@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Networking in Azure
 
-## Overview
+### Overview
 
 So far in this part, we have learned:
 
@@ -35,7 +35,7 @@ Once you understand Azure networking, concepts such as **Network Security Groups
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -49,7 +49,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Azure Networking Overview
+## Azure Networking Overview
 
 Every Azure resource communicates through Azure's networking infrastructure.
 
@@ -73,7 +73,7 @@ The Virtual Network forms the foundation of communication between Azure resource
 
 ---
 
-# What is a Virtual Network (VNet)?
+## What is a Virtual Network (VNet)?
 
 A **Virtual Network (VNet)** is Azure's private network.
 
@@ -111,7 +111,7 @@ Resources inside a VNet can communicate privately with one another.
 
 ---
 
-# Why Use a VNet?
+## Why Use a VNet?
 
 Without a VNet:
 
@@ -148,7 +148,7 @@ Benefits include:
 
 ---
 
-# IP Address Ranges
+## IP Address Ranges
 
 Every VNet is assigned a private IP address range.
 
@@ -176,7 +176,7 @@ These addresses are accessible only within the network unless explicitly exposed
 
 ---
 
-# What is a Subnet?
+## What is a Subnet?
 
 A **Subnet** divides a Virtual Network into smaller logical networks.
 
@@ -213,7 +213,7 @@ Subnets improve organization and network security.
 
 ---
 
-# Why Use Multiple Subnets?
+## Why Use Multiple Subnets?
 
 Different application components often require different security rules.
 
@@ -257,7 +257,7 @@ This separation limits unnecessary communication between components.
 
 ---
 
-# Network Interface (NIC)
+## Network Interface (NIC)
 
 Every Virtual Machine requires a **Network Interface (NIC)**.
 
@@ -289,7 +289,7 @@ The NIC connects the Virtual Machine to the Virtual Network.
 
 ---
 
-# Private IP Address
+## Private IP Address
 
 Each Network Interface receives a private IP address.
 
@@ -325,7 +325,7 @@ No internet access is required for this communication.
 
 ---
 
-# Public Internet Access
+## Public Internet Access
 
 Not every Virtual Machine needs internet access.
 
@@ -357,7 +357,7 @@ The VM remains private inside the Virtual Network.
 
 ---
 
-# Internet Communication Flow
+## Internet Communication Flow
 
 Example:
 
@@ -381,7 +381,7 @@ The Public IP directs internet traffic to the VM's Network Interface.
 
 ---
 
-# Routing
+## Routing
 
 A **Route** tells Azure where network traffic should go.
 
@@ -403,7 +403,7 @@ Azure automatically creates system routes so that resources within the same VNet
 
 ---
 
-# Route Tables
+## Route Tables
 
 Administrators can define custom routing behavior using **Route Tables**.
 
@@ -425,7 +425,7 @@ Custom routes are commonly used in enterprise environments to direct traffic thr
 
 ---
 
-# Network Communication
+## Network Communication
 
 Example architecture:
 
@@ -453,7 +453,7 @@ All communication occurs within the Virtual Network using private IP addresses.
 
 ---
 
-# DNS Inside Azure
+## DNS Inside Azure
 
 Azure provides internal DNS resolution within a Virtual Network.
 
@@ -475,7 +475,7 @@ Resources can often communicate using hostnames rather than manually configured 
 
 ---
 
-# Typical Web Application Architecture
+## Typical Web Application Architecture
 
 ```text id="net26"
 Internet
@@ -501,7 +501,7 @@ The database remains inaccessible from the public internet.
 
 ---
 
-# Multiple Subnet Architecture
+## Multiple Subnet Architecture
 
 ```text id="net27"
 Internet
@@ -520,7 +520,7 @@ This layered architecture is common in production deployments.
 
 ---
 
-# Azure Networking Components
+## Azure Networking Components
 
 | Component               | Purpose                      |
 | ----------------------- | ---------------------------- |
@@ -534,7 +534,7 @@ This layered architecture is common in production deployments.
 
 ---
 
-# Typical Production Deployment
+## Typical Production Deployment
 
 ```text id="net28"
 Internet
@@ -561,7 +561,7 @@ Each component communicates securely over the Virtual Network while only the web
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy an e-commerce application.
 
@@ -597,7 +597,7 @@ This reduces the attack surface while maintaining efficient communication.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Place related resources inside the same Virtual Network when appropriate.
 - Use separate subnets for different application layers.
@@ -609,44 +609,44 @@ This reduces the attack surface while maintaining efficient communication.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Giving Every Virtual Machine a Public IP
+#### Giving Every Virtual Machine a Public IP
 
 Most backend services should remain private and communicate only within the Virtual Network.
 
 ---
 
-### Placing Every Resource in One Subnet
+#### Placing Every Resource in One Subnet
 
 Using separate subnets for web servers, application servers, and databases improves organization and security.
 
 ---
 
-### Poor IP Address Planning
+#### Poor IP Address Planning
 
 Changing IP ranges after deployment can be complex. Design the address space before creating the Virtual Network.
 
 ---
 
-### Confusing VNets with Resource Groups
+#### Confusing VNets with Resource Groups
 
 A Resource Group organizes Azure resources, while a Virtual Network provides network connectivity.
 
 ---
 
-### Ignoring Network Design
+#### Ignoring Network Design
 
 As applications grow, an unplanned network layout becomes difficult to maintain and secure.
 
 ---
 
-# Summary
+## Summary
 
 Azure networking provides the foundation for communication between cloud resources. Virtual Networks (VNets) create private cloud networks, Subnets divide those networks into logical segments, and Network Interfaces connect Virtual Machines to the network. Private IP addresses enable secure internal communication, while Public IP addresses provide controlled internet access. Together with routing and DNS, these components form the networking layer that supports secure, scalable, and well-organized cloud applications.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Network Security Groups**

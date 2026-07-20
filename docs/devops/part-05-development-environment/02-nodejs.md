@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Node.js
 
-## Overview
+### Overview
 
 After installing Git, the next step in preparing a Linux server for application deployment is installing **Node.js**.
 
@@ -18,7 +18,7 @@ This chapter explains how Node.js works, how to install it correctly on Ubuntu, 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -32,7 +32,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Node.js?
+## What is Node.js?
 
 Node.js is an open-source JavaScript runtime built on Google's **V8 JavaScript Engine**.
 
@@ -59,7 +59,7 @@ This allows JavaScript to:
 
 ---
 
-# Why Do We Need Node.js?
+## Why Do We Need Node.js?
 
 A browser can execute frontend JavaScript, but it cannot:
 
@@ -92,7 +92,7 @@ This architecture is commonly used in MERN, MEAN, and Express-based applications
 
 ---
 
-# Node.js Architecture
+## Node.js Architecture
 
 A simplified architecture:
 
@@ -120,7 +120,7 @@ Node.js also provides:
 
 ---
 
-# LTS vs Current Releases
+## LTS vs Current Releases
 
 Node.js releases are generally categorized into:
 
@@ -133,7 +133,7 @@ Production servers should normally use the **LTS** release because it receives l
 
 ---
 
-# Installing Node.js
+## Installing Node.js
 
 Although Ubuntu repositories include Node.js, they may not provide the latest LTS version.
 
@@ -164,7 +164,7 @@ This installs both:
 
 ---
 
-# Verifying the Installation
+## Verifying the Installation
 
 Check the installed Node.js version:
 
@@ -188,7 +188,7 @@ Confirm both commands execute successfully before deploying applications.
 
 ---
 
-# Understanding the Node.js Executable
+## Understanding the Node.js Executable
 
 Once installed, Node.js is available through the `node` command.
 
@@ -218,7 +218,7 @@ node app.js
 
 ---
 
-# Running a Simple Program
+## Running a Simple Program
 
 Create a file:
 
@@ -242,7 +242,7 @@ This confirms the runtime is functioning correctly.
 
 ---
 
-# Checking Installation Paths
+## Checking Installation Paths
 
 Locate the Node.js executable:
 
@@ -266,7 +266,7 @@ These commands help verify the installation and troubleshoot PATH-related issues
 
 ---
 
-# Node.js Version Management
+## Node.js Version Management
 
 Different applications may require different Node.js versions.
 
@@ -283,7 +283,7 @@ However, production servers typically standardize on a single supported LTS vers
 
 ---
 
-# Updating Node.js
+## Updating Node.js
 
 Check the current version:
 
@@ -308,7 +308,7 @@ Verify that the application remains compatible before deploying the updated runt
 
 ---
 
-# Common Directories
+## Common Directories
 
 Typical installation locations:
 
@@ -322,7 +322,7 @@ Application source code should **not** be stored in these locations.
 
 ---
 
-# Production Installation Workflow
+## Production Installation Workflow
 
 ```text
 Fresh Ubuntu Server
@@ -350,7 +350,7 @@ This forms the foundation for deploying Node.js applications.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy an Express.js application on an Ubuntu server hosted in Azure.
 
@@ -383,7 +383,7 @@ The Node.js runtime remains installed on the server while the application code i
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use the latest supported LTS version for production.
 - Install Node.js from a trusted source such as NodeSource.
@@ -394,21 +394,21 @@ The Node.js runtime remains installed on the server while the application code i
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Using an End-of-Life Version
+#### Using an End-of-Life Version
 
 Unsupported versions no longer receive security updates and should not be used in production.
 
 ---
 
-### Installing from Outdated Repositories
+#### Installing from Outdated Repositories
 
 Distribution repositories may contain older versions that lack recent features or security fixes.
 
 ---
 
-### Upgrading Without Testing
+#### Upgrading Without Testing
 
 Major version upgrades can introduce breaking changes.
 
@@ -416,18 +416,18 @@ Always test the application before upgrading production servers.
 
 ---
 
-### Installing Multiple Versions Unnecessarily
+#### Installing Multiple Versions Unnecessarily
 
 Using different Node.js versions across production servers makes troubleshooting and maintenance more difficult.
 
 ---
 
-# Summary
+## Summary
 
 Node.js is the runtime that enables JavaScript applications to execute on Linux servers. Installing a supported LTS release, verifying the installation, and maintaining consistent versions across environments are essential steps in preparing a production server. With Node.js in place, the server is ready to install project dependencies and run backend applications.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **03 - npm**

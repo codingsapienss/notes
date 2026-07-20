@@ -21,7 +21,7 @@
 
 ---
 
-## What is a map?
+### What is a map?
 
 A **map** is an STL container that stores data as:
 
@@ -63,7 +63,7 @@ Student Name
 
 ---
 
-## Why Do We Need map?
+### Why Do We Need map?
 
 Suppose we have
 
@@ -91,7 +91,7 @@ stores only the elements that actually exist.
 
 ---
 
-## Syntax
+### Syntax
 
 ```cpp
 map<KeyType, ValueType> variableName;
@@ -113,7 +113,7 @@ Value → int
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 ```cpp
 map<int,int> mp;
@@ -147,9 +147,9 @@ Keys are automatically sorted.
 
 ---
 
-## How to Insert Elements
+### How to Insert Elements
 
-### Method 1
+#### Method 1
 
 ```cpp
 mp[5] = 10;
@@ -157,7 +157,7 @@ mp[5] = 10;
 
 ---
 
-### Method 2
+#### Method 2
 
 ```cpp
 mp.insert({5,10});
@@ -165,7 +165,7 @@ mp.insert({5,10});
 
 ---
 
-### Method 3
+#### Method 3
 
 ```cpp
 mp.emplace(5,10);
@@ -175,7 +175,7 @@ Recommended because it avoids unnecessary object creation.
 
 ---
 
-## Updating Values
+### Updating Values
 
 ```cpp
 mp[5] = 20;
@@ -191,7 +191,7 @@ The old value is replaced.
 
 ---
 
-## Frequency Counting
+### Frequency Counting
 
 One of the most common uses.
 
@@ -215,7 +215,7 @@ Result
 
 ---
 
-## Accessing Elements
+### Accessing Elements
 
 ```cpp
 cout << mp[5];
@@ -245,7 +245,7 @@ because `operator[]` inserts the key with a default value.
 
 ---
 
-## Checking if a Key Exists
+### Checking if a Key Exists
 
 Using
 
@@ -270,7 +270,7 @@ mp.find(10) == mp.end()
 
 ---
 
-## Size
+### Size
 
 ```cpp
 cout << mp.size();
@@ -284,7 +284,7 @@ Number of key-value pairs
 
 ---
 
-## Empty
+### Empty
 
 ```cpp
 mp.empty()
@@ -300,7 +300,7 @@ if the map is empty.
 
 ---
 
-## Removing Elements
+### Removing Elements
 
 Remove one key
 
@@ -318,7 +318,7 @@ mp.clear();
 
 ---
 
-## Traversing a map
+### Traversing a map
 
 Using range-based loop
 
@@ -362,7 +362,7 @@ for(auto it = mp.begin();
 
 ---
 
-## Why Can't We Access Using an Index?
+### Why Can't We Access Using an Index?
 
 Suppose
 
@@ -411,11 +411,11 @@ It does **not** mean
 
 ---
 
-## Different Types of Maps
+### Different Types of Maps
 
 ---
 
-### Integer Map
+#### Integer Map
 
 ```cpp
 map<int,int> mp;
@@ -423,7 +423,7 @@ map<int,int> mp;
 
 ---
 
-### Character Map
+#### Character Map
 
 ```cpp
 map<char,int> mp;
@@ -439,7 +439,7 @@ mp['b']++;
 
 ---
 
-### String Map
+#### String Map
 
 ```cpp
 map<string,int> mp;
@@ -455,7 +455,7 @@ mp["banana"]++;
 
 ---
 
-### Pair as Key
+#### Pair as Key
 
 ```cpp
 map<pair<int,int>,int> mp;
@@ -469,7 +469,7 @@ mp[{2,3}] = 10;
 
 ---
 
-### Vector as Key
+#### Vector as Key
 
 ```cpp
 map<vector<int>,int> mp;
@@ -479,7 +479,7 @@ Although possible, it is used much less frequently.
 
 ---
 
-## Can Keys Be Any Data Type?
+### Can Keys Be Any Data Type?
 
 Almost any data type can be used as a key **as long as it can be compared**.
 
@@ -503,7 +503,7 @@ tuple
 
 ---
 
-## Time Complexity
+### Time Complexity
 
 | Operation | Complexity |
 | --------- | ---------: |
@@ -523,7 +523,7 @@ N = Number of elements in the map
 
 ---
 
-## Space Complexity
+### Space Complexity
 
 ```text
 O(N)
@@ -533,7 +533,7 @@ because every inserted key-value pair occupies memory.
 
 ---
 
-## When Should We Use map?
+### When Should We Use map?
 
 Use a `map` when:
 
@@ -544,7 +544,7 @@ Use a `map` when:
 
 ---
 
-## Advantages
+### Advantages
 
 - Automatically keeps keys sorted.
 - Works for very large values.
@@ -554,7 +554,7 @@ Use a `map` when:
 
 ---
 
-## Limitations
+### Limitations
 
 - Slower than array hashing.
 - Slower than `unordered_map` (on average).
@@ -563,9 +563,9 @@ Use a `map` when:
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. What is a map?
+#### Q1. What is a map?
 
 **Answer**
 
@@ -573,7 +573,7 @@ A `map` is an STL associative container that stores unique key-value pairs in so
 
 ---
 
-### Q2. Why do we use a map instead of array hashing?
+#### Q2. Why do we use a map instead of array hashing?
 
 **Answer**
 
@@ -581,7 +581,7 @@ Because array hashing requires a fixed and reasonably small range of values, whi
 
 ---
 
-### Q3. Can duplicate keys exist in a map?
+#### Q3. Can duplicate keys exist in a map?
 
 **Answer**
 
@@ -589,7 +589,7 @@ No. Every key is unique. Inserting an existing key updates its value.
 
 ---
 
-### Q4. Why can't we access a map using an index?
+#### Q4. Why can't we access a map using an index?
 
 **Answer**
 
@@ -597,7 +597,7 @@ A map stores elements based on keys, not on contiguous memory positions like an 
 
 ---
 
-### Q5. What are the time complexities of insertion and searching?
+#### Q5. What are the time complexities of insertion and searching?
 
 **Answer**
 
@@ -605,7 +605,7 @@ Both insertion and searching take **O(log N)** time.
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - `map` stores data as **key-value pairs**.
 - Every key in a map is unique.

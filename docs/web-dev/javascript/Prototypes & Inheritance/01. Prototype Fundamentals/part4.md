@@ -10,7 +10,7 @@
 
 ---
 
-## Why Learn This?
+### Why Learn This?
 
 Consider this code.
 
@@ -56,7 +56,7 @@ Understanding this is essential to understanding JavaScript inheritance.
 
 ---
 
-## Important Rule
+### Important Rule
 
 **`this` never depends on where the function is defined.**
 
@@ -78,7 +78,7 @@ Execution
 
 ---
 
-## How JavaScript Executes a Method
+### How JavaScript Executes a Method
 
 Suppose
 
@@ -90,7 +90,7 @@ JavaScript performs two completely separate operations.
 
 ---
 
-### Step 1 — Find the Method
+#### Step 1 — Find the Method
 
 JavaScript searches
 
@@ -108,7 +108,7 @@ Found walk()
 
 ---
 
-### Step 2 — Execute the Method
+#### Step 2 — Execute the Method
 
 Although the method was found inside
 
@@ -130,7 +130,7 @@ this === rabbit;
 
 ---
 
-## Visual Representation
+### Visual Representation
 
 Property Lookup
 
@@ -166,7 +166,7 @@ It does **not** determine `this`.
 
 ---
 
-## Complete Example
+### Complete Example
 
 ```javascript
 const animal = {
@@ -222,7 +222,7 @@ White Rabbit
 
 ---
 
-## Why Doesn't `this` Become `animal`?
+### Why Doesn't `this` Become `animal`?
 
 Because JavaScript remembers
 
@@ -240,7 +240,7 @@ The lookup and execution are two independent steps.
 
 ---
 
-## Another Example
+### Another Example
 
 ```javascript
 const animal = {
@@ -291,7 +291,7 @@ changes automatically.
 
 ---
 
-## One Shared Method
+### One Shared Method
 
 Memory
 
@@ -319,7 +319,7 @@ Both objects use it.
 
 ---
 
-## Object State is Independent
+### Object State is Independent
 
 Although methods are shared,
 
@@ -364,7 +364,7 @@ but each object provides its own data.
 
 ---
 
-## Shared Behavior vs Shared State
+### Shared Behavior vs Shared State
 
 This is one of the most important prototype concepts.
 
@@ -419,7 +419,7 @@ Visualization
 
 ---
 
-## Why is This Memory Efficient?
+### Why is This Memory Efficient?
 
 Suppose
 
@@ -459,7 +459,7 @@ Massive memory savings.
 
 ---
 
-## Another Example
+### Another Example
 
 ```javascript
 const person = {
@@ -504,7 +504,7 @@ changes.
 
 ---
 
-## Internal Flow
+### Internal Flow
 
 When JavaScript executes
 
@@ -564,7 +564,7 @@ Searching and binding are different operations.
 
 ---
 
-## Common Mistake
+### Common Mistake
 
 Many beginners think
 
@@ -594,7 +594,7 @@ this = rabbit
 
 ---
 
-## Rule to Remember
+### Rule to Remember
 
 Whenever you see
 
@@ -640,7 +640,7 @@ this = fox
 
 ---
 
-## What if We Store the Function?
+### What if We Store the Function?
 
 ```javascript
 const animal = {
@@ -688,7 +688,7 @@ the call site determines `this`, not the prototype.
 
 ---
 
-## Prototype Doesn't Own the Object
+### Prototype Doesn't Own the Object
 
 Another misconception
 
@@ -718,7 +718,7 @@ The prototype does not own the object.
 
 ---
 
-## Advantages
+### Advantages
 
 - Methods are shared.
 - Memory efficient.
@@ -728,9 +728,9 @@ The prototype does not own the object.
 
 ---
 
-## Common Mistakes
+### Common Mistakes
 
-### Mistake 1
+#### Mistake 1
 
 Thinking
 
@@ -748,7 +748,7 @@ Wrong.
 
 ---
 
-### Mistake 2
+#### Mistake 2
 
 Thinking methods are copied.
 
@@ -758,7 +758,7 @@ Methods are shared through the prototype chain.
 
 ---
 
-### Mistake 3
+#### Mistake 3
 
 Thinking shared methods mean shared data.
 
@@ -770,9 +770,9 @@ Object properties remain separate.
 
 ---
 
-## Interview Questions
+### Interview Questions
 
-### Q1. If a method is found in the prototype, what does `this` refer to?
+#### Q1. If a method is found in the prototype, what does `this` refer to?
 
 **Answer**
 
@@ -780,7 +780,7 @@ Object properties remain separate.
 
 ---
 
-### Q2. Does JavaScript copy prototype methods into every object?
+#### Q2. Does JavaScript copy prototype methods into every object?
 
 **Answer**
 
@@ -788,7 +788,7 @@ No. Prototype methods exist only once and are shared by all objects linked to th
 
 ---
 
-### Q3. Why do two objects using the same prototype method produce different outputs?
+#### Q3. Why do two objects using the same prototype method produce different outputs?
 
 **Answer**
 
@@ -796,7 +796,7 @@ Because `this` points to the calling object, so the same method operates on diff
 
 ---
 
-### Q4. Why are prototypes memory efficient?
+#### Q4. Why are prototypes memory efficient?
 
 **Answer**
 
@@ -804,7 +804,7 @@ Because multiple objects share a single copy of each method instead of storing d
 
 ---
 
-### Q5. What determines the value of `this`?
+#### Q5. What determines the value of `this`?
 
 **Answer**
 
@@ -812,7 +812,7 @@ The **call site** determines `this`. It depends on how the function is invoked, 
 
 ---
 
-## Key Takeaways
+### Key Takeaways
 
 - Prototype lookup and function execution are **two separate processes**.
 - The prototype chain is used only to **find** a method.

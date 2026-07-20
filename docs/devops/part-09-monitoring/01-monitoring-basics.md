@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Monitoring Basics
 
-## Overview
+### Overview
 
 Deploying an application to production is **not the end of a server administrator's job**.
 
@@ -26,7 +26,7 @@ Monitoring allows administrators to detect issues early, understand system behav
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Monitoring?
+## What is Monitoring?
 
 Monitoring is the continuous process of collecting information about a system's health, performance, and availability.
 
@@ -75,7 +75,7 @@ Monitoring answers questions such as:
 
 ---
 
-# Why Monitoring Matters
+## Why Monitoring Matters
 
 Imagine an online shopping website.
 
@@ -127,7 +127,7 @@ Monitoring reduces downtime and improves user experience.
 
 ---
 
-# Monitoring vs Logging
+## Monitoring vs Logging
 
 Many beginners confuse monitoring with logging.
 
@@ -165,7 +165,7 @@ Logs help explain **why it is wrong**.
 
 ---
 
-# Types of Monitoring
+## Types of Monitoring
 
 Production systems are monitored from multiple perspectives.
 
@@ -187,7 +187,7 @@ Monitoring should cover the complete production environment.
 
 ---
 
-# Infrastructure Monitoring
+## Infrastructure Monitoring
 
 Infrastructure monitoring focuses on the operating system and hardware resources.
 
@@ -222,7 +222,7 @@ Infrastructure monitoring answers:
 
 ---
 
-# Application Monitoring
+## Application Monitoring
 
 Infrastructure may be healthy while the application itself is failing.
 
@@ -259,7 +259,7 @@ Application monitoring answers:
 
 ---
 
-# Service Monitoring
+## Service Monitoring
 
 Modern production servers often run several services.
 
@@ -287,7 +287,7 @@ Typical checks include:
 
 ---
 
-# Network Monitoring
+## Network Monitoring
 
 Network monitoring helps identify communication issues.
 
@@ -322,7 +322,7 @@ A healthy application is of little use if users cannot reach it.
 
 ---
 
-# Security Monitoring
+## Security Monitoring
 
 Security monitoring focuses on detecting suspicious activity.
 
@@ -338,9 +338,9 @@ Monitoring security events helps identify potential attacks before they cause si
 
 ---
 
-# Proactive vs Reactive Monitoring
+## Proactive vs Reactive Monitoring
 
-## Reactive Monitoring
+### Reactive Monitoring
 
 Problems are discovered only after users report them.
 
@@ -360,7 +360,7 @@ Reactive monitoring usually leads to longer downtime.
 
 ---
 
-## Proactive Monitoring
+### Proactive Monitoring
 
 The system detects issues automatically.
 
@@ -384,7 +384,7 @@ Proactive monitoring significantly improves system reliability.
 
 ---
 
-# What Should Be Monitored?
+## What Should Be Monitored?
 
 A production server should monitor multiple resources simultaneously.
 
@@ -404,7 +404,7 @@ No single metric provides a complete picture of system health.
 
 ---
 
-# Basic Monitoring Commands
+## Basic Monitoring Commands
 
 Linux provides several built-in tools.
 
@@ -448,7 +448,7 @@ These commands provide a quick overview of server health.
 
 ---
 
-# Monitoring Workflow
+## Monitoring Workflow
 
 A typical monitoring cycle looks like this:
 
@@ -480,7 +480,7 @@ This cycle repeats continuously throughout the lifetime of the server.
 
 ---
 
-# Monitoring Architecture
+## Monitoring Architecture
 
 A simplified production monitoring architecture:
 
@@ -507,7 +507,7 @@ The monitoring system continuously gathers information and presents it in a mean
 
 ---
 
-# Benefits of Monitoring
+## Benefits of Monitoring
 
 | Benefit                | Description                          |
 | ---------------------- | ------------------------------------ |
@@ -522,7 +522,7 @@ Monitoring is a key component of maintaining reliable production systems.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose an e-commerce website experiences a sudden increase in visitors during a holiday sale.
 
@@ -539,7 +539,7 @@ Without monitoring, the issue might only be discovered after customers begin rep
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor both infrastructure and applications.
 - Review monitoring dashboards regularly.
@@ -551,44 +551,44 @@ Without monitoring, the issue might only be discovered after customers begin rep
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Monitoring Only the Application
+#### Monitoring Only the Application
 
 A healthy application cannot function properly if the operating system or hardware resources are failing.
 
 ---
 
-### Ignoring Resource Trends
+#### Ignoring Resource Trends
 
 Resource usage that gradually increases over time may indicate a memory leak or capacity problem even if current usage appears acceptable.
 
 ---
 
-### Confusing Monitoring with Logging
+#### Confusing Monitoring with Logging
 
 Monitoring identifies abnormal behavior, while logs provide detailed information to diagnose the underlying cause.
 
 ---
 
-### Waiting for User Reports
+#### Waiting for User Reports
 
 Production issues should ideally be detected by monitoring systems before they are noticed by users.
 
 ---
 
-### Monitoring Too Few Metrics
+#### Monitoring Too Few Metrics
 
 Focusing on only CPU usage while ignoring memory, disk, network, and application health provides an incomplete view of the system.
 
 ---
 
-# Summary
+## Summary
 
 Monitoring is the continuous observation of a server's health, performance, and availability. It enables administrators to detect issues early, respond proactively, and maintain reliable production services. Effective monitoring covers infrastructure, applications, services, networks, and security, while working alongside logging to provide complete visibility into system behavior. Mastering monitoring fundamentals is the first step toward operating stable and scalable production environments.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - System Metrics**

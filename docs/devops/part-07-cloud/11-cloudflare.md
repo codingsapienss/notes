@@ -6,7 +6,7 @@ sidebar_position: 11
 
 # Cloudflare
 
-## Overview
+### Overview
 
 In the previous chapter, we learned how DNS converts domain names into IP addresses.
 
@@ -41,7 +41,7 @@ Today, Cloudflare is used by millions of websites ranging from small personal bl
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -55,7 +55,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Cloudflare?
+## What is Cloudflare?
 
 Cloudflare is a cloud platform that provides services including:
 
@@ -72,7 +72,7 @@ Instead of users connecting directly to your server, they first connect to Cloud
 
 ---
 
-# Traditional Architecture
+## Traditional Architecture
 
 Without Cloudflare:
 
@@ -96,7 +96,7 @@ Every request reaches your server directly.
 
 ---
 
-# Architecture with Cloudflare
+## Architecture with Cloudflare
 
 With Cloudflare:
 
@@ -120,7 +120,7 @@ Cloudflare becomes the public-facing entry point for your application.
 
 ---
 
-# Reverse Proxy
+## Reverse Proxy
 
 Cloudflare functions as a **Reverse Proxy**.
 
@@ -144,7 +144,7 @@ Users generally communicate only with Cloudflare.
 
 ---
 
-# What is an Origin Server?
+## What is an Origin Server?
 
 The **Origin Server** is the server where your application actually runs.
 
@@ -174,7 +174,7 @@ Cloudflare does not replace your server—it protects and accelerates access to 
 
 ---
 
-# Cloudflare Edge Network
+## Cloudflare Edge Network
 
 Cloudflare operates data centers across the world.
 
@@ -196,7 +196,7 @@ This reduces latency and improves performance.
 
 ---
 
-# DNS Management
+## DNS Management
 
 Cloudflare also provides DNS hosting.
 
@@ -218,7 +218,7 @@ Cloudflare's DNS service resolves domain names while also supporting optional pr
 
 ---
 
-# DNS Proxy
+## DNS Proxy
 
 Cloudflare can proxy DNS records.
 
@@ -242,7 +242,7 @@ When a DNS record is proxied, the client connects to a Cloudflare IP rather than
 
 ---
 
-# Hiding the Origin IP
+## Hiding the Origin IP
 
 Without Cloudflare:
 
@@ -272,7 +272,7 @@ Hiding the origin IP adds another layer of protection against direct attacks.
 
 ---
 
-# Content Delivery Network (CDN)
+## Content Delivery Network (CDN)
 
 Cloudflare includes a global **Content Delivery Network (CDN)**.
 
@@ -305,7 +305,7 @@ This reduces the distance data must travel.
 
 ---
 
-# Dynamic vs Static Content
+## Dynamic vs Static Content
 
 Not every request is cached.
 
@@ -322,7 +322,7 @@ Cloudflare primarily accelerates cacheable content while forwarding dynamic requ
 
 ---
 
-# DDoS Protection
+## DDoS Protection
 
 Cloudflare helps protect websites against Distributed Denial-of-Service (DDoS) attacks.
 
@@ -362,7 +362,7 @@ Malicious traffic can be filtered before it reaches the application.
 
 ---
 
-# Web Application Firewall (WAF)
+## Web Application Firewall (WAF)
 
 Cloudflare offers a Web Application Firewall.
 
@@ -388,7 +388,7 @@ The WAF can block many common web attacks based on configurable security rules.
 
 ---
 
-# SSL/TLS Support
+## SSL/TLS Support
 
 Cloudflare simplifies HTTPS deployment.
 
@@ -420,7 +420,7 @@ The next chapter covers Cloudflare SSL/TLS modes in detail.
 
 ---
 
-# Caching
+## Caching
 
 Cloudflare stores frequently requested static resources at edge locations.
 
@@ -454,7 +454,7 @@ This reduces load on the origin server and decreases response times.
 
 ---
 
-# Typical Production Architecture
+## Typical Production Architecture
 
 ```text id="cf18"
 Users
@@ -482,7 +482,7 @@ Cloudflare serves as the public entry point while the Azure Virtual Machine rema
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose you deploy an Express.js application on an Azure Virtual Machine.
 
@@ -506,7 +506,7 @@ The application becomes more secure and can often serve users with lower latency
 
 ---
 
-# Benefits of Cloudflare
+## Benefits of Cloudflare
 
 | Feature             | Benefit                             |
 | ------------------- | ----------------------------------- |
@@ -521,7 +521,7 @@ The application becomes more secure and can often serve users with lower latency
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Proxy public web applications through Cloudflare.
 - Keep the origin server updated and secured.
@@ -533,44 +533,44 @@ The application becomes more secure and can often serve users with lower latency
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Treating Cloudflare as a Hosting Provider
+#### Treating Cloudflare as a Hosting Provider
 
 Cloudflare is not where your application runs. Your application still executes on your origin server.
 
 ---
 
-### Assuming Everything Is Cached
+#### Assuming Everything Is Cached
 
 Dynamic content is typically forwarded to the origin server unless specific caching rules are configured.
 
 ---
 
-### Exposing the Origin Server Directly
+#### Exposing the Origin Server Directly
 
 If the origin server remains publicly accessible without appropriate restrictions, attackers may bypass Cloudflare.
 
 ---
 
-### Ignoring Cache Configuration
+#### Ignoring Cache Configuration
 
 Improper cache settings can lead to stale content or missed performance improvements.
 
 ---
 
-### Forgetting Origin Security
+#### Forgetting Origin Security
 
 Cloudflare enhances security but does not replace server hardening, operating system updates, firewalls, or secure application development.
 
 ---
 
-# Summary
+## Summary
 
 Cloudflare is a reverse proxy and edge platform that sits between Internet users and an application's origin server. It provides DNS hosting, a global CDN, DDoS protection, caching, SSL/TLS support, and web application security while helping reduce latency and shield the origin server from direct exposure. When combined with Azure Virtual Machines, Nginx, and proper network security, Cloudflare becomes an important component of a modern, secure, and high-performance cloud architecture.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **12 - Cloudflare SSL/TLS**

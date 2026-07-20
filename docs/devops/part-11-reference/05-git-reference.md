@@ -6,7 +6,7 @@ sidebar_position: 5
 
 # Git Reference
 
-## Overview
+### Overview
 
 Git is the world's most widely used distributed version control system. It enables developers to track changes, collaborate with teams, manage branches, recover previous versions, and deploy applications with confidence.
 
@@ -16,7 +16,7 @@ This chapter serves as a quick-reference guide to the most commonly used Git com
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -31,7 +31,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Git Architecture
+## Git Architecture
 
 ```text
 Working Directory
@@ -53,7 +53,7 @@ Every Git operation moves changes between these four stages.
 
 ---
 
-# Git Workflow
+## Git Workflow
 
 ```text
 Edit Files
@@ -79,7 +79,7 @@ This is the most common workflow followed by developers.
 
 ---
 
-# Installing Git
+## Installing Git
 
 Ubuntu:
 
@@ -97,7 +97,7 @@ git --version
 
 ---
 
-# Configure Git
+## Configure Git
 
 Set your identity.
 
@@ -117,7 +117,7 @@ git config --list
 
 ---
 
-# Create a Repository
+## Create a Repository
 
 Initialize Git.
 
@@ -135,7 +135,7 @@ This hidden directory stores the complete Git history.
 
 ---
 
-# Clone a Repository
+## Clone a Repository
 
 ```bash
 git clone https://github.com/user/project.git
@@ -149,7 +149,7 @@ git clone https://github.com/user/project.git my-project
 
 ---
 
-# Check Repository Status
+## Check Repository Status
 
 ```bash
 git status
@@ -171,7 +171,7 @@ config.js
 
 ---
 
-# Track Files
+## Track Files
 
 Add one file.
 
@@ -193,7 +193,7 @@ git add .
 
 ---
 
-# Commit Changes
+## Commit Changes
 
 Create a commit.
 
@@ -211,7 +211,7 @@ Commit messages should be short, descriptive, and meaningful.
 
 ---
 
-# View Commit History
+## View Commit History
 
 Compact history.
 
@@ -233,7 +233,7 @@ git log --graph --oneline --all
 
 ---
 
-# Branch Management
+## Branch Management
 
 Create a branch.
 
@@ -267,7 +267,7 @@ git switch -c feature/login
 
 ---
 
-# Branch Workflow
+## Branch Workflow
 
 ```text
 main
@@ -293,7 +293,7 @@ Feature branches isolate development work.
 
 ---
 
-# View Branches
+## View Branches
 
 Local branches.
 
@@ -315,7 +315,7 @@ git branch -a
 
 ---
 
-# Rename Branch
+## Rename Branch
 
 ```bash
 git branch -m old-name new-name
@@ -329,7 +329,7 @@ git branch -m new-name
 
 ---
 
-# Delete Branch
+## Delete Branch
 
 Delete merged branch.
 
@@ -345,7 +345,7 @@ git branch -D feature/login
 
 ---
 
-# Merge Branches
+## Merge Branches
 
 Switch to target branch.
 
@@ -379,7 +379,7 @@ main
 
 ---
 
-# Rebase
+## Rebase
 
 Replay commits on another branch.
 
@@ -396,7 +396,7 @@ Use with caution on shared branches.
 
 ---
 
-# Remote Repositories
+## Remote Repositories
 
 View remotes.
 
@@ -418,7 +418,7 @@ git remote remove origin
 
 ---
 
-# Push Changes
+## Push Changes
 
 Push current branch.
 
@@ -440,7 +440,7 @@ git push origin feature/login
 
 ---
 
-# Pull Changes
+## Pull Changes
 
 Download and merge.
 
@@ -463,7 +463,7 @@ Difference:
 
 ---
 
-# Stashing Changes
+## Stashing Changes
 
 Temporarily save work.
 
@@ -485,7 +485,7 @@ git stash pop
 
 ---
 
-# Undo Changes
+## Undo Changes
 
 Discard working directory changes.
 
@@ -515,7 +515,7 @@ git reset --hard HEAD~1
 
 ---
 
-# Compare Changes
+## Compare Changes
 
 Working directory.
 
@@ -537,7 +537,7 @@ git diff HEAD~1 HEAD
 
 ---
 
-# Tags
+## Tags
 
 Create tag.
 
@@ -561,7 +561,7 @@ Tags are commonly used for production releases.
 
 ---
 
-# Git Ignore
+## Git Ignore
 
 Example:
 
@@ -587,7 +587,7 @@ Typical ignored files:
 
 ---
 
-# Merge Conflicts
+## Merge Conflicts
 
 Conflict example:
 
@@ -626,7 +626,7 @@ Steps:
 
 ---
 
-# Git Recovery
+## Git Recovery
 
 Recover deleted branch.
 
@@ -648,7 +648,7 @@ git checkout -b recovery <commit-id>
 
 ---
 
-# Useful Git Commands
+## Useful Git Commands
 
 | Command        | Purpose                 |
 | -------------- | ----------------------- |
@@ -672,7 +672,7 @@ git checkout -b recovery <commit-id>
 
 ---
 
-# Professional Git Workflow
+## Professional Git Workflow
 
 ```text
 Clone Repository
@@ -718,7 +718,7 @@ This workflow is commonly used in professional development teams.
 
 ---
 
-# Daily Git Commands
+## Daily Git Commands
 
 ```text
 Repository
@@ -748,7 +748,7 @@ Recovery
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A developer accidentally commits a `.env` file containing production credentials.
 
@@ -794,7 +794,7 @@ Finally, rotate the exposed credentials because sensitive information was commit
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Write clear and descriptive commit messages.
 - Keep commits small and focused.
@@ -808,44 +808,44 @@ Finally, rotate the exposed credentials because sensitive information was commit
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Committing Sensitive Files
+#### Committing Sensitive Files
 
 Environment files, API keys, certificates, and passwords should never be committed.
 
 ---
 
-### Working Directly on `main`
+#### Working Directly on `main`
 
 Feature development should occur in dedicated branches.
 
 ---
 
-### Creating Large Commits
+#### Creating Large Commits
 
 Smaller commits are easier to review, test, and revert.
 
 ---
 
-### Forgetting to Pull Latest Changes
+#### Forgetting to Pull Latest Changes
 
 Working on an outdated branch often leads to unnecessary merge conflicts.
 
 ---
 
-### Using `git reset --hard` Without Understanding It
+#### Using `git reset --hard` Without Understanding It
 
 This command permanently removes uncommitted work and should be used carefully.
 
 ---
 
-# Summary
+## Summary
 
 Git is an essential tool for modern software development, providing version control, collaboration, branching, recovery, and release management. By mastering the commands and workflows covered in this reference, developers can confidently manage projects of any size while maintaining a clean and reliable development history.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **06 - Networking Reference**

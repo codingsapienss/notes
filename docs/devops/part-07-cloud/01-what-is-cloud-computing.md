@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # What is Cloud Computing
 
-## Overview
+### Overview
 
 Over the past few sections of this handbook, we have learned how to build and deploy applications on Linux servers.
 
@@ -33,7 +33,7 @@ In this chapter, you will learn how cloud computing evolved, why it became the s
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -47,7 +47,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Before Cloud Computing
+## Before Cloud Computing
 
 Imagine a company wants to launch a website.
 
@@ -98,7 +98,7 @@ Everything had to be purchased, installed, and maintained.
 
 ---
 
-# What is On-Premises Infrastructure?
+## What is On-Premises Infrastructure?
 
 When servers are owned and managed by the organization itself, the infrastructure is called **On-Premises** (or **On-Prem**).
 
@@ -124,11 +124,11 @@ All hardware remains under the company's control.
 
 ---
 
-# Problems with On-Premises Infrastructure
+## Problems with On-Premises Infrastructure
 
 Although on-premises infrastructure offers complete control, it introduces several challenges.
 
-### High Initial Cost
+#### High Initial Cost
 
 Organizations must purchase hardware before launching applications.
 
@@ -143,7 +143,7 @@ This requires significant upfront investment.
 
 ---
 
-### Maintenance
+#### Maintenance
 
 Hardware eventually fails.
 
@@ -157,7 +157,7 @@ Administrators are responsible for:
 
 ---
 
-### Scaling
+#### Scaling
 
 Suppose a website suddenly becomes popular.
 
@@ -185,7 +185,7 @@ Scaling may take days or weeks.
 
 ---
 
-### Downtime Risk
+#### Downtime Risk
 
 If a server fails:
 
@@ -205,7 +205,7 @@ Recovery depends on available backups and spare hardware.
 
 ---
 
-### Limited Global Reach
+#### Limited Global Reach
 
 If all servers are located in one country, users from other regions may experience higher latency.
 
@@ -227,7 +227,7 @@ Serving users worldwide efficiently becomes difficult.
 
 ---
 
-# The Rise of Cloud Computing
+## The Rise of Cloud Computing
 
 Cloud providers solved many of these challenges by operating massive data centers around the world.
 
@@ -255,7 +255,7 @@ Provisioning a server can often be completed within minutes.
 
 ---
 
-# What is Cloud Computing?
+## What is Cloud Computing?
 
 Cloud Computing is the delivery of computing services over the internet.
 
@@ -273,7 +273,7 @@ These resources can be created, modified, and removed as needed.
 
 ---
 
-# Cloud Computing Analogy
+## Cloud Computing Analogy
 
 Think of electricity.
 
@@ -321,7 +321,7 @@ You consume infrastructure as a service.
 
 ---
 
-# Major Cloud Providers
+## Major Cloud Providers
 
 Today, several companies provide cloud computing services.
 
@@ -337,7 +337,7 @@ Although each platform has unique services, the core concepts are largely the sa
 
 ---
 
-# What Does a Cloud Provider Own?
+## What Does a Cloud Provider Own?
 
 Cloud providers operate large-scale data centers.
 
@@ -359,7 +359,7 @@ Customers rent virtual resources running on this infrastructure.
 
 ---
 
-# Virtualization
+## Virtualization
 
 Cloud computing relies heavily on **virtualization**.
 
@@ -380,7 +380,7 @@ Each virtual machine behaves like an independent computer.
 
 ---
 
-# Benefits of Cloud Computing
+## Benefits of Cloud Computing
 
 Cloud computing provides many advantages.
 
@@ -397,7 +397,7 @@ These benefits have made cloud computing the preferred deployment model for many
 
 ---
 
-# Cloud Regions
+## Cloud Regions
 
 Cloud providers operate infrastructure across multiple geographic locations called **Regions**.
 
@@ -420,7 +420,7 @@ Choosing a region closer to users generally reduces network latency.
 
 ---
 
-# Availability Zones
+## Availability Zones
 
 Within a region, cloud providers often operate multiple **Availability Zones (AZs)**.
 
@@ -438,7 +438,7 @@ Deploying applications across multiple availability zones improves resilience if
 
 ---
 
-# Typical Cloud Architecture
+## Typical Cloud Architecture
 
 A simple deployment might look like:
 
@@ -468,7 +468,7 @@ Much of the application stack remains the same; the primary difference is that t
 
 ---
 
-# Cloud vs On-Premises
+## Cloud vs On-Premises
 
 | Feature              | On-Premises | Cloud          |
 | -------------------- | ----------- | -------------- |
@@ -481,7 +481,7 @@ Much of the application stack remains the same; the primary difference is that t
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose a startup launches an e-commerce website.
 
@@ -504,7 +504,7 @@ The website is deployed within hours rather than weeks. As traffic grows, the st
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Choose cloud regions close to your users.
 - Design applications so they can scale as demand changes.
@@ -515,44 +515,44 @@ The website is deployed within hours rather than weeks. As traffic grows, the st
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Assuming the Cloud Eliminates All Responsibilities
+#### Assuming the Cloud Eliminates All Responsibilities
 
 Cloud providers manage the underlying hardware, but customers are still responsible for securing operating systems, applications, and data.
 
 ---
 
-### Choosing the Wrong Region
+#### Choosing the Wrong Region
 
 Deploying resources far from users can increase latency and reduce performance.
 
 ---
 
-### Over-Provisioning Resources
+#### Over-Provisioning Resources
 
 Creating larger virtual machines than necessary increases costs without improving efficiency.
 
 ---
 
-### Ignoring Cost Monitoring
+#### Ignoring Cost Monitoring
 
 Cloud resources continue to incur charges while they are running. Unused resources should be stopped or removed when no longer needed.
 
 ---
 
-### Treating Cloud Servers Differently from Linux Servers
+#### Treating Cloud Servers Differently from Linux Servers
 
 A cloud virtual machine is still a Linux or Windows server. Good practices for security, updates, backups, and monitoring remain essential.
 
 ---
 
-# Summary
+## Summary
 
 Cloud computing allows organizations to rent computing resources instead of purchasing and maintaining physical hardware. By leveraging virtualization, global data centers, and on-demand provisioning, cloud providers offer scalable, reliable, and cost-effective infrastructure. Concepts such as regions, availability zones, and virtual machines form the foundation of modern cloud platforms. Understanding these fundamentals prepares you to work with services offered by providers such as Microsoft Azure, AWS, and Google Cloud.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Cloud Service Models**

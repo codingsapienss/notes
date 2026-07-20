@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Git
 
-## Overview
+### Overview
 
 Before deploying an application to a Linux server, the application's source code must first be transferred to the server.
 
@@ -26,7 +26,7 @@ This chapter explains how Git works, how to install and configure it on a Linux 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -40,7 +40,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# What is Git?
+## What is Git?
 
 Git is a **Distributed Version Control System (DVCS)**.
 
@@ -65,7 +65,7 @@ This enables developers to:
 
 ---
 
-# Why Use Git?
+## Why Use Git?
 
 Imagine deploying a Node.js application manually.
 
@@ -120,7 +120,7 @@ Benefits:
 
 ---
 
-# Git Workflow
+## Git Workflow
 
 A typical Git workflow looks like this.
 
@@ -147,7 +147,7 @@ The production server generally **pulls** code from the repository rather than d
 
 ---
 
-# Installing Git
+## Installing Git
 
 Update package information:
 
@@ -175,7 +175,7 @@ git version 2.43.0
 
 ---
 
-# Configuring Git
+## Configuring Git
 
 Set your username:
 
@@ -199,7 +199,7 @@ These settings identify the author of future commits.
 
 ---
 
-# Git Repository
+## Git Repository
 
 A Git repository contains:
 
@@ -224,7 +224,7 @@ The `.git` directory stores all version control metadata.
 
 ---
 
-# Local Repository vs Remote Repository
+## Local Repository vs Remote Repository
 
 ```text
 Developer Laptop
@@ -247,7 +247,7 @@ Linux Server
 
 ---
 
-# Cloning a Repository
+## Cloning a Repository
 
 Clone using HTTPS:
 
@@ -265,7 +265,7 @@ This downloads the complete project along with its Git history.
 
 ---
 
-# HTTPS vs SSH Authentication
+## HTTPS vs SSH Authentication
 
 Git supports two common authentication methods.
 
@@ -280,7 +280,7 @@ Production Linux servers generally use **SSH authentication**.
 
 ---
 
-# Generating an SSH Key for GitHub
+## Generating an SSH Key for GitHub
 
 Generate a key:
 
@@ -301,7 +301,7 @@ The public key is uploaded to GitHub.
 
 ---
 
-# Adding the SSH Key to GitHub
+## Adding the SSH Key to GitHub
 
 Display the public key:
 
@@ -324,7 +324,7 @@ Now the server can authenticate securely without passwords.
 
 ---
 
-# Testing the Connection
+## Testing the Connection
 
 Verify SSH authentication:
 
@@ -342,7 +342,7 @@ You've successfully authenticated.
 
 ---
 
-# Common Git Commands
+## Common Git Commands
 
 | Command        | Purpose                          |
 | -------------- | -------------------------------- |
@@ -357,7 +357,7 @@ You've successfully authenticated.
 
 ---
 
-# Updating an Existing Project
+## Updating an Existing Project
 
 Move into the project directory:
 
@@ -375,7 +375,7 @@ The server now contains the latest version of the application.
 
 ---
 
-# Viewing Commit History
+## Viewing Commit History
 
 Display commit history:
 
@@ -401,7 +401,7 @@ b9f6c51 Add payment API
 
 ---
 
-# Ignoring Files
+## Ignoring Files
 
 Some files should never be committed.
 
@@ -424,7 +424,7 @@ This prevents sensitive or generated files from entering version control.
 
 ---
 
-# Git in Production
+## Git in Production
 
 A common deployment workflow is:
 
@@ -448,7 +448,7 @@ Git becomes the mechanism for delivering application updates.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Suppose your Node.js application is hosted on GitHub.
 
@@ -480,7 +480,7 @@ The server updates to the latest version with minimal effort.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Use SSH authentication instead of HTTPS on production servers.
 - Never commit `.env` files or secrets.
@@ -492,38 +492,38 @@ The server updates to the latest version with minimal effort.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Editing Production Code Directly
+#### Editing Production Code Directly
 
 Production servers should receive changes through Git, not manual file edits.
 
 ---
 
-### Committing Secrets
+#### Committing Secrets
 
 Passwords, API keys, and private certificates should never be committed to a Git repository.
 
 ---
 
-### Using the Root User
+#### Using the Root User
 
 Clone repositories and deploy applications using a dedicated application user instead of `root`.
 
 ---
 
-### Deploying Without Reviewing Changes
+#### Deploying Without Reviewing Changes
 
 Always review incoming commits before updating a production server to avoid unexpected behavior.
 
 ---
 
-# Summary
+## Summary
 
 Git is the industry-standard version control system used to manage and deploy application source code. On Linux servers, it enables reliable, repeatable deployments by allowing applications to be cloned and updated directly from remote repositories. Using SSH authentication, maintaining clean repositories, and following disciplined deployment practices ensures secure and efficient application management.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Node.js**

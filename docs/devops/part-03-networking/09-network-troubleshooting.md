@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Network Troubleshooting
 
-## Overview
+### Overview
 
 No matter how well a network is designed, problems eventually occur.
 
@@ -28,7 +28,7 @@ This chapter brings together everything learned throughout **Part 3** and introd
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -43,7 +43,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# A Troubleshooting Mindset
+## A Troubleshooting Mindset
 
 When a network issue occurs, avoid making assumptions.
 
@@ -62,7 +62,7 @@ Always isolate the problem one layer at a time.
 
 ---
 
-# The Troubleshooting Workflow
+## The Troubleshooting Workflow
 
 A structured workflow reduces guesswork.
 
@@ -98,7 +98,7 @@ Never skip steps.
 
 ---
 
-# Step 1 — Verify Basic Connectivity
+## Step 1 — Verify Basic Connectivity
 
 The first question is:
 
@@ -133,7 +133,7 @@ If not:
 
 ---
 
-# Step 2 — Verify DNS
+## Step 2 — Verify DNS
 
 Check whether the domain resolves correctly.
 
@@ -177,7 +177,7 @@ If DNS fails, investigate:
 
 ---
 
-# Step 3 — Check Routing
+## Step 3 — Check Routing
 
 Packets may be taking an unexpected route.
 
@@ -218,7 +218,7 @@ If packets stop midway, the issue may involve:
 
 ---
 
-# Step 4 — Verify Open Ports
+## Step 4 — Verify Open Ports
 
 Check whether the server is listening.
 
@@ -242,7 +242,7 @@ Verify that the expected service is bound to the correct port.
 
 ---
 
-# Step 5 — Test HTTP Services
+## Step 5 — Test HTTP Services
 
 Use `curl` to test a web service.
 
@@ -271,7 +271,7 @@ Useful information includes:
 
 ---
 
-# Step 6 — Check Running Services
+## Step 6 — Check Running Services
 
 Verify that required services are running.
 
@@ -291,7 +291,7 @@ A stopped service often explains why a port is unavailable.
 
 ---
 
-# Step 7 — Check Logs
+## Step 7 — Check Logs
 
 Logs frequently reveal the root cause.
 
@@ -315,7 +315,7 @@ Look for:
 
 ---
 
-# Step 8 — Verify Firewall Rules
+## Step 8 — Verify Firewall Rules
 
 Even if an application is running, traffic may be blocked.
 
@@ -347,7 +347,7 @@ Both the operating system and cloud firewall must permit the traffic.
 
 ---
 
-# Step 9 — Test TLS
+## Step 9 — Test TLS
 
 Verify certificate details.
 
@@ -364,7 +364,7 @@ Useful checks:
 
 ---
 
-# Step 10 — Capture Packets
+## Step 10 — Capture Packets
 
 When necessary, inspect actual network traffic.
 
@@ -402,9 +402,9 @@ Packet captures help diagnose:
 
 ---
 
-# Common Networking Problems
+## Common Networking Problems
 
-## Problem 1 — Website Does Not Open
+### Problem 1 — Website Does Not Open
 
 Possible causes:
 
@@ -438,7 +438,7 @@ Logs
 
 ---
 
-## Problem 2 — SSH Connection Refused
+### Problem 2 — SSH Connection Refused
 
 Possible causes:
 
@@ -459,7 +459,7 @@ ss -tulpn
 
 ---
 
-## Problem 3 — DNS Not Resolving
+### Problem 3 — DNS Not Resolving
 
 Check:
 
@@ -477,7 +477,7 @@ Possible causes:
 
 ---
 
-## Problem 4 — Port Not Reachable
+### Problem 4 — Port Not Reachable
 
 Check:
 
@@ -494,7 +494,7 @@ Then verify:
 
 ---
 
-## Problem 5 — SSL Certificate Errors
+### Problem 5 — SSL Certificate Errors
 
 Check:
 
@@ -512,7 +512,7 @@ Common causes:
 
 ---
 
-# Useful Troubleshooting Commands
+## Useful Troubleshooting Commands
 
 | Command            | Purpose                  |
 | ------------------ | ------------------------ |
@@ -529,7 +529,7 @@ Common causes:
 
 ---
 
-# Complete Production Troubleshooting Example
+## Complete Production Troubleshooting Example
 
 Suppose users report:
 
@@ -613,7 +613,7 @@ This step-by-step approach isolates the problem quickly instead of relying on tr
 
 ---
 
-# Troubleshooting Checklist
+## Troubleshooting Checklist
 
 ```text id="m8w1qy"
 ✓ Internet Connectivity
@@ -641,7 +641,7 @@ Following the same checklist every time reduces mistakes and speeds up diagnosis
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow a consistent troubleshooting workflow.
 - Change only one variable at a time.
@@ -652,9 +652,9 @@ Following the same checklist every time reduces mistakes and speeds up diagnosis
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Jumping Directly to Configuration Changes
+#### Jumping Directly to Configuration Changes
 
 Changing configurations before identifying the root cause can introduce new problems.
 
@@ -662,7 +662,7 @@ Always gather evidence first.
 
 ---
 
-### Ignoring Logs
+#### Ignoring Logs
 
 Most networking and service failures leave useful information in system or application logs.
 
@@ -670,7 +670,7 @@ Logs should be one of the first places you investigate.
 
 ---
 
-### Forgetting Cloud Firewalls
+#### Forgetting Cloud Firewalls
 
 Opening a port in UFW does not automatically allow Internet access.
 
@@ -678,7 +678,7 @@ Cloud firewall rules (such as Azure NSGs or AWS Security Groups) must also permi
 
 ---
 
-### Troubleshooting Multiple Layers Simultaneously
+#### Troubleshooting Multiple Layers Simultaneously
 
 Network issues often involve several components.
 
@@ -686,7 +686,7 @@ Test one layer at a time—connectivity, DNS, routing, ports, services, and appl
 
 ---
 
-# Summary
+## Summary
 
 Effective network troubleshooting relies on a structured process rather than guesswork. By systematically verifying connectivity, DNS, routing, ports, firewalls, services, logs, TLS, and packet flow, engineers can isolate and resolve problems efficiently. The tools introduced in this chapter—such as `ping`, `dig`, `curl`, `ss`, `systemctl`, `journalctl`, `openssl`, and `tcpdump`—form the core toolkit used by Linux administrators, DevOps engineers, and cloud engineers in production environments.
 
@@ -694,6 +694,6 @@ With this chapter, you have completed **Part 3 – Networking Fundamentals**, pr
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 4 – Server Security**

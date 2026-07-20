@@ -6,7 +6,7 @@ sidebar_position: 12
 
 # Common Configurations
 
-## Overview
+### Overview
 
 Throughout this part, we have learned the individual building blocks of Nginx:
 
@@ -31,7 +31,7 @@ These examples are not intended to be copied blindly. Instead, they demonstrate 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -46,7 +46,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Example 1: Basic Static Website
+## Example 1: Basic Static Website
 
 One of the simplest Nginx deployments is serving a static website.
 
@@ -98,7 +98,7 @@ No backend application is required.
 
 ---
 
-# Example 2: Node.js Reverse Proxy
+## Example 2: Node.js Reverse Proxy
 
 Suppose an Express application is running on:
 
@@ -148,7 +148,7 @@ This is one of the most common production configurations.
 
 ---
 
-# Example 3: Static Files + API
+## Example 3: Static Files + API
 
 Many web applications contain both static assets and backend APIs.
 
@@ -196,7 +196,7 @@ This pattern is common for single-page applications (SPAs) backed by an API serv
 
 ---
 
-# Example 4: HTTP to HTTPS Redirect
+## Example 4: HTTP to HTTPS Redirect
 
 Configuration:
 
@@ -234,7 +234,7 @@ Users are automatically redirected to the secure version of the website.
 
 ---
 
-# Example 5: HTTPS Reverse Proxy
+## Example 5: HTTPS Reverse Proxy
 
 ```nginx id="jlwmk8"
 server {
@@ -276,7 +276,7 @@ Nginx handles HTTPS while the backend communicates over the internal network.
 
 ---
 
-# Example 6: Multiple Websites
+## Example 6: Multiple Websites
 
 One Nginx server can host multiple domains.
 
@@ -317,7 +317,7 @@ Each Server Block manages its own domain.
 
 ---
 
-# Example 7: Custom Error Pages
+## Example 7: Custom Error Pages
 
 Instead of showing the default Nginx error page:
 
@@ -355,7 +355,7 @@ Users receive a branded error page instead of the default one.
 
 ---
 
-# Example 8: File Upload Limit
+## Example 8: File Upload Limit
 
 By default, uploads may be limited.
 
@@ -386,7 +386,7 @@ Useful for:
 
 ---
 
-# Example 9: Security Headers
+## Example 9: Security Headers
 
 Security headers help browsers enforce safer behavior.
 
@@ -412,7 +412,7 @@ Modern applications often include additional security headers depending on their
 
 ---
 
-# Example 10: Denying Access to Hidden Files
+## Example 10: Denying Access to Hidden Files
 
 Configuration:
 
@@ -438,7 +438,7 @@ These files should generally never be publicly accessible.
 
 ---
 
-# Example 11: Serving Downloads
+## Example 11: Serving Downloads
 
 Configuration:
 
@@ -470,7 +470,7 @@ The file is served directly by Nginx.
 
 ---
 
-# Example 12: Enabling Compression
+## Example 12: Enabling Compression
 
 Configuration:
 
@@ -511,7 +511,7 @@ This reduces bandwidth usage for text-based content.
 
 ---
 
-# Example 13: Browser Caching
+## Example 13: Browser Caching
 
 Configuration:
 
@@ -545,7 +545,7 @@ This reduces repeat downloads for static assets.
 
 ---
 
-# Example 14: WebSocket Support
+## Example 14: WebSocket Support
 
 Applications using WebSockets require additional proxy settings.
 
@@ -572,7 +572,7 @@ Common use cases:
 
 ---
 
-# Example 15: SPA (Single-Page Application) Routing
+## Example 15: SPA (Single-Page Application) Routing
 
 Frameworks such as React, Vue, and Angular often rely on client-side routing.
 
@@ -612,7 +612,7 @@ This allows the frontend application to handle route resolution.
 
 ---
 
-# Putting Everything Together
+## Putting Everything Together
 
 A production deployment may combine many of these features.
 
@@ -649,7 +649,7 @@ Nginx becomes the central gateway responsible for:
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Consider an online learning platform.
 
@@ -698,7 +698,7 @@ This is a typical architecture for many modern web applications.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep configurations modular by using separate Server Blocks.
 - Validate changes with `nginx -t` before reloading.
@@ -711,33 +711,33 @@ This is a typical architecture for many modern web applications.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Placing Everything in One Configuration File
+#### Placing Everything in One Configuration File
 
 Large monolithic configurations are difficult to maintain. Split applications into separate Server Blocks or include files.
 
 ---
 
-### Forgetting Proxy Headers
+#### Forgetting Proxy Headers
 
 Backend applications may lose information about the original client if proxy headers are omitted.
 
 ---
 
-### Exposing Sensitive Files
+#### Exposing Sensitive Files
 
 Files such as `.env` or `.git` should never be publicly accessible.
 
 ---
 
-### Ignoring Upload Limits
+#### Ignoring Upload Limits
 
 Applications accepting uploads may fail unexpectedly if `client_max_body_size` is too small.
 
 ---
 
-### Making Changes Without Testing
+#### Making Changes Without Testing
 
 Always verify the configuration before applying it:
 
@@ -753,12 +753,12 @@ sudo systemctl reload nginx
 
 ---
 
-# Summary
+## Summary
 
 Real-world Nginx deployments combine multiple features into a single, cohesive configuration. Static file serving, reverse proxying, HTTPS, caching, compression, logging, security headers, custom error pages, upload limits, and WebSocket support are all common requirements in production environments. Understanding these configuration patterns enables administrators to build reliable, secure, and high-performance web servers that can support modern applications.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **13 - Troubleshooting Nginx**

@@ -6,7 +6,7 @@ sidebar_position: 8
 
 # SSL/TLS Troubleshooting
 
-## Overview
+### Overview
 
 SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security) encrypt communication between clients and servers.
 
@@ -27,7 +27,7 @@ Because HTTPS is now the standard for almost every website, SSL troubleshooting 
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -42,7 +42,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# HTTPS Connection Flow
+## HTTPS Connection Flow
 
 A secure connection involves several layers.
 
@@ -78,7 +78,7 @@ A failure anywhere in this process can prevent HTTPS from working.
 
 ---
 
-# SSL Troubleshooting Workflow
+## SSL Troubleshooting Workflow
 
 Always troubleshoot methodically.
 
@@ -122,7 +122,7 @@ Avoid changing multiple SSL settings simultaneously.
 
 ---
 
-# Understanding the TLS Handshake
+## Understanding the TLS Handshake
 
 Before encrypted communication begins, both client and server perform a TLS handshake.
 
@@ -154,7 +154,7 @@ If certificate validation fails, the browser terminates the connection.
 
 ---
 
-# Step 1 – Verify HTTPS
+## Step 1 – Verify HTTPS
 
 Test HTTPS locally.
 
@@ -178,7 +178,7 @@ This confirms that HTTPS is functioning correctly.
 
 ---
 
-# Step 2 – Verify Nginx Configuration
+## Step 2 – Verify Nginx Configuration
 
 Check configuration syntax.
 
@@ -202,7 +202,7 @@ An invalid Nginx configuration can prevent HTTPS from starting.
 
 ---
 
-# Step 3 – Verify Certificate Files
+## Step 3 – Verify Certificate Files
 
 Typical certificate configuration:
 
@@ -229,7 +229,7 @@ Verify that:
 
 ---
 
-# Step 4 – Verify Certificate Expiration
+## Step 4 – Verify Certificate Expiration
 
 Certificates eventually expire.
 
@@ -257,7 +257,7 @@ Expired certificates must be renewed before browsers will trust them.
 
 ---
 
-# Step 5 – Verify Certificate Chain
+## Step 5 – Verify Certificate Chain
 
 Modern browsers require a complete certificate chain.
 
@@ -279,7 +279,7 @@ If intermediate certificates are missing, browsers may display certificate error
 
 ---
 
-# Step 6 – Test the TLS Handshake
+## Step 6 – Test the TLS Handshake
 
 OpenSSL provides detailed TLS diagnostics.
 
@@ -298,7 +298,7 @@ This command is invaluable for SSL troubleshooting.
 
 ---
 
-# Step 7 – Verify Listening Ports
+## Step 7 – Verify Listening Ports
 
 HTTPS requires port **443**.
 
@@ -324,7 +324,7 @@ If port **443** is not listening:
 
 ---
 
-# Step 8 – Verify Firewall
+## Step 8 – Verify Firewall
 
 Allow HTTPS traffic.
 
@@ -348,9 +348,9 @@ Verify cloud firewalls as well.
 
 ---
 
-# Understanding Common SSL Errors
+## Understanding Common SSL Errors
 
-## NET::ERR_CERT_DATE_INVALID
+### NET::ERR_CERT_DATE_INVALID
 
 Cause:
 
@@ -362,7 +362,7 @@ Solution:
 
 ---
 
-## NET::ERR_CERT_COMMON_NAME_INVALID
+### NET::ERR_CERT_COMMON_NAME_INVALID
 
 Cause:
 
@@ -374,7 +374,7 @@ Solution:
 
 ---
 
-## NET::ERR_SSL_PROTOCOL_ERROR
+### NET::ERR_SSL_PROTOCOL_ERROR
 
 Possible causes:
 
@@ -384,7 +384,7 @@ Possible causes:
 
 ---
 
-## SSL Handshake Failed
+### SSL Handshake Failed
 
 Possible causes:
 
@@ -409,7 +409,7 @@ Failed
 
 ---
 
-# Cloudflare SSL Modes
+## Cloudflare SSL Modes
 
 Cloudflare supports several SSL modes.
 
@@ -424,7 +424,7 @@ Using the wrong SSL mode frequently causes HTTPS failures.
 
 ---
 
-# Let's Encrypt Problems
+## Let's Encrypt Problems
 
 Common issues:
 
@@ -450,7 +450,7 @@ Testing renewals regularly helps prevent certificate expiration.
 
 ---
 
-# Redirect Problems
+## Redirect Problems
 
 Incorrect redirects can create loops.
 
@@ -489,7 +489,7 @@ Verify both Nginx and Cloudflare redirect rules.
 
 ---
 
-# SSL Troubleshooting Decision Tree
+## SSL Troubleshooting Decision Tree
 
 ```text
 HTTPS Failure
@@ -537,7 +537,7 @@ Following this order helps isolate the root cause quickly.
 
 ---
 
-# Useful SSL Commands
+## Useful SSL Commands
 
 | Command                   | Purpose                         |
 | ------------------------- | ------------------------------- |
@@ -553,7 +553,7 @@ Following this order helps isolate the root cause quickly.
 
 ---
 
-# Production Troubleshooting Workflow
+## Production Troubleshooting Workflow
 
 ```text
 HTTPS Error
@@ -595,7 +595,7 @@ A structured workflow prevents unnecessary configuration changes.
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 Users report that browsers display **NET::ERR_CERT_DATE_INVALID** for a production website.
 
@@ -667,7 +667,7 @@ The outage was caused by an expired certificate resulting from a failed automati
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Monitor certificate expiration dates.
 - Test HTTPS after every deployment.
@@ -680,44 +680,44 @@ The outage was caused by an expired certificate resulting from a failed automati
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Ignoring Certificate Expiration
+#### Ignoring Certificate Expiration
 
 Expired certificates immediately break HTTPS for users.
 
 ---
 
-### Using the Wrong Cloudflare SSL Mode
+#### Using the Wrong Cloudflare SSL Mode
 
 A mismatch between Cloudflare and the origin server commonly causes handshake failures.
 
 ---
 
-### Forgetting to Reload Nginx
+#### Forgetting to Reload Nginx
 
 Installing a new certificate without reloading Nginx leaves the old certificate in use.
 
 ---
 
-### Installing the Wrong Certificate
+#### Installing the Wrong Certificate
 
 Using a certificate issued for another domain results in browser trust errors.
 
 ---
 
-### Assuming Every HTTPS Error Is a Certificate Problem
+#### Assuming Every HTTPS Error Is a Certificate Problem
 
 SSL failures can also originate from firewall rules, incorrect Nginx configuration, DNS issues, or application connectivity problems.
 
 ---
 
-# Summary
+## Summary
 
 SSL/TLS troubleshooting involves validating certificates, verifying certificate chains, testing TLS handshakes, checking Nginx configuration, confirming Cloudflare SSL settings, ensuring HTTPS ports are available, and monitoring certificate expiration. A structured troubleshooting process enables administrators to quickly restore secure communication while maintaining user trust and minimizing production downtime.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **09 - Real-World Debugging**

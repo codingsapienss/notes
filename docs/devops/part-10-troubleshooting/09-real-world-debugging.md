@@ -6,7 +6,7 @@ sidebar_position: 9
 
 # Real-World Production Debugging
 
-## Overview
+### Overview
 
 In previous chapters, you learned how to troubleshoot individual components such as Linux, networking, SSH, Nginx, Node.js, PM2, Cloudflare, and SSL.
 
@@ -30,7 +30,7 @@ This chapter combines everything learned throughout this handbook into real prod
 
 ---
 
-## Learning Objectives
+### Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -45,7 +45,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# The Golden Rule of Production Debugging
+## The Golden Rule of Production Debugging
 
 The first reported problem is rarely the actual problem.
 
@@ -85,7 +85,7 @@ The objective of debugging is to identify the underlying cause.
 
 ---
 
-# Production Debugging Workflow
+## Production Debugging Workflow
 
 Every production issue should follow the same process.
 
@@ -133,7 +133,7 @@ Following a consistent workflow reduces downtime and prevents unnecessary change
 
 ---
 
-# Step 1 – Reproduce the Problem
+## Step 1 – Reproduce the Problem
 
 Never begin troubleshooting based solely on someone else's description.
 
@@ -163,7 +163,7 @@ Always verify the reported issue before making changes.
 
 ---
 
-# Step 2 – Determine the Scope
+## Step 2 – Determine the Scope
 
 Identify the impact.
 
@@ -195,7 +195,7 @@ Understanding the scope significantly narrows the investigation.
 
 ---
 
-# Step 3 – Identify the Affected Layer
+## Step 3 – Identify the Affected Layer
 
 Determine where the failure occurs.
 
@@ -239,7 +239,7 @@ Work through the layers one at a time.
 
 ---
 
-# Step 4 – Gather Evidence
+## Step 4 – Gather Evidence
 
 Never troubleshoot without evidence.
 
@@ -275,7 +275,7 @@ The goal is to understand what changed and when.
 
 ---
 
-# Step 5 – Form a Hypothesis
+## Step 5 – Form a Hypothesis
 
 After gathering evidence, form a possible explanation.
 
@@ -301,7 +301,7 @@ A hypothesis should be tested before making changes.
 
 ---
 
-# Step 6 – Test One Change at a Time
+## Step 6 – Test One Change at a Time
 
 Avoid changing multiple configurations simultaneously.
 
@@ -349,7 +349,7 @@ This makes the debugging process repeatable and understandable.
 
 ---
 
-# Step 7 – Verify the Solution
+## Step 7 – Verify the Solution
 
 Never assume the issue is resolved.
 
@@ -366,7 +366,7 @@ Continue monitoring after the fix.
 
 ---
 
-# Root Cause Analysis (RCA)
+## Root Cause Analysis (RCA)
 
 A production incident should conclude with a Root Cause Analysis.
 
@@ -385,13 +385,13 @@ RCA prevents recurring incidents.
 
 ---
 
-# Case Study 1 – 502 Bad Gateway
+## Case Study 1 – 502 Bad Gateway
 
-## Incident
+### Incident
 
 Users report **502 Bad Gateway**.
 
-### Investigation
+#### Investigation
 
 ```bash
 curl http://localhost:3000
@@ -421,30 +421,30 @@ Error:
 Cannot find module 'dotenv'
 ```
 
-### Root Cause
+#### Root Cause
 
 A deployment skipped dependency installation.
 
-### Resolution
+#### Resolution
 
 ```bash
 npm install
 pm2 restart api
 ```
 
-### Lesson
+#### Lesson
 
 Always install dependencies during deployment.
 
 ---
 
-# Case Study 2 – Website Not Loading
+## Case Study 2 – Website Not Loading
 
-## Incident
+### Incident
 
 Users cannot access the website.
 
-### Investigation
+#### Investigation
 
 Nginx:
 
@@ -462,25 +462,25 @@ sudo ufw status
 
 Port **443** is blocked.
 
-### Resolution
+#### Resolution
 
 ```bash
 sudo ufw allow 443
 ```
 
-### Lesson
+#### Lesson
 
 Infrastructure changes should include firewall validation.
 
 ---
 
-# Case Study 3 – Database Connection Failure
+## Case Study 3 – Database Connection Failure
 
-## Incident
+### Incident
 
 Every API request returns **500 Internal Server Error**.
 
-### Investigation
+#### Investigation
 
 Logs show:
 
@@ -498,7 +498,7 @@ MONGO_URI
 
 Contains an outdated password.
 
-### Resolution
+#### Resolution
 
 Update `.env`.
 
@@ -506,19 +506,19 @@ Update `.env`.
 pm2 reload api
 ```
 
-### Lesson
+#### Lesson
 
 Configuration changes require validation before deployment.
 
 ---
 
-# Case Study 4 – High Memory Usage
+## Case Study 4 – High Memory Usage
 
-## Incident
+### Incident
 
 Application restarts every few hours.
 
-### Investigation
+#### Investigation
 
 ```bash
 pm2 monit
@@ -528,25 +528,25 @@ Memory continuously increases.
 
 Developers identify a memory leak caused by retaining uploaded file buffers in memory.
 
-### Resolution
+#### Resolution
 
 Fix the application logic.
 
 Deploy the updated version.
 
-### Lesson
+#### Lesson
 
 Restarting applications is not a permanent solution for memory leaks.
 
 ---
 
-# Case Study 5 – SSL Certificate Expired
+## Case Study 5 – SSL Certificate Expired
 
-## Incident
+### Incident
 
 Users receive browser security warnings.
 
-### Investigation
+#### Investigation
 
 ```bash
 openssl x509 -enddate -noout -in certificate.crt
@@ -556,26 +556,26 @@ Certificate expired.
 
 Automatic renewal failed because port **80** was blocked.
 
-### Resolution
+#### Resolution
 
 ```bash
 sudo ufw allow 80
 sudo certbot renew
 ```
 
-### Lesson
+#### Lesson
 
 Monitor certificate expiration proactively.
 
 ---
 
-# Case Study 6 – Cloudflare Error 522
+## Case Study 6 – Cloudflare Error 522
 
-## Incident
+### Incident
 
 Website displays **522 Connection Timed Out**.
 
-### Investigation
+#### Investigation
 
 Cloudflare reaches the network but cannot establish a connection.
 
@@ -585,42 +585,42 @@ Nginx is running.
 
 Firewall blocks incoming HTTP traffic.
 
-### Resolution
+#### Resolution
 
 ```bash
 sudo ufw allow 80
 sudo ufw allow 443
 ```
 
-### Lesson
+#### Lesson
 
 Always verify the origin firewall before assuming a Cloudflare issue.
 
 ---
 
-# Case Study 7 – Deployment Failure
+## Case Study 7 – Deployment Failure
 
-## Incident
+### Incident
 
 Deployment completes successfully, but users still see the old application.
 
-### Investigation
+#### Investigation
 
 PM2 process was never reloaded.
 
-### Resolution
+#### Resolution
 
 ```bash
 pm2 reload api
 ```
 
-### Lesson
+#### Lesson
 
 Successful code deployment does not automatically update running processes.
 
 ---
 
-# Complete Production Debugging Flow
+## Complete Production Debugging Flow
 
 ```text
 Incident
@@ -674,7 +674,7 @@ This workflow can be applied to almost every production incident.
 
 ---
 
-# Incident Checklist
+## Incident Checklist
 
 | Check                 | Completed |
 | --------------------- | --------- |
@@ -691,7 +691,7 @@ Using a checklist reduces the risk of missing important steps during high-pressu
 
 ---
 
-# Essential Debugging Commands
+## Essential Debugging Commands
 
 | Command                            | Purpose                 |
 | ---------------------------------- | ----------------------- |
@@ -710,7 +710,7 @@ Using a checklist reduces the risk of missing important steps during high-pressu
 
 ---
 
-# Production Debugging Mindset
+## Production Debugging Mindset
 
 Successful engineers follow these principles:
 
@@ -727,7 +727,7 @@ A disciplined approach consistently outperforms rushed troubleshooting.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Follow a standard debugging workflow for every incident.
 - Review logs before restarting services.
@@ -740,44 +740,44 @@ A disciplined approach consistently outperforms rushed troubleshooting.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Jumping Directly to a Restart
+#### Jumping Directly to a Restart
 
 Restarting services may temporarily restore functionality but often hides the underlying issue.
 
 ---
 
-### Ignoring Recent Changes
+#### Ignoring Recent Changes
 
 Many production incidents occur shortly after deployments or configuration changes.
 
 ---
 
-### Changing Multiple Components Simultaneously
+#### Changing Multiple Components Simultaneously
 
 Making several changes at once makes it difficult to determine which action resolved the problem.
 
 ---
 
-### Confusing Symptoms with Root Causes
+#### Confusing Symptoms with Root Causes
 
 A 502 error, timeout, or high CPU usage is often a symptom rather than the underlying problem.
 
 ---
 
-### Skipping Root Cause Analysis
+#### Skipping Root Cause Analysis
 
 Resolving the immediate issue without understanding why it occurred increases the likelihood of future incidents.
 
 ---
 
-# Summary
+## Summary
 
 Real-world production debugging combines technical knowledge with a disciplined troubleshooting methodology. Rather than relying on assumptions, experienced engineers reproduce the issue, determine its scope, identify the affected layer, collect evidence, test hypotheses, implement targeted fixes, verify the solution, and document the root cause. This systematic approach minimizes downtime, improves reliability, and transforms production incidents into opportunities for continuous improvement.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **Part 11 – Reference Guide**

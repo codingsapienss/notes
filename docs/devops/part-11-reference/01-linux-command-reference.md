@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Linux Command Reference
 
-## Overview
+### Overview
 
 Throughout this handbook, you have learned numerous Linux commands used in server administration. This chapter serves as a quick-reference guide that consolidates the most frequently used commands into one place.
 
@@ -14,7 +14,7 @@ Unlike previous chapters, this chapter is designed as a reference manual rather 
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -26,7 +26,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Linux Command Categories
+## Linux Command Categories
 
 ```text
 Linux Commands
@@ -48,7 +48,7 @@ Linux Commands
 
 ---
 
-# Getting Help
+## Getting Help
 
 | Command           | Purpose                   |
 | ----------------- | ------------------------- |
@@ -74,7 +74,7 @@ apropos network
 
 ---
 
-# Navigation Commands
+## Navigation Commands
 
 | Command        | Purpose                |
 | -------------- | ---------------------- |
@@ -103,7 +103,7 @@ cd /var/www
 
 ---
 
-# File Management Commands
+## File Management Commands
 
 | Command          | Purpose                      |
 | ---------------- | ---------------------------- |
@@ -134,7 +134,7 @@ tail -f /var/log/syslog
 
 ---
 
-# Directory Management
+## Directory Management
 
 | Command          | Purpose                   |
 | ---------------- | ------------------------- |
@@ -155,7 +155,7 @@ mkdir -p apps/backend/api
 
 ---
 
-# File Permissions
+## File Permissions
 
 | Command | Purpose             |
 | ------- | ------------------- |
@@ -180,7 +180,7 @@ chown ubuntu:ubuntu app.js
 
 ---
 
-# User Management
+## User Management
 
 | Command   | Purpose          |
 | --------- | ---------------- |
@@ -204,7 +204,7 @@ sudo adduser developer
 
 ---
 
-# Process Management
+## Process Management
 
 | Command       | Purpose              |
 | ------------- | -------------------- |
@@ -233,7 +233,7 @@ pkill node
 
 ---
 
-# Service Management (systemd)
+## Service Management (systemd)
 
 | Command             | Purpose              |
 | ------------------- | -------------------- |
@@ -257,7 +257,7 @@ sudo systemctl restart nginx
 
 ---
 
-# Package Management (APT)
+## Package Management (APT)
 
 | Command          | Purpose                |
 | ---------------- | ---------------------- |
@@ -280,7 +280,7 @@ sudo apt install git
 
 ---
 
-# Networking Commands
+## Networking Commands
 
 | Command      | Purpose            |
 | ------------ | ------------------ |
@@ -310,7 +310,7 @@ ss -tulpn
 
 ---
 
-# Disk & Storage Commands
+## Disk & Storage Commands
 
 | Command    | Purpose               |
 | ---------- | --------------------- |
@@ -333,7 +333,7 @@ du -sh /var/log
 
 ---
 
-# Memory & CPU Monitoring
+## Memory & CPU Monitoring
 
 | Command   | Purpose                   |
 | --------- | ------------------------- |
@@ -356,7 +356,7 @@ uptime
 
 ---
 
-# Log Management
+## Log Management
 
 | Command          | Purpose             |
 | ---------------- | ------------------- |
@@ -378,7 +378,7 @@ tail -f /var/log/nginx/error.log
 
 ---
 
-# Search Commands
+## Search Commands
 
 | Command   | Purpose          |
 | --------- | ---------------- |
@@ -400,7 +400,7 @@ grep "ERROR" app.log
 
 ---
 
-# Compression Commands
+## Compression Commands
 
 | Command    | Purpose            |
 | ---------- | ------------------ |
@@ -423,7 +423,7 @@ tar -xzf backup.tar.gz
 
 ---
 
-# SSH Commands
+## SSH Commands
 
 | Command         | Purpose           |
 | --------------- | ----------------- |
@@ -444,7 +444,7 @@ scp file.txt ubuntu@server:/home/ubuntu/
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 | Command    | Purpose                       |
 | ---------- | ----------------------------- |
@@ -465,7 +465,7 @@ printenv
 
 ---
 
-# File Permission Reference
+## File Permission Reference
 
 | Permission | Numeric | Meaning        |
 | ---------- | ------- | -------------- |
@@ -488,7 +488,7 @@ Common combinations:
 
 ---
 
-# Useful Keyboard Shortcuts
+## Useful Keyboard Shortcuts
 
 | Shortcut   | Purpose                |
 | ---------- | ---------------------- |
@@ -502,7 +502,7 @@ Common combinations:
 
 ---
 
-# Daily Linux Administration Commands
+## Daily Linux Administration Commands
 
 ```text
 System Health
@@ -539,7 +539,7 @@ Files
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A website becomes inaccessible after deployment.
 
@@ -585,7 +585,7 @@ By following these commands in sequence, the administrator quickly narrows the p
 
 ---
 
-# Best Practices
+## Best Practices
 
 * Use `man` pages to understand unfamiliar commands.
 * Prefer `sudo` over logging in directly as the root user.
@@ -597,38 +597,38 @@ By following these commands in sequence, the administrator quickly narrows the p
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Running Destructive Commands as Root
+#### Running Destructive Commands as Root
 
 Commands such as `rm -rf` can permanently remove critical files if executed incorrectly.
 
 ---
 
-### Forgetting Command Options
+#### Forgetting Command Options
 
 Using `ls` instead of `ls -la` or `tail` instead of `tail -f` may hide important information during troubleshooting.
 
 ---
 
-### Ignoring Manual Pages
+#### Ignoring Manual Pages
 
 Many commands provide extensive built-in documentation through `man` and `--help`.
 
 ---
 
-### Using `chmod 777`
+#### Using `chmod 777`
 
 Granting full permissions to everyone creates significant security risks and should be avoided in production.
 
 ---
 
-# Summary
+## Summary
 
 This Linux Command Reference provides a consolidated guide to the commands used most frequently in Linux server administration. By organizing commands into functional categories—including navigation, file management, networking, monitoring, security, and system administration—it serves as a practical handbook for day-to-day operations, troubleshooting, and production maintenance.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **02 - Nginx Reference**

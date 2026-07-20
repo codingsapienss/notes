@@ -6,7 +6,7 @@ sidebar_position: 7
 
 # Common File Locations
 
-## Overview
+### Overview
 
 Linux organizes files using a standardized directory hierarchy known as the **Filesystem Hierarchy Standard (FHS)**. Understanding where configuration files, logs, binaries, libraries, applications, and user data are stored is essential for system administration, troubleshooting, deployment, and security.
 
@@ -14,7 +14,7 @@ This chapter serves as a quick-reference guide to the most important Linux file 
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you will be able to:
 
@@ -28,7 +28,7 @@ After completing this chapter, you will be able to:
 
 ---
 
-# Linux Filesystem Overview
+## Linux Filesystem Overview
 
 ```text
 /
@@ -57,7 +57,7 @@ Everything in Linux begins from the root directory (`/`).
 
 ---
 
-# Filesystem Hierarchy
+## Filesystem Hierarchy
 
 | Directory | Purpose                           |
 | --------- | --------------------------------- |
@@ -81,7 +81,7 @@ Everything in Linux begins from the root directory (`/`).
 
 ---
 
-# Root Directory
+## Root Directory
 
 ```text
 /
@@ -102,7 +102,7 @@ Example:
 
 ---
 
-# Home Directories
+## Home Directories
 
 Regular users:
 
@@ -130,7 +130,7 @@ Home directories typically contain:
 
 ---
 
-# Root User Home
+## Root User Home
 
 ```text
 /root
@@ -140,7 +140,7 @@ This directory belongs exclusively to the root user and should not be confused w
 
 ---
 
-# Configuration Directory
+## Configuration Directory
 
 ```text
 /etc/
@@ -163,7 +163,7 @@ Common examples:
 
 ---
 
-# Nginx Configuration
+## Nginx Configuration
 
 Directory:
 
@@ -194,7 +194,7 @@ Example:
 
 ---
 
-# Apache Configuration
+## Apache Configuration
 
 Ubuntu:
 
@@ -216,7 +216,7 @@ sites-enabled
 
 ---
 
-# SSH Configuration
+## SSH Configuration
 
 Server configuration:
 
@@ -250,7 +250,7 @@ known_hosts
 
 ---
 
-# Systemd Service Files
+## Systemd Service Files
 
 Installed services:
 
@@ -272,7 +272,7 @@ node-api.service
 
 ---
 
-# Log Directory
+## Log Directory
 
 ```text
 /var/log/
@@ -291,7 +291,7 @@ Common logs:
 
 ---
 
-# Application Logs
+## Application Logs
 
 PM2 logs:
 
@@ -317,7 +317,7 @@ Application-specific logs are often stored under:
 
 ---
 
-# Web Server Files
+## Web Server Files
 
 Default website:
 
@@ -338,7 +338,7 @@ Production example:
 
 ---
 
-# User Applications
+## User Applications
 
 Optional software:
 
@@ -356,7 +356,7 @@ Example:
 
 ---
 
-# Executable Files
+## Executable Files
 
 Essential commands:
 
@@ -396,7 +396,7 @@ Example output:
 
 ---
 
-# Shared Libraries
+## Shared Libraries
 
 Common library directories:
 
@@ -412,7 +412,7 @@ Libraries provide shared functionality for applications.
 
 ---
 
-# Temporary Files
+## Temporary Files
 
 System temporary directory:
 
@@ -428,7 +428,7 @@ Characteristics:
 
 ---
 
-# Runtime Files
+## Runtime Files
 
 ```text
 /run
@@ -449,7 +449,7 @@ Example:
 
 ---
 
-# Process Information
+## Process Information
 
 ```text
 /proc
@@ -476,7 +476,7 @@ cat /proc/meminfo
 
 ---
 
-# Device Files
+## Device Files
 
 ```text
 /dev
@@ -498,7 +498,7 @@ These files represent hardware and virtual devices.
 
 ---
 
-# Mounted Filesystems
+## Mounted Filesystems
 
 Temporary mounts:
 
@@ -520,7 +520,7 @@ Example:
 
 ---
 
-# Boot Files
+## Boot Files
 
 ```text
 /boot
@@ -544,7 +544,7 @@ grub/
 
 ---
 
-# Package Management Files
+## Package Management Files
 
 APT cache:
 
@@ -566,7 +566,7 @@ Installed package logs:
 
 ---
 
-# Cron Configuration
+## Cron Configuration
 
 System-wide:
 
@@ -592,7 +592,7 @@ crontab -e
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 System-wide:
 
@@ -612,7 +612,7 @@ Shell-specific:
 
 ---
 
-# SSL Certificates
+## SSL Certificates
 
 Common certificate locations:
 
@@ -635,7 +635,7 @@ Contains:
 
 ---
 
-# Node.js Applications
+## Node.js Applications
 
 Common production layout:
 
@@ -651,7 +651,7 @@ Common production layout:
 
 ---
 
-# Daily Navigation Commands
+## Daily Navigation Commands
 
 ```text
 Filesystem
@@ -684,7 +684,7 @@ Users
 
 ---
 
-# Useful File Commands
+## Useful File Commands
 
 | Command    | Purpose                |
 | ---------- | ---------------------- |
@@ -700,7 +700,7 @@ Users
 
 ---
 
-# Real-World Example
+## Real-World Example
 
 A Node.js application fails to start after deployment.
 
@@ -744,7 +744,7 @@ The application starts successfully.
 
 ---
 
-# Best Practices
+## Best Practices
 
 - Keep applications under `/var/www` or `/opt`.
 - Store custom systemd services in `/etc/systemd/system`.
@@ -756,44 +756,44 @@ The application starts successfully.
 
 ---
 
-# Common Mistakes
+## Common Mistakes
 
-### Confusing `/` and `/root`
+#### Confusing `/` and `/root`
 
 The root filesystem (`/`) and the root user's home directory (`/root`) are different.
 
 ---
 
-### Storing Important Files in `/tmp`
+#### Storing Important Files in `/tmp`
 
 Files in `/tmp` may be removed automatically during reboot or cleanup.
 
 ---
 
-### Editing Installed systemd Files
+#### Editing Installed systemd Files
 
 Avoid modifying files under `/lib/systemd/system/`. Place custom service definitions or overrides in `/etc/systemd/system/`.
 
 ---
 
-### Mixing Configuration and Application Files
+#### Mixing Configuration and Application Files
 
 Keep configuration in standard locations such as `/etc` and application code under directories like `/var/www` or `/opt`.
 
 ---
 
-### Ignoring Log Locations
+#### Ignoring Log Locations
 
 Many production issues can be diagnosed quickly by checking the appropriate log directory.
 
 ---
 
-# Summary
+## Summary
 
 The Linux filesystem hierarchy provides a predictable structure for configuration, applications, logs, binaries, libraries, runtime data, and user files. Familiarity with these standard locations enables administrators to deploy, maintain, secure, and troubleshoot systems more efficiently.
 
 ---
 
-## Next Chapter
+### Next Chapter
 
 ➡️ **08 - Port Reference**
