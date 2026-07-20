@@ -32,3 +32,6 @@ Deploy requires these env vars (PowerShell example in README.md:178):
 
 ## One-off utilities
 - `scripts/fix_headings.py` — normalizes H1/H2 structure in specific directories; only run if headings are broken
+- `scripts/fix_devops_frontmatter.py` — adds `sidebar_label`/`sidebar_position` frontmatter and `_category_.json` to every `docs/devops` subfolder
+- `scripts/fix_frontmatter_v2.py` — strips malformed frontmatter and replaces it with clean `sidebar_label` + `sidebar_position`; useful after bulk imports
+- `scripts/create_backdated_commits.py` — stages real changed files and creates backdated commits with randomized timestamps; usage: `python create_backdated_commits.py --start-date YYYY-MM-DD --end-date YYYY-MM-DD --min-per-day N --max-per-day M`
