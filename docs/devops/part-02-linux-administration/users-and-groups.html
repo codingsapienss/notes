@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-02-linux-administration/users-and-groups" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Users and Groups | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-02-linux-administration/users-and-groups"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Users and Groups | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-02-linux-administration/users-and-groups"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-02-linux-administration/users-and-groups" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-02-linux-administration/users-and-groups" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Users and Groups","item":"https://codingsapienss.github.io/notes/docs/devops/part-02-linux-administration/users-and-groups"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Filesystem" class="linkLabel_WmDU">Linux Filesystem</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/users-and-groups"><span title="Users and Groups" class="linkLabel_WmDU">Users and Groups</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-permissions"><span title="Linux Permissions" class="linkLabel_WmDU">Linux Permissions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/process-management"><span title="Process Management" class="linkLabel_WmDU">Process Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/memory-management"><span title="Memory Management" class="linkLabel_WmDU">Memory Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/storage-and-disks"><span title="Storage and Disks" class="linkLabel_WmDU">Storage and Disks</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/package-management"><span title="Package Management" class="linkLabel_WmDU">Package Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/systemd-and-services"><span title="systemd and Services" class="linkLabel_WmDU">systemd and Services</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/log-management"><span title="Log Management" class="linkLabel_WmDU">Log Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/cron-and-scheduling"><span title="Cron and Scheduling" class="linkLabel_WmDU">Cron and Scheduling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-networking-tools"><span title="Linux Networking Tools" class="linkLabel_WmDU">Linux Networking Tools</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/essential-linux-commands"><span title="Essential Linux Commands" class="linkLabel_WmDU">Essential Linux Commands</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Linux Administration</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Users and Groups</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Users and Groups</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Linux is a <strong>multi-user operating system</strong>, meaning multiple users can use the same system while keeping their files, settings, and permissions separate.</p>
+<p>Every process, file, and service in Linux is associated with a user and one or more groups. This ownership model provides security, accountability, and controlled access to system resources.</p>
+<p>Understanding users and groups is essential for system administration because every server deployment, application installation, and permission configuration depends on them.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-objectives">Learning Objectives<a href="#learning-objectives" class="hash-link" aria-label="Direct link to Learning Objectives" title="Direct link to Learning Objectives" translate="no">​</a></h2>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Understand how Linux manages users.</li>
+<li class="">Learn the different types of users.</li>
+<li class="">Understand groups and their purpose.</li>
+<li class="">Learn how user IDs (UIDs) and group IDs (GIDs) work.</li>
+<li class="">Create, modify, and delete users and groups.</li>
+<li class="">Understand the relationship between users, groups, and file ownership.</li>
+</ul>
+<hr>
+<h1>Why Linux Uses Users</h1>
+<p>Imagine a server used by several developers.</p>
+<p>Without separate user accounts:</p>
+<ul>
+<li class="">Anyone could modify another person&#x27;s files.</li>
+<li class="">Every user would have complete control over the system.</li>
+<li class="">It would be impossible to determine who performed a particular action.</li>
+<li class="">Sensitive information would be exposed.</li>
+</ul>
+<p>Linux solves these problems by assigning every action to a user account.</p>
+<p>Each user has:</p>
+<ul>
+<li class="">A username</li>
+<li class="">A unique User ID (UID)</li>
+<li class="">A primary group</li>
+<li class="">A home directory</li>
+<li class="">A default shell</li>
+</ul>
+<hr>
+<h1>Types of Users</h1>
+<p>Linux categorizes users into three main types.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-root-user">1. Root User<a href="#1-root-user" class="hash-link" aria-label="Direct link to 1. Root User" title="Direct link to 1. Root User" translate="no">​</a></h2>
+<p>The <strong>root</strong> user is the superuser of the system.</p>
+<p>Characteristics:</p>
+<ul>
+<li class="">Complete administrative privileges</li>
+<li class="">Can access all files</li>
+<li class="">Can install or remove software</li>
+<li class="">Can create or delete users</li>
+<li class="">Can modify system configuration</li>
+</ul>
+<p>Username:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">root</span><br></div></code></pre></div></div>
+<p>Home directory:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/root</span><br></div></code></pre></div></div>
+<p>Because root has unrestricted access, it should be used only when necessary.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-regular-users">2. Regular Users<a href="#2-regular-users" class="hash-link" aria-label="Direct link to 2. Regular Users" title="Direct link to 2. Regular Users" translate="no">​</a></h2>
+<p>Regular users are created for people who use the system.</p>
+<p>Examples:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">alice</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">bob</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">developer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ubuntu</span><br></div></code></pre></div></div>
+<p>Regular users:</p>
+<ul>
+<li class="">Cannot modify critical system files by default.</li>
+<li class="">Can manage their own files.</li>
+<li class="">Usually work inside their home directory.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/home/developer</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-system-users">3. System Users<a href="#3-system-users" class="hash-link" aria-label="Direct link to 3. System Users" title="Direct link to 3. System Users" translate="no">​</a></h2>
+<p>Some applications and services require their own dedicated accounts.</p>
+<p>Examples:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">www-data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">mysql</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">postgres</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">systemd-network</span><br></div></code></pre></div></div>
+<p>These users:</p>
+<ul>
+<li class="">Usually cannot log in interactively.</li>
+<li class="">Own files related to specific services.</li>
+<li class="">Improve security by isolating applications.</li>
+</ul>
+<p>For example, the Nginx web server often runs as the <code>www-data</code> user on Ubuntu.</p>
+<hr>
+<h1>Understanding User IDs (UID)</h1>
+<p>Internally, Linux identifies users using <strong>User IDs (UIDs)</strong> rather than usernames.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Username</th><th style="text-align:right">UID</th></tr></thead><tbody><tr><td>root</td><td style="text-align:right">0</td></tr><tr><td>developer</td><td style="text-align:right">1000</td></tr><tr><td>alice</td><td style="text-align:right">1001</td></tr></tbody></table>
+<p>The username is primarily for human convenience.</p>
+<p>The operating system uses the UID for permission checks and ownership.</p>
+<p>You can view your UID using:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">id</span><br></div></code></pre></div></div>
+<p>Example output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">uid=1000(developer) gid=1000(developer) groups=1000(developer),27(sudo)</span><br></div></code></pre></div></div>
+<hr>
+<h1>What Are Groups?</h1>
+<p>A <strong>group</strong> is a collection of users who share common permissions.</p>
+<p>Instead of assigning permissions individually to every user, Linux allows permissions to be granted to a group.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Developers Group</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── Alice</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── Bob</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── Charlie</span><br></div></code></pre></div></div>
+<p>If all developers require access to the same project directory, assigning permissions to the group is simpler than configuring each user separately.</p>
+<hr>
+<h1>Primary Group and Secondary Groups</h1>
+<p>Every user has:</p>
+<ul>
+<li class="">One <strong>Primary Group</strong></li>
+<li class="">Zero or more <strong>Secondary Groups</strong></li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User: developer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary Group:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">developer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Secondary Groups:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sudo</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">docker</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">www-data</span><br></div></code></pre></div></div>
+<p>Primary groups are generally used when creating new files, while secondary groups provide additional permissions.</p>
+<hr>
+<h1>Understanding Group IDs (GID)</h1>
+<p>Just as users have UIDs, groups have <strong>Group IDs (GIDs)</strong>.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Group</th><th style="text-align:right">GID</th></tr></thead><tbody><tr><td>root</td><td style="text-align:right">0</td></tr><tr><td>developer</td><td style="text-align:right">1000</td></tr><tr><td>sudo</td><td style="text-align:right">27</td></tr><tr><td>docker</td><td style="text-align:right">999</td></tr></tbody></table>
+<p>Linux uses the GID internally instead of the group name.</p>
+<hr>
+<h1>Viewing Current User Information</h1>
+<p>To display information about the current user:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">whoami</span><br></div></code></pre></div></div>
+<p>Example output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">developer</span><br></div></code></pre></div></div>
+<p>To display detailed user information:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">id</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">uid=1000(developer)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">gid=1000(developer)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">groups=1000(developer),27(sudo)</span><br></div></code></pre></div></div>
+<p>To display the current logged-in users:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">who</span><br></div></code></pre></div></div>
+<hr>
+<h1>Creating Users</h1>
+<p>A new user can be created using:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo adduser john</span><br></div></code></pre></div></div>
+<p>Typical process:</p>
+<ol>
+<li class="">Create the user.</li>
+<li class="">Create a home directory.</li>
+<li class="">Create a primary group.</li>
+<li class="">Set a password.</li>
+<li class="">Copy default configuration files.</li>
+</ol>
+<p>The new home directory becomes:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/home/john</span><br></div></code></pre></div></div>
+<hr>
+<h1>Deleting Users</h1>
+<p>To remove a user:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo deluser john</span><br></div></code></pre></div></div>
+<p>To remove both the user and their home directory:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo deluser --remove-home john</span><br></div></code></pre></div></div>
+<p>Be careful, as deleting a home directory permanently removes the user&#x27;s files.</p>
+<hr>
+<h1>Creating Groups</h1>
+<p>Create a new group:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo groupadd developers</span><br></div></code></pre></div></div>
+<p>View group information:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">getent group developers</span><br></div></code></pre></div></div>
+<p>Example output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">developers:x:1002:</span><br></div></code></pre></div></div>
+<hr>
+<h1>Adding a User to a Group</h1>
+<p>To add a user to an existing group:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo usermod -aG developers john</span><br></div></code></pre></div></div>
+<p>Explanation:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Option</th><th>Meaning</th></tr></thead><tbody><tr><td><code>-a</code></td><td>Append to existing groups</td></tr><tr><td><code>-G</code></td><td>Specify supplementary groups</td></tr></tbody></table>
+<p><strong>Important:</strong> Always use <code>-aG</code> together. Omitting <code>-a</code> may remove the user from existing secondary groups.</p>
+<hr>
+<h1>Viewing Groups</h1>
+<p>To list groups for the current user:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">groups</span><br></div></code></pre></div></div>
+<p>To list groups for another user:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">groups john</span><br></div></code></pre></div></div>
+<hr>
+<h1>The sudo Group</h1>
+<p>Most Linux distributions discourage logging in directly as the root user.</p>
+<p>Instead, administrative privileges are granted through the <strong>sudo</strong> mechanism.</p>
+<p>Example:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo apt update</span><br></div></code></pre></div></div>
+<p>The <code>sudo</code> command temporarily executes a command with administrative privileges.</p>
+<p>Users typically gain this ability by belonging to the <code>sudo</code> group.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">developer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── sudo</span><br></div></code></pre></div></div>
+<p>This approach improves security because administrative actions are explicit and can be logged.</p>
+<hr>
+<h1>User Home Directories</h1>
+<p>Each regular user receives a personal home directory.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/home/alice</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">/home/bob</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">/home/developer</span><br></div></code></pre></div></div>
+<p>The home directory typically contains:</p>
+<ul>
+<li class="">Documents</li>
+<li class="">Downloads</li>
+<li class="">Configuration files</li>
+<li class="">SSH keys</li>
+<li class="">Development projects</li>
+</ul>
+<p>When a user logs in, the shell usually starts in their home directory.</p>
+<hr>
+<h1>Important User-Related Files</h1>
+<p>Linux stores user and group information in several important files.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><code>/etc/passwd</code></td><td>User account information</td></tr><tr><td><code>/etc/shadow</code></td><td>Encrypted password information</td></tr><tr><td><code>/etc/group</code></td><td>Group definitions</td></tr><tr><td><code>/etc/gshadow</code></td><td>Secure group information</td></tr></tbody></table>
+<p>Administrators should understand these files but avoid editing them manually unless necessary.</p>
+<hr>
+<h1>Real-World Example</h1>
+<p>Suppose a company has three developers working on the same application.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── alice</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── bob</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── charlie</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Group</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── developers</span><br></div></code></pre></div></div>
+<p>All project files are owned by the <code>developers</code> group.</p>
+<p>Each developer belongs to that group, allowing everyone to collaborate without assigning permissions individually to every user.</p>
+<p>Meanwhile:</p>
+<ul>
+<li class="">Nginx runs as <code>www-data</code></li>
+<li class="">MySQL runs as <code>mysql</code></li>
+<li class="">System services run under their own dedicated accounts</li>
+</ul>
+<p>This separation improves both organization and security.</p>
+<hr>
+<h1>Best Practices</h1>
+<ul>
+<li class="">Use regular user accounts for daily work.</li>
+<li class="">Use <code>sudo</code> instead of logging in directly as the root user.</li>
+<li class="">Assign permissions to groups rather than individual users whenever practical.</li>
+<li class="">Remove unused user accounts promptly.</li>
+<li class="">Review group memberships periodically.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="working-as-the-root-user-all-the-time">Working as the Root User All the Time<a href="#working-as-the-root-user-all-the-time" class="hash-link" aria-label="Direct link to Working as the Root User All the Time" title="Direct link to Working as the Root User All the Time" translate="no">​</a></h3>
+<p>Using the root account for everyday tasks increases the risk of accidental system changes.</p>
+<p>Prefer a regular user account with <code>sudo</code> privileges.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="forgetting-the--a-option-with-usermod">Forgetting the <code>-a</code> Option with <code>usermod</code><a href="#forgetting-the--a-option-with-usermod" class="hash-link" aria-label="Direct link to forgetting-the--a-option-with-usermod" title="Direct link to forgetting-the--a-option-with-usermod" translate="no">​</a></h3>
+<p>Running:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo usermod -G developers john</span><br></div></code></pre></div></div>
+<p>without <code>-a</code> replaces the user&#x27;s existing supplementary groups.</p>
+<p>Use:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo usermod -aG developers john</span><br></div></code></pre></div></div>
+<p>to append the new group while preserving existing memberships.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sharing-user-accounts">Sharing User Accounts<a href="#sharing-user-accounts" class="hash-link" aria-label="Direct link to Sharing User Accounts" title="Direct link to Sharing User Accounts" translate="no">​</a></h3>
+<p>Each person should have an individual account.</p>
+<p>Shared accounts reduce accountability and make auditing difficult.</p>
+<hr>
+<h1>Summary</h1>
+<p>Linux uses a robust user and group model to provide secure, multi-user access to system resources.</p>
+<ul>
+<li class=""><strong>Users</strong> represent people or services.</li>
+<li class=""><strong>Groups</strong> simplify permission management.</li>
+<li class=""><strong>UIDs</strong> and <strong>GIDs</strong> uniquely identify users and groups.</li>
+<li class=""><strong>sudo</strong> enables controlled administrative access without requiring routine use of the root account.</li>
+</ul>
+<p>A solid understanding of users and groups is essential before learning Linux file permissions, which determine what each user and group can actually access.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>03 - Linux Permissions</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-02-linux-administration/02-users-and-groups.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Linux Filesystem</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-02-linux-administration/linux-permissions"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Linux Permissions</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#learning-objectives" class="table-of-contents__link toc-highlight">Learning Objectives</a></li><li><a href="#1-root-user" class="table-of-contents__link toc-highlight">1. Root User</a></li><li><a href="#2-regular-users" class="table-of-contents__link toc-highlight">2. Regular Users</a></li><li><a href="#3-system-users" class="table-of-contents__link toc-highlight">3. System Users</a><ul><li><a href="#working-as-the-root-user-all-the-time" class="table-of-contents__link toc-highlight">Working as the Root User All the Time</a></li><li><a href="#forgetting-the--a-option-with-usermod" class="table-of-contents__link toc-highlight">Forgetting the <code>-a</code> Option with <code>usermod</code></a></li><li><a href="#sharing-user-accounts" class="table-of-contents__link toc-highlight">Sharing User Accounts</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-12-interview/linux-interview" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Linux Interview Preparation | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/linux-interview"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Linux Interview Preparation | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/linux-interview"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/linux-interview" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/linux-interview" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Linux Interview Preparation","item":"https://codingsapienss.github.io/notes/docs/devops/part-12-interview/linux-interview"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Linux Interview Preparation" class="linkLabel_WmDU">Linux Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/networking-interview"><span title="Networking Interview Preparation" class="linkLabel_WmDU">Networking Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/nginx-interview"><span title="Nginx Interview Preparation" class="linkLabel_WmDU">Nginx Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/nodejs-interview"><span title="Node.js Interview Preparation" class="linkLabel_WmDU">Node.js Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/cloud-interview"><span title="Cloud Interview Preparation" class="linkLabel_WmDU">Cloud Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/scenario-based-questions"><span title="Scenario-Based Interview Questions" class="linkLabel_WmDU">Scenario-Based Interview Questions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/production-case-studies"><span title="Production Case Studies" class="linkLabel_WmDU">Production Case Studies</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Interview Prep</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Linux Interview Preparation</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Linux Interview Preparation</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Linux is one of the most frequently tested topics in Backend, DevOps, Cloud, Site Reliability Engineering (SRE), and System Administration interviews.</p>
+<p>Interviewers generally don&#x27;t want candidates who have memorized commands—they want engineers who understand <strong>how Linux works</strong>, <strong>why commands are used</strong>, and <strong>how production issues are solved</strong>.</p>
+<p>This chapter covers:</p>
+<ul>
+<li class="">Linux fundamentals</li>
+<li class="">Frequently asked interview questions</li>
+<li class="">Command-based questions</li>
+<li class="">Scenario-based discussions</li>
+<li class="">Production troubleshooting</li>
+<li class="">Advanced interview topics</li>
+</ul>
+<hr>
+<h1>Learning Objectives</h1>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Answer Linux interview questions confidently.</li>
+<li class="">Explain Linux concepts instead of memorizing commands.</li>
+<li class="">Solve production scenarios.</li>
+<li class="">Demonstrate troubleshooting skills.</li>
+<li class="">Discuss real-world Linux administration.</li>
+</ul>
+<hr>
+<h1>Linux Knowledge Roadmap</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Linux Basics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Filesystem</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Permissions</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Processes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Services</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Networking</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Security</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Troubleshooting</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Production Scenarios</span><br></div></code></pre></div></div>
+<hr>
+<h1>Interview Expectations</h1>
+<p>Interviewers usually evaluate:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Skill</th><th>Importance</th></tr></thead><tbody><tr><td>Linux Commands</td><td>High</td></tr><tr><td>Process Management</td><td>High</td></tr><tr><td>File System Knowledge</td><td>High</td></tr><tr><td>Networking</td><td>High</td></tr><tr><td>Troubleshooting</td><td>Very High</td></tr><tr><td>Security</td><td>Medium</td></tr><tr><td>Performance Analysis</td><td>High</td></tr><tr><td>Production Experience</td><td>Very High</td></tr></tbody></table>
+<hr>
+<h1>Beginner Interview Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-linux">Q1. What is Linux?<a href="#q1-what-is-linux" class="hash-link" aria-label="Direct link to Q1. What is Linux?" title="Direct link to Q1. What is Linux?" translate="no">​</a></h2>
+<p><strong>Answer</strong></p>
+<p>Linux is an open-source Unix-like operating system kernel created by Linus Torvalds in 1991. Modern Linux distributions combine the Linux kernel with GNU utilities, package managers, and additional software to create complete operating systems such as Ubuntu, Debian, Fedora, and Rocky Linux.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-a-linux-distribution">Q2. What is a Linux Distribution?<a href="#q2-what-is-a-linux-distribution" class="hash-link" aria-label="Direct link to Q2. What is a Linux Distribution?" title="Direct link to Q2. What is a Linux Distribution?" translate="no">​</a></h2>
+<p>Examples:</p>
+<ul>
+<li class="">Ubuntu</li>
+<li class="">Debian</li>
+<li class="">Fedora</li>
+<li class="">CentOS Stream</li>
+<li class="">Rocky Linux</li>
+<li class="">AlmaLinux</li>
+<li class="">Arch Linux</li>
+</ul>
+<p>A distribution packages the Linux kernel together with software, libraries, installers, and package management tools.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-difference-between-linux-kernel-and-operating-system">Q3. Difference between Linux Kernel and Operating System?<a href="#q3-difference-between-linux-kernel-and-operating-system" class="hash-link" aria-label="Direct link to Q3. Difference between Linux Kernel and Operating System?" title="Direct link to Q3. Difference between Linux Kernel and Operating System?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Linux Kernel</th><th>Operating System</th></tr></thead><tbody><tr><td>Core component</td><td>Complete software package</td></tr><tr><td>Manages hardware</td><td>Includes kernel + tools</td></tr><tr><td>Memory management</td><td>User applications</td></tr><tr><td>Process scheduling</td><td>Package manager</td></tr><tr><td>Device drivers</td><td>Shell and utilities</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-the-linux-shell">Q4. What is the Linux Shell?<a href="#q4-what-is-the-linux-shell" class="hash-link" aria-label="Direct link to Q4. What is the Linux Shell?" title="Direct link to Q4. What is the Linux Shell?" translate="no">​</a></h2>
+<p>A shell is a command interpreter that allows users to interact with the operating system.</p>
+<p>Popular shells include:</p>
+<ul>
+<li class="">Bash</li>
+<li class="">Zsh</li>
+<li class="">Fish</li>
+<li class="">Dash</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-the-root-directory">Q5. What is the Root Directory?<a href="#q5-what-is-the-root-directory" class="hash-link" aria-label="Direct link to Q5. What is the Root Directory?" title="Direct link to Q5. What is the Root Directory?" translate="no">​</a></h2>
+<p>The root directory (<code>/</code>) is the top-level directory of the Linux filesystem hierarchy. Every file and directory originates from it.</p>
+<hr>
+<h1>Filesystem Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-difference-between--and-root">Q6. Difference between <code>/</code> and <code>/root</code><a href="#q6-difference-between--and-root" class="hash-link" aria-label="Direct link to q6-difference-between--and-root" title="Direct link to q6-difference-between--and-root" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><code>/</code></th><th><code>/root</code></th></tr></thead><tbody><tr><td>Root of filesystem</td><td>Home directory of root user</td></tr><tr><td>Contains all directories</td><td>Contains root user&#x27;s files</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-stored-inside-etc">Q7. What is stored inside <code>/etc</code>?<a href="#q7-what-is-stored-inside-etc" class="hash-link" aria-label="Direct link to q7-what-is-stored-inside-etc" title="Direct link to q7-what-is-stored-inside-etc" translate="no">​</a></h2>
+<p>Configuration files for:</p>
+<ul>
+<li class="">Nginx</li>
+<li class="">SSH</li>
+<li class="">Users</li>
+<li class="">DNS</li>
+<li class="">Networking</li>
+<li class="">Services</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-proc">Q8. What is <code>/proc</code>?<a href="#q8-what-is-proc" class="hash-link" aria-label="Direct link to q8-what-is-proc" title="Direct link to q8-what-is-proc" translate="no">​</a></h2>
+<p><code>/proc</code> is a virtual filesystem that provides runtime information about the kernel and currently running processes.</p>
+<p>Examples:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">cat /proc/cpuinfo</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">cat /proc/meminfo</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-difference-between-hard-link-and-soft-link">Q9. Difference between Hard Link and Soft Link?<a href="#q9-difference-between-hard-link-and-soft-link" class="hash-link" aria-label="Direct link to Q9. Difference between Hard Link and Soft Link?" title="Direct link to Q9. Difference between Hard Link and Soft Link?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Hard Link</th><th>Soft Link</th></tr></thead><tbody><tr><td>Shares inode</td><td>Separate inode</td></tr><tr><td>Cannot span filesystems</td><td>Can span filesystems</td></tr><tr><td>Works if original renamed</td><td>Breaks if original removed</td></tr></tbody></table>
+<p>Create symbolic link:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ln -s original.txt shortcut.txt</span><br></div></code></pre></div></div>
+<hr>
+<h1>File Permission Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-explain-linux-permissions">Q10. Explain Linux permissions.<a href="#q10-explain-linux-permissions" class="hash-link" aria-label="Direct link to Q10. Explain Linux permissions." title="Direct link to Q10. Explain Linux permissions." translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">-rwxr-xr--</span><br></div></code></pre></div></div>
+<p>Breakdown:</p>
+<ul>
+<li class="">Owner</li>
+<li class="">Group</li>
+<li class="">Others</li>
+</ul>
+<p>Permission values:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Permission</th><th>Value</th></tr></thead><tbody><tr><td>Read</td><td>4</td></tr><tr><td>Write</td><td>2</td></tr><tr><td>Execute</td><td>1</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-does-chmod-755-mean">Q11. What does <code>chmod 755</code> mean?<a href="#q11-what-does-chmod-755-mean" class="hash-link" aria-label="Direct link to q11-what-does-chmod-755-mean" title="Direct link to q11-what-does-chmod-755-mean" translate="no">​</a></h2>
+<p>Owner:</p>
+<ul>
+<li class="">Read</li>
+<li class="">Write</li>
+<li class="">Execute</li>
+</ul>
+<p>Group:</p>
+<ul>
+<li class="">Read</li>
+<li class="">Execute</li>
+</ul>
+<p>Others:</p>
+<ul>
+<li class="">Read</li>
+<li class="">Execute</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-difference-between-chmod-and-chown">Q12. Difference between chmod and chown?<a href="#q12-difference-between-chmod-and-chown" class="hash-link" aria-label="Direct link to Q12. Difference between chmod and chown?" title="Direct link to Q12. Difference between chmod and chown?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>chmod</th><th>chown</th></tr></thead><tbody><tr><td>Changes permissions</td><td>Changes ownership</td></tr></tbody></table>
+<p>Examples:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">chmod 755 app.js</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">chown ubuntu:ubuntu app.js</span><br></div></code></pre></div></div>
+<hr>
+<h1>Process Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-how-do-you-view-running-processes">Q13. How do you view running processes?<a href="#q13-how-do-you-view-running-processes" class="hash-link" aria-label="Direct link to Q13. How do you view running processes?" title="Direct link to Q13. How do you view running processes?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ps aux</span><br></div></code></pre></div></div>
+<p>or</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">top</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-difference-between-process-and-service">Q14. Difference between process and service?<a href="#q14-difference-between-process-and-service" class="hash-link" aria-label="Direct link to Q14. Difference between process and service?" title="Direct link to Q14. Difference between process and service?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Process</th><th>Service</th></tr></thead><tbody><tr><td>Running program</td><td>Managed background process</td></tr><tr><td>User started</td><td>Usually managed by systemd</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-how-do-you-stop-a-process">Q15. How do you stop a process?<a href="#q15-how-do-you-stop-a-process" class="hash-link" aria-label="Direct link to Q15. How do you stop a process?" title="Direct link to Q15. How do you stop a process?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">kill PID</span><br></div></code></pre></div></div>
+<p>Force stop:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">kill -9 PID</span><br></div></code></pre></div></div>
+<hr>
+<h1>Systemd Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q16-what-is-systemd">Q16. What is systemd?<a href="#q16-what-is-systemd" class="hash-link" aria-label="Direct link to Q16. What is systemd?" title="Direct link to Q16. What is systemd?" translate="no">​</a></h2>
+<p>systemd is the initialization and service management system used by most modern Linux distributions.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q17-common-systemctl-commands">Q17. Common systemctl commands?<a href="#q17-common-systemctl-commands" class="hash-link" aria-label="Direct link to Q17. Common systemctl commands?" title="Direct link to Q17. Common systemctl commands?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl restart nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl enable nginx</span><br></div></code></pre></div></div>
+<hr>
+<h1>Networking Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q18-difference-between-tcp-and-udp">Q18. Difference between TCP and UDP?<a href="#q18-difference-between-tcp-and-udp" class="hash-link" aria-label="Direct link to Q18. Difference between TCP and UDP?" title="Direct link to Q18. Difference between TCP and UDP?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>Reliable</td><td>Faster</td></tr><tr><td>Connection-oriented</td><td>Connectionless</td></tr><tr><td>Ordered delivery</td><td>No ordering guarantee</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q19-how-do-you-find-your-ip-address">Q19. How do you find your IP address?<a href="#q19-how-do-you-find-your-ip-address" class="hash-link" aria-label="Direct link to Q19. How do you find your IP address?" title="Direct link to Q19. How do you find your IP address?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ip addr</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q20-how-do-you-verify-if-a-server-is-reachable">Q20. How do you verify if a server is reachable?<a href="#q20-how-do-you-verify-if-a-server-is-reachable" class="hash-link" aria-label="Direct link to Q20. How do you verify if a server is reachable?" title="Direct link to Q20. How do you verify if a server is reachable?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ping google.com</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q21-which-command-shows-listening-ports">Q21. Which command shows listening ports?<a href="#q21-which-command-shows-listening-ports" class="hash-link" aria-label="Direct link to Q21. Which command shows listening ports?" title="Direct link to Q21. Which command shows listening ports?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q22-what-does-dns-do">Q22. What does DNS do?<a href="#q22-what-does-dns-do" class="hash-link" aria-label="Direct link to Q22. What does DNS do?" title="Direct link to Q22. What does DNS do?" translate="no">​</a></h2>
+<p>DNS converts domain names into IP addresses.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">example.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">203.0.113.15</span><br></div></code></pre></div></div>
+<hr>
+<h1>Storage Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q23-difference-between-df-and-du">Q23. Difference between df and du?<a href="#q23-difference-between-df-and-du" class="hash-link" aria-label="Direct link to Q23. Difference between df and du?" title="Direct link to Q23. Difference between df and du?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>df</th><th>du</th></tr></thead><tbody><tr><td>Disk usage</td><td>Folder/file size</td></tr></tbody></table>
+<p>Examples:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">df -h</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">du -sh /var/www</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q24-what-happens-if-disk-becomes-full">Q24. What happens if disk becomes full?<a href="#q24-what-happens-if-disk-becomes-full" class="hash-link" aria-label="Direct link to Q24. What happens if disk becomes full?" title="Direct link to Q24. What happens if disk becomes full?" translate="no">​</a></h2>
+<p>Possible effects:</p>
+<ul>
+<li class="">Applications crash</li>
+<li class="">Databases fail</li>
+<li class="">Logs stop writing</li>
+<li class="">Deployments fail</li>
+<li class="">Services may stop</li>
+</ul>
+<hr>
+<h1>Logging Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q25-where-are-system-logs-stored">Q25. Where are system logs stored?<a href="#q25-where-are-system-logs-stored" class="hash-link" aria-label="Direct link to Q25. Where are system logs stored?" title="Direct link to Q25. Where are system logs stored?" translate="no">​</a></h2>
+<p>Typically:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/var/log/</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q26-how-do-you-continuously-monitor-logs">Q26. How do you continuously monitor logs?<a href="#q26-how-do-you-continuously-monitor-logs" class="hash-link" aria-label="Direct link to Q26. How do you continuously monitor logs?" title="Direct link to Q26. How do you continuously monitor logs?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">tail -f /var/log/syslog</span><br></div></code></pre></div></div>
+<hr>
+<h1>Security Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q27-why-disable-root-ssh-login">Q27. Why disable root SSH login?<a href="#q27-why-disable-root-ssh-login" class="hash-link" aria-label="Direct link to Q27. Why disable root SSH login?" title="Direct link to Q27. Why disable root SSH login?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">Reduces attack surface.</li>
+<li class="">Prevents direct root authentication.</li>
+<li class="">Encourages privilege escalation through <code>sudo</code>.</li>
+<li class="">Improves auditability.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q28-why-use-ssh-keys">Q28. Why use SSH keys?<a href="#q28-why-use-ssh-keys" class="hash-link" aria-label="Direct link to Q28. Why use SSH keys?" title="Direct link to Q28. Why use SSH keys?" translate="no">​</a></h2>
+<p>Advantages:</p>
+<ul>
+<li class="">More secure than passwords.</li>
+<li class="">Resistant to brute-force password guessing.</li>
+<li class="">Convenient for automation.</li>
+</ul>
+<hr>
+<h1>Intermediate Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q29-difference-between-reboot-and-shutdown">Q29. Difference between reboot and shutdown?<a href="#q29-difference-between-reboot-and-shutdown" class="hash-link" aria-label="Direct link to Q29. Difference between reboot and shutdown?" title="Direct link to Q29. Difference between reboot and shutdown?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>reboot</th><th>shutdown</th></tr></thead><tbody><tr><td>Restarts system</td><td>Powers off system</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q30-what-is-swap-memory">Q30. What is swap memory?<a href="#q30-what-is-swap-memory" class="hash-link" aria-label="Direct link to Q30. What is swap memory?" title="Direct link to Q30. What is swap memory?" translate="no">​</a></h2>
+<p>Swap is disk space used as an extension of RAM when physical memory becomes insufficient.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q31-what-is-a-daemon">Q31. What is a daemon?<a href="#q31-what-is-a-daemon" class="hash-link" aria-label="Direct link to Q31. What is a daemon?" title="Direct link to Q31. What is a daemon?" translate="no">​</a></h2>
+<p>A daemon is a background process that runs continuously to provide services.</p>
+<p>Examples:</p>
+<ul>
+<li class="">nginx</li>
+<li class="">sshd</li>
+<li class="">cron</li>
+</ul>
+<hr>
+<h1>Advanced Interview Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q32-why-is-linux-preferred-for-servers">Q32. Why is Linux preferred for servers?<a href="#q32-why-is-linux-preferred-for-servers" class="hash-link" aria-label="Direct link to Q32. Why is Linux preferred for servers?" title="Direct link to Q32. Why is Linux preferred for servers?" translate="no">​</a></h2>
+<p>Typical reasons include:</p>
+<ul>
+<li class="">Stability</li>
+<li class="">Performance</li>
+<li class="">Security</li>
+<li class="">Automation</li>
+<li class="">Open-source ecosystem</li>
+<li class="">Strong networking capabilities</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q33-what-happens-when-you-run-a-command">Q33. What happens when you run a command?<a href="#q33-what-happens-when-you-run-a-command" class="hash-link" aria-label="Direct link to Q33. What happens when you run a command?" title="Direct link to Q33. What happens when you run a command?" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shell</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Kernel</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">System Call</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CPU</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Output</span><br></div></code></pre></div></div>
+<p>The shell parses the command, the kernel performs the requested operations through system calls, and the results are returned to the user.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q34-what-happens-during-system-boot">Q34. What happens during system boot?<a href="#q34-what-happens-during-system-boot" class="hash-link" aria-label="Direct link to Q34. What happens during system boot?" title="Direct link to Q34. What happens during system boot?" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Power On</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">BIOS / UEFI</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Bootloader</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Linux Kernel</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">systemd</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Services</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Login Prompt</span><br></div></code></pre></div></div>
+<hr>
+<h1>Scenario-Based Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-1">Scenario 1<a href="#scenario-1" class="hash-link" aria-label="Direct link to Scenario 1" title="Direct link to Scenario 1" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Users report that the website is down. How would you investigate?</p>
+<p><strong>Suggested Answer</strong></p>
+<p>A structured approach:</p>
+<ol>
+<li class="">Verify server connectivity.</li>
+<li class="">Check system resource usage.</li>
+<li class="">Verify Nginx status.</li>
+<li class="">Check the application process.</li>
+<li class="">Inspect listening ports.</li>
+<li class="">Review logs.</li>
+<li class="">Test locally using <code>curl</code>.</li>
+<li class="">Verify firewall and DNS if necessary.</li>
+</ol>
+<p>Typical commands:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 list</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">tail -f /var/log/nginx/error.log</span><br></div></code></pre></div></div>
+<p>Interviewers generally value a logical troubleshooting sequence more than immediately identifying a specific cause.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-2">Scenario 2<a href="#scenario-2" class="hash-link" aria-label="Direct link to Scenario 2" title="Direct link to Scenario 2" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Your application works locally but not externally.</p>
+<p>Possible checks:</p>
+<ul>
+<li class="">Firewall</li>
+<li class="">Security groups</li>
+<li class="">Reverse proxy configuration</li>
+<li class="">Listening address</li>
+<li class="">DNS</li>
+<li class="">SSL</li>
+<li class="">Port bindings</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-3">Scenario 3<a href="#scenario-3" class="hash-link" aria-label="Direct link to Scenario 3" title="Direct link to Scenario 3" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>CPU usage suddenly reaches 100%.</p>
+<p>Suggested investigation:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">top</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Identify Process</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Determine Cause</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Mitigate</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Monitor</span><br></div></code></pre></div></div>
+<hr>
+<h1>Production Experience Questions</h1>
+<p>Examples:</p>
+<ul>
+<li class="">Describe a production issue you resolved.</li>
+<li class="">Explain your deployment process.</li>
+<li class="">How do you restart services safely?</li>
+<li class="">How do you investigate high memory usage?</li>
+<li class="">How do you verify a deployment?</li>
+<li class="">How do you monitor production systems?</li>
+<li class="">What precautions do you take before restarting a server?</li>
+</ul>
+<p>Interviewers often look for structured reasoning, risk awareness, and practical experience.</p>
+<hr>
+<h1>Interview Tips</h1>
+<ul>
+<li class="">Explain <em>why</em>, not just <em>what</em>.</li>
+<li class="">Think aloud during troubleshooting questions.</li>
+<li class="">Follow a systematic approach.</li>
+<li class="">Mention verification after every change.</li>
+<li class="">Avoid making assumptions without evidence.</li>
+<li class="">Use production examples where possible.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="memorizing-commands-without-understanding-them">Memorizing Commands Without Understanding Them<a href="#memorizing-commands-without-understanding-them" class="hash-link" aria-label="Direct link to Memorizing Commands Without Understanding Them" title="Direct link to Memorizing Commands Without Understanding Them" translate="no">​</a></h3>
+<p>Interviewers usually ask follow-up questions that require conceptual understanding.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="jumping-directly-to-a-solution">Jumping Directly to a Solution<a href="#jumping-directly-to-a-solution" class="hash-link" aria-label="Direct link to Jumping Directly to a Solution" title="Direct link to Jumping Directly to a Solution" translate="no">​</a></h3>
+<p>Describe your investigation process before proposing a fix.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ignoring-logs">Ignoring Logs<a href="#ignoring-logs" class="hash-link" aria-label="Direct link to Ignoring Logs" title="Direct link to Ignoring Logs" translate="no">​</a></h3>
+<p>Logs are often the first place to gather evidence during troubleshooting.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="not-verifying-changes">Not Verifying Changes<a href="#not-verifying-changes" class="hash-link" aria-label="Direct link to Not Verifying Changes" title="Direct link to Not Verifying Changes" translate="no">​</a></h3>
+<p>After applying a fix, always explain how you would confirm the issue is resolved.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="giving-one-word-answers">Giving One-Word Answers<a href="#giving-one-word-answers" class="hash-link" aria-label="Direct link to Giving One-Word Answers" title="Direct link to Giving One-Word Answers" translate="no">​</a></h3>
+<p>Expand your responses with reasoning, examples, and trade-offs.</p>
+<hr>
+<h1>Summary</h1>
+<p>Linux interviews focus on practical system administration, troubleshooting methodology, and real-world production experience. Strong candidates demonstrate an understanding of Linux internals, networking, permissions, services, and structured debugging rather than relying solely on memorized commands.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>02 - Networking Interview Preparation</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-12-interview/01-linux-interview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-11-reference/production-checklists"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Production Checklists</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-12-interview/networking-interview"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Networking Interview Preparation</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#q1-what-is-linux" class="table-of-contents__link toc-highlight">Q1. What is Linux?</a></li><li><a href="#q2-what-is-a-linux-distribution" class="table-of-contents__link toc-highlight">Q2. What is a Linux Distribution?</a></li><li><a href="#q3-difference-between-linux-kernel-and-operating-system" class="table-of-contents__link toc-highlight">Q3. Difference between Linux Kernel and Operating System?</a></li><li><a href="#q4-what-is-the-linux-shell" class="table-of-contents__link toc-highlight">Q4. What is the Linux Shell?</a></li><li><a href="#q5-what-is-the-root-directory" class="table-of-contents__link toc-highlight">Q5. What is the Root Directory?</a></li><li><a href="#q6-difference-between--and-root" class="table-of-contents__link toc-highlight">Q6. Difference between <code>/</code> and <code>/root</code></a></li><li><a href="#q7-what-is-stored-inside-etc" class="table-of-contents__link toc-highlight">Q7. What is stored inside <code>/etc</code>?</a></li><li><a href="#q8-what-is-proc" class="table-of-contents__link toc-highlight">Q8. What is <code>/proc</code>?</a></li><li><a href="#q9-difference-between-hard-link-and-soft-link" class="table-of-contents__link toc-highlight">Q9. Difference between Hard Link and Soft Link?</a></li><li><a href="#q10-explain-linux-permissions" class="table-of-contents__link toc-highlight">Q10. Explain Linux permissions.</a></li><li><a href="#q11-what-does-chmod-755-mean" class="table-of-contents__link toc-highlight">Q11. What does <code>chmod 755</code> mean?</a></li><li><a href="#q12-difference-between-chmod-and-chown" class="table-of-contents__link toc-highlight">Q12. Difference between chmod and chown?</a></li><li><a href="#q13-how-do-you-view-running-processes" class="table-of-contents__link toc-highlight">Q13. How do you view running processes?</a></li><li><a href="#q14-difference-between-process-and-service" class="table-of-contents__link toc-highlight">Q14. Difference between process and service?</a></li><li><a href="#q15-how-do-you-stop-a-process" class="table-of-contents__link toc-highlight">Q15. How do you stop a process?</a></li><li><a href="#q16-what-is-systemd" class="table-of-contents__link toc-highlight">Q16. What is systemd?</a></li><li><a href="#q17-common-systemctl-commands" class="table-of-contents__link toc-highlight">Q17. Common systemctl commands?</a></li><li><a href="#q18-difference-between-tcp-and-udp" class="table-of-contents__link toc-highlight">Q18. Difference between TCP and UDP?</a></li><li><a href="#q19-how-do-you-find-your-ip-address" class="table-of-contents__link toc-highlight">Q19. How do you find your IP address?</a></li><li><a href="#q20-how-do-you-verify-if-a-server-is-reachable" class="table-of-contents__link toc-highlight">Q20. How do you verify if a server is reachable?</a></li><li><a href="#q21-which-command-shows-listening-ports" class="table-of-contents__link toc-highlight">Q21. Which command shows listening ports?</a></li><li><a href="#q22-what-does-dns-do" class="table-of-contents__link toc-highlight">Q22. What does DNS do?</a></li><li><a href="#q23-difference-between-df-and-du" class="table-of-contents__link toc-highlight">Q23. Difference between df and du?</a></li><li><a href="#q24-what-happens-if-disk-becomes-full" class="table-of-contents__link toc-highlight">Q24. What happens if disk becomes full?</a></li><li><a href="#q25-where-are-system-logs-stored" class="table-of-contents__link toc-highlight">Q25. Where are system logs stored?</a></li><li><a href="#q26-how-do-you-continuously-monitor-logs" class="table-of-contents__link toc-highlight">Q26. How do you continuously monitor logs?</a></li><li><a href="#q27-why-disable-root-ssh-login" class="table-of-contents__link toc-highlight">Q27. Why disable root SSH login?</a></li><li><a href="#q28-why-use-ssh-keys" class="table-of-contents__link toc-highlight">Q28. Why use SSH keys?</a></li><li><a href="#q29-difference-between-reboot-and-shutdown" class="table-of-contents__link toc-highlight">Q29. Difference between reboot and shutdown?</a></li><li><a href="#q30-what-is-swap-memory" class="table-of-contents__link toc-highlight">Q30. What is swap memory?</a></li><li><a href="#q31-what-is-a-daemon" class="table-of-contents__link toc-highlight">Q31. What is a daemon?</a></li><li><a href="#q32-why-is-linux-preferred-for-servers" class="table-of-contents__link toc-highlight">Q32. Why is Linux preferred for servers?</a></li><li><a href="#q33-what-happens-when-you-run-a-command" class="table-of-contents__link toc-highlight">Q33. What happens when you run a command?</a></li><li><a href="#q34-what-happens-during-system-boot" class="table-of-contents__link toc-highlight">Q34. What happens during system boot?</a></li><li><a href="#scenario-1" class="table-of-contents__link toc-highlight">Scenario 1</a></li><li><a href="#scenario-2" class="table-of-contents__link toc-highlight">Scenario 2</a></li><li><a href="#scenario-3" class="table-of-contents__link toc-highlight">Scenario 3</a><ul><li><a href="#memorizing-commands-without-understanding-them" class="table-of-contents__link toc-highlight">Memorizing Commands Without Understanding Them</a></li><li><a href="#jumping-directly-to-a-solution" class="table-of-contents__link toc-highlight">Jumping Directly to a Solution</a></li><li><a href="#ignoring-logs" class="table-of-contents__link toc-highlight">Ignoring Logs</a></li><li><a href="#not-verifying-changes" class="table-of-contents__link toc-highlight">Not Verifying Changes</a></li><li><a href="#giving-one-word-answers" class="table-of-contents__link toc-highlight">Giving One-Word Answers</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

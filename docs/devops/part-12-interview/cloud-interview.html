@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-12-interview/cloud-interview" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Cloud Interview Preparation | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/cloud-interview"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Cloud Interview Preparation | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/cloud-interview"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/cloud-interview" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/cloud-interview" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Cloud Interview Preparation","item":"https://codingsapienss.github.io/notes/docs/devops/part-12-interview/cloud-interview"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Linux Interview Preparation" class="linkLabel_WmDU">Linux Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/networking-interview"><span title="Networking Interview Preparation" class="linkLabel_WmDU">Networking Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/nginx-interview"><span title="Nginx Interview Preparation" class="linkLabel_WmDU">Nginx Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/nodejs-interview"><span title="Node.js Interview Preparation" class="linkLabel_WmDU">Node.js Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-12-interview/cloud-interview"><span title="Cloud Interview Preparation" class="linkLabel_WmDU">Cloud Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/scenario-based-questions"><span title="Scenario-Based Interview Questions" class="linkLabel_WmDU">Scenario-Based Interview Questions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/production-case-studies"><span title="Production Case Studies" class="linkLabel_WmDU">Production Case Studies</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Interview Prep</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Cloud Interview Preparation</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Cloud Interview Preparation</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Cloud Computing has become a fundamental skill for Backend Developers, DevOps Engineers, Cloud Engineers, Site Reliability Engineers (SREs), and Full Stack Developers.</p>
+<p>Modern interviews focus less on memorizing cloud services and more on understanding <strong>how cloud infrastructure works</strong>, <strong>how applications are deployed</strong>, and <strong>how production systems are designed</strong>.</p>
+<p>This chapter covers:</p>
+<ul>
+<li class="">Cloud fundamentals</li>
+<li class="">AWS, Azure, and GCP concepts</li>
+<li class="">Virtual Machines</li>
+<li class="">Networking</li>
+<li class="">Storage</li>
+<li class="">Security</li>
+<li class="">Scalability</li>
+<li class="">High Availability</li>
+<li class="">Production deployment</li>
+<li class="">Scenario-based interview questions</li>
+</ul>
+<hr>
+<h1>Learning Objectives</h1>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Explain cloud computing fundamentals.</li>
+<li class="">Answer common cloud interview questions.</li>
+<li class="">Understand production cloud architecture.</li>
+<li class="">Explain networking and storage concepts.</li>
+<li class="">Design scalable systems.</li>
+<li class="">Troubleshoot cloud deployments.</li>
+</ul>
+<hr>
+<h1>Cloud Architecture</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CDN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Load Balancer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Virtual Machines</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Storage</span><br></div></code></pre></div></div>
+<hr>
+<h1>Cloud Knowledge Roadmap</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Cloud Basics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Virtual Machines</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Networking</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Security</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Scaling</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Containers</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Monitoring</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Production</span><br></div></code></pre></div></div>
+<hr>
+<h1>Beginner Interview Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-cloud-computing">Q1. What is Cloud Computing?<a href="#q1-what-is-cloud-computing" class="hash-link" aria-label="Direct link to Q1. What is Cloud Computing?" title="Direct link to Q1. What is Cloud Computing?" translate="no">​</a></h2>
+<p><strong>Answer</strong></p>
+<p>Cloud computing is the on-demand delivery of computing resources such as servers, storage, databases, networking, and software over the internet instead of maintaining physical infrastructure.</p>
+<p>Benefits:</p>
+<ul>
+<li class="">Pay-as-you-go pricing</li>
+<li class="">Scalability</li>
+<li class="">High availability</li>
+<li class="">Global accessibility</li>
+<li class="">Faster deployments</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-are-the-major-cloud-providers">Q2. What are the Major Cloud Providers?<a href="#q2-what-are-the-major-cloud-providers" class="hash-link" aria-label="Direct link to Q2. What are the Major Cloud Providers?" title="Direct link to Q2. What are the Major Cloud Providers?" translate="no">​</a></h2>
+<p>The three largest public cloud providers are:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Provider</th><th>Popular Services</th></tr></thead><tbody><tr><td>AWS</td><td>EC2, S3, RDS, Lambda</td></tr><tr><td>Microsoft Azure</td><td>Virtual Machines, Blob Storage, Azure SQL, Functions</td></tr><tr><td>Google Cloud Platform (GCP)</td><td>Compute Engine, Cloud Storage, Cloud SQL, Cloud Functions</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-a-virtual-machine">Q3. What is a Virtual Machine?<a href="#q3-what-is-a-virtual-machine" class="hash-link" aria-label="Direct link to Q3. What is a Virtual Machine?" title="Direct link to Q3. What is a Virtual Machine?" translate="no">​</a></h2>
+<p>A Virtual Machine (VM) is a software-based computer that runs its own operating system on shared physical hardware using a hypervisor.</p>
+<p>Benefits:</p>
+<ul>
+<li class="">Isolation</li>
+<li class="">Flexible resource allocation</li>
+<li class="">Easy provisioning</li>
+<li class="">Snapshot support</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-difference-between-physical-server-and-virtual-machine">Q4. Difference Between Physical Server and Virtual Machine<a href="#q4-difference-between-physical-server-and-virtual-machine" class="hash-link" aria-label="Direct link to Q4. Difference Between Physical Server and Virtual Machine" title="Direct link to Q4. Difference Between Physical Server and Virtual Machine" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Physical Server</th><th>Virtual Machine</th></tr></thead><tbody><tr><td>Dedicated hardware</td><td>Shared physical hardware</td></tr><tr><td>Limited flexibility</td><td>Easy to resize</td></tr><tr><td>Manual provisioning</td><td>Rapid provisioning</td></tr><tr><td>Lower consolidation</td><td>Multiple VMs per host</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-a-hypervisor">Q5. What is a Hypervisor?<a href="#q5-what-is-a-hypervisor" class="hash-link" aria-label="Direct link to Q5. What is a Hypervisor?" title="Direct link to Q5. What is a Hypervisor?" translate="no">​</a></h2>
+<p>A hypervisor is software that creates and manages virtual machines.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Hyper-V</li>
+<li class="">VMware ESXi</li>
+<li class="">KVM</li>
+<li class="">Xen</li>
+</ul>
+<hr>
+<h1>Service Models</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-difference-between-iaas-paas-and-saas">Q6. Difference Between IaaS, PaaS, and SaaS<a href="#q6-difference-between-iaas-paas-and-saas" class="hash-link" aria-label="Direct link to Q6. Difference Between IaaS, PaaS, and SaaS" title="Direct link to Q6. Difference Between IaaS, PaaS, and SaaS" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Model</th><th>Customer Manages</th><th>Example</th></tr></thead><tbody><tr><td>IaaS</td><td>OS, Applications</td><td>AWS EC2, Azure VM</td></tr><tr><td>PaaS</td><td>Applications</td><td>Azure App Service, Google App Engine</td></tr><tr><td>SaaS</td><td>Only usage</td><td>Microsoft 365, Gmail</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-serverless-computing">Q7. What is Serverless Computing?<a href="#q7-what-is-serverless-computing" class="hash-link" aria-label="Direct link to Q7. What is Serverless Computing?" title="Direct link to Q7. What is Serverless Computing?" translate="no">​</a></h2>
+<p>Serverless allows developers to run code without managing servers.</p>
+<p>Examples:</p>
+<ul>
+<li class="">AWS Lambda</li>
+<li class="">Azure Functions</li>
+<li class="">Google Cloud Functions</li>
+</ul>
+<p>Benefits:</p>
+<ul>
+<li class="">Automatic scaling</li>
+<li class="">Pay per execution</li>
+<li class="">No server maintenance</li>
+</ul>
+<hr>
+<h1>Networking Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-a-vpc-or-virtual-network">Q8. What is a VPC or Virtual Network?<a href="#q8-what-is-a-vpc-or-virtual-network" class="hash-link" aria-label="Direct link to Q8. What is a VPC or Virtual Network?" title="Direct link to Q8. What is a VPC or Virtual Network?" translate="no">​</a></h2>
+<p>A Virtual Private Cloud (AWS) or Virtual Network (Azure) is an isolated private network in the cloud where resources such as virtual machines and databases communicate securely.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-a-subnet">Q9. What is a Subnet?<a href="#q9-what-is-a-subnet" class="hash-link" aria-label="Direct link to Q9. What is a Subnet?" title="Direct link to Q9. What is a Subnet?" translate="no">​</a></h2>
+<p>A subnet divides a larger network into smaller logical segments.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Virtual Network</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── Public Subnet</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── Private Subnet</span><br></div></code></pre></div></div>
+<p>Public subnets host internet-facing resources, while private subnets typically host databases and internal services.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-a-public-ip">Q10. What is a Public IP?<a href="#q10-what-is-a-public-ip" class="hash-link" aria-label="Direct link to Q10. What is a Public IP?" title="Direct link to Q10. What is a Public IP?" translate="no">​</a></h2>
+<p>A public IP address is reachable from the internet.</p>
+<p>Example use cases:</p>
+<ul>
+<li class="">Websites</li>
+<li class="">APIs</li>
+<li class="">Bastion hosts</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-a-private-ip">Q11. What is a Private IP?<a href="#q11-what-is-a-private-ip" class="hash-link" aria-label="Direct link to Q11. What is a Private IP?" title="Direct link to Q11. What is a Private IP?" translate="no">​</a></h2>
+<p>Private IP addresses are used for internal communication within a cloud network and are not directly reachable from the internet.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-difference-between-security-group-and-firewall">Q12. Difference Between Security Group and Firewall<a href="#q12-difference-between-security-group-and-firewall" class="hash-link" aria-label="Direct link to Q12. Difference Between Security Group and Firewall" title="Direct link to Q12. Difference Between Security Group and Firewall" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Security Group</th><th>Firewall</th></tr></thead><tbody><tr><td>Cloud-level traffic filtering</td><td>Operating system traffic filtering</td></tr><tr><td>Attached to cloud resources</td><td>Runs on the server</td></tr><tr><td>Examples: AWS Security Group, Azure NSG</td><td>Examples: UFW, iptables</td></tr></tbody></table>
+<hr>
+<h1>Storage Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-difference-between-object-storage-and-block-storage">Q13. Difference Between Object Storage and Block Storage<a href="#q13-difference-between-object-storage-and-block-storage" class="hash-link" aria-label="Direct link to Q13. Difference Between Object Storage and Block Storage" title="Direct link to Q13. Difference Between Object Storage and Block Storage" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Object Storage</th><th>Block Storage</th></tr></thead><tbody><tr><td>Files stored as objects</td><td>Raw storage blocks</td></tr><tr><td>Highly scalable</td><td>Low-latency disk storage</td></tr><tr><td>Suitable for images, videos, backups</td><td>Suitable for operating systems and databases</td></tr></tbody></table>
+<p>Examples:</p>
+<ul>
+<li class="">Object Storage: Amazon S3, Azure Blob Storage</li>
+<li class="">Block Storage: Amazon EBS, Azure Managed Disks</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-what-is-persistent-storage">Q14. What is Persistent Storage?<a href="#q14-what-is-persistent-storage" class="hash-link" aria-label="Direct link to Q14. What is Persistent Storage?" title="Direct link to Q14. What is Persistent Storage?" translate="no">​</a></h2>
+<p>Persistent storage retains data after a virtual machine is restarted or powered off.</p>
+<hr>
+<h1>Scaling Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-what-is-horizontal-scaling">Q15. What is Horizontal Scaling?<a href="#q15-what-is-horizontal-scaling" class="hash-link" aria-label="Direct link to Q15. What is Horizontal Scaling?" title="Direct link to Q15. What is Horizontal Scaling?" translate="no">​</a></h2>
+<p>Horizontal scaling adds more servers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Load Balancer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">VM1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">VM2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">VM3</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q16-what-is-vertical-scaling">Q16. What is Vertical Scaling?<a href="#q16-what-is-vertical-scaling" class="hash-link" aria-label="Direct link to Q16. What is Vertical Scaling?" title="Direct link to Q16. What is Vertical Scaling?" translate="no">​</a></h2>
+<p>Vertical scaling increases the resources (CPU, memory, storage) of an existing server.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q17-difference-between-horizontal-and-vertical-scaling">Q17. Difference Between Horizontal and Vertical Scaling<a href="#q17-difference-between-horizontal-and-vertical-scaling" class="hash-link" aria-label="Direct link to Q17. Difference Between Horizontal and Vertical Scaling" title="Direct link to Q17. Difference Between Horizontal and Vertical Scaling" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Horizontal</th><th>Vertical</th></tr></thead><tbody><tr><td>More servers</td><td>Larger server</td></tr><tr><td>Better fault tolerance</td><td>Simpler architecture</td></tr><tr><td>Higher scalability</td><td>Limited by hardware capacity</td></tr></tbody></table>
+<hr>
+<h1>Load Balancer Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q18-why-use-a-load-balancer">Q18. Why Use a Load Balancer?<a href="#q18-why-use-a-load-balancer" class="hash-link" aria-label="Direct link to Q18. Why Use a Load Balancer?" title="Direct link to Q18. Why Use a Load Balancer?" translate="no">​</a></h2>
+<p>Benefits:</p>
+<ul>
+<li class="">High availability</li>
+<li class="">Better scalability</li>
+<li class="">Health checks</li>
+<li class="">Even traffic distribution</li>
+<li class="">Reduced single points of failure</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q19-what-is-auto-scaling">Q19. What is Auto Scaling?<a href="#q19-what-is-auto-scaling" class="hash-link" aria-label="Direct link to Q19. What is Auto Scaling?" title="Direct link to Q19. What is Auto Scaling?" translate="no">​</a></h2>
+<p>Auto Scaling automatically adds or removes compute resources based on metrics such as CPU utilization, memory usage, or request volume.</p>
+<hr>
+<h1>Database Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q20-why-place-databases-in-private-networks">Q20. Why Place Databases in Private Networks?<a href="#q20-why-place-databases-in-private-networks" class="hash-link" aria-label="Direct link to Q20. Why Place Databases in Private Networks?" title="Direct link to Q20. Why Place Databases in Private Networks?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">Improved security</li>
+<li class="">Reduced attack surface</li>
+<li class="">Restricted access</li>
+<li class="">Controlled connectivity</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q21-why-avoid-exposing-mongodb-or-mysql-publicly">Q21. Why Avoid Exposing MongoDB or MySQL Publicly?<a href="#q21-why-avoid-exposing-mongodb-or-mysql-publicly" class="hash-link" aria-label="Direct link to Q21. Why Avoid Exposing MongoDB or MySQL Publicly?" title="Direct link to Q21. Why Avoid Exposing MongoDB or MySQL Publicly?" translate="no">​</a></h2>
+<p>Direct public exposure increases the risk of unauthorized access and attacks. Databases should generally be accessible only from trusted application servers or administrative hosts.</p>
+<hr>
+<h1>CDN Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q22-what-is-a-cdn">Q22. What is a CDN?<a href="#q22-what-is-a-cdn" class="hash-link" aria-label="Direct link to Q22. What is a CDN?" title="Direct link to Q22. What is a CDN?" translate="no">​</a></h2>
+<p>A Content Delivery Network stores cached copies of static content at geographically distributed edge locations.</p>
+<p>Benefits:</p>
+<ul>
+<li class="">Lower latency</li>
+<li class="">Reduced origin server load</li>
+<li class="">Faster content delivery</li>
+<li class="">Better global performance</li>
+</ul>
+<hr>
+<h1>Security Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q23-why-use-https">Q23. Why Use HTTPS?<a href="#q23-why-use-https" class="hash-link" aria-label="Direct link to Q23. Why Use HTTPS?" title="Direct link to Q23. Why Use HTTPS?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">Encrypts communication</li>
+<li class="">Protects sensitive information</li>
+<li class="">Verifies server identity</li>
+<li class="">Builds user trust</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q24-what-is-iam">Q24. What is IAM?<a href="#q24-what-is-iam" class="hash-link" aria-label="Direct link to Q24. What is IAM?" title="Direct link to Q24. What is IAM?" translate="no">​</a></h2>
+<p>Identity and Access Management (IAM) controls who can access cloud resources and what actions they are allowed to perform.</p>
+<p>Follow the principle of least privilege when assigning permissions.</p>
+<hr>
+<h1>Monitoring Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q25-why-monitor-cloud-resources">Q25. Why Monitor Cloud Resources?<a href="#q25-why-monitor-cloud-resources" class="hash-link" aria-label="Direct link to Q25. Why Monitor Cloud Resources?" title="Direct link to Q25. Why Monitor Cloud Resources?" translate="no">​</a></h2>
+<p>Monitoring helps detect:</p>
+<ul>
+<li class="">High CPU utilization</li>
+<li class="">Memory pressure</li>
+<li class="">Disk exhaustion</li>
+<li class="">Network failures</li>
+<li class="">Application errors</li>
+<li class="">Unusual traffic patterns</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q26-what-should-be-monitored">Q26. What Should Be Monitored?<a href="#q26-what-should-be-monitored" class="hash-link" aria-label="Direct link to Q26. What Should Be Monitored?" title="Direct link to Q26. What Should Be Monitored?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Resource</th><th>Metrics</th></tr></thead><tbody><tr><td>CPU</td><td>Utilization</td></tr><tr><td>Memory</td><td>Usage</td></tr><tr><td>Disk</td><td>Capacity and I/O</td></tr><tr><td>Network</td><td>Traffic and latency</td></tr><tr><td>Application</td><td>Errors and response time</td></tr><tr><td>Database</td><td>Connections and query performance</td></tr></tbody></table>
+<hr>
+<h1>Containers Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q27-what-is-docker">Q27. What is Docker?<a href="#q27-what-is-docker" class="hash-link" aria-label="Direct link to Q27. What is Docker?" title="Direct link to Q27. What is Docker?" translate="no">​</a></h2>
+<p>Docker packages applications and their dependencies into portable containers that run consistently across environments.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q28-difference-between-virtual-machine-and-container">Q28. Difference Between Virtual Machine and Container<a href="#q28-difference-between-virtual-machine-and-container" class="hash-link" aria-label="Direct link to Q28. Difference Between Virtual Machine and Container" title="Direct link to Q28. Difference Between Virtual Machine and Container" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Virtual Machine</th><th>Container</th></tr></thead><tbody><tr><td>Includes guest OS</td><td>Shares host kernel</td></tr><tr><td>Larger footprint</td><td>Lightweight</td></tr><tr><td>Slower startup</td><td>Fast startup</td></tr><tr><td>Higher resource usage</td><td>Lower resource usage</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q29-what-is-kubernetes">Q29. What is Kubernetes?<a href="#q29-what-is-kubernetes" class="hash-link" aria-label="Direct link to Q29. What is Kubernetes?" title="Direct link to Q29. What is Kubernetes?" translate="no">​</a></h2>
+<p>Kubernetes is a container orchestration platform that automates deployment, scaling, networking, and management of containerized applications.</p>
+<hr>
+<h1>High Availability Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q30-what-is-high-availability">Q30. What is High Availability?<a href="#q30-what-is-high-availability" class="hash-link" aria-label="Direct link to Q30. What is High Availability?" title="Direct link to Q30. What is High Availability?" translate="no">​</a></h2>
+<p>High Availability (HA) ensures that applications remain operational even if one or more infrastructure components fail.</p>
+<p>Typical architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Load Balancer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q31-what-is-disaster-recovery">Q31. What is Disaster Recovery?<a href="#q31-what-is-disaster-recovery" class="hash-link" aria-label="Direct link to Q31. What is Disaster Recovery?" title="Direct link to Q31. What is Disaster Recovery?" translate="no">​</a></h2>
+<p>Disaster Recovery (DR) is the process of restoring applications and data after a major failure or outage using backups, replication, and recovery procedures.</p>
+<hr>
+<h1>Production Deployment Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q32-explain-a-typical-cloud-deployment">Q32. Explain a Typical Cloud Deployment<a href="#q32-explain-a-typical-cloud-deployment" class="hash-link" aria-label="Direct link to Q32. Explain a Typical Cloud Deployment" title="Direct link to Q32. Explain a Typical Cloud Deployment" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Git</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CI/CD</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Virtual Machine</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Monitoring</span><br></div></code></pre></div></div>
+<p>Typical deployment steps:</p>
+<ol>
+<li class="">Pull latest code.</li>
+<li class="">Install dependencies.</li>
+<li class="">Configure environment variables.</li>
+<li class="">Restart application.</li>
+<li class="">Verify health.</li>
+<li class="">Monitor logs and metrics.</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q33-why-use-a-reverse-proxy">Q33. Why Use a Reverse Proxy?<a href="#q33-why-use-a-reverse-proxy" class="hash-link" aria-label="Direct link to Q33. Why Use a Reverse Proxy?" title="Direct link to Q33. Why Use a Reverse Proxy?" translate="no">​</a></h2>
+<p>Advantages:</p>
+<ul>
+<li class="">SSL termination</li>
+<li class="">Load balancing</li>
+<li class="">Static file serving</li>
+<li class="">Security</li>
+<li class="">Centralized routing</li>
+</ul>
+<hr>
+<h1>Scenario-Based Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-1">Scenario 1<a href="#scenario-1" class="hash-link" aria-label="Direct link to Scenario 1" title="Direct link to Scenario 1" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Users cannot access the website after deployment.</p>
+<p><strong>Suggested Investigation</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Public IP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Firewall</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Security Group</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Logs</span><br></div></code></pre></div></div>
+<p>Typical checks:</p>
+<ul>
+<li class="">DNS records</li>
+<li class="">Security group rules</li>
+<li class="">Operating system firewall</li>
+<li class="">Reverse proxy</li>
+<li class="">Backend application</li>
+<li class="">Listening ports</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-2">Scenario 2<a href="#scenario-2" class="hash-link" aria-label="Direct link to Scenario 2" title="Direct link to Scenario 2" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>CPU utilization suddenly reaches 100%.</p>
+<p>Investigation:</p>
+<ul>
+<li class="">Review monitoring metrics.</li>
+<li class="">Identify resource-intensive processes.</li>
+<li class="">Check application logs.</li>
+<li class="">Evaluate traffic spikes.</li>
+<li class="">Consider scaling if appropriate.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-3">Scenario 3<a href="#scenario-3" class="hash-link" aria-label="Direct link to Scenario 3" title="Direct link to Scenario 3" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>The application becomes unavailable after restarting the virtual machine.</p>
+<p>Possible causes:</p>
+<ul>
+<li class="">Startup services not enabled</li>
+<li class="">Missing PM2 startup configuration</li>
+<li class="">Nginx not started</li>
+<li class="">Mount issues</li>
+<li class="">Environment configuration problems</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-4">Scenario 4<a href="#scenario-4" class="hash-link" aria-label="Direct link to Scenario 4" title="Direct link to Scenario 4" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Storage usage reaches 100%.</p>
+<p>Suggested investigation:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Disk Usage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Backups</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Temporary Files</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cleanup</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify</span><br></div></code></pre></div></div>
+<hr>
+<h1>Production Experience Questions</h1>
+<p>Interviewers may ask:</p>
+<ul>
+<li class="">Describe your cloud deployment architecture.</li>
+<li class="">Why choose a virtual machine instead of a managed service?</li>
+<li class="">How do you secure a cloud server?</li>
+<li class="">How do you configure HTTPS?</li>
+<li class="">How do you monitor production systems?</li>
+<li class="">How do you perform deployments with minimal downtime?</li>
+<li class="">Describe a cloud issue you diagnosed and resolved.</li>
+</ul>
+<p>Demonstrating a structured operational approach is typically more valuable than naming specific cloud services.</p>
+<hr>
+<h1>Interview Tips</h1>
+<ul>
+<li class="">Understand cloud concepts before memorizing provider-specific services.</li>
+<li class="">Explain complete request flow from client to server.</li>
+<li class="">Distinguish between compute, storage, networking, and security services.</li>
+<li class="">Be prepared to discuss scaling strategies and high availability.</li>
+<li class="">Use architecture diagrams to explain production systems.</li>
+<li class="">Relate answers to practical deployment experience.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="confusing-virtual-machines-with-containers">Confusing Virtual Machines with Containers<a href="#confusing-virtual-machines-with-containers" class="hash-link" aria-label="Direct link to Confusing Virtual Machines with Containers" title="Direct link to Confusing Virtual Machines with Containers" translate="no">​</a></h3>
+<p>Containers share the host kernel, while virtual machines run separate operating systems.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exposing-databases-to-the-internet">Exposing Databases to the Internet<a href="#exposing-databases-to-the-internet" class="hash-link" aria-label="Direct link to Exposing Databases to the Internet" title="Direct link to Exposing Databases to the Internet" translate="no">​</a></h3>
+<p>Production databases should generally remain in private networks with restricted access.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="assuming-cloud-resources-are-automatically-secure">Assuming Cloud Resources Are Automatically Secure<a href="#assuming-cloud-resources-are-automatically-secure" class="hash-link" aria-label="Direct link to Assuming Cloud Resources Are Automatically Secure" title="Direct link to Assuming Cloud Resources Are Automatically Secure" translate="no">​</a></h3>
+<p>Security groups, firewalls, IAM policies, and operating system hardening must still be configured.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ignoring-monitoring">Ignoring Monitoring<a href="#ignoring-monitoring" class="hash-link" aria-label="Direct link to Ignoring Monitoring" title="Direct link to Ignoring Monitoring" translate="no">​</a></h3>
+<p>Without monitoring and alerting, failures may go undetected until users report them.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="designing-without-redundancy">Designing Without Redundancy<a href="#designing-without-redundancy" class="hash-link" aria-label="Direct link to Designing Without Redundancy" title="Direct link to Designing Without Redundancy" translate="no">​</a></h3>
+<p>Production systems should avoid single points of failure wherever practical.</p>
+<hr>
+<h1>Summary</h1>
+<p>Cloud interviews assess understanding of infrastructure, networking, storage, security, scalability, and production operations. Strong candidates explain architectural decisions, understand trade-offs between services, and approach troubleshooting with a systematic methodology rather than relying on provider-specific terminology alone.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>06 - Scenario-Based Interview Questions</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-12-interview/05-cloud-interview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-12-interview/nodejs-interview"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Node.js Interview Preparation</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-12-interview/scenario-based-questions"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Scenario-Based Interview Questions</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#q1-what-is-cloud-computing" class="table-of-contents__link toc-highlight">Q1. What is Cloud Computing?</a></li><li><a href="#q2-what-are-the-major-cloud-providers" class="table-of-contents__link toc-highlight">Q2. What are the Major Cloud Providers?</a></li><li><a href="#q3-what-is-a-virtual-machine" class="table-of-contents__link toc-highlight">Q3. What is a Virtual Machine?</a></li><li><a href="#q4-difference-between-physical-server-and-virtual-machine" class="table-of-contents__link toc-highlight">Q4. Difference Between Physical Server and Virtual Machine</a></li><li><a href="#q5-what-is-a-hypervisor" class="table-of-contents__link toc-highlight">Q5. What is a Hypervisor?</a></li><li><a href="#q6-difference-between-iaas-paas-and-saas" class="table-of-contents__link toc-highlight">Q6. Difference Between IaaS, PaaS, and SaaS</a></li><li><a href="#q7-what-is-serverless-computing" class="table-of-contents__link toc-highlight">Q7. What is Serverless Computing?</a></li><li><a href="#q8-what-is-a-vpc-or-virtual-network" class="table-of-contents__link toc-highlight">Q8. What is a VPC or Virtual Network?</a></li><li><a href="#q9-what-is-a-subnet" class="table-of-contents__link toc-highlight">Q9. What is a Subnet?</a></li><li><a href="#q10-what-is-a-public-ip" class="table-of-contents__link toc-highlight">Q10. What is a Public IP?</a></li><li><a href="#q11-what-is-a-private-ip" class="table-of-contents__link toc-highlight">Q11. What is a Private IP?</a></li><li><a href="#q12-difference-between-security-group-and-firewall" class="table-of-contents__link toc-highlight">Q12. Difference Between Security Group and Firewall</a></li><li><a href="#q13-difference-between-object-storage-and-block-storage" class="table-of-contents__link toc-highlight">Q13. Difference Between Object Storage and Block Storage</a></li><li><a href="#q14-what-is-persistent-storage" class="table-of-contents__link toc-highlight">Q14. What is Persistent Storage?</a></li><li><a href="#q15-what-is-horizontal-scaling" class="table-of-contents__link toc-highlight">Q15. What is Horizontal Scaling?</a></li><li><a href="#q16-what-is-vertical-scaling" class="table-of-contents__link toc-highlight">Q16. What is Vertical Scaling?</a></li><li><a href="#q17-difference-between-horizontal-and-vertical-scaling" class="table-of-contents__link toc-highlight">Q17. Difference Between Horizontal and Vertical Scaling</a></li><li><a href="#q18-why-use-a-load-balancer" class="table-of-contents__link toc-highlight">Q18. Why Use a Load Balancer?</a></li><li><a href="#q19-what-is-auto-scaling" class="table-of-contents__link toc-highlight">Q19. What is Auto Scaling?</a></li><li><a href="#q20-why-place-databases-in-private-networks" class="table-of-contents__link toc-highlight">Q20. Why Place Databases in Private Networks?</a></li><li><a href="#q21-why-avoid-exposing-mongodb-or-mysql-publicly" class="table-of-contents__link toc-highlight">Q21. Why Avoid Exposing MongoDB or MySQL Publicly?</a></li><li><a href="#q22-what-is-a-cdn" class="table-of-contents__link toc-highlight">Q22. What is a CDN?</a></li><li><a href="#q23-why-use-https" class="table-of-contents__link toc-highlight">Q23. Why Use HTTPS?</a></li><li><a href="#q24-what-is-iam" class="table-of-contents__link toc-highlight">Q24. What is IAM?</a></li><li><a href="#q25-why-monitor-cloud-resources" class="table-of-contents__link toc-highlight">Q25. Why Monitor Cloud Resources?</a></li><li><a href="#q26-what-should-be-monitored" class="table-of-contents__link toc-highlight">Q26. What Should Be Monitored?</a></li><li><a href="#q27-what-is-docker" class="table-of-contents__link toc-highlight">Q27. What is Docker?</a></li><li><a href="#q28-difference-between-virtual-machine-and-container" class="table-of-contents__link toc-highlight">Q28. Difference Between Virtual Machine and Container</a></li><li><a href="#q29-what-is-kubernetes" class="table-of-contents__link toc-highlight">Q29. What is Kubernetes?</a></li><li><a href="#q30-what-is-high-availability" class="table-of-contents__link toc-highlight">Q30. What is High Availability?</a></li><li><a href="#q31-what-is-disaster-recovery" class="table-of-contents__link toc-highlight">Q31. What is Disaster Recovery?</a></li><li><a href="#q32-explain-a-typical-cloud-deployment" class="table-of-contents__link toc-highlight">Q32. Explain a Typical Cloud Deployment</a></li><li><a href="#q33-why-use-a-reverse-proxy" class="table-of-contents__link toc-highlight">Q33. Why Use a Reverse Proxy?</a></li><li><a href="#scenario-1" class="table-of-contents__link toc-highlight">Scenario 1</a></li><li><a href="#scenario-2" class="table-of-contents__link toc-highlight">Scenario 2</a></li><li><a href="#scenario-3" class="table-of-contents__link toc-highlight">Scenario 3</a></li><li><a href="#scenario-4" class="table-of-contents__link toc-highlight">Scenario 4</a><ul><li><a href="#confusing-virtual-machines-with-containers" class="table-of-contents__link toc-highlight">Confusing Virtual Machines with Containers</a></li><li><a href="#exposing-databases-to-the-internet" class="table-of-contents__link toc-highlight">Exposing Databases to the Internet</a></li><li><a href="#assuming-cloud-resources-are-automatically-secure" class="table-of-contents__link toc-highlight">Assuming Cloud Resources Are Automatically Secure</a></li><li><a href="#ignoring-monitoring" class="table-of-contents__link toc-highlight">Ignoring Monitoring</a></li><li><a href="#designing-without-redundancy" class="table-of-contents__link toc-highlight">Designing Without Redundancy</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-03-networking/network-troubleshooting" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Network Troubleshooting | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-03-networking/network-troubleshooting"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Network Troubleshooting | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-03-networking/network-troubleshooting"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-03-networking/network-troubleshooting" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-03-networking/network-troubleshooting" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Network Troubleshooting","item":"https://codingsapienss.github.io/notes/docs/devops/part-03-networking/network-troubleshooting"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking Basics" class="linkLabel_WmDU">Networking Basics</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/tcp-ip"><span title="TCP/IP" class="linkLabel_WmDU">TCP/IP</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/ports-and-sockets"><span title="Ports and Sockets" class="linkLabel_WmDU">Ports and Sockets</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/dns"><span title="Domain Name System (DNS)" class="linkLabel_WmDU">Domain Name System (DNS)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/http-and-https"><span title="HTTP and HTTPS" class="linkLabel_WmDU">HTTP and HTTPS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/ssl-and-tls"><span title="SSL and TLS" class="linkLabel_WmDU">SSL and TLS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/reverse-proxy"><span title="Reverse Proxy" class="linkLabel_WmDU">Reverse Proxy</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-03-networking/load-balancing"><span title="Load Balancing" class="linkLabel_WmDU">Load Balancing</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-03-networking/network-troubleshooting"><span title="Network Troubleshooting" class="linkLabel_WmDU">Network Troubleshooting</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Networking</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Network Troubleshooting</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Network Troubleshooting</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>No matter how well a network is designed, problems eventually occur.</p>
+<p>Common issues include:</p>
+<ul>
+<li class="">Website not loading</li>
+<li class="">DNS failures</li>
+<li class="">SSH connection refused</li>
+<li class="">API timeouts</li>
+<li class="">SSL certificate errors</li>
+<li class="">High latency</li>
+<li class="">Packet loss</li>
+<li class="">Reverse proxy failures</li>
+<li class="">Firewall blocking traffic</li>
+</ul>
+<p>The difference between an experienced engineer and a beginner is <strong>not</strong> knowing every command—it&#x27;s knowing <strong>how to troubleshoot methodically</strong>.</p>
+<p>This chapter brings together everything learned throughout <strong>Part 3</strong> and introduces a structured workflow for diagnosing networking problems.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-objectives">Learning Objectives<a href="#learning-objectives" class="hash-link" aria-label="Direct link to Learning Objectives" title="Direct link to Learning Objectives" translate="no">​</a></h2>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Follow a systematic troubleshooting process.</li>
+<li class="">Verify network connectivity.</li>
+<li class="">Diagnose DNS issues.</li>
+<li class="">Check open ports.</li>
+<li class="">Test HTTP and HTTPS services.</li>
+<li class="">Identify routing problems.</li>
+<li class="">Analyze packet flow.</li>
+<li class="">Troubleshoot production deployments.</li>
+</ul>
+<hr>
+<h1>A Troubleshooting Mindset</h1>
+<p>When a network issue occurs, avoid making assumptions.</p>
+<p>Instead, ask questions such as:</p>
+<ul>
+<li class="">Is the server running?</li>
+<li class="">Is the network reachable?</li>
+<li class="">Does DNS resolve correctly?</li>
+<li class="">Is the correct port open?</li>
+<li class="">Is the firewall blocking traffic?</li>
+<li class="">Is the application running?</li>
+<li class="">Is Nginx forwarding requests correctly?</li>
+<li class="">Is SSL configured properly?</li>
+</ul>
+<p>Always isolate the problem one layer at a time.</p>
+<hr>
+<h1>The Troubleshooting Workflow</h1>
+<p>A structured workflow reduces guesswork.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Problem Reported</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Connectivity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Routing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Ports</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Firewall</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Services</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Application Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Resolve Issue</span><br></div></code></pre></div></div>
+<p>Never skip steps.</p>
+<hr>
+<h1>Step 1 — Verify Basic Connectivity</h1>
+<p>The first question is:</p>
+<blockquote>
+<p><strong>Can the destination be reached?</strong></p>
+</blockquote>
+<p>Use:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ping google.com</span><br></div></code></pre></div></div>
+<p>Example output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">64 bytes from google.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">time=18 ms</span><br></div></code></pre></div></div>
+<p>If responses are received:</p>
+<ul>
+<li class="">Network connectivity exists.</li>
+<li class="">DNS resolution is working.</li>
+<li class="">ICMP packets are reaching the destination.</li>
+</ul>
+<p>If not:</p>
+<ul>
+<li class="">Internet connection may be unavailable.</li>
+<li class="">Firewall may block ICMP.</li>
+<li class="">DNS may be failing.</li>
+<li class="">The destination may be offline.</li>
+</ul>
+<hr>
+<h1>Step 2 — Verify DNS</h1>
+<p>Check whether the domain resolves correctly.</p>
+<p>Using <code>dig</code>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">dig example.com</span><br></div></code></pre></div></div>
+<p>Retrieve only the IP address:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">dig +short example.com</span><br></div></code></pre></div></div>
+<p>Using <code>nslookup</code>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">nslookup example.com</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Name:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">example.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Address:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">93.184.216.34</span><br></div></code></pre></div></div>
+<p>If DNS fails, investigate:</p>
+<ul>
+<li class="">Name servers</li>
+<li class="">DNS records</li>
+<li class="">TTL</li>
+<li class="">Registrar configuration</li>
+<li class="">Cloudflare settings</li>
+</ul>
+<hr>
+<h1>Step 3 — Check Routing</h1>
+<p>Packets may be taking an unexpected route.</p>
+<p>Use:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">traceroute example.com</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ISP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Regional Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cloud Provider</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Destination</span><br></div></code></pre></div></div>
+<p>If packets stop midway, the issue may involve:</p>
+<ul>
+<li class="">ISP routing</li>
+<li class="">Firewall filtering</li>
+<li class="">Network outage</li>
+<li class="">Misconfigured routes</li>
+</ul>
+<hr>
+<h1>Step 4 — Verify Open Ports</h1>
+<p>Check whether the server is listening.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">22</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">80</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">443</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">3000</span><br></div></code></pre></div></div>
+<p>Verify that the expected service is bound to the correct port.</p>
+<hr>
+<h1>Step 5 — Test HTTP Services</h1>
+<p>Use <code>curl</code> to test a web service.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl http://example.com</span><br></div></code></pre></div></div>
+<p>View headers only:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl -I https://example.com</span><br></div></code></pre></div></div>
+<p>Verbose output:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl -v https://example.com</span><br></div></code></pre></div></div>
+<p>Useful information includes:</p>
+<ul>
+<li class="">HTTP status</li>
+<li class="">Redirects</li>
+<li class="">TLS negotiation</li>
+<li class="">Response headers</li>
+</ul>
+<hr>
+<h1>Step 6 — Check Running Services</h1>
+<p>Verify that required services are running.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status ssh</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status docker</span><br></div></code></pre></div></div>
+<p>A stopped service often explains why a port is unavailable.</p>
+<hr>
+<h1>Step 7 — Check Logs</h1>
+<p>Logs frequently reveal the root cause.</p>
+<p>Examples:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">journalctl -u nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">tail -f /var/log/nginx/error.log</span><br></div></code></pre></div></div>
+<p>Look for:</p>
+<ul>
+<li class="">Permission errors</li>
+<li class="">Port conflicts</li>
+<li class="">Configuration mistakes</li>
+<li class="">TLS failures</li>
+<li class="">Missing files</li>
+</ul>
+<hr>
+<h1>Step 8 — Verify Firewall Rules</h1>
+<p>Even if an application is running, traffic may be blocked.</p>
+<p>Ubuntu UFW:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw status</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">22 ALLOW</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">80 ALLOW</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">443 ALLOW</span><br></div></code></pre></div></div>
+<p>Cloud environments also have firewall rules.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Azure Network Security Groups (NSGs)</li>
+<li class="">AWS Security Groups</li>
+<li class="">Google Cloud Firewall Rules</li>
+</ul>
+<p>Both the operating system and cloud firewall must permit the traffic.</p>
+<hr>
+<h1>Step 9 — Test TLS</h1>
+<p>Verify certificate details.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">openssl s_client -connect example.com:443</span><br></div></code></pre></div></div>
+<p>Useful checks:</p>
+<ul>
+<li class="">Expiration date</li>
+<li class="">Certificate chain</li>
+<li class="">Supported TLS version</li>
+<li class="">Cipher suite</li>
+</ul>
+<hr>
+<h1>Step 10 — Capture Packets</h1>
+<p>When necessary, inspect actual network traffic.</p>
+<p>Use:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo tcpdump -i eth0</span><br></div></code></pre></div></div>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Client</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">TCP SYN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">TCP SYN-ACK</span><br></div></code></pre></div></div>
+<p>Packet captures help diagnose:</p>
+<ul>
+<li class="">Packet loss</li>
+<li class="">Retransmissions</li>
+<li class="">Incorrect routing</li>
+<li class="">Connection resets</li>
+<li class="">Firewall issues</li>
+</ul>
+<hr>
+<h1>Common Networking Problems</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-1--website-does-not-open">Problem 1 — Website Does Not Open<a href="#problem-1--website-does-not-open" class="hash-link" aria-label="Direct link to Problem 1 — Website Does Not Open" title="Direct link to Problem 1 — Website Does Not Open" translate="no">​</a></h2>
+<p>Possible causes:</p>
+<ul>
+<li class="">DNS failure</li>
+<li class="">Server offline</li>
+<li class="">Firewall blocking traffic</li>
+<li class="">Nginx stopped</li>
+<li class="">Application crashed</li>
+</ul>
+<p>Recommended workflow:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Ping</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Dig</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Curl</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Systemctl</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Logs</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-2--ssh-connection-refused">Problem 2 — SSH Connection Refused<a href="#problem-2--ssh-connection-refused" class="hash-link" aria-label="Direct link to Problem 2 — SSH Connection Refused" title="Direct link to Problem 2 — SSH Connection Refused" translate="no">​</a></h2>
+<p>Possible causes:</p>
+<ul>
+<li class="">SSH service stopped</li>
+<li class="">Port 22 blocked</li>
+<li class="">Firewall rules</li>
+<li class="">Wrong IP address</li>
+</ul>
+<p>Commands:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status ssh</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-3--dns-not-resolving">Problem 3 — DNS Not Resolving<a href="#problem-3--dns-not-resolving" class="hash-link" aria-label="Direct link to Problem 3 — DNS Not Resolving" title="Direct link to Problem 3 — DNS Not Resolving" translate="no">​</a></h2>
+<p>Check:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">dig example.com</span><br></div></code></pre></div></div>
+<p>Possible causes:</p>
+<ul>
+<li class="">Incorrect A record</li>
+<li class="">Wrong NS records</li>
+<li class="">DNS propagation</li>
+<li class="">Expired domain</li>
+<li class="">Resolver cache</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-4--port-not-reachable">Problem 4 — Port Not Reachable<a href="#problem-4--port-not-reachable" class="hash-link" aria-label="Direct link to Problem 4 — Port Not Reachable" title="Direct link to Problem 4 — Port Not Reachable" translate="no">​</a></h2>
+<p>Check:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<p>Then verify:</p>
+<ul>
+<li class="">Firewall</li>
+<li class="">Reverse proxy</li>
+<li class="">Application</li>
+<li class="">Cloud security rules</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-5--ssl-certificate-errors">Problem 5 — SSL Certificate Errors<a href="#problem-5--ssl-certificate-errors" class="hash-link" aria-label="Direct link to Problem 5 — SSL Certificate Errors" title="Direct link to Problem 5 — SSL Certificate Errors" translate="no">​</a></h2>
+<p>Check:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">openssl s_client -connect example.com:443</span><br></div></code></pre></div></div>
+<p>Common causes:</p>
+<ul>
+<li class="">Expired certificate</li>
+<li class="">Incorrect certificate chain</li>
+<li class="">Domain mismatch</li>
+<li class="">Self-signed certificate</li>
+<li class="">TLS configuration errors</li>
+</ul>
+<hr>
+<h1>Useful Troubleshooting Commands</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td><code>ping</code></td><td>Test connectivity</td></tr><tr><td><code>dig</code></td><td>DNS lookup</td></tr><tr><td><code>nslookup</code></td><td>DNS lookup</td></tr><tr><td><code>traceroute</code></td><td>Trace packet path</td></tr><tr><td><code>curl</code></td><td>Test HTTP/HTTPS</td></tr><tr><td><code>ss -tulpn</code></td><td>Show listening ports</td></tr><tr><td><code>systemctl status</code></td><td>Check services</td></tr><tr><td><code>journalctl</code></td><td>View service logs</td></tr><tr><td><code>openssl s_client</code></td><td>Inspect TLS certificates</td></tr><tr><td><code>tcpdump</code></td><td>Capture packets</td></tr></tbody></table>
+<hr>
+<h1>Complete Production Troubleshooting Example</h1>
+<p>Suppose users report:</p>
+<blockquote>
+<p><strong>&quot;The website is down.&quot;</strong></p>
+</blockquote>
+<p>Production architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cloudflare</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Azure VM</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MongoDB Atlas</span><br></div></code></pre></div></div>
+<p>A systematic investigation might look like this:</p>
+<ol>
+<li class="">Verify Internet connectivity.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ping example.com</span><br></div></code></pre></div></div>
+<ol start="2">
+<li class="">Confirm DNS resolution.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">dig example.com</span><br></div></code></pre></div></div>
+<ol start="3">
+<li class="">Test HTTPS.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl -I https://example.com</span><br></div></code></pre></div></div>
+<ol start="4">
+<li class="">Verify Nginx.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<ol start="5">
+<li class="">Verify Node.js.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 status</span><br></div></code></pre></div></div>
+<ol start="6">
+<li class="">Check listening ports.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<ol start="7">
+<li class="">Review logs.</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">journalctl -u nginx</span><br></div></code></pre></div></div>
+<p>This step-by-step approach isolates the problem quickly instead of relying on trial and error.</p>
+<hr>
+<h1>Troubleshooting Checklist</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">✓ Internet Connectivity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ DNS Resolution</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Routing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Open Ports</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Firewall</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Running Services</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Application Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ TLS Certificate</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Reverse Proxy</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">✓ Backend Application</span><br></div></code></pre></div></div>
+<p>Following the same checklist every time reduces mistakes and speeds up diagnosis.</p>
+<hr>
+<h1>Best Practices</h1>
+<ul>
+<li class="">Follow a consistent troubleshooting workflow.</li>
+<li class="">Change only one variable at a time.</li>
+<li class="">Verify assumptions with commands rather than guesses.</li>
+<li class="">Read logs before modifying configurations.</li>
+<li class="">Keep monitoring and alerting in place for production systems.</li>
+<li class="">Document recurring issues and their resolutions.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="jumping-directly-to-configuration-changes">Jumping Directly to Configuration Changes<a href="#jumping-directly-to-configuration-changes" class="hash-link" aria-label="Direct link to Jumping Directly to Configuration Changes" title="Direct link to Jumping Directly to Configuration Changes" translate="no">​</a></h3>
+<p>Changing configurations before identifying the root cause can introduce new problems.</p>
+<p>Always gather evidence first.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ignoring-logs">Ignoring Logs<a href="#ignoring-logs" class="hash-link" aria-label="Direct link to Ignoring Logs" title="Direct link to Ignoring Logs" translate="no">​</a></h3>
+<p>Most networking and service failures leave useful information in system or application logs.</p>
+<p>Logs should be one of the first places you investigate.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="forgetting-cloud-firewalls">Forgetting Cloud Firewalls<a href="#forgetting-cloud-firewalls" class="hash-link" aria-label="Direct link to Forgetting Cloud Firewalls" title="Direct link to Forgetting Cloud Firewalls" translate="no">​</a></h3>
+<p>Opening a port in UFW does not automatically allow Internet access.</p>
+<p>Cloud firewall rules (such as Azure NSGs or AWS Security Groups) must also permit the traffic.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="troubleshooting-multiple-layers-simultaneously">Troubleshooting Multiple Layers Simultaneously<a href="#troubleshooting-multiple-layers-simultaneously" class="hash-link" aria-label="Direct link to Troubleshooting Multiple Layers Simultaneously" title="Direct link to Troubleshooting Multiple Layers Simultaneously" translate="no">​</a></h3>
+<p>Network issues often involve several components.</p>
+<p>Test one layer at a time—connectivity, DNS, routing, ports, services, and application behavior—to isolate the failure efficiently.</p>
+<hr>
+<h1>Summary</h1>
+<p>Effective network troubleshooting relies on a structured process rather than guesswork. By systematically verifying connectivity, DNS, routing, ports, firewalls, services, logs, TLS, and packet flow, engineers can isolate and resolve problems efficiently. The tools introduced in this chapter—such as <code>ping</code>, <code>dig</code>, <code>curl</code>, <code>ss</code>, <code>systemctl</code>, <code>journalctl</code>, <code>openssl</code>, and <code>tcpdump</code>—form the core toolkit used by Linux administrators, DevOps engineers, and cloud engineers in production environments.</p>
+<p>With this chapter, you have completed <strong>Part 3 – Networking Fundamentals</strong>, providing the networking knowledge required to move into <strong>server security</strong>, where you will learn how to protect Linux systems and production applications.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>Part 4 – Server Security</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-03-networking/09-network-troubleshooting.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-03-networking/load-balancing"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Load Balancing</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-04-security/linux-security-basics"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Linux Security Basics</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#learning-objectives" class="table-of-contents__link toc-highlight">Learning Objectives</a></li><li><a href="#problem-1--website-does-not-open" class="table-of-contents__link toc-highlight">Problem 1 — Website Does Not Open</a></li><li><a href="#problem-2--ssh-connection-refused" class="table-of-contents__link toc-highlight">Problem 2 — SSH Connection Refused</a></li><li><a href="#problem-3--dns-not-resolving" class="table-of-contents__link toc-highlight">Problem 3 — DNS Not Resolving</a></li><li><a href="#problem-4--port-not-reachable" class="table-of-contents__link toc-highlight">Problem 4 — Port Not Reachable</a></li><li><a href="#problem-5--ssl-certificate-errors" class="table-of-contents__link toc-highlight">Problem 5 — SSL Certificate Errors</a><ul><li><a href="#jumping-directly-to-configuration-changes" class="table-of-contents__link toc-highlight">Jumping Directly to Configuration Changes</a></li><li><a href="#ignoring-logs" class="table-of-contents__link toc-highlight">Ignoring Logs</a></li><li><a href="#forgetting-cloud-firewalls" class="table-of-contents__link toc-highlight">Forgetting Cloud Firewalls</a></li><li><a href="#troubleshooting-multiple-layers-simultaneously" class="table-of-contents__link toc-highlight">Troubleshooting Multiple Layers Simultaneously</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

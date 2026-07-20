@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-12-interview/nginx-interview" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Nginx Interview Preparation | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/nginx-interview"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Nginx Interview Preparation | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/nginx-interview"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/nginx-interview" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-12-interview/nginx-interview" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Nginx Interview Preparation","item":"https://codingsapienss.github.io/notes/docs/devops/part-12-interview/nginx-interview"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Linux Interview Preparation" class="linkLabel_WmDU">Linux Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/networking-interview"><span title="Networking Interview Preparation" class="linkLabel_WmDU">Networking Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-12-interview/nginx-interview"><span title="Nginx Interview Preparation" class="linkLabel_WmDU">Nginx Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/nodejs-interview"><span title="Node.js Interview Preparation" class="linkLabel_WmDU">Node.js Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/cloud-interview"><span title="Cloud Interview Preparation" class="linkLabel_WmDU">Cloud Interview Preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/scenario-based-questions"><span title="Scenario-Based Interview Questions" class="linkLabel_WmDU">Scenario-Based Interview Questions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-12-interview/production-case-studies"><span title="Production Case Studies" class="linkLabel_WmDU">Production Case Studies</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Interview Prep</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Nginx Interview Preparation</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Nginx Interview Preparation</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Nginx is one of the most widely used web servers and reverse proxies in modern infrastructure. It is commonly used for:</p>
+<ul>
+<li class="">Hosting websites</li>
+<li class="">Reverse proxying backend applications</li>
+<li class="">SSL termination</li>
+<li class="">Load balancing</li>
+<li class="">Caching</li>
+<li class="">Static file serving</li>
+<li class="">API gateways</li>
+</ul>
+<p>Interviewers expect candidates to understand <strong>how Nginx works internally</strong>, <strong>why it is used</strong>, and <strong>how it integrates into production architectures</strong>.</p>
+<hr>
+<h1>Learning Objectives</h1>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Explain Nginx architecture.</li>
+<li class="">Answer common Nginx interview questions.</li>
+<li class="">Understand reverse proxying.</li>
+<li class="">Configure SSL and load balancing.</li>
+<li class="">Troubleshoot production issues.</li>
+<li class="">Discuss real-world deployment architectures.</li>
+</ul>
+<hr>
+<h1>Nginx in Production</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Internet</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cloudflare (Optional)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div></code></pre></div></div>
+<p>Nginx sits between clients and backend services, handling incoming traffic efficiently.</p>
+<hr>
+<h1>Nginx Knowledge Roadmap</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Web Server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reverse Proxy</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Static Files</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">SSL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Load Balancing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Caching</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Security</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Performance</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Production Troubleshooting</span><br></div></code></pre></div></div>
+<hr>
+<h1>Beginner Interview Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-nginx">Q1. What is Nginx?<a href="#q1-what-is-nginx" class="hash-link" aria-label="Direct link to Q1. What is Nginx?" title="Direct link to Q1. What is Nginx?" translate="no">​</a></h2>
+<p><strong>Answer</strong></p>
+<p>Nginx is an open-source web server, reverse proxy server, load balancer, and HTTP cache designed for high performance and low resource usage.</p>
+<p>Common use cases include:</p>
+<ul>
+<li class="">Hosting static websites</li>
+<li class="">Reverse proxying applications</li>
+<li class="">SSL termination</li>
+<li class="">Load balancing</li>
+<li class="">API gateways</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-why-is-nginx-popular">Q2. Why is Nginx Popular?<a href="#q2-why-is-nginx-popular" class="hash-link" aria-label="Direct link to Q2. Why is Nginx Popular?" title="Direct link to Q2. Why is Nginx Popular?" translate="no">​</a></h2>
+<p>Reasons include:</p>
+<ul>
+<li class="">High performance</li>
+<li class="">Event-driven architecture</li>
+<li class="">Low memory usage</li>
+<li class="">Handles many concurrent connections</li>
+<li class="">Excellent reverse proxy capabilities</li>
+<li class="">Strong community support</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-difference-between-apache-and-nginx">Q3. Difference Between Apache and Nginx<a href="#q3-difference-between-apache-and-nginx" class="hash-link" aria-label="Direct link to Q3. Difference Between Apache and Nginx" title="Direct link to Q3. Difference Between Apache and Nginx" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Apache</th><th>Nginx</th></tr></thead><tbody><tr><td>Process/Thread based</td><td>Event-driven</td></tr><tr><td>Higher memory usage</td><td>Lower memory usage</td></tr><tr><td><code>.htaccess</code> support</td><td>No <code>.htaccess</code></td></tr><tr><td>Good for dynamic content</td><td>Excellent reverse proxy</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-a-reverse-proxy">Q4. What is a Reverse Proxy?<a href="#q4-what-is-a-reverse-proxy" class="hash-link" aria-label="Direct link to Q4. What is a Reverse Proxy?" title="Direct link to Q4. What is a Reverse Proxy?" translate="no">​</a></h2>
+<p>A reverse proxy receives client requests and forwards them to backend servers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Client</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div></code></pre></div></div>
+<p>Benefits:</p>
+<ul>
+<li class="">SSL termination</li>
+<li class="">Security</li>
+<li class="">Load balancing</li>
+<li class="">Hides backend servers</li>
+<li class="">Centralized routing</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-why-not-expose-nodejs-directly">Q5. Why Not Expose Node.js Directly?<a href="#q5-why-not-expose-nodejs-directly" class="hash-link" aria-label="Direct link to Q5. Why Not Expose Node.js Directly?" title="Direct link to Q5. Why Not Expose Node.js Directly?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">SSL handling</li>
+<li class="">Static file serving</li>
+<li class="">Rate limiting</li>
+<li class="">Better performance</li>
+<li class="">Load balancing</li>
+<li class="">Security</li>
+<li class="">Request buffering</li>
+</ul>
+<p>Production architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Internet</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">443</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">3000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div></code></pre></div></div>
+<hr>
+<h1>Configuration Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-where-is-the-main-nginx-configuration">Q6. Where is the Main Nginx Configuration?<a href="#q6-where-is-the-main-nginx-configuration" class="hash-link" aria-label="Direct link to Q6. Where is the Main Nginx Configuration?" title="Direct link to Q6. Where is the Main Nginx Configuration?" translate="no">​</a></h2>
+<p>Common locations:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/etc/nginx/nginx.conf</span><br></div></code></pre></div></div>
+<p>Virtual hosts:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/etc/nginx/sites-available/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">/etc/nginx/sites-enabled/</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-a-server-block">Q7. What is a Server Block?<a href="#q7-what-is-a-server-block" class="hash-link" aria-label="Direct link to Q7. What is a Server Block?" title="Direct link to Q7. What is a Server Block?" translate="no">​</a></h2>
+<p>A server block defines how Nginx responds to requests for a domain or IP.</p>
+<p>Example:</p>
+<div class="language-nginx codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-nginx codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">server {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    listen 80;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    server_name example.com;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-difference-between-root-and-alias">Q8. Difference Between <code>root</code> and <code>alias</code><a href="#q8-difference-between-root-and-alias" class="hash-link" aria-label="Direct link to q8-difference-between-root-and-alias" title="Direct link to q8-difference-between-root-and-alias" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>root</th><th>alias</th></tr></thead><tbody><tr><td>Appends URI to directory</td><td>Replaces matched location</td></tr><tr><td>Used for website root</td><td>Used for specific locations</td></tr></tbody></table>
+<p>Interview tip:</p>
+<p>Candidates often confuse these directives. Be prepared to explain when each should be used.</p>
+<hr>
+<h1>Reverse Proxy Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-how-does-reverse-proxy-work">Q9. How Does Reverse Proxy Work?<a href="#q9-how-does-reverse-proxy-work" class="hash-link" aria-label="Direct link to Q9. How Does Reverse Proxy Work?" title="Direct link to Q9. How Does Reverse Proxy Work?" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Browser</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">localhost:3000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div></code></pre></div></div>
+<p>Nginx receives the request, optionally terminates TLS, forwards it to the backend, receives the response, and returns it to the client.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-example-reverse-proxy-configuration">Q10. Example Reverse Proxy Configuration<a href="#q10-example-reverse-proxy-configuration" class="hash-link" aria-label="Direct link to Q10. Example Reverse Proxy Configuration" title="Direct link to Q10. Example Reverse Proxy Configuration" translate="no">​</a></h2>
+<div class="language-nginx codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-nginx codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">location / {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    proxy_pass http://localhost:3000;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<hr>
+<h1>SSL Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-ssl-termination">Q11. What is SSL Termination?<a href="#q11-what-is-ssl-termination" class="hash-link" aria-label="Direct link to Q11. What is SSL Termination?" title="Direct link to Q11. What is SSL Termination?" translate="no">​</a></h2>
+<p>SSL termination means Nginx decrypts HTTPS traffic and forwards requests to backend services, often over HTTP within a trusted internal network.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">HTTPS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">HTTP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-why-use-https">Q12. Why Use HTTPS?<a href="#q12-why-use-https" class="hash-link" aria-label="Direct link to Q12. Why Use HTTPS?" title="Direct link to Q12. Why Use HTTPS?" translate="no">​</a></h2>
+<p>Advantages:</p>
+<ul>
+<li class="">Encrypts communication.</li>
+<li class="">Authenticates the server.</li>
+<li class="">Protects sensitive information.</li>
+<li class="">Builds user trust.</li>
+</ul>
+<hr>
+<h1>Load Balancing Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-load-balancing">Q13. What is Load Balancing?<a href="#q13-what-is-load-balancing" class="hash-link" aria-label="Direct link to Q13. What is Load Balancing?" title="Direct link to Q13. What is Load Balancing?" translate="no">​</a></h2>
+<p>Load balancing distributes incoming traffic across multiple backend servers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 3</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-common-load-balancing-methods">Q14. Common Load Balancing Methods<a href="#q14-common-load-balancing-methods" class="hash-link" aria-label="Direct link to Q14. Common Load Balancing Methods" title="Direct link to Q14. Common Load Balancing Methods" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>Round Robin</td><td>Requests distributed sequentially</td></tr><tr><td>Least Connections</td><td>Server with fewest active connections</td></tr><tr><td>IP Hash</td><td>Same client generally reaches the same backend</td></tr></tbody></table>
+<hr>
+<h1>Caching Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-why-cache-static-files">Q15. Why Cache Static Files?<a href="#q15-why-cache-static-files" class="hash-link" aria-label="Direct link to Q15. Why Cache Static Files?" title="Direct link to Q15. Why Cache Static Files?" translate="no">​</a></h2>
+<p>Benefits:</p>
+<ul>
+<li class="">Faster response times.</li>
+<li class="">Lower backend load.</li>
+<li class="">Reduced bandwidth usage.</li>
+<li class="">Improved scalability.</li>
+</ul>
+<p>Common cached files:</p>
+<ul>
+<li class="">CSS</li>
+<li class="">JavaScript</li>
+<li class="">Images</li>
+<li class="">Fonts</li>
+</ul>
+<hr>
+<h1>Logging Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q16-where-are-nginx-logs-stored">Q16. Where Are Nginx Logs Stored?<a href="#q16-where-are-nginx-logs-stored" class="hash-link" aria-label="Direct link to Q16. Where Are Nginx Logs Stored?" title="Direct link to Q16. Where Are Nginx Logs Stored?" translate="no">​</a></h2>
+<p>Typical locations:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">/var/log/nginx/access.log</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">/var/log/nginx/error.log</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q17-which-log-is-used-for-debugging">Q17. Which Log Is Used for Debugging?<a href="#q17-which-log-is-used-for-debugging" class="hash-link" aria-label="Direct link to Q17. Which Log Is Used for Debugging?" title="Direct link to Q17. Which Log Is Used for Debugging?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Log</th><th>Purpose</th></tr></thead><tbody><tr><td>access.log</td><td>Successful requests</td></tr><tr><td>error.log</td><td>Errors and warnings</td></tr></tbody></table>
+<hr>
+<h1>Performance Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q18-why-is-nginx-fast">Q18. Why is Nginx Fast?<a href="#q18-why-is-nginx-fast" class="hash-link" aria-label="Direct link to Q18. Why is Nginx Fast?" title="Direct link to Q18. Why is Nginx Fast?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">Event-driven architecture</li>
+<li class="">Asynchronous I/O</li>
+<li class="">Efficient memory usage</li>
+<li class="">Non-blocking operations</li>
+<li class="">Optimized request handling</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q19-what-is-keep-alive">Q19. What is Keep-Alive?<a href="#q19-what-is-keep-alive" class="hash-link" aria-label="Direct link to Q19. What is Keep-Alive?" title="Direct link to Q19. What is Keep-Alive?" translate="no">​</a></h2>
+<p>Keep-Alive allows multiple HTTP requests to reuse a single TCP connection, reducing connection overhead and improving performance.</p>
+<hr>
+<h1>Security Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q20-how-can-nginx-improve-security">Q20. How Can Nginx Improve Security?<a href="#q20-how-can-nginx-improve-security" class="hash-link" aria-label="Direct link to Q20. How Can Nginx Improve Security?" title="Direct link to Q20. How Can Nginx Improve Security?" translate="no">​</a></h2>
+<p>Examples:</p>
+<ul>
+<li class="">HTTPS enforcement</li>
+<li class="">Rate limiting</li>
+<li class="">Request size limits</li>
+<li class="">Security headers</li>
+<li class="">Hiding backend infrastructure</li>
+<li class="">Blocking malicious requests</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q21-what-is-rate-limiting">Q21. What is Rate Limiting?<a href="#q21-what-is-rate-limiting" class="hash-link" aria-label="Direct link to Q21. What is Rate Limiting?" title="Direct link to Q21. What is Rate Limiting?" translate="no">​</a></h2>
+<p>Rate limiting restricts how many requests a client can make within a given period, helping mitigate abuse and certain denial-of-service attacks.</p>
+<hr>
+<h1>Linux Integration Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q22-how-do-you-check-nginx-status">Q22. How Do You Check Nginx Status?<a href="#q22-how-do-you-check-nginx-status" class="hash-link" aria-label="Direct link to Q22. How Do You Check Nginx Status?" title="Direct link to Q22. How Do You Check Nginx Status?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q23-how-do-you-test-configuration">Q23. How Do You Test Configuration?<a href="#q23-how-do-you-test-configuration" class="hash-link" aria-label="Direct link to Q23. How Do You Test Configuration?" title="Direct link to Q23. How Do You Test Configuration?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo nginx -t</span><br></div></code></pre></div></div>
+<p>Typical output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">syntax is ok</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">test is successful</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q24-how-do-you-reload-nginx">Q24. How Do You Reload Nginx?<a href="#q24-how-do-you-reload-nginx" class="hash-link" aria-label="Direct link to Q24. How Do You Reload Nginx?" title="Direct link to Q24. How Do You Reload Nginx?" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo systemctl reload nginx</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q25-difference-between-reload-and-restart">Q25. Difference Between Reload and Restart?<a href="#q25-difference-between-reload-and-restart" class="hash-link" aria-label="Direct link to Q25. Difference Between Reload and Restart?" title="Direct link to Q25. Difference Between Reload and Restart?" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Reload</th><th>Restart</th></tr></thead><tbody><tr><td>Reloads configuration</td><td>Stops and starts service</td></tr><tr><td>Existing connections continue</td><td>Connections may be interrupted</td></tr></tbody></table>
+<hr>
+<h1>Cloud Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q26-how-does-nginx-work-with-cloudflare">Q26. How Does Nginx Work with Cloudflare?<a href="#q26-how-does-nginx-work-with-cloudflare" class="hash-link" aria-label="Direct link to Q26. How Does Nginx Work with Cloudflare?" title="Direct link to Q26. How Does Nginx Work with Cloudflare?" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Browser</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cloudflare</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div></code></pre></div></div>
+<p>Cloudflare provides CDN, caching, and DDoS protection, while Nginx proxies requests to backend services.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q27-why-use-nginx-with-docker">Q27. Why Use Nginx with Docker?<a href="#q27-why-use-nginx-with-docker" class="hash-link" aria-label="Direct link to Q27. Why Use Nginx with Docker?" title="Direct link to Q27. Why Use Nginx with Docker?" translate="no">​</a></h2>
+<p>Reasons:</p>
+<ul>
+<li class="">Single public endpoint.</li>
+<li class="">SSL management.</li>
+<li class="">Routing to multiple containers.</li>
+<li class="">Load balancing.</li>
+<li class="">Static asset delivery.</li>
+</ul>
+<hr>
+<h1>Advanced Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q28-what-happens-when-a-request-reaches-nginx">Q28. What Happens When a Request Reaches Nginx?<a href="#q28-what-happens-when-a-request-reaches-nginx" class="hash-link" aria-label="Direct link to Q28. What Happens When a Request Reaches Nginx?" title="Direct link to Q28. What Happens When a Request Reaches Nginx?" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Client</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server Block Match</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Location Match</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reverse Proxy</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Backend Response</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Client</span><br></div></code></pre></div></div>
+<p>Nginx selects the appropriate server block, evaluates location rules, processes the request, and returns the backend response.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q29-how-does-nginx-select-a-location-block">Q29. How Does Nginx Select a Location Block?<a href="#q29-how-does-nginx-select-a-location-block" class="hash-link" aria-label="Direct link to Q29. How Does Nginx Select a Location Block?" title="Direct link to Q29. How Does Nginx Select a Location Block?" translate="no">​</a></h2>
+<p>General order:</p>
+<ol>
+<li class="">Exact match (<code>=</code>).</li>
+<li class="">Longest prefix match.</li>
+<li class="">Regular expression matches (first matching expression).</li>
+<li class="">Default prefix if no more specific match exists.</li>
+</ol>
+<p>Understanding location matching is a common interview topic.</p>
+<hr>
+<h1>Scenario-Based Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-1">Scenario 1<a href="#scenario-1" class="hash-link" aria-label="Direct link to Scenario 1" title="Direct link to Scenario 1" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Users receive <strong>502 Bad Gateway</strong>.</p>
+<p><strong>Suggested Investigation</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Check Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Port</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Restart if Needed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify</span><br></div></code></pre></div></div>
+<p>Commands:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">systemctl status nginx</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 list</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ss -tulpn</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">tail -f /var/log/nginx/error.log</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-2">Scenario 2<a href="#scenario-2" class="hash-link" aria-label="Direct link to Scenario 2" title="Direct link to Scenario 2" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Nginx starts failing after a configuration change.</p>
+<p>Recommended steps:</p>
+<ol>
+<li class="">Validate configuration.</li>
+<li class="">Review recent edits.</li>
+<li class="">Check error logs.</li>
+<li class="">Reload only after a successful syntax test.</li>
+</ol>
+<p>Commands:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">nginx -t</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">journalctl -u nginx</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-3">Scenario 3<a href="#scenario-3" class="hash-link" aria-label="Direct link to Scenario 3" title="Direct link to Scenario 3" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>Static files are loading slowly.</p>
+<p>Possible causes:</p>
+<ul>
+<li class="">Caching disabled</li>
+<li class="">Compression disabled</li>
+<li class="">Large file sizes</li>
+<li class="">Slow storage</li>
+<li class="">Network latency</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-4">Scenario 4<a href="#scenario-4" class="hash-link" aria-label="Direct link to Scenario 4" title="Direct link to Scenario 4" translate="no">​</a></h2>
+<p><strong>Question</strong></p>
+<p>SSL works for one domain but not another.</p>
+<p>Possible checks:</p>
+<ul>
+<li class="">Certificate paths</li>
+<li class="">Server block selection</li>
+<li class="">DNS records</li>
+<li class="">Server Name Indication (SNI)</li>
+<li class="">Domain configuration</li>
+</ul>
+<hr>
+<h1>Production Experience Questions</h1>
+<p>Interviewers may ask:</p>
+<ul>
+<li class="">Why do you use Nginx instead of exposing Node.js directly?</li>
+<li class="">Explain your deployment architecture.</li>
+<li class="">How do you configure HTTPS?</li>
+<li class="">How do you troubleshoot 502 errors?</li>
+<li class="">How do you verify an Nginx deployment?</li>
+<li class="">How do you serve static assets efficiently?</li>
+<li class="">What steps do you perform before reloading Nginx?</li>
+</ul>
+<p>Demonstrating a structured troubleshooting process is generally more valuable than recalling isolated commands.</p>
+<hr>
+<h1>Interview Tips</h1>
+<ul>
+<li class="">Explain request flow from browser to backend.</li>
+<li class="">Understand reverse proxy concepts thoroughly.</li>
+<li class="">Be comfortable discussing SSL termination.</li>
+<li class="">Explain why Nginx improves security and scalability.</li>
+<li class="">Describe how you verify configuration changes before deployment.</li>
+<li class="">Use real production examples whenever possible.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="confusing-reverse-proxy-with-forward-proxy">Confusing Reverse Proxy with Forward Proxy<a href="#confusing-reverse-proxy-with-forward-proxy" class="hash-link" aria-label="Direct link to Confusing Reverse Proxy with Forward Proxy" title="Direct link to Confusing Reverse Proxy with Forward Proxy" translate="no">​</a></h3>
+<p>A reverse proxy represents servers to clients, while a forward proxy represents clients to servers.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="restarting-instead-of-reloading">Restarting Instead of Reloading<a href="#restarting-instead-of-reloading" class="hash-link" aria-label="Direct link to Restarting Instead of Reloading" title="Direct link to Restarting Instead of Reloading" translate="no">​</a></h3>
+<p>Reloading configuration is usually preferred for routine configuration updates because it minimizes disruption.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="forgetting-configuration-validation">Forgetting Configuration Validation<a href="#forgetting-configuration-validation" class="hash-link" aria-label="Direct link to Forgetting Configuration Validation" title="Direct link to Forgetting Configuration Validation" translate="no">​</a></h3>
+<p>Always run <code>nginx -t</code> before reloading or restarting.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exposing-backend-services-directly">Exposing Backend Services Directly<a href="#exposing-backend-services-directly" class="hash-link" aria-label="Direct link to Exposing Backend Services Directly" title="Direct link to Exposing Backend Services Directly" translate="no">​</a></h3>
+<p>Production applications should typically be placed behind a reverse proxy.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ignoring-error-logs">Ignoring Error Logs<a href="#ignoring-error-logs" class="hash-link" aria-label="Direct link to Ignoring Error Logs" title="Direct link to Ignoring Error Logs" translate="no">​</a></h3>
+<p>The Nginx error log is often the first place to investigate configuration or upstream issues.</p>
+<hr>
+<h1>Summary</h1>
+<p>Nginx interviews focus on architecture, reverse proxying, SSL termination, load balancing, performance optimization, and troubleshooting. Strong candidates understand how Nginx fits into a production stack, explain request flow clearly, and follow systematic debugging practices for real-world issues.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>04 - Node.js Interview Preparation</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-12-interview/03-nginx-interview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-12-interview/networking-interview"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Networking Interview Preparation</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-12-interview/nodejs-interview"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Node.js Interview Preparation</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#q1-what-is-nginx" class="table-of-contents__link toc-highlight">Q1. What is Nginx?</a></li><li><a href="#q2-why-is-nginx-popular" class="table-of-contents__link toc-highlight">Q2. Why is Nginx Popular?</a></li><li><a href="#q3-difference-between-apache-and-nginx" class="table-of-contents__link toc-highlight">Q3. Difference Between Apache and Nginx</a></li><li><a href="#q4-what-is-a-reverse-proxy" class="table-of-contents__link toc-highlight">Q4. What is a Reverse Proxy?</a></li><li><a href="#q5-why-not-expose-nodejs-directly" class="table-of-contents__link toc-highlight">Q5. Why Not Expose Node.js Directly?</a></li><li><a href="#q6-where-is-the-main-nginx-configuration" class="table-of-contents__link toc-highlight">Q6. Where is the Main Nginx Configuration?</a></li><li><a href="#q7-what-is-a-server-block" class="table-of-contents__link toc-highlight">Q7. What is a Server Block?</a></li><li><a href="#q8-difference-between-root-and-alias" class="table-of-contents__link toc-highlight">Q8. Difference Between <code>root</code> and <code>alias</code></a></li><li><a href="#q9-how-does-reverse-proxy-work" class="table-of-contents__link toc-highlight">Q9. How Does Reverse Proxy Work?</a></li><li><a href="#q10-example-reverse-proxy-configuration" class="table-of-contents__link toc-highlight">Q10. Example Reverse Proxy Configuration</a></li><li><a href="#q11-what-is-ssl-termination" class="table-of-contents__link toc-highlight">Q11. What is SSL Termination?</a></li><li><a href="#q12-why-use-https" class="table-of-contents__link toc-highlight">Q12. Why Use HTTPS?</a></li><li><a href="#q13-what-is-load-balancing" class="table-of-contents__link toc-highlight">Q13. What is Load Balancing?</a></li><li><a href="#q14-common-load-balancing-methods" class="table-of-contents__link toc-highlight">Q14. Common Load Balancing Methods</a></li><li><a href="#q15-why-cache-static-files" class="table-of-contents__link toc-highlight">Q15. Why Cache Static Files?</a></li><li><a href="#q16-where-are-nginx-logs-stored" class="table-of-contents__link toc-highlight">Q16. Where Are Nginx Logs Stored?</a></li><li><a href="#q17-which-log-is-used-for-debugging" class="table-of-contents__link toc-highlight">Q17. Which Log Is Used for Debugging?</a></li><li><a href="#q18-why-is-nginx-fast" class="table-of-contents__link toc-highlight">Q18. Why is Nginx Fast?</a></li><li><a href="#q19-what-is-keep-alive" class="table-of-contents__link toc-highlight">Q19. What is Keep-Alive?</a></li><li><a href="#q20-how-can-nginx-improve-security" class="table-of-contents__link toc-highlight">Q20. How Can Nginx Improve Security?</a></li><li><a href="#q21-what-is-rate-limiting" class="table-of-contents__link toc-highlight">Q21. What is Rate Limiting?</a></li><li><a href="#q22-how-do-you-check-nginx-status" class="table-of-contents__link toc-highlight">Q22. How Do You Check Nginx Status?</a></li><li><a href="#q23-how-do-you-test-configuration" class="table-of-contents__link toc-highlight">Q23. How Do You Test Configuration?</a></li><li><a href="#q24-how-do-you-reload-nginx" class="table-of-contents__link toc-highlight">Q24. How Do You Reload Nginx?</a></li><li><a href="#q25-difference-between-reload-and-restart" class="table-of-contents__link toc-highlight">Q25. Difference Between Reload and Restart?</a></li><li><a href="#q26-how-does-nginx-work-with-cloudflare" class="table-of-contents__link toc-highlight">Q26. How Does Nginx Work with Cloudflare?</a></li><li><a href="#q27-why-use-nginx-with-docker" class="table-of-contents__link toc-highlight">Q27. Why Use Nginx with Docker?</a></li><li><a href="#q28-what-happens-when-a-request-reaches-nginx" class="table-of-contents__link toc-highlight">Q28. What Happens When a Request Reaches Nginx?</a></li><li><a href="#q29-how-does-nginx-select-a-location-block" class="table-of-contents__link toc-highlight">Q29. How Does Nginx Select a Location Block?</a></li><li><a href="#scenario-1" class="table-of-contents__link toc-highlight">Scenario 1</a></li><li><a href="#scenario-2" class="table-of-contents__link toc-highlight">Scenario 2</a></li><li><a href="#scenario-3" class="table-of-contents__link toc-highlight">Scenario 3</a></li><li><a href="#scenario-4" class="table-of-contents__link toc-highlight">Scenario 4</a><ul><li><a href="#confusing-reverse-proxy-with-forward-proxy" class="table-of-contents__link toc-highlight">Confusing Reverse Proxy with Forward Proxy</a></li><li><a href="#restarting-instead-of-reloading" class="table-of-contents__link toc-highlight">Restarting Instead of Reloading</a></li><li><a href="#forgetting-configuration-validation" class="table-of-contents__link toc-highlight">Forgetting Configuration Validation</a></li><li><a href="#exposing-backend-services-directly" class="table-of-contents__link toc-highlight">Exposing Backend Services Directly</a></li><li><a href="#ignoring-error-logs" class="table-of-contents__link toc-highlight">Ignoring Error Logs</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

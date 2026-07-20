@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-01-foundations/linux-boot-process" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Linux Boot Process | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-01-foundations/linux-boot-process"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Linux Boot Process | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-01-foundations/linux-boot-process"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-01-foundations/linux-boot-process" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-01-foundations/linux-boot-process" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Linux Boot Process","item":"https://codingsapienss.github.io/notes/docs/devops/part-01-foundations/linux-boot-process"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Why Linux?" class="linkLabel_WmDU">Why Linux?</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-01-foundations/operating-system"><span title="Operating System" class="linkLabel_WmDU">Operating System</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-01-foundations/linux-architecture"><span title="Linux Architecture" class="linkLabel_WmDU">Linux Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-01-foundations/linux-boot-process"><span title="Linux Boot Process" class="linkLabel_WmDU">Linux Boot Process</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-01-foundations/terminal-shell-and-bash"><span title="Terminal, Shell and Bash" class="linkLabel_WmDU">Terminal, Shell and Bash</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-01-foundations/ssh-overview"><span title="SSH Overview" class="linkLabel_WmDU">SSH Overview</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Foundations</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Linux Boot Process</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Linux Boot Process</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Every time you power on a Linux computer or virtual machine, a sequence of events takes place before you can log in and start using the system.</p>
+<p>This sequence is known as the <strong>Linux Boot Process</strong>.</p>
+<p>Although it may appear that Linux starts instantly, several components work together behind the scenes to initialize hardware, load the operating system, prepare system services, and present the login screen.</p>
+<p>Understanding the boot process helps in troubleshooting startup issues, recovering failed systems, and understanding how Linux initializes itself.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-objectives">Learning Objectives<a href="#learning-objectives" class="hash-link" aria-label="Direct link to Learning Objectives" title="Direct link to Learning Objectives" translate="no">​</a></h2>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Understand each stage of the Linux boot process.</li>
+<li class="">Learn the responsibilities of BIOS, UEFI, GRUB, the Linux Kernel, initramfs, and systemd.</li>
+<li class="">Understand how Linux reaches the login prompt.</li>
+<li class="">Understand the role of bootloaders and system services.</li>
+<li class="">Recognize where common boot issues occur.</li>
+</ul>
+<hr>
+<h1>The Complete Boot Process</h1>
+<p>The Linux boot sequence can be summarized as:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Power On</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">BIOS / UEFI</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">POST (Hardware Check)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Bootloader (GRUB)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Linux Kernel</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">initramfs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">systemd (PID 1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">System Services</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Login Screen / SSH Login</span><br></div></code></pre></div></div>
+<p>Each stage depends on the previous one completing successfully.</p>
+<hr>
+<h1>Step 1 - Power On</h1>
+<p>The boot process begins when the computer or virtual machine receives power.</p>
+<p>At this stage:</p>
+<ul>
+<li class="">CPU is initialized.</li>
+<li class="">RAM becomes available.</li>
+<li class="">Firmware starts executing.</li>
+<li class="">Control is handed to the motherboard firmware.</li>
+</ul>
+<p>For cloud virtual machines, this process is simulated by the virtualization platform instead of physical hardware.</p>
+<hr>
+<h1>Step 2 - BIOS or UEFI</h1>
+<p>The firmware is responsible for preparing the system before the operating system starts.</p>
+<p>Modern systems typically use <strong>UEFI</strong>, while older systems use <strong>BIOS</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bios">BIOS<a href="#bios" class="hash-link" aria-label="Direct link to BIOS" title="Direct link to BIOS" translate="no">​</a></h3>
+<p>BIOS (Basic Input/Output System) is older firmware that:</p>
+<ul>
+<li class="">Initializes hardware.</li>
+<li class="">Detects storage devices.</li>
+<li class="">Searches for a bootable disk.</li>
+<li class="">Transfers control to the bootloader.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="uefi">UEFI<a href="#uefi" class="hash-link" aria-label="Direct link to UEFI" title="Direct link to UEFI" translate="no">​</a></h3>
+<p>UEFI (Unified Extensible Firmware Interface) is the modern replacement for BIOS.</p>
+<p>Advantages include:</p>
+<ul>
+<li class="">Faster boot times</li>
+<li class="">Better security features</li>
+<li class="">Support for larger disks</li>
+<li class="">Secure Boot</li>
+<li class="">Improved hardware compatibility</li>
+</ul>
+<p>Most modern Linux servers use UEFI.</p>
+<hr>
+<h1>Step 3 - POST (Power-On Self-Test)</h1>
+<p>Before loading the operating system, the firmware performs a hardware check known as the <strong>Power-On Self-Test (POST)</strong>.</p>
+<p>POST verifies that essential hardware is functioning correctly.</p>
+<p>Examples include:</p>
+<ul>
+<li class="">CPU</li>
+<li class="">RAM</li>
+<li class="">Storage devices</li>
+<li class="">Keyboard</li>
+<li class="">Display hardware</li>
+<li class="">Basic motherboard components</li>
+</ul>
+<p>If a critical hardware issue is detected, the boot process stops before Linux is loaded.</p>
+<hr>
+<h1>Step 4 - Bootloader (GRUB)</h1>
+<p>Once the firmware finds a bootable device, it loads the <strong>bootloader</strong>.</p>
+<p>The most common Linux bootloader is <strong>GRUB (GRand Unified Bootloader).</strong></p>
+<p>The bootloader is responsible for:</p>
+<ul>
+<li class="">Displaying available operating systems.</li>
+<li class="">Selecting the operating system to boot.</li>
+<li class="">Loading the Linux kernel into memory.</li>
+<li class="">Passing boot parameters to the kernel.</li>
+</ul>
+<p>On systems with multiple operating systems, GRUB allows the user to choose which one to start.</p>
+<hr>
+<h1>Step 5 - Linux Kernel</h1>
+<p>After GRUB loads the kernel into memory, the Linux kernel takes control of the system.</p>
+<p>The kernel begins initializing essential operating system components.</p>
+<p>Some of its responsibilities include:</p>
+<ul>
+<li class="">Detecting hardware</li>
+<li class="">Initializing memory</li>
+<li class="">Loading device drivers</li>
+<li class="">Mounting the initial file system</li>
+<li class="">Starting system management</li>
+</ul>
+<p>At this stage, Linux officially begins running.</p>
+<hr>
+<h1>Step 6 - initramfs</h1>
+<p>The kernel next loads the <strong>Initial RAM File System (initramfs).</strong></p>
+<p><code>initramfs</code> is a temporary file system stored in memory.</p>
+<p>Its purpose is to provide the kernel with the tools required before the real root file system becomes available.</p>
+<p>It performs tasks such as:</p>
+<ul>
+<li class="">Loading storage drivers</li>
+<li class="">Detecting disk partitions</li>
+<li class="">Mounting the root file system</li>
+<li class="">Preparing the system for normal operation</li>
+</ul>
+<p>Once the real root file system is mounted, <code>initramfs</code> is no longer needed.</p>
+<hr>
+<h1>Step 7 - systemd</h1>
+<p>After mounting the root file system, Linux starts <strong>systemd</strong>.</p>
+<p><code>systemd</code> is the default initialization system used by most modern Linux distributions.</p>
+<p>It is always assigned <strong>Process ID (PID) 1</strong>, making it the first user-space process created by the kernel.</p>
+<p>Its responsibilities include:</p>
+<ul>
+<li class="">Starting background services.</li>
+<li class="">Managing dependencies.</li>
+<li class="">Mounting file systems.</li>
+<li class="">Configuring networking.</li>
+<li class="">Managing system startup targets.</li>
+<li class="">Restarting failed services when configured.</li>
+</ul>
+<p>Examples of services started by systemd include:</p>
+<ul>
+<li class="">SSH Server</li>
+<li class="">Nginx</li>
+<li class="">Docker</li>
+<li class="">Cron</li>
+<li class="">Network Manager</li>
+</ul>
+<hr>
+<h1>Step 8 - System Services</h1>
+<p>Once systemd starts, it launches all required services for the operating system.</p>
+<p>Depending on the server configuration, these may include:</p>
+<ul>
+<li class="">SSH</li>
+<li class="">Nginx</li>
+<li class="">PM2 startup service</li>
+<li class="">Docker</li>
+<li class="">Database servers</li>
+<li class="">Logging services</li>
+<li class="">Firewall services</li>
+</ul>
+<p>Some services start automatically during boot, while others start only when needed.</p>
+<hr>
+<h1>Step 9 - Login Prompt</h1>
+<p>Once startup is complete, Linux presents a login interface.</p>
+<p>This may be:</p>
+<ul>
+<li class="">A graphical login screen (desktop systems)</li>
+<li class="">A terminal login prompt</li>
+<li class="">An SSH login prompt for remote servers</li>
+</ul>
+<p>For cloud servers such as Azure or AWS, users typically connect remotely using SSH instead of logging in directly through a monitor.</p>
+<hr>
+<h1>Real-World Example</h1>
+<p>When you start an Ubuntu Virtual Machine in Azure, the following sequence occurs:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Azure Starts VM</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Virtual Firmware (UEFI)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hardware Initialization</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">GRUB Bootloader</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Linux Kernel</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">initramfs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">systemd</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Networking Starts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">SSH Service Starts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        ▼</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">You Connect Using SSH</span><br></div></code></pre></div></div>
+<p>By the time you execute:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ssh username@server-ip</span><br></div></code></pre></div></div>
+<p>the boot process has already completed, networking is active, and the SSH service is waiting for incoming connections.</p>
+<hr>
+<h1>Best Practices</h1>
+<ul>
+<li class="">Keep the Linux kernel updated with stable releases.</li>
+<li class="">Avoid modifying bootloader settings unless necessary.</li>
+<li class="">Monitor failed services during startup using system logs.</li>
+<li class="">Ensure important services are configured to start automatically after boot.</li>
+<li class="">Understand the boot sequence before troubleshooting startup problems.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="confusing-bios-with-grub">Confusing BIOS with GRUB<a href="#confusing-bios-with-grub" class="hash-link" aria-label="Direct link to Confusing BIOS with GRUB" title="Direct link to Confusing BIOS with GRUB" translate="no">​</a></h3>
+<p>BIOS or UEFI prepares the hardware and locates a bootable device.</p>
+<p>GRUB is the bootloader responsible for loading the Linux kernel.</p>
+<p>They perform different roles.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="assuming-systemd-is-the-operating-system">Assuming systemd Is the Operating System<a href="#assuming-systemd-is-the-operating-system" class="hash-link" aria-label="Direct link to Assuming systemd Is the Operating System" title="Direct link to Assuming systemd Is the Operating System" translate="no">​</a></h3>
+<p>systemd is the initialization and service manager.</p>
+<p>It starts and manages services but is only one component of the operating system.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="thinking-applications-start-immediately-after-power-on">Thinking Applications Start Immediately After Power On<a href="#thinking-applications-start-immediately-after-power-on" class="hash-link" aria-label="Direct link to Thinking Applications Start Immediately After Power On" title="Direct link to Thinking Applications Start Immediately After Power On" translate="no">​</a></h3>
+<p>Before applications can run, Linux must initialize hardware, load the kernel, mount the file system, and start essential services.</p>
+<hr>
+<h1>Summary</h1>
+<p>The Linux boot process is a carefully organized sequence that transforms an inactive computer into a fully operational system.</p>
+<p>Each component has a specific responsibility:</p>
+<ul>
+<li class=""><strong>BIOS/UEFI</strong> initializes the hardware.</li>
+<li class=""><strong>POST</strong> verifies hardware functionality.</li>
+<li class=""><strong>GRUB</strong> loads the operating system.</li>
+<li class=""><strong>The Linux Kernel</strong> initializes core system components.</li>
+<li class=""><strong>initramfs</strong> prepares the root file system.</li>
+<li class=""><strong>systemd</strong> starts services and completes system initialization.</li>
+<li class=""><strong>The login prompt</strong> marks the system as ready for users.</li>
+</ul>
+<p>Understanding this sequence provides a strong foundation for troubleshooting boot issues and understanding how Linux starts internally.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>05 - Terminal, Shell and Bash</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-01-foundations/04-linux-boot-process.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-01-foundations/linux-architecture"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Linux Architecture</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-01-foundations/terminal-shell-and-bash"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Terminal, Shell and Bash</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#learning-objectives" class="table-of-contents__link toc-highlight">Learning Objectives</a><ul><li><a href="#bios" class="table-of-contents__link toc-highlight">BIOS</a></li><li><a href="#uefi" class="table-of-contents__link toc-highlight">UEFI</a></li><li><a href="#confusing-bios-with-grub" class="table-of-contents__link toc-highlight">Confusing BIOS with GRUB</a></li><li><a href="#assuming-systemd-is-the-operating-system" class="table-of-contents__link toc-highlight">Assuming systemd Is the Operating System</a></li><li><a href="#thinking-applications-start-immediately-after-power-on" class="table-of-contents__link toc-highlight">Thinking Applications Start Immediately After Power On</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

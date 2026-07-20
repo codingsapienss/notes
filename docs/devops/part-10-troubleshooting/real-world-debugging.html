@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-devops/part-10-troubleshooting/real-world-debugging" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Real-World Production Debugging | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/devops/part-10-troubleshooting/real-world-debugging"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Real-World Production Debugging | Knowledge Base"><meta data-rh="true" name="description" content="Overview"><meta data-rh="true" property="og:description" content="Overview"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/devops/part-10-troubleshooting/real-world-debugging"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-10-troubleshooting/real-world-debugging" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/devops/part-10-troubleshooting/real-world-debugging" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevOps","item":"https://codingsapienss.github.io/notes/docs/devops"},{"@type":"ListItem","position":2,"name":"Real-World Production Debugging","item":"https://codingsapienss.github.io/notes/docs/devops/part-10-troubleshooting/real-world-debugging"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.2b105a07.css">
+<script src="/notes/assets/js/runtime~main.f396707a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.efacb192.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Linux Troubleshooting" class="linkLabel_WmDU">Linux Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/network-troubleshooting"><span title="Network Troubleshooting" class="linkLabel_WmDU">Network Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/ssh-troubleshooting"><span title="SSH Troubleshooting" class="linkLabel_WmDU">SSH Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/nginx-troubleshooting"><span title="Nginx Troubleshooting" class="linkLabel_WmDU">Nginx Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/nodejs-troubleshooting"><span title="Node.js Troubleshooting" class="linkLabel_WmDU">Node.js Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/pm2-troubleshooting"><span title="PM2 Troubleshooting" class="linkLabel_WmDU">PM2 Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/cloudflare-troubleshooting"><span title="Cloudflare Troubleshooting" class="linkLabel_WmDU">Cloudflare Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/ssl-troubleshooting"><span title="SSL/TLS Troubleshooting" class="linkLabel_WmDU">SSL/TLS Troubleshooting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/real-world-debugging"><span title="Real-World Production Debugging" class="linkLabel_WmDU">Real-World Production Debugging</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Expand sidebar category &#x27;Web Development&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/devops"><span>DevOps</span></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Troubleshooting</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Real-World Production Debugging</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Real-World Production Debugging</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>In previous chapters, you learned how to troubleshoot individual components such as Linux, networking, SSH, Nginx, Node.js, PM2, Cloudflare, and SSL.</p>
+<p>In production environments, however, failures rarely occur in isolation.</p>
+<p>A single incident may involve multiple components:</p>
+<ul>
+<li class="">DNS</li>
+<li class="">Cloudflare</li>
+<li class="">SSL</li>
+<li class="">Nginx</li>
+<li class="">PM2</li>
+<li class="">Node.js</li>
+<li class="">Database</li>
+<li class="">Operating System</li>
+<li class="">External APIs</li>
+</ul>
+<p>Professional engineers do not rely on guesswork. Instead, they follow a structured debugging methodology to identify the true root cause while minimizing downtime.</p>
+<p>This chapter combines everything learned throughout this handbook into real production debugging scenarios.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-objectives">Learning Objectives<a href="#learning-objectives" class="hash-link" aria-label="Direct link to Learning Objectives" title="Direct link to Learning Objectives" translate="no">​</a></h2>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li class="">Approach production incidents systematically.</li>
+<li class="">Perform end-to-end debugging.</li>
+<li class="">Isolate failures quickly.</li>
+<li class="">Conduct root cause analysis (RCA).</li>
+<li class="">Differentiate symptoms from root causes.</li>
+<li class="">Restore services safely.</li>
+<li class="">Document production incidents.</li>
+<li class="">Apply debugging best practices used by experienced engineers.</li>
+</ul>
+<hr>
+<h1>The Golden Rule of Production Debugging</h1>
+<p>The first reported problem is rarely the actual problem.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User Reports</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Website Down</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">502 Error</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Wrong Database Password</span><br></div></code></pre></div></div>
+<p>The visible error is only a symptom.</p>
+<p>The objective of debugging is to identify the underlying cause.</p>
+<hr>
+<h1>Production Debugging Workflow</h1>
+<p>Every production issue should follow the same process.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Incident Reported</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify Issue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Collect Information</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Determine Scope</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Identify Layer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Investigate</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Find Root Cause</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Fix</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Document</span><br></div></code></pre></div></div>
+<p>Following a consistent workflow reduces downtime and prevents unnecessary changes.</p>
+<hr>
+<h1>Step 1 – Reproduce the Problem</h1>
+<p>Never begin troubleshooting based solely on someone else&#x27;s description.</p>
+<p>Questions to answer:</p>
+<ul>
+<li class="">Can the issue be reproduced?</li>
+<li class="">Does it affect all users?</li>
+<li class="">Does it affect one API?</li>
+<li class="">Is the issue intermittent?</li>
+<li class="">Did it begin after deployment?</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Customer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reports 502</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Administrator Confirms 502</span><br></div></code></pre></div></div>
+<p>Always verify the reported issue before making changes.</p>
+<hr>
+<h1>Step 2 – Determine the Scope</h1>
+<p>Identify the impact.</p>
+<p>Possible questions:</p>
+<ul>
+<li class="">One user or all users?</li>
+<li class="">One endpoint or the entire website?</li>
+<li class="">Production only?</li>
+<li class="">Staging also affected?</li>
+<li class="">Internal users only?</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Entire Website</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Likely Infrastructure</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">API Only</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Likely Application</span><br></div></code></pre></div></div>
+<p>Understanding the scope significantly narrows the investigation.</p>
+<hr>
+<h1>Step 3 – Identify the Affected Layer</h1>
+<p>Determine where the failure occurs.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Browser</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cloudflare</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Network</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Firewall</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">PM2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database</span><br></div></code></pre></div></div>
+<p>Work through the layers one at a time.</p>
+<hr>
+<h1>Step 4 – Gather Evidence</h1>
+<p>Never troubleshoot without evidence.</p>
+<p>Collect:</p>
+<ul>
+<li class="">Application logs</li>
+<li class="">Nginx logs</li>
+<li class="">System logs</li>
+<li class="">PM2 logs</li>
+<li class="">Monitoring graphs</li>
+<li class="">Deployment history</li>
+<li class="">Recent configuration changes</li>
+</ul>
+<p>Useful commands:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 logs</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo journalctl -xe</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo tail -f /var/log/nginx/error.log</span><br></div></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">top</span><br></div></code></pre></div></div>
+<p>The goal is to understand what changed and when.</p>
+<hr>
+<h1>Step 5 – Form a Hypothesis</h1>
+<p>After gathering evidence, form a possible explanation.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">High CPU</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Slow API</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Timeout</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">504 Error</span><br></div></code></pre></div></div>
+<p>A hypothesis should be tested before making changes.</p>
+<hr>
+<h1>Step 6 – Test One Change at a Time</h1>
+<p>Avoid changing multiple configurations simultaneously.</p>
+<p>Incorrect approach:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Restart PM2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Restart Nginx</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Modify Firewall</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Update DNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">No Idea What Fixed It</span><br></div></code></pre></div></div>
+<p>Correct approach:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">One Change</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Test</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Next Change (if needed)</span><br></div></code></pre></div></div>
+<p>This makes the debugging process repeatable and understandable.</p>
+<hr>
+<h1>Step 7 – Verify the Solution</h1>
+<p>Never assume the issue is resolved.</p>
+<p>Verify:</p>
+<ul>
+<li class="">Website loads.</li>
+<li class="">APIs respond.</li>
+<li class="">Logs are clean.</li>
+<li class="">CPU returns to normal.</li>
+<li class="">Memory remains stable.</li>
+<li class="">Users confirm resolution.</li>
+</ul>
+<p>Continue monitoring after the fix.</p>
+<hr>
+<h1>Root Cause Analysis (RCA)</h1>
+<p>A production incident should conclude with a Root Cause Analysis.</p>
+<p>Example format:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Incident</td><td>API unavailable</td></tr><tr><td>Start Time</td><td>09:05</td></tr><tr><td>End Time</td><td>09:27</td></tr><tr><td>Root Cause</td><td>Invalid environment variable</td></tr><tr><td>Resolution</td><td>Updated configuration and restarted application</td></tr><tr><td>Prevention</td><td>Deployment validation checklist</td></tr></tbody></table>
+<p>RCA prevents recurring incidents.</p>
+<hr>
+<h1>Case Study 1 – 502 Bad Gateway</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident">Incident<a href="#incident" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Users report <strong>502 Bad Gateway</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation">Investigation<a href="#investigation" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">curl http://localhost:3000</span><br></div></code></pre></div></div>
+<p>Fails.</p>
+<p>Check PM2.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 list</span><br></div></code></pre></div></div>
+<p>Application is offline.</p>
+<p>Check logs.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 logs</span><br></div></code></pre></div></div>
+<p>Output:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Error:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cannot find module &#x27;dotenv&#x27;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="root-cause">Root Cause<a href="#root-cause" class="hash-link" aria-label="Direct link to Root Cause" title="Direct link to Root Cause" translate="no">​</a></h3>
+<p>A deployment skipped dependency installation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution">Resolution<a href="#resolution" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">npm install</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pm2 restart api</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson">Lesson<a href="#lesson" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Always install dependencies during deployment.</p>
+<hr>
+<h1>Case Study 2 – Website Not Loading</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-1">Incident<a href="#incident-1" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Users cannot access the website.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-1">Investigation<a href="#investigation-1" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<p>Nginx:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo systemctl status nginx</span><br></div></code></pre></div></div>
+<p>Running.</p>
+<p>Firewall:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw status</span><br></div></code></pre></div></div>
+<p>Port <strong>443</strong> is blocked.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-1">Resolution<a href="#resolution-1" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw allow 443</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-1">Lesson<a href="#lesson-1" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Infrastructure changes should include firewall validation.</p>
+<hr>
+<h1>Case Study 3 – Database Connection Failure</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-2">Incident<a href="#incident-2" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Every API request returns <strong>500 Internal Server Error</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-2">Investigation<a href="#investigation-2" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<p>Logs show:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MongoServerError</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Authentication Failed</span><br></div></code></pre></div></div>
+<p>Environment variable:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MONGO_URI</span><br></div></code></pre></div></div>
+<p>Contains an outdated password.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-2">Resolution<a href="#resolution-2" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<p>Update <code>.env</code>.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 reload api</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-2">Lesson<a href="#lesson-2" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Configuration changes require validation before deployment.</p>
+<hr>
+<h1>Case Study 4 – High Memory Usage</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-3">Incident<a href="#incident-3" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Application restarts every few hours.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-3">Investigation<a href="#investigation-3" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 monit</span><br></div></code></pre></div></div>
+<p>Memory continuously increases.</p>
+<p>Developers identify a memory leak caused by retaining uploaded file buffers in memory.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-3">Resolution<a href="#resolution-3" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<p>Fix the application logic.</p>
+<p>Deploy the updated version.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-3">Lesson<a href="#lesson-3" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Restarting applications is not a permanent solution for memory leaks.</p>
+<hr>
+<h1>Case Study 5 – SSL Certificate Expired</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-4">Incident<a href="#incident-4" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Users receive browser security warnings.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-4">Investigation<a href="#investigation-4" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">openssl x509 -enddate -noout -in certificate.crt</span><br></div></code></pre></div></div>
+<p>Certificate expired.</p>
+<p>Automatic renewal failed because port <strong>80</strong> was blocked.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-4">Resolution<a href="#resolution-4" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw allow 80</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sudo certbot renew</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-4">Lesson<a href="#lesson-4" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Monitor certificate expiration proactively.</p>
+<hr>
+<h1>Case Study 6 – Cloudflare Error 522</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-5">Incident<a href="#incident-5" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Website displays <strong>522 Connection Timed Out</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-5">Investigation<a href="#investigation-5" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<p>Cloudflare reaches the network but cannot establish a connection.</p>
+<p>Server responds to <code>ping</code>.</p>
+<p>Nginx is running.</p>
+<p>Firewall blocks incoming HTTP traffic.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-5">Resolution<a href="#resolution-5" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw allow 80</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">sudo ufw allow 443</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-5">Lesson<a href="#lesson-5" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Always verify the origin firewall before assuming a Cloudflare issue.</p>
+<hr>
+<h1>Case Study 7 – Deployment Failure</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="incident-6">Incident<a href="#incident-6" class="hash-link" aria-label="Direct link to Incident" title="Direct link to Incident" translate="no">​</a></h2>
+<p>Deployment completes successfully, but users still see the old application.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="investigation-6">Investigation<a href="#investigation-6" class="hash-link" aria-label="Direct link to Investigation" title="Direct link to Investigation" translate="no">​</a></h3>
+<p>PM2 process was never reloaded.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="resolution-6">Resolution<a href="#resolution-6" class="hash-link" aria-label="Direct link to Resolution" title="Direct link to Resolution" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">pm2 reload api</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-6">Lesson<a href="#lesson-6" class="hash-link" aria-label="Direct link to Lesson" title="Direct link to Lesson" translate="no">​</a></h3>
+<p>Successful code deployment does not automatically update running processes.</p>
+<hr>
+<h1>Complete Production Debugging Flow</h1>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Incident</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reproduce</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Determine Scope</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Identify Layer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Collect Logs</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Check Recent Changes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Form Hypothesis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Test</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Fix</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Verify</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Monitor</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">↓</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Root Cause Analysis</span><br></div></code></pre></div></div>
+<p>This workflow can be applied to almost every production incident.</p>
+<hr>
+<h1>Incident Checklist</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Check</th><th>Completed</th></tr></thead><tbody><tr><td>Problem reproduced</td><td>□</td></tr><tr><td>Scope identified</td><td>□</td></tr><tr><td>Logs reviewed</td><td>□</td></tr><tr><td>Monitoring checked</td><td>□</td></tr><tr><td>Root cause identified</td><td>□</td></tr><tr><td>Fix verified</td><td>□</td></tr><tr><td>Monitoring confirmed</td><td>□</td></tr><tr><td>RCA documented</td><td>□</td></tr></tbody></table>
+<p>Using a checklist reduces the risk of missing important steps during high-pressure situations.</p>
+<hr>
+<h1>Essential Debugging Commands</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td><code>systemctl status nginx</code></td><td>Verify web server</td></tr><tr><td><code>pm2 list</code></td><td>Verify application</td></tr><tr><td><code>pm2 logs</code></td><td>Review application logs</td></tr><tr><td><code>pm2 monit</code></td><td>Monitor resources</td></tr><tr><td><code>journalctl -xe</code></td><td>Review system logs</td></tr><tr><td><code>tail -f /var/log/nginx/error.log</code></td><td>Review Nginx errors</td></tr><tr><td><code>ss -tulpn</code></td><td>Check listening ports</td></tr><tr><td><code>curl http://localhost</code></td><td>Test local services</td></tr><tr><td><code>ping</code></td><td>Verify connectivity</td></tr><tr><td><code>top</code></td><td>Monitor CPU usage</td></tr><tr><td><code>free -h</code></td><td>Monitor memory usage</td></tr><tr><td><code>df -h</code></td><td>Check disk usage</td></tr></tbody></table>
+<hr>
+<h1>Production Debugging Mindset</h1>
+<p>Successful engineers follow these principles:</p>
+<ul>
+<li class="">Stay calm during incidents.</li>
+<li class="">Gather evidence before making changes.</li>
+<li class="">Treat symptoms and root causes separately.</li>
+<li class="">Change one thing at a time.</li>
+<li class="">Verify every fix.</li>
+<li class="">Communicate clearly with stakeholders.</li>
+<li class="">Document every production incident.</li>
+<li class="">Learn from every outage.</li>
+</ul>
+<p>A disciplined approach consistently outperforms rushed troubleshooting.</p>
+<hr>
+<h1>Best Practices</h1>
+<ul>
+<li class="">Follow a standard debugging workflow for every incident.</li>
+<li class="">Review logs before restarting services.</li>
+<li class="">Correlate monitoring data with deployment history.</li>
+<li class="">Validate configuration changes before deployment.</li>
+<li class="">Use monitoring tools to detect issues early.</li>
+<li class="">Maintain detailed runbooks for common incidents.</li>
+<li class="">Perform Root Cause Analysis after every major outage.</li>
+<li class="">Conduct post-incident reviews to improve operational processes.</li>
+</ul>
+<hr>
+<h1>Common Mistakes</h1>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="jumping-directly-to-a-restart">Jumping Directly to a Restart<a href="#jumping-directly-to-a-restart" class="hash-link" aria-label="Direct link to Jumping Directly to a Restart" title="Direct link to Jumping Directly to a Restart" translate="no">​</a></h3>
+<p>Restarting services may temporarily restore functionality but often hides the underlying issue.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ignoring-recent-changes">Ignoring Recent Changes<a href="#ignoring-recent-changes" class="hash-link" aria-label="Direct link to Ignoring Recent Changes" title="Direct link to Ignoring Recent Changes" translate="no">​</a></h3>
+<p>Many production incidents occur shortly after deployments or configuration changes.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="changing-multiple-components-simultaneously">Changing Multiple Components Simultaneously<a href="#changing-multiple-components-simultaneously" class="hash-link" aria-label="Direct link to Changing Multiple Components Simultaneously" title="Direct link to Changing Multiple Components Simultaneously" translate="no">​</a></h3>
+<p>Making several changes at once makes it difficult to determine which action resolved the problem.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="confusing-symptoms-with-root-causes">Confusing Symptoms with Root Causes<a href="#confusing-symptoms-with-root-causes" class="hash-link" aria-label="Direct link to Confusing Symptoms with Root Causes" title="Direct link to Confusing Symptoms with Root Causes" translate="no">​</a></h3>
+<p>A 502 error, timeout, or high CPU usage is often a symptom rather than the underlying problem.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="skipping-root-cause-analysis">Skipping Root Cause Analysis<a href="#skipping-root-cause-analysis" class="hash-link" aria-label="Direct link to Skipping Root Cause Analysis" title="Direct link to Skipping Root Cause Analysis" translate="no">​</a></h3>
+<p>Resolving the immediate issue without understanding why it occurred increases the likelihood of future incidents.</p>
+<hr>
+<h1>Summary</h1>
+<p>Real-world production debugging combines technical knowledge with a disciplined troubleshooting methodology. Rather than relying on assumptions, experienced engineers reproduce the issue, determine its scope, identify the affected layer, collect evidence, test hypotheses, implement targeted fixes, verify the solution, and document the root cause. This systematic approach minimizes downtime, improves reliability, and transforms production incidents into opportunities for continuous improvement.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-chapter">Next Chapter<a href="#next-chapter" class="hash-link" aria-label="Direct link to Next Chapter" title="Direct link to Next Chapter" translate="no">​</a></h2>
+<p>➡️ <strong>Part 11 – Reference Guide</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/devops/part-10-troubleshooting/09-real-world-debugging.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/devops/part-10-troubleshooting/ssl-troubleshooting"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">SSL/TLS Troubleshooting</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/devops/part-11-reference/linux-command-reference"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Linux Command Reference</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#learning-objectives" class="table-of-contents__link toc-highlight">Learning Objectives</a></li><li><a href="#incident" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#root-cause" class="table-of-contents__link toc-highlight">Root Cause</a></li><li><a href="#resolution" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-1" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-1" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-1" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-1" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-2" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-2" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-2" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-2" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-3" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-3" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-3" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-3" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-4" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-4" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-4" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-4" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-5" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-5" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-5" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-5" class="table-of-contents__link toc-highlight">Lesson</a></li></ul></li><li><a href="#incident-6" class="table-of-contents__link toc-highlight">Incident</a><ul><li><a href="#investigation-6" class="table-of-contents__link toc-highlight">Investigation</a></li><li><a href="#resolution-6" class="table-of-contents__link toc-highlight">Resolution</a></li><li><a href="#lesson-6" class="table-of-contents__link toc-highlight">Lesson</a></li><li><a href="#jumping-directly-to-a-restart" class="table-of-contents__link toc-highlight">Jumping Directly to a Restart</a></li><li><a href="#ignoring-recent-changes" class="table-of-contents__link toc-highlight">Ignoring Recent Changes</a></li><li><a href="#changing-multiple-components-simultaneously" class="table-of-contents__link toc-highlight">Changing Multiple Components Simultaneously</a></li><li><a href="#confusing-symptoms-with-root-causes" class="table-of-contents__link toc-highlight">Confusing Symptoms with Root Causes</a></li><li><a href="#skipping-root-cause-analysis" class="table-of-contents__link toc-highlight">Skipping Root Cause Analysis</a></li></ul></li><li><a href="#next-chapter" class="table-of-contents__link toc-highlight">Next Chapter</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>
