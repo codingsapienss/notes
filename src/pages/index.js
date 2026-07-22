@@ -41,6 +41,12 @@ const KnowledgeCategories = [
     icon: <img src="/notes/img/react.svg" width="32" height="32" alt="React Logo" />,
   },
   {
+    title: 'Node.js',
+    description: 'Node.js runtime, module systems, CommonJS/ESM interop, and internals.',
+    link: '/docs/web-dev/node/modules/cjs_require_internals',
+    icon: <img src="/notes/img/nodejs.svg" width="32" height="32" alt="Node.js Logo" />,
+  },
+  {
     title: 'DevOps',
     description: 'Linux administration, cloud platforms, Nginx, deployment, monitoring, and troubleshooting.',
     link: '/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide',
