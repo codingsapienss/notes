@@ -31,3 +31,6 @@ yarn-error.log*
 .vscode
 *.swp
 *.swo
+
+# AI workflow guide — local reference only, never committed/pushed
+AI_DOCS_GUIDE.md
