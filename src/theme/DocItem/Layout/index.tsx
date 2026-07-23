@@ -1,6 +1,9 @@
 /**
  * Custom DocItem/Layout — adds collapse/expand toggle for the right TOC sidebar.
  * Desktop only (>= 997px). Mobile behavior is untouched.
+ * Icons match the left sidebar's convention:
+ *   - Expanded  → ChevronRight (points to edge, "hide this sidebar")
+ *   - Collapsed → ChevronLeft  (points to content, "show this sidebar")
  */
 
 import React, {type ReactNode, useState, useEffect, useCallback} from 'react';
@@ -88,7 +91,7 @@ export default function DocItemLayout({children}: Props): ReactNode {
               onClick={toggleToc}
               aria-label="Expand table of contents"
               title="Expand table of contents">
-              <ChevronRight size={18} />
+              <ChevronLeft size={18} />
             </button>
           ) : (
             <div className={styles.tocInner}>
@@ -98,7 +101,7 @@ export default function DocItemLayout({children}: Props): ReactNode {
                 onClick={toggleToc}
                 aria-label="Collapse table of contents"
                 title="Collapse table of contents">
-                <ChevronLeft size={18} />
+                <ChevronRight size={18} />
               </button>
               {docTOC.desktop}
             </div>

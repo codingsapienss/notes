@@ -22,14 +22,17 @@
     max-width: calc(100% - 56px) !important;
   }
 
-  /* Collapsed TOC column: shrink to 56px icon strip */
+  /* Collapsed TOC column: sticky 56px icon strip — always visible */
   .tocCollapsed .tocColumn {
     max-width: 56px !important;
     min-width: 56px !important;
     display: flex !important;
     justify-content: center !important;
-    align-items: flex-start !important;
-    padding-top: calc(var(--ifm-navbar-height) + 1rem) !important;
+    align-items: stretch !important;
+    position: sticky !important;
+    top: calc(var(--ifm-navbar-height)) !important;
+    height: calc(100vh - var(--ifm-navbar-height)) !important;
+    overflow: hidden !important;
   }
 }
 
@@ -73,9 +76,13 @@
   margin-bottom: 0.75rem;
 }
 
-/* Expand button in collapsed TOC (centered in narrow strip) */
+/* Expand button in collapsed TOC (fills the 56px sticky strip — click anywhere) */
 .tocExpandButton {
   position: static;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding-top: calc(var(--ifm-navbar-height) / 2) !important;
 }
 
 /* Hover states */
