@@ -198592,188 +198592,692 @@ const assets = {
 
 
 const toc = [{
+  "value": "1. The Big Picture",
+  "id": "1-the-big-picture",
+  "level": 2
+}, {
+  "value": "2. What Is a CommonJS Module?",
+  "id": "2-what-is-a-commonjs-module",
+  "level": 2
+}, {
+  "value": "3. What <code>require()</code> Actually Does",
+  "id": "3-what-require-actually-does",
+  "level": 2
+}, {
+  "value": "4. The Internal Loading Path",
+  "id": "4-the-internal-loading-path",
+  "level": 2
+}, {
+  "value": "5. The Local <code>require()</code> Function",
+  "id": "5-the-local-require-function",
+  "level": 2
+}, {
+  "value": "6. Why Is <code>require</code> Different in Different Files?",
+  "id": "6-why-is-require-different-in-different-files",
+  "level": 2
+}, {
+  "value": "7. Module Resolution",
+  "id": "7-module-resolution",
+  "level": 2
+}, {
+  "value": "8. Relative Requests",
+  "id": "8-relative-requests",
+  "level": 2
+}, {
+  "value": "9. Bare Package Requests",
+  "id": "9-bare-package-requests",
+  "level": 2
+}, {
+  "value": "10. Built-in Node Modules",
+  "id": "10-built-in-node-modules",
+  "level": 2
+}, {
+  "value": "11. <code>Module._resolveFilename</code>",
+  "id": "11-module_resolvefilename",
+  "level": 2
+}, {
+  "value": "12. First Match Wins",
+  "id": "12-first-match-wins",
+  "level": 2
+}, {
+  "value": "13. Directory Resolution",
+  "id": "13-directory-resolution",
+  "level": 2
+}, {
+  "value": "14. <code>node_modules</code> Search Paths",
+  "id": "14-node_modules-search-paths",
+  "level": 2
+}, {
+  "value": "15. <code>Module._pathCache</code>",
+  "id": "15-module_pathcache",
+  "level": 2
+}, {
   "value": "<code>require.cache</code>",
   "id": "requirecache",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>Module._pathCache</code>",
   "id": "module_pathcache",
-  "level": 3
+  "level": 4
+}, {
+  "value": "16. <code>MODULE_NOT_FOUND</code>",
+  "id": "16-module_not_found",
+  "level": 2
+}, {
+  "value": "17. The CommonJS Module Object",
+  "id": "17-the-commonjs-module-object",
+  "level": 2
+}, {
+  "value": "18. <code>module.exports</code>",
+  "id": "18-moduleexports",
+  "level": 2
+}, {
+  "value": "19. <code>exports</code> and <code>module.exports</code>",
+  "id": "19-exports-and-moduleexports",
+  "level": 2
+}, {
+  "value": "20. The <code>exports</code> Aliasing Trap",
+  "id": "20-the-exports-aliasing-trap",
+  "level": 2
+}, {
+  "value": "21. Correct Rule for <code>exports</code>",
+  "id": "21-correct-rule-for-exports",
+  "level": 2
+}, {
+  "value": "22. Named Exports with CommonJS",
+  "id": "22-named-exports-with-commonjs",
+  "level": 2
+}, {
+  "value": "23. Exporting One Complete Value",
+  "id": "23-exporting-one-complete-value",
+  "level": 2
+}, {
+  "value": "24. Exporting a Class",
+  "id": "24-exporting-a-class",
+  "level": 2
+}, {
+  "value": "25. Functions Can Have Properties",
+  "id": "25-functions-can-have-properties",
+  "level": 2
+}, {
+  "value": "26. Module Cache",
+  "id": "26-module-cache",
+  "level": 2
+}, {
+  "value": "27. Same Resolved Filename = Same Cached Module",
+  "id": "27-same-resolved-filename--same-cached-module",
+  "level": 2
+}, {
+  "value": "28. Shared Export References",
+  "id": "28-shared-export-references",
+  "level": 2
+}, {
+  "value": "29. <code>require.cache</code>",
+  "id": "29-requirecache",
+  "level": 2
+}, {
+  "value": "30. Deleting a Module from the Cache",
+  "id": "30-deleting-a-module-from-the-cache",
+  "level": 2
+}, {
+  "value": "31. Cache Deletion Does Not Update Existing References",
+  "id": "31-cache-deletion-does-not-update-existing-references",
+  "level": 2
+}, {
+  "value": "32. Why Cache Deletion Is Fragile for Hot Reloading",
+  "id": "32-why-cache-deletion-is-fragile-for-hot-reloading",
+  "level": 2
+}, {
+  "value": "33. Why <code>require.cache</code> Uses a Prototype-less Object",
+  "id": "33-why-requirecache-uses-a-prototype-less-object",
+  "level": 2
+}, {
+  "value": "34. <code>module.loaded</code>",
+  "id": "34-moduleloaded",
+  "level": 2
+}, {
+  "value": "35. Why Node Caches Before Executing",
+  "id": "35-why-node-caches-before-executing",
+  "level": 2
+}, {
+  "value": "36. Circular Dependencies",
+  "id": "36-circular-dependencies",
+  "level": 2
+}, {
+  "value": "37. Circular Dependency Example",
+  "id": "37-circular-dependency-example",
+  "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.js</code>",
   "id": "bjs",
-  "level": 3
+  "level": 4
+}, {
+  "value": "38. Timeline of the Circular Example",
+  "id": "38-timeline-of-the-circular-example",
+  "level": 2
+}, {
+  "value": "39. Live Reference After a Circular Dependency",
+  "id": "39-live-reference-after-a-circular-dependency",
+  "level": 2
+}, {
+  "value": "40. The More Dangerous Circular Dependency Case",
+  "id": "40-the-more-dangerous-circular-dependency-case",
+  "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs-1",
-  "level": 3
+  "level": 4
+}, {
+  "value": "41. Why Mutating <code>exports</code> Can Be Safer in a Cycle",
+  "id": "41-why-mutating-exports-can-be-safer-in-a-cycle",
+  "level": 2
+}, {
+  "value": "42. Better Solutions to Circular Dependencies",
+  "id": "42-better-solutions-to-circular-dependencies",
+  "level": 2
 }, {
   "value": "Option 1: Extract shared functionality",
   "id": "option-1-extract-shared-functionality",
-  "level": 3
+  "level": 4
 }, {
   "value": "Option 2: Dependency injection",
   "id": "option-2-dependency-injection",
-  "level": 3
+  "level": 4
 }, {
   "value": "Option 3: Separate initialization from usage",
   "id": "option-3-separate-initialization-from-usage",
-  "level": 3
+  "level": 4
 }, {
   "value": "Option 4: Lazy <code>require()</code>",
   "id": "option-4-lazy-require",
-  "level": 3
+  "level": 4
+}, {
+  "value": "43. Lazy <code>require()</code> and Caching",
+  "id": "43-lazy-require-and-caching",
+  "level": 2
+}, {
+  "value": "44. <code>module.children</code>",
+  "id": "44-modulechildren",
+  "level": 2
+}, {
+  "value": "45. <code>require.resolve()</code>",
+  "id": "45-requireresolve",
+  "level": 2
 }, {
   "value": "<code>require()</code>",
   "id": "require",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>require.resolve()</code>",
   "id": "requireresolve",
-  "level": 3
+  "level": 4
+}, {
+  "value": "46. <code>require.resolve()</code> Is Not an Existence Boolean",
+  "id": "46-requireresolve-is-not-an-existence-boolean",
+  "level": 2
+}, {
+  "value": "47. <code>require.resolve.paths()</code>",
+  "id": "47-requireresolvepaths",
+  "level": 2
+}, {
+  "value": "48. <code>require.resolve()</code> with <code>paths</code>",
+  "id": "48-requireresolve-with-paths",
+  "level": 2
+}, {
+  "value": "49. Resolution Cache vs Module Cache",
+  "id": "49-resolution-cache-vs-module-cache",
+  "level": 2
 }, {
   "value": "Resolution cache",
   "id": "resolution-cache",
-  "level": 2
+  "level": 3
 }, {
   "value": "Module cache",
   "id": "module-cache",
+  "level": 3
+}, {
+  "value": "50. <code>Module.prototype.load()</code>",
+  "id": "50-moduleprototypeload",
+  "level": 2
+}, {
+  "value": "51. <code>Module._extensions</code>",
+  "id": "51-module_extensions",
+  "level": 2
+}, {
+  "value": "52. <code>.js</code> Handler",
+  "id": "52-js-handler",
+  "level": 2
+}, {
+  "value": "53. <code>.json</code> Handler",
+  "id": "53-json-handler",
+  "level": 2
+}, {
+  "value": "54. JSON BOM Handling",
+  "id": "54-json-bom-handling",
+  "level": 2
+}, {
+  "value": "55. <code>.node</code> Native Addons",
+  "id": "55-node-native-addons",
+  "level": 2
+}, {
+  "value": "56. <code>require.extensions</code>",
+  "id": "56-requireextensions",
+  "level": 2
+}, {
+  "value": "57. <code>module._compile()</code>",
+  "id": "57-module_compile",
+  "level": 2
+}, {
+  "value": "58. The CommonJS Wrapper",
+  "id": "58-the-commonjs-wrapper",
+  "level": 2
+}, {
+  "value": "59. The Wrapper Is a Mental Model",
+  "id": "59-the-wrapper-is-a-mental-model",
+  "level": 2
+}, {
+  "value": "60. Top-level <code>this</code>",
+  "id": "60-top-level-this",
+  "level": 2
+}, {
+  "value": "61. Compilation vs Execution",
+  "id": "61-compilation-vs-execution",
   "level": 2
 }, {
   "value": "Compilation",
   "id": "compilation",
-  "level": 3
+  "level": 4
 }, {
   "value": "Execution",
   "id": "execution",
-  "level": 3
+  "level": 4
+}, {
+  "value": "62. Top-Level Code Executes During Loading",
+  "id": "62-top-level-code-executes-during-loading",
+  "level": 2
+}, {
+  "value": "63. What <code>require()</code> Does Not Wait For",
+  "id": "63-what-require-does-not-wait-for",
+  "level": 2
+}, {
+  "value": "64. Why Lazy <code>require()</code> Can Affect Performance",
+  "id": "64-why-lazy-require-can-affect-performance",
+  "level": 2
+}, {
+  "value": "65. Startup <code>require()</code> vs Request-Time <code>require()</code>",
+  "id": "65-startup-require-vs-request-time-require",
+  "level": 2
+}, {
+  "value": "66. Conditional <code>require()</code>",
+  "id": "66-conditional-require",
+  "level": 2
+}, {
+  "value": "67. CommonJS vs Static ESM <code>import</code>",
+  "id": "67-commonjs-vs-static-esm-import",
+  "level": 2
+}, {
+  "value": "68. Startup Ordering",
+  "id": "68-startup-ordering",
+  "level": 2
+}, {
+  "value": "69. <code>require.main</code>",
+  "id": "69-requiremain",
+  "level": 2
+}, {
+  "value": "70. Direct Execution vs Being Required",
+  "id": "70-direct-execution-vs-being-required",
+  "level": 2
+}, {
+  "value": "71. <code>require.main</code> and ESM",
+  "id": "71-requiremain-and-esm",
+  "level": 2
+}, {
+  "value": "72. Loading Failure and Cache Cleanup",
+  "id": "72-loading-failure-and-cache-cleanup",
+  "level": 2
+}, {
+  "value": "73. What Happens on a Second Attempt After Failure?",
+  "id": "73-what-happens-on-a-second-attempt-after-failure",
+  "level": 2
+}, {
+  "value": "74. <code>require()</code> and Side Effects",
+  "id": "74-require-and-side-effects",
+  "level": 2
+}, {
+  "value": "75. Module Cache Is Process-local",
+  "id": "75-module-cache-is-process-local",
+  "level": 2
+}, {
+  "value": "76. Module Cache Is Not the Same as Compile Cache",
+  "id": "76-module-cache-is-not-the-same-as-compile-cache",
+  "level": 2
 }, {
   "value": "<code>require.cache</code>",
   "id": "requirecache-1",
-  "level": 2
+  "level": 3
 }, {
   "value": "Compile cache",
   "id": "compile-cache",
+  "level": 3
+}, {
+  "value": "77. Important Cache Distinction",
+  "id": "77-important-cache-distinction",
+  "level": 2
+}, {
+  "value": "78. Main Module Bookkeeping",
+  "id": "78-main-module-bookkeeping",
+  "level": 2
+}, {
+  "value": "79. Source Maps and Compilation",
+  "id": "79-source-maps-and-compilation",
+  "level": 2
+}, {
+  "value": "80. Shebang Handling",
+  "id": "80-shebang-handling",
+  "level": 2
+}, {
+  "value": "81. The Complete <code>require()</code> Lifecycle",
+  "id": "81-the-complete-require-lifecycle",
   "level": 2
 }, {
   "value": "<code>math.js</code>",
   "id": "mathjs",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>app.js</code>",
   "id": "appjs",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 1 — Receive request",
   "id": "step-1--receive-request",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 2 — Resolve",
   "id": "step-2--resolve",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 3 — Check cache",
   "id": "step-3--check-cache",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 4 — Create Module",
   "id": "step-4--create-module",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 5 — Cache the Module",
   "id": "step-5--cache-the-module",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 6 — Load",
   "id": "step-6--load",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 7 — Choose <code>.js</code> handler",
   "id": "step-7--choose-js-handler",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 8 — Compile",
   "id": "step-8--compile",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 9 — Execute",
   "id": "step-9--execute",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 10 — Mark Loaded",
   "id": "step-10--mark-loaded",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 11 — Return Export",
   "id": "step-11--return-export",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 12 — Caller continues",
   "id": "step-12--caller-continues",
-  "level": 3
+  "level": 4
+}, {
+  "value": "82. Full Lifecycle Diagram",
+  "id": "82-full-lifecycle-diagram",
+  "level": 2
+}, {
+  "value": "83. The Most Important Ordering Detail",
+  "id": "83-the-most-important-ordering-detail",
+  "level": 2
+}, {
+  "value": "84. Why the Cache Stores the Module Object",
+  "id": "84-why-the-cache-stores-the-module-object",
+  "level": 2
+}, {
+  "value": "85. Later <code>module.exports</code> Replacement",
+  "id": "85-later-moduleexports-replacement",
+  "level": 2
+}, {
+  "value": "86. Existing References vs Current <code>module.exports</code>",
+  "id": "86-existing-references-vs-current-moduleexports",
+  "level": 2
+}, {
+  "value": "87. <code>module.exports</code> Replacement vs Mutation",
+  "id": "87-moduleexports-replacement-vs-mutation",
+  "level": 2
 }, {
   "value": "Mutation",
   "id": "mutation",
-  "level": 3
+  "level": 4
 }, {
   "value": "Replacement",
   "id": "replacement",
-  "level": 3
+  "level": 4
+}, {
+  "value": "88. A Practical Comparison",
+  "id": "88-a-practical-comparison",
+  "level": 2
+}, {
+  "value": "89. Debugging Module Resolution",
+  "id": "89-debugging-module-resolution",
+  "level": 2
+}, {
+  "value": "90. Debugging the Cache",
+  "id": "90-debugging-the-cache",
+  "level": 2
+}, {
+  "value": "91. Debugging Circular Dependencies",
+  "id": "91-debugging-circular-dependencies",
+  "level": 2
+}, {
+  "value": "92. Circular Dependency Debugging Example",
+  "id": "92-circular-dependency-debugging-example",
+  "level": 2
+}, {
+  "value": "93. <code>module.children</code> and Runtime Graphs",
+  "id": "93-modulechildren-and-runtime-graphs",
+  "level": 2
+}, {
+  "value": "94. Internal APIs vs Public APIs",
+  "id": "94-internal-apis-vs-public-apis",
+  "level": 2
+}, {
+  "value": "95. What to Memorize vs What to Understand",
+  "id": "95-what-to-memorize-vs-what-to-understand",
+  "level": 2
 }, {
   "value": "Memorize",
   "id": "memorize",
-  "level": 2
+  "level": 3
 }, {
   "value": "Understand conceptually",
   "id": "understand-conceptually",
+  "level": 3
+}, {
+  "value": "96. Common Interview Question: &quot;Does <code>require()</code> Execute the Module?&quot;",
+  "id": "96-common-interview-question-does-require-execute-the-module",
+  "level": 2
+}, {
+  "value": "97. Common Interview Question: &quot;Does <code>require()</code> Give Access to All Variables?&quot;",
+  "id": "97-common-interview-question-does-require-give-access-to-all-variables",
+  "level": 2
+}, {
+  "value": "98. Common Interview Question: &quot;If I Require a Module, Does Its Code Run?&quot;",
+  "id": "98-common-interview-question-if-i-require-a-module-does-its-code-run",
+  "level": 2
+}, {
+  "value": "99. Common Interview Question: &quot;Is a Required Object Cloned?&quot;",
+  "id": "99-common-interview-question-is-a-required-object-cloned",
+  "level": 2
+}, {
+  "value": "100. Common Interview Question: &quot;Why Is <code>exports.foo</code> Working?&quot;",
+  "id": "100-common-interview-question-why-is-exportsfoo-working",
+  "level": 2
+}, {
+  "value": "101. Common Interview Question: &quot;Why Does Circular Dependency Return Undefined?&quot;",
+  "id": "101-common-interview-question-why-does-circular-dependency-return-undefined",
+  "level": 2
+}, {
+  "value": "102. Common Interview Question: &quot;Why Does Node Cache Before Execution?&quot;",
+  "id": "102-common-interview-question-why-does-node-cache-before-execution",
+  "level": 2
+}, {
+  "value": "103. Common Interview Question: &quot;What Is the Cache Key?&quot;",
+  "id": "103-common-interview-question-what-is-the-cache-key",
+  "level": 2
+}, {
+  "value": "104. Common Interview Question: &quot;<code>require.resolve()</code> vs <code>require()</code>?&quot;",
+  "id": "104-common-interview-question-requireresolve-vs-require",
   "level": 2
 }, {
   "value": "<code>require()</code>",
   "id": "require-1",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>require.resolve()</code>",
   "id": "requireresolve-1",
-  "level": 3
+  "level": 4
+}, {
+  "value": "105. Common Interview Question: &quot;<code>require.resolve.paths()</code>?&quot;",
+  "id": "105-common-interview-question-requireresolvepaths",
+  "level": 2
+}, {
+  "value": "106. Common Interview Question: &quot;Why Is <code>require()</code> Synchronous?&quot;",
+  "id": "106-common-interview-question-why-is-require-synchronous",
+  "level": 2
+}, {
+  "value": "107. Common Interview Question: &quot;Should I Require Heavy Modules Inside Request Handlers?&quot;",
+  "id": "107-common-interview-question-should-i-require-heavy-modules-inside-request-handlers",
+  "level": 2
+}, {
+  "value": "108. Common Interview Question: &quot;What Happens If Module Loading Throws?&quot;",
+  "id": "108-common-interview-question-what-happens-if-module-loading-throws",
+  "level": 2
+}, {
+  "value": "109. Common Interview Question: &quot;What Happens If JSON Changes on Disk?&quot;",
+  "id": "109-common-interview-question-what-happens-if-json-changes-on-disk",
+  "level": 2
+}, {
+  "value": "110. Practical Experiment: Module Executes Once",
+  "id": "110-practical-experiment-module-executes-once",
+  "level": 2
+}, {
+  "value": "111. Practical Experiment: <code>exports</code> Alias",
+  "id": "111-practical-experiment-exports-alias",
+  "level": 2
+}, {
+  "value": "112. Practical Experiment: Breaking the Alias",
+  "id": "112-practical-experiment-breaking-the-alias",
+  "level": 2
+}, {
+  "value": "113. Practical Experiment: Replacing <code>module.exports</code>",
+  "id": "113-practical-experiment-replacing-moduleexports",
+  "level": 2
+}, {
+  "value": "114. Practical Experiment: Shared Object",
+  "id": "114-practical-experiment-shared-object",
+  "level": 2
+}, {
+  "value": "115. Practical Experiment: <code>require.resolve()</code>",
+  "id": "115-practical-experiment-requireresolve",
+  "level": 2
+}, {
+  "value": "116. Practical Experiment: Cache Inspection",
+  "id": "116-practical-experiment-cache-inspection",
+  "level": 2
+}, {
+  "value": "117. Practical Experiment: Cache Deletion",
+  "id": "117-practical-experiment-cache-deletion",
+  "level": 2
+}, {
+  "value": "118. Practical Experiment: Circular Dependency",
+  "id": "118-practical-experiment-circular-dependency",
+  "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs-2",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.js</code>",
   "id": "bjs-1",
-  "level": 3
+  "level": 4
+}, {
+  "value": "119. Practical Experiment: Cycle + Replacement",
+  "id": "119-practical-experiment-cycle--replacement",
+  "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs-3",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.js</code>",
   "id": "bjs-2",
-  "level": 3
+  "level": 4
+}, {
+  "value": "120. Practical Experiment: Directory Resolution",
+  "id": "120-practical-experiment-directory-resolution",
+  "level": 2
+}, {
+  "value": "121. Practical Experiment: Conditional Loading",
+  "id": "121-practical-experiment-conditional-loading",
+  "level": 2
+}, {
+  "value": "122. A Better Mental Model for Node CommonJS",
+  "id": "122-a-better-mental-model-for-node-commonjs",
+  "level": 2
+}, {
+  "value": "123. The Five Core Objects/Concepts",
+  "id": "123-the-five-core-objectsconcepts",
+  "level": 2
 }, {
   "value": "1. Request",
   "id": "1-request",
-  "level": 2
+  "level": 3
 }, {
   "value": "2. Resolved filename",
   "id": "2-resolved-filename",
-  "level": 2
+  "level": 3
 }, {
   "value": "3. Module object",
   "id": "3-module-object",
-  "level": 2
+  "level": 3
 }, {
   "value": "4. Cache",
   "id": "4-cache",
-  "level": 2
+  "level": 3
 }, {
   "value": "5. <code>module.exports</code>",
   "id": "5-moduleexports",
+  "level": 3
+}, {
+  "value": "124. One Diagram to Remember Forever",
+  "id": "124-one-diagram-to-remember-forever",
+  "level": 2
+}, {
+  "value": "125. Summary of Every Major Concept",
+  "id": "125-summary-of-every-major-concept",
+  "level": 2
+}, {
+  "value": "126. Final Mental Model",
+  "id": "126-final-mental-model",
   "level": 2
 }];
 function _createMdxContent(props) {
@@ -198783,6 +199287,7 @@ function _createMdxContent(props) {
     h1: "h1",
     h2: "h2",
     h3: "h3",
+    h4: "h4",
     header: "header",
     hr: "hr",
     li: "li",
@@ -198828,7 +199333,7 @@ function _createMdxContent(props) {
           children: "Scope:"
         }), " This document focuses on the concepts covered by that source. Internal Node APIs are implementation details and can change between Node versions."]
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "1-the-big-picture",
       children: "1. The Big Picture"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -198857,7 +199362,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This single diagram explains most of the CommonJS behavior discussed in this chapter."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "2-what-is-a-commonjs-module",
       children: "2. What Is a CommonJS Module?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -198896,7 +199401,7 @@ function _createMdxContent(props) {
       }), " is the current value of ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "3-what-require-actually-does",
       children: ["3. What ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -198969,7 +199474,7 @@ function _createMdxContent(props) {
       children: ["because CommonJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " is synchronous."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "4-the-internal-loading-path",
       children: "4. The Internal Loading Path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199053,7 +199558,7 @@ function _createMdxContent(props) {
           })]
         })]
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "5-the-local-require-function",
       children: ["5. The Local ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -199089,7 +199594,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They are supplied by the CommonJS module system rather than being ordinary global variables."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "6-why-is-require-different-in-different-files",
       children: ["6. Why Is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require"
@@ -199140,7 +199645,7 @@ function _createMdxContent(props) {
       children: "can resolve to different files depending on which module performs the request."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The parent module matters during resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "7-module-resolution",
       children: "7. Module Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199174,7 +199679,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For a file-backed CommonJS module, that resolved filename becomes the normal cache key."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "8-relative-requests",
       children: "8. Relative Requests"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199216,7 +199721,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "/home/user/project/src/utils.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "9-bare-package-requests",
       children: "9. Bare Package Requests"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199253,7 +199758,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "start near the requiring file\r\n        |\r\n        v\r\nlook for node_modules\r\n        |\r\n        v\r\nmove upward\r\n        |\r\n        v\r\nlook again\r\n        |\r\n        v\r\ncontinue toward filesystem root\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "10-built-in-node-modules",
       children: "10. Built-in Node Modules"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199302,7 +199807,7 @@ function _createMdxContent(props) {
       children: ["The source notes that the ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node:"
       }), " form avoids ambiguity with userland cache tricks and filesystem fallback."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "11-module_resolvefilename",
       children: ["11. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._resolveFilename"
@@ -199336,7 +199841,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Once this happens, Node knows which module it is dealing with."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "12-first-match-wins",
       children: "12. First Match Wins"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199354,7 +199859,7 @@ function _createMdxContent(props) {
       children: "Once an appropriate target is found, resolution stops."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is why creating multiple possible candidates can create surprising resolution behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "13-directory-resolution",
       children: "13. Directory Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199398,7 +199903,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"./myLib\")\r\n        |\r\n        v\r\ndirectory?\r\n        |\r\n        v\r\ncheck package.json\r\n        |\r\n        v\r\nusable \"main\"?\r\n      /     \\\r\n    yes      no\r\n     |        |\r\n     v        v\r\n main      index.js\r\n             |\r\n             v\r\n          index.json\r\n             |\r\n             v\r\n          index.node\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "14-node_modules-search-paths",
       children: ["14. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
@@ -199423,7 +199928,7 @@ function _createMdxContent(props) {
       children: ["These paths are associated with the module and can be seen through ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.paths"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "15-module_pathcache",
       children: ["15. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._pathCache"
@@ -199457,21 +199962,21 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They solve different problems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "requirecache",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Caches loaded module objects."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "module_pathcache",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._pathCache"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Caches resolution results."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "16-module_not_found",
       children: ["16. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "MODULE_NOT_FOUND"
@@ -199499,7 +200004,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The error also includes information about the require chain that led to the failure."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "17-the-commonjs-module-object",
       children: "17. The CommonJS Module Object"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -199582,7 +200087,7 @@ function _createMdxContent(props) {
           })]
         })]
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "18-moduleexports",
       children: ["18. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -199639,7 +200144,7 @@ function _createMdxContent(props) {
       children: ["then ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " returns the function itself."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "19-exports-and-moduleexports",
       children: ["19. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
@@ -199678,7 +200183,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports\r\n   |\r\n   v\r\n{ greet: function }\r\n\r\nmodule.exports\r\n   |\r\n   └────> same object\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "20-the-exports-aliasing-trap",
       children: ["20. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
@@ -199729,7 +200234,7 @@ function _createMdxContent(props) {
       children: ["not the local ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
       }), " variable."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "21-correct-rule-for-exports",
       children: ["21. Correct Rule for ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
@@ -199761,7 +200266,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "when your intention is to replace what consumers receive."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "22-named-exports-with-commonjs",
       children: "22. Named Exports with CommonJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199785,7 +200290,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "{\r\n  add: ...,\r\n  subtract: ...\r\n}\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "23-exporting-one-complete-value",
       children: "23. Exporting One Complete Value"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199804,7 +200309,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The variable itself is the exported function."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "24-exporting-a-class",
       children: "24. Exporting a Class"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199823,7 +200328,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The exported value is the class."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "25-functions-can-have-properties",
       children: "25. Functions Can Have Properties"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199851,7 +200356,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a useful CommonJS pattern."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "26-module-cache",
       children: "26. Module Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199874,7 +200379,7 @@ function _createMdxContent(props) {
       children: "Node normally loads the file only once."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The second request gets the cached module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "27-same-resolved-filename--same-cached-module",
       children: "27. Same Resolved Filename = Same Cached Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199902,7 +200407,7 @@ function _createMdxContent(props) {
       children: ["Symlinks, package boundaries, and options such as ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "--preserve-symlinks"
       }), " can affect the resolved path."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "28-shared-export-references",
       children: "28. Shared Export References"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199937,7 +200442,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "There is no cloning."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "29-requirecache",
       children: ["29. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -199969,7 +200474,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.cache = {\r\n  \"/project/math.js\": ModuleInstance,\r\n};\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "30-deleting-a-module-from-the-cache",
       children: "30. Deleting a Module from the Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -199997,7 +200502,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The second load can produce a new module/export object."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "31-cache-deletion-does-not-update-existing-references",
       children: "31. Cache Deletion Does Not Update Existing References"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200020,7 +200525,7 @@ function _createMdxContent(props) {
       children: "Deleting the cache does not reach into every variable in the application and replace its reference."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore a process can temporarily have two versions of the same module's exports alive."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "32-why-cache-deletion-is-fragile-for-hot-reloading",
       children: "32. Why Cache Deletion Is Fragile for Hot Reloading"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200059,7 +200564,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore cache deletion is useful for experiments and some development scenarios, but it is not automatically a sound production hot-reload strategy."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "33-why-requirecache-uses-a-prototype-less-object",
       children: ["33. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -200086,7 +200591,7 @@ function _createMdxContent(props) {
       children: "A prototype-less object avoids inherited-key collisions."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is an implementation detail rather than something application code normally needs to reproduce."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "34-moduleloaded",
       children: ["34. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.loaded"
@@ -200121,7 +200626,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.loaded === false;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "35-why-node-caches-before-executing",
       children: "35. Why Node Caches Before Executing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200170,7 +200675,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "A -> B -> A -> B -> A -> ...\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "36-circular-dependencies",
       children: "36. Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200191,10 +200696,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "CommonJS allows this situation, but modules may receive partially initialized exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "37-circular-dependency-example",
       children: "37. Circular Dependency Example"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -200204,7 +200709,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "exports.fromA = \"hello from A\";\r\n\r\nconst b = require(\"./b\");\r\n\r\nexports.afterB = \"set after B loaded\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.js"
@@ -200270,7 +200775,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "yet."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "38-timeline-of-the-circular-example",
       children: "38. Timeline of the Circular Example"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200288,7 +200793,7 @@ function _createMdxContent(props) {
           children: "The read happened early, but the reference can remain live."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "39-live-reference-after-a-circular-dependency",
       children: "39. Live Reference After a Circular Dependency"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200335,14 +200840,14 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "same live object reference\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "40-the-more-dangerous-circular-dependency-case",
       children: "40. The More Dangerous Circular Dependency Case"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: ["The problem becomes worse when a module replaces ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -200384,7 +200889,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "B still holds the old object."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "41-why-mutating-exports-can-be-safer-in-a-cycle",
       children: ["41. Why Mutating ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
@@ -200424,7 +200929,7 @@ function _createMdxContent(props) {
           children: "The better architectural solution is usually to remove the cycle."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "42-better-solutions-to-circular-dependencies",
       children: "42. Better Solutions to Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200436,7 +200941,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "exists, consider:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "option-1-extract-shared-functionality",
       children: "Option 1: Extract shared functionality"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -200444,17 +200949,17 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "      common\r\n      /    \\\r\n     A      B\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "option-2-dependency-injection",
       children: "Option 2: Dependency injection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Instead of A directly requiring B, pass B into A."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "option-3-separate-initialization-from-usage",
       children: "Option 3: Separate initialization from usage"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Make module initialization independent from operations that require the other module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "option-4-lazy-require",
       children: ["Option 4: Lazy ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -200477,7 +200982,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can work, but it is a workaround rather than proof that the dependency graph is healthy."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "43-lazy-require-and-caching",
       children: ["43. Lazy ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -200500,7 +201005,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The lookup still occurs, but the expensive loading work normally does not repeat."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "44-modulechildren",
       children: ["44. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.children"
@@ -200532,7 +201037,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It describes runtime loading relationships, not necessarily every possible dependency in the source code."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "45-requireresolve",
       children: ["45. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -200569,7 +201074,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.resolve(\"./utils\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "require",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -200579,7 +201084,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "resolve\r\n  |\r\n  v\r\nload\r\n  |\r\n  v\r\ncompile / parse\r\n  |\r\n  v\r\nexecute\r\n  |\r\n  v\r\nreturn exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "requireresolve",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -200591,7 +201096,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does not load or execute the module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "46-requireresolve-is-not-an-existence-boolean",
       children: ["46. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -200623,7 +201128,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "found\r\n  -> returns resolved target\r\n\r\nnot found\r\n  -> throws MODULE_NOT_FOUND\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "47-requireresolvepaths",
       children: ["47. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve.paths()"
@@ -200677,7 +201182,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "because built-in modules do not use the normal filesystem package lookup chain."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "48-requireresolve-with-paths",
       children: ["48. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -200699,12 +201204,12 @@ function _createMdxContent(props) {
       }), " lookup chain."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The package still has to exist somewhere in that resulting lookup chain."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "49-resolution-cache-vs-module-cache",
       children: "49. Resolution Cache vs Module Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These are easy to confuse."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "resolution-cache",
       children: "Resolution cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200718,7 +201223,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"./math\"\r\n   |\r\n   v\r\n\"/project/math.js\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "module-cache",
       children: "Module cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200739,7 +201244,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "request\r\n  |\r\n  v\r\nresolution\r\n  |\r\n  v\r\nfilename\r\n  |\r\n  v\r\nmodule cache\r\n  |\r\n  v\r\nModule instance\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "50-moduleprototypeload",
       children: ["50. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module.prototype.load()"
@@ -200778,7 +201283,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "Module.prototype.load = function (filename) {\r\n  this.filename = filename;\r\n\r\n  const extension = findExtension(filename);\r\n\r\n  Module._extensions[extension](this, filename);\r\n\r\n  this.loaded = true;\r\n};\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "51-module_extensions",
       children: ["51. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._extensions"
@@ -200832,7 +201337,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "filename\r\n   |\r\n   +---- .js   -> JavaScript handler\r\n   |\r\n   +---- .json -> JSON handler\r\n   |\r\n   +---- .node -> native addon handler\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "52-js-handler",
       children: ["52. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
@@ -200865,7 +201370,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "10\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "53-json-handler",
       children: ["53. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".json"
@@ -200893,7 +201398,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "JSON file\r\n   |\r\n   v\r\nread text\r\n   |\r\n   v\r\nparse JSON\r\n   |\r\n   v\r\nmodule.exports = parsed value\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "54-json-bom-handling",
       children: "54. JSON BOM Handling"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -200904,7 +201409,7 @@ function _createMdxContent(props) {
       children: "Node strips that marker before parsing JSON so it is not treated as part of the JSON document."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a lower-level implementation detail."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "55-node-native-addons",
       children: ["55. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".node"
@@ -200934,7 +201439,7 @@ function _createMdxContent(props) {
       children: ["For normal application development, you generally only need to recognize ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".node"
       }), " as the native-addon format."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "56-requireextensions",
       children: ["56. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.extensions"
@@ -200964,7 +201469,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Modern systems generally prefer pre-compilation or dedicated loader mechanisms."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "57-module_compile",
       children: ["57. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module._compile()"
@@ -200984,7 +201489,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "raw JavaScript source\r\n        |\r\n        v\r\nCommonJS compilation\r\n        |\r\n        v\r\ncallable module function\r\n        |\r\n        v\r\nexecute\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "58-the-commonjs-wrapper",
       children: "58. The CommonJS Wrapper"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201015,7 +201520,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports\r\nrequire\r\nmodule\r\n__filename\r\n__dirname\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "59-the-wrapper-is-a-mental-model",
       children: "59. The Wrapper Is a Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201037,7 +201542,7 @@ function _createMdxContent(props) {
           children: "CommonJS source executes in a function-like module scope with the five CommonJS values supplied by Node."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "60-top-level-this",
       children: ["60. Top-level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "this"
@@ -201069,17 +201574,17 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is an implementation detail rather than something you should build application APIs around."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "61-compilation-vs-execution",
       children: "61. Compilation vs Execution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These are separate stages."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "compilation",
       children: "Compilation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Turns source into executable code."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "execution",
       children: "Execution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201112,7 +201617,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Compilation by itself does not mean your module body has executed."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "62-top-level-code-executes-during-loading",
       children: "62. Top-Level Code Executes During Loading"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201151,7 +201656,7 @@ function _createMdxContent(props) {
       children: ["This distinction is useful when thinking about what ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " actually executes."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "63-what-require-does-not-wait-for",
       children: ["63. What ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201193,7 +201698,7 @@ function _createMdxContent(props) {
           }), " waits for synchronous module evaluation, not for future asynchronous work started by that evaluation."]
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "64-why-lazy-require-can-affect-performance",
       children: ["64. Why Lazy ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201218,7 +201723,7 @@ function _createMdxContent(props) {
       children: "Therefore the first request can experience extra latency."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Later requests normally hit the module cache."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "65-startup-require-vs-request-time-require",
       children: ["65. Startup ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201250,7 +201755,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But the first-hit cost should be intentional."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "66-conditional-require",
       children: ["66. Conditional ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201273,7 +201778,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one practical reason CommonJS is convenient for optional or conditional dependencies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "67-commonjs-vs-static-esm-import",
       children: ["67. CommonJS vs Static ESM ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import"
@@ -201309,7 +201814,7 @@ function _createMdxContent(props) {
       children: "when runtime loading is required."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This document focuses on CommonJS; ESM has a separate module-loading model."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "68-startup-ordering",
       children: "68. Startup Ordering"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -201346,7 +201851,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The ordering is a direct consequence of synchronous CommonJS loading."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "69-requiremain",
       children: ["69. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.main"
@@ -201371,7 +201876,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "function startServer() {\r\n  console.log(\"Server started\");\r\n}\r\n\r\nif (require.main === module) {\r\n  startServer();\r\n}\r\n\r\nmodule.exports = {\r\n  startServer,\r\n};\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "70-direct-execution-vs-being-required",
       children: "70. Direct Execution vs Being Required"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201429,7 +201934,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "a reusable module"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "71-requiremain-and-esm",
       children: ["71. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.main"
@@ -201444,7 +201949,7 @@ function _createMdxContent(props) {
       children: ["The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.main === module"
       }), " pattern is therefore specifically a CommonJS entry-point pattern."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "72-loading-failure-and-cache-cleanup",
       children: "72. Loading Failure and Cache Cleanup"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201473,7 +201978,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This prevents a permanently broken partially loaded module from remaining as the normal cached result."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "73-what-happens-on-a-second-attempt-after-failure",
       children: "73. What Happens on a Second Attempt After Failure?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201487,7 +201992,7 @@ function _createMdxContent(props) {
       children: "The second attempt can start the loading process again."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The failed evaluation does not normally become a successful cache entry."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "74-require-and-side-effects",
       children: ["74. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201512,7 +202017,7 @@ function _createMdxContent(props) {
       children: "causes the top-level setup code to execute."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason the synchronous loading contract matters."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "75-module-cache-is-process-local",
       children: "75. Module Cache Is Process-local"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201538,14 +202043,14 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "separate application instances"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "76-module-cache-is-not-the-same-as-compile-cache",
       children: "76. Module Cache Is Not the Same as Compile Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The source also discusses a V8 compile-cache layer."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "There are two different concepts:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "requirecache-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -201557,7 +202062,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "process\r\n  |\r\n  v\r\nrequire.cache\r\n  |\r\n  v\r\nModule instances\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "compile-cache",
       children: "Compile cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -201573,7 +202078,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These solve different performance problems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "77-important-cache-distinction",
       children: "77. Important Cache Distinction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201601,7 +202106,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not use the phrase \"module cache\" and \"compile cache\" as if they were the same thing."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "78-main-module-bookkeeping",
       children: "78. Main Module Bookkeeping"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -201642,7 +202147,7 @@ function _createMdxContent(props) {
       }), " is deprecated in favor of ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.main"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "79-source-maps-and-compilation",
       children: "79. Source Maps and Compilation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201663,7 +202168,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is another reason compilation is more than simply \"turn text into code.\""
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "80-shebang-handling",
       children: "80. Shebang Handling"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201686,7 +202191,7 @@ function _createMdxContent(props) {
       children: "Node handles/removes it appropriately before JavaScript compilation so the rest of the source can execute."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is why executable Node CLI files can use a shebang."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "81-the-complete-require-lifecycle",
       children: ["81. The Complete ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -201700,7 +202205,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "project/\r\n├── app.js\r\n└── math.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mathjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "math.js"
@@ -201710,7 +202215,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "console.log(\"math loaded\");\r\n\r\nfunction add(a, b) {\r\n  return a + b;\r\n}\r\n\r\nmodule.exports = add;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "appjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "app.js"
@@ -201722,7 +202227,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node conceptually does:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-1--receive-request",
       children: "Step 1 — Receive request"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201730,7 +202235,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require(\"./math\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-2--resolve",
       children: "Step 2 — Resolve"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201738,7 +202243,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "./math\r\n  ↓\r\n/project/math.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-3--check-cache",
       children: "Step 3 — Check cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201748,7 +202253,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "is not cached."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-4--create-module",
       children: "Step 4 — Create Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201765,12 +202270,12 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.exports = {};\r\nmodule.loaded = false;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-5--cache-the-module",
       children: "Step 5 — Cache the Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The module enters the cache before its code executes."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-6--load",
       children: "Step 6 — Load"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201778,19 +202283,19 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.load(\"/project/math.js\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "step-7--choose-js-handler",
       children: ["Step 7 — Choose ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
       }), " handler"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node reads JavaScript source."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-8--compile",
       children: "Step 8 — Compile"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The source is compiled into a CommonJS executable function."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-9--execute",
       children: "Step 9 — Execute"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201807,7 +202312,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.exports = add;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-10--mark-loaded",
       children: "Step 10 — Mark Loaded"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201817,7 +202322,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.loaded = true;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-11--return-export",
       children: "Step 11 — Return Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -201829,7 +202334,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "add;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-12--caller-continues",
       children: "Step 12 — Caller continues"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201844,7 +202349,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "math loaded\r\n5\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "82-full-lifecycle-diagram",
       children: "82. Full Lifecycle Diagram"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -201852,7 +202357,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "                require(\"./math\")\r\n                       |\r\n                       v\r\n             Module.prototype.require\r\n                       |\r\n                       v\r\n                  Module._load\r\n                       |\r\n                       v\r\n             Module._resolveFilename\r\n                       |\r\n                       v\r\n              /project/math.js\r\n                       |\r\n                       v\r\n               Module._cache?\r\n                  /         \\\r\n                YES         NO\r\n                 |           |\r\n                 |           v\r\n                 |      new Module(...)\r\n                 |           |\r\n                 |           v\r\n                 |       cache module\r\n                 |           |\r\n                 |           v\r\n                 |      module.load()\r\n                 |           |\r\n                 |           v\r\n                 |     \".js\" handler\r\n                 |           |\r\n                 |           v\r\n                 |       read source\r\n                 |           |\r\n                 |           v\r\n                 |       _compile()\r\n                 |           |\r\n                 |           v\r\n                 |      execute wrapper\r\n                 |           |\r\n                 |           v\r\n                 |   module.exports updated\r\n                 |           |\r\n                 |           v\r\n                 |      module.loaded=true\r\n                 |           |\r\n                 +-----------+\r\n                       |\r\n                       v\r\n                return exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "83-the-most-important-ordering-detail",
       children: "83. The Most Important Ordering Detail"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -201871,7 +202376,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The early cache insertion is what makes CommonJS circular dependencies behave as they do."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "84-why-the-cache-stores-the-module-object",
       children: "84. Why the Cache Stores the Module Object"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -201905,7 +202410,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The same module object remains associated with the cache."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "85-later-moduleexports-replacement",
       children: ["85. Later ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -201946,7 +202451,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Avoid designing exports around asynchronous reassignment."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "86-existing-references-vs-current-moduleexports",
       children: ["86. Existing References vs Current ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -201992,14 +202497,14 @@ function _createMdxContent(props) {
       children: "does not magically change."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "JavaScript variables contain references/values they were assigned; changing another variable or property does not rewrite every existing reference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "87-moduleexports-replacement-vs-mutation",
       children: ["87. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " Replacement vs Mutation"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Compare:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mutation",
       children: "Mutation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202009,7 +202514,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Existing references to the exported object can observe the new property."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "replacement",
       children: "Replacement"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202023,7 +202528,7 @@ function _createMdxContent(props) {
       children: "Existing consumers holding the previous object do not automatically switch."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction is especially important in circular dependencies and hot-reload experiments."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "88-a-practical-comparison",
       children: "88. A Practical Comparison"
     }), "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.table, {
@@ -202074,7 +202579,7 @@ function _createMdxContent(props) {
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Memorize this table."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "89-debugging-module-resolution",
       children: "89. Debugging Module Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202109,7 +202614,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require.resolve.paths()\r\n    -> where will Node look?\r\n\r\nrequire.resolve()\r\n    -> what exact target will Node use?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "90-debugging-the-cache",
       children: "90. Debugging the Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202135,7 +202640,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can help understand runtime module relationships."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "91-debugging-circular-dependencies",
       children: "91. Debugging Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202166,7 +202671,7 @@ function _createMdxContent(props) {
       children: ["The fastest practical approach is usually to trace the ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " chain from the undefined value back to the cycle."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "92-circular-dependency-debugging-example",
       children: "92. Circular Dependency Debugging Example"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202204,7 +202709,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Those questions usually expose the problem."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "93-modulechildren-and-runtime-graphs",
       children: ["93. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.children"
@@ -202243,7 +202748,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Conditional and lazy requires can change what gets loaded."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "94-internal-apis-vs-public-apis",
       children: "94. Internal APIs vs Public APIs"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202270,10 +202775,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "where appropriate."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "95-what-to-memorize-vs-what-to-understand",
       children: "95. What to Memorize vs What to Understand"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "memorize",
       children: "Memorize"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202336,7 +202841,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require.resolve.paths() shows lookup directories.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "understand-conceptually",
       children: "Understand conceptually"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202346,7 +202851,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You do not need to memorize their source implementation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "96-common-interview-question-does-require-execute-the-module",
       children: ["96. Common Interview Question: \"Does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -202387,7 +202892,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "normally returns the cached module and does not execute the module body again."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "97-common-interview-question-does-require-give-access-to-all-variables",
       children: ["97. Common Interview Question: \"Does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -202426,7 +202931,7 @@ function _createMdxContent(props) {
       children: "The module's internal variables remain private unless exported."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This privacy comes naturally from the module wrapper/function scope."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "98-common-interview-question-if-i-require-a-module-does-its-code-run",
       children: "98. Common Interview Question: \"If I Require a Module, Does Its Code Run?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202477,7 +202982,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "calling exported functions\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "99-common-interview-question-is-a-required-object-cloned",
       children: "99. Common Interview Question: \"Is a Required Object Cloned?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202505,7 +203010,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Both references point to the same cached exported object."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "100-common-interview-question-why-is-exportsfoo-working",
       children: ["100. Common Interview Question: \"Why Is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports.foo"
@@ -202537,7 +203042,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "only changes the local variable."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "101-common-interview-question-why-does-circular-dependency-return-undefined",
       children: "101. Common Interview Question: \"Why Does Circular Dependency Return Undefined?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202560,7 +203065,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "while another property is still missing."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "102-common-interview-question-why-does-node-cache-before-execution",
       children: "102. Common Interview Question: \"Why Does Node Cache Before Execution?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202583,7 +203088,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "B gets A's current exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "103-common-interview-question-what-is-the-cache-key",
       children: "103. Common Interview Question: \"What Is the Cache Key?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202604,14 +203109,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore two requests that resolve to the same file normally share the same cached module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "104-common-interview-question-requireresolve-vs-require",
       children: ["104. Common Interview Question: \"", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
       }), " vs ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), "?\""]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "require-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -202628,7 +203133,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "resolve + load + evaluate + return exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "requireresolve-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -202647,7 +203152,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does not execute the module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "105-common-interview-question-requireresolvepaths",
       children: ["105. Common Interview Question: \"", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve.paths()"
@@ -202663,7 +203168,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is especially useful for debugging package resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "106-common-interview-question-why-is-require-synchronous",
       children: ["106. Common Interview Question: \"Why Is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -202679,7 +203184,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The trade-off is that disk reads, compilation, and top-level execution can block the event loop."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "107-common-interview-question-should-i-require-heavy-modules-inside-request-handlers",
       children: "107. Common Interview Question: \"Should I Require Heavy Modules Inside Request Handlers?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202712,7 +203217,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The decision is about where you want to pay the first-load cost."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "108-common-interview-question-what-happens-if-module-loading-throws",
       children: "108. Common Interview Question: \"What Happens If Module Loading Throws?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202728,7 +203233,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "cache\r\n  |\r\n  v\r\nload\r\n  |\r\n  X\r\nerror\r\n  |\r\n  v\r\nremove cache entry\r\n  |\r\n  v\r\nthrow\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "109-common-interview-question-what-happens-if-json-changes-on-disk",
       children: "109. Common Interview Question: \"What Happens If JSON Changes on Disk?\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202758,7 +203263,7 @@ function _createMdxContent(props) {
       children: "normally returns the cached object rather than reparsing the file."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore filesystem changes do not automatically invalidate the CommonJS JSON cache."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "110-practical-experiment-module-executes-once",
       children: "110. Practical Experiment: Module Executes Once"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -202790,7 +203295,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because the module is cached after the first load."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "111-practical-experiment-exports-alias",
       children: ["111. Practical Experiment: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
@@ -202807,7 +203312,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "true\r\n{ name: \"Prashant\" }\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "112-practical-experiment-breaking-the-alias",
       children: "112. Practical Experiment: Breaking the Alias"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202840,7 +203345,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "was not."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "113-practical-experiment-replacing-moduleexports",
       children: ["113. Practical Experiment: Replacing ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -202864,7 +203369,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "{ name: \"Prashant\" }\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "114-practical-experiment-shared-object",
       children: "114. Practical Experiment: Shared Object"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202884,7 +203389,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "{ count: 1 }\r\n{ count: 1 }\r\ntrue\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "115-practical-experiment-requireresolve",
       children: ["115. Practical Experiment: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -202917,7 +203422,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "load + execute + return exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "116-practical-experiment-cache-inspection",
       children: "116. Practical Experiment: Cache Inspection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202936,7 +203441,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "console.log(require.cache[path].loaded);\r\nconsole.log(require.cache[path].exports);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "117-practical-experiment-cache-deletion",
       children: "117. Practical Experiment: Cache Deletion"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -202959,10 +203464,10 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "Existing references are not updated."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "118-practical-experiment-circular-dependency",
       children: "118. Practical Experiment: Circular Dependency"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs-2",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -202972,7 +203477,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "exports.first = \"A first\";\r\n\r\nconst b = require(\"./b\");\r\n\r\nexports.second = \"A second\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bjs-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.js"
@@ -203009,10 +203514,10 @@ function _createMdxContent(props) {
       children: "You should see the difference."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This demonstrates that the order of export initialization matters in a cycle."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "119-practical-experiment-cycle--replacement",
       children: "119. Practical Experiment: Cycle + Replacement"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs-3",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -203022,7 +203527,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const b = require(\"./b\");\r\n\r\nmodule.exports = {\r\n  ready: true,\r\n};\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bjs-2",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.js"
@@ -203038,7 +203543,7 @@ function _createMdxContent(props) {
       children: ["This is the exact class of problem caused by replacing ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " during a cycle."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "120-practical-experiment-directory-resolution",
       children: "120. Practical Experiment: Directory Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -203068,7 +203573,7 @@ function _createMdxContent(props) {
       children: "Observe which file is executed."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This demonstrates directory entry-point resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "121-practical-experiment-conditional-loading",
       children: "121. Practical Experiment: Conditional Loading"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203094,7 +203599,7 @@ function _createMdxContent(props) {
       children: "to the respective files."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Only the selected branch should load its module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "122-a-better-mental-model-for-node-commonjs",
       children: "122. A Better Mental Model for Node CommonJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -203125,12 +203630,12 @@ function _createMdxContent(props) {
           children: "During circular loading, the module may be returned before evaluation has finished, so its exports can be incomplete."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "123-the-five-core-objectsconcepts",
       children: "123. The Five Core Objects/Concepts"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If you want a compact mental model, focus on these:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "1-request",
       children: "1. Request"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203140,7 +203645,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "What the caller asks for."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "2-resolved-filename",
       children: "2. Resolved filename"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203150,7 +203655,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "What Node determines the request means."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "3-module-object",
       children: "3. Module object"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203160,7 +203665,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The runtime representation of the module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "4-cache",
       children: "4. Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203170,14 +203675,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Stores loaded CommonJS module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "5-moduleexports",
       children: ["5. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The value ultimately returned to the consumer."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "124-one-diagram-to-remember-forever",
       children: "124. One Diagram to Remember Forever"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -203185,7 +203690,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"./math\")\r\n        |\r\n        v\r\n   WHAT FILE?\r\n        |\r\n        v\r\n/project/math.js\r\n        |\r\n        v\r\n   ALREADY LOADED?\r\n      /       \\\r\n    YES        NO\r\n     |          |\r\n     |          v\r\n     |      create Module\r\n     |          |\r\n     |          v\r\n     |      cache Module\r\n     |          |\r\n     |          v\r\n     |        load\r\n     |          |\r\n     |          v\r\n     |       compile\r\n     |          |\r\n     |          v\r\n     |       execute\r\n     |          |\r\n     |          v\r\n     |    module.exports\r\n     |          |\r\n     +----------+\r\n                |\r\n                v\r\n        require() returns\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "125-summary-of-every-major-concept",
       children: "125. Summary of Every Major Concept"
     }), "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.table, {
@@ -203402,7 +203907,7 @@ function _createMdxContent(props) {
           })]
         })]
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "126-final-mental-model",
       children: "126. Final Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -203488,224 +203993,924 @@ const assets = {
 
 
 const toc = [{
+  "value": "1. What Is Module Resolution?",
+  "id": "1-what-is-module-resolution",
+  "level": 2
+}, {
   "value": "The important distinction",
   "id": "the-important-distinction",
+  "level": 3
+}, {
+  "value": "2. The Big Picture",
+  "id": "2-the-big-picture",
+  "level": 2
+}, {
+  "value": "3. First: What Is a Specifier?",
+  "id": "3-first-what-is-a-specifier",
+  "level": 2
+}, {
+  "value": "4. The Three Main Specifier Categories",
+  "id": "4-the-three-main-specifier-categories",
+  "level": 2
+}, {
+  "value": "5. Built-in Modules",
+  "id": "5-built-in-modules",
+  "level": 2
+}, {
+  "value": "6. <code>node:</code> Prefix",
+  "id": "6-node-prefix",
+  "level": 2
+}, {
+  "value": "7. Why <code>&quot;fs&quot;</code> and <code>&quot;./fs&quot;</code> Are Completely Different",
+  "id": "7-why-fs-and-fs-are-completely-different",
+  "level": 2
+}, {
+  "value": "8. Inspecting Built-in Modules",
+  "id": "8-inspecting-built-in-modules",
+  "level": 2
+}, {
+  "value": "9. Relative Paths",
+  "id": "9-relative-paths",
+  "level": 2
+}, {
+  "value": "10. Caller Location Matters",
+  "id": "10-caller-location-matters",
+  "level": 2
+}, {
+  "value": "11. Relative Path vs <code>process.cwd()</code>",
+  "id": "11-relative-path-vs-processcwd",
+  "level": 2
+}, {
+  "value": "12. Absolute Paths",
+  "id": "12-absolute-paths",
+  "level": 2
+}, {
+  "value": "13. File Extension Probing",
+  "id": "13-file-extension-probing",
+  "level": 2
+}, {
+  "value": "14. Why Extension Order Matters",
+  "id": "14-why-extension-order-matters",
+  "level": 2
+}, {
+  "value": "15. Exact File Check Happens First",
+  "id": "15-exact-file-check-happens-first",
+  "level": 2
+}, {
+  "value": "16. A Subtle Extension Edge Case",
+  "id": "16-a-subtle-extension-edge-case",
+  "level": 2
+}, {
+  "value": "17. Should You Always Include <code>.js</code>?",
+  "id": "17-should-you-always-include-js",
+  "level": 2
+}, {
+  "value": "18. Directory Resolution",
+  "id": "18-directory-resolution",
+  "level": 2
+}, {
+  "value": "19. Directory <code>package.json</code> + <code>&quot;main&quot;</code>",
+  "id": "19-directory-packagejson--main",
+  "level": 2
+}, {
+  "value": "20. <code>index.js</code> Fallback",
+  "id": "20-indexjs-fallback",
+  "level": 2
+}, {
+  "value": "21. <code>&quot;main&quot;</code> Beats <code>index.js</code>",
+  "id": "21-main-beats-indexjs",
+  "level": 2
+}, {
+  "value": "22. Invalid <code>&quot;main&quot;</code> Fallback",
+  "id": "22-invalid-main-fallback",
+  "level": 2
+}, {
+  "value": "23. Bare Specifiers",
+  "id": "23-bare-specifiers",
+  "level": 2
+}, {
+  "value": "24. The <code>node_modules</code> Climbing Algorithm",
+  "id": "24-the-node_modules-climbing-algorithm",
+  "level": 2
+}, {
+  "value": "25. Why Does Node Search Upward?",
+  "id": "25-why-does-node-search-upward",
+  "level": 2
+}, {
+  "value": "26. npm Hoisting",
+  "id": "26-npm-hoisting",
+  "level": 2
+}, {
+  "value": "27. pnpm and Symlinks",
+  "id": "27-pnpm-and-symlinks",
+  "level": 2
+}, {
+  "value": "28. Scoped Packages",
+  "id": "28-scoped-packages",
+  "level": 2
+}, {
+  "value": "29. Package Subpaths",
+  "id": "29-package-subpaths",
+  "level": 2
+}, {
+  "value": "30. Why Deep Imports Can Be Dangerous",
+  "id": "30-why-deep-imports-can-be-dangerous",
+  "level": 2
+}, {
+  "value": "31. <code>package.json</code> <code>&quot;main&quot;</code>",
+  "id": "31-packagejson-main",
+  "level": 2
+}, {
+  "value": "32. What <code>&quot;main&quot;</code> Does Not Mean",
+  "id": "32-what-main-does-not-mean",
+  "level": 2
+}, {
+  "value": "33. <code>package.json</code> <code>&quot;exports&quot;</code>",
+  "id": "33-packagejson-exports",
+  "level": 2
+}, {
+  "value": "34. Why <code>&quot;exports&quot;</code> Is Important",
+  "id": "34-why-exports-is-important",
+  "level": 2
+}, {
+  "value": "35. <code>&quot;exports&quot;</code> Can Hide Files That Exist",
+  "id": "35-exports-can-hide-files-that-exist",
+  "level": 2
+}, {
+  "value": "36. <code>&quot;exports&quot;</code> Is Not a Filesystem Security Sandbox",
+  "id": "36-exports-is-not-a-filesystem-security-sandbox",
+  "level": 2
+}, {
+  "value": "37. <code>&quot;exports&quot;</code> vs <code>&quot;main&quot;</code>",
+  "id": "37-exports-vs-main",
+  "level": 2
+}, {
+  "value": "38. Simple <code>&quot;exports&quot;</code> Example",
+  "id": "38-simple-exports-example",
+  "level": 2
+}, {
+  "value": "39. Conditional Exports",
+  "id": "39-conditional-exports",
+  "level": 2
+}, {
+  "value": "40. Think of Conditional Exports as an <code>if</code>",
+  "id": "40-think-of-conditional-exports-as-an-if",
+  "level": 2
+}, {
+  "value": "41. The <code>&quot;default&quot;</code> Condition",
+  "id": "41-the-default-condition",
+  "level": 2
+}, {
+  "value": "42. Condition Order Matters",
+  "id": "42-condition-order-matters",
+  "level": 2
+}, {
+  "value": "43. Common Conditions",
+  "id": "43-common-conditions",
+  "level": 2
+}, {
+  "value": "44. Node&#39;s CommonJS Conditions",
+  "id": "44-nodes-commonjs-conditions",
+  "level": 2
+}, {
+  "value": "45. Subpath Patterns",
+  "id": "45-subpath-patterns",
+  "level": 2
+}, {
+  "value": "46. Wildcards Can Match Paths",
+  "id": "46-wildcards-can-match-paths",
+  "level": 2
+}, {
+  "value": "47. Export Targets Must Stay Inside the Package",
+  "id": "47-export-targets-must-stay-inside-the-package",
+  "level": 2
+}, {
+  "value": "48. <code>package.json</code> <code>&quot;imports&quot;</code>",
+  "id": "48-packagejson-imports",
+  "level": 2
+}, {
+  "value": "49. Why Use <code>&quot;imports&quot;</code>?",
+  "id": "49-why-use-imports",
+  "level": 2
+}, {
+  "value": "50. <code>#</code> Is Required",
+  "id": "50--is-required",
+  "level": 2
+}, {
+  "value": "51. <code>&quot;imports&quot;</code> Is Private to the Package",
+  "id": "51-imports-is-private-to-the-package",
+  "level": 2
+}, {
+  "value": "52. <code>&quot;imports&quot;</code> Does Not Use <code>node_modules</code> Climbing",
+  "id": "52-imports-does-not-use-node_modules-climbing",
+  "level": 2
+}, {
+  "value": "53. Conditional <code>&quot;imports&quot;</code>",
+  "id": "53-conditional-imports",
+  "level": 2
+}, {
+  "value": "54. Package Self-Reference",
+  "id": "54-package-self-reference",
+  "level": 2
+}, {
+  "value": "55. Why Self-Reference Is Useful",
+  "id": "55-why-self-reference-is-useful",
+  "level": 2
+}, {
+  "value": "56. <code>NODE_PATH</code>",
+  "id": "56-node_path",
+  "level": 2
+}, {
+  "value": "57. Why You Should Usually Avoid <code>NODE_PATH</code>",
+  "id": "57-why-you-should-usually-avoid-node_path",
+  "level": 2
+}, {
+  "value": "58. Historical Global Folders",
+  "id": "58-historical-global-folders",
+  "level": 2
+}, {
+  "value": "59. <code>require.resolve()</code>",
+  "id": "59-requireresolve",
+  "level": 2
+}, {
+  "value": "60. <code>require.resolve()</code> Does Not Execute the Module",
+  "id": "60-requireresolve-does-not-execute-the-module",
+  "level": 2
+}, {
+  "value": "61. <code>require.resolve()</code> for Debugging",
+  "id": "61-requireresolve-for-debugging",
+  "level": 2
+}, {
+  "value": "62. <code>require.resolve()</code> and <code>MODULE_NOT_FOUND</code>",
+  "id": "62-requireresolve-and-module_not_found",
+  "level": 2
+}, {
+  "value": "63. Optional Dependency Pattern",
+  "id": "63-optional-dependency-pattern",
+  "level": 2
+}, {
+  "value": "64. Finding a Package Root",
+  "id": "64-finding-a-package-root",
+  "level": 2
+}, {
+  "value": "65. <code>&quot;exports&quot;</code> Can Block <code>package.json</code>",
+  "id": "65-exports-can-block-packagejson",
+  "level": 2
+}, {
+  "value": "66. Symlinks",
+  "id": "66-symlinks",
+  "level": 2
+}, {
+  "value": "67. Why Symlink Behavior Matters",
+  "id": "67-why-symlink-behavior-matters",
+  "level": 2
+}, {
+  "value": "68. <code>--preserve-symlinks</code>",
+  "id": "68---preserve-symlinks",
+  "level": 2
+}, {
+  "value": "69. Why Duplicate Module Instances Are Dangerous",
+  "id": "69-why-duplicate-module-instances-are-dangerous",
+  "level": 2
+}, {
+  "value": "70. <code>--preserve-symlinks-main</code>",
+  "id": "70---preserve-symlinks-main",
+  "level": 2
+}, {
+  "value": "71. Case Sensitivity and Module Identity",
+  "id": "71-case-sensitivity-and-module-identity",
+  "level": 2
+}, {
+  "value": "72. Why This Causes Production Bugs",
+  "id": "72-why-this-causes-production-bugs",
+  "level": 2
+}, {
+  "value": "73. <code>Module._resolveFilename</code>",
+  "id": "73-module_resolvefilename",
+  "level": 2
+}, {
+  "value": "74. The <code>parent</code> Module",
+  "id": "74-the-parent-module",
+  "level": 2
+}, {
+  "value": "75. <code>isMain</code>",
+  "id": "75-ismain",
+  "level": 2
+}, {
+  "value": "76. <code>_findPath</code>",
+  "id": "76-_findpath",
+  "level": 2
+}, {
+  "value": "77. <code>Module._pathCache</code>",
+  "id": "77-module_pathcache",
+  "level": 2
+}, {
+  "value": "78. Two Different Caches",
+  "id": "78-two-different-caches",
   "level": 2
 }, {
   "value": "Module cache",
   "id": "module-cache",
-  "level": 2
+  "level": 3
 }, {
   "value": "Resolution/path cache",
   "id": "resolutionpath-cache",
+  "level": 3
+}, {
+  "value": "79. <code>require.cache</code> vs Resolution Cache",
+  "id": "79-requirecache-vs-resolution-cache",
+  "level": 2
+}, {
+  "value": "80. Synchronous Resolution",
+  "id": "80-synchronous-resolution",
+  "level": 2
+}, {
+  "value": "81. Why Startup Can Be Slow",
+  "id": "81-why-startup-can-be-slow",
+  "level": 2
+}, {
+  "value": "82. Failed Filesystem Checks Still Cost Time",
+  "id": "82-failed-filesystem-checks-still-cost-time",
+  "level": 2
+}, {
+  "value": "83. Why Bundlers Can Be Faster at Runtime",
+  "id": "83-why-bundlers-can-be-faster-at-runtime",
+  "level": 2
+}, {
+  "value": "84. Realpath and Symlinks",
+  "id": "84-realpath-and-symlinks",
+  "level": 2
+}, {
+  "value": "85. Debugging Module Resolution",
+  "id": "85-debugging-module-resolution",
+  "level": 2
+}, {
+  "value": "86. Debugging Step 1 — <code>require.resolve()</code>",
+  "id": "86-debugging-step-1--requireresolve",
+  "level": 2
+}, {
+  "value": "87. Debugging Step 2 — Check Search Paths",
+  "id": "87-debugging-step-2--check-search-paths",
+  "level": 2
+}, {
+  "value": "88. Debugging Step 3 — Check the Caller",
+  "id": "88-debugging-step-3--check-the-caller",
+  "level": 2
+}, {
+  "value": "89. Debugging Step 4 — Check <code>package.json</code>",
+  "id": "89-debugging-step-4--check-packagejson",
+  "level": 2
+}, {
+  "value": "90. Debugging Step 5 — Check <code>node_modules</code>",
+  "id": "90-debugging-step-5--check-node_modules",
+  "level": 2
+}, {
+  "value": "91. Debugging Step 6 — Check Symlinks",
+  "id": "91-debugging-step-6--check-symlinks",
+  "level": 2
+}, {
+  "value": "92. <code>NODE_DEBUG=module</code>",
+  "id": "92-node_debugmodule",
+  "level": 2
+}, {
+  "value": "93. <code>NODE_DEBUG=module</code> vs <code>DEBUG</code>",
+  "id": "93-node_debugmodule-vs-debug",
+  "level": 2
+}, {
+  "value": "94. Command-Line Resolution Test",
+  "id": "94-command-line-resolution-test",
+  "level": 2
+}, {
+  "value": "95. Inspecting Node&#39;s Lookup Paths",
+  "id": "95-inspecting-nodes-lookup-paths",
+  "level": 2
+}, {
+  "value": "96. Internal Loader Hooks",
+  "id": "96-internal-loader-hooks",
+  "level": 2
+}, {
+  "value": "97. The <code>&quot;type&quot;</code> Field",
+  "id": "97-the-type-field",
+  "level": 2
+}, {
+  "value": "98. CommonJS vs ESM Resolution",
+  "id": "98-commonjs-vs-esm-resolution",
+  "level": 2
+}, {
+  "value": "99. <code>&quot;exports&quot;</code> Works Across CJS and ESM",
+  "id": "99-exports-works-across-cjs-and-esm",
+  "level": 2
+}, {
+  "value": "100. <code>require()</code> Loading ESM",
+  "id": "100-require-loading-esm",
+  "level": 2
+}, {
+  "value": "101. Circular Dependencies Are Not a Resolution Problem",
+  "id": "101-circular-dependencies-are-not-a-resolution-problem",
+  "level": 2
+}, {
+  "value": "102. Circular Dependency Example",
+  "id": "102-circular-dependency-example",
   "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.js</code>",
   "id": "bjs",
-  "level": 3
+  "level": 4
+}, {
+  "value": "103. Why Does This Happen?",
+  "id": "103-why-does-this-happen",
+  "level": 2
+}, {
+  "value": "104. Partial Exports",
+  "id": "104-partial-exports",
+  "level": 2
+}, {
+  "value": "105. Avoid Circular Dependencies",
+  "id": "105-avoid-circular-dependencies",
+  "level": 2
+}, {
+  "value": "106. <code>module.exports</code> Replacement Makes Cycles Worse",
+  "id": "106-moduleexports-replacement-makes-cycles-worse",
+  "level": 2
+}, {
+  "value": "107. <code>&quot;exports&quot;</code> vs <code>&quot;imports&quot;</code> — Memorize This",
+  "id": "107-exports-vs-imports--memorize-this",
+  "level": 2
+}, {
+  "value": "108. <code>&quot;main&quot;</code> vs <code>&quot;exports&quot;</code> vs <code>&quot;imports&quot;</code>",
+  "id": "108-main-vs-exports-vs-imports",
+  "level": 2
+}, {
+  "value": "109. Package Resolution Decision Tree",
+  "id": "109-package-resolution-decision-tree",
+  "level": 2
+}, {
+  "value": "110. Practical Resolution Example",
+  "id": "110-practical-resolution-example",
+  "level": 2
+}, {
+  "value": "111. Practical <code>#imports</code> Example",
+  "id": "111-practical-imports-example",
+  "level": 2
+}, {
+  "value": "112. Practical <code>&quot;exports&quot;</code> Example",
+  "id": "112-practical-exports-example",
+  "level": 2
+}, {
+  "value": "113. Practical Conditional Exports",
+  "id": "113-practical-conditional-exports",
+  "level": 2
+}, {
+  "value": "114. Practical Package Subpath Pattern",
+  "id": "114-practical-package-subpath-pattern",
+  "level": 2
+}, {
+  "value": "115. A Useful Debugging Scenario",
+  "id": "115-a-useful-debugging-scenario",
+  "level": 2
+}, {
+  "value": "116. <code>MODULE_NOT_FOUND</code> vs <code>ERR_PACKAGE_PATH_NOT_EXPORTED</code>",
+  "id": "116-module_not_found-vs-err_package_path_not_exported",
+  "level": 2
 }, {
   "value": "<code>MODULE_NOT_FOUND</code>",
   "id": "module_not_found",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>ERR_PACKAGE_PATH_NOT_EXPORTED</code>",
   "id": "err_package_path_not_exported",
+  "level": 3
+}, {
+  "value": "117. Another Important Error: <code>ERR_REQUIRE_ASYNC_MODULE</code>",
+  "id": "117-another-important-error-err_require_async_module",
+  "level": 2
+}, {
+  "value": "118. Module Resolution Does Not Mean Module Execution",
+  "id": "118-module-resolution-does-not-mean-module-execution",
+  "level": 2
+}, {
+  "value": "119. Resolution Happens Before Cache Lookup",
+  "id": "119-resolution-happens-before-cache-lookup",
+  "level": 2
+}, {
+  "value": "120. Why Same File Usually Means Same Module",
+  "id": "120-why-same-file-usually-means-same-module",
+  "level": 2
+}, {
+  "value": "121. Symlinks Can Change That Identity",
+  "id": "121-symlinks-can-change-that-identity",
+  "level": 2
+}, {
+  "value": "122. Resolution and Dependency Injection",
+  "id": "122-resolution-and-dependency-injection",
+  "level": 2
+}, {
+  "value": "123. Package Boundaries",
+  "id": "123-package-boundaries",
+  "level": 2
+}, {
+  "value": "124. Why Backend Developers Should Care About <code>&quot;exports&quot;</code>",
+  "id": "124-why-backend-developers-should-care-about-exports",
+  "level": 2
+}, {
+  "value": "125. Why Backend Developers Should Care About <code>&quot;imports&quot;</code>",
+  "id": "125-why-backend-developers-should-care-about-imports",
+  "level": 2
+}, {
+  "value": "126. Why Backend Developers Should Care About Symlinks",
+  "id": "126-why-backend-developers-should-care-about-symlinks",
+  "level": 2
+}, {
+  "value": "127. The <code>node_modules</code> Search Mental Model",
+  "id": "127-the-node_modules-search-mental-model",
+  "level": 2
+}, {
+  "value": "128. The Complete Package Resolution Model",
+  "id": "128-the-complete-package-resolution-model",
+  "level": 2
+}, {
+  "value": "129. The Complete Path Resolution Model",
+  "id": "129-the-complete-path-resolution-model",
+  "level": 2
+}, {
+  "value": "130. The Complete <code>#imports</code> Model",
+  "id": "130-the-complete-imports-model",
+  "level": 2
+}, {
+  "value": "131. Resolution Troubleshooting Checklist",
+  "id": "131-resolution-troubleshooting-checklist",
   "level": 2
 }, {
   "value": "1. Classify the request",
   "id": "1-classify-the-request",
-  "level": 3
+  "level": 4
 }, {
   "value": "2. Check the caller",
   "id": "2-check-the-caller",
-  "level": 3
+  "level": 4
 }, {
   "value": "3. For packages, inspect search paths",
   "id": "3-for-packages-inspect-search-paths",
-  "level": 3
+  "level": 4
 }, {
   "value": "4. Try direct resolution",
   "id": "4-try-direct-resolution",
-  "level": 3
+  "level": 4
 }, {
   "value": "5. Check package metadata",
   "id": "5-check-package-metadata",
-  "level": 3
+  "level": 4
 }, {
   "value": "6. Check <code>node_modules</code>",
   "id": "6-check-node_modules",
-  "level": 3
+  "level": 4
 }, {
   "value": "7. Check symlinks",
   "id": "7-check-symlinks",
-  "level": 3
+  "level": 4
 }, {
   "value": "8. Check casing",
   "id": "8-check-casing",
-  "level": 3
+  "level": 4
 }, {
   "value": "9. Use loader debugging",
   "id": "9-use-loader-debugging",
-  "level": 3
+  "level": 4
+}, {
+  "value": "132. Troubleshooting Matrix",
+  "id": "132-troubleshooting-matrix",
+  "level": 2
+}, {
+  "value": "133. What You Should Memorize",
+  "id": "133-what-you-should-memorize",
+  "level": 2
 }, {
   "value": "Specifier categories",
   "id": "specifier-categories",
-  "level": 2
+  "level": 3
 }, {
   "value": "File probing",
   "id": "file-probing",
-  "level": 2
+  "level": 3
 }, {
   "value": "Package lookup",
   "id": "package-lookup",
-  "level": 2
+  "level": 3
 }, {
   "value": "Package metadata",
   "id": "package-metadata",
-  "level": 2
+  "level": 3
 }, {
   "value": "Resolution tools",
   "id": "resolution-tools",
-  "level": 2
+  "level": 3
 }, {
   "value": "Debugging",
   "id": "debugging",
-  "level": 2
+  "level": 3
 }, {
   "value": "Architecture",
   "id": "architecture",
+  "level": 3
+}, {
+  "value": "134. What You Do NOT Need to Memorize",
+  "id": "134-what-you-do-not-need-to-memorize",
+  "level": 2
+}, {
+  "value": "135. Important Mental Model: Resolution vs Loading vs Execution",
+  "id": "135-important-mental-model-resolution-vs-loading-vs-execution",
   "level": 2
 }, {
   "value": "Resolution",
   "id": "resolution",
-  "level": 2
+  "level": 3
 }, {
   "value": "Loading",
   "id": "loading",
-  "level": 2
+  "level": 3
 }, {
   "value": "Execution",
   "id": "execution",
+  "level": 3
+}, {
+  "value": "136. Important Mental Model: Public Package API vs Filesystem",
+  "id": "136-important-mental-model-public-package-api-vs-filesystem",
+  "level": 2
+}, {
+  "value": "137. Important Mental Model: Caller Determines Context",
+  "id": "137-important-mental-model-caller-determines-context",
+  "level": 2
+}, {
+  "value": "138. Important Mental Model: Package Manager vs Node",
+  "id": "138-important-mental-model-package-manager-vs-node",
+  "level": 2
+}, {
+  "value": "139. Important Mental Model: <code>require.resolve()</code>",
+  "id": "139-important-mental-model-requireresolve",
+  "level": 2
+}, {
+  "value": "140. Important Mental Model: Errors Tell You Which Layer Failed",
+  "id": "140-important-mental-model-errors-tell-you-which-layer-failed",
+  "level": 2
+}, {
+  "value": "141. Backend Developer Scenario: Monorepo",
+  "id": "141-backend-developer-scenario-monorepo",
+  "level": 2
+}, {
+  "value": "142. Backend Developer Scenario: Dependency Version Conflict",
+  "id": "142-backend-developer-scenario-dependency-version-conflict",
+  "level": 2
+}, {
+  "value": "143. Backend Developer Scenario: &quot;It Works in Dev but Not Production&quot;",
+  "id": "143-backend-developer-scenario-it-works-in-dev-but-not-production",
   "level": 2
 }, {
   "value": "1. Case",
   "id": "1-case",
-  "level": 3
+  "level": 4
 }, {
   "value": "2. Symlinks",
   "id": "2-symlinks",
-  "level": 3
+  "level": 4
 }, {
   "value": "3. Environment",
   "id": "3-environment",
-  "level": 3
+  "level": 4
 }, {
   "value": "4. Package version",
   "id": "4-package-version",
-  "level": 3
+  "level": 4
 }, {
   "value": "5. <code>&quot;exports&quot;</code>",
   "id": "5-exports",
-  "level": 3
+  "level": 4
 }, {
   "value": "6. <code>&quot;type&quot;</code>",
   "id": "6-type",
-  "level": 3
+  "level": 4
 }, {
   "value": "7. Node version",
   "id": "7-node-version",
-  "level": 3
+  "level": 4
+}, {
+  "value": "144. Backend Developer Scenario: Package Upgrade Breaks Internal Import",
+  "id": "144-backend-developer-scenario-package-upgrade-breaks-internal-import",
+  "level": 2
+}, {
+  "value": "145. Backend Developer Scenario: Two Copies of a Library",
+  "id": "145-backend-developer-scenario-two-copies-of-a-library",
+  "level": 2
+}, {
+  "value": "146. Backend Developer Scenario: Relative Imports Become Ugly",
+  "id": "146-backend-developer-scenario-relative-imports-become-ugly",
+  "level": 2
+}, {
+  "value": "147. Backend Developer Scenario: Optional Dependency",
+  "id": "147-backend-developer-scenario-optional-dependency",
+  "level": 2
+}, {
+  "value": "148. Backend Developer Scenario: Debugging <code>#</code> Imports",
+  "id": "148-backend-developer-scenario-debugging--imports",
+  "level": 2
+}, {
+  "value": "149. Backend Developer Scenario: Debugging Package Exports",
+  "id": "149-backend-developer-scenario-debugging-package-exports",
+  "level": 2
+}, {
+  "value": "150. Practical Lab: Build a Resolution Inspector",
+  "id": "150-practical-lab-build-a-resolution-inspector",
+  "level": 2
+}, {
+  "value": "151. Practical Lab: Compare Caller Context",
+  "id": "151-practical-lab-compare-caller-context",
+  "level": 2
+}, {
+  "value": "152. Practical Lab: Extension Probing",
+  "id": "152-practical-lab-extension-probing",
+  "level": 2
+}, {
+  "value": "153. Practical Lab: Directory Resolution",
+  "id": "153-practical-lab-directory-resolution",
+  "level": 2
+}, {
+  "value": "154. Practical Lab: <code>&quot;exports&quot;</code>",
+  "id": "154-practical-lab-exports",
+  "level": 2
+}, {
+  "value": "155. Practical Lab: <code>&quot;imports&quot;</code>",
+  "id": "155-practical-lab-imports",
+  "level": 2
+}, {
+  "value": "156. Practical Lab: Search Paths",
+  "id": "156-practical-lab-search-paths",
+  "level": 2
+}, {
+  "value": "157. Practical Lab: <code>NODE_DEBUG=module</code>",
+  "id": "157-practical-lab-node_debugmodule",
+  "level": 2
+}, {
+  "value": "158. Practical Lab: Symlink Identity",
+  "id": "158-practical-lab-symlink-identity",
+  "level": 2
+}, {
+  "value": "159. Practical Lab: Case Sensitivity",
+  "id": "159-practical-lab-case-sensitivity",
+  "level": 2
+}, {
+  "value": "160. Common Mistake: Thinking <code>require()</code> Searches Everywhere",
+  "id": "160-common-mistake-thinking-require-searches-everywhere",
+  "level": 2
+}, {
+  "value": "161. Common Mistake: Thinking <code>node_modules</code> Is Always the Current Directory",
+  "id": "161-common-mistake-thinking-node_modules-is-always-the-current-directory",
+  "level": 2
+}, {
+  "value": "162. Common Mistake: Thinking <code>&quot;main&quot;</code> Always Wins",
+  "id": "162-common-mistake-thinking-main-always-wins",
+  "level": 2
+}, {
+  "value": "163. Common Mistake: Thinking <code>&quot;exports&quot;</code> Hides Files from the Filesystem",
+  "id": "163-common-mistake-thinking-exports-hides-files-from-the-filesystem",
+  "level": 2
+}, {
+  "value": "164. Common Mistake: Thinking <code>&quot;imports&quot;</code> Is Like <code>NODE_PATH</code>",
+  "id": "164-common-mistake-thinking-imports-is-like-node_path",
+  "level": 2
+}, {
+  "value": "165. Common Mistake: Thinking <code>require.resolve()</code> Loads the Module",
+  "id": "165-common-mistake-thinking-requireresolve-loads-the-module",
+  "level": 2
+}, {
+  "value": "166. Common Mistake: Thinking Resolution Errors Are Always Missing Files",
+  "id": "166-common-mistake-thinking-resolution-errors-are-always-missing-files",
+  "level": 2
+}, {
+  "value": "167. Common Mistake: Using Deep Package Internals",
+  "id": "167-common-mistake-using-deep-package-internals",
+  "level": 2
+}, {
+  "value": "168. Common Mistake: Using <code>NODE_PATH</code> to &quot;Fix&quot; Imports",
+  "id": "168-common-mistake-using-node_path-to-fix-imports",
+  "level": 2
+}, {
+  "value": "169. Common Mistake: Ignoring Node Version",
+  "id": "169-common-mistake-ignoring-node-version",
+  "level": 2
+}, {
+  "value": "170. Common Mistake: Treating Private Internals as Stable",
+  "id": "170-common-mistake-treating-private-internals-as-stable",
+  "level": 2
+}, {
+  "value": "171. A Strong Backend Mental Model",
+  "id": "171-a-strong-backend-mental-model",
+  "level": 2
 }, {
   "value": "Question 1 — What kind of specifier is X?",
   "id": "question-1--what-kind-of-specifier-is-x",
-  "level": 3
+  "level": 4
 }, {
   "value": "Question 2 — Where does Node start looking?",
   "id": "question-2--where-does-node-start-looking",
-  "level": 3
+  "level": 4
 }, {
   "value": "Question 3 — What metadata affects the result?",
   "id": "question-3--what-metadata-affects-the-result",
-  "level": 3
+  "level": 4
 }, {
   "value": "Question 4 — What exact file did Node select?",
   "id": "question-4--what-exact-file-did-node-select",
-  "level": 3
+  "level": 4
+}, {
+  "value": "172. Resolution Cheat Sheet",
+  "id": "172-resolution-cheat-sheet",
+  "level": 2
+}, {
+  "value": "173. Final Architecture Diagram",
+  "id": "173-final-architecture-diagram",
+  "level": 2
+}, {
+  "value": "174. Final Rules to Remember",
+  "id": "174-final-rules-to-remember",
+  "level": 2
 }, {
   "value": "Rule 1",
   "id": "rule-1",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 2",
   "id": "rule-2",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 3",
   "id": "rule-3",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 4",
   "id": "rule-4",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 5",
   "id": "rule-5",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 6",
   "id": "rule-6",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 7",
   "id": "rule-7",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 8",
   "id": "rule-8",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 9",
   "id": "rule-9",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 10",
   "id": "rule-10",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 11",
   "id": "rule-11",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 12",
   "id": "rule-12",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 13",
   "id": "rule-13",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 14",
   "id": "rule-14",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 15",
   "id": "rule-15",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 16",
   "id": "rule-16",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 17",
   "id": "rule-17",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 18",
   "id": "rule-18",
+  "level": 3
+}, {
+  "value": "175. The One Mental Model You Should Keep",
+  "id": "175-the-one-mental-model-you-should-keep",
   "level": 2
 }];
 function _createMdxContent(props) {
@@ -203715,6 +204920,7 @@ function _createMdxContent(props) {
     h1: "h1",
     h2: "h2",
     h3: "h3",
+    h4: "h4",
     header: "header",
     hr: "hr",
     li: "li",
@@ -203737,7 +204943,7 @@ function _createMdxContent(props) {
         id: "nodejs-commonjs-module-resolution--extensive-practical-notes",
         children: "Node.js CommonJS Module Resolution — Extensive Practical Notes"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "1-what-is-module-resolution",
       children: "1. What Is Module Resolution?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -203796,7 +205002,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"something\")\r\n       |\r\n       v\r\n   RESOLUTION\r\n       |\r\n       v\r\nexact module target\r\n       |\r\n       v\r\n    LOAD\r\n       |\r\n       v\r\nmodule.exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "the-important-distinction",
       children: "The important distinction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -203817,7 +205023,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction becomes very useful when debugging Node.js applications."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "2-the-big-picture",
       children: "2. The Big Picture"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -203839,7 +205045,7 @@ function _createMdxContent(props) {
       }), " need to memorize Node's source code."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You do need to understand the major branches."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "3-first-what-is-a-specifier",
       children: "3. First: What Is a Specifier?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -203867,7 +205073,7 @@ function _createMdxContent(props) {
           children: "Classify the specifier."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "4-the-three-main-specifier-categories",
       children: "4. The Three Main Specifier Categories"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -203991,7 +205197,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Built-ins are checked specially before ordinary package lookup."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "5-built-in-modules",
       children: "5. Built-in Modules"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204030,7 +205236,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Is \"fs\" a Node built-in?\r\n       |\r\n      YES\r\n       |\r\n       v\r\nreturn built-in module\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "6-node-prefix",
       children: ["6. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node:"
@@ -204064,7 +205270,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const fs = require(\"node:fs\");\r\nconst path = require(\"node:path\");\r\nconst crypto = require(\"node:crypto\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "7-why-fs-and-fs-are-completely-different",
       children: ["7. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"fs\""
@@ -204118,7 +205324,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction applies to other built-ins too."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "8-inspecting-built-in-modules",
       children: "8. Inspecting Built-in Modules"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204139,7 +205345,7 @@ function _createMdxContent(props) {
       children: "You generally do not need to inspect this list in application code."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It is mainly useful for understanding/debugging Node's module system."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "9-relative-paths",
       children: "9. Relative Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204197,7 +205403,7 @@ function _createMdxContent(props) {
       children: ["and it does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "not"
       }), " depend on the terminal's current working directory in the normal CommonJS relative-resolution sense."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "10-caller-location-matters",
       children: "10. Caller Location Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204261,7 +205467,7 @@ function _createMdxContent(props) {
           }), " paths are relative to the file doing the requiring."]
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "11-relative-path-vs-processcwd",
       children: ["11. Relative Path vs ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "process.cwd()"
@@ -204310,7 +205516,7 @@ function _createMdxContent(props) {
       children: ["For relative CommonJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), ", the module's location is what matters."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "12-absolute-paths",
       children: "12. Absolute Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -204334,7 +205540,7 @@ function _createMdxContent(props) {
       children: "The path itself tells Node where to look."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Absolute paths are usually less portable because they depend on the machine's filesystem layout."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "13-file-extension-probing",
       children: "13. File Extension Probing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204369,7 +205575,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The first successful match wins."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "14-why-extension-order-matters",
       children: "14. Why Extension Order Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204409,7 +205615,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason you should avoid confusingly naming multiple files that can resolve from the same specifier."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "15-exact-file-check-happens-first",
       children: "15. Exact File Check Happens First"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204441,7 +205647,7 @@ function _createMdxContent(props) {
       }), "."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But understanding this explains some unusual resolution behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "16-a-subtle-extension-edge-case",
       children: "16. A Subtle Extension Edge Case"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204490,7 +205696,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "are not identical resolution requests."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "17-should-you-always-include-js",
       children: ["17. Should You Always Include ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
@@ -204533,7 +205739,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use whichever module-resolution style your project's conventions require."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "18-directory-resolution",
       children: "18. Directory Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204561,7 +205767,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "./mylib\r\n   |\r\n   v\r\ndirectory?\r\n   |\r\n   v\r\npackage.json?\r\n   |\r\n   +--> \"main\"\r\n   |\r\n   +--> index.js\r\n   |\r\n   +--> index.json\r\n   |\r\n   +--> index.node\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "19-directory-packagejson--main",
       children: ["19. Directory ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -204600,7 +205806,7 @@ function _createMdxContent(props) {
       children: ["The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
       }), " path is relative to the package/directory root."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "20-indexjs-fallback",
       children: ["20. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "index.js"
@@ -204637,7 +205843,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This convention is old but still important because you will encounter it in real Node.js codebases."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "21-main-beats-indexjs",
       children: ["21. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -204688,7 +205894,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "before the legacy index fallback."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "22-invalid-main-fallback",
       children: ["22. Invalid ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -204718,7 +205924,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "is the correct approach."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "23-bare-specifiers",
       children: "23. Bare Specifiers"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -204741,7 +205947,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node therefore treats it as a package lookup request."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "24-the-node_modules-climbing-algorithm",
       children: ["24. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
@@ -204775,7 +205981,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The first successful match wins."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "25-why-does-node-search-upward",
       children: "25. Why Does Node Search Upward?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204811,7 +206017,7 @@ function _createMdxContent(props) {
           children: "The caller's location determines where package lookup begins."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "26-npm-hoisting",
       children: "26. npm Hoisting"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204841,7 +206047,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "package manager creates tree\r\n            |\r\n            v\r\nNode resolves paths in that tree\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "27-pnpm-and-symlinks",
       children: "27. pnpm and Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204856,7 +206062,7 @@ function _createMdxContent(props) {
       children: "Node does not have a special \"pnpm resolution algorithm\" that replaces CommonJS resolution."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Package managers construct dependency layouts; Node resolves modules from the resulting filesystem structure and package metadata."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "28-scoped-packages",
       children: "28. Scoped Packages"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204893,7 +206099,7 @@ function _createMdxContent(props) {
       children: ["is simply the first directory level under ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "29-package-subpaths",
       children: "29. Package Subpaths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204916,7 +206122,7 @@ function _createMdxContent(props) {
       children: ["Modern packages can restrict this with ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "30-why-deep-imports-can-be-dangerous",
       children: "30. Why Deep Imports Can Be Dangerous"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -204960,7 +206166,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "to define a stable public interface."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "31-packagejson-main",
       children: ["31. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -204996,7 +206202,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"my-pkg\")\r\n       |\r\n       v\r\nnode_modules/my-pkg\r\n       |\r\n       v\r\npackage.json\r\n       |\r\n       v\r\n\"main\": \"./dist/index.cjs\"\r\n       |\r\n       v\r\ndist/index.cjs\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "32-what-main-does-not-mean",
       children: ["32. What ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -205029,7 +206235,7 @@ function _createMdxContent(props) {
       children: ["For modern Node package design, ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " is the more important field."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "33-packagejson-exports",
       children: ["33. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -205063,7 +206269,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "unless that path is explicitly exported."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "34-why-exports-is-important",
       children: ["34. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -205090,7 +206296,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Now the package author can freely reorganize internal files without necessarily breaking consumers."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "35-exports-can-hide-files-that-exist",
       children: ["35. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -205144,7 +206350,7 @@ function _createMdxContent(props) {
           children: "A file existing on disk does not necessarily mean the package exposes it through package-name resolution."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "36-exports-is-not-a-filesystem-security-sandbox",
       children: ["36. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -205183,7 +206389,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports = security boundary\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "37-exports-vs-main",
       children: ["37. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -205222,7 +206428,7 @@ function _createMdxContent(props) {
       children: ["for compatibility with older consumers while making ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " the authoritative modern public map."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "38-simple-exports-example",
       children: ["38. Simple ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -205259,7 +206465,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "unless those paths are exported."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "39-conditional-exports",
       children: "39. Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205301,7 +206507,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is important for packages supporting both CommonJS and ESM."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "40-think-of-conditional-exports-as-an-if",
       children: ["40. Think of Conditional Exports as an ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "if"
@@ -205322,7 +206528,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is not literally JavaScript, but it is a good mental model."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "41-the-default-condition",
       children: ["41. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"default\""
@@ -205341,7 +206547,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "try require\r\n   |\r\n   +--> matching -> use it\r\n   |\r\n   +--> otherwise -> default\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "42-condition-order-matters",
       children: "42. Condition Order Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205380,7 +206586,7 @@ function _createMdxContent(props) {
           children: "Put more specific conditions before broader fallback conditions."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "43-common-conditions",
       children: "43. Common Conditions"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205410,7 +206616,7 @@ function _createMdxContent(props) {
       children: "condition."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not add custom conditions casually. They increase package-resolution complexity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "44-nodes-commonjs-conditions",
       children: "44. Node's CommonJS Conditions"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -205436,7 +206642,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not memorize a particular Node version's internal condition list unless you are specifically debugging package-loader behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "45-subpath-patterns",
       children: "45. Subpath Patterns"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -205468,7 +206674,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The wildcard is a replacement."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "46-wildcards-can-match-paths",
       children: "46. Wildcards Can Match Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205499,7 +206705,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "package subpath\r\n       |\r\n       v\r\nwildcard substitution\r\n       |\r\n       v\r\ninternal target\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "47-export-targets-must-stay-inside-the-package",
       children: "47. Export Targets Must Stay Inside the Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -205526,7 +206732,7 @@ function _createMdxContent(props) {
       children: ["This prevents ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " from becoming a generic filesystem aliasing system."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "48-packagejson-imports",
       children: ["48. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -205560,7 +206766,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require(\"#utils\");\r\nrequire(\"#db\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "49-why-use-imports",
       children: ["49. Why Use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -205603,7 +206809,7 @@ function _createMdxContent(props) {
       children: "from anywhere inside the package."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The alias remains stable while internal folder structure changes."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "50--is-required",
       children: ["50. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#"
@@ -205636,7 +206842,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This prevents confusion with normal package names."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "51-imports-is-private-to-the-package",
       children: ["51. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -205673,7 +206879,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This gives each package its own private alias namespace."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "52-imports-does-not-use-node_modules-climbing",
       children: ["52. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -205716,7 +206922,7 @@ function _createMdxContent(props) {
       children: ["It does not keep climbing upward searching for another package's matching ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#db"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "53-conditional-imports",
       children: ["53. Conditional ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -205757,7 +206963,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a useful pattern for development/test environments, but should be used deliberately."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "54-package-self-reference",
       children: "54. Package Self-Reference"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205791,7 +206997,7 @@ function _createMdxContent(props) {
       children: ["The package's ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " map controls what is available."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "55-why-self-reference-is-useful",
       children: "55. Why Self-Reference Is Useful"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205817,7 +207023,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can make package boundaries clearer."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "56-node_path",
       children: ["56. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_PATH"
@@ -205860,7 +207066,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "separates entries."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "57-why-you-should-usually-avoid-node_path",
       children: ["57. Why You Should Usually Avoid ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_PATH"
@@ -205907,7 +207113,7 @@ function _createMdxContent(props) {
       children: ["Use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_PATH"
       }), " mainly when dealing with older systems or legacy environments."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "58-historical-global-folders",
       children: "58. Historical Global Folders"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -205940,7 +207146,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "In modern projects, avoid relying on this."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "59-requireresolve",
       children: ["59. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -205977,7 +207183,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require.resolve(\"./utils\")\r\n    |\r\n    v\r\nresolve\r\n    |\r\n    v\r\nfilename\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "60-requireresolve-does-not-execute-the-module",
       children: ["60. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -206011,7 +207217,7 @@ function _createMdxContent(props) {
       children: ["This makes ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
       }), " useful for debugging and optional dependencies."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "61-requireresolve-for-debugging",
       children: ["61. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -206046,7 +207252,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That immediately tells you where Node found it."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "62-requireresolve-and-module_not_found",
       children: ["62. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -206080,7 +207286,7 @@ function _createMdxContent(props) {
       children: ["Use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "try/catch"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "63-optional-dependency-pattern",
       children: "63. Optional Dependency Pattern"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206108,7 +207314,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not catch every error and silently pretend the dependency does not exist."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "64-finding-a-package-root",
       children: "64. Finding a Package Root"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206133,7 +207339,7 @@ function _createMdxContent(props) {
       children: ["even though Node internally reads its own ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
       }), " for package resolution."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "65-exports-can-block-packagejson",
       children: ["65. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -206180,7 +207386,7 @@ function _createMdxContent(props) {
           children: "Physical file existence and package-name accessibility are different concepts."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "66-symlinks",
       children: "66. Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206203,7 +207409,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "rather than the symlink path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "67-why-symlink-behavior-matters",
       children: "67. Why Symlink Behavior Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206226,7 +207432,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Both can collapse to one module identity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "68---preserve-symlinks",
       children: ["68. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "--preserve-symlinks"
@@ -206251,7 +207457,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "even if both point to the same physical file."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "69-why-duplicate-module-instances-are-dangerous",
       children: "69. Why Duplicate Module Instances Are Dangerous"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206295,7 +207501,7 @@ function _createMdxContent(props) {
       children: "even though both classes came from what appears to be the same package."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason symlink-related duplicate dependencies can be painful."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "70---preserve-symlinks-main",
       children: ["70. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "--preserve-symlinks-main"
@@ -206320,7 +207526,7 @@ function _createMdxContent(props) {
       children: "for the main module."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Most applications do not need this flag."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "71-case-sensitivity-and-module-identity",
       children: "71. Case Sensitivity and Module Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206341,7 +207547,7 @@ function _createMdxContent(props) {
       children: "On case-insensitive filesystems, both can potentially refer to the same physical file while producing different resolved filename identities."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That can lead to multiple module cache entries and separate module state."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "72-why-this-causes-production-bugs",
       children: "72. Why This Causes Production Bugs"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206380,7 +207586,7 @@ function _createMdxContent(props) {
       children: "Enforce import casing through linting and CI."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not rely on the local filesystem to catch these mistakes."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "73-module_resolvefilename",
       children: ["73. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._resolveFilename"
@@ -206421,7 +207627,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "final path resolution"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "74-the-parent-module",
       children: ["74. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "parent"
@@ -206459,7 +207665,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "the answer depends on the parent file's directory."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "75-ismain",
       children: ["75. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "isMain"
@@ -206486,7 +207692,7 @@ function _createMdxContent(props) {
       children: ["Normal application code rarely needs to interact with the internal ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "isMain"
       }), " parameter directly."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "76-_findpath",
       children: ["76. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "_findPath"
@@ -206510,7 +207716,7 @@ function _createMdxContent(props) {
       children: "This is where filesystem probing and package resolution become concrete."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You do not need to call this directly in normal code."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "77-module_pathcache",
       children: ["77. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._pathCache"
@@ -206543,12 +207749,12 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.cache;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "78-two-different-caches",
       children: "78. Two Different Caches"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Memorize this distinction."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "module-cache",
       children: "Module cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -206563,7 +207769,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "filename\r\n   |\r\n   v\r\nModule object\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "resolutionpath-cache",
       children: "Resolution/path cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206594,7 +207800,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"have I loaded it?\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "79-requirecache-vs-resolution-cache",
       children: ["79. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -206628,7 +207834,7 @@ function _createMdxContent(props) {
       children: "So resolution and loading are separate stages."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The path-resolution result can be cached independently of the evaluated module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "80-synchronous-resolution",
       children: "80. Synchronous Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206649,7 +207855,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This means module loading can block JavaScript execution during startup."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "81-why-startup-can-be-slow",
       children: "81. Why Startup Can Be Slow"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206667,7 +207873,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Many failed checks may occur before the correct package is found."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "82-failed-filesystem-checks-still-cost-time",
       children: "82. Failed Filesystem Checks Still Cost Time"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206701,7 +207907,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is mainly a startup concern."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "83-why-bundlers-can-be-faster-at-runtime",
       children: "83. Why Bundlers Can Be Faster at Runtime"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206731,7 +207937,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason bundling can reduce runtime module-resolution overhead."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "84-realpath-and-symlinks",
       children: "84. Realpath and Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206747,7 +207953,7 @@ function _createMdxContent(props) {
       children: "This matters because the canonical path can become part of module identity and therefore caching."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node also maintains internal realpath-related caching to avoid repeatedly doing expensive canonicalization work."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "85-debugging-module-resolution",
       children: "85. Debugging Module Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206761,7 +207967,7 @@ function _createMdxContent(props) {
       children: "do not randomly change import paths."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use Node's resolution tools."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "86-debugging-step-1--requireresolve",
       children: ["86. Debugging Step 1 — ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -206789,7 +207995,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is usually the fastest first diagnostic."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "87-debugging-step-2--check-search-paths",
       children: "87. Debugging Step 2 — Check Search Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206810,7 +208016,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If your expected dependency directory is not represented, you have a resolution-layout problem."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "88-debugging-step-3--check-the-caller",
       children: "88. Debugging Step 3 — Check the Caller"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206839,7 +208045,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Then verify the path you expect."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "89-debugging-step-4--check-packagejson",
       children: ["89. Debugging Step 4 — Check ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -206862,7 +208068,7 @@ function _createMdxContent(props) {
       children: ["For a package resolution issue, ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " is often the first thing to check in modern Node packages."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "90-debugging-step-5--check-node_modules",
       children: ["90. Debugging Step 5 — Check ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
@@ -206885,7 +208091,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "or the equivalent command for your package manager when useful."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "91-debugging-step-6--check-symlinks",
       children: "91. Debugging Step 6 — Check Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206904,7 +208110,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "instanceof failures\r\nmultiple singleton instances\r\nseparate caches\r\nunexpected state\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "92-node_debugmodule",
       children: ["92. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_DEBUG=module"
@@ -206927,7 +208133,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can reveal how Node is interpreting a request."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "93-node_debugmodule-vs-debug",
       children: ["93. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_DEBUG=module"
@@ -206959,7 +208165,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "wrong package\r\nwrong path\r\nunexpected resolution\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "94-command-line-resolution-test",
       children: "94. Command-Line Resolution Test"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206978,7 +208184,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "current environment\r\n      |\r\n      v\r\nNode resolution\r\n      |\r\n      v\r\nprint resolved target\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "95-inspecting-nodes-lookup-paths",
       children: "95. Inspecting Node's Lookup Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -206996,7 +208202,7 @@ function _createMdxContent(props) {
       }), " hierarchy Node would construct from a given location."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use it for debugging, not as normal application architecture."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "96-internal-loader-hooks",
       children: "96. Internal Loader Hooks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207027,7 +208233,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Internal APIs can change between Node versions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "97-the-type-field",
       children: ["97. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"type\""
@@ -207061,7 +208267,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is important when a project contains both CommonJS and ESM behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "98-commonjs-vs-esm-resolution",
       children: "98. CommonJS vs ESM Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207107,7 +208313,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This difference causes many CommonJS → ESM migration bugs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "99-exports-works-across-cjs-and-esm",
       children: ["99. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -207130,7 +208336,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the modern Node package model."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "100-require-loading-esm",
       children: ["100. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -207174,7 +208380,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CommonJS require()\r\n    -> synchronous\r\n\r\nESM with asynchronous top-level dependency\r\n    -> use dynamic import when necessary\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "101-circular-dependencies-are-not-a-resolution-problem",
       children: "101. Circular Dependencies Are Not a Resolution Problem"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207211,10 +208417,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore B may see partial exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "102-circular-dependency-example",
       children: "102. Circular Dependency Example"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -207224,7 +208430,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "exports.name = \"A\";\r\n\r\nconst b = require(\"./b\");\r\n\r\nexports.ready = true;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.js"
@@ -207255,7 +208461,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "A\r\nundefined\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "103-why-does-this-happen",
       children: "103. Why Does This Happen?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207276,7 +208482,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "from recursively loading forever."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "104-partial-exports",
       children: "104. Partial Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207302,7 +208508,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "undefined\r\nmissing function\r\nempty object\r\npartially populated object\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "105-avoid-circular-dependencies",
       children: "105. Avoid Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207337,7 +208543,7 @@ function _createMdxContent(props) {
       children: ["Do not use lazy ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " as an excuse to keep a badly designed dependency graph forever."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "106-moduleexports-replacement-makes-cycles-worse",
       children: ["106. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -207374,7 +208580,7 @@ function _createMdxContent(props) {
       children: "B still holds the old object."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason mutation and replacement behave differently during cycles."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "107-exports-vs-imports--memorize-this",
       children: ["107. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -207409,7 +208615,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require(\"#utils\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "108-main-vs-exports-vs-imports",
       children: ["108. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -207466,7 +208672,7 @@ function _createMdxContent(props) {
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A strong Node backend developer should know these four fields."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "109-package-resolution-decision-tree",
       children: "109. Package Resolution Decision Tree"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207485,7 +208691,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the mental model you should actually use."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "110-practical-resolution-example",
       children: "110. Practical Resolution Example"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207525,7 +208731,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "express\r\n   |\r\n   v\r\nproject/node_modules/express\r\n   |\r\n   v\r\npackage.json\r\n   |\r\n   v\r\nexports/main/etc.\r\n   |\r\n   v\r\nentry file\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "111-practical-imports-example",
       children: ["111. Practical ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#imports"
@@ -207564,7 +208770,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For a deeply nested file, the alias becomes more valuable."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "112-practical-exports-example",
       children: ["112. Practical ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -207601,7 +208807,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "is blocked because it is not part of the public map."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "113-practical-conditional-exports",
       children: "113. Practical Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -207639,7 +208845,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one of the most important package patterns to understand when working with modern Node.js libraries."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "114-practical-package-subpath-pattern",
       children: "114. Practical Package Subpath Pattern"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -207663,7 +208869,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This allows package authors to expose structured public APIs without exposing every internal file."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "115-a-useful-debugging-scenario",
       children: "115. A Useful Debugging Scenario"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207708,7 +208914,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "MODULE_NOT_FOUND\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "116-module_not_found-vs-err_package_path_not_exported",
       children: ["116. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "MODULE_NOT_FOUND"
@@ -207717,7 +208923,7 @@ function _createMdxContent(props) {
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These errors mean different things."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "module_not_found",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "MODULE_NOT_FOUND"
@@ -207736,7 +208942,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require(\"does-not-exist\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "err_package_path_not_exported",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED"
@@ -207761,7 +208967,7 @@ function _createMdxContent(props) {
       }), " does not expose it."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction is extremely useful when debugging dependencies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "117-another-important-error-err_require_async_module",
       children: ["117. Another Important Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_ASYNC_MODULE"
@@ -207793,7 +208999,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "so an inherently asynchronous ESM graph cannot always fit inside it."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "118-module-resolution-does-not-mean-module-execution",
       children: "118. Module Resolution Does Not Mean Module Execution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207833,7 +209039,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one of the most common conceptual mistakes beginners make."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "119-resolution-happens-before-cache-lookup",
       children: "119. Resolution Happens Before Cache Lookup"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207847,7 +209053,7 @@ function _createMdxContent(props) {
       children: "Therefore the cache needs a stable module identity."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For normal file-backed CommonJS modules, the resolved filename is central to that identity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "120-why-same-file-usually-means-same-module",
       children: "120. Why Same File Usually Means Same Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207882,7 +209088,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The exact identity can be affected by symlink and filesystem behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "121-symlinks-can-change-that-identity",
       children: "121. Symlinks Can Change That Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207896,7 +209102,7 @@ function _createMdxContent(props) {
       children: "Depending on loader configuration, Node may preserve those apparent paths instead of collapsing them to one real path."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can create duplicate module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "122-resolution-and-dependency-injection",
       children: "122. Resolution and Dependency Injection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207928,7 +209134,7 @@ function _createMdxContent(props) {
       children: "when the package owns the alias."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This makes the dependency relationship explicit."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "123-package-boundaries",
       children: "123. Package Boundaries"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -207956,7 +209162,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This makes refactoring safer."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "124-why-backend-developers-should-care-about-exports",
       children: ["124. Why Backend Developers Should Care About ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -208000,7 +209206,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Find another hidden internal path.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "125-why-backend-developers-should-care-about-imports",
       children: ["125. Why Backend Developers Should Care About ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -208037,7 +209243,7 @@ function _createMdxContent(props) {
       children: "This reduces path fragility."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "However, keep aliases meaningful and limited. Creating dozens of cryptic aliases can make a codebase harder to understand."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "126-why-backend-developers-should-care-about-symlinks",
       children: "126. Why Backend Developers Should Care About Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208068,7 +209274,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "real path\r\nsymlink path\r\nresolved filename\r\npackage tree\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "127-the-node_modules-search-mental-model",
       children: ["127. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
@@ -208091,7 +209297,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The actual list can also involve additional environment/global paths and package-manager layouts."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "128-the-complete-package-resolution-model",
       children: "128. The Complete Package Resolution Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208110,7 +209316,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the core model."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "129-the-complete-path-resolution-model",
       children: "129. The Complete Path Resolution Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208129,7 +209335,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The first successful resolution wins."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "130-the-complete-imports-model",
       children: ["130. The Complete ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#imports"
@@ -208152,14 +209358,14 @@ function _createMdxContent(props) {
       children: ["No normal ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), " climbing."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "131-resolution-troubleshooting-checklist",
       children: "131. Resolution Troubleshooting Checklist"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: ["When ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " is failing:"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "1-classify-the-request",
       children: "1. Classify the request"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208171,7 +209377,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "?"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "2-check-the-caller",
       children: "2. Check the caller"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208183,7 +209389,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "?"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "3-for-packages-inspect-search-paths",
       children: "3. For packages, inspect search paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208191,7 +209397,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.resolve.paths(\"package-name\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "4-try-direct-resolution",
       children: "4. Try direct resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208199,7 +209405,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.resolve(\"package-name\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "5-check-package-metadata",
       children: "5. Check package metadata"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208209,24 +209415,24 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports\r\nimports\r\nmain\r\ntype\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "6-check-node_modules",
       children: ["6. Check ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Is the package actually installed where expected?"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "7-check-symlinks",
       children: "7. Check symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Especially in monorepos/workspaces."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "8-check-casing",
       children: "8. Check casing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Especially if development is on macOS/Windows and production is Linux."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "9-use-loader-debugging",
       children: "9. Use loader debugging"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208234,7 +209440,7 @@ function _createMdxContent(props) {
         className: "language-bash",
         children: "NODE_DEBUG=module node app.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "132-troubleshooting-matrix",
       children: "132. Troubleshooting Matrix"
     }), "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.table, {
@@ -208327,20 +209533,20 @@ function _createMdxContent(props) {
           })]
         })]
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "133-what-you-should-memorize",
       children: "133. What You Should Memorize"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These are the high-value facts."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "specifier-categories",
       children: "Specifier categories"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         className: "language-text",
-        children: "./ / ../ -> relative path\r\n/        -> absolute path\r\nbare     -> package\r\n#        -> package imports\r\nbuilt-in -> Node built-in\n"
+        children: "./ / ../ -> relative path\r\n/        -> absolute path\r\nbare     -> package\r\n##        -> package imports\r\nbuilt-in -> Node built-in\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "file-probing",
       children: "File probing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208348,7 +209554,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exact path\r\n.js\r\n.json\r\n.node\r\ndirectory entry\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "package-lookup",
       children: "Package lookup"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208356,7 +209562,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "node_modules\r\n   ^\r\n   |\r\nwalk upward\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "package-metadata",
       children: "Package metadata"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208364,7 +209570,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports -> modern public interface\r\nmain    -> legacy entry point\r\nimports -> private internal aliases\r\ntype    -> CJS vs ESM interpretation of .js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "resolution-tools",
       children: "Resolution tools"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208372,7 +209578,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.resolve(...)\r\nrequire.resolve.paths(...)\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "debugging",
       children: "Debugging"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208380,7 +209586,7 @@ function _createMdxContent(props) {
         className: "language-bash",
         children: "NODE_DEBUG=module node app.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "architecture",
       children: "Architecture"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208388,7 +209594,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "avoid deep imports\r\navoid unnecessary circular dependencies\r\navoid NODE_PATH\r\nbe careful with symlinked packages\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "134-what-you-do-not-need-to-memorize",
       children: "134. What You Do NOT Need to Memorize"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208411,12 +209617,12 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That is enough for normal backend development."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "135-important-mental-model-resolution-vs-loading-vs-execution",
       children: "135. Important Mental Model: Resolution vs Loading vs Execution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Keep these three stages separate."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "resolution",
       children: "Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208424,7 +209630,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"lodash\"\r\n   |\r\n   v\r\n/path/to/node_modules/lodash/index.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "loading",
       children: "Loading"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208432,7 +209638,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "read file\r\ncompile/parse\r\ncreate module\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "execution",
       children: "Execution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208442,7 +209648,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A lot of Node.js confusion disappears once these three are separated."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "136-important-mental-model-public-package-api-vs-filesystem",
       children: "136. Important Mental Model: Public Package API vs Filesystem"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208478,7 +209684,7 @@ function _createMdxContent(props) {
           children: "\"The file exists\" is not enough to conclude \"I can require it by package subpath.\""
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "137-important-mental-model-caller-determines-context",
       children: "137. Important Mental Model: Caller Determines Context"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208525,7 +209731,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore the parent/caller module is central to CommonJS resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "138-important-mental-model-package-manager-vs-node",
       children: "138. Important Mental Model: Package Manager vs Node"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208558,7 +209764,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They interact, but they are different systems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "139-important-mental-model-requireresolve",
       children: ["139. Important Mental Model: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -208593,7 +209799,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "would load the resolved target."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "140-important-mental-model-errors-tell-you-which-layer-failed",
       children: "140. Important Mental Model: Errors Tell You Which Layer Failed"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208605,7 +209811,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is much more effective than blindly changing imports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "141-backend-developer-scenario-monorepo",
       children: "141. Backend Developer Scenario: Monorepo"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208637,7 +209843,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This mental model scales much better."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "142-backend-developer-scenario-dependency-version-conflict",
       children: "142. Backend Developer Scenario: Dependency Version Conflict"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208669,12 +209875,12 @@ function _createMdxContent(props) {
       children: ["That is not necessarily a bug. It can be the expected result of the ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), " climbing algorithm."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "143-backend-developer-scenario-it-works-in-dev-but-not-production",
       children: "143. Backend Developer Scenario: \"It Works in Dev but Not Production\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Check:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "1-case",
       children: "1. Case"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208682,7 +209888,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "./Utils\r\n./utils\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "2-symlinks",
       children: "2. Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208690,7 +209896,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "npm link\r\npnpm\r\nworkspace\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "3-environment",
       children: "3. Environment"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -208698,21 +209904,21 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "NODE_PATH\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "4-package-version",
       children: "4. Package version"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: ["Different ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), " tree."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "5-exports",
       children: ["5. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A package version may have changed its public API."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "6-type",
       children: ["6. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"type\""
@@ -208721,12 +209927,12 @@ function _createMdxContent(props) {
       children: ["Different package boundaries can change how ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
       }), " files are interpreted."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "7-node-version",
       children: "7. Node version"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Modern resolution behavior can differ across Node versions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "144-backend-developer-scenario-package-upgrade-breaks-internal-import",
       children: "144. Backend Developer Scenario: Package Upgrade Breaks Internal Import"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208759,7 +209965,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not treat private package internals as stable APIs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "145-backend-developer-scenario-two-copies-of-a-library",
       children: "145. Backend Developer Scenario: Two Copies of a Library"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208789,7 +209995,7 @@ function _createMdxContent(props) {
       children: "from different parts of the application."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Also inspect your dependency tree."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "146-backend-developer-scenario-relative-imports-become-ugly",
       children: "146. Backend Developer Scenario: Relative Imports Become Ugly"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208821,7 +210027,7 @@ function _createMdxContent(props) {
       }), " map."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not solve every relative path with aliases, but deep chains are a strong signal that a package alias may improve maintainability."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "147-backend-developer-scenario-optional-dependency",
       children: "147. Backend Developer Scenario: Optional Dependency"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208851,7 +210057,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not hide real failures."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "148-backend-developer-scenario-debugging--imports",
       children: ["148. Backend Developer Scenario: Debugging ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#"
@@ -208880,7 +210086,7 @@ function _createMdxContent(props) {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "#db"
       }), " is not a normal package lookup."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "149-backend-developer-scenario-debugging-package-exports",
       children: "149. Backend Developer Scenario: Debugging Package Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208915,7 +210121,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "./utils\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "150-practical-lab-build-a-resolution-inspector",
       children: "150. Practical Lab: Build a Resolution Inspector"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208955,7 +210161,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This gives you hands-on experience with the resolver."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "151-practical-lab-compare-caller-context",
       children: "151. Practical Lab: Compare Caller Context"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -208993,7 +210199,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "Relative resolution depends on the caller."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "152-practical-lab-extension-probing",
       children: "152. Practical Lab: Extension Probing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209032,7 +210238,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You should get the JSON file."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "153-practical-lab-directory-resolution",
       children: "153. Practical Lab: Directory Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209080,7 +210286,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "154-practical-lab-exports",
       children: ["154. Practical Lab: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -209117,7 +210323,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The second request should fail because it is not exported."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "155-practical-lab-imports",
       children: ["155. Practical Lab: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -209147,7 +210353,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "while a relative path would need to change."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "156-practical-lab-search-paths",
       children: "156. Practical Lab: Search Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209165,7 +210371,7 @@ function _createMdxContent(props) {
       children: ["This is one of the easiest ways to understand the ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), " climbing algorithm."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "157-practical-lab-node_debugmodule",
       children: ["157. Practical Lab: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_DEBUG=module"
@@ -209195,7 +210401,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This gives you a direct view of the CommonJS loader's runtime decisions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "158-practical-lab-symlink-identity",
       children: "158. Practical Lab: Symlink Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209223,7 +210429,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is an advanced experiment. You do not need to use this feature routinely."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "159-practical-lab-case-sensitivity",
       children: "159. Practical Lab: Case Sensitivity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209258,7 +210464,7 @@ function _createMdxContent(props) {
       children: "and compare with a case-insensitive development filesystem."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This demonstrates why import casing should be enforced by tooling."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "160-common-mistake-thinking-require-searches-everywhere",
       children: ["160. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -209307,7 +210513,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "nearest package's imports map\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "161-common-mistake-thinking-node_modules-is-always-the-current-directory",
       children: ["161. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
@@ -209328,7 +210534,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is why nested packages can have separate dependencies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "162-common-mistake-thinking-main-always-wins",
       children: ["162. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -209366,7 +210572,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "is being used."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "163-common-mistake-thinking-exports-hides-files-from-the-filesystem",
       children: ["163. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -209389,7 +210595,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It is not a complete filesystem sandbox."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "164-common-mistake-thinking-imports-is-like-node_path",
       children: ["164. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"imports\""
@@ -209421,7 +210627,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It works for code inside that package scope."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "165-common-mistake-thinking-requireresolve-loads-the-module",
       children: ["165. Common Mistake: Thinking ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -209449,7 +210655,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "No module evaluation is required."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "166-common-mistake-thinking-resolution-errors-are-always-missing-files",
       children: "166. Common Mistake: Thinking Resolution Errors Are Always Missing Files"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209477,7 +210683,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Always identify which resolution branch failed."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "167-common-mistake-using-deep-package-internals",
       children: "167. Common Mistake: Using Deep Package Internals"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209505,7 +210711,7 @@ function _createMdxContent(props) {
       children: "if exposed."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If a package does not expose the internal module, do not fight the package's public API boundary."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "168-common-mistake-using-node_path-to-fix-imports",
       children: ["168. Common Mistake: Using ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "NODE_PATH"
@@ -209537,7 +210743,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "depending on the architecture."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "169-common-mistake-ignoring-node-version",
       children: "169. Common Mistake: Ignoring Node Version"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209558,7 +210764,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A resolution rule documented for one Node release should not automatically be assumed to describe every older release."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "170-common-mistake-treating-private-internals-as-stable",
       children: "170. Common Mistake: Treating Private Internals as Stable"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209579,7 +210785,7 @@ function _createMdxContent(props) {
       children: "They are not good foundations for application architecture."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use public APIs wherever possible."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "171-a-strong-backend-mental-model",
       children: "171. A Strong Backend Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209591,15 +210797,15 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "ask four questions:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "question-1--what-kind-of-specifier-is-x",
       children: "Question 1 — What kind of specifier is X?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         className: "language-text",
-        children: "built-in?\r\npath?\r\npackage?\r\n# alias?\n"
+        children: "built-in?\r\npath?\r\npackage?\r\n## alias?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "question-2--where-does-node-start-looking",
       children: "Question 2 — Where does Node start looking?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209607,7 +210813,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "caller directory?\r\npackage scope?\r\nnode_modules chain?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "question-3--what-metadata-affects-the-result",
       children: "Question 3 — What metadata affects the result?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209615,7 +210821,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports?\r\nimports?\r\nmain?\r\ntype?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "question-4--what-exact-file-did-node-select",
       children: "Question 4 — What exact file did Node select?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209627,7 +210833,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These four questions solve a large percentage of real-world module-resolution problems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "172-resolution-cheat-sheet",
       children: "172. Resolution Cheat Sheet"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209635,7 +210841,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"fs\")\r\n    -> built-in\r\n\r\nrequire(\"node:fs\")\r\n    -> explicit built-in\r\n\r\nrequire(\"./utils\")\r\n    -> caller directory\r\n    -> exact path\r\n    -> .js\r\n    -> .json\r\n    -> .node\r\n    -> directory rules\r\n\r\nrequire(\"../utils\")\r\n    -> parent directory\r\n    -> same filesystem probing\r\n\r\nrequire(\"/absolute/path\")\r\n    -> absolute filesystem resolution\r\n\r\nrequire(\"lodash\")\r\n    -> node_modules climbing\r\n    -> package metadata\r\n    -> exports/main/fallback\r\n\r\nrequire(\"@scope/pkg\")\r\n    -> node_modules/@scope/pkg\r\n\r\nrequire(\"pkg/subpath\")\r\n    -> package + public subpath\r\n    -> exports may restrict it\r\n\r\nrequire(\"#db\")\r\n    -> nearest package.json\r\n    -> imports map\r\n\r\nrequire.resolve(...)\r\n    -> resolve only\r\n\r\nrequire.resolve.paths(...)\r\n    -> show package lookup paths\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "173-final-architecture-diagram",
       children: "173. Final Architecture Diagram"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209643,12 +210849,12 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "                         require(request)\r\n                                |\r\n                                v\r\n                       CLASSIFY REQUEST\r\n                                |\r\n          +---------------------+----------------------+\r\n          |                     |                      |\r\n          v                     v                      v\r\n      BUILT-IN              PATH-LIKE              BARE PACKAGE\r\n          |                     |                      |\r\n          v                     v                      v\r\n     Node registry         caller directory       node_modules\r\n          |                     |                   climbing\r\n          |                     v                      |\r\n          |               exact path                  v\r\n          |                     |                 package found\r\n          |                     v                      |\r\n          |             .js / .json / .node            v\r\n          |                     |                 package.json\r\n          |                     v                      |\r\n          |                 directory             +----+----+\r\n          |                     |                 |         |\r\n          |                     |              exports     main\r\n          |                     |                 |         |\r\n          +---------------------+-----------------+---------+\r\n                                |\r\n                                v\r\n                         resolved target\r\n                                |\r\n                                v\r\n                          module cache\r\n                         /            \\\r\n                       hit            miss\r\n                        |               |\r\n                        |               v\r\n                        |            load file\r\n                        |               |\r\n                        |               v\r\n                        |           execute\r\n                        |               |\r\n                        +---------------+\r\n                                |\r\n                                v\r\n                         module.exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "174-final-rules-to-remember",
       children: "174. Final Rules to Remember"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If you are preparing for serious Node.js backend development, these are the rules worth remembering."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-1",
       children: "Rule 1"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209656,7 +210862,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require() starts with a specifier.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-2",
       children: "Rule 2"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209664,7 +210870,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Node first determines what kind of specifier it is.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-3",
       children: "Rule 3"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209672,7 +210878,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Relative paths are relative to the requiring module.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-4",
       children: "Rule 4"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209680,7 +210886,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Bare package names use node_modules lookup.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-5",
       children: "Rule 5"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209688,7 +210894,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "node_modules lookup walks upward from the caller.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-6",
       children: "Rule 6"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209696,7 +210902,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Built-ins are handled separately.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-7",
       children: "Rule 7"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209704,7 +210910,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "./foo can probe foo.js, foo.json, and foo.node.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-8",
       children: "Rule 8"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209712,7 +210918,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Directories can use package.json \"main\" and legacy index files.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-9",
       children: "Rule 9"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209720,7 +210926,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"exports\" defines a package's modern public entry points.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-10",
       children: "Rule 10"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209728,7 +210934,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"exports\" can block files that physically exist.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-11",
       children: "Rule 11"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209736,7 +210942,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"imports\" creates private # aliases inside a package.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-12",
       children: "Rule 12"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209744,7 +210950,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"main\" is legacy compared with \"exports\".\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-13",
       children: "Rule 13"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209752,7 +210958,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require.resolve() resolves without loading.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-14",
       children: "Rule 14"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209760,7 +210966,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require.resolve.paths() shows package lookup directories.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-15",
       children: "Rule 15"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209768,7 +210974,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Symlinks and filename casing can affect module identity.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-16",
       children: "Rule 16"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209776,7 +210982,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Resolution is synchronous in CommonJS.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-17",
       children: "Rule 17"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209784,7 +210990,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Circular dependencies are a loading/evaluation problem, not simply a resolution problem.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-18",
       children: "Rule 18"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -209792,7 +210998,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Do not depend on private Node loader internals in production.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "175-the-one-mental-model-you-should-keep",
       children: "175. The One Mental Model You Should Keep"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -209864,294 +211070,630 @@ const assets = {
 const toc = [{
   "value": "1. What Are ES Modules?",
   "id": "1-what-are-es-modules",
-  "level": 2
+  "level": 3
 }, {
   "value": "CommonJS",
   "id": "commonjs",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM",
   "id": "esm",
-  "level": 3
+  "level": 4
+}, {
+  "value": "2. The Most Important Mental Model: Parse → Instantiate → Evaluate",
+  "id": "2-the-most-important-mental-model-parse--instantiate--evaluate",
+  "level": 2
 }, {
   "value": "Phase 1: Parsing",
   "id": "phase-1-parsing",
-  "level": 2
+  "level": 3
 }, {
   "value": "Phase 2: Instantiation / Linking",
   "id": "phase-2-instantiation--linking",
-  "level": 2
+  "level": 3
 }, {
   "value": "Phase 3: Evaluation",
   "id": "phase-3-evaluation",
+  "level": 3
+}, {
+  "value": "3. Why ESM Is Called &quot;Static&quot;",
+  "id": "3-why-esm-is-called-static",
+  "level": 2
+}, {
+  "value": "4. Why Static Imports Matter",
+  "id": "4-why-static-imports-matter",
+  "level": 2
+}, {
+  "value": "5. CommonJS vs ESM: High-Level Comparison",
+  "id": "5-commonjs-vs-esm-high-level-comparison",
+  "level": 2
+}, {
+  "value": "6. How Node Decides CJS vs ESM",
+  "id": "6-how-node-decides-cjs-vs-esm",
   "level": 2
 }, {
   "value": "<code>.mjs</code>",
   "id": "mjs",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>.cjs</code>",
   "id": "cjs",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>.js</code>",
   "id": "js",
+  "level": 3
+}, {
+  "value": "7. Package Scope and <code>&quot;type&quot;</code>",
+  "id": "7-package-scope-and-type",
+  "level": 2
+}, {
+  "value": "8. <code>--input-type=module</code>",
+  "id": "8---input-typemodule",
+  "level": 2
+}, {
+  "value": "9. Syntax Detection",
+  "id": "9-syntax-detection",
+  "level": 2
+}, {
+  "value": "10. ESM Import Syntax",
+  "id": "10-esm-import-syntax",
   "level": 2
 }, {
   "value": "10.1 Named Imports",
   "id": "101-named-imports",
+  "level": 3
+}, {
+  "value": "11. Default Imports",
+  "id": "11-default-imports",
+  "level": 2
+}, {
+  "value": "12. Namespace Imports",
+  "id": "12-namespace-imports",
+  "level": 2
+}, {
+  "value": "13. Side-Effect Imports",
+  "id": "13-side-effect-imports",
+  "level": 2
+}, {
+  "value": "14. Combining Default + Named Imports",
+  "id": "14-combining-default--named-imports",
+  "level": 2
+}, {
+  "value": "15. ESM Export Syntax",
+  "id": "15-esm-export-syntax",
   "level": 2
 }, {
   "value": "Named Export",
   "id": "named-export",
-  "level": 2
+  "level": 3
 }, {
   "value": "Export Later",
   "id": "export-later",
+  "level": 3
+}, {
+  "value": "16. Renaming Exports",
+  "id": "16-renaming-exports",
+  "level": 2
+}, {
+  "value": "17. Default Export",
+  "id": "17-default-export",
+  "level": 2
+}, {
+  "value": "18. Named vs Default Export",
+  "id": "18-named-vs-default-export",
+  "level": 2
+}, {
+  "value": "19. Important Default-Export Live-Binding Detail",
+  "id": "19-important-default-export-live-binding-detail",
   "level": 2
 }, {
   "value": "Rule",
   "id": "rule",
-  "level": 3
+  "level": 4
+}, {
+  "value": "20. Re-Exports",
+  "id": "20-re-exports",
+  "level": 2
 }, {
   "value": "Re-Export a Default Export as a Named Export",
   "id": "re-export-a-default-export-as-a-named-export",
+  "level": 3
+}, {
+  "value": "21. <code>export *</code>",
+  "id": "21-export-",
+  "level": 2
+}, {
+  "value": "22. Barrel Files",
+  "id": "22-barrel-files",
+  "level": 2
+}, {
+  "value": "23. Live Bindings --- One of the Most Important ESM Concepts",
+  "id": "23-live-bindings-----one-of-the-most-important-esm-concepts",
+  "level": 2
+}, {
+  "value": "24. Importers Cannot Reassign Imported Bindings",
+  "id": "24-importers-cannot-reassign-imported-bindings",
+  "level": 2
+}, {
+  "value": "25. ESM Live Binding vs CommonJS Destructuring",
+  "id": "25-esm-live-binding-vs-commonjs-destructuring",
   "level": 2
 }, {
   "value": "Important distinction",
   "id": "important-distinction",
-  "level": 3
+  "level": 4
+}, {
+  "value": "26. Circular Imports in ESM",
+  "id": "26-circular-imports-in-esm",
+  "level": 2
+}, {
+  "value": "27. Temporal Dead Zone in Circular Imports",
+  "id": "27-temporal-dead-zone-in-circular-imports",
+  "level": 2
+}, {
+  "value": "28. Practical Rule for Circular Dependencies",
+  "id": "28-practical-rule-for-circular-dependencies",
+  "level": 2
+}, {
+  "value": "29. Dynamic <code>import()</code>",
+  "id": "29-dynamic-import",
+  "level": 2
+}, {
+  "value": "30. Why <code>import()</code> Is Different",
+  "id": "30-why-import-is-different",
+  "level": 2
+}, {
+  "value": "31. <code>import()</code> Works in CommonJS Too",
+  "id": "31-import-works-in-commonjs-too",
+  "level": 2
+}, {
+  "value": "32. <code>import()</code> Returns the Module Namespace",
+  "id": "32-import-returns-the-module-namespace",
+  "level": 2
+}, {
+  "value": "33. <code>import()</code> Is Asynchronous",
+  "id": "33-import-is-asynchronous",
+  "level": 2
+}, {
+  "value": "34. ESM Uses URLs Internally",
+  "id": "34-esm-uses-urls-internally",
+  "level": 2
+}, {
+  "value": "35. URL-Based Cache Identity",
+  "id": "35-url-based-cache-identity",
+  "level": 2
 }, {
   "value": "Why this matters",
   "id": "why-this-matters",
-  "level": 3
+  "level": 4
+}, {
+  "value": "36. Built-in Modules and <code>node:</code>",
+  "id": "36-built-in-modules-and-node",
+  "level": 2
+}, {
+  "value": "37. <code>data:</code> Modules",
+  "id": "37-data-modules",
+  "level": 2
+}, {
+  "value": "38. Mandatory File Extensions in ESM",
+  "id": "38-mandatory-file-extensions-in-esm",
+  "level": 2
+}, {
+  "value": "39. Directory Imports",
+  "id": "39-directory-imports",
+  "level": 2
+}, {
+  "value": "40. ESM and <code>package.json</code> <code>&quot;exports&quot;</code>",
+  "id": "40-esm-and-packagejson-exports",
+  "level": 2
+}, {
+  "value": "41. <code>main</code> vs <code>exports</code>",
+  "id": "41-main-vs-exports",
+  "level": 2
+}, {
+  "value": "42. Conditional Exports",
+  "id": "42-conditional-exports",
+  "level": 2
+}, {
+  "value": "43. <code>import</code> vs <code>require</code> Conditions",
+  "id": "43-import-vs-require-conditions",
+  "level": 2
+}, {
+  "value": "44. <code>import.meta</code>",
+  "id": "44-importmeta",
+  "level": 2
+}, {
+  "value": "45. <code>import.meta.url</code> Replaces a Major Use of <code>__filename</code>",
+  "id": "45-importmetaurl-replaces-a-major-use-of-__filename",
+  "level": 2
+}, {
+  "value": "46. Converting <code>import.meta.url</code> to a Filesystem Path",
+  "id": "46-converting-importmetaurl-to-a-filesystem-path",
+  "level": 2
+}, {
+  "value": "47. <code>import.meta.filename</code> and <code>import.meta.dirname</code>",
+  "id": "47-importmetafilename-and-importmetadirname",
+  "level": 2
+}, {
+  "value": "48. <code>import.meta.resolve()</code>",
+  "id": "48-importmetaresolve",
+  "level": 2
+}, {
+  "value": "49. <code>require.resolve()</code> vs <code>import.meta.resolve()</code>",
+  "id": "49-requireresolve-vs-importmetaresolve",
+  "level": 2
+}, {
+  "value": "50. ESM Is Always Strict Mode",
+  "id": "50-esm-is-always-strict-mode",
+  "level": 2
+}, {
+  "value": "51. Top-Level <code>this</code>",
+  "id": "51-top-level-this",
+  "level": 2
+}, {
+  "value": "52. ESM Does Not Have CommonJS Wrapper Variables",
+  "id": "52-esm-does-not-have-commonjs-wrapper-variables",
+  "level": 2
+}, {
+  "value": "53. ESM Module Scope",
+  "id": "53-esm-module-scope",
+  "level": 2
+}, {
+  "value": "54. JSON Imports in ESM",
+  "id": "54-json-imports-in-esm",
+  "level": 2
+}, {
+  "value": "55. CommonJS JSON vs ESM JSON",
+  "id": "55-commonjs-json-vs-esm-json",
+  "level": 2
+}, {
+  "value": "56. Using <code>createRequire()</code> in ESM",
+  "id": "56-using-createrequire-in-esm",
+  "level": 2
+}, {
+  "value": "57. Top-Level <code>await</code>",
+  "id": "57-top-level-await",
+  "level": 2
+}, {
+  "value": "58. Why Top-Level <code>await</code> Affects Dependencies",
+  "id": "58-why-top-level-await-affects-dependencies",
+  "level": 2
+}, {
+  "value": "59. Top-Level <code>await</code>: Backend Guidance",
+  "id": "59-top-level-await-backend-guidance",
+  "level": 2
+}, {
+  "value": "60. ESM Module Cache",
+  "id": "60-esm-module-cache",
+  "level": 2
+}, {
+  "value": "61. Cache Identity Can Create Duplicate Instances",
+  "id": "61-cache-identity-can-create-duplicate-instances",
+  "level": 2
+}, {
+  "value": "62. Module Namespace Object",
+  "id": "62-module-namespace-object",
+  "level": 2
+}, {
+  "value": "63. Namespace Object and Live Values",
+  "id": "63-namespace-object-and-live-values",
+  "level": 2
+}, {
+  "value": "64. Default Export in Namespace Objects",
+  "id": "64-default-export-in-namespace-objects",
+  "level": 2
+}, {
+  "value": "65. Module Namespace Object Details You Should Know",
+  "id": "65-module-namespace-object-details-you-should-know",
+  "level": 2
+}, {
+  "value": "66. ESM Loading Internals --- What Actually Matters",
+  "id": "66-esm-loading-internals-----what-actually-matters",
+  "level": 2
 }, {
   "value": "Important warning",
   "id": "important-warning",
-  "level": 3
+  "level": 4
+}, {
+  "value": "67. <code>ModuleLoader</code>",
+  "id": "67-moduleloader",
+  "level": 2
+}, {
+  "value": "68. <code>ModuleJob</code>",
+  "id": "68-modulejob",
+  "level": 2
+}, {
+  "value": "69. <code>ModuleWrap</code>",
+  "id": "69-modulewrap",
+  "level": 2
+}, {
+  "value": "70. Cycle Detection Internally",
+  "id": "70-cycle-detection-internally",
+  "level": 2
+}, {
+  "value": "71. Custom ESM Loader Hooks",
+  "id": "71-custom-esm-loader-hooks",
+  "level": 2
 }, {
   "value": "Backend guidance",
   "id": "backend-guidance",
-  "level": 3
+  "level": 4
+}, {
+  "value": "72. Async vs Sync Loader Hooks",
+  "id": "72-async-vs-sync-loader-hooks",
+  "level": 2
+}, {
+  "value": "73. Common ESM Errors",
+  "id": "73-common-esm-errors",
+  "level": 2
 }, {
   "value": "<code>ERR_MODULE_NOT_FOUND</code>",
   "id": "err_module_not_found",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>ERR_UNSUPPORTED_DIR_IMPORT</code>",
   "id": "err_unsupported_dir_import",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>ERR_PACKAGE_PATH_NOT_EXPORTED</code>",
   "id": "err_package_path_not_exported",
-  "level": 2
+  "level": 3
 }, {
   "value": "Missing Named Export / Link-Time <code>SyntaxError</code>",
   "id": "missing-named-export--link-time-syntaxerror",
+  "level": 3
+}, {
+  "value": "74. Debugging ESM",
+  "id": "74-debugging-esm",
   "level": 2
 }, {
   "value": "Step 1 --- Check module format",
   "id": "step-1-----check-module-format",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 2 --- Check the exact specifier",
   "id": "step-2-----check-the-exact-specifier",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 3 --- Check package exports",
   "id": "step-3-----check-package-exports",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 4 --- Use <code>import.meta.resolve()</code>",
   "id": "step-4-----use-importmetaresolve",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 5 --- Check the filesystem",
   "id": "step-5-----check-the-filesystem",
+  "level": 3
+}, {
+  "value": "75. ESM vs CommonJS Resolution",
+  "id": "75-esm-vs-commonjs-resolution",
+  "level": 2
+}, {
+  "value": "76. A Complete Example",
+  "id": "76-a-complete-example",
+  "level": 2
+}, {
+  "value": "77. What Happens in That Example?",
+  "id": "77-what-happens-in-that-example",
   "level": 2
 }, {
   "value": "Step 1 --- Format detection",
   "id": "step-1-----format-detection",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 2 --- Parse",
   "id": "step-2-----parse",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 3 --- Resolve",
   "id": "step-3-----resolve",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 4 --- Instantiate",
   "id": "step-4-----instantiate",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 5 --- Evaluate dependencies",
   "id": "step-5-----evaluate-dependencies",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 6 --- Evaluate <code>server.js</code>",
   "id": "step-6-----evaluate-serverjs",
+  "level": 3
+}, {
+  "value": "78. The Most Important Concepts to Actually Remember",
+  "id": "78-the-most-important-concepts-to-actually-remember",
   "level": 2
 }, {
   "value": "Tier 1 --- Must Know",
   "id": "tier-1-----must-know",
-  "level": 3
+  "level": 4
 }, {
   "value": "Tier 2 --- Strong Backend Knowledge",
   "id": "tier-2-----strong-backend-knowledge",
-  "level": 3
+  "level": 4
 }, {
   "value": "Tier 3 --- Advanced / Infrastructure",
   "id": "tier-3-----advanced--infrastructure",
-  "level": 3
+  "level": 4
+}, {
+  "value": "79. Practical Backend Rules",
+  "id": "79-practical-backend-rules",
+  "level": 2
 }, {
   "value": "Rule 1 --- Declare your package type",
   "id": "rule-1-----declare-your-package-type",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 2 --- Use explicit relative extensions in ESM",
   "id": "rule-2-----use-explicit-relative-extensions-in-esm",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 3 --- Use <code>node:</code> for built-ins",
   "id": "rule-3-----use-node-for-built-ins",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 4 --- Use static imports when dependencies are known",
   "id": "rule-4-----use-static-imports-when-dependencies-are-known",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 5 --- Remember imports are live bindings",
   "id": "rule-5-----remember-imports-are-live-bindings",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 6 --- Treat circular dependencies as a design smell",
   "id": "rule-6-----treat-circular-dependencies-as-a-design-smell",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 7 --- Be careful with top-level <code>await</code>",
   "id": "rule-7-----be-careful-with-top-level-await",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 8 --- Understand package <code>&quot;exports&quot;</code>",
   "id": "rule-8-----understand-package-exports",
+  "level": 3
+}, {
+  "value": "80. Common Migration Mistakes",
+  "id": "80-common-migration-mistakes",
   "level": 2
 }, {
   "value": "Mistake 1",
   "id": "mistake-1",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 2",
   "id": "mistake-2",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 3",
   "id": "mistake-3",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 4",
   "id": "mistake-4",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 5",
   "id": "mistake-5",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 6",
   "id": "mistake-6",
-  "level": 3
+  "level": 4
 }, {
   "value": "Mistake 7",
   "id": "mistake-7",
-  "level": 3
+  "level": 4
+}, {
+  "value": "81. Interview-Level Questions",
+  "id": "81-interview-level-questions",
+  "level": 2
 }, {
   "value": "Q1. What is the biggest conceptual difference between CommonJS and ESM?",
   "id": "q1-what-is-the-biggest-conceptual-difference-between-commonjs-and-esm",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q2. Why are ESM imports called live bindings?",
   "id": "q2-why-are-esm-imports-called-live-bindings",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q3. Why does this fail?",
   "id": "q3-why-does-this-fail",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q4. What is the difference between <code>import</code> and <code>import()</code>?",
   "id": "q4-what-is-the-difference-between-import-and-import",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q5. Can CommonJS use <code>import()</code>?",
   "id": "q5-can-commonjs-use-import",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q6. Why can ESM circular dependencies work?",
   "id": "q6-why-can-esm-circular-dependencies-work",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q7. Why can circular dependencies still throw <code>ReferenceError</code>?",
   "id": "q7-why-can-circular-dependencies-still-throw-referenceerror",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q8. What replaces <code>__dirname</code> in ESM?",
   "id": "q8-what-replaces-__dirname-in-esm",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q9. What does <code>import.meta.resolve()</code> do?",
   "id": "q9-what-does-importmetaresolve-do",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q10. What is <code>ERR_PACKAGE_PATH_NOT_EXPORTED</code>?",
   "id": "q10-what-is-err_package_path_not_exported",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q11. What is the difference between a named export and default export?",
   "id": "q11-what-is-the-difference-between-a-named-export-and-default-export",
-  "level": 3
+  "level": 4
 }, {
   "value": "Q12. Does <code>export *</code> include default?",
   "id": "q12-does-export--include-default",
-  "level": 3
+  "level": 4
+}, {
+  "value": "82. Hands-On Labs",
+  "id": "82-hands-on-labs",
+  "level": 2
 }, {
   "value": "Lab 1 --- Module Format",
   "id": "lab-1-----module-format",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 2 --- Extension Requirement",
   "id": "lab-2-----extension-requirement",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 3 --- Live Binding",
   "id": "lab-3-----live-binding",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 4 --- Importer Cannot Reassign",
   "id": "lab-4-----importer-cannot-reassign",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 5 --- Dynamic Import",
   "id": "lab-5-----dynamic-import",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 6 --- <code>import.meta</code>",
   "id": "lab-6-----importmeta",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 7 --- Resolution Without Loading",
   "id": "lab-7-----resolution-without-loading",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 8 --- Circular Dependency",
   "id": "lab-8-----circular-dependency",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 9 --- Top-Level Await",
   "id": "lab-9-----top-level-await",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 10 --- Dynamic URL Identity",
   "id": "lab-10-----dynamic-url-identity",
+  "level": 3
+}, {
+  "value": "83. ESM Mental Model",
+  "id": "83-esm-mental-model",
+  "level": 2
+}, {
+  "value": "84. Final Cheat Sheet",
+  "id": "84-final-cheat-sheet",
+  "level": 2
+}, {
+  "value": "85. The One Mental Model to Keep",
+  "id": "85-the-one-mental-model-to-keep",
   "level": 2
 }];
 function _createMdxContent(props) {
@@ -210161,6 +211703,7 @@ function _createMdxContent(props) {
     h1: "h1",
     h2: "h2",
     h3: "h3",
+    h4: "h4",
     header: "header",
     hr: "hr",
     li: "li",
@@ -210182,7 +211725,7 @@ function _createMdxContent(props) {
           children: "export"
         }), " & Linking"]
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "1-what-are-es-modules",
       children: "1. What Are ES Modules?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210221,7 +211764,7 @@ function _createMdxContent(props) {
       children: ["The important difference is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "how Node loads them"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "commonjs",
       children: "CommonJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210235,7 +211778,7 @@ function _createMdxContent(props) {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " is a synchronous function call."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm",
       children: "ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210263,7 +211806,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That up-front structure is one of the biggest reasons ESM behaves\r\ndifferently from CommonJS."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "2-the-most-important-mental-model-parse--instantiate--evaluate",
       children: "2. The Most Important Mental Model: Parse → Instantiate → Evaluate"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210275,7 +211818,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These phases explain most ESM behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "phase-1-parsing",
       children: "Phase 1: Parsing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210310,7 +211853,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node can discover the graph before evaluating the module bodies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "phase-2-instantiation--linking",
       children: "Phase 2: Instantiation / Linking"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210346,7 +211889,7 @@ function _createMdxContent(props) {
       }), "."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The value is initialized during evaluation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "phase-3-evaluation",
       children: "Phase 3: Evaluation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210366,7 +211909,7 @@ function _createMdxContent(props) {
       }), " execute."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Generally, dependencies must be evaluated before modules that depend on\r\nthem."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "3-why-esm-is-called-static",
       children: "3. Why ESM Is Called \"Static\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -210398,7 +211941,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const path = condition ? \"./a.js\" : \"./b.js\";\r\n\r\nconst module = await import(path);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "4-why-static-imports-matter",
       children: "4. Why Static Imports Matter"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210421,7 +211964,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a major architectural difference from CommonJS."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "5-commonjs-vs-esm-high-level-comparison",
       children: "5. CommonJS vs ESM: High-Level Comparison"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210480,14 +212023,14 @@ function _createMdxContent(props) {
       children: "Module identity Resolved path/cache URL-based cache\r\nidentity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Imported values Commonly object Live bindings\r\nproperties / values"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "6-how-node-decides-cjs-vs-esm",
       children: "6. How Node Decides CJS vs ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Before Node can load a file, it must determine its module format."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The most important rules are:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "mjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".mjs"
@@ -210499,7 +212042,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "app.mjs → ESM\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "cjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".cjs"
@@ -210511,7 +212054,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "app.cjs → CommonJS\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "js",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
@@ -210544,7 +212087,7 @@ function _createMdxContent(props) {
       }), " field, ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
       }), " is treated as CommonJS under the\r\nnormal/default behavior."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "7-package-scope-and-type",
       children: ["7. Package Scope and ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"type\""
@@ -210592,7 +212135,7 @@ function _createMdxContent(props) {
           children: "\"type\""
         }), " explicitly in real projects."]
       }), " Do not rely on Node\r\nguessing."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "8---input-typemodule",
       children: ["8. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "--input-type=module"
@@ -210610,7 +212153,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is mainly useful for scripts, experiments, and tooling."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "9-syntax-detection",
       children: "9. Syntax Detection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210668,12 +212211,12 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "build tools"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "10-esm-import-syntax",
       children: "10. ESM Import Syntax"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "There are several important forms."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "101-named-imports",
       children: "10.1 Named Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -210701,7 +212244,7 @@ function _createMdxContent(props) {
       children: ["The exported binding is still called ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "readFile"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "11-default-imports",
       children: "11. Default Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210736,7 +212279,7 @@ function _createMdxContent(props) {
       children: ["The export is still the ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "default"
       }), " export."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "12-namespace-imports",
       children: "12. Namespace Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210769,7 +212312,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "fs.someNewProperty = 123; // rejected\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "13-side-effect-imports",
       children: "13. Side-Effect Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210795,7 +212338,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The target module still goes through normal ESM\r\nloading/linking/evaluation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "14-combining-default--named-imports",
       children: "14. Combining Default + Named Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210809,10 +212352,10 @@ function _createMdxContent(props) {
       children: "The exact availability of a default export and named exports depends on\r\nthe target package."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not assume that every package supports both forms."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "15-esm-export-syntax",
       children: "15. ESM Export Syntax"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "named-export",
       children: "Named Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -210827,7 +212370,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "PORT\r\nstartServer\r\nRouter\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "export-later",
       children: "Export Later"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210839,7 +212382,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Same public exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "16-renaming-exports",
       children: "16. Renaming Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210870,7 +212413,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "start\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "17-default-export",
       children: "17. Default Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210896,7 +212439,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The local name is chosen by the importer."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "18-named-vs-default-export",
       children: "18. Named vs Default Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210926,7 +212469,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "export { createUser, findUser, deleteUser };\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "19-important-default-export-live-binding-detail",
       children: "19. Important Default-Export Live-Binding Detail"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210955,7 +212498,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Now consumers observe the live binding."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "rule",
       children: "Rule"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -210982,7 +212525,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "evaluate this default expression and use its resulting value as the\r\ndefault export."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "20-re-exports",
       children: "20. Re-Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -210994,7 +212537,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This module does not need to create local variables first."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "re-export-a-default-export-as-a-named-export",
       children: "Re-Export a Default Export as a Named Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -211009,7 +212552,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { EventEmitter } from \"./api.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "21-export-",
       children: ["21. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "export *"
@@ -211045,7 +212588,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "export { default as utils } from \"./utils.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "22-barrel-files",
       children: "22. Barrel Files"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211083,7 +212626,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But avoid creating enormous barrel files without a reason; they can make\r\ndependency relationships harder to understand."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "23-live-bindings-----one-of-the-most-important-esm-concepts",
       children: "23. Live Bindings --- One of the Most Important ESM Concepts"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -211123,7 +212666,7 @@ function _createMdxContent(props) {
       children: ["copied into ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "main.js"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "24-importers-cannot-reassign-imported-bindings",
       children: "24. Importers Cannot Reassign Imported Bindings"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211149,7 +212692,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { count, setCount } from \"./counter.js\";\r\n\r\nsetCount(10);\r\n\r\nconsole.log(count); // 10\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "25-esm-live-binding-vs-commonjs-destructuring",
       children: "25. ESM Live Binding vs CommonJS Destructuring"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211174,7 +212717,7 @@ function _createMdxContent(props) {
       }), " is now a local variable holding the value obtained during\r\ndestructuring."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For primitive values, later changes do not update that local variable."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "important-distinction",
       children: "Important distinction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -211184,7 +212727,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction matters when migrating code from CommonJS to ESM."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "26-circular-imports-in-esm",
       children: "26. Circular Imports in ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211223,7 +212766,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "27-temporal-dead-zone-in-circular-imports",
       children: "27. Temporal Dead Zone in Circular Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211255,7 +212798,7 @@ function _createMdxContent(props) {
       }), " has different initialization behavior and can produce ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "undefined"
       }), "\r\nin situations where lexical bindings throw."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "28-practical-rule-for-circular-dependencies",
       children: "28. Practical Rule for Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211285,7 +212828,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "or redesigning the dependency direction."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "29-dynamic-import",
       children: ["29. Dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -211311,7 +212854,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const mod = await import(\"./heavy-module.js\");\r\n\r\nmod.doSomething();\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "30-why-import-is-different",
       children: ["30. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -211331,7 +212874,7 @@ function _createMdxContent(props) {
       children: "is possible."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is not possible with a static import declaration."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "31-import-works-in-commonjs-too",
       children: ["31. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -211347,7 +212890,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one of the main bridges from CJS to ESM."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "32-import-returns-the-module-namespace",
       children: ["32. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -211373,7 +212916,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "math\r\n├── add\r\n└── default\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "33-import-is-asynchronous",
       children: ["33. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -211414,7 +212957,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "CJS → ESM migration"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "34-esm-uses-urls-internally",
       children: "34. ESM Uses URLs Internally"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211435,7 +212978,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The exact filesystem path depends on the machine."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "35-url-based-cache-identity",
       children: "35. URL-Based Cache Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211458,7 +213001,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore they can produce separate module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "why-this-matters",
       children: "Why this matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211472,7 +213015,7 @@ function _createMdxContent(props) {
       children: "loading it twice under different URLs can create two separate states."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is an advanced edge case, but important for tooling, loaders,\r\ntests, and debugging."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "36-built-in-modules-and-node",
       children: ["36. Built-in Modules and ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node:"
@@ -211495,7 +213038,7 @@ function _createMdxContent(props) {
       }), " scheme clearly indicates a Node built-in."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is preferable in modern Node code because it removes ambiguity with\r\npackage names."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "37-data-modules",
       children: ["37. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "data:"
@@ -211521,7 +213064,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It is not a normal application architecture."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "38-mandatory-file-extensions-in-esm",
       children: "38. Mandatory File Extensions in ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211556,7 +213099,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import utils from \"./utils\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "39-directory-imports",
       children: "39. Directory Imports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211600,7 +213143,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ERR_UNSUPPORTED_DIR_IMPORT\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "40-esm-and-packagejson-exports",
       children: ["40. ESM and ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "package.json"
@@ -211652,7 +213195,7 @@ function _createMdxContent(props) {
       children: "but arbitrary internal paths may be blocked."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This creates a public package API boundary."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "41-main-vs-exports",
       children: ["41. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "main"
@@ -211695,7 +213238,7 @@ function _createMdxContent(props) {
       children: ["For modern Node package development, understand ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
       }), " well."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "42-conditional-exports",
       children: "42. Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211723,7 +213266,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is important when publishing libraries supporting both module\r\nsystems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "43-import-vs-require-conditions",
       children: ["43. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import"
@@ -211750,7 +213293,7 @@ function _createMdxContent(props) {
       children: ["Package ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " can map these conditions to whatever files the\r\npackage author chooses."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "44-importmeta",
       children: ["44. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -211778,7 +213321,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "file:///project/src/server.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "45-importmetaurl-replaces-a-major-use-of-__filename",
       children: ["45. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -211810,7 +213353,7 @@ function _createMdxContent(props) {
       children: ["for local ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "file:"
       }), " modules."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "46-converting-importmetaurl-to-a-filesystem-path",
       children: ["46. Converting ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -211824,7 +213367,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is useful when an API requires a normal filesystem path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "47-importmetafilename-and-importmetadirname",
       children: ["47. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.filename"
@@ -211853,7 +213396,7 @@ function _createMdxContent(props) {
       children: ["A ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "data:"
       }), " module does not have a normal filesystem filename/dirname."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "48-importmetaresolve",
       children: ["48. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -211881,7 +213424,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This makes it useful for diagnostics and resolution logic."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "49-requireresolve-vs-importmetaresolve",
       children: ["49. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.resolve()"
@@ -211915,7 +213458,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CJS → filesystem path-oriented resolution\r\nESM → URL-oriented resolution\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "50-esm-is-always-strict-mode",
       children: "50. ESM Is Always Strict Mode"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211936,7 +213479,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "throws instead of silently creating a global."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "51-top-level-this",
       children: ["51. Top-Level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "this"
@@ -211965,7 +213508,7 @@ function _createMdxContent(props) {
       children: ["Do not port code that relies on CommonJS top-level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "this"
       }), " without\r\nchecking it."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "52-esm-does-not-have-commonjs-wrapper-variables",
       children: "52. ESM Does Not Have CommonJS Wrapper Variables"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -211998,7 +213541,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import.meta;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "53-esm-module-scope",
       children: "53. ESM Module Scope"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212026,7 +213569,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is similar to the module encapsulation idea in CommonJS, but ESM's\r\nscope and bindings are implemented as language-level module environments\r\nrather than a CommonJS wrapper function."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "54-json-imports-in-esm",
       children: "54. JSON Imports in ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212054,7 +213597,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import config from \"./config.json\" with { type: \"json\" };\r\n\r\nconsole.log(config.port);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "55-commonjs-json-vs-esm-json",
       children: "55. CommonJS JSON vs ESM JSON"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212080,7 +213623,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This gives you explicit file-reading behavior rather than module-loading\r\nbehavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "56-using-createrequire-in-esm",
       children: ["56. Using ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "createRequire()"
@@ -212102,7 +213645,7 @@ function _createMdxContent(props) {
       children: "This is useful during migrations and when interacting with code that\r\nexpects CommonJS loading semantics."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not use it everywhere just to avoid learning ESM."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "57-top-level-await",
       children: ["57. Top-Level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
@@ -212122,7 +213665,7 @@ function _createMdxContent(props) {
       children: "No surrounding async function is required."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This works because ESM evaluation can be asynchronous."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "58-why-top-level-await-affects-dependencies",
       children: ["58. Why Top-Level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
@@ -212156,7 +213699,7 @@ function _createMdxContent(props) {
       children: ["This is why top-level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
       }), " can delay modules that depend on the\r\nwaiting module."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "59-top-level-await-backend-guidance",
       children: ["59. Top-Level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
@@ -212191,7 +213734,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "\"Should module evaluation depend on this asynchronous operation?\""
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "60-esm-module-cache",
       children: "60. ESM Module Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212212,7 +213755,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "import ./foo.js\r\n      ↓\r\nresolve URL\r\n      ↓\r\ncache miss\r\n      ↓\r\nload/link/evaluate\r\n      ↓\r\ncache\r\n\r\nsecond import\r\n      ↓\r\nsame URL\r\n      ↓\r\ncache hit\r\n      ↓\r\nreuse module\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "61-cache-identity-can-create-duplicate-instances",
       children: "61. Cache Identity Can Create Duplicate Instances"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212245,7 +213788,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "development tooling"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "62-module-namespace-object",
       children: "62. Module Namespace Object"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212287,7 +213830,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "mod.newValue = 123; // rejected\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "63-namespace-object-and-live-values",
       children: "63. Namespace Object and Live Values"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212306,7 +213849,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The namespace property reflects the current exported binding."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "64-default-export-in-namespace-objects",
       children: "64. Default Export in Namespace Objects"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212346,7 +213889,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import start from \"./server.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "65-module-namespace-object-details-you-should-know",
       children: "65. Module Namespace Object Details You Should Know"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212375,7 +213918,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "A module namespace object is a read-oriented representation of a\r\nmodule's exports, not a normal mutable object."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "66-esm-loading-internals-----what-actually-matters",
       children: "66. ESM Loading Internals --- What Actually Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212392,7 +213935,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "import \"./bar.js\"\r\n      ↓\r\nModuleLoader\r\n      ↓\r\nresolve URL\r\n      ↓\r\nload source / determine format\r\n      ↓\r\nModuleJob\r\n      ↓\r\nModuleWrap / V8 Module\r\n      ↓\r\nlink\r\n      ↓\r\nevaluate\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "important-warning",
       children: "Important warning"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212403,7 +213946,7 @@ function _createMdxContent(props) {
       children: ["The value of knowing them is understanding ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "why"
       }), " ESM behaves the way\r\nit does."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "67-moduleloader",
       children: ["67. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ModuleLoader"
@@ -212440,7 +213983,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "means and obtain the module represented by that resolved URL."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "68-modulejob",
       children: ["68. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ModuleJob"
@@ -212460,7 +214003,7 @@ function _createMdxContent(props) {
       children: ["Top-level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
       }), " makes evaluation asynchronous from the job's\r\nperspective."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "69-modulewrap",
       children: ["69. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ModuleWrap"
@@ -212480,7 +214023,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is where Node's host-specific resolution/loading behavior meets\r\nJavaScript's language-level module machinery."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "70-cycle-detection-internally",
       children: "70. Cycle Detection Internally"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212498,7 +214041,7 @@ function _createMdxContent(props) {
       children: ["The real danger is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "evaluation order and uninitialized bindings"
       }), ", not\r\nmerely the existence of a cycle."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "71-custom-esm-loader-hooks",
       children: "71. Custom ESM Loader Hooks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212524,7 +214067,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "and CLI mechanisms such as loader-related flags."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "backend-guidance",
       children: "Backend guidance"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212543,7 +214086,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "carefully tested"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "72-async-vs-sync-loader-hooks",
       children: "72. Async vs Sync Loader Hooks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212574,10 +214117,10 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You generally only need this when building tooling or custom\r\nmodule-loading infrastructure."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "73-common-esm-errors",
       children: "73. Common ESM Errors"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "err_module_not_found",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_MODULE_NOT_FOUND"
@@ -212617,7 +214160,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import \"./utils.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "err_unsupported_dir_import",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_UNSUPPORTED_DIR_IMPORT"
@@ -212638,7 +214181,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use the actual file path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "err_package_path_not_exported",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED"
@@ -212663,7 +214206,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The package is intentionally preventing that deep import."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "missing-named-export--link-time-syntaxerror",
       children: ["Missing Named Export / Link-Time ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "SyntaxError"
@@ -212679,14 +214222,14 @@ function _createMdxContent(props) {
       children: "but the target does not export that name, ESM can reject the module\r\nduring linking before normal module evaluation."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one of the major benefits of static ESM structure."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "74-debugging-esm",
       children: "74. Debugging ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "When an import fails, do not randomly change paths."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Check systematically."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-1-----check-module-format",
       children: "Step 1 --- Check module format"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212696,7 +214239,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: ".mjs\r\n.cjs\r\npackage.json → type\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-2-----check-the-exact-specifier",
       children: "Step 2 --- Check the exact specifier"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212718,7 +214261,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "casing"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-3-----check-package-exports",
       children: "Step 3 --- Check package exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212735,7 +214278,7 @@ function _createMdxContent(props) {
         className: "language-json",
         children: "\"exports\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "step-4-----use-importmetaresolve",
       children: ["Step 4 --- Use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -212747,12 +214290,12 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This tells you what URL the current module resolves the specifier to."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-5-----check-the-filesystem",
       children: "Step 5 --- Check the filesystem"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Make sure the target actually exists."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "75-esm-vs-commonjs-resolution",
       children: "75. ESM vs CommonJS Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212799,7 +214342,7 @@ function _createMdxContent(props) {
       }), " import attribute\r\nrequired"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Static dependency graph Runtime-oriented Strong static structure"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "76-a-complete-example",
       children: "76. A Complete Example"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212845,10 +214388,10 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { PORT, requestCount, trackRequest } from \"./config.js\";\r\nimport { connectDB } from \"./db.js\";\r\n\r\nawait connectDB();\r\n\r\nconsole.log(`Server starting on ${PORT}`);\r\n\r\ntrackRequest();\r\n\r\nconsole.log(`Requests: ${requestCount}`);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "77-what-happens-in-that-example",
       children: "77. What Happens in That Example?"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-1-----format-detection",
       children: "Step 1 --- Format detection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212862,7 +214405,7 @@ function _createMdxContent(props) {
       children: ["all ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".js"
       }), " files in this package scope are ESM."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-2-----parse",
       children: "Step 2 --- Parse"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212872,7 +214415,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "server.js\r\n ├── config.js\r\n └── db.js\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-3-----resolve",
       children: "Step 3 --- Resolve"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212884,7 +214427,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "to URLs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-4-----instantiate",
       children: "Step 4 --- Instantiate"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -212896,7 +214439,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "config.js\r\n ├── PORT\r\n ├── requestCount\r\n └── trackRequest\r\n\r\nserver.js\r\n ├── PORT        → config.PORT\r\n ├── requestCount → config.requestCount\r\n └── trackRequest → config.trackRequest\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-5-----evaluate-dependencies",
       children: "Step 5 --- Evaluate dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -212912,7 +214455,7 @@ function _createMdxContent(props) {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "db.js"
       }), " initializes its exports."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "step-6-----evaluate-serverjs",
       children: ["Step 6 --- Evaluate ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "server.js"
@@ -212944,12 +214487,12 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "because the import is live."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "78-the-most-important-concepts-to-actually-remember",
       children: "78. The Most Important Concepts to Actually Remember"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If you are studying Node.js for backend development, prioritize these."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "tier-1-----must-know",
       children: "Tier 1 --- Must Know"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.ol, {
@@ -213026,7 +214569,7 @@ function _createMdxContent(props) {
           children: "\"exports\""
         })]
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "tier-2-----strong-backend-knowledge",
       children: "Tier 2 --- Strong Backend Knowledge"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.ol, {
@@ -213064,7 +214607,7 @@ function _createMdxContent(props) {
           children: "await"
         }), " startup implications"]
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "tier-3-----advanced--infrastructure",
       children: "Tier 3 --- Advanced / Infrastructure"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.ol, {
@@ -213092,10 +214635,10 @@ function _createMdxContent(props) {
       children: ["You should ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "understand Tier 1 deeply"
       }), ", be comfortable with Tier 2, and\r\nrecognize Tier 3 without spending disproportionate study time memorizing\r\nimplementation details."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "79-practical-backend-rules",
       children: "79. Practical Backend Rules"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-1-----declare-your-package-type",
       children: "Rule 1 --- Declare your package type"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213114,7 +214657,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not leave module format ambiguous in serious projects."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-2-----use-explicit-relative-extensions-in-esm",
       children: "Rule 2 --- Use explicit relative extensions in ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213131,7 +214674,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { db } from \"./db\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "rule-3-----use-node-for-built-ins",
       children: ["Rule 3 --- Use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node:"
@@ -213143,7 +214686,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import fs from \"node:fs\";\r\nimport path from \"node:path\";\r\nimport { readFile } from \"node:fs/promises\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-4-----use-static-imports-when-dependencies-are-known",
       children: "Rule 4 --- Use static imports when dependencies are known"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213155,7 +214698,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use dynamic import when the dependency genuinely depends on runtime\r\nconditions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-5-----remember-imports-are-live-bindings",
       children: "Rule 5 --- Remember imports are live bindings"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213172,21 +214715,21 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "import = binding connected to exporter\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-6-----treat-circular-dependencies-as-a-design-smell",
       children: "Rule 6 --- Treat circular dependencies as a design smell"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They can work, but they increase reasoning complexity."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If a cycle causes initialization problems, redesign the dependency\r\ngraph."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "rule-7-----be-careful-with-top-level-await",
       children: ["Rule 7 --- Be careful with top-level ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "await"
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It can make startup depend on asynchronous module evaluation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "rule-8-----understand-package-exports",
       children: ["Rule 8 --- Understand package ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -213195,10 +214738,10 @@ function _createMdxContent(props) {
       children: "If a package blocks a deep import, do not immediately bypass the\r\nboundary."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The package may intentionally expose only its supported public API."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "80-common-migration-mistakes",
       children: "80. Common Migration Mistakes"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-1",
       children: "Mistake 1"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213215,7 +214758,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import \"./utils.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-2",
       children: "Mistake 2"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213238,7 +214781,7 @@ function _createMdxContent(props) {
       }), " with ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "createRequire()"
       }), " when\r\nnecessary."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-3",
       children: "Mistake 3"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213257,7 +214800,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "or use URL conversion when appropriate."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-4",
       children: "Mistake 4"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213271,7 +214814,7 @@ function _createMdxContent(props) {
       children: "creates an ordinary copied variable."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does not. It creates a live import binding."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-5",
       children: "Mistake 5"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213285,7 +214828,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "cycle\r\n  ↓\r\nevaluation order\r\n  ↓\r\nread before initialization\r\n  ↓\r\nReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-6",
       children: "Mistake 6"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -213294,7 +214837,7 @@ function _createMdxContent(props) {
       }), " includes the default export."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does not."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "mistake-7",
       children: "Mistake 7"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213306,22 +214849,22 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import \"./foo.js\";\r\nimport \"./foo.js?v=1\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "81-interview-level-questions",
       children: "81. Interview-Level Questions"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "q1-what-is-the-biggest-conceptual-difference-between-commonjs-and-esm",
       children: "Q1. What is the biggest conceptual difference between CommonJS and ESM?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "Answer:"
       }), " ESM has a statically analyzable module structure. Node can\r\nresolve and link the dependency graph before evaluating module bodies."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "q2-why-are-esm-imports-called-live-bindings",
       children: "Q2. Why are ESM imports called live bindings?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because the importer is connected to the exporter's binding rather than\r\nreceiving an independent snapshot."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "q3-why-does-this-fail",
       children: "Q3. Why does this fail?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213331,7 +214874,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because relative ESM imports normally require explicit file extensions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q4-what-is-the-difference-between-import-and-import",
       children: ["Q4. What is the difference between ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import"
@@ -213352,7 +214895,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "is dynamic loading performed asynchronously at runtime."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q5-can-commonjs-use-import",
       children: ["Q5. Can CommonJS use ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -213363,19 +214906,19 @@ function _createMdxContent(props) {
       children: ["Dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
       }), " can be used as a bridge from CommonJS to ESM."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "q6-why-can-esm-circular-dependencies-work",
       children: "Q6. Why can ESM circular dependencies work?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because the loader can instantiate the module graph and create bindings\r\nbefore evaluation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q7-why-can-circular-dependencies-still-throw-referenceerror",
       children: ["Q7. Why can circular dependencies still throw ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ReferenceError"
       }), "?"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because the binding may exist but remain uninitialized when another\r\nmodule reads it."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q8-what-replaces-__dirname-in-esm",
       children: ["Q8. What replaces ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__dirname"
@@ -213396,14 +214939,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "combined with path utilities."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q9-what-does-importmetaresolve-do",
       children: ["Q9. What does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
       }), " do?"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It resolves a specifier relative to the current module and returns its\r\nresolved URL without loading/evaluating the target."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q10-what-is-err_package_path_not_exported",
       children: ["Q10. What is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED"
@@ -213412,7 +214955,7 @@ function _createMdxContent(props) {
       children: ["It generally means the package's ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " field does not expose the\r\npath you tried to import."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "q11-what-is-the-difference-between-a-named-export-and-default-export",
       children: "Q11. What is the difference between a named export and default export?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213443,19 +214986,19 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import anything from \"./x.js\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h4, {
       id: "q12-does-export--include-default",
       children: ["Q12. Does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "export *"
       }), " include default?"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "No."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "82-hands-on-labs",
       children: "82. Hands-On Labs"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These are worth actually running."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-1-----module-format",
       children: "Lab 1 --- Module Format"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213481,7 +215024,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-2-----extension-requirement",
       children: "Lab 2 --- Extension Requirement"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213507,7 +215050,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-3-----live-binding",
       children: "Lab 3 --- Live Binding"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -213535,7 +215078,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "0\r\n1\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-4-----importer-cannot-reassign",
       children: "Lab 4 --- Importer Cannot Reassign"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213547,7 +215090,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the error."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-5-----dynamic-import",
       children: "Lab 5 --- Dynamic Import"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213562,7 +215105,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "mod.count;\r\nmod.increment;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "lab-6-----importmeta",
       children: ["Lab 6 --- ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -213572,7 +215115,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "console.log(import.meta.url);\r\nconsole.log(import.meta.filename);\r\nconsole.log(import.meta.dirname);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-7-----resolution-without-loading",
       children: "Lab 7 --- Resolution Without Loading"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213582,7 +215125,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Notice that resolution returns the URL without requiring you to evaluate\r\nthe target just to obtain the path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-8-----circular-dependency",
       children: "Lab 8 --- Circular Dependency"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213611,7 +215154,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "and observe how early reads differ."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-9-----top-level-await",
       children: "Lab 9 --- Top-Level Await"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -213634,7 +215177,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe when the logs appear."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-10-----dynamic-url-identity",
       children: "Lab 10 --- Dynamic URL Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213660,7 +215203,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "83-esm-mental-model",
       children: "83. ESM Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213691,7 +215234,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "runtime expression\r\n      ↓\r\ndynamic resolution\r\n      ↓\r\nasync load/link/evaluate\r\n      ↓\r\nPromise\r\n      ↓\r\nmodule namespace object\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "84-final-cheat-sheet",
       children: "84. Final Cheat Sheet"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -213699,7 +215242,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ESM\r\n│\r\n├── .mjs → always ESM\r\n├── .cjs → always CJS\r\n└── .js → controlled by nearest package.json \"type\"\r\n│\r\n├── Static import\r\n│     ├── known before evaluation\r\n│     ├── dependency graph\r\n│     └── live bindings\r\n│\r\n├── Dynamic import()\r\n│     ├── runtime\r\n│     ├── expression allowed\r\n│     ├── asynchronous\r\n│     └── returns module namespace\r\n│\r\n├── Export\r\n│     ├── named\r\n│     ├── default\r\n│     └── re-export\r\n│\r\n├── Resolution\r\n│     ├── URL based\r\n│     ├── explicit relative extensions\r\n│     └── package \"exports\"\r\n│\r\n├── Metadata\r\n│     ├── import.meta.url\r\n│     ├── import.meta.filename\r\n│     ├── import.meta.dirname\r\n│     └── import.meta.resolve()\r\n│\r\n├── Evaluation\r\n│     ├── dependency order\r\n│     ├── top-level await\r\n│     └── circular dependency risks\r\n│\r\n└── No automatic CJS wrapper\r\n      ├── no require\r\n      ├── no module\r\n      ├── no exports\r\n      ├── no __filename\r\n      └── no __dirname\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "85-the-one-mental-model-to-keep",
       children: "85. The One Mental Model to Keep"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -213824,244 +215367,604 @@ const assets = {
 
 
 const toc = [{
+  "value": "1. What Is CJS/ESM Interoperability?",
+  "id": "1-what-is-cjsesm-interoperability",
+  "level": 2
+}, {
+  "value": "2. The Four Questions That Explain Most Interop Problems",
+  "id": "2-the-four-questions-that-explain-most-interop-problems",
+  "level": 2
+}, {
+  "value": "3. Direction Matters",
+  "id": "3-direction-matters",
+  "level": 2
+}, {
   "value": "ESM → CJS",
   "id": "esm--cjs",
-  "level": 2
+  "level": 3
 }, {
   "value": "CJS → ESM",
   "id": "cjs--esm",
+  "level": 3
+}, {
+  "value": "4. CJS vs ESM: Fundamental Differences",
+  "id": "4-cjs-vs-esm-fundamental-differences",
+  "level": 2
+}, {
+  "value": "5. Module Format Must Be Determined First",
+  "id": "5-module-format-must-be-determined-first",
+  "level": 2
+}, {
+  "value": "6. Why File Format Matters for Interop",
+  "id": "6-why-file-format-matters-for-interop",
+  "level": 2
+}, {
+  "value": "7. ESM Importing CJS",
+  "id": "7-esm-importing-cjs",
+  "level": 2
+}, {
+  "value": "8. Why Default Import Is the Safest Way to Consume CJS",
+  "id": "8-why-default-import-is-the-safest-way-to-consume-cjs",
+  "level": 2
+}, {
+  "value": "9. Named Imports from CJS",
+  "id": "9-named-imports-from-cjs",
+  "level": 2
+}, {
+  "value": "10. How Node Detects CJS Named Exports",
+  "id": "10-how-node-detects-cjs-named-exports",
+  "level": 2
+}, {
+  "value": "11. CJS Named Export Detection Is Best-Effort",
+  "id": "11-cjs-named-export-detection-is-best-effort",
+  "level": 2
+}, {
+  "value": "12. Dynamic CJS Exports",
+  "id": "12-dynamic-cjs-exports",
+  "level": 2
+}, {
+  "value": "13. Important: Synthetic CJS Named Exports Are Not True ESM Live Bindings",
+  "id": "13-important-synthetic-cjs-named-exports-are-not-true-esm-live-bindings",
+  "level": 2
+}, {
+  "value": "14. ESM → CJS: The Important Shape",
+  "id": "14-esm--cjs-the-important-shape",
+  "level": 2
+}, {
+  "value": "15. Dynamic <code>import()</code> of CJS",
+  "id": "15-dynamic-import-of-cjs",
+  "level": 2
+}, {
+  "value": "16. The <code>&quot;module.exports&quot;</code> Marker",
+  "id": "16-the-moduleexports-marker",
+  "level": 2
+}, {
+  "value": "17. CJS Importing ESM",
+  "id": "17-cjs-importing-esm",
+  "level": 2
+}, {
+  "value": "18. Dynamic <code>import()</code> Is the Broad Compatibility Path",
+  "id": "18-dynamic-import-is-the-broad-compatibility-path",
+  "level": 2
+}, {
+  "value": "19. Why Dynamic <code>import()</code> Changes Your CJS Code",
+  "id": "19-why-dynamic-import-changes-your-cjs-code",
+  "level": 2
+}, {
+  "value": "20. Modern <code>require(esm)</code>",
+  "id": "20-modern-requireesm",
+  "level": 2
+}, {
+  "value": "21. <code>ERR_REQUIRE_ASYNC_MODULE</code>",
+  "id": "21-err_require_async_module",
+  "level": 2
+}, {
+  "value": "22. Top-Level Await Can Be Deep in the Graph",
+  "id": "22-top-level-await-can-be-deep-in-the-graph",
+  "level": 2
+}, {
+  "value": "23. What Does <code>require(esm)</code> Return?",
+  "id": "23-what-does-requireesm-return",
+  "level": 2
+}, {
+  "value": "24. Special <code>&quot;module.exports&quot;</code> Export from ESM",
+  "id": "24-special-moduleexports-export-from-esm",
   "level": 2
 }, {
   "value": "Why this exists",
   "id": "why-this-exists",
-  "level": 3
+  "level": 4
 }, {
   "value": "Tradeoff",
   "id": "tradeoff",
-  "level": 3
+  "level": 4
+}, {
+  "value": "25. CJS → ESM: Three Main Paths",
+  "id": "25-cjs--esm-three-main-paths",
+  "level": 2
+}, {
+  "value": "26. Interop Shape Comparison",
+  "id": "26-interop-shape-comparison",
+  "level": 2
 }, {
   "value": "ESM → CJS",
   "id": "esm--cjs-1",
-  "level": 2
+  "level": 3
 }, {
   "value": "CJS → ESM with <code>require()</code>",
   "id": "cjs--esm-with-require",
-  "level": 2
+  "level": 3
 }, {
   "value": "CJS → ESM with dynamic import",
   "id": "cjs--esm-with-dynamic-import",
+  "level": 3
+}, {
+  "value": "27. The Dual Package",
+  "id": "27-the-dual-package",
+  "level": 2
+}, {
+  "value": "28. The Dual Package Hazard",
+  "id": "28-the-dual-package-hazard",
+  "level": 2
+}, {
+  "value": "29. Why Two Copies Matter",
+  "id": "29-why-two-copies-matter",
+  "level": 2
+}, {
+  "value": "30. The <code>instanceof</code> Symptom",
+  "id": "30-the-instanceof-symptom",
+  "level": 2
+}, {
+  "value": "31. Why Caches Do Not Automatically Merge Them",
+  "id": "31-why-caches-do-not-automatically-merge-them",
+  "level": 2
+}, {
+  "value": "32. The Real Problem Is Not &quot;Dual Package&quot;",
+  "id": "32-the-real-problem-is-not-dual-package",
+  "level": 2
+}, {
+  "value": "33. Strategy 1 --- Keep the Package Stateless",
+  "id": "33-strategy-1-----keep-the-package-stateless",
+  "level": 2
+}, {
+  "value": "34. Strategy 2 --- One Implementation + Thin Wrapper",
+  "id": "34-strategy-2-----one-implementation--thin-wrapper",
+  "level": 2
+}, {
+  "value": "35. Why This Can Be Better",
+  "id": "35-why-this-can-be-better",
+  "level": 2
+}, {
+  "value": "36. Strategy 3 --- Shared State Module",
+  "id": "36-strategy-3-----shared-state-module",
+  "level": 2
+}, {
+  "value": "37. Strategy 4 --- ESM Only",
+  "id": "37-strategy-4-----esm-only",
+  "level": 2
+}, {
+  "value": "38. Applications vs Libraries",
+  "id": "38-applications-vs-libraries",
   "level": 2
 }, {
   "value": "Application",
   "id": "application",
-  "level": 2
+  "level": 3
 }, {
   "value": "Library",
   "id": "library",
+  "level": 3
+}, {
+  "value": "39. Conditional Exports",
+  "id": "39-conditional-exports",
+  "level": 2
+}, {
+  "value": "40. Why <code>&quot;exports&quot;</code> Is Important",
+  "id": "40-why-exports-is-important",
   "level": 2
 }, {
   "value": "1. Conditional routing",
   "id": "1-conditional-routing",
-  "level": 3
+  "level": 4
 }, {
   "value": "2. Package encapsulation",
   "id": "2-package-encapsulation",
-  "level": 3
+  "level": 4
+}, {
+  "value": "41. Conditional Export Order Matters",
+  "id": "41-conditional-export-order-matters",
+  "level": 2
+}, {
+  "value": "42. Important Conditions",
+  "id": "42-important-conditions",
+  "level": 2
 }, {
   "value": "<code>import</code>",
   "id": "import",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>require</code>",
   "id": "require",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>default</code>",
   "id": "default",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>node</code>",
   "id": "node",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>module-sync</code>",
   "id": "module-sync",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>types</code>",
   "id": "types",
-  "level": 3
+  "level": 4
 }, {
   "value": "Custom conditions",
   "id": "custom-conditions",
-  "level": 3
+  "level": 4
+}, {
+  "value": "43. <code>module-sync</code>",
+  "id": "43-module-sync",
+  "level": 2
+}, {
+  "value": "44. Subpath Exports",
+  "id": "44-subpath-exports",
+  "level": 2
+}, {
+  "value": "45. <code>&quot;main&quot;</code> vs <code>&quot;exports&quot;</code> vs <code>&quot;module&quot;</code>",
+  "id": "45-main-vs-exports-vs-module",
+  "level": 2
 }, {
   "value": "<code>&quot;main&quot;</code>",
   "id": "main",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>&quot;exports&quot;</code>",
   "id": "exports",
-  "level": 2
+  "level": 3
 }, {
   "value": "<code>&quot;module&quot;</code>",
   "id": "module",
+  "level": 3
+}, {
+  "value": "46. Building a Dual Package",
+  "id": "46-building-a-dual-package",
+  "level": 2
+}, {
+  "value": "47. Why <code>.cjs</code> Matters in a <code>&quot;type&quot;: &quot;module&quot;</code> Package",
+  "id": "47-why-cjs-matters-in-a-type-module-package",
+  "level": 2
+}, {
+  "value": "48. Testing a Dual Package",
+  "id": "48-testing-a-dual-package",
+  "level": 2
+}, {
+  "value": "49. Export Shape Tests",
+  "id": "49-export-shape-tests",
+  "level": 2
+}, {
+  "value": "50. Test Runtime Behavior Too",
+  "id": "50-test-runtime-behavior-too",
+  "level": 2
+}, {
+  "value": "51. TypeScript Adds Another Layer",
+  "id": "51-typescript-adds-another-layer",
+  "level": 2
+}, {
+  "value": "52. The <code>__esModule</code> Convention",
+  "id": "52-the-__esmodule-convention",
+  "level": 2
+}, {
+  "value": "53. Do Not Confuse <code>__esModule</code> with Native Node ESM",
+  "id": "53-do-not-confuse-__esmodule-with-native-node-esm",
+  "level": 2
+}, {
+  "value": "54. Common Error: <code>ERR_REQUIRE_ESM</code>",
+  "id": "54-common-error-err_require_esm",
+  "level": 2
+}, {
+  "value": "55. Common Error: <code>ERR_REQUIRE_ASYNC_MODULE</code>",
+  "id": "55-common-error-err_require_async_module",
+  "level": 2
+}, {
+  "value": "56. Common Error: <code>ERR_REQUIRE_CYCLE_MODULE</code>",
+  "id": "56-common-error-err_require_cycle_module",
+  "level": 2
+}, {
+  "value": "57. Common Error: <code>ERR_PACKAGE_PATH_NOT_EXPORTED</code>",
+  "id": "57-common-error-err_package_path_not_exported",
+  "level": 2
+}, {
+  "value": "58. Common Error: Named Export Not Found",
+  "id": "58-common-error-named-export-not-found",
+  "level": 2
+}, {
+  "value": "59. Common Error: <code>Cannot use import statement outside a module</code>",
+  "id": "59-common-error-cannot-use-import-statement-outside-a-module",
+  "level": 2
+}, {
+  "value": "60. Common Error: <code>module is not defined in ES module scope</code>",
+  "id": "60-common-error-module-is-not-defined-in-es-module-scope",
+  "level": 2
+}, {
+  "value": "61. Default Export Confusion",
+  "id": "61-default-export-confusion",
+  "level": 2
+}, {
+  "value": "62. A Simple Mapping to Remember",
+  "id": "62-a-simple-mapping-to-remember",
+  "level": 2
+}, {
+  "value": "63. Debugging Interop: Fixed Order",
+  "id": "63-debugging-interop-fixed-order",
   "level": 2
 }, {
   "value": "Step 1 --- Direction",
   "id": "step-1-----direction",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 2 --- Format",
   "id": "step-2-----format",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 3 --- Timing",
   "id": "step-3-----timing",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 4 --- Export Shape",
   "id": "step-4-----export-shape",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 5 --- Package Exports",
   "id": "step-5-----package-exports",
-  "level": 2
+  "level": 3
 }, {
   "value": "Step 6 --- Identity",
   "id": "step-6-----identity",
+  "level": 3
+}, {
+  "value": "64. Debugging CJS Export Detection",
+  "id": "64-debugging-cjs-export-detection",
+  "level": 2
+}, {
+  "value": "65. Debugging Conditional Exports",
+  "id": "65-debugging-conditional-exports",
+  "level": 2
+}, {
+  "value": "66. Debugging Duplicate Module Instances",
+  "id": "66-debugging-duplicate-module-instances",
+  "level": 2
+}, {
+  "value": "67. The Internal Bridge: Conceptual View",
+  "id": "67-the-internal-bridge-conceptual-view",
+  "level": 2
+}, {
+  "value": "68. CJS Translator and Synthetic Named Exports",
+  "id": "68-cjs-translator-and-synthetic-named-exports",
+  "level": 2
+}, {
+  "value": "69. Why the Lexer Does Not Execute CJS",
+  "id": "69-why-the-lexer-does-not-execute-cjs",
+  "level": 2
+}, {
+  "value": "70. CJS → ESM <code>require()</code> Conceptual Flow",
+  "id": "70-cjs--esm-require-conceptual-flow",
+  "level": 2
+}, {
+  "value": "71. <code>import()</code> vs <code>require()</code> During Interop",
+  "id": "71-import-vs-require-during-interop",
   "level": 2
 }, {
   "value": "<code>require()</code>",
   "id": "require-1",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>import()</code>",
   "id": "import-1",
-  "level": 3
+  "level": 4
+}, {
+  "value": "72. Why ESM-Only Packages Used to Break CJS Apps",
+  "id": "72-why-esm-only-packages-used-to-break-cjs-apps",
+  "level": 2
+}, {
+  "value": "73. Dual Package Design: The Decision Tree",
+  "id": "73-dual-package-design-the-decision-tree",
+  "level": 2
+}, {
+  "value": "74. What Not to Do",
+  "id": "74-what-not-to-do",
+  "level": 2
+}, {
+  "value": "75. Practical Rules for Backend Developers",
+  "id": "75-practical-rules-for-backend-developers",
+  "level": 2
 }, {
   "value": "Rule 1",
   "id": "rule-1",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 2",
   "id": "rule-2",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 3",
   "id": "rule-3",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 4",
   "id": "rule-4",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 5",
   "id": "rule-5",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 6",
   "id": "rule-6",
-  "level": 2
+  "level": 3
 }, {
   "value": "Rule 7",
   "id": "rule-7",
+  "level": 3
+}, {
+  "value": "76. Practical Rules for Package Authors",
+  "id": "76-practical-rules-for-package-authors",
+  "level": 2
+}, {
+  "value": "77. A Realistic Dual Package Example",
+  "id": "77-a-realistic-dual-package-example",
   "level": 2
 }, {
   "value": "ESM",
   "id": "esm",
-  "level": 3
+  "level": 4
 }, {
   "value": "CJS",
   "id": "cjs",
-  "level": 3
+  "level": 4
+}, {
+  "value": "78. One-Implementation Dual Package",
+  "id": "78-one-implementation-dual-package",
+  "level": 2
+}, {
+  "value": "79. Why Stateless Libraries Are Easier",
+  "id": "79-why-stateless-libraries-are-easier",
+  "level": 2
+}, {
+  "value": "80. Interop and Singleton Patterns",
+  "id": "80-interop-and-singleton-patterns",
+  "level": 2
+}, {
+  "value": "81. Interop and Class Identity",
+  "id": "81-interop-and-class-identity",
+  "level": 2
+}, {
+  "value": "82. Interop and Event Emitters",
+  "id": "82-interop-and-event-emitters",
+  "level": 2
+}, {
+  "value": "83. Interop and Connection Pools",
+  "id": "83-interop-and-connection-pools",
+  "level": 2
+}, {
+  "value": "84. A Useful Debugging Experiment",
+  "id": "84-a-useful-debugging-experiment",
+  "level": 2
+}, {
+  "value": "85. Interop Checklist",
+  "id": "85-interop-checklist",
+  "level": 2
+}, {
+  "value": "86. The Four-Word Interop Model",
+  "id": "86-the-four-word-interop-model",
+  "level": 2
 }, {
   "value": "Direction",
   "id": "direction",
-  "level": 3
+  "level": 4
 }, {
   "value": "Timing",
   "id": "timing",
-  "level": 3
+  "level": 4
 }, {
   "value": "Identity",
   "id": "identity",
-  "level": 3
+  "level": 4
 }, {
   "value": "Shape",
   "id": "shape",
-  "level": 3
+  "level": 4
+}, {
+  "value": "87. Interview Questions",
+  "id": "87-interview-questions",
+  "level": 2
 }, {
   "value": "Q1. What happens when ESM imports CJS?",
   "id": "q1-what-happens-when-esm-imports-cjs",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q2. Why are CJS named exports unreliable?",
   "id": "q2-why-are-cjs-named-exports-unreliable",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q3. What happens when CJS requires ESM?",
   "id": "q3-what-happens-when-cjs-requires-esm",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q4. Why does top-level await matter?",
   "id": "q4-why-does-top-level-await-matter",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q5. What is the dual package hazard?",
   "id": "q5-what-is-the-dual-package-hazard",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q6. How can you reduce the dual package hazard?",
   "id": "q6-how-can-you-reduce-the-dual-package-hazard",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q7. What does <code>&quot;exports&quot;</code> do?",
   "id": "q7-what-does-exports-do",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q8. What is the difference between <code>&quot;main&quot;</code> and <code>&quot;exports&quot;</code>?",
   "id": "q8-what-is-the-difference-between-main-and-exports",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q9. What is <code>__esModule</code>?",
   "id": "q9-what-is-__esmodule",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q10. How would you debug a strange CJS/ESM error?",
   "id": "q10-how-would-you-debug-a-strange-cjsesm-error",
+  "level": 3
+}, {
+  "value": "88. Hands-On Labs",
+  "id": "88-hands-on-labs",
   "level": 2
 }, {
   "value": "Lab 1 --- ESM Imports CJS",
   "id": "lab-1-----esm-imports-cjs",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 2 --- CJS Imports ESM",
   "id": "lab-2-----cjs-imports-esm",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 3 --- Top-Level Await Breaks <code>require()</code>",
   "id": "lab-3-----top-level-await-breaks-require",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 4 --- CJS Default Export",
   "id": "lab-4-----cjs-default-export",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 5 --- CJS Named Export Detection",
   "id": "lab-5-----cjs-named-export-detection",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 6 --- Duplicate Package State",
   "id": "lab-6-----duplicate-package-state",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 7 --- Class Identity",
   "id": "lab-7-----class-identity",
-  "level": 2
+  "level": 3
 }, {
   "value": "Lab 8 --- Conditional Exports",
   "id": "lab-8-----conditional-exports",
+  "level": 3
+}, {
+  "value": "89. Final Mental Model",
+  "id": "89-final-mental-model",
+  "level": 2
+}, {
+  "value": "90. The Most Important Takeaway",
+  "id": "90-the-most-important-takeaway",
   "level": 2
 }];
 function _createMdxContent(props) {
@@ -214071,6 +215974,7 @@ function _createMdxContent(props) {
     h1: "h1",
     h2: "h2",
     h3: "h3",
+    h4: "h4",
     header: "header",
     hr: "hr",
     li: "li",
@@ -214088,7 +215992,7 @@ function _createMdxContent(props) {
         id: "nodejs-commonjs--es-modules-interop-cjsesm-edges--dual-packages",
         children: "Node.js CommonJS ↔ ES Modules Interop: CJS/ESM Edges & Dual Packages"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "1-what-is-cjsesm-interoperability",
       children: "1. What Is CJS/ESM Interoperability?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214122,7 +216026,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "dual packages"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "2-the-four-questions-that-explain-most-interop-problems",
       children: "2. The Four Questions That Explain Most Interop Problems"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214134,12 +216038,12 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the most useful debugging framework in the entire topic."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "3-direction-matters",
       children: "3. Direction Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "There are two fundamentally different cases."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "esm--cjs",
       children: "ESM → CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -214160,7 +216064,7 @@ function _createMdxContent(props) {
       children: ["becomes the ESM-facing ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "default export"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "cjs--esm",
       children: "CJS → ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -214196,7 +216100,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "remains the broad compatibility path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "4-cjs-vs-esm-fundamental-differences",
       children: "4. CJS vs ESM: Fundamental Differences"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214243,7 +216147,7 @@ function _createMdxContent(props) {
       children: "Live ESM bindings No equivalent Yes"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Interop exists because these systems were designed around different\r\nassumptions."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "5-module-format-must-be-determined-first",
       children: "5. Module Format Must Be Determined First"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214277,7 +216181,7 @@ function _createMdxContent(props) {
       }), " means CommonJS under normal/default behavior."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This decision happens before Node applies the appropriate module loader\r\nbehavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "6-why-file-format-matters-for-interop",
       children: "6. Why File Format Matters for Interop"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214304,7 +216208,7 @@ function _createMdxContent(props) {
       children: ["A large number of \"import/export doesn't work\" errors are actually\r\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "wrong module-format classification"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "7-esm-importing-cjs",
       children: "7. ESM Importing CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214338,7 +216242,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CJS\r\n\r\nmodule.exports\r\n      │\r\n      ▼\r\n{ port: 3000, host: \"localhost\" }\r\n      │\r\n      ▼\r\nESM default import\r\n      │\r\n      ▼\r\nconfig\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "8-why-default-import-is-the-safest-way-to-consume-cjs",
       children: "8. Why Default Import Is the Safest Way to Consume CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214364,7 +216268,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does not depend on Node successfully guessing named exports from CJS\r\nsource code."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "9-named-imports-from-cjs",
       children: "9. Named Imports from CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214393,7 +216297,7 @@ function _createMdxContent(props) {
       children: ["Node has to ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "detect likely export names from the CJS source code"
       }), " and\r\nexpose synthetic named exports to ESM."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "10-how-node-detects-cjs-named-exports",
       children: "10. How Node Detects CJS Named Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214434,7 +216338,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "when Node detects those names."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "11-cjs-named-export-detection-is-best-effort",
       children: "11. CJS Named Export Detection Is Best-Effort"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214459,7 +216363,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But static source analysis cannot reliably infer all runtime-generated\r\nproperty names."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "12-dynamic-cjs-exports",
       children: "12. Dynamic CJS Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214496,7 +216400,7 @@ function _createMdxContent(props) {
       children: ["Then you are reading actual properties from the CJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), "\r\nobject."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "13-important-synthetic-cjs-named-exports-are-not-true-esm-live-bindings",
       children: "13. Important: Synthetic CJS Named Exports Are Not True ESM Live Bindings"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214524,7 +216428,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import counter from \"./counter.cjs\";\r\n\r\nconsole.log(counter.count);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "14-esm--cjs-the-important-shape",
       children: "14. ESM → CJS: The Important Shape"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214543,7 +216447,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the most reliable mental model."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "15-dynamic-import-of-cjs",
       children: ["15. Dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -214570,7 +216474,7 @@ function _createMdxContent(props) {
       }), " property represents the CJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " value."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "16-the-moduleexports-marker",
       children: ["16. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"module.exports\""
@@ -214605,7 +216509,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You do not need to build application logic around the marker."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "17-cjs-importing-esm",
       children: "17. CJS Importing ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214642,7 +216546,7 @@ function _createMdxContent(props) {
       children: "at the top level."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That means the ESM graph may not be synchronously evaluable."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "18-dynamic-import-is-the-broad-compatibility-path",
       children: ["18. Dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -214663,7 +216567,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "mod\r\n├── named exports\r\n└── default\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "19-why-dynamic-import-changes-your-cjs-code",
       children: ["19. Why Dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -214695,7 +216599,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason ESM migrations can be architectural rather than\r\npurely syntactic."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "20-modern-requireesm",
       children: ["20. Modern ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require(esm)"
@@ -214728,7 +216632,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Not merely the entry file."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "21-err_require_async_module",
       children: ["21. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_ASYNC_MODULE"
@@ -214770,7 +216674,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "instead."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "22-top-level-await-can-be-deep-in-the-graph",
       children: "22. Top-Level Await Can Be Deep in the Graph"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214811,7 +216715,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(a)\r\n   ↓\r\na imports b\r\n   ↓\r\nb imports c\r\n   ↓\r\nc has top-level await\r\n   ↓\r\nwhole graph becomes async\r\n   ↓\r\nrequire() cannot synchronously finish\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "23-what-does-requireesm-return",
       children: ["23. What Does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require(esm)"
@@ -214857,7 +216761,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "directly receives the function."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "24-special-moduleexports-export-from-esm",
       children: ["24. Special ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"module.exports\""
@@ -214889,19 +216793,19 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "directly rather than the normal namespace shape."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "why-this-exists",
       children: "Why this exists"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It can help an ESM package preserve a familiar CJS-facing API during\r\nmigration."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "tradeoff",
       children: "Tradeoff"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The CJS caller no longer automatically receives the normal namespace\r\ncontaining all ESM exports."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "So use this intentionally, not casually."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "25-cjs--esm-three-main-paths",
       children: "25. CJS → ESM: Three Main Paths"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -214932,10 +216836,10 @@ function _createMdxContent(props) {
           }), "?"]
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "26-interop-shape-comparison",
       children: "26. Interop Shape Comparison"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "esm--cjs-1",
       children: "ESM → CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -214952,7 +216856,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Conceptually."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "cjs--esm-with-require",
       children: ["CJS → ESM with ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -214978,7 +216882,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "export."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "cjs--esm-with-dynamic-import",
       children: "CJS → ESM with dynamic import"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -215000,7 +216904,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "default\r\nnamed exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "27-the-dual-package",
       children: "27. The Dual Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -215030,7 +216934,7 @@ function _createMdxContent(props) {
       children: "This sounds convenient."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But it introduces a major problem."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "28-the-dual-package-hazard",
       children: "28. The Dual Package Hazard"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215051,7 +216955,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Even though both represent the same conceptual package."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "29-why-two-copies-matter",
       children: "29. Why Two Copies Matter"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215095,7 +216999,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "class identity"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "30-the-instanceof-symptom",
       children: ["30. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "instanceof"
@@ -215136,7 +217040,7 @@ function _createMdxContent(props) {
       children: "They are not the same runtime class object."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They came from different module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "31-why-caches-do-not-automatically-merge-them",
       children: "31. Why Caches Do Not Automatically Merge Them"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215159,7 +217063,7 @@ function _createMdxContent(props) {
       children: "there is no reason for Node to treat them as the same module\r\nimplementation."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Different files mean different module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "32-the-real-problem-is-not-dual-package",
       children: "32. The Real Problem Is Not \"Dual Package\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215175,7 +217079,7 @@ function _createMdxContent(props) {
       children: "A stateless library may tolerate this."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A stateful library may not."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "33-strategy-1-----keep-the-package-stateless",
       children: "33. Strategy 1 --- Keep the Package Stateless"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215191,7 +217095,7 @@ function _createMdxContent(props) {
       children: "There is no important shared module-level state."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason functional/stateless library design can simplify dual\r\npackaging."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "34-strategy-2-----one-implementation--thin-wrapper",
       children: "34. Strategy 2 --- One Implementation + Thin Wrapper"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215217,7 +217121,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Now both entry points can converge on the same underlying ESM\r\nimplementation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "35-why-this-can-be-better",
       children: "35. Why This Can Be Better"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215242,7 +217146,7 @@ function _createMdxContent(props) {
       children: ["The caveat is that the ESM graph must support synchronous ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require(esm)"
       }), "\r\nand the resulting namespace/value shape must be acceptable to CJS\r\nconsumers."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "36-strategy-3-----shared-state-module",
       children: "36. Strategy 3 --- Shared State Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215258,7 +217162,7 @@ function _createMdxContent(props) {
       children: "Both entry points use the same internal state module where the module\r\nsystems can share that dependency safely."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is more complicated than a single implementation + wrapper, but can\r\nsolve state duplication when separate public entry formats are\r\nunavoidable."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "37-strategy-4-----esm-only",
       children: "37. Strategy 4 --- ESM Only"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215295,10 +217199,10 @@ function _createMdxContent(props) {
       children: "For applications, this decision is much easier because you control the\r\napplication."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For libraries, consumer compatibility matters."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "38-applications-vs-libraries",
       children: "38. Applications vs Libraries"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "application",
       children: "Application"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215326,7 +217230,7 @@ function _createMdxContent(props) {
       children: "Dependencies can still be CJS."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node handles the package-level interop."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "library",
       children: "Library"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215351,7 +217255,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is where dual-package design matters most."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "39-conditional-exports",
       children: "39. Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -215379,19 +217283,19 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "require(\"my-lib\")\r\n       ↓\r\n\"require\" condition\r\n       ↓\r\ndist/cjs/index.cjs\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "40-why-exports-is-important",
       children: ["40. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
       }), " Is Important"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It does two jobs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "1-conditional-routing",
       children: "1. Conditional routing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Different consumers can get different entry points."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "2-package-encapsulation",
       children: "2. Package encapsulation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215426,7 +217330,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "41-conditional-export-order-matters",
       children: "41. Conditional Export Order Matters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215447,7 +217351,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "top\r\n ↓\r\nfirst matching condition\r\n ↓\r\nselected target\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "42-important-conditions",
       children: "42. Important Conditions"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215457,14 +217361,14 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "types\r\nnode\r\nmodule-sync\r\nimport\r\nrequire\r\ndefault\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "import",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Used for ESM import resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "require",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require"
@@ -215473,40 +217377,40 @@ function _createMdxContent(props) {
       children: ["Used for CJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " resolution."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "default",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "default"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Fallback."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "node",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Node-specific condition."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "module-sync",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module-sync"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Useful when one synchronous ESM implementation can serve both import and\r\nrequire paths."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "types",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "types"
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Primarily for type tooling."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "custom-conditions",
       children: "Custom conditions"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Can be enabled with Node's condition mechanisms."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "43-module-sync",
       children: ["43. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module-sync"
@@ -215539,7 +217443,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ERR_REQUIRE_ASYNC_MODULE\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "44-subpath-exports",
       children: "44. Subpath Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215563,7 +217467,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const { helper } = require(\"my-lib/utils\");\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "45-main-vs-exports-vs-module",
       children: ["45. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -215572,7 +217476,7 @@ function _createMdxContent(props) {
       }), " vs ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"module\""
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "main",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -215584,7 +217488,7 @@ function _createMdxContent(props) {
         className: "language-json",
         children: "{\r\n  \"main\": \"./dist/index.cjs\"\r\n}\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "exports",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -215596,7 +217500,7 @@ function _createMdxContent(props) {
         className: "language-json",
         children: "{\r\n  \"exports\": {\r\n    \".\": \"./dist/index.js\"\r\n  }\r\n}\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "module",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"module\""
@@ -215618,7 +217522,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "as the important package API mechanism."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "46-building-a-dual-package",
       children: "46. Building a Dual Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215642,7 +217546,7 @@ function _createMdxContent(props) {
       children: "can produce both formats."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The package then maps consumers to the appropriate build."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "47-why-cjs-matters-in-a-type-module-package",
       children: ["47. Why ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".cjs"
@@ -215681,7 +217585,7 @@ function _createMdxContent(props) {
       children: "Otherwise Node will treat it as ESM under that package scope."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a common dual-build mistake."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "48-testing-a-dual-package",
       children: "48. Testing a Dual Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215715,7 +217619,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A package can have a perfect ESM build and a broken CJS build."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "49-export-shape-tests",
       children: "49. Export Shape Tests"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215743,7 +217647,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "because these are interop-related representations, not necessarily your\r\npublic API."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "50-test-runtime-behavior-too",
       children: "50. Test Runtime Behavior Too"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215783,7 +217687,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "same public contract\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "51-typescript-adds-another-layer",
       children: "51. TypeScript Adds Another Layer"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -215817,7 +217721,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "TypeScript's compiler configuration cannot magically override Node's\r\nruntime module semantics."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "52-the-__esmodule-convention",
       children: ["52. The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__esModule"
@@ -215845,7 +217749,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "exports.default\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "53-do-not-confuse-__esmodule-with-native-node-esm",
       children: ["53. Do Not Confuse ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__esModule"
@@ -215872,7 +217776,7 @@ function _createMdxContent(props) {
       }), " convention mainly exists for compatibility with\r\ntooling/transpiled ecosystems."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not build new application architecture around it."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "54-common-error-err_require_esm",
       children: ["54. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_ESM"
@@ -215904,7 +217808,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "1. Check Node version\r\n2. Check whether require(esm) is available\r\n3. Check whether the target is ESM\r\n4. Consider dynamic import()\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "55-common-error-err_require_async_module",
       children: ["55. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_ASYNC_MODULE"
@@ -215925,7 +217829,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "or redesign the ESM graph so it does not require top-level await."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "56-common-error-err_require_cycle_module",
       children: ["56. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_CYCLE_MODULE"
@@ -215960,7 +217864,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "redesign the dependency direction"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "57-common-error-err_package_path_not_exported",
       children: ["57. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED"
@@ -215994,7 +217898,7 @@ function _createMdxContent(props) {
       children: ["Do not depend on package internals simply because you can find the file\r\nin ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "node_modules"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "58-common-error-named-export-not-found",
       children: "58. Common Error: Named Export Not Found"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216029,7 +217933,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "named import\r\n    ↓\r\ndepends on static CJS export detection\r\n\r\ndefault import\r\n    ↓\r\ngets module.exports\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "59-common-error-cannot-use-import-statement-outside-a-module",
       children: ["59. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Cannot use import statement outside a module"
@@ -216062,7 +217966,7 @@ function _createMdxContent(props) {
         className: "language-json",
         children: "{\r\n  \"type\": \"module\"\r\n}\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "60-common-error-module-is-not-defined-in-es-module-scope",
       children: ["60. Common Error: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module is not defined in ES module scope"
@@ -216096,7 +218000,7 @@ function _createMdxContent(props) {
       }), " when a real\r\nCJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require"
       }), " is necessary."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "61-default-export-confusion",
       children: "61. Default Export Confusion"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216150,7 +218054,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.exports = ...\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "62-a-simple-mapping-to-remember",
       children: "62. A Simple Mapping to Remember"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216183,14 +218087,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "but remember that named detection is best-effort."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "63-debugging-interop-fixed-order",
       children: "63. Debugging Interop: Fixed Order"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not randomly modify imports until the error disappears."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use this sequence."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-1-----direction",
       children: "Step 1 --- Direction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216200,7 +218104,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ESM → CJS?\r\nCJS → ESM?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-2-----format",
       children: "Step 2 --- Format"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216210,7 +218114,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: ".mjs\r\n.cjs\r\n.js\r\npackage.json \"type\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-3-----timing",
       children: "Step 3 --- Timing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216227,7 +218131,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Does the ESM graph contain top-level await?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-4-----export-shape",
       children: "Step 4 --- Export Shape"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216237,7 +218141,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Is the target:\r\nCJS module.exports?\r\nESM namespace?\r\ndefault export?\r\nnamed export?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-5-----package-exports",
       children: "Step 5 --- Package Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216249,7 +218153,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Does the package expose the path?"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "step-6-----identity",
       children: "Step 6 --- Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216270,7 +218174,7 @@ function _createMdxContent(props) {
       children: "resolve to the same actual implementation file."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If not, investigate the dual-package hazard."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "64-debugging-cjs-export-detection",
       children: "64. Debugging CJS Export Detection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216303,7 +218207,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "pkg.someFunction;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "65-debugging-conditional-exports",
       children: "65. Debugging Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216331,7 +218235,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If the results differ, you may have two implementations."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "66-debugging-duplicate-module-instances",
       children: "66. Debugging Duplicate Module Instances"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216359,7 +218263,7 @@ function _createMdxContent(props) {
       children: "If the package is being loaded through two different builds, you may see\r\ninitialization twice."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Then inspect the actual resolved paths."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "67-the-internal-bridge-conceptual-view",
       children: "67. The Internal Bridge: Conceptual View"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216382,7 +218286,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This explains why the two directions have different rules."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "68-cjs-translator-and-synthetic-named-exports",
       children: "68. CJS Translator and Synthetic Named Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216410,7 +218314,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They are a compatibility mechanism."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "69-why-the-lexer-does-not-execute-cjs",
       children: "69. Why the Lexer Does Not Execute CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216436,7 +218340,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But it means dynamic export construction cannot be perfectly understood."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "70-cjs--esm-require-conceptual-flow",
       children: ["70. CJS → ESM ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -216462,14 +218366,14 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "evaluation becomes async\r\n      ↓\r\nrequire cannot wait\r\n      ↓\r\nERR_REQUIRE_ASYNC_MODULE\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "71-import-vs-require-during-interop",
       children: ["71. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
       }), " vs ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
       }), " During Interop"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "require-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -216491,7 +218395,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "cannot handle asynchronous ESM graphs"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "import-1",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -216517,7 +218421,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction should be automatic in your reasoning."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "72-why-esm-only-packages-used-to-break-cjs-apps",
       children: "72. Why ESM-Only Packages Used to Break CJS Apps"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216554,7 +218458,7 @@ function _createMdxContent(props) {
       children: ["Modern Node's ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require(esm)"
       }), " reduces this problem for synchronous ESM,\r\nbut the async/top-level-await limitation remains."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "73-dual-package-design-the-decision-tree",
       children: "73. Dual Package Design: The Decision Tree"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216564,7 +218468,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Does the library need CJS support?\r\n          │\r\n          ├── No\r\n          │    ↓\r\n          │  ESM only\r\n          │\r\n          └── Yes\r\n               ↓\r\n        Does it have important module-level state?\r\n               │\r\n               ├── No\r\n               │    ↓\r\n               │  Dual builds are simpler\r\n               │\r\n               └── Yes\r\n                    ↓\r\n             Can one implementation serve both?\r\n                    │\r\n                    ├── Yes\r\n                    │    ↓\r\n                    │  Prefer one implementation + wrapper\r\n                    │\r\n                    └── No\r\n                         ↓\r\n                  Carefully centralize state\r\n                  and test identity\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "74-what-not-to-do",
       children: "74. What Not to Do"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216599,20 +218503,20 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "They can produce two independent module instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "75-practical-rules-for-backend-developers",
       children: "75. Practical Rules for Backend Developers"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-1",
       children: "Rule 1"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If possible, keep an application on one primary module system."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-2",
       children: "Rule 2"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "When ESM imports CJS, prefer the default import unless you have a clear\r\nreason to rely on detected named exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-3",
       children: "Rule 3"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216624,7 +218528,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "if the graph may contain top-level await or broad runtime compatibility\r\nmatters."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-4",
       children: "Rule 4"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -216633,22 +218537,22 @@ function _createMdxContent(props) {
       }), "."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It controls which package paths and conditions consumers can access."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-5",
       children: "Rule 5"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If a dual package has state, think about duplicate instances."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-6",
       children: "Rule 6"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "When debugging, compare actual resolved paths."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "rule-7",
       children: "Rule 7"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not rely on private Node internals for application architecture."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "76-practical-rules-for-package-authors",
       children: "76. Practical Rules for Package Authors"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.ol, {
@@ -216685,7 +218589,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "Treat CJS named-export detection as compatibility behavior, not a\r\nreplacement for proper ESM exports."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "77-a-realistic-dual-package-example",
       children: "77. A Realistic Dual Package Example"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216704,7 +218608,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Consumers:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm",
       children: "ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216712,7 +218616,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { createClient } from \"my-lib\";\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "cjs",
       children: "CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216730,7 +218634,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That determines how serious the dual-package hazard is."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "78-one-implementation-dual-package",
       children: "78. One-Implementation Dual Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216749,7 +218653,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The first model reduces duplicated runtime state."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "79-why-stateless-libraries-are-easier",
       children: "79. Why Stateless Libraries Are Easier"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216786,7 +218690,7 @@ function _createMdxContent(props) {
       children: "Now one side cannot see registrations made by the other."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the core practical danger."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "80-interop-and-singleton-patterns",
       children: "80. Interop and Singleton Patterns"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216814,7 +218718,7 @@ function _createMdxContent(props) {
       children: "you now have two managers."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can cause subtle bugs that are much harder to diagnose than a\r\nsimple import error."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "81-interop-and-class-identity",
       children: "81. Interop and Class Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216851,7 +218755,7 @@ function _createMdxContent(props) {
       children: ["When you see surprising ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "instanceof"
       }), " failures, investigate duplicate\r\npackage/module loading."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "82-interop-and-event-emitters",
       children: "82. Interop and Event Emitters"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216872,7 +218776,7 @@ function _createMdxContent(props) {
       children: "Listeners registered on A will not automatically receive events emitted\r\nthrough B."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is another common manifestation of duplicated module state."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "83-interop-and-connection-pools",
       children: "83. Interop and Connection Pools"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216905,7 +218809,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is why stateful dual packages require much more care."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "84-a-useful-debugging-experiment",
       children: "84. A Useful Debugging Experiment"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216935,7 +218839,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "you know you have two implementations loaded."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "85-interop-checklist",
       children: "85. Interop Checklist"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216945,7 +218849,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "□ What module system does my application use?\r\n□ What module system does the dependency use?\r\n□ What does package.json \"type\" say?\r\n□ Are .mjs/.cjs/.js involved?\r\n□ Am I using import or require?\r\n□ Is dynamic import needed?\r\n□ Does the ESM graph contain top-level await?\r\n□ What is the target's export shape?\r\n□ Are CJS named exports statically detectable?\r\n□ Does package.json have \"exports\"?\r\n□ Which conditional export branch is selected?\r\n□ Could import and require resolve to different files?\r\n□ Does the dependency have module-level state?\r\n□ Could two instances be loaded?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "86-the-four-word-interop-model",
       children: "86. The Four-Word Interop Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -216955,7 +218859,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "DIRECTION\r\nTIMING\r\nIDENTITY\r\nSHAPE\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "direction",
       children: "Direction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216963,7 +218867,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ESM → CJS\r\nCJS → ESM\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "timing",
       children: "Timing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216971,7 +218875,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "sync\r\nvs\r\nasync / top-level await\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "identity",
       children: "Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216979,7 +218883,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "same module\r\nvs\r\ntwo module instances\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "shape",
       children: "Shape"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -216989,22 +218893,22 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "If you systematically check these four things, most CJS/ESM issues\r\nbecome straightforward."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "87-interview-questions",
       children: "87. Interview Questions"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q1-what-happens-when-esm-imports-cjs",
       children: "Q1. What happens when ESM imports CJS?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
       children: ["The CJS module is loaded through the CommonJS loader. Its\r\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " value is exposed as the ESM default export, while Node\r\nmay expose synthetic named exports based on static source analysis."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q2-why-are-cjs-named-exports-unreliable",
       children: "Q2. Why are CJS named exports unreliable?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because Node detects them by analyzing CJS source patterns rather than\r\nexecuting the module to discover runtime-generated properties."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q3-what-happens-when-cjs-requires-esm",
       children: "Q3. What happens when CJS requires ESM?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217013,7 +218917,7 @@ function _createMdxContent(props) {
       }), " if the\r\nentire graph can finish synchronously. Otherwise use dynamic ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q4-why-does-top-level-await-matter",
       children: "Q4. Why does top-level await matter?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217024,12 +218928,12 @@ function _createMdxContent(props) {
       }), " cannot wait and throws\r\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ERR_REQUIRE_ASYNC_MODULE"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q5-what-is-the-dual-package-hazard",
       children: "Q5. What is the dual package hazard?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A package's ESM and CJS entry points can resolve to different files,\r\ncausing the package to be evaluated twice and producing separate\r\nmodule-level state and class identities."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q6-how-can-you-reduce-the-dual-package-hazard",
       children: "Q6. How can you reduce the dual package hazard?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217044,7 +218948,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "ESM-only package"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q7-what-does-exports-do",
       children: ["Q7. What does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"exports\""
@@ -217055,7 +218959,7 @@ function _createMdxContent(props) {
       }), " and ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q8-what-is-the-difference-between-main-and-exports",
       children: ["Q8. What is the difference between ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "\"main\""
@@ -217068,14 +218972,14 @@ function _createMdxContent(props) {
       }), " is the traditional package entry point. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "exports"
       }), " is the modern\r\nmechanism for defining package entry points, subpaths, conditions, and\r\nencapsulation."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q9-what-is-__esmodule",
       children: ["Q9. What is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__esModule"
       }), "?"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A compatibility convention used by transpilers/bundlers. It is not the\r\nfundamental native Node rule for CJS → ESM default interop."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q10-how-would-you-debug-a-strange-cjsesm-error",
       children: "Q10. How would you debug a strange CJS/ESM error?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217085,10 +218989,10 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "direction\r\n→ module format\r\n→ timing\r\n→ export shape\r\n→ exports map\r\n→ resolved identity\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "88-hands-on-labs",
       children: "88. Hands-On Labs"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-1-----esm-imports-cjs",
       children: "Lab 1 --- ESM Imports CJS"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217113,7 +219017,7 @@ function _createMdxContent(props) {
       children: ["Observe that the default import represents ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-2-----cjs-imports-esm",
       children: "Lab 2 --- CJS Imports ESM"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217138,7 +219042,7 @@ function _createMdxContent(props) {
       children: ["Run on a Node version that supports synchronous ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require(esm)"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "lab-3-----top-level-await-breaks-require",
       children: ["Lab 3 --- Top-Level Await Breaks ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require()"
@@ -217175,7 +219079,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "(async () => {\r\n  const mod = await import(\"./async.mjs\");\r\n\r\n  console.log(mod.ready);\r\n})();\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-4-----cjs-default-export",
       children: "Lab 4 --- CJS Default Export"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217205,7 +219109,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "conceptually."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-5-----cjs-named-export-detection",
       children: "Lab 5 --- CJS Named Export Detection"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217231,7 +219135,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-6-----duplicate-package-state",
       children: "Lab 6 --- Duplicate Package State"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217250,7 +219154,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Understand why separate implementations create separate state."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-7-----class-identity",
       children: "Lab 7 --- Class Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217271,7 +219175,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This makes the dual-package hazard concrete."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "lab-8-----conditional-exports",
       children: "Lab 8 --- Conditional Exports"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217290,7 +219194,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "and inspect which files are executed."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "89-final-mental-model",
       children: "89. Final Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217321,7 +219225,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "1. CJS loader starts\r\n        ↓\r\n2. Resolve package\r\n        ↓\r\n3. Apply \"exports\"\r\n        ↓\r\n4. Select require condition\r\n        ↓\r\n5. Determine target format\r\n        ↓\r\n6. If ESM:\r\n       check synchronous graph\r\n        ↓\r\n       top-level await?\r\n          ├── yes → ERR_REQUIRE_ASYNC_MODULE\r\n          └── no  → namespace / \"module.exports\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "90-the-most-important-takeaway",
       children: "90. The Most Important Takeaway"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217407,259 +219311,671 @@ const assets = {
 const toc = [{
   "value": "1. The Big Picture",
   "id": "1-the-big-picture",
+  "level": 3
+}, {
+  "value": "2. <code>import.meta</code>",
+  "id": "2-importmeta",
   "level": 2
 }, {
   "value": "What is <code>import.meta</code>?",
   "id": "what-is-importmeta",
-  "level": 2
+  "level": 3
 }, {
   "value": "Important distinction",
   "id": "important-distinction",
-  "level": 3
+  "level": 4
+}, {
+  "value": "3. <code>import.meta.url</code>",
+  "id": "3-importmetaurl",
+  "level": 2
 }, {
   "value": "Why does Node use a URL?",
   "id": "why-does-node-use-a-url",
-  "level": 2
+  "level": 3
 }, {
   "value": "3.1 URL formatting",
   "id": "31-url-formatting",
+  "level": 3
+}, {
+  "value": "4. Using <code>import.meta.url</code> as a Base URL",
+  "id": "4-using-importmetaurl-as-a-base-url",
+  "level": 2
+}, {
+  "value": "5. URL vs Filesystem Path",
+  "id": "5-url-vs-filesystem-path",
   "level": 2
 }, {
   "value": "URL",
   "id": "url",
-  "level": 3
+  "level": 4
 }, {
   "value": "Filesystem path",
   "id": "filesystem-path",
-  "level": 3
+  "level": 4
 }, {
   "value": "5.1 The <code>.pathname</code> trap",
   "id": "51-the-pathname-trap",
+  "level": 3
+}, {
+  "value": "6. <code>fileURLToPath()</code>",
+  "id": "6-fileurltopath",
+  "level": 2
+}, {
+  "value": "7. The Older ESM Replacement for <code>__filename</code> and <code>__dirname</code>",
+  "id": "7-the-older-esm-replacement-for-__filename-and-__dirname",
+  "level": 2
+}, {
+  "value": "8. <code>import.meta.filename</code>",
+  "id": "8-importmetafilename",
+  "level": 2
+}, {
+  "value": "9. <code>import.meta.dirname</code>",
+  "id": "9-importmetadirname",
+  "level": 2
+}, {
+  "value": "10. Important: <code>filename</code> and <code>dirname</code> Are Not Universal",
+  "id": "10-important-filename-and-dirname-are-not-universal",
+  "level": 2
+}, {
+  "value": "11. Symlink Behavior",
+  "id": "11-symlink-behavior",
+  "level": 2
+}, {
+  "value": "12. <code>import.meta.main</code>",
+  "id": "12-importmetamain",
   "level": 2
 }, {
   "value": "12.1 CommonJS equivalent",
   "id": "121-commonjs-equivalent",
+  "level": 3
+}, {
+  "value": "13. <code>import.meta.resolve()</code>",
+  "id": "13-importmetaresolve",
+  "level": 2
+}, {
+  "value": "14. How Different Specifiers Resolve",
+  "id": "14-how-different-specifiers-resolve",
   "level": 2
 }, {
   "value": "Built-in module",
   "id": "built-in-module",
-  "level": 2
+  "level": 3
 }, {
   "value": "Relative module",
   "id": "relative-module",
-  "level": 2
+  "level": 3
 }, {
   "value": "Package",
   "id": "package",
+  "level": 3
+}, {
+  "value": "15. <code>import.meta.resolve()</code> Does NOT Import the Module",
+  "id": "15-importmetaresolve-does-not-import-the-module",
+  "level": 2
+}, {
+  "value": "16. <code>import.meta.resolve()</code> vs <code>require.resolve()</code>",
+  "id": "16-importmetaresolve-vs-requireresolve",
+  "level": 2
+}, {
+  "value": "17. Resolving Package Files",
+  "id": "17-resolving-package-files",
+  "level": 2
+}, {
+  "value": "18. Package Encapsulation Still Applies",
+  "id": "18-package-encapsulation-still-applies",
+  "level": 2
+}, {
+  "value": "19. How <code>import.meta</code> Is Populated --- Conceptual Internals",
+  "id": "19-how-importmeta-is-populated-----conceptual-internals",
+  "level": 2
+}, {
+  "value": "20. <code>import.meta</code> Is Initialized Lazily",
+  "id": "20-importmeta-is-initialized-lazily",
+  "level": 2
+}, {
+  "value": "21. Module Caching",
+  "id": "21-module-caching",
+  "level": 2
+}, {
+  "value": "22. CJS and ESM Cache Differ",
+  "id": "22-cjs-and-esm-cache-differ",
+  "level": 2
+}, {
+  "value": "23. CommonJS Cache: <code>Module._cache</code>",
+  "id": "23-commonjs-cache-module_cache",
+  "level": 2
+}, {
+  "value": "24. <code>require.cache</code>",
+  "id": "24-requirecache",
+  "level": 2
+}, {
+  "value": "25. Clearing a CommonJS Cache Entry",
+  "id": "25-clearing-a-commonjs-cache-entry",
+  "level": 2
+}, {
+  "value": "26. Important: Cache Deletion Does Not Replace Existing References",
+  "id": "26-important-cache-deletion-does-not-replace-existing-references",
+  "level": 2
+}, {
+  "value": "27. Why Restarting the Process Is Often Cleaner",
+  "id": "27-why-restarting-the-process-is-often-cleaner",
+  "level": 2
+}, {
+  "value": "28. <code>module.children</code> Detail",
+  "id": "28-modulechildren-detail",
+  "level": 2
+}, {
+  "value": "29. CJS Cache + Symlinks",
+  "id": "29-cjs-cache--symlinks",
+  "level": 2
+}, {
+  "value": "30. <code>--preserve-symlinks</code>",
+  "id": "30---preserve-symlinks",
+  "level": 2
+}, {
+  "value": "31. ESM Loader Cache",
+  "id": "31-esm-loader-cache",
+  "level": 2
+}, {
+  "value": "32. ESM Cache Identity = Resolved URL",
+  "id": "32-esm-cache-identity--resolved-url",
+  "level": 2
+}, {
+  "value": "33. Query Strings Change ESM Module Identity",
+  "id": "33-query-strings-change-esm-module-identity",
+  "level": 2
+}, {
+  "value": "34. Fragments Also Affect Identity",
+  "id": "34-fragments-also-affect-identity",
+  "level": 2
+}, {
+  "value": "35. ESM Query Strings as Cache Busting",
+  "id": "35-esm-query-strings-as-cache-busting",
+  "level": 2
+}, {
+  "value": "36. The Memory Problem with Unique ESM URLs",
+  "id": "36-the-memory-problem-with-unique-esm-urls",
+  "level": 2
+}, {
+  "value": "37. Why ESM Has No Simple Cache Delete API",
+  "id": "37-why-esm-has-no-simple-cache-delete-api",
+  "level": 2
+}, {
+  "value": "38. Singleton State Through Module Caching",
+  "id": "38-singleton-state-through-module-caching",
+  "level": 2
+}, {
+  "value": "39. You Do Not Need a Singleton Class",
+  "id": "39-you-do-not-need-a-singleton-class",
+  "level": 2
+}, {
+  "value": "40. Duplicate Package Installs Can Break Singleton Assumptions",
+  "id": "40-duplicate-package-installs-can-break-singleton-assumptions",
+  "level": 2
+}, {
+  "value": "41. Workers Have Separate Module Caches",
+  "id": "41-workers-have-separate-module-caches",
+  "level": 2
+}, {
+  "value": "42. V8 Module States",
+  "id": "42-v8-module-states",
+  "level": 2
+}, {
+  "value": "43. State 1 --- Uninstantiated",
+  "id": "43-state-1-----uninstantiated",
+  "level": 2
+}, {
+  "value": "44. State 2 --- Instantiating",
+  "id": "44-state-2-----instantiating",
+  "level": 2
+}, {
+  "value": "45. Cycles Are Detected During Instantiation",
+  "id": "45-cycles-are-detected-during-instantiation",
+  "level": 2
+}, {
+  "value": "46. State 3 --- Instantiated",
+  "id": "46-state-3-----instantiated",
+  "level": 2
+}, {
+  "value": "47. State 4 --- Evaluating",
+  "id": "47-state-4-----evaluating",
+  "level": 2
+}, {
+  "value": "48. State 5 --- Evaluated",
+  "id": "48-state-5-----evaluated",
+  "level": 2
+}, {
+  "value": "49. Evaluated Is Not Resettable",
+  "id": "49-evaluated-is-not-resettable",
+  "level": 2
+}, {
+  "value": "50. State 6 --- Errored",
+  "id": "50-state-6-----errored",
+  "level": 2
+}, {
+  "value": "51. Important: Resolution/Load Errors vs Evaluation Errors",
+  "id": "51-important-resolutionload-errors-vs-evaluation-errors",
   "level": 2
 }, {
   "value": "Resolution error",
   "id": "resolution-error",
-  "level": 3
+  "level": 4
 }, {
   "value": "Package exports error",
   "id": "package-exports-error",
-  "level": 3
+  "level": 4
 }, {
   "value": "Evaluation error",
   "id": "evaluation-error",
-  "level": 3
+  "level": 4
+}, {
+  "value": "52. CommonJS Cycle Timing",
+  "id": "52-commonjs-cycle-timing",
+  "level": 2
+}, {
+  "value": "53. Classic CommonJS Circular Dependency",
+  "id": "53-classic-commonjs-circular-dependency",
+  "level": 2
 }, {
   "value": "<code>a.js</code>",
   "id": "ajs",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.js</code>",
   "id": "bjs",
-  "level": 3
+  "level": 4
+}, {
+  "value": "54. Why Does B See Only <code>{ x: 1 }</code>?",
+  "id": "54-why-does-b-see-only--x-1-",
+  "level": 2
+}, {
+  "value": "55. CJS Cycles Expose Partial Objects",
+  "id": "55-cjs-cycles-expose-partial-objects",
+  "level": 2
+}, {
+  "value": "56. Mutating <code>module.exports</code> vs Replacing It",
+  "id": "56-mutating-moduleexports-vs-replacing-it",
+  "level": 2
 }, {
   "value": "Safer during cycles",
   "id": "safer-during-cycles",
-  "level": 3
+  "level": 4
 }, {
   "value": "Dangerous pattern",
   "id": "dangerous-pattern",
-  "level": 3
+  "level": 4
+}, {
+  "value": "57. CJS <code>module.exports</code> Replacement Problem",
+  "id": "57-cjs-moduleexports-replacement-problem",
+  "level": 2
+}, {
+  "value": "58. ESM Circular Dependencies",
+  "id": "58-esm-circular-dependencies",
+  "level": 2
+}, {
+  "value": "59. Live Binding Does Not Mean &quot;Always Initialized&quot;",
+  "id": "59-live-binding-does-not-mean-always-initialized",
+  "level": 2
+}, {
+  "value": "60. ESM Circular Dependency Example",
+  "id": "60-esm-circular-dependency-example",
+  "level": 2
 }, {
   "value": "<code>a.mjs</code>",
   "id": "amjs",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>b.mjs</code>",
   "id": "bmjs",
-  "level": 3
+  "level": 4
+}, {
+  "value": "61. CJS vs ESM Cycle: The Core Difference",
+  "id": "61-cjs-vs-esm-cycle-the-core-difference",
+  "level": 2
+}, {
+  "value": "62. ESM Live Bindings",
+  "id": "62-esm-live-bindings",
+  "level": 2
+}, {
+  "value": "63. Why Functions Often Make Cycles Safer",
+  "id": "63-why-functions-often-make-cycles-safer",
+  "level": 2
+}, {
+  "value": "64. Cycles Are Usually a Design Smell",
+  "id": "64-cycles-are-usually-a-design-smell",
+  "level": 2
+}, {
+  "value": "65. Breaking Cycles with a Shared Module",
+  "id": "65-breaking-cycles-with-a-shared-module",
+  "level": 2
+}, {
+  "value": "66. Dependency Inversion",
+  "id": "66-dependency-inversion",
+  "level": 2
+}, {
+  "value": "67. Lazy CommonJS Dependencies",
+  "id": "67-lazy-commonjs-dependencies",
+  "level": 2
+}, {
+  "value": "68. Lazy ESM Dependencies: <code>import()</code>",
+  "id": "68-lazy-esm-dependencies-import",
+  "level": 2
+}, {
+  "value": "69. Static vs Dynamic Dependency",
+  "id": "69-static-vs-dynamic-dependency",
+  "level": 2
 }, {
   "value": "Static import",
   "id": "static-import",
-  "level": 3
+  "level": 4
 }, {
   "value": "Dynamic import",
   "id": "dynamic-import",
-  "level": 3
+  "level": 4
+}, {
+  "value": "70. How to Debug a Module Identity Problem",
+  "id": "70-how-to-debug-a-module-identity-problem",
+  "level": 2
 }, {
   "value": "Step 1 --- What module system?",
   "id": "step-1-----what-module-system",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 2 --- What is the resolved identity?",
   "id": "step-2-----what-is-the-resolved-identity",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 3 --- Are there duplicate package installations?",
   "id": "step-3-----are-there-duplicate-package-installations",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 4 --- Are symlinks involved?",
   "id": "step-4-----are-symlinks-involved",
-  "level": 3
+  "level": 4
 }, {
   "value": "Step 5 --- Are multiple workers involved?",
   "id": "step-5-----are-multiple-workers-involved",
-  "level": 3
+  "level": 4
+}, {
+  "value": "71. How to Debug Circular Dependencies",
+  "id": "71-how-to-debug-circular-dependencies",
+  "level": 2
+}, {
+  "value": "72. Useful Cycle Detection Tools",
+  "id": "72-useful-cycle-detection-tools",
+  "level": 2
 }, {
   "value": "Madge",
   "id": "madge",
-  "level": 3
+  "level": 4
 }, {
   "value": "dpdm",
   "id": "dpdm",
-  "level": 3
+  "level": 4
+}, {
+  "value": "73. Practical Backend Example: Database Client",
+  "id": "73-practical-backend-example-database-client",
+  "level": 2
+}, {
+  "value": "74. Practical Backend Example: Configuration",
+  "id": "74-practical-backend-example-configuration",
+  "level": 2
+}, {
+  "value": "75. Practical Backend Example: Why Workers Are Different",
+  "id": "75-practical-backend-example-why-workers-are-different",
+  "level": 2
+}, {
+  "value": "76. The Most Important Concept: Module Identity",
+  "id": "76-the-most-important-concept-module-identity",
+  "level": 2
+}, {
+  "value": "77. Why &quot;Same File&quot; Does Not Always Mean &quot;Same Module&quot;",
+  "id": "77-why-same-file-does-not-always-mean-same-module",
+  "level": 2
+}, {
+  "value": "78. <code>import.meta.url</code> vs <code>import.meta.filename</code>",
+  "id": "78-importmetaurl-vs-importmetafilename",
+  "level": 2
 }, {
   "value": "<code>import.meta.url</code>",
   "id": "importmetaurl",
-  "level": 3
+  "level": 4
 }, {
   "value": "<code>import.meta.filename</code>",
   "id": "importmetafilename",
-  "level": 3
+  "level": 4
+}, {
+  "value": "79. <code>URL</code> Objects vs URL Strings",
+  "id": "79-url-objects-vs-url-strings",
+  "level": 2
+}, {
+  "value": "80. Common Mistake: Passing a URL String as a Path",
+  "id": "80-common-mistake-passing-a-url-string-as-a-path",
+  "level": 2
+}, {
+  "value": "81. Common Mistake: Assuming ESM Has <code>__dirname</code>",
+  "id": "81-common-mistake-assuming-esm-has-__dirname",
+  "level": 2
+}, {
+  "value": "82. Common Mistake: Treating <code>import.meta.resolve()</code> as <code>import()</code>",
+  "id": "82-common-mistake-treating-importmetaresolve-as-import",
+  "level": 2
+}, {
+  "value": "83. Common Mistake: Assuming <code>require.cache</code> Controls ESM",
+  "id": "83-common-mistake-assuming-requirecache-controls-esm",
+  "level": 2
+}, {
+  "value": "84. Common Mistake: Assuming Cache Deletion Resets State Everywhere",
+  "id": "84-common-mistake-assuming-cache-deletion-resets-state-everywhere",
+  "level": 2
+}, {
+  "value": "85. Common Mistake: Assuming a Singleton Is Always Singleton",
+  "id": "85-common-mistake-assuming-a-singleton-is-always-singleton",
+  "level": 2
+}, {
+  "value": "86. Common Mistake: Ignoring Circular Dependencies",
+  "id": "86-common-mistake-ignoring-circular-dependencies",
+  "level": 2
+}, {
+  "value": "87. Backend Best Practices",
+  "id": "87-backend-best-practices",
+  "level": 2
 }, {
   "value": "1. Prefer simple dependency graphs",
   "id": "1-prefer-simple-dependency-graphs",
-  "level": 2
+  "level": 3
 }, {
   "value": "2. Keep initialization predictable",
   "id": "2-keep-initialization-predictable",
-  "level": 2
+  "level": 3
 }, {
   "value": "3. Treat module-level state deliberately",
   "id": "3-treat-module-level-state-deliberately",
-  "level": 2
+  "level": 3
 }, {
   "value": "4. Do not depend on cache hacks for production architecture",
   "id": "4-do-not-depend-on-cache-hacks-for-production-architecture",
-  "level": 2
+  "level": 3
 }, {
   "value": "5. Be careful with duplicate dependencies",
   "id": "5-be-careful-with-duplicate-dependencies",
-  "level": 2
+  "level": 3
 }, {
   "value": "6. Be deliberate with symlinks",
   "id": "6-be-deliberate-with-symlinks",
+  "level": 3
+}, {
+  "value": "88. A Complete ESM Startup Mental Model",
+  "id": "88-a-complete-esm-startup-mental-model",
+  "level": 2
+}, {
+  "value": "89. Complete CJS Startup Mental Model",
+  "id": "89-complete-cjs-startup-mental-model",
+  "level": 2
+}, {
+  "value": "90. Complete ESM Cycle Mental Model",
+  "id": "90-complete-esm-cycle-mental-model",
+  "level": 2
+}, {
+  "value": "91. Interview Questions",
+  "id": "91-interview-questions",
   "level": 2
 }, {
   "value": "Q1. What is <code>import.meta</code>?",
   "id": "q1-what-is-importmeta",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q2. What is <code>import.meta.url</code>?",
   "id": "q2-what-is-importmetaurl",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q3. Is <code>import.meta.url</code> a filesystem path?",
   "id": "q3-is-importmetaurl-a-filesystem-path",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q4. How do you get <code>__dirname</code>-like behavior in ESM?",
   "id": "q4-how-do-you-get-__dirname-like-behavior-in-esm",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q5. What does <code>import.meta.resolve()</code> do?",
   "id": "q5-what-does-importmetaresolve-do",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q6. How is ESM caching different from CommonJS caching?",
   "id": "q6-how-is-esm-caching-different-from-commonjs-caching",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q7. Why can ESM query strings create duplicate module instances?",
   "id": "q7-why-can-esm-query-strings-create-duplicate-module-instances",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q8. Why is cache deletion harder in ESM?",
   "id": "q8-why-is-cache-deletion-harder-in-esm",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q9. How do module caches create singleton state?",
   "id": "q9-how-do-module-caches-create-singleton-state",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q10. Can a singleton be duplicated?",
   "id": "q10-can-a-singleton-be-duplicated",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q11. Why are CommonJS circular dependencies able to expose partial objects?",
   "id": "q11-why-are-commonjs-circular-dependencies-able-to-expose-partial-objects",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q12. Why can ESM circular dependencies throw <code>ReferenceError</code>?",
   "id": "q12-why-can-esm-circular-dependencies-throw-referenceerror",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q13. What is the key difference between CJS and ESM cycles?",
   "id": "q13-what-is-the-key-difference-between-cjs-and-esm-cycles",
-  "level": 2
+  "level": 3
 }, {
   "value": "Q14. How can you reduce circular dependency problems?",
   "id": "q14-how-can-you-reduce-circular-dependency-problems",
+  "level": 3
+}, {
+  "value": "92. Hands-On Labs",
+  "id": "92-hands-on-labs",
   "level": 2
 }, {
   "value": "Lab 1 --- Inspect <code>import.meta</code>",
   "id": "lab-1-----inspect-importmeta",
+  "level": 3
+}, {
+  "value": "Lab 2 --- URL to Path",
+  "id": "lab-2-----url-to-path",
+  "level": 2
+}, {
+  "value": "Lab 3 --- Relative File Resolution",
+  "id": "lab-3-----relative-file-resolution",
+  "level": 2
+}, {
+  "value": "Lab 4 --- ESM Cache Identity",
+  "id": "lab-4-----esm-cache-identity",
+  "level": 2
+}, {
+  "value": "Lab 5 --- Query String Creates Another Instance",
+  "id": "lab-5-----query-string-creates-another-instance",
+  "level": 2
+}, {
+  "value": "Lab 6 --- CommonJS Cache",
+  "id": "lab-6-----commonjs-cache",
+  "level": 2
+}, {
+  "value": "Lab 7 --- Delete CJS Cache",
+  "id": "lab-7-----delete-cjs-cache",
+  "level": 2
+}, {
+  "value": "Lab 8 --- CJS Circular Dependency",
+  "id": "lab-8-----cjs-circular-dependency",
+  "level": 2
+}, {
+  "value": "Lab 9 --- ESM TDZ Cycle",
+  "id": "lab-9-----esm-tdz-cycle",
+  "level": 2
+}, {
+  "value": "Lab 10 --- Find Dependency Cycles",
+  "id": "lab-10-----find-dependency-cycles",
+  "level": 2
+}, {
+  "value": "93. What You Actually Need to Memorize",
+  "id": "93-what-you-actually-need-to-memorize",
   "level": 2
 }, {
   "value": "ESM location",
   "id": "esm-location",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM filesystem location",
   "id": "esm-filesystem-location",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM entry-point check",
   "id": "esm-entry-point-check",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM resolution",
   "id": "esm-resolution",
-  "level": 3
+  "level": 4
 }, {
   "value": "URL → filesystem path",
   "id": "url--filesystem-path",
-  "level": 3
+  "level": 4
 }, {
   "value": "CJS cache",
   "id": "cjs-cache",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM cache",
   "id": "esm-cache",
-  "level": 3
+  "level": 4
 }, {
   "value": "CJS identity",
   "id": "cjs-identity",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM identity",
   "id": "esm-identity",
-  "level": 3
+  "level": 4
 }, {
   "value": "CJS cycle",
   "id": "cjs-cycle",
-  "level": 3
+  "level": 4
 }, {
   "value": "ESM cycle",
   "id": "esm-cycle",
-  "level": 3
+  "level": 4
+}, {
+  "value": "94. One Diagram to Remember Everything",
+  "id": "94-one-diagram-to-remember-everything",
+  "level": 2
+}, {
+  "value": "95. Final Mental Model",
+  "id": "95-final-mental-model",
+  "level": 2
 }];
 function _createMdxContent(props) {
   const _components = {
@@ -217668,6 +219984,7 @@ function _createMdxContent(props) {
     h1: "h1",
     h2: "h2",
     h3: "h3",
+    h4: "h4",
     header: "header",
     hr: "hr",
     li: "li",
@@ -217687,7 +220004,7 @@ function _createMdxContent(props) {
           children: "import.meta"
         }), ", URLs, Caching & Module State --- Extensive Study Notes"]
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "1-the-big-picture",
       children: "1. The Big Picture"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217751,12 +220068,12 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "ESM's Temporal Dead Zone behavior"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "2-importmeta",
       children: ["2. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "what-is-importmeta",
       children: ["What is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -217794,7 +220111,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "import.meta.url\r\nimport.meta.filename\r\nimport.meta.dirname\r\nimport.meta.main\r\nimport.meta.resolve()\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "important-distinction",
       children: "Important distinction"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -217805,7 +220122,7 @@ function _createMdxContent(props) {
       }), "."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It is not one global object shared by the entire dependency graph."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "3-importmetaurl",
       children: ["3. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -217828,7 +220145,7 @@ function _createMdxContent(props) {
       children: ["This is a ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "URL string"
       }), ", not a normal filesystem path."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "why-does-node-use-a-url",
       children: "Why does Node use a URL?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217849,7 +220166,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The second form is a URL."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "31-url-formatting",
       children: "3.1 URL formatting"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -217900,7 +220217,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "%23\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "4-using-importmetaurl-as-a-base-url",
       children: ["4. Using ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -217923,12 +220240,12 @@ function _createMdxContent(props) {
       children: ["The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "URL"
       }), " constructor applies normal URL resolution rules."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "5-url-vs-filesystem-path",
       children: "5. URL vs Filesystem Path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction is extremely important."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "url",
       children: "URL"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -217936,7 +220253,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "file:///home/my%20app/data.json\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "filesystem-path",
       children: "Filesystem path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -217960,7 +220277,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "__filename\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "51-the-pathname-trap",
       children: ["5.1 The ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: ".pathname"
@@ -217988,7 +220305,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The path is still URL-encoded."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "6-fileurltopath",
       children: ["6. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "fileURLToPath()"
@@ -218025,7 +220342,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This also handles platform-specific path formatting."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "7-the-older-esm-replacement-for-__filename-and-__dirname",
       children: ["7. The Older ESM Replacement for ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__filename"
@@ -218050,7 +220367,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "import.meta.url\r\n      ↓\r\nfileURLToPath()\r\n      ↓\r\nfilesystem filename\r\n      ↓\r\ndirname()\r\n      ↓\r\nfilesystem directory\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "8-importmetafilename",
       children: ["8. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.filename"
@@ -218094,7 +220411,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "__filename;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "9-importmetadirname",
       children: ["9. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.dirname"
@@ -218138,7 +220455,7 @@ function _createMdxContent(props) {
       }), " ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
       })]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "10-important-filename-and-dirname-are-not-universal",
       children: ["10. Important: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "filename"
@@ -218181,7 +220498,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "file: module\r\n    → URL\r\n    → filesystem location exists\r\n    → filename / dirname available\r\n\r\nnon-file module\r\n    → URL may exist\r\n    → filesystem location may not exist\r\n    → filename / dirname may be unavailable\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "11-symlink-behavior",
       children: "11. Symlink Behavior"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218227,7 +220544,7 @@ function _createMdxContent(props) {
       children: ["If you specifically need the URL used by the loader, ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
       }), "\r\nis the better mental reference."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "12-importmetamain",
       children: ["12. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.main"
@@ -218295,7 +220612,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "false;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "121-commonjs-equivalent",
       children: "12.1 CommonJS equivalent"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218320,7 +220637,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "command-line programs"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "13-importmetaresolve",
       children: ["13. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -218351,10 +220668,10 @@ function _createMdxContent(props) {
       children: ["It returns a ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "URL string"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "14-how-different-specifiers-resolve",
       children: "14. How Different Specifiers Resolve"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "built-in-module",
       children: "Built-in module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -218369,7 +220686,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "node:fs\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "relative-module",
       children: "Relative module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -218392,7 +220709,7 @@ function _createMdxContent(props) {
           children: "import.meta.resolve()"
         }), "."]
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "package",
       children: "Package"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -218409,7 +220726,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "node_modules\r\npackage.json\r\nexports\r\nconditions\r\nsubpaths\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "15-importmetaresolve-does-not-import-the-module",
       children: ["15. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -218453,7 +220770,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "resolve()\r\n    ↓\r\nfind location\r\n\r\nimport()\r\n    ↓\r\nload + evaluate module\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "16-importmetaresolve-vs-requireresolve",
       children: ["16. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -218475,7 +220792,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But their underlying resolution systems differ because ESM uses\r\nURL-based resolution and CJS uses filename-oriented resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "17-resolving-package-files",
       children: "17. Resolving Package Files"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218510,7 +220827,7 @@ function _createMdxContent(props) {
       children: ["Notice that the package itself was ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "not imported"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "18-package-encapsulation-still-applies",
       children: "18. Package Encapsulation Still Applies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218563,7 +220880,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "in CommonJS."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "19-how-importmeta-is-populated-----conceptual-internals",
       children: ["19. How ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -218601,7 +220918,7 @@ function _createMdxContent(props) {
       children: ["Node's internal ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ModuleWrap"
       }), " connects Node's loader machinery to V8's\r\nnative module representation."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "20-importmeta-is-initialized-lazily",
       children: ["20. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -218621,7 +220938,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "Metadata is attached to the module by the host environment rather than\r\nbeing a CommonJS wrapper variable."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "21-module-caching",
       children: "21. Module Caching"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218651,7 +220968,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This gives module-level state its familiar singleton-like behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "22-cjs-and-esm-cache-differ",
       children: "22. CJS and ESM Cache Differ"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218670,7 +220987,7 @@ function _createMdxContent(props) {
       }), " / ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
       }), "\r\nCycle behavior partial exports possible live bindings + TDZ"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "23-commonjs-cache-module_cache",
       children: ["23. CommonJS Cache: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "Module._cache"
@@ -218708,7 +221025,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "evaluate it again"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "24-requirecache",
       children: ["24. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -218729,7 +221046,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because this is a normal JavaScript object, code can inspect it."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "25-clearing-a-commonjs-cache-entry",
       children: "25. Clearing a CommonJS Cache Entry"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218755,7 +221072,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "existing cache entry\r\n       ↓\r\ndelete\r\n       ↓\r\ncache miss\r\n       ↓\r\nread\r\ncompile\r\nevaluate\r\n       ↓\r\nnew cache entry\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "26-important-cache-deletion-does-not-replace-existing-references",
       children: "26. Important: Cache Deletion Does Not Replace Existing References"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218823,7 +221140,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is why CommonJS hot reload can become complicated."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "27-why-restarting-the-process-is-often-cleaner",
       children: "27. Why Restarting the Process Is Often Cleaner"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218846,7 +221163,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "still alive."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "28-modulechildren-detail",
       children: ["28. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.children"
@@ -218886,7 +221203,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You generally do not need to manipulate this yourself in normal backend\r\ncode."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "29-cjs-cache--symlinks",
       children: "29. CJS Cache + Symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218914,7 +221231,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore two different symlink paths may still resolve to the same\r\nphysical file and reuse the same cache entry."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "30---preserve-symlinks",
       children: ["30. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "--preserve-symlinks"
@@ -218956,7 +221273,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is one reason symlink configuration can produce strange singleton\r\nbugs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "31-esm-loader-cache",
       children: "31. ESM Loader Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -218982,7 +221299,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Do not memorize internal filenames unless you are studying Node\r\ninternals."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "32-esm-cache-identity--resolved-url",
       children: "32. ESM Cache Identity = Resolved URL"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219017,7 +221334,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "same URL\r\n   ↓\r\nsame module identity\r\n   ↓\r\nsame evaluation\r\n   ↓\r\nsame module state\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "33-query-strings-change-esm-module-identity",
       children: "33. Query Strings Change ESM Module Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219047,7 +221364,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "even though they point to the same underlying file."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "34-fragments-also-affect-identity",
       children: "34. Fragments Also Affect Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219063,7 +221380,7 @@ function _createMdxContent(props) {
       children: "are different URLs."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Therefore they can represent different ESM module identities."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "35-esm-query-strings-as-cache-busting",
       children: "35. ESM Query Strings as Cache Busting"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219079,7 +221396,7 @@ function _createMdxContent(props) {
       children: "This can be useful during development."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But there is a serious downside."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "36-the-memory-problem-with-unique-esm-urls",
       children: "36. The Memory Problem with Unique ESM URLs"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219108,7 +221425,7 @@ function _createMdxContent(props) {
           children: "Do not use endlessly changing ESM query strings as a production\r\nhot-reload strategy."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "37-why-esm-has-no-simple-cache-delete-api",
       children: "37. Why ESM Has No Simple Cache Delete API"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219147,7 +221464,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "delete require.cache[key];\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "38-singleton-state-through-module-caching",
       children: "38. Singleton State Through Module Caching"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219181,7 +221498,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Every importer interacts with the same module-level state."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "39-you-do-not-need-a-singleton-class",
       children: "39. You Do Not Need a Singleton Class"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219222,7 +221539,7 @@ function _createMdxContent(props) {
       children: ["\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
         children: "All consumers must resolve to the same module identity."
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "40-duplicate-package-installs-can-break-singleton-assumptions",
       children: "40. Duplicate Package Installs Can Break Singleton Assumptions"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219271,7 +221588,7 @@ function _createMdxContent(props) {
         className: "language-bash",
         children: "npm ls <package>\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "41-workers-have-separate-module-caches",
       children: "41. Workers Have Separate Module Caches"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -219304,7 +221621,7 @@ function _createMdxContent(props) {
           children: "Same process does not necessarily mean same module singleton."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "42-v8-module-states",
       children: "42. V8 Module States"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219323,7 +221640,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Errored\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "43-state-1-----uninstantiated",
       children: "43. State 1 --- Uninstantiated"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219348,7 +221665,7 @@ function _createMdxContent(props) {
           children: "The code has not executed yet."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "44-state-2-----instantiating",
       children: "44. State 2 --- Instantiating"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219387,7 +221704,7 @@ function _createMdxContent(props) {
       children: ["That is the basis of ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "live bindings"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "45-cycles-are-detected-during-instantiation",
       children: "45. Cycles Are Detected During Instantiation"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219411,7 +221728,7 @@ function _createMdxContent(props) {
       children: "The graph can still be instantiated."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The danger comes when code reads a binding before it has been\r\ninitialized."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "46-state-3-----instantiated",
       children: "46. State 3 --- Instantiated"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219434,7 +221751,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "can still be uninitialized."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "47-state-4-----evaluating",
       children: "47. State 4 --- Evaluating"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219462,7 +221779,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "executes."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "48-state-5-----evaluated",
       children: "48. State 5 --- Evaluated"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219478,7 +221795,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Importers continue to observe the live binding."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "49-evaluated-is-not-resettable",
       children: "49. Evaluated Is Not Resettable"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219495,7 +221812,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.cache;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "50-state-6-----errored",
       children: "50. State 6 --- Errored"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219522,12 +221839,12 @@ function _createMdxContent(props) {
       children: "Restarting the process is the clean reset."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A different URL, such as one with a different query string, can\r\nrepresent a different module identity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "51-important-resolutionload-errors-vs-evaluation-errors",
       children: "51. Important: Resolution/Load Errors vs Evaluation Errors"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These are different categories."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "resolution-error",
       children: "Resolution error"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219539,7 +221856,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ERR_MODULE_NOT_FOUND\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "package-exports-error",
       children: "Package exports error"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219551,7 +221868,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ERR_PACKAGE_PATH_NOT_EXPORTED\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "evaluation-error",
       children: "Evaluation error"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219567,7 +221884,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The earlier the failure, the different the debugging approach."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "52-commonjs-cycle-timing",
       children: "52. CommonJS Cycle Timing"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219589,10 +221906,10 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "That enables partial exports during cycles."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "53-classic-commonjs-circular-dependency",
       children: "53. Classic CommonJS Circular Dependency"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "ajs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.js"
@@ -219602,7 +221919,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "module.exports.x = 1;\r\n\r\nconst b = require(\"./b\");\r\n\r\nmodule.exports.y = 2;\r\n\r\nconsole.log(\"a sees b:\", { ...b });\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.js"
@@ -219626,7 +221943,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "b sees a: { x: 1 }\r\na sees b: { value: 42 }\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "54-why-does-b-see-only--x-1-",
       children: ["54. Why Does B See Only ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "{ x: 1 }"
@@ -219656,7 +221973,7 @@ function _createMdxContent(props) {
       children: ["because ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "y"
       }), " has not been added yet."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "55-cjs-cycles-expose-partial-objects",
       children: "55. CJS Cycles Expose Partial Objects"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219682,14 +221999,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "even though the function exists later in the module."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "56-mutating-moduleexports-vs-replacing-it",
       children: ["56. Mutating ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " vs Replacing It"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This distinction is especially important in circular dependencies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "safer-during-cycles",
       children: "Safer during cycles"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -219699,7 +222016,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This keeps mutating the same object."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "dangerous-pattern",
       children: "Dangerous pattern"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -219711,7 +222028,7 @@ function _createMdxContent(props) {
       children: "Why?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because another module may already have a reference to the old object."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "57-cjs-moduleexports-replacement-problem",
       children: ["57. CJS ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
@@ -219741,7 +222058,7 @@ function _createMdxContent(props) {
       children: "B does not magically switch to the new object."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is the same reference/aliasing principle behind many CommonJS\r\nexport bugs."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "58-esm-circular-dependencies",
       children: "58. ESM Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219759,7 +222076,7 @@ function _createMdxContent(props) {
       children: ["This is called a ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "live binding"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "59-live-binding-does-not-mean-always-initialized",
       children: "59. Live Binding Does Not Mean \"Always Initialized\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219787,10 +222104,10 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "60-esm-circular-dependency-example",
       children: "60. ESM Circular Dependency Example"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "amjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "a.mjs"
@@ -219800,7 +222117,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { value } from \"./b.mjs\";\r\n\r\nexport const x = 1;\r\n\r\nconsole.log(\"a sees value:\", value);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "bmjs",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "b.mjs"
@@ -219828,7 +222145,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "ReferenceError: Cannot access 'x' before initialization\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "61-cjs-vs-esm-cycle-the-core-difference",
       children: "61. CJS vs ESM Cycle: The Core Difference"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219856,7 +222173,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CJS:\r\n\r\nA exports object\r\n     ↓\r\ncached early\r\n     ↓\r\nB receives current object\r\n     ↓\r\npossibly partial\r\n\r\n\r\nESM:\r\n\r\nA export binding\r\n     ↓\r\nlinked before evaluation\r\n     ↓\r\nB receives live connection\r\n     ↓\r\nread before initialization\r\n     ↓\r\nReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "62-esm-live-bindings",
       children: "62. ESM Live Bindings"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219898,7 +222215,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It is not a stale snapshot."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "63-why-functions-often-make-cycles-safer",
       children: "63. Why Functions Often Make Cycles Safer"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219930,7 +222247,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is a very useful design technique."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "64-cycles-are-usually-a-design-smell",
       children: "64. Cycles Are Usually a Design Smell"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -219973,7 +222290,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This produces a cleaner dependency graph."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "65-breaking-cycles-with-a-shared-module",
       children: "65. Breaking Cycles with a Shared Module"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220013,7 +222330,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Now the shared abstraction has no reason to import either A or B."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "66-dependency-inversion",
       children: "66. Dependency Inversion"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220036,7 +222353,7 @@ function _createMdxContent(props) {
       children: "The runtime relationship still exists, but the static module graph does\r\nnot necessarily contain a cycle."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This is often cleaner for larger systems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "67-lazy-commonjs-dependencies",
       children: "67. Lazy CommonJS Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220059,7 +222376,7 @@ function _createMdxContent(props) {
       children: "It can avoid a circular initialization window."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "However, lazy loading should be used intentionally, not merely to hide\r\npoor architecture."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "68-lazy-esm-dependencies-import",
       children: ["68. Lazy ESM Dependencies: ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import()"
@@ -220080,10 +222397,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "This can prevent startup-time TDZ problems."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "69-static-vs-dynamic-dependency",
       children: "69. Static vs Dynamic Dependency"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "static-import",
       children: "Static import"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -220093,7 +222410,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The dependency is part of the static module graph."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "dynamic-import",
       children: "Dynamic import"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -220117,12 +222434,12 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "optional functionality"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "70-how-to-debug-a-module-identity-problem",
       children: "70. How to Debug a Module Identity Problem"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "When you suspect duplicate module instances, ask:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-1-----what-module-system",
       children: "Step 1 --- What module system?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -220130,7 +222447,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CJS or ESM?\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-2-----what-is-the-resolved-identity",
       children: "Step 2 --- What is the resolved identity?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220147,7 +222464,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "console.log(import.meta.resolve(\"some-package\"));\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-3-----are-there-duplicate-package-installations",
       children: "Step 3 --- Are there duplicate package installations?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -220155,17 +222472,17 @@ function _createMdxContent(props) {
         className: "language-bash",
         children: "npm ls some-package\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-4-----are-symlinks-involved",
       children: "Step 4 --- Are symlinks involved?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Check workspace/monorepo setup and Node symlink flags."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "step-5-----are-multiple-workers-involved",
       children: "Step 5 --- Are multiple workers involved?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Each worker has its own module graph/cache."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "71-how-to-debug-circular-dependencies",
       children: "71. How to Debug Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220193,12 +222510,12 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "Can shared logic be extracted?"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "72-useful-cycle-detection-tools",
       children: "72. Useful Cycle Detection Tools"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The source mentions tools such as:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "madge",
       children: "Madge"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -220208,14 +222525,14 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "It can scan module dependencies and report cycles."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "dpdm",
       children: "dpdm"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Useful particularly in TypeScript-oriented projects."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "These tools are useful because runtime errors do not always make the\r\nfull dependency cycle obvious."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "73-practical-backend-example-database-client",
       children: "73. Practical Backend Example: Database Client"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220238,7 +222555,7 @@ function _createMdxContent(props) {
       children: "This is a valid and common pattern."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "But if duplicate package/module identities appear, the assumption can\r\nbreak."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "74-practical-backend-example-configuration",
       children: "74. Practical Backend Example: Configuration"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220261,7 +222578,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "same module identity\r\n→ same module evaluation\r\n→ shared module state\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "75-practical-backend-example-why-workers-are-different",
       children: "75. Practical Backend Example: Why Workers Are Different"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220289,7 +222606,7 @@ function _createMdxContent(props) {
       children: "They do not simply share the same module instance."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "For cross-thread shared state, you need an explicit\r\ncommunication/shared-memory mechanism rather than relying on module\r\ncaching."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "76-the-most-important-concept-module-identity",
       children: "76. The Most Important Concept: Module Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220321,7 +222638,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "identity\r\n   ↓\r\ncache entry\r\n   ↓\r\nmodule instance\r\n   ↓\r\nmodule-level state\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "77-why-same-file-does-not-always-mean-same-module",
       children: "77. Why \"Same File\" Does Not Always Mean \"Same Module\""
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220362,7 +222679,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "can affect identity depending on Node's resolution/symlink behavior."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "78-importmetaurl-vs-importmetafilename",
       children: ["78. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -220371,7 +222688,7 @@ function _createMdxContent(props) {
       })]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Use:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "importmetaurl",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -220395,7 +222712,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "const url = new URL(\"./data.json\", import.meta.url);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "importmetafilename",
       children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.filename"
@@ -220417,7 +222734,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "console.log(import.meta.filename);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "79-url-objects-vs-url-strings",
       children: ["79. ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "URL"
@@ -220464,7 +222781,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You do not always need to convert to a path first."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "80-common-mistake-passing-a-url-string-as-a-path",
       children: "80. Common Mistake: Passing a URL String as a Path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220520,7 +222837,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "new URL(\"./data.json\", import.meta.url);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "81-common-mistake-assuming-esm-has-__dirname",
       children: ["81. Common Mistake: Assuming ESM Has ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__dirname"
@@ -220548,7 +222865,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { fileURLToPath } from \"node:url\";\r\nimport { dirname } from \"node:path\";\r\n\r\nconst filename = fileURLToPath(import.meta.url);\r\nconst directory = dirname(filename);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "82-common-mistake-treating-importmetaresolve-as-import",
       children: ["82. Common Mistake: Treating ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -220583,7 +222900,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "Load/evaluate foo.mjs and give me its module namespace.\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
       id: "83-common-mistake-assuming-requirecache-controls-esm",
       children: ["83. Common Mistake: Assuming ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "require.cache"
@@ -220608,7 +222925,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "does not provide general ESM cache invalidation."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "84-common-mistake-assuming-cache-deletion-resets-state-everywhere",
       children: "84. Common Mistake: Assuming Cache Deletion Resets State Everywhere"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220643,7 +222960,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "\"destroy every object created by this module\"\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "85-common-mistake-assuming-a-singleton-is-always-singleton",
       children: "85. Common Mistake: Assuming a Singleton Is Always Singleton"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220670,7 +222987,7 @@ function _createMdxContent(props) {
           children: "A module is singleton-like within one module graph/cache identity,\r\nnot globally across every execution context."
         })
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "86-common-mistake-ignoring-circular-dependencies",
       children: "86. Common Mistake: Ignoring Circular Dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220698,10 +223015,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "inspect the module graph."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "87-backend-best-practices",
       children: "87. Backend Best Practices"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "1-prefer-simple-dependency-graphs",
       children: "1. Prefer simple dependency graphs"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220718,7 +223035,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "A ↔ B ↔ C ↔ A\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "2-keep-initialization-predictable",
       children: "2. Keep initialization predictable"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220739,7 +223056,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "when appropriate."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "3-treat-module-level-state-deliberately",
       children: "3. Treat module-level state deliberately"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220763,12 +223080,12 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "create state per request/object/function\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "4-do-not-depend-on-cache-hacks-for-production-architecture",
       children: "4. Do not depend on cache hacks for production architecture"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Manual cache deletion is a development/testing technique, not a\r\nsubstitute for clean application lifecycle design."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "5-be-careful-with-duplicate-dependencies",
       children: "5. Be careful with duplicate dependencies"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220780,7 +223097,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "can help detect multiple installed versions/copies."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "6-be-deliberate-with-symlinks",
       children: "6. Be deliberate with symlinks"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220795,7 +223112,7 @@ function _createMdxContent(props) {
       }), "\n"]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "understand how Node's symlink behavior affects module identity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "88-a-complete-esm-startup-mental-model",
       children: "88. A Complete ESM Startup Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220840,7 +223157,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "potentially different module identity\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "89-complete-cjs-startup-mental-model",
       children: "89. Complete CJS Startup Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220852,7 +223169,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The \"cache early\" step is the reason CJS circular dependencies can\r\nexpose partial exports."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "90-complete-esm-cycle-mental-model",
       children: "90. Complete ESM Cycle Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220864,10 +223181,10 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The binding can exist before its value is initialized."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "91-interview-questions",
       children: "91. Interview Questions"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q1-what-is-importmeta",
       children: ["Q1. What is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -220876,7 +223193,7 @@ function _createMdxContent(props) {
       children: "It is module metadata provided by the host environment to an ES module."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "In Node, it provides useful information such as the module URL,\r\nfilesystem location, entry-point status, and module resolution."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q2-what-is-importmetaurl",
       children: ["Q2. What is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -220892,7 +223209,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "URL."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q3-is-importmetaurl-a-filesystem-path",
       children: ["Q3. Is ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.url"
@@ -220910,7 +223227,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "when you need a filesystem path."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q4-how-do-you-get-__dirname-like-behavior-in-esm",
       children: ["Q4. How do you get ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "__dirname"
@@ -220929,7 +223246,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import { fileURLToPath } from \"node:url\";\r\nimport { dirname } from \"node:path\";\r\n\r\nconst filename = fileURLToPath(import.meta.url);\r\nconst directory = dirname(filename);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q5-what-does-importmetaresolve-do",
       children: ["Q5. What does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.resolve()"
@@ -220940,7 +223257,7 @@ function _createMdxContent(props) {
       children: ["It does ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.strong, {
         children: "not"
       }), " import or execute the module."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q6-how-is-esm-caching-different-from-commonjs-caching",
       children: "Q6. How is ESM caching different from CommonJS caching?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220952,7 +223269,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "ESM uses a loader-managed URL-keyed cache that does not have an\r\nequivalent public cache deletion API."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q7-why-can-esm-query-strings-create-duplicate-module-instances",
       children: "Q7. Why can ESM query strings create duplicate module instances?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220966,19 +223283,19 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "are different URLs and can represent different module records."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q8-why-is-cache-deletion-harder-in-esm",
       children: "Q8. Why is cache deletion harder in ESM?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Because ESM modules are linked into a graph of module records and live\r\nbindings."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Deleting one lookup entry would not undo all existing relationships."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q9-how-do-module-caches-create-singleton-state",
       children: "Q9. How do module caches create singleton state?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "A module is evaluated once for a particular module identity. Later\r\nimports/requires reuse that identity, so module-level variables are\r\nshared."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q10-can-a-singleton-be-duplicated",
       children: "Q10. Can a singleton be duplicated?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -220995,7 +223312,7 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "separate worker module graphs"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q11-why-are-commonjs-circular-dependencies-able-to-expose-partial-objects",
       children: "Q11. Why are CommonJS circular dependencies able to expose partial objects?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221004,7 +223321,7 @@ function _createMdxContent(props) {
       children: ["Another module can therefore receive the current, partially populated\r\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "module.exports"
       }), " object."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "q12-why-can-esm-circular-dependencies-throw-referenceerror",
       children: ["Q12. Why can ESM circular dependencies throw ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "ReferenceError"
@@ -221013,7 +223330,7 @@ function _createMdxContent(props) {
       children: "ESM imports are live bindings. A binding can exist but remain\r\nuninitialized until evaluation reaches its declaration."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Reading it too early triggers the Temporal Dead Zone."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q13-what-is-the-key-difference-between-cjs-and-esm-cycles",
       children: "Q13. What is the key difference between CJS and ESM cycles?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221023,7 +223340,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "CJS → partial exports object\r\n\r\nESM → live binding + possible TDZ error\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
       id: "q14-how-can-you-reduce-circular-dependency-problems",
       children: "Q14. How can you reduce circular dependency problems?"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221046,10 +223363,10 @@ function _createMdxContent(props) {
       }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.li, {
         children: "simpler dependency graphs"
       }), "\n"]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "92-hands-on-labs",
       children: "92. Hands-On Labs"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h2, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.h3, {
       id: "lab-1-----inspect-importmeta",
       children: ["Lab 1 --- Inspect ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta"
@@ -221079,7 +223396,7 @@ function _createMdxContent(props) {
       children: ["Then import it from another file and compare ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.code, {
         children: "import.meta.main"
       }), "."]
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-2-----url-to-path",
       children: "Lab 2 --- URL to Path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221091,7 +223408,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-3-----relative-file-resolution",
       children: "Lab 3 --- Relative File Resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221112,7 +223429,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe how the current module becomes the resolution base."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-4-----esm-cache-identity",
       children: "Lab 4 --- ESM Cache Identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221131,7 +223448,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "You should see one evaluation and the same module identity."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-5-----query-string-creates-another-instance",
       children: "Lab 5 --- Query String Creates Another Instance"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221143,7 +223460,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe that the different URLs represent different ESM identities."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-6-----commonjs-cache",
       children: "Lab 6 --- CommonJS Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221169,7 +223486,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "The module is evaluated once."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-7-----delete-cjs-cache",
       children: "Lab 7 --- Delete CJS Cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221195,7 +223512,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "still points to the old module instance."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-8-----cjs-circular-dependency",
       children: "Lab 8 --- CJS Circular Dependency"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -221215,7 +223532,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "into a later assignment and observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-9-----esm-tdz-cycle",
       children: "Lab 9 --- ESM TDZ Cycle"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221240,7 +223557,7 @@ function _createMdxContent(props) {
       children: "Then move the read into a function and call it after initialization."
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Observe the difference."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "lab-10-----find-dependency-cycles",
       children: "Lab 10 --- Find Dependency Cycles"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -221268,7 +223585,7 @@ function _createMdxContent(props) {
       })
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "and rerun the tool."
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "93-what-you-actually-need-to-memorize",
       children: "93. What You Actually Need to Memorize"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_components.p, {
@@ -221277,7 +223594,7 @@ function _createMdxContent(props) {
       }), " try to memorize Node's internal source files."]
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
       children: "Memorize these:"
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-location",
       children: "ESM location"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221285,7 +223602,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import.meta.url;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-filesystem-location",
       children: "ESM filesystem location"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221293,7 +223610,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import.meta.filename;\r\nimport.meta.dirname;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-entry-point-check",
       children: "ESM entry-point check"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221301,7 +223618,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import.meta.main;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-resolution",
       children: "ESM resolution"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221309,7 +223626,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "import.meta.resolve(specifier);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "url--filesystem-path",
       children: "URL → filesystem path"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221317,7 +223634,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "fileURLToPath(url);\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "cjs-cache",
       children: "CJS cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221325,7 +223642,7 @@ function _createMdxContent(props) {
         className: "language-js",
         children: "require.cache;\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-cache",
       children: "ESM cache"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221333,7 +223650,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "loader-managed\r\nnot publicly deletable\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "cjs-identity",
       children: "CJS identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221341,7 +223658,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "resolved filename\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-identity",
       children: "ESM identity"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221349,7 +223666,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "resolved URL\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "cjs-cycle",
       children: "CJS cycle"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221357,7 +223674,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "partial exports object\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h3, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h4, {
       id: "esm-cycle",
       children: "ESM cycle"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221365,7 +223682,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "live binding\r\n+\r\npossible TDZ ReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "94-one-diagram-to-remember-everything",
       children: "94. One Diagram to Remember Everything"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.pre, {
@@ -221373,7 +223690,7 @@ function _createMdxContent(props) {
         className: "language-text",
         children: "                    MODULE SYSTEM\r\n                         │\r\n          ┌──────────────┴──────────────┐\r\n          │                             │\r\n        CJS                            ESM\r\n          │                             │\r\n  resolved filename              resolved URL\r\n          │                             │\r\n  require.cache                   ESM loader cache\r\n          │                             │\r\n  cached exports                 module record\r\n          │                             │\r\n  module-level state             module-level state\r\n          │                             │\r\n  cycle → partial object         cycle → live binding\r\n                                      │\r\n                              early lexical read\r\n                                      │\r\n                               TDZ ReferenceError\n"
       })
-    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h1, {
+    }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.hr, {}), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.h2, {
       id: "95-final-mental-model",
       children: "95. Final Mental Model"
     }), "\n", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_components.p, {
@@ -291436,7 +293753,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"docusaurus-plugin-content-doc
 (module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"version":{"pluginId":"default","version":"current","label":"Next","banner":null,"badge":false,"noIndex":false,"className":"docs-version-current","isLast":true,"docsSidebars":{"tutorialSidebar":[{"type":"category","label":"DSA (C++)","collapsed":false,"items":[{"type":"category","label":"Basics","items":[{"type":"category","label":"Bit Manipulation","items":[{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part1","label":"Binary Number System Fundamentals","docId":"dsa/basics/bit-manipulation/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part2","label":"Data Representation in Memory","docId":"dsa/basics/bit-manipulation/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part3","label":"Bitwise Operators","docId":"dsa/basics/bit-manipulation/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part4","label":"Common Bit Manipulation Techniques","docId":"dsa/basics/bit-manipulation/part4","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part5","label":"Counting Set Bits (Population Count)","docId":"dsa/basics/bit-manipulation/part5","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part6","label":"Interview Problems Using Bit Manipulation","docId":"dsa/basics/bit-manipulation/part6","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"C++ Fundamentals","items":[{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part1","label":"C++ Basics & Program Structure","docId":"dsa/basics/cpp-fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part2","label":"Data Types","docId":"dsa/basics/cpp-fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part3","label":"Memory Fundamentals","docId":"dsa/basics/cpp-fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part4","label":"Input / Output Handling","docId":"dsa/basics/cpp-fundamentals/part4","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part5","label":"Control Flow & Decision Making","docId":"dsa/basics/cpp-fundamentals/part5","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part6","label":"Loops","docId":"dsa/basics/cpp-fundamentals/part6","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part7","label":"Characters & ASCII","docId":"dsa/basics/cpp-fundamentals/part7","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part8","label":"Characters and Strings (In Depth)","docId":"dsa/basics/cpp-fundamentals/part8","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part9","label":"Operators","docId":"dsa/basics/cpp-fundamentals/part9","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part10","label":"Functions","docId":"dsa/basics/cpp-fundamentals/part10","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part11","label":"Advanced Function Concepts","docId":"dsa/basics/cpp-fundamentals/part11","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Pointers","items":[{"type":"category","label":"Pointers Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part1","label":"Memory & Addresses","docId":"dsa/basics/pointers/Pointers Fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part2","label":"Dereferencing & Copying","docId":"dsa/basics/pointers/Pointers Fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part3","label":"Pointer Arithmetic","docId":"dsa/basics/pointers/Pointers Fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part4","label":"Pass by Address & Safety","docId":"dsa/basics/pointers/Pointers Fundamentals/part4","unlisted":false}]},{"type":"category","label":"Pointers Arrays and Functions","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part1","label":"Integer Arrays & Pointers","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part2","label":"Character Arrays & Pointers","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part3","label":"Pointers in Functions","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part4","label":"Advanced Relationships","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part4","unlisted":false}]},{"type":"category","label":"Double Pointers","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part1","label":"Double Pointers Basics","docId":"dsa/basics/pointers/Double Pointers/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part2","label":"Double Pointers & Functions","docId":"dsa/basics/pointers/Double Pointers/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part3","label":"Memory Layout & Visualization","docId":"dsa/basics/pointers/Double Pointers/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part4","label":"Advanced Double Pointers","docId":"dsa/basics/pointers/Double Pointers/part4","unlisted":false}]},{"type":"category","label":"Reference Variables, Static and Dynamic Memory Allocation","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","label":"Reference Variables","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","label":"Static vs Dynamic Memory","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","label":"Dynamic Arrays & Memory","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","label":"Dynamic 2D Arrays","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","unlisted":false}]}],"collapsed":true,"collapsible":true},{"type":"category","label":"C++ STL","items":[{"type":"link","href":"/notes/docs/dsa/basics/stl/part-01_foundation","label":"Foundation","docId":"dsa/basics/stl/part-01_foundation","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-02_dynamic-containers","label":"Dynamic Containers","docId":"dsa/basics/stl/part-02_dynamic-containers","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-03_container-adaptors","label":"Container Adaptors","docId":"dsa/basics/stl/part-03_container-adaptors","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-04_associative-containers","label":"Associative Containers","docId":"dsa/basics/stl/part-04_associative-containers","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-05_algorithms-and-utility-functions","label":"Algorithms & Utilities","docId":"dsa/basics/stl/part-05_algorithms-and-utility-functions","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-06_final-revision-handbook","label":"Revision","docId":"dsa/basics/stl/part-06_final-revision-handbook","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Hashing","items":[{"type":"category","label":"Hashing Fundamentals","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part1","label":"Introduction to Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part2","label":"Array Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part3","label":"Character Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part3","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"map","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part1","label":"STL map","docId":"dsa/basics/hashing/map/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part2","label":"Frequency Counting using map","docId":"dsa/basics/hashing/map/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part3","label":"How map Works Internally (Red-Black Tree)","docId":"dsa/basics/hashing/map/part3","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"unordered_map","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part1","label":"unordered_map","docId":"dsa/basics/hashing/unordered_map/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part2","label":"How Hashing Works Internally (Hash Tables)","docId":"dsa/basics/hashing/unordered_map/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part3","label":"Collisions, Chaining & Rehashing","docId":"dsa/basics/hashing/unordered_map/part3","unlisted":false}],"collapsed":true,"collapsible":true}],"collapsed":true,"collapsible":true}],"collapsed":true,"collapsible":true,"href":"/notes/docs/dsa/basics"}],"collapsible":true,"href":"/notes/docs/dsa"},{"type":"category","label":"DevOps","collapsed":false,"items":[{"type":"category","label":"Cheatsheet","items":[{"type":"link","href":"/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","label":"UAT VM Deployment Cheat Sheet (Azure + Ubuntu 24.04)","docId":"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","label":"Linux Server Setup Cheat Sheet","docId":"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Foundations","items":[{"type":"link","href":"/notes/docs/devops/part-01-foundations/why-linux","label":"Why Linux?","docId":"devops/part-01-foundations/why-linux","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/operating-system","label":"Operating System","docId":"devops/part-01-foundations/operating-system","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/linux-architecture","label":"Linux Architecture","docId":"devops/part-01-foundations/linux-architecture","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/linux-boot-process","label":"Linux Boot Process","docId":"devops/part-01-foundations/linux-boot-process","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/terminal-shell-and-bash","label":"Terminal, Shell and Bash","docId":"devops/part-01-foundations/terminal-shell-and-bash","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/ssh-overview","label":"SSH Overview","docId":"devops/part-01-foundations/ssh-overview","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Linux Administration","items":[{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-filesystem","label":"Linux Filesystem","docId":"devops/part-02-linux-administration/linux-filesystem","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/users-and-groups","label":"Users and Groups","docId":"devops/part-02-linux-administration/users-and-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-permissions","label":"Linux Permissions","docId":"devops/part-02-linux-administration/linux-permissions","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/process-management","label":"Process Management","docId":"devops/part-02-linux-administration/process-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/memory-management","label":"Memory Management","docId":"devops/part-02-linux-administration/memory-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/storage-and-disks","label":"Storage and Disks","docId":"devops/part-02-linux-administration/storage-and-disks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/package-management","label":"Package Management","docId":"devops/part-02-linux-administration/package-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/systemd-and-services","label":"systemd and Services","docId":"devops/part-02-linux-administration/systemd-and-services","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/log-management","label":"Log Management","docId":"devops/part-02-linux-administration/log-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/cron-and-scheduling","label":"Cron and Scheduling","docId":"devops/part-02-linux-administration/cron-and-scheduling","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-networking-tools","label":"Linux Networking Tools","docId":"devops/part-02-linux-administration/linux-networking-tools","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/essential-linux-commands","label":"Essential Linux Commands","docId":"devops/part-02-linux-administration/essential-linux-commands","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Networking","items":[{"type":"link","href":"/notes/docs/devops/part-03-networking/networking-basics","label":"Networking Basics","docId":"devops/part-03-networking/networking-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/tcp-ip","label":"TCP/IP","docId":"devops/part-03-networking/tcp-ip","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/ports-and-sockets","label":"Ports and Sockets","docId":"devops/part-03-networking/ports-and-sockets","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/dns","label":"Domain Name System (DNS)","docId":"devops/part-03-networking/dns","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/http-and-https","label":"HTTP and HTTPS","docId":"devops/part-03-networking/http-and-https","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/ssl-and-tls","label":"SSL and TLS","docId":"devops/part-03-networking/ssl-and-tls","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/reverse-proxy","label":"Reverse Proxy","docId":"devops/part-03-networking/reverse-proxy","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/load-balancing","label":"Load Balancing","docId":"devops/part-03-networking/load-balancing","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/network-troubleshooting","label":"Network Troubleshooting","docId":"devops/part-03-networking/network-troubleshooting","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Security","items":[{"type":"link","href":"/notes/docs/devops/part-04-security/linux-security-basics","label":"Linux Security Basics","docId":"devops/part-04-security/linux-security-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/ssh-security","label":"SSH Security","docId":"devops/part-04-security/ssh-security","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/ufw-firewall","label":"UFW Firewall","docId":"devops/part-04-security/ufw-firewall","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/fail2ban","label":"Fail2Ban","docId":"devops/part-04-security/fail2ban","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/file-permissions-security","label":"File Permissions Security","docId":"devops/part-04-security/file-permissions-security","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/security-updates","label":"Security Updates","docId":"devops/part-04-security/security-updates","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/secrets-and-environment-variables","label":"Secrets and Environment Variables","docId":"devops/part-04-security/secrets-and-environment-variables","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/backups","label":"Backups","docId":"devops/part-04-security/backups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/production-security-checklist","label":"Production Security Checklist","docId":"devops/part-04-security/production-security-checklist","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Development Environment","items":[{"type":"link","href":"/notes/docs/devops/part-05-development-environment/git","label":"Git","docId":"devops/part-05-development-environment/git","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/nodejs","label":"Node.js","docId":"devops/part-05-development-environment/nodejs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/npm","label":"npm (Node Package Manager)","docId":"devops/part-05-development-environment/npm","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/environment-variables","label":"Environment Variables","docId":"devops/part-05-development-environment/environment-variables","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/pm2","label":"PM2","docId":"devops/part-05-development-environment/pm2","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/pm2-cluster-mode","label":"PM2 Cluster Mode","docId":"devops/part-05-development-environment/pm2-cluster-mode","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/building-node-applications","label":"Building Node.js Applications","docId":"devops/part-05-development-environment/building-node-applications","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/project-structure","label":"Project Structure","docId":"devops/part-05-development-environment/project-structure","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Nginx","items":[{"type":"link","href":"/notes/docs/devops/part-06-nginx/nginx-introduction","label":"Nginx Introduction","docId":"devops/part-06-nginx/nginx-introduction","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/installing-nginx","label":"Installing Nginx","docId":"devops/part-06-nginx/installing-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/nginx-directory-structure","label":"Nginx Directory Structure","docId":"devops/part-06-nginx/nginx-directory-structure","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/server-blocks","label":"Server Blocks","docId":"devops/part-06-nginx/server-blocks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/location-blocks","label":"Location Blocks","docId":"devops/part-06-nginx/location-blocks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/reverse-proxy","label":"Reverse Proxy","docId":"devops/part-06-nginx/reverse-proxy","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/static-file-serving","label":"Static File Serving","docId":"devops/part-06-nginx/static-file-serving","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/gzip-and-performance","label":"Gzip and Performance","docId":"devops/part-06-nginx/gzip-and-performance","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/caching","label":"Caching","docId":"devops/part-06-nginx/caching","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/ssl-with-nginx","label":"SSL with Nginx","docId":"devops/part-06-nginx/ssl-with-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/logging","label":"Logging","docId":"devops/part-06-nginx/logging","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/common-configurations","label":"Common Configurations","docId":"devops/part-06-nginx/common-configurations","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/troubleshooting-nginx","label":"Troubleshooting Nginx","docId":"devops/part-06-nginx/troubleshooting-nginx","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Cloud","items":[{"type":"link","href":"/notes/docs/devops/part-07-cloud/what-is-cloud-computing","label":"What is Cloud Computing","docId":"devops/part-07-cloud/what-is-cloud-computing","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloud-service-models","label":"Cloud Service Models","docId":"devops/part-07-cloud/cloud-service-models","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/azure-basics","label":"Azure Basics","docId":"devops/part-07-cloud/azure-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/resource-groups","label":"Resource Groups","docId":"devops/part-07-cloud/resource-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/virtual-machines","label":"Virtual Machines","docId":"devops/part-07-cloud/virtual-machines","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/storage","label":"Storage","docId":"devops/part-07-cloud/storage","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/networking-in-azure","label":"Networking in Azure","docId":"devops/part-07-cloud/networking-in-azure","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/network-security-groups","label":"Network Security Groups","docId":"devops/part-07-cloud/network-security-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/public-ip-and-private-ip","label":"Public IP and Private IP","docId":"devops/part-07-cloud/public-ip-and-private-ip","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/dns-and-domain","label":"DNS and Domain","docId":"devops/part-07-cloud/dns-and-domain","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare","label":"Cloudflare","docId":"devops/part-07-cloud/cloudflare","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare-ssl","label":"Cloudflare SSL/TLS","docId":"devops/part-07-cloud/cloudflare-ssl","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare-cdn","label":"Cloudflare CDN","docId":"devops/part-07-cloud/cloudflare-cdn","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Deployment","items":[{"type":"link","href":"/notes/docs/devops/part-08-deployment/deployment-overview","label":"Deployment Overview","docId":"devops/part-08-deployment/deployment-overview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/preparing-server","label":"Preparing Server","docId":"devops/part-08-deployment/preparing-server","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/deploying-node-app","label":"Deploying Node.js Application","docId":"devops/part-08-deployment/deploying-node-app","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/configuring-nginx","label":"Configuring Nginx","docId":"devops/part-08-deployment/configuring-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/domain-setup","label":"Domain Setup","docId":"devops/part-08-deployment/domain-setup","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/ssl-setup","label":"SSL Setup","docId":"devops/part-08-deployment/ssl-setup","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/pm2-deployment","label":"PM2 Deployment","docId":"devops/part-08-deployment/pm2-deployment","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/zero-downtime-deployment","label":"Zero Downtime Deployment","docId":"devops/part-08-deployment/zero-downtime-deployment","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/upgrading-production","label":"Upgrading Production","docId":"devops/part-08-deployment/upgrading-production","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/backup-and-rollback","label":"Backup and Rollback","docId":"devops/part-08-deployment/backup-and-rollback","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/complete-deployment-walkthrough","label":"Complete Deployment Walkthrough","docId":"devops/part-08-deployment/complete-deployment-walkthrough","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Monitoring","items":[{"type":"link","href":"/notes/docs/devops/part-09-monitoring/monitoring-basics","label":"Monitoring Basics","docId":"devops/part-09-monitoring/monitoring-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/system-metrics","label":"System Metrics","docId":"devops/part-09-monitoring/system-metrics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/disk-monitoring","label":"Disk Monitoring","docId":"devops/part-09-monitoring/disk-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/memory-monitoring","label":"Memory Monitoring","docId":"devops/part-09-monitoring/memory-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/nginx-logs","label":"Nginx Logs","docId":"devops/part-09-monitoring/nginx-logs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/nodejs-logs","label":"Node.js Logs","docId":"devops/part-09-monitoring/nodejs-logs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/pm2-monitoring","label":"PM2 Monitoring","docId":"devops/part-09-monitoring/pm2-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/performance-tuning","label":"Performance Tuning","docId":"devops/part-09-monitoring/performance-tuning","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/maintenance-checklist","label":"Maintenance Checklist","docId":"devops/part-09-monitoring/maintenance-checklist","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Troubleshooting","items":[{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting","label":"Linux Troubleshooting","docId":"devops/part-10-troubleshooting/linux-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/network-troubleshooting","label":"Network Troubleshooting","docId":"devops/part-10-troubleshooting/network-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/ssh-troubleshooting","label":"SSH Troubleshooting","docId":"devops/part-10-troubleshooting/ssh-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/nginx-troubleshooting","label":"Nginx Troubleshooting","docId":"devops/part-10-troubleshooting/nginx-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/nodejs-troubleshooting","label":"Node.js Troubleshooting","docId":"devops/part-10-troubleshooting/nodejs-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/pm2-troubleshooting","label":"PM2 Troubleshooting","docId":"devops/part-10-troubleshooting/pm2-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/cloudflare-troubleshooting","label":"Cloudflare Troubleshooting","docId":"devops/part-10-troubleshooting/cloudflare-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/ssl-troubleshooting","label":"SSL/TLS Troubleshooting","docId":"devops/part-10-troubleshooting/ssl-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/real-world-debugging","label":"Real-World Production Debugging","docId":"devops/part-10-troubleshooting/real-world-debugging","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Reference","items":[{"type":"link","href":"/notes/docs/devops/part-11-reference/linux-command-reference","label":"Linux Command Reference","docId":"devops/part-11-reference/linux-command-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/nginx-reference","label":"Nginx Reference","docId":"devops/part-11-reference/nginx-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/systemctl-reference","label":"systemctl Reference","docId":"devops/part-11-reference/systemctl-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/pm2-reference","label":"PM2 Reference","docId":"devops/part-11-reference/pm2-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/git-reference","label":"Git Reference","docId":"devops/part-11-reference/git-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/networking-reference","label":"Networking Reference","docId":"devops/part-11-reference/networking-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/common-file-locations","label":"Common File Locations","docId":"devops/part-11-reference/common-file-locations","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/port-reference","label":"Port Reference","docId":"devops/part-11-reference/port-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/linux-cheat-sheet","label":"Linux Cheat Sheet","docId":"devops/part-11-reference/linux-cheat-sheet","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/production-checklists","label":"Production Checklists","docId":"devops/part-11-reference/production-checklists","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Interview Prep","items":[{"type":"link","href":"/notes/docs/devops/part-12-interview/linux-interview","label":"Linux Interview Preparation","docId":"devops/part-12-interview/linux-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/networking-interview","label":"Networking Interview Preparation","docId":"devops/part-12-interview/networking-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/nginx-interview","label":"Nginx Interview Preparation","docId":"devops/part-12-interview/nginx-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/nodejs-interview","label":"Node.js Interview Preparation","docId":"devops/part-12-interview/nodejs-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/cloud-interview","label":"Cloud Interview Preparation","docId":"devops/part-12-interview/cloud-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/scenario-based-questions","label":"Scenario-Based Interview Questions","docId":"devops/part-12-interview/scenario-based-questions","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/production-case-studies","label":"Production Case Studies","docId":"devops/part-12-interview/production-case-studies","unlisted":false}],"collapsed":true,"collapsible":true}],"collapsible":true,"href":"/notes/docs/devops"},{"type":"category","label":"Web Development","items":[{"type":"category","label":"JavaScript","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Prototypes & Inheritance","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Prototype Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","label":"Introduction to Prototypes","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","label":"__proto__, [[Prototype]] and prototype","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","label":"Reading vs Writing Properties in the Prototype Chain","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","label":"this with Prototype Methods","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","label":"Enumerating Properties in the Prototype Chain","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","label":"Prototype Behavior & Common Interview Scenarios","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","unlisted":false}],"href":"/notes/docs/category/prototype-fundamentals"},{"type":"category","label":"Constructor Functions & F.prototype","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","label":"Constructor Functions & the new Operator","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","label":"F.prototype in Depth","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","label":"The Default prototype Object & the constructor Property","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","label":"Changing F.prototype & Object Creation Behavior","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","unlisted":false}],"href":"/notes/docs/category/constructor-functions--fprototype"},{"type":"category","label":"Native Prototypes","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","label":"Object.prototype & The Root of JavaScript Inheritance","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","label":"Native Prototypes (Array.prototype, Function.prototype, Date.prototype & More)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","label":"Primitive Wrapper Objects (Autoboxing)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","label":"Modifying Native Prototypes & Polyfills","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","label":"Borrowing Methods from Native Prototypes (Method Borrowing)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","label":"Complete Prototype Hierarchy & Mental Model","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","label":"Part 3F — Native Prototype Exercises","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","unlisted":false}],"href":"/notes/docs/category/native-prototypes"},{"type":"category","label":"Modern Prototype APIs","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","label":"Object.create()","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","label":"Modern Prototype APIs (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","label":"Prototype-less Objects (Object.create(null))","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","label":"Historical Evolution of JavaScript Prototypes (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","label":"Historical Evolution of JavaScript Prototypes (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","unlisted":false}],"href":"/notes/docs/category/modern-prototype-apis"}],"href":"/notes/docs/category/prototypes--inheritance"}],"href":"/notes/docs/category/javascript"},{"type":"category","label":"React","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/react/intro","label":"React Knowledge Base","docId":"web-dev/react/intro","unlisted":false}],"href":"/notes/docs/category/react"},{"type":"category","label":"TypeScript","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"TypeScript Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part1","label":"Introduction to TypeScript","docId":"web-dev/typescript/typescript-fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part2","label":"Primitive Types, Type Annotations & Type Inference","docId":"web-dev/typescript/typescript-fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part3","label":"Functions","docId":"web-dev/typescript/typescript-fundamentals/part3","unlisted":false}]},{"type":"category","label":"Object Types & Custom Types","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part1","label":"Object Types","docId":"web-dev/typescript/object-types-and-custom-types/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part2","label":"Type Aliases","docId":"web-dev/typescript/object-types-and-custom-types/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part3","label":"Utility Types","docId":"web-dev/typescript/object-types-and-custom-types/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part4","label":"Optional Properties & Readonly Properties","docId":"web-dev/typescript/object-types-and-custom-types/part4","unlisted":false}]},{"type":"category","label":"Advanced Types","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part1","label":"Union Types","docId":"web-dev/typescript/advanced-types/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part2","label":"Intersection Types","docId":"web-dev/typescript/advanced-types/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part3","label":"Type Narrowing","docId":"web-dev/typescript/advanced-types/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part4","label":"Type Assertions, any, unknown, and never","docId":"web-dev/typescript/advanced-types/part4","unlisted":false}]},{"type":"category","label":"Arrays, Tuples & Enums","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part1","label":"Arrays","docId":"web-dev/typescript/arrays-tuples-and-enums/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part2","label":"Tuples","docId":"web-dev/typescript/arrays-tuples-and-enums/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part3","label":"Enums","docId":"web-dev/typescript/arrays-tuples-and-enums/part3","unlisted":false}]},{"type":"category","label":"Interfaces","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part1","label":"Interface Fundamentals","docId":"web-dev/typescript/interfaces/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part2","label":"Advanced Interfaces","docId":"web-dev/typescript/interfaces/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part3","label":"Interface vs Type","docId":"web-dev/typescript/interfaces/part3","unlisted":false}]},{"type":"category","label":"Classes and OOPs","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part1","label":"Classes Fundamentals","docId":"web-dev/typescript/classes-and-oops/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part2","label":"Access Modifiers","docId":"web-dev/typescript/classes-and-oops/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part3","label":"Getters, Setters & Static Members","docId":"web-dev/typescript/classes-and-oops/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part4","label":"Inheritance","docId":"web-dev/typescript/classes-and-oops/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part5","label":"Interfaces with Classes","docId":"web-dev/typescript/classes-and-oops/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part6","label":"Abstract Classes","docId":"web-dev/typescript/classes-and-oops/part6","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part7","label":"OOP Design Concepts","docId":"web-dev/typescript/classes-and-oops/part7","unlisted":false}]},{"type":"category","label":"Generics","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part1","label":"Generic Functions","docId":"web-dev/typescript/generics/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part2","label":"Generic Interfaces","docId":"web-dev/typescript/generics/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part3","label":"Generic Classes","docId":"web-dev/typescript/generics/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part4","label":"Generic Constraints, extends, keyof & Default Generics","docId":"web-dev/typescript/generics/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part5","label":"Utility Types + Generics","docId":"web-dev/typescript/generics/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part6","label":"Advanced Utility Types (Record, Exclude, Extract, NonNullable)","docId":"web-dev/typescript/generics/part6","unlisted":false}]},{"type":"category","label":"TypeScript in Real Applications","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part1","label":"Type Declaration Files (.d.ts) & DefinitelyTyped","docId":"web-dev/typescript/typescript-in-real-applications/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part2","label":"Typing APIs (fetch, Axios, AxiosResponse & Error Handling)","docId":"web-dev/typescript/typescript-in-real-applications/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part3","label":"Async TypeScript (Promise Types & Async/Await)","docId":"web-dev/typescript/typescript-in-real-applications/part3","unlisted":false}]}],"href":"/notes/docs/category/typescript"},{"type":"category","label":"Node.js","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Modules","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/node/modules/cjs_require_internals","label":"Node.js CommonJS Module System","docId":"web-dev/node/modules/cjs_require_internals","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/module_resolution","label":"Node.js CommonJS Module Resolution","docId":"web-dev/node/modules/module_resolution","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/es_modules","label":"Node.js ES Modules (ESM)","docId":"web-dev/node/modules/es_modules","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/cjs_mjs_interop","label":"Node.js CommonJS/ESM Interop","docId":"web-dev/node/modules/cjs_mjs_interop","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/import.meta_esm_caching","label":"Node.js import.meta, URLs, Caching","docId":"web-dev/node/modules/import.meta_esm_caching","unlisted":false}]}],"href":"/notes/docs/category/nodejs"}],"collapsed":true,"collapsible":true,"href":"/notes/docs/web-dev"}]},"docs":{"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide":{"id":"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","title":"UAT VM Deployment Cheat Sheet (Azure + Ubuntu 24.04)","description":"Use this as the checklist for every new VM (UAT/Production).","sidebar":"tutorialSidebar"},"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md":{"id":"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","title":"Linux Server Setup Cheat Sheet","description":"A quick reference for all commands used during Linux server provisioning, security hardening, Node.js deployment, Nginx setup, SSL configuration, and production verification.","sidebar":"tutorialSidebar"},"devops/part-01-foundations/linux-architecture":{"id":"devops/part-01-foundations/linux-architecture","title":"Linux Architecture","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/linux-boot-process":{"id":"devops/part-01-foundations/linux-boot-process","title":"Linux Boot Process","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/operating-system":{"id":"devops/part-01-foundations/operating-system","title":"Operating System","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/ssh-overview":{"id":"devops/part-01-foundations/ssh-overview","title":"SSH Overview","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/terminal-shell-and-bash":{"id":"devops/part-01-foundations/terminal-shell-and-bash","title":"Terminal, Shell and Bash","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/why-linux":{"id":"devops/part-01-foundations/why-linux","title":"Why Linux?","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/cron-and-scheduling":{"id":"devops/part-02-linux-administration/cron-and-scheduling","title":"Cron and Scheduling","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/essential-linux-commands":{"id":"devops/part-02-linux-administration/essential-linux-commands","title":"Essential Linux Commands","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-filesystem":{"id":"devops/part-02-linux-administration/linux-filesystem","title":"Linux Filesystem","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-networking-tools":{"id":"devops/part-02-linux-administration/linux-networking-tools","title":"Linux Networking Tools","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-permissions":{"id":"devops/part-02-linux-administration/linux-permissions","title":"Linux Permissions","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/log-management":{"id":"devops/part-02-linux-administration/log-management","title":"Log Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/memory-management":{"id":"devops/part-02-linux-administration/memory-management","title":"Memory Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/package-management":{"id":"devops/part-02-linux-administration/package-management","title":"Package Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/process-management":{"id":"devops/part-02-linux-administration/process-management","title":"Process Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/storage-and-disks":{"id":"devops/part-02-linux-administration/storage-and-disks","title":"Storage and Disks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/systemd-and-services":{"id":"devops/part-02-linux-administration/systemd-and-services","title":"systemd and Services","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/users-and-groups":{"id":"devops/part-02-linux-administration/users-and-groups","title":"Users and Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/dns":{"id":"devops/part-03-networking/dns","title":"Domain Name System (DNS)","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/http-and-https":{"id":"devops/part-03-networking/http-and-https","title":"HTTP and HTTPS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/load-balancing":{"id":"devops/part-03-networking/load-balancing","title":"Load Balancing","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/network-troubleshooting":{"id":"devops/part-03-networking/network-troubleshooting","title":"Network Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/networking-basics":{"id":"devops/part-03-networking/networking-basics","title":"Networking Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/ports-and-sockets":{"id":"devops/part-03-networking/ports-and-sockets","title":"Ports and Sockets","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/reverse-proxy":{"id":"devops/part-03-networking/reverse-proxy","title":"Reverse Proxy","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/ssl-and-tls":{"id":"devops/part-03-networking/ssl-and-tls","title":"SSL and TLS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/tcp-ip":{"id":"devops/part-03-networking/tcp-ip","title":"TCP/IP","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/backups":{"id":"devops/part-04-security/backups","title":"Backups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/fail2ban":{"id":"devops/part-04-security/fail2ban","title":"Fail2Ban","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/file-permissions-security":{"id":"devops/part-04-security/file-permissions-security","title":"File Permissions Security","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/linux-security-basics":{"id":"devops/part-04-security/linux-security-basics","title":"Linux Security Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/production-security-checklist":{"id":"devops/part-04-security/production-security-checklist","title":"Production Security Checklist","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/secrets-and-environment-variables":{"id":"devops/part-04-security/secrets-and-environment-variables","title":"Secrets and Environment Variables","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/security-updates":{"id":"devops/part-04-security/security-updates","title":"Security Updates","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/ssh-security":{"id":"devops/part-04-security/ssh-security","title":"SSH Security","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/ufw-firewall":{"id":"devops/part-04-security/ufw-firewall","title":"UFW Firewall","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/building-node-applications":{"id":"devops/part-05-development-environment/building-node-applications","title":"Building Node.js Applications","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/environment-variables":{"id":"devops/part-05-development-environment/environment-variables","title":"Environment Variables","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/git":{"id":"devops/part-05-development-environment/git","title":"Git","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/nodejs":{"id":"devops/part-05-development-environment/nodejs","title":"Node.js","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/npm":{"id":"devops/part-05-development-environment/npm","title":"npm (Node Package Manager)","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/pm2":{"id":"devops/part-05-development-environment/pm2","title":"PM2","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/pm2-cluster-mode":{"id":"devops/part-05-development-environment/pm2-cluster-mode","title":"PM2 Cluster Mode","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/project-structure":{"id":"devops/part-05-development-environment/project-structure","title":"Project Structure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/caching":{"id":"devops/part-06-nginx/caching","title":"Caching","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/common-configurations":{"id":"devops/part-06-nginx/common-configurations","title":"Common Configurations","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/gzip-and-performance":{"id":"devops/part-06-nginx/gzip-and-performance","title":"Gzip and Performance","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/installing-nginx":{"id":"devops/part-06-nginx/installing-nginx","title":"Installing Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/location-blocks":{"id":"devops/part-06-nginx/location-blocks","title":"Location Blocks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/logging":{"id":"devops/part-06-nginx/logging","title":"Logging","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/nginx-directory-structure":{"id":"devops/part-06-nginx/nginx-directory-structure","title":"Nginx Directory Structure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/nginx-introduction":{"id":"devops/part-06-nginx/nginx-introduction","title":"Nginx Introduction","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/reverse-proxy":{"id":"devops/part-06-nginx/reverse-proxy","title":"Reverse Proxy","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/server-blocks":{"id":"devops/part-06-nginx/server-blocks","title":"Server Blocks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/ssl-with-nginx":{"id":"devops/part-06-nginx/ssl-with-nginx","title":"SSL with Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/static-file-serving":{"id":"devops/part-06-nginx/static-file-serving","title":"Static File Serving","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/troubleshooting-nginx":{"id":"devops/part-06-nginx/troubleshooting-nginx","title":"Troubleshooting Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/azure-basics":{"id":"devops/part-07-cloud/azure-basics","title":"Azure Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloud-service-models":{"id":"devops/part-07-cloud/cloud-service-models","title":"Cloud Service Models","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare":{"id":"devops/part-07-cloud/cloudflare","title":"Cloudflare","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare-cdn":{"id":"devops/part-07-cloud/cloudflare-cdn","title":"Cloudflare CDN","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare-ssl":{"id":"devops/part-07-cloud/cloudflare-ssl","title":"Cloudflare SSL/TLS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/dns-and-domain":{"id":"devops/part-07-cloud/dns-and-domain","title":"DNS and Domain","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/network-security-groups":{"id":"devops/part-07-cloud/network-security-groups","title":"Network Security Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/networking-in-azure":{"id":"devops/part-07-cloud/networking-in-azure","title":"Networking in Azure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/public-ip-and-private-ip":{"id":"devops/part-07-cloud/public-ip-and-private-ip","title":"Public IP and Private IP","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/resource-groups":{"id":"devops/part-07-cloud/resource-groups","title":"Resource Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/storage":{"id":"devops/part-07-cloud/storage","title":"Storage","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/virtual-machines":{"id":"devops/part-07-cloud/virtual-machines","title":"Virtual Machines","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/what-is-cloud-computing":{"id":"devops/part-07-cloud/what-is-cloud-computing","title":"What is Cloud Computing","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/backup-and-rollback":{"id":"devops/part-08-deployment/backup-and-rollback","title":"Backup and Rollback","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/complete-deployment-walkthrough":{"id":"devops/part-08-deployment/complete-deployment-walkthrough","title":"Complete Deployment Walkthrough","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/configuring-nginx":{"id":"devops/part-08-deployment/configuring-nginx","title":"Configuring Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/deploying-node-app":{"id":"devops/part-08-deployment/deploying-node-app","title":"Deploying Node.js Application","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/deployment-overview":{"id":"devops/part-08-deployment/deployment-overview","title":"Deployment Overview","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/domain-setup":{"id":"devops/part-08-deployment/domain-setup","title":"Domain Setup","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/pm2-deployment":{"id":"devops/part-08-deployment/pm2-deployment","title":"PM2 Deployment","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/preparing-server":{"id":"devops/part-08-deployment/preparing-server","title":"Preparing Server","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/ssl-setup":{"id":"devops/part-08-deployment/ssl-setup","title":"SSL Setup","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/upgrading-production":{"id":"devops/part-08-deployment/upgrading-production","title":"Upgrading Production","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/zero-downtime-deployment":{"id":"devops/part-08-deployment/zero-downtime-deployment","title":"Zero Downtime Deployment","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/disk-monitoring":{"id":"devops/part-09-monitoring/disk-monitoring","title":"Disk Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/maintenance-checklist":{"id":"devops/part-09-monitoring/maintenance-checklist","title":"Maintenance Checklist","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/memory-monitoring":{"id":"devops/part-09-monitoring/memory-monitoring","title":"Memory Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/monitoring-basics":{"id":"devops/part-09-monitoring/monitoring-basics","title":"Monitoring Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/nginx-logs":{"id":"devops/part-09-monitoring/nginx-logs","title":"Nginx Logs","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/nodejs-logs":{"id":"devops/part-09-monitoring/nodejs-logs","title":"Node.js Logs","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/performance-tuning":{"id":"devops/part-09-monitoring/performance-tuning","title":"Performance Tuning","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/pm2-monitoring":{"id":"devops/part-09-monitoring/pm2-monitoring","title":"PM2 Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/system-metrics":{"id":"devops/part-09-monitoring/system-metrics","title":"System Metrics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/cloudflare-troubleshooting":{"id":"devops/part-10-troubleshooting/cloudflare-troubleshooting","title":"Cloudflare Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/linux-troubleshooting":{"id":"devops/part-10-troubleshooting/linux-troubleshooting","title":"Linux Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/network-troubleshooting":{"id":"devops/part-10-troubleshooting/network-troubleshooting","title":"Network Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/nginx-troubleshooting":{"id":"devops/part-10-troubleshooting/nginx-troubleshooting","title":"Nginx Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/nodejs-troubleshooting":{"id":"devops/part-10-troubleshooting/nodejs-troubleshooting","title":"Node.js Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/pm2-troubleshooting":{"id":"devops/part-10-troubleshooting/pm2-troubleshooting","title":"PM2 Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/real-world-debugging":{"id":"devops/part-10-troubleshooting/real-world-debugging","title":"Real-World Production Debugging","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/ssh-troubleshooting":{"id":"devops/part-10-troubleshooting/ssh-troubleshooting","title":"SSH Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/ssl-troubleshooting":{"id":"devops/part-10-troubleshooting/ssl-troubleshooting","title":"SSL/TLS Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/common-file-locations":{"id":"devops/part-11-reference/common-file-locations","title":"Common File Locations","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/git-reference":{"id":"devops/part-11-reference/git-reference","title":"Git Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/linux-cheat-sheet":{"id":"devops/part-11-reference/linux-cheat-sheet","title":"Linux Cheat Sheet","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/linux-command-reference":{"id":"devops/part-11-reference/linux-command-reference","title":"Linux Command Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/networking-reference":{"id":"devops/part-11-reference/networking-reference","title":"Networking Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/nginx-reference":{"id":"devops/part-11-reference/nginx-reference","title":"Nginx Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/pm2-reference":{"id":"devops/part-11-reference/pm2-reference","title":"PM2 Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/port-reference":{"id":"devops/part-11-reference/port-reference","title":"Port Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/production-checklists":{"id":"devops/part-11-reference/production-checklists","title":"Production Checklists","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/systemctl-reference":{"id":"devops/part-11-reference/systemctl-reference","title":"systemctl Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/cloud-interview":{"id":"devops/part-12-interview/cloud-interview","title":"Cloud Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/linux-interview":{"id":"devops/part-12-interview/linux-interview","title":"Linux Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/networking-interview":{"id":"devops/part-12-interview/networking-interview","title":"Networking Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/nginx-interview":{"id":"devops/part-12-interview/nginx-interview","title":"Nginx Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/nodejs-interview":{"id":"devops/part-12-interview/nodejs-interview","title":"Node.js Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/production-case-studies":{"id":"devops/part-12-interview/production-case-studies","title":"Production Case Studies","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/scenario-based-questions":{"id":"devops/part-12-interview/scenario-based-questions","title":"Scenario-Based Interview Questions","description":"Overview","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part1":{"id":"dsa/basics/bit-manipulation/part1","title":"Binary Number System Fundamentals","description":"Computers understand only two states:","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part2":{"id":"dsa/basics/bit-manipulation/part2","title":"Data Representation: Bit-Level Storage","description":"Most developers learn Binary and Bitwise Operators, but very few understand how numbers are actually stored inside memory.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part3":{"id":"dsa/basics/bit-manipulation/part3","title":"Bitwise Operators: The Logic of Bits","description":"Bitwise operators work directly on the binary representation of numbers.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part4":{"id":"dsa/basics/bit-manipulation/part4","title":"Common Bit Manipulation Techniques","description":"This chapter contains the most important bit manipulation tricks asked in coding interviews.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part5":{"id":"dsa/basics/bit-manipulation/part5","title":"Counting Set Bits (Population Count)","description":"Counting Set Bits is one of the most important topics in Bit Manipulation.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part6":{"id":"dsa/basics/bit-manipulation/part6","title":"Bit Manipulation & Binary","description":"Interview Problems Using Bit Manipulation","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part1":{"id":"dsa/basics/cpp-fundamentals/part1","title":"C++ Basics & Program Structure","description":"Before learning data types, memory, arrays, pointers, and OOP, it is important to understand how a C++ program is structured and how execution begins.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part10":{"id":"dsa/basics/cpp-fundamentals/part10","title":"Functions","description":"Functions are one of the most important concepts in programming.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part11":{"id":"dsa/basics/cpp-fundamentals/part11","title":"Advanced Function Concepts","description":"These are important language features commonly used with functions and large codebases.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part2":{"id":"dsa/basics/cpp-fundamentals/part2","title":"Data Types","description":"Every piece of data stored inside a program occupies memory. To store data correctly, the compiler must know:","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part3":{"id":"dsa/basics/cpp-fundamentals/part3","title":"Memory Fundamentals","description":"Every program ultimately works with memory.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part4":{"id":"dsa/basics/cpp-fundamentals/part4","title":"Input / Output Handling","description":"Programs become useful only when they can interact with users.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part5":{"id":"dsa/basics/cpp-fundamentals/part5","title":"Control Flow & Decision Making","description":"By default, a program executes statements from top to bottom.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part6":{"id":"dsa/basics/cpp-fundamentals/part6","title":"Loops","description":"Loops allow us to execute a block of code multiple times without writing the same code repeatedly.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part7":{"id":"dsa/basics/cpp-fundamentals/part7","title":"Characters & ASCII","description":"Characters are one of the most fundamental data types in C++.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part8":{"id":"dsa/basics/cpp-fundamentals/part8","title":"Characters and Strings (In Depth)","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part9":{"id":"dsa/basics/cpp-fundamentals/part9","title":"Operators","description":"Operators are symbols that perform operations on values and variables.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part1":{"id":"dsa/basics/hashing/hashing fundamentals/part1","title":"Introduction to Hashing","description":"Before learning map, unordered_map, or any hashing technique, it is important to understand what hashing actually is and why we need it.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part2":{"id":"dsa/basics/hashing/hashing fundamentals/part2","title":"Array Hashing","description":"In previous lesson, we learned the basic idea of hashing.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part3":{"id":"dsa/basics/hashing/hashing fundamentals/part3","title":"Character Hashing","description":"In previous lession, we learned how to perform hashing on integers using arrays.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part1":{"id":"dsa/basics/hashing/map/part1","title":"STL map","description":"Array hashing is extremely fast, but it has one major limitation:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part2":{"id":"dsa/basics/hashing/map/part2","title":"Frequency Counting using map","description":"The most common application of a map in DSA is:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part3":{"id":"dsa/basics/hashing/map/part3","title":"How map Works Internally (Red-Black Tree)","description":"`text","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part1":{"id":"dsa/basics/hashing/unordered_map/part1","title":"unordered_map","description":"In previous lessions, we learned about the STL map, which stores elements in sorted order using a Red-Black Tree.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part2":{"id":"dsa/basics/hashing/unordered_map/part2","title":"How Hashing Works Internally (Hash Tables)","description":"We know that:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part3":{"id":"dsa/basics/hashing/unordered_map/part3","title":"Collisions, Chaining & Rehashing","description":"In previous lession, we learned that a Hash Function converts a key into a bucket index.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part1":{"id":"dsa/basics/pointers/Double Pointers/part1","title":"Double Pointers Fundamentals","description":"Most developers understand:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part2":{"id":"dsa/basics/pointers/Double Pointers/part2","title":"Double Pointers and Functions","description":"Up until now, every pointer we have seen had a specific type:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part3":{"id":"dsa/basics/pointers/Double Pointers/part3","title":"Double Pointers Memory Layout","description":"This chapter covers one of the most confusing topics in C++:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part4":{"id":"dsa/basics/pointers/Double Pointers/part4","title":"Advanced Double Pointers","description":"Until now, every pointer we have studied pointed to:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part1":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part1","title":"Arrays and Pointers (Integer Arrays)","description":"This chapter is one of the most important chapters in C++.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part2":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part2","title":"Character Arrays, Character Pointers, String Literals, and cout Behavior","description":"Character arrays and character pointers are one of the most misunderstood areas in C++.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part3":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part3","title":"Pointers in Functions, Array Decay, Array Parameters, and Passing Arrays to Functions","description":"This chapter explains one of the most important and frequently misunderstood topics in C++:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part4":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part4","title":"Advanced Array-Pointer Relationships","description":"At this point, you understand:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part1":{"id":"dsa/basics/pointers/Pointers Fundamentals/part1","title":"C++ Pointers Fundamentals","description":"Memory, Addresses, Symbol Table, Pointer Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part2":{"id":"dsa/basics/pointers/Pointers Fundamentals/part2","title":"C++ Pointers Fundamentals","description":"Dereference Operator, Memory Access, Pointer Copying, Call By Value Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part3":{"id":"dsa/basics/pointers/Pointers Fundamentals/part3","title":"C++ Pointers Fundamentals","description":"Pointer Arithmetic Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part4":{"id":"dsa/basics/pointers/Pointers Fundamentals/part4","title":"C++ Pointers Fundamentals","description":"Pointer States, Pass By Address, Address Copy vs Value Copy, Special Pointer Behaviors","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","title":"Reference Variables Fundamentals","description":"Before learning:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","title":"Static vs Dynamic Memory","description":"Dynamic Memory Allocation, Stack vs Heap, Runtime Memory, new, delete, and Dynamic Arrays","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","title":"Dynamic Arrays & Memory Management","description":"Dynamic Memory Allocation gives programmers enormous flexibility.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","title":"Dynamic Memory Allocation for 2D Arrays","description":"Why Do We Need Dynamic 2D Arrays?","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-01_foundation":{"id":"dsa/basics/stl/part-01_foundation","title":"Foundations","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-02_dynamic-containers":{"id":"dsa/basics/stl/part-02_dynamic-containers","title":"Dynamic Containers","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-03_container-adaptors":{"id":"dsa/basics/stl/part-03_container-adaptors","title":"Container Adaptors","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-04_associative-containers":{"id":"dsa/basics/stl/part-04_associative-containers","title":"Associative Containers","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-05_algorithms-and-utility-functions":{"id":"dsa/basics/stl/part-05_algorithms-and-utility-functions","title":"Algorithms and Utility Functions","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-06_final-revision-handbook":{"id":"dsa/basics/stl/part-06_final-revision-handbook","title":"Final Revision","description":"Topics Covered","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","title":"Constructor Functions & the new Operator","description":"Before understanding F.prototype, we must first understand constructor functions and how the new operator actually works.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","title":"F.prototype in Depth","description":"Now that we understand constructor functions and how the new operator works internally, we can finally understand one of the most misunderstood concepts in JavaScript:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","title":"The Default prototype Object & the constructor Property","description":"In the previous chapter, we learned that every constructor function has a special property called:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","title":"Changing F.prototype & Object Creation Behavior","description":"One of the most frequently asked JavaScript interview topics is:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","title":"Object.create()","description":"Until now, we\'ve learned that JavaScript automatically assigns a prototype when using:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","title":"Modern Prototype APIs (Complete Guide)","description":"JavaScript originally exposed prototype manipulation through the non-standard proto property.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","title":"Prototype-less Objects (Object.create(null))","description":"Almost every object in JavaScript inherits from Object.prototype.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","title":"Historical Evolution of JavaScript Prototypes (Complete Guide)","description":"JavaScript\'s inheritance model has changed significantly over the years.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","title":"Historical Evolution of JavaScript Prototypes (Complete Guide)","description":"JavaScript\'s inheritance model has changed significantly over the years.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","title":"Object.prototype & The Root of JavaScript Inheritance","description":"In the previous chapters, we learned how our own objects inherit from other objects using the prototype chain.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","title":"Native Prototypes (Array.prototype, Function.prototype, Date.prototype & More)","description":"In the previous chapter, we learned that every ordinary object eventually inherits from:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","title":"Primitive Wrapper Objects (Autoboxing)","description":"One of the strangest things in JavaScript is that primitive values like strings and numbers can call methods.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","title":"Modifying Native Prototypes & Polyfills","description":"JavaScript allows us to modify built-in prototypes like:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","title":"Borrowing Methods from Native Prototypes (Method Borrowing)","description":"One of JavaScript\'s most powerful features is that methods are not permanently tied to the objects they belong to.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","title":"Complete Prototype Hierarchy & Mental Model","description":"Throughout this documentation, we\'ve studied:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","title":"Part 3F — Native Prototype Exercises","description":"---","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","title":"Introduction to Prototypes","description":"Prototypes are one of the most fundamental concepts in JavaScript. Unlike many programming languages that use class-based inheritance, JavaScript was originally built on prototypal inheritance.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","title":"__proto__, [[Prototype]] and prototype","description":"One of the biggest sources of confusion in JavaScript is the difference between:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","title":"Reading vs Writing Properties in the Prototype Chain","description":"One of the most important things to understand about JavaScript prototypes is how property lookup works.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","title":"this with Prototype Methods","description":"One of the biggest misconceptions about JavaScript prototypes is:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","title":"Enumerating Properties in the Prototype Chain","description":"One of the most confusing behaviors in JavaScript is that some loops iterate over inherited properties, while others only iterate over an object\'s own properties.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","title":"Prototype Behavior & Common Interview Scenarios","description":"In the previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/node/modules/cjs_mjs_interop":{"id":"web-dev/node/modules/cjs_mjs_interop","title":"Node.js CommonJS ↔ ES Modules Interop: CJS/ESM Edges & Dual Packages","description":"Node.js has two module systems:","sidebar":"tutorialSidebar"},"web-dev/node/modules/cjs_require_internals":{"id":"web-dev/node/modules/cjs_require_internals","title":"Node.js CommonJS Module System — Complete Notes","description":"Purpose: A practical, detailed reference for understanding how Node.js CommonJS modules work internally.","sidebar":"tutorialSidebar"},"web-dev/node/modules/es_modules":{"id":"web-dev/node/modules/es_modules","title":"Node.js ES Modules (ESM): import / export & Linking","description":"1. What Are ES Modules?","sidebar":"tutorialSidebar"},"web-dev/node/modules/import.meta_esm_caching":{"id":"web-dev/node/modules/import.meta_esm_caching","title":"Node.js import.meta, URLs, Caching & Module State --- Extensive Study Notes","description":"1. The Big Picture","sidebar":"tutorialSidebar"},"web-dev/node/modules/module_resolution":{"id":"web-dev/node/modules/module_resolution","title":"Node.js CommonJS Module Resolution — Extensive Practical Notes","description":"When you write:","sidebar":"tutorialSidebar"},"web-dev/react/intro":{"id":"web-dev/react/intro","title":"React Knowledge Base","description":"Welcome to the React Knowledge Base! This section is dedicated to mastering modern React development, covering everything from fundamental concepts to advanced architectural patterns.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part1":{"id":"web-dev/typescript/advanced-types/part1","title":"Union Types","description":"One of the biggest limitations of primitive typing is that a variable can normally hold only one type.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part2":{"id":"web-dev/typescript/advanced-types/part2","title":"Intersection Types","description":"In previour lession, we learned about Union Types (|), which allow a value to be one type OR another type.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part3":{"id":"web-dev/typescript/advanced-types/part3","title":"Type Narrowing","description":"We have learned that Union Types allow a variable to store multiple possible types.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part4":{"id":"web-dev/typescript/advanced-types/part4","title":"Type Assertions, any, unknown, and never","description":"TypeScript tries to infer and validate types automatically.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part1":{"id":"web-dev/typescript/arrays-tuples-and-enums/part1","title":"Arrays","description":"Arrays are one of the most commonly used data structures in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part2":{"id":"web-dev/typescript/arrays-tuples-and-enums/part2","title":"Tuples","description":"Arrays are useful when all elements have the same type.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part3":{"id":"web-dev/typescript/arrays-tuples-and-enums/part3","title":"Enums","description":"Enums (Enumerations) allow us to define a fixed set of named constants.","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part1":{"id":"web-dev/typescript/classes-and-oops/part1","title":"Classes Fundamentals","description":"Classes are one of the core Object-Oriented Programming (OOP) features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part2":{"id":"web-dev/typescript/classes-and-oops/part2","title":"Access Modifiers","description":"One of the biggest advantages of Classes is the ability to control:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part3":{"id":"web-dev/typescript/classes-and-oops/part3","title":"Getters, Setters & Static Members","description":"In Part 6A and 6B, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part4":{"id":"web-dev/typescript/classes-and-oops/part4","title":"Inheritance","description":"One of the biggest advantages of Object-Oriented Programming is:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part5":{"id":"web-dev/typescript/classes-and-oops/part5","title":"Interfaces with Classes","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part6":{"id":"web-dev/typescript/classes-and-oops/part6","title":"Abstract Classes","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part7":{"id":"web-dev/typescript/classes-and-oops/part7","title":"OOP Design Concepts","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part1":{"id":"web-dev/typescript/generics/part1","title":"Generic Functions","description":"Generics are one of the most powerful features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part2":{"id":"web-dev/typescript/generics/part2","title":"Generic Interfaces","description":"In previous chapter, we learned how Generic Functions allow us to write reusable and type-safe functions.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part3":{"id":"web-dev/typescript/generics/part3","title":"Generic Classes","description":"Now we\'ll learn one of the most powerful applications of Generics:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part4":{"id":"web-dev/typescript/generics/part4","title":"Generic Constraints, extends, keyof & Default Generics","description":"Generics are extremely powerful because they allow us to write reusable code.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part5":{"id":"web-dev/typescript/generics/part5","title":"Utility Types + Generics","description":"Now we are ready to understand one of the most powerful features of TypeScript:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part6":{"id":"web-dev/typescript/generics/part6","title":"Advanced Utility Types (Record, Exclude, Extract, NonNullable)","description":"In this chapter, we\'ll cover additional utility types frequently used in:","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part1":{"id":"web-dev/typescript/interfaces/part1","title":"Interface Fundamentals","description":"Interfaces are one of the most important features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part2":{"id":"web-dev/typescript/interfaces/part2","title":"Advanced Interfaces","description":"In previous chapter, we learned how Interfaces define the structure of objects.","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part3":{"id":"web-dev/typescript/interfaces/part3","title":"Interface vs Type","description":"One of the most common TypeScript interview questions is:","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part1":{"id":"web-dev/typescript/object-types-and-custom-types/part1","title":"Object Types","description":"Objects are one of the most important concepts in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part2":{"id":"web-dev/typescript/object-types-and-custom-types/part2","title":"Type Aliases","description":"In previous chapter, we learned how to define Object Types directly using inline type definitions.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part3":{"id":"web-dev/typescript/object-types-and-custom-types/part3","title":"Utility Types","description":"As applications grow larger, we often need slightly modified versions of existing types.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part4":{"id":"web-dev/typescript/object-types-and-custom-types/part4","title":"Optional Properties & Readonly Properties","description":"In real-world applications, not every property is always available and not every property should be allowed to change.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part1":{"id":"web-dev/typescript/typescript-fundamentals/part1","title":"Introduction to TypeScript","description":"---","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part2":{"id":"web-dev/typescript/typescript-fundamentals/part2","title":"Primitive Types, Type Annotations & Type Inference","description":"Everything in TypeScript starts with types.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part3":{"id":"web-dev/typescript/typescript-fundamentals/part3","title":"Functions","description":"Functions are one of the most important concepts in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part1":{"id":"web-dev/typescript/typescript-in-real-applications/part1","title":"Type Declaration Files (.d.ts) & DefinitelyTyped","description":"So far, we have learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part2":{"id":"web-dev/typescript/typescript-in-real-applications/part2","title":"Typing APIs (fetch, Axios, AxiosResponse & Error Handling)","description":"In real-world applications, one of the most common tasks is:","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part3":{"id":"web-dev/typescript/typescript-in-real-applications/part3","title":"Async TypeScript (Promise Types & Async/Await)","description":"Modern applications spend a significant amount of time performing:","sidebar":"tutorialSidebar"}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"version":{"pluginId":"default","version":"current","label":"Next","banner":null,"badge":false,"noIndex":false,"className":"docs-version-current","isLast":true,"docsSidebars":{"tutorialSidebar":[{"type":"category","label":"DSA (C++)","collapsed":false,"items":[{"type":"category","label":"Basics","items":[{"type":"category","label":"Bit Manipulation","items":[{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part1","label":"Binary Number System Fundamentals","docId":"dsa/basics/bit-manipulation/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part2","label":"Data Representation in Memory","docId":"dsa/basics/bit-manipulation/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part3","label":"Bitwise Operators","docId":"dsa/basics/bit-manipulation/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part4","label":"Common Bit Manipulation Techniques","docId":"dsa/basics/bit-manipulation/part4","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part5","label":"Counting Set Bits (Population Count)","docId":"dsa/basics/bit-manipulation/part5","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/bit-manipulation/part6","label":"Interview Problems Using Bit Manipulation","docId":"dsa/basics/bit-manipulation/part6","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"C++ Fundamentals","items":[{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part1","label":"C++ Basics & Program Structure","docId":"dsa/basics/cpp-fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part2","label":"Data Types","docId":"dsa/basics/cpp-fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part3","label":"Memory Fundamentals","docId":"dsa/basics/cpp-fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part4","label":"Input / Output Handling","docId":"dsa/basics/cpp-fundamentals/part4","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part5","label":"Control Flow & Decision Making","docId":"dsa/basics/cpp-fundamentals/part5","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part6","label":"Loops","docId":"dsa/basics/cpp-fundamentals/part6","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part7","label":"Characters & ASCII","docId":"dsa/basics/cpp-fundamentals/part7","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part8","label":"Characters and Strings (In Depth)","docId":"dsa/basics/cpp-fundamentals/part8","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part9","label":"Operators","docId":"dsa/basics/cpp-fundamentals/part9","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part10","label":"Functions","docId":"dsa/basics/cpp-fundamentals/part10","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/cpp-fundamentals/part11","label":"Advanced Function Concepts","docId":"dsa/basics/cpp-fundamentals/part11","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Pointers","items":[{"type":"category","label":"Pointers Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part1","label":"Memory & Addresses","docId":"dsa/basics/pointers/Pointers Fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part2","label":"Dereferencing & Copying","docId":"dsa/basics/pointers/Pointers Fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part3","label":"Pointer Arithmetic","docId":"dsa/basics/pointers/Pointers Fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Fundamentals/part4","label":"Pass by Address & Safety","docId":"dsa/basics/pointers/Pointers Fundamentals/part4","unlisted":false}]},{"type":"category","label":"Pointers Arrays and Functions","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part1","label":"Integer Arrays & Pointers","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part2","label":"Character Arrays & Pointers","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part3","label":"Pointers in Functions","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Pointers Arrays and Functions/part4","label":"Advanced Relationships","docId":"dsa/basics/pointers/Pointers Arrays and Functions/part4","unlisted":false}]},{"type":"category","label":"Double Pointers","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part1","label":"Double Pointers Basics","docId":"dsa/basics/pointers/Double Pointers/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part2","label":"Double Pointers & Functions","docId":"dsa/basics/pointers/Double Pointers/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part3","label":"Memory Layout & Visualization","docId":"dsa/basics/pointers/Double Pointers/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Double Pointers/part4","label":"Advanced Double Pointers","docId":"dsa/basics/pointers/Double Pointers/part4","unlisted":false}]},{"type":"category","label":"Reference Variables, Static and Dynamic Memory Allocation","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","label":"Reference Variables","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","label":"Static vs Dynamic Memory","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","label":"Dynamic Arrays & Memory","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","label":"Dynamic 2D Arrays","docId":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","unlisted":false}]}],"collapsed":true,"collapsible":true},{"type":"category","label":"C++ STL","items":[{"type":"link","href":"/notes/docs/dsa/basics/stl/part-01_foundation","label":"Foundation","docId":"dsa/basics/stl/part-01_foundation","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-02_dynamic-containers","label":"Dynamic Containers","docId":"dsa/basics/stl/part-02_dynamic-containers","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-03_container-adaptors","label":"Container Adaptors","docId":"dsa/basics/stl/part-03_container-adaptors","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-04_associative-containers","label":"Associative Containers","docId":"dsa/basics/stl/part-04_associative-containers","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-05_algorithms-and-utility-functions","label":"Algorithms & Utilities","docId":"dsa/basics/stl/part-05_algorithms-and-utility-functions","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/stl/part-06_final-revision-handbook","label":"Revision","docId":"dsa/basics/stl/part-06_final-revision-handbook","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Hashing","items":[{"type":"category","label":"Hashing Fundamentals","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part1","label":"Introduction to Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part2","label":"Array Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/hashing fundamentals/part3","label":"Character Hashing","docId":"dsa/basics/hashing/hashing fundamentals/part3","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"map","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part1","label":"STL map","docId":"dsa/basics/hashing/map/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part2","label":"Frequency Counting using map","docId":"dsa/basics/hashing/map/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/map/part3","label":"How map Works Internally (Red-Black Tree)","docId":"dsa/basics/hashing/map/part3","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"unordered_map","items":[{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part1","label":"unordered_map","docId":"dsa/basics/hashing/unordered_map/part1","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part2","label":"How Hashing Works Internally (Hash Tables)","docId":"dsa/basics/hashing/unordered_map/part2","unlisted":false},{"type":"link","href":"/notes/docs/dsa/basics/hashing/unordered_map/part3","label":"Collisions, Chaining & Rehashing","docId":"dsa/basics/hashing/unordered_map/part3","unlisted":false}],"collapsed":true,"collapsible":true}],"collapsed":true,"collapsible":true}],"collapsed":true,"collapsible":true,"href":"/notes/docs/dsa/basics"}],"collapsible":true,"href":"/notes/docs/dsa"},{"type":"category","label":"DevOps","collapsed":false,"items":[{"type":"category","label":"Cheatsheet","items":[{"type":"link","href":"/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","label":"UAT VM Deployment Cheat Sheet (Azure + Ubuntu 24.04)","docId":"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","label":"Linux Server Setup Cheat Sheet","docId":"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Foundations","items":[{"type":"link","href":"/notes/docs/devops/part-01-foundations/why-linux","label":"Why Linux?","docId":"devops/part-01-foundations/why-linux","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/operating-system","label":"Operating System","docId":"devops/part-01-foundations/operating-system","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/linux-architecture","label":"Linux Architecture","docId":"devops/part-01-foundations/linux-architecture","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/linux-boot-process","label":"Linux Boot Process","docId":"devops/part-01-foundations/linux-boot-process","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/terminal-shell-and-bash","label":"Terminal, Shell and Bash","docId":"devops/part-01-foundations/terminal-shell-and-bash","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-01-foundations/ssh-overview","label":"SSH Overview","docId":"devops/part-01-foundations/ssh-overview","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Linux Administration","items":[{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-filesystem","label":"Linux Filesystem","docId":"devops/part-02-linux-administration/linux-filesystem","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/users-and-groups","label":"Users and Groups","docId":"devops/part-02-linux-administration/users-and-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-permissions","label":"Linux Permissions","docId":"devops/part-02-linux-administration/linux-permissions","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/process-management","label":"Process Management","docId":"devops/part-02-linux-administration/process-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/memory-management","label":"Memory Management","docId":"devops/part-02-linux-administration/memory-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/storage-and-disks","label":"Storage and Disks","docId":"devops/part-02-linux-administration/storage-and-disks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/package-management","label":"Package Management","docId":"devops/part-02-linux-administration/package-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/systemd-and-services","label":"systemd and Services","docId":"devops/part-02-linux-administration/systemd-and-services","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/log-management","label":"Log Management","docId":"devops/part-02-linux-administration/log-management","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/cron-and-scheduling","label":"Cron and Scheduling","docId":"devops/part-02-linux-administration/cron-and-scheduling","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/linux-networking-tools","label":"Linux Networking Tools","docId":"devops/part-02-linux-administration/linux-networking-tools","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-02-linux-administration/essential-linux-commands","label":"Essential Linux Commands","docId":"devops/part-02-linux-administration/essential-linux-commands","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Networking","items":[{"type":"link","href":"/notes/docs/devops/part-03-networking/networking-basics","label":"Networking Basics","docId":"devops/part-03-networking/networking-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/tcp-ip","label":"TCP/IP","docId":"devops/part-03-networking/tcp-ip","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/ports-and-sockets","label":"Ports and Sockets","docId":"devops/part-03-networking/ports-and-sockets","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/dns","label":"Domain Name System (DNS)","docId":"devops/part-03-networking/dns","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/http-and-https","label":"HTTP and HTTPS","docId":"devops/part-03-networking/http-and-https","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/ssl-and-tls","label":"SSL and TLS","docId":"devops/part-03-networking/ssl-and-tls","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/reverse-proxy","label":"Reverse Proxy","docId":"devops/part-03-networking/reverse-proxy","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/load-balancing","label":"Load Balancing","docId":"devops/part-03-networking/load-balancing","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-03-networking/network-troubleshooting","label":"Network Troubleshooting","docId":"devops/part-03-networking/network-troubleshooting","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Security","items":[{"type":"link","href":"/notes/docs/devops/part-04-security/linux-security-basics","label":"Linux Security Basics","docId":"devops/part-04-security/linux-security-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/ssh-security","label":"SSH Security","docId":"devops/part-04-security/ssh-security","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/ufw-firewall","label":"UFW Firewall","docId":"devops/part-04-security/ufw-firewall","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/fail2ban","label":"Fail2Ban","docId":"devops/part-04-security/fail2ban","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/file-permissions-security","label":"File Permissions Security","docId":"devops/part-04-security/file-permissions-security","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/security-updates","label":"Security Updates","docId":"devops/part-04-security/security-updates","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/secrets-and-environment-variables","label":"Secrets and Environment Variables","docId":"devops/part-04-security/secrets-and-environment-variables","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/backups","label":"Backups","docId":"devops/part-04-security/backups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-04-security/production-security-checklist","label":"Production Security Checklist","docId":"devops/part-04-security/production-security-checklist","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Development Environment","items":[{"type":"link","href":"/notes/docs/devops/part-05-development-environment/git","label":"Git","docId":"devops/part-05-development-environment/git","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/nodejs","label":"Node.js","docId":"devops/part-05-development-environment/nodejs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/npm","label":"npm (Node Package Manager)","docId":"devops/part-05-development-environment/npm","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/environment-variables","label":"Environment Variables","docId":"devops/part-05-development-environment/environment-variables","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/pm2","label":"PM2","docId":"devops/part-05-development-environment/pm2","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/pm2-cluster-mode","label":"PM2 Cluster Mode","docId":"devops/part-05-development-environment/pm2-cluster-mode","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/building-node-applications","label":"Building Node.js Applications","docId":"devops/part-05-development-environment/building-node-applications","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-05-development-environment/project-structure","label":"Project Structure","docId":"devops/part-05-development-environment/project-structure","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Nginx","items":[{"type":"link","href":"/notes/docs/devops/part-06-nginx/nginx-introduction","label":"Nginx Introduction","docId":"devops/part-06-nginx/nginx-introduction","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/installing-nginx","label":"Installing Nginx","docId":"devops/part-06-nginx/installing-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/nginx-directory-structure","label":"Nginx Directory Structure","docId":"devops/part-06-nginx/nginx-directory-structure","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/server-blocks","label":"Server Blocks","docId":"devops/part-06-nginx/server-blocks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/location-blocks","label":"Location Blocks","docId":"devops/part-06-nginx/location-blocks","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/reverse-proxy","label":"Reverse Proxy","docId":"devops/part-06-nginx/reverse-proxy","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/static-file-serving","label":"Static File Serving","docId":"devops/part-06-nginx/static-file-serving","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/gzip-and-performance","label":"Gzip and Performance","docId":"devops/part-06-nginx/gzip-and-performance","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/caching","label":"Caching","docId":"devops/part-06-nginx/caching","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/ssl-with-nginx","label":"SSL with Nginx","docId":"devops/part-06-nginx/ssl-with-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/logging","label":"Logging","docId":"devops/part-06-nginx/logging","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/common-configurations","label":"Common Configurations","docId":"devops/part-06-nginx/common-configurations","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-06-nginx/troubleshooting-nginx","label":"Troubleshooting Nginx","docId":"devops/part-06-nginx/troubleshooting-nginx","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Cloud","items":[{"type":"link","href":"/notes/docs/devops/part-07-cloud/what-is-cloud-computing","label":"What is Cloud Computing","docId":"devops/part-07-cloud/what-is-cloud-computing","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloud-service-models","label":"Cloud Service Models","docId":"devops/part-07-cloud/cloud-service-models","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/azure-basics","label":"Azure Basics","docId":"devops/part-07-cloud/azure-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/resource-groups","label":"Resource Groups","docId":"devops/part-07-cloud/resource-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/virtual-machines","label":"Virtual Machines","docId":"devops/part-07-cloud/virtual-machines","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/storage","label":"Storage","docId":"devops/part-07-cloud/storage","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/networking-in-azure","label":"Networking in Azure","docId":"devops/part-07-cloud/networking-in-azure","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/network-security-groups","label":"Network Security Groups","docId":"devops/part-07-cloud/network-security-groups","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/public-ip-and-private-ip","label":"Public IP and Private IP","docId":"devops/part-07-cloud/public-ip-and-private-ip","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/dns-and-domain","label":"DNS and Domain","docId":"devops/part-07-cloud/dns-and-domain","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare","label":"Cloudflare","docId":"devops/part-07-cloud/cloudflare","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare-ssl","label":"Cloudflare SSL/TLS","docId":"devops/part-07-cloud/cloudflare-ssl","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-07-cloud/cloudflare-cdn","label":"Cloudflare CDN","docId":"devops/part-07-cloud/cloudflare-cdn","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Deployment","items":[{"type":"link","href":"/notes/docs/devops/part-08-deployment/deployment-overview","label":"Deployment Overview","docId":"devops/part-08-deployment/deployment-overview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/preparing-server","label":"Preparing Server","docId":"devops/part-08-deployment/preparing-server","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/deploying-node-app","label":"Deploying Node.js Application","docId":"devops/part-08-deployment/deploying-node-app","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/configuring-nginx","label":"Configuring Nginx","docId":"devops/part-08-deployment/configuring-nginx","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/domain-setup","label":"Domain Setup","docId":"devops/part-08-deployment/domain-setup","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/ssl-setup","label":"SSL Setup","docId":"devops/part-08-deployment/ssl-setup","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/pm2-deployment","label":"PM2 Deployment","docId":"devops/part-08-deployment/pm2-deployment","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/zero-downtime-deployment","label":"Zero Downtime Deployment","docId":"devops/part-08-deployment/zero-downtime-deployment","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/upgrading-production","label":"Upgrading Production","docId":"devops/part-08-deployment/upgrading-production","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/backup-and-rollback","label":"Backup and Rollback","docId":"devops/part-08-deployment/backup-and-rollback","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-08-deployment/complete-deployment-walkthrough","label":"Complete Deployment Walkthrough","docId":"devops/part-08-deployment/complete-deployment-walkthrough","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Monitoring","items":[{"type":"link","href":"/notes/docs/devops/part-09-monitoring/monitoring-basics","label":"Monitoring Basics","docId":"devops/part-09-monitoring/monitoring-basics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/system-metrics","label":"System Metrics","docId":"devops/part-09-monitoring/system-metrics","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/disk-monitoring","label":"Disk Monitoring","docId":"devops/part-09-monitoring/disk-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/memory-monitoring","label":"Memory Monitoring","docId":"devops/part-09-monitoring/memory-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/nginx-logs","label":"Nginx Logs","docId":"devops/part-09-monitoring/nginx-logs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/nodejs-logs","label":"Node.js Logs","docId":"devops/part-09-monitoring/nodejs-logs","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/pm2-monitoring","label":"PM2 Monitoring","docId":"devops/part-09-monitoring/pm2-monitoring","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/performance-tuning","label":"Performance Tuning","docId":"devops/part-09-monitoring/performance-tuning","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-09-monitoring/maintenance-checklist","label":"Maintenance Checklist","docId":"devops/part-09-monitoring/maintenance-checklist","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Troubleshooting","items":[{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting","label":"Linux Troubleshooting","docId":"devops/part-10-troubleshooting/linux-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/network-troubleshooting","label":"Network Troubleshooting","docId":"devops/part-10-troubleshooting/network-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/ssh-troubleshooting","label":"SSH Troubleshooting","docId":"devops/part-10-troubleshooting/ssh-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/nginx-troubleshooting","label":"Nginx Troubleshooting","docId":"devops/part-10-troubleshooting/nginx-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/nodejs-troubleshooting","label":"Node.js Troubleshooting","docId":"devops/part-10-troubleshooting/nodejs-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/pm2-troubleshooting","label":"PM2 Troubleshooting","docId":"devops/part-10-troubleshooting/pm2-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/cloudflare-troubleshooting","label":"Cloudflare Troubleshooting","docId":"devops/part-10-troubleshooting/cloudflare-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/ssl-troubleshooting","label":"SSL/TLS Troubleshooting","docId":"devops/part-10-troubleshooting/ssl-troubleshooting","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-10-troubleshooting/real-world-debugging","label":"Real-World Production Debugging","docId":"devops/part-10-troubleshooting/real-world-debugging","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Reference","items":[{"type":"link","href":"/notes/docs/devops/part-11-reference/linux-command-reference","label":"Linux Command Reference","docId":"devops/part-11-reference/linux-command-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/nginx-reference","label":"Nginx Reference","docId":"devops/part-11-reference/nginx-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/systemctl-reference","label":"systemctl Reference","docId":"devops/part-11-reference/systemctl-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/pm2-reference","label":"PM2 Reference","docId":"devops/part-11-reference/pm2-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/git-reference","label":"Git Reference","docId":"devops/part-11-reference/git-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/networking-reference","label":"Networking Reference","docId":"devops/part-11-reference/networking-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/common-file-locations","label":"Common File Locations","docId":"devops/part-11-reference/common-file-locations","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/port-reference","label":"Port Reference","docId":"devops/part-11-reference/port-reference","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/linux-cheat-sheet","label":"Linux Cheat Sheet","docId":"devops/part-11-reference/linux-cheat-sheet","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-11-reference/production-checklists","label":"Production Checklists","docId":"devops/part-11-reference/production-checklists","unlisted":false}],"collapsed":true,"collapsible":true},{"type":"category","label":"Interview Prep","items":[{"type":"link","href":"/notes/docs/devops/part-12-interview/linux-interview","label":"Linux Interview Preparation","docId":"devops/part-12-interview/linux-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/networking-interview","label":"Networking Interview Preparation","docId":"devops/part-12-interview/networking-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/nginx-interview","label":"Nginx Interview Preparation","docId":"devops/part-12-interview/nginx-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/nodejs-interview","label":"Node.js Interview Preparation","docId":"devops/part-12-interview/nodejs-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/cloud-interview","label":"Cloud Interview Preparation","docId":"devops/part-12-interview/cloud-interview","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/scenario-based-questions","label":"Scenario-Based Interview Questions","docId":"devops/part-12-interview/scenario-based-questions","unlisted":false},{"type":"link","href":"/notes/docs/devops/part-12-interview/production-case-studies","label":"Production Case Studies","docId":"devops/part-12-interview/production-case-studies","unlisted":false}],"collapsed":true,"collapsible":true}],"collapsible":true,"href":"/notes/docs/devops"},{"type":"category","label":"Web Development","items":[{"type":"category","label":"JavaScript","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Prototypes & Inheritance","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Prototype Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","label":"Introduction to Prototypes","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","label":"__proto__, [[Prototype]] and prototype","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","label":"Reading vs Writing Properties in the Prototype Chain","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","label":"this with Prototype Methods","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","label":"Enumerating Properties in the Prototype Chain","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","label":"Prototype Behavior & Common Interview Scenarios","docId":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","unlisted":false}],"href":"/notes/docs/category/prototype-fundamentals"},{"type":"category","label":"Constructor Functions & F.prototype","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","label":"Constructor Functions & the new Operator","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","label":"F.prototype in Depth","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","label":"The Default prototype Object & the constructor Property","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","label":"Changing F.prototype & Object Creation Behavior","docId":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","unlisted":false}],"href":"/notes/docs/category/constructor-functions--fprototype"},{"type":"category","label":"Native Prototypes","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","label":"Object.prototype & The Root of JavaScript Inheritance","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","label":"Native Prototypes (Array.prototype, Function.prototype, Date.prototype & More)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","label":"Primitive Wrapper Objects (Autoboxing)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","label":"Modifying Native Prototypes & Polyfills","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","label":"Borrowing Methods from Native Prototypes (Method Borrowing)","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","label":"Complete Prototype Hierarchy & Mental Model","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","label":"Part 3F — Native Prototype Exercises","docId":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","unlisted":false}],"href":"/notes/docs/category/native-prototypes"},{"type":"category","label":"Modern Prototype APIs","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","label":"Object.create()","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","label":"Modern Prototype APIs (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","label":"Prototype-less Objects (Object.create(null))","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","label":"Historical Evolution of JavaScript Prototypes (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","label":"Historical Evolution of JavaScript Prototypes (Complete Guide)","docId":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","unlisted":false}],"href":"/notes/docs/category/modern-prototype-apis"}],"href":"/notes/docs/category/prototypes--inheritance"}],"href":"/notes/docs/category/javascript"},{"type":"category","label":"React","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/react/intro","label":"React Knowledge Base","docId":"web-dev/react/intro","unlisted":false}],"href":"/notes/docs/category/react"},{"type":"category","label":"TypeScript","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"TypeScript Fundamentals","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part1","label":"Introduction to TypeScript","docId":"web-dev/typescript/typescript-fundamentals/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part2","label":"Primitive Types, Type Annotations & Type Inference","docId":"web-dev/typescript/typescript-fundamentals/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-fundamentals/part3","label":"Functions","docId":"web-dev/typescript/typescript-fundamentals/part3","unlisted":false}]},{"type":"category","label":"Object Types & Custom Types","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part1","label":"Object Types","docId":"web-dev/typescript/object-types-and-custom-types/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part2","label":"Type Aliases","docId":"web-dev/typescript/object-types-and-custom-types/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part3","label":"Utility Types","docId":"web-dev/typescript/object-types-and-custom-types/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/object-types-and-custom-types/part4","label":"Optional Properties & Readonly Properties","docId":"web-dev/typescript/object-types-and-custom-types/part4","unlisted":false}]},{"type":"category","label":"Advanced Types","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part1","label":"Union Types","docId":"web-dev/typescript/advanced-types/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part2","label":"Intersection Types","docId":"web-dev/typescript/advanced-types/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part3","label":"Type Narrowing","docId":"web-dev/typescript/advanced-types/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/advanced-types/part4","label":"Type Assertions, any, unknown, and never","docId":"web-dev/typescript/advanced-types/part4","unlisted":false}]},{"type":"category","label":"Arrays, Tuples & Enums","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part1","label":"Arrays","docId":"web-dev/typescript/arrays-tuples-and-enums/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part2","label":"Tuples","docId":"web-dev/typescript/arrays-tuples-and-enums/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/arrays-tuples-and-enums/part3","label":"Enums","docId":"web-dev/typescript/arrays-tuples-and-enums/part3","unlisted":false}]},{"type":"category","label":"Interfaces","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part1","label":"Interface Fundamentals","docId":"web-dev/typescript/interfaces/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part2","label":"Advanced Interfaces","docId":"web-dev/typescript/interfaces/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/interfaces/part3","label":"Interface vs Type","docId":"web-dev/typescript/interfaces/part3","unlisted":false}]},{"type":"category","label":"Classes and OOPs","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part1","label":"Classes Fundamentals","docId":"web-dev/typescript/classes-and-oops/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part2","label":"Access Modifiers","docId":"web-dev/typescript/classes-and-oops/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part3","label":"Getters, Setters & Static Members","docId":"web-dev/typescript/classes-and-oops/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part4","label":"Inheritance","docId":"web-dev/typescript/classes-and-oops/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part5","label":"Interfaces with Classes","docId":"web-dev/typescript/classes-and-oops/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part6","label":"Abstract Classes","docId":"web-dev/typescript/classes-and-oops/part6","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/classes-and-oops/part7","label":"OOP Design Concepts","docId":"web-dev/typescript/classes-and-oops/part7","unlisted":false}]},{"type":"category","label":"Generics","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part1","label":"Generic Functions","docId":"web-dev/typescript/generics/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part2","label":"Generic Interfaces","docId":"web-dev/typescript/generics/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part3","label":"Generic Classes","docId":"web-dev/typescript/generics/part3","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part4","label":"Generic Constraints, extends, keyof & Default Generics","docId":"web-dev/typescript/generics/part4","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part5","label":"Utility Types + Generics","docId":"web-dev/typescript/generics/part5","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/generics/part6","label":"Advanced Utility Types (Record, Exclude, Extract, NonNullable)","docId":"web-dev/typescript/generics/part6","unlisted":false}]},{"type":"category","label":"TypeScript in Real Applications","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part1","label":"Type Declaration Files (.d.ts) & DefinitelyTyped","docId":"web-dev/typescript/typescript-in-real-applications/part1","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part2","label":"Typing APIs (fetch, Axios, AxiosResponse & Error Handling)","docId":"web-dev/typescript/typescript-in-real-applications/part2","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/typescript/typescript-in-real-applications/part3","label":"Async TypeScript (Promise Types & Async/Await)","docId":"web-dev/typescript/typescript-in-real-applications/part3","unlisted":false}]}],"href":"/notes/docs/category/typescript"},{"type":"category","label":"Node.js","collapsible":true,"collapsed":true,"items":[{"type":"category","label":"Modules","collapsible":true,"collapsed":true,"items":[{"type":"link","href":"/notes/docs/web-dev/node/modules/cjs_require_internals","label":"Node.js CommonJS Module System","docId":"web-dev/node/modules/cjs_require_internals","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/module_resolution","label":"Node.js CommonJS Module Resolution","docId":"web-dev/node/modules/module_resolution","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/es_modules","label":"Node.js ES Modules (ESM)","docId":"web-dev/node/modules/es_modules","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/cjs_mjs_interop","label":"Node.js CommonJS/ESM Interop","docId":"web-dev/node/modules/cjs_mjs_interop","unlisted":false},{"type":"link","href":"/notes/docs/web-dev/node/modules/import.meta_esm_caching","label":"Node.js import.meta, URLs, Caching","docId":"web-dev/node/modules/import.meta_esm_caching","unlisted":false}]}],"href":"/notes/docs/category/nodejs"}],"collapsed":true,"collapsible":true,"href":"/notes/docs/web-dev"}]},"docs":{"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide":{"id":"devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide","title":"UAT VM Deployment Cheat Sheet (Azure + Ubuntu 24.04)","description":"Use this as the checklist for every new VM (UAT/Production).","sidebar":"tutorialSidebar"},"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md":{"id":"devops/part-00-cheatsheet/Linux_Server_Command_Reference.md","title":"Linux Server Setup Cheat Sheet","description":"A quick reference for all commands used during Linux server provisioning, security hardening, Node.js deployment, Nginx setup, SSL configuration, and production verification.","sidebar":"tutorialSidebar"},"devops/part-01-foundations/linux-architecture":{"id":"devops/part-01-foundations/linux-architecture","title":"Linux Architecture","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/linux-boot-process":{"id":"devops/part-01-foundations/linux-boot-process","title":"Linux Boot Process","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/operating-system":{"id":"devops/part-01-foundations/operating-system","title":"Operating System","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/ssh-overview":{"id":"devops/part-01-foundations/ssh-overview","title":"SSH Overview","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/terminal-shell-and-bash":{"id":"devops/part-01-foundations/terminal-shell-and-bash","title":"Terminal, Shell and Bash","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-01-foundations/why-linux":{"id":"devops/part-01-foundations/why-linux","title":"Why Linux?","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/cron-and-scheduling":{"id":"devops/part-02-linux-administration/cron-and-scheduling","title":"Cron and Scheduling","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/essential-linux-commands":{"id":"devops/part-02-linux-administration/essential-linux-commands","title":"Essential Linux Commands","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-filesystem":{"id":"devops/part-02-linux-administration/linux-filesystem","title":"Linux Filesystem","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-networking-tools":{"id":"devops/part-02-linux-administration/linux-networking-tools","title":"Linux Networking Tools","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/linux-permissions":{"id":"devops/part-02-linux-administration/linux-permissions","title":"Linux Permissions","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/log-management":{"id":"devops/part-02-linux-administration/log-management","title":"Log Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/memory-management":{"id":"devops/part-02-linux-administration/memory-management","title":"Memory Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/package-management":{"id":"devops/part-02-linux-administration/package-management","title":"Package Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/process-management":{"id":"devops/part-02-linux-administration/process-management","title":"Process Management","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/storage-and-disks":{"id":"devops/part-02-linux-administration/storage-and-disks","title":"Storage and Disks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/systemd-and-services":{"id":"devops/part-02-linux-administration/systemd-and-services","title":"systemd and Services","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-02-linux-administration/users-and-groups":{"id":"devops/part-02-linux-administration/users-and-groups","title":"Users and Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/dns":{"id":"devops/part-03-networking/dns","title":"Domain Name System (DNS)","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/http-and-https":{"id":"devops/part-03-networking/http-and-https","title":"HTTP and HTTPS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/load-balancing":{"id":"devops/part-03-networking/load-balancing","title":"Load Balancing","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/network-troubleshooting":{"id":"devops/part-03-networking/network-troubleshooting","title":"Network Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/networking-basics":{"id":"devops/part-03-networking/networking-basics","title":"Networking Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/ports-and-sockets":{"id":"devops/part-03-networking/ports-and-sockets","title":"Ports and Sockets","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/reverse-proxy":{"id":"devops/part-03-networking/reverse-proxy","title":"Reverse Proxy","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/ssl-and-tls":{"id":"devops/part-03-networking/ssl-and-tls","title":"SSL and TLS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-03-networking/tcp-ip":{"id":"devops/part-03-networking/tcp-ip","title":"TCP/IP","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/backups":{"id":"devops/part-04-security/backups","title":"Backups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/fail2ban":{"id":"devops/part-04-security/fail2ban","title":"Fail2Ban","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/file-permissions-security":{"id":"devops/part-04-security/file-permissions-security","title":"File Permissions Security","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/linux-security-basics":{"id":"devops/part-04-security/linux-security-basics","title":"Linux Security Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/production-security-checklist":{"id":"devops/part-04-security/production-security-checklist","title":"Production Security Checklist","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/secrets-and-environment-variables":{"id":"devops/part-04-security/secrets-and-environment-variables","title":"Secrets and Environment Variables","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/security-updates":{"id":"devops/part-04-security/security-updates","title":"Security Updates","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/ssh-security":{"id":"devops/part-04-security/ssh-security","title":"SSH Security","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-04-security/ufw-firewall":{"id":"devops/part-04-security/ufw-firewall","title":"UFW Firewall","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/building-node-applications":{"id":"devops/part-05-development-environment/building-node-applications","title":"Building Node.js Applications","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/environment-variables":{"id":"devops/part-05-development-environment/environment-variables","title":"Environment Variables","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/git":{"id":"devops/part-05-development-environment/git","title":"Git","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/nodejs":{"id":"devops/part-05-development-environment/nodejs","title":"Node.js","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/npm":{"id":"devops/part-05-development-environment/npm","title":"npm (Node Package Manager)","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/pm2":{"id":"devops/part-05-development-environment/pm2","title":"PM2","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/pm2-cluster-mode":{"id":"devops/part-05-development-environment/pm2-cluster-mode","title":"PM2 Cluster Mode","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-05-development-environment/project-structure":{"id":"devops/part-05-development-environment/project-structure","title":"Project Structure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/caching":{"id":"devops/part-06-nginx/caching","title":"Caching","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/common-configurations":{"id":"devops/part-06-nginx/common-configurations","title":"Common Configurations","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/gzip-and-performance":{"id":"devops/part-06-nginx/gzip-and-performance","title":"Gzip and Performance","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/installing-nginx":{"id":"devops/part-06-nginx/installing-nginx","title":"Installing Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/location-blocks":{"id":"devops/part-06-nginx/location-blocks","title":"Location Blocks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/logging":{"id":"devops/part-06-nginx/logging","title":"Logging","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/nginx-directory-structure":{"id":"devops/part-06-nginx/nginx-directory-structure","title":"Nginx Directory Structure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/nginx-introduction":{"id":"devops/part-06-nginx/nginx-introduction","title":"Nginx Introduction","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/reverse-proxy":{"id":"devops/part-06-nginx/reverse-proxy","title":"Reverse Proxy","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/server-blocks":{"id":"devops/part-06-nginx/server-blocks","title":"Server Blocks","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/ssl-with-nginx":{"id":"devops/part-06-nginx/ssl-with-nginx","title":"SSL with Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/static-file-serving":{"id":"devops/part-06-nginx/static-file-serving","title":"Static File Serving","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-06-nginx/troubleshooting-nginx":{"id":"devops/part-06-nginx/troubleshooting-nginx","title":"Troubleshooting Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/azure-basics":{"id":"devops/part-07-cloud/azure-basics","title":"Azure Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloud-service-models":{"id":"devops/part-07-cloud/cloud-service-models","title":"Cloud Service Models","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare":{"id":"devops/part-07-cloud/cloudflare","title":"Cloudflare","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare-cdn":{"id":"devops/part-07-cloud/cloudflare-cdn","title":"Cloudflare CDN","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/cloudflare-ssl":{"id":"devops/part-07-cloud/cloudflare-ssl","title":"Cloudflare SSL/TLS","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/dns-and-domain":{"id":"devops/part-07-cloud/dns-and-domain","title":"DNS and Domain","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/network-security-groups":{"id":"devops/part-07-cloud/network-security-groups","title":"Network Security Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/networking-in-azure":{"id":"devops/part-07-cloud/networking-in-azure","title":"Networking in Azure","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/public-ip-and-private-ip":{"id":"devops/part-07-cloud/public-ip-and-private-ip","title":"Public IP and Private IP","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/resource-groups":{"id":"devops/part-07-cloud/resource-groups","title":"Resource Groups","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/storage":{"id":"devops/part-07-cloud/storage","title":"Storage","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/virtual-machines":{"id":"devops/part-07-cloud/virtual-machines","title":"Virtual Machines","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-07-cloud/what-is-cloud-computing":{"id":"devops/part-07-cloud/what-is-cloud-computing","title":"What is Cloud Computing","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/backup-and-rollback":{"id":"devops/part-08-deployment/backup-and-rollback","title":"Backup and Rollback","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/complete-deployment-walkthrough":{"id":"devops/part-08-deployment/complete-deployment-walkthrough","title":"Complete Deployment Walkthrough","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/configuring-nginx":{"id":"devops/part-08-deployment/configuring-nginx","title":"Configuring Nginx","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/deploying-node-app":{"id":"devops/part-08-deployment/deploying-node-app","title":"Deploying Node.js Application","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/deployment-overview":{"id":"devops/part-08-deployment/deployment-overview","title":"Deployment Overview","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/domain-setup":{"id":"devops/part-08-deployment/domain-setup","title":"Domain Setup","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/pm2-deployment":{"id":"devops/part-08-deployment/pm2-deployment","title":"PM2 Deployment","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/preparing-server":{"id":"devops/part-08-deployment/preparing-server","title":"Preparing Server","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/ssl-setup":{"id":"devops/part-08-deployment/ssl-setup","title":"SSL Setup","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/upgrading-production":{"id":"devops/part-08-deployment/upgrading-production","title":"Upgrading Production","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-08-deployment/zero-downtime-deployment":{"id":"devops/part-08-deployment/zero-downtime-deployment","title":"Zero Downtime Deployment","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/disk-monitoring":{"id":"devops/part-09-monitoring/disk-monitoring","title":"Disk Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/maintenance-checklist":{"id":"devops/part-09-monitoring/maintenance-checklist","title":"Maintenance Checklist","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/memory-monitoring":{"id":"devops/part-09-monitoring/memory-monitoring","title":"Memory Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/monitoring-basics":{"id":"devops/part-09-monitoring/monitoring-basics","title":"Monitoring Basics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/nginx-logs":{"id":"devops/part-09-monitoring/nginx-logs","title":"Nginx Logs","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/nodejs-logs":{"id":"devops/part-09-monitoring/nodejs-logs","title":"Node.js Logs","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/performance-tuning":{"id":"devops/part-09-monitoring/performance-tuning","title":"Performance Tuning","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/pm2-monitoring":{"id":"devops/part-09-monitoring/pm2-monitoring","title":"PM2 Monitoring","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-09-monitoring/system-metrics":{"id":"devops/part-09-monitoring/system-metrics","title":"System Metrics","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/cloudflare-troubleshooting":{"id":"devops/part-10-troubleshooting/cloudflare-troubleshooting","title":"Cloudflare Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/linux-troubleshooting":{"id":"devops/part-10-troubleshooting/linux-troubleshooting","title":"Linux Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/network-troubleshooting":{"id":"devops/part-10-troubleshooting/network-troubleshooting","title":"Network Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/nginx-troubleshooting":{"id":"devops/part-10-troubleshooting/nginx-troubleshooting","title":"Nginx Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/nodejs-troubleshooting":{"id":"devops/part-10-troubleshooting/nodejs-troubleshooting","title":"Node.js Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/pm2-troubleshooting":{"id":"devops/part-10-troubleshooting/pm2-troubleshooting","title":"PM2 Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/real-world-debugging":{"id":"devops/part-10-troubleshooting/real-world-debugging","title":"Real-World Production Debugging","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/ssh-troubleshooting":{"id":"devops/part-10-troubleshooting/ssh-troubleshooting","title":"SSH Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-10-troubleshooting/ssl-troubleshooting":{"id":"devops/part-10-troubleshooting/ssl-troubleshooting","title":"SSL/TLS Troubleshooting","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/common-file-locations":{"id":"devops/part-11-reference/common-file-locations","title":"Common File Locations","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/git-reference":{"id":"devops/part-11-reference/git-reference","title":"Git Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/linux-cheat-sheet":{"id":"devops/part-11-reference/linux-cheat-sheet","title":"Linux Cheat Sheet","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/linux-command-reference":{"id":"devops/part-11-reference/linux-command-reference","title":"Linux Command Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/networking-reference":{"id":"devops/part-11-reference/networking-reference","title":"Networking Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/nginx-reference":{"id":"devops/part-11-reference/nginx-reference","title":"Nginx Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/pm2-reference":{"id":"devops/part-11-reference/pm2-reference","title":"PM2 Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/port-reference":{"id":"devops/part-11-reference/port-reference","title":"Port Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/production-checklists":{"id":"devops/part-11-reference/production-checklists","title":"Production Checklists","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-11-reference/systemctl-reference":{"id":"devops/part-11-reference/systemctl-reference","title":"systemctl Reference","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/cloud-interview":{"id":"devops/part-12-interview/cloud-interview","title":"Cloud Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/linux-interview":{"id":"devops/part-12-interview/linux-interview","title":"Linux Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/networking-interview":{"id":"devops/part-12-interview/networking-interview","title":"Networking Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/nginx-interview":{"id":"devops/part-12-interview/nginx-interview","title":"Nginx Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/nodejs-interview":{"id":"devops/part-12-interview/nodejs-interview","title":"Node.js Interview Preparation","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/production-case-studies":{"id":"devops/part-12-interview/production-case-studies","title":"Production Case Studies","description":"Overview","sidebar":"tutorialSidebar"},"devops/part-12-interview/scenario-based-questions":{"id":"devops/part-12-interview/scenario-based-questions","title":"Scenario-Based Interview Questions","description":"Overview","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part1":{"id":"dsa/basics/bit-manipulation/part1","title":"Binary Number System Fundamentals","description":"Computers understand only two states:","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part2":{"id":"dsa/basics/bit-manipulation/part2","title":"Data Representation: Bit-Level Storage","description":"Most developers learn Binary and Bitwise Operators, but very few understand how numbers are actually stored inside memory.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part3":{"id":"dsa/basics/bit-manipulation/part3","title":"Bitwise Operators: The Logic of Bits","description":"Bitwise operators work directly on the binary representation of numbers.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part4":{"id":"dsa/basics/bit-manipulation/part4","title":"Common Bit Manipulation Techniques","description":"This chapter contains the most important bit manipulation tricks asked in coding interviews.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part5":{"id":"dsa/basics/bit-manipulation/part5","title":"Counting Set Bits (Population Count)","description":"Counting Set Bits is one of the most important topics in Bit Manipulation.","sidebar":"tutorialSidebar"},"dsa/basics/bit-manipulation/part6":{"id":"dsa/basics/bit-manipulation/part6","title":"Bit Manipulation & Binary","description":"Interview Problems Using Bit Manipulation","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part1":{"id":"dsa/basics/cpp-fundamentals/part1","title":"C++ Basics & Program Structure","description":"Before learning data types, memory, arrays, pointers, and OOP, it is important to understand how a C++ program is structured and how execution begins.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part10":{"id":"dsa/basics/cpp-fundamentals/part10","title":"Functions","description":"Functions are one of the most important concepts in programming.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part11":{"id":"dsa/basics/cpp-fundamentals/part11","title":"Advanced Function Concepts","description":"These are important language features commonly used with functions and large codebases.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part2":{"id":"dsa/basics/cpp-fundamentals/part2","title":"Data Types","description":"Every piece of data stored inside a program occupies memory. To store data correctly, the compiler must know:","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part3":{"id":"dsa/basics/cpp-fundamentals/part3","title":"Memory Fundamentals","description":"Every program ultimately works with memory.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part4":{"id":"dsa/basics/cpp-fundamentals/part4","title":"Input / Output Handling","description":"Programs become useful only when they can interact with users.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part5":{"id":"dsa/basics/cpp-fundamentals/part5","title":"Control Flow & Decision Making","description":"By default, a program executes statements from top to bottom.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part6":{"id":"dsa/basics/cpp-fundamentals/part6","title":"Loops","description":"Loops allow us to execute a block of code multiple times without writing the same code repeatedly.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part7":{"id":"dsa/basics/cpp-fundamentals/part7","title":"Characters & ASCII","description":"Characters are one of the most fundamental data types in C++.","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part8":{"id":"dsa/basics/cpp-fundamentals/part8","title":"Characters and Strings (In Depth)","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/cpp-fundamentals/part9":{"id":"dsa/basics/cpp-fundamentals/part9","title":"Operators","description":"Operators are symbols that perform operations on values and variables.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part1":{"id":"dsa/basics/hashing/hashing fundamentals/part1","title":"Introduction to Hashing","description":"Before learning map, unordered_map, or any hashing technique, it is important to understand what hashing actually is and why we need it.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part2":{"id":"dsa/basics/hashing/hashing fundamentals/part2","title":"Array Hashing","description":"In previous lesson, we learned the basic idea of hashing.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/hashing fundamentals/part3":{"id":"dsa/basics/hashing/hashing fundamentals/part3","title":"Character Hashing","description":"In previous lession, we learned how to perform hashing on integers using arrays.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part1":{"id":"dsa/basics/hashing/map/part1","title":"STL map","description":"Array hashing is extremely fast, but it has one major limitation:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part2":{"id":"dsa/basics/hashing/map/part2","title":"Frequency Counting using map","description":"The most common application of a map in DSA is:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/map/part3":{"id":"dsa/basics/hashing/map/part3","title":"How map Works Internally (Red-Black Tree)","description":"`text","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part1":{"id":"dsa/basics/hashing/unordered_map/part1","title":"unordered_map","description":"In previous lessions, we learned about the STL map, which stores elements in sorted order using a Red-Black Tree.","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part2":{"id":"dsa/basics/hashing/unordered_map/part2","title":"How Hashing Works Internally (Hash Tables)","description":"We know that:","sidebar":"tutorialSidebar"},"dsa/basics/hashing/unordered_map/part3":{"id":"dsa/basics/hashing/unordered_map/part3","title":"Collisions, Chaining & Rehashing","description":"In previous lession, we learned that a Hash Function converts a key into a bucket index.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part1":{"id":"dsa/basics/pointers/Double Pointers/part1","title":"Double Pointers Fundamentals","description":"Most developers understand:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part2":{"id":"dsa/basics/pointers/Double Pointers/part2","title":"Double Pointers and Functions","description":"Up until now, every pointer we have seen had a specific type:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part3":{"id":"dsa/basics/pointers/Double Pointers/part3","title":"Double Pointers Memory Layout","description":"This chapter covers one of the most confusing topics in C++:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Double Pointers/part4":{"id":"dsa/basics/pointers/Double Pointers/part4","title":"Advanced Double Pointers","description":"Until now, every pointer we have studied pointed to:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part1":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part1","title":"Arrays and Pointers (Integer Arrays)","description":"This chapter is one of the most important chapters in C++.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part2":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part2","title":"Character Arrays, Character Pointers, String Literals, and cout Behavior","description":"Character arrays and character pointers are one of the most misunderstood areas in C++.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part3":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part3","title":"Pointers in Functions, Array Decay, Array Parameters, and Passing Arrays to Functions","description":"This chapter explains one of the most important and frequently misunderstood topics in C++:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Arrays and Functions/part4":{"id":"dsa/basics/pointers/Pointers Arrays and Functions/part4","title":"Advanced Array-Pointer Relationships","description":"At this point, you understand:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part1":{"id":"dsa/basics/pointers/Pointers Fundamentals/part1","title":"C++ Pointers Fundamentals","description":"Memory, Addresses, Symbol Table, Pointer Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part2":{"id":"dsa/basics/pointers/Pointers Fundamentals/part2","title":"C++ Pointers Fundamentals","description":"Dereference Operator, Memory Access, Pointer Copying, Call By Value Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part3":{"id":"dsa/basics/pointers/Pointers Fundamentals/part3","title":"C++ Pointers Fundamentals","description":"Pointer Arithmetic Fundamentals","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Pointers Fundamentals/part4":{"id":"dsa/basics/pointers/Pointers Fundamentals/part4","title":"C++ Pointers Fundamentals","description":"Pointer States, Pass By Address, Address Copy vs Value Copy, Special Pointer Behaviors","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part1","title":"Reference Variables Fundamentals","description":"Before learning:","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part2","title":"Static vs Dynamic Memory","description":"Dynamic Memory Allocation, Stack vs Heap, Runtime Memory, new, delete, and Dynamic Arrays","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part3","title":"Dynamic Arrays & Memory Management","description":"Dynamic Memory Allocation gives programmers enormous flexibility.","sidebar":"tutorialSidebar"},"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4":{"id":"dsa/basics/pointers/Reference Variables, Static and Dynamic Memory Allocation/part4","title":"Dynamic Memory Allocation for 2D Arrays","description":"Why Do We Need Dynamic 2D Arrays?","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-01_foundation":{"id":"dsa/basics/stl/part-01_foundation","title":"Foundations","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-02_dynamic-containers":{"id":"dsa/basics/stl/part-02_dynamic-containers","title":"Dynamic Containers","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-03_container-adaptors":{"id":"dsa/basics/stl/part-03_container-adaptors","title":"Container Adaptors","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-04_associative-containers":{"id":"dsa/basics/stl/part-04_associative-containers","title":"Associative Containers","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-05_algorithms-and-utility-functions":{"id":"dsa/basics/stl/part-05_algorithms-and-utility-functions","title":"Algorithms and Utility Functions","description":"Topics Covered","sidebar":"tutorialSidebar"},"dsa/basics/stl/part-06_final-revision-handbook":{"id":"dsa/basics/stl/part-06_final-revision-handbook","title":"Final Revision","description":"Topics Covered","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part1","title":"Constructor Functions & the new Operator","description":"Before understanding F.prototype, we must first understand constructor functions and how the new operator actually works.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part2","title":"F.prototype in Depth","description":"Now that we understand constructor functions and how the new operator works internally, we can finally understand one of the most misunderstood concepts in JavaScript:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part3","title":"The Default prototype Object & the constructor Property","description":"In the previous chapter, we learned that every constructor function has a special property called:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Constructor Functions & F.prototype/part4","title":"Changing F.prototype & Object Creation Behavior","description":"One of the most frequently asked JavaScript interview topics is:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part1","title":"Object.create()","description":"Until now, we\'ve learned that JavaScript automatically assigns a prototype when using:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part2","title":"Modern Prototype APIs (Complete Guide)","description":"JavaScript originally exposed prototype manipulation through the non-standard proto property.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part3","title":"Prototype-less Objects (Object.create(null))","description":"Almost every object in JavaScript inherits from Object.prototype.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part4","title":"Historical Evolution of JavaScript Prototypes (Complete Guide)","description":"JavaScript\'s inheritance model has changed significantly over the years.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Modern Prototype APIs/part5","title":"Historical Evolution of JavaScript Prototypes (Complete Guide)","description":"JavaScript\'s inheritance model has changed significantly over the years.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part1","title":"Object.prototype & The Root of JavaScript Inheritance","description":"In the previous chapters, we learned how our own objects inherit from other objects using the prototype chain.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part2","title":"Native Prototypes (Array.prototype, Function.prototype, Date.prototype & More)","description":"In the previous chapter, we learned that every ordinary object eventually inherits from:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part3","title":"Primitive Wrapper Objects (Autoboxing)","description":"One of the strangest things in JavaScript is that primitive values like strings and numbers can call methods.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part4","title":"Modifying Native Prototypes & Polyfills","description":"JavaScript allows us to modify built-in prototypes like:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part5","title":"Borrowing Methods from Native Prototypes (Method Borrowing)","description":"One of JavaScript\'s most powerful features is that methods are not permanently tied to the objects they belong to.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part6","title":"Complete Prototype Hierarchy & Mental Model","description":"Throughout this documentation, we\'ve studied:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7":{"id":"web-dev/javascript/Prototypes & Inheritance/Native Prototypes/part7","title":"Part 3F — Native Prototype Exercises","description":"---","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part1","title":"Introduction to Prototypes","description":"Prototypes are one of the most fundamental concepts in JavaScript. Unlike many programming languages that use class-based inheritance, JavaScript was originally built on prototypal inheritance.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part2","title":"__proto__, [[Prototype]] and prototype","description":"One of the biggest sources of confusion in JavaScript is the difference between:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part3","title":"Reading vs Writing Properties in the Prototype Chain","description":"One of the most important things to understand about JavaScript prototypes is how property lookup works.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part4","title":"this with Prototype Methods","description":"One of the biggest misconceptions about JavaScript prototypes is:","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part5","title":"Enumerating Properties in the Prototype Chain","description":"One of the most confusing behaviors in JavaScript is that some loops iterate over inherited properties, while others only iterate over an object\'s own properties.","sidebar":"tutorialSidebar"},"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6":{"id":"web-dev/javascript/Prototypes & Inheritance/Prototype Fundamentals/part6","title":"Prototype Behavior & Common Interview Scenarios","description":"In the previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/node/modules/cjs_mjs_interop":{"id":"web-dev/node/modules/cjs_mjs_interop","title":"Node.js CommonJS ↔ ES Modules Interop: CJS/ESM Edges & Dual Packages","description":"1. What Is CJS/ESM Interoperability?","sidebar":"tutorialSidebar"},"web-dev/node/modules/cjs_require_internals":{"id":"web-dev/node/modules/cjs_require_internals","title":"Node.js CommonJS Module System — Complete Notes","description":"Purpose: A practical, detailed reference for understanding how Node.js CommonJS modules work internally.","sidebar":"tutorialSidebar"},"web-dev/node/modules/es_modules":{"id":"web-dev/node/modules/es_modules","title":"Node.js ES Modules (ESM): import / export & Linking","description":"1. What Are ES Modules?","sidebar":"tutorialSidebar"},"web-dev/node/modules/import.meta_esm_caching":{"id":"web-dev/node/modules/import.meta_esm_caching","title":"Node.js import.meta, URLs, Caching & Module State --- Extensive Study Notes","description":"1. The Big Picture","sidebar":"tutorialSidebar"},"web-dev/node/modules/module_resolution":{"id":"web-dev/node/modules/module_resolution","title":"Node.js CommonJS Module Resolution — Extensive Practical Notes","description":"1. What Is Module Resolution?","sidebar":"tutorialSidebar"},"web-dev/react/intro":{"id":"web-dev/react/intro","title":"React Knowledge Base","description":"Welcome to the React Knowledge Base! This section is dedicated to mastering modern React development, covering everything from fundamental concepts to advanced architectural patterns.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part1":{"id":"web-dev/typescript/advanced-types/part1","title":"Union Types","description":"One of the biggest limitations of primitive typing is that a variable can normally hold only one type.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part2":{"id":"web-dev/typescript/advanced-types/part2","title":"Intersection Types","description":"In previour lession, we learned about Union Types (|), which allow a value to be one type OR another type.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part3":{"id":"web-dev/typescript/advanced-types/part3","title":"Type Narrowing","description":"We have learned that Union Types allow a variable to store multiple possible types.","sidebar":"tutorialSidebar"},"web-dev/typescript/advanced-types/part4":{"id":"web-dev/typescript/advanced-types/part4","title":"Type Assertions, any, unknown, and never","description":"TypeScript tries to infer and validate types automatically.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part1":{"id":"web-dev/typescript/arrays-tuples-and-enums/part1","title":"Arrays","description":"Arrays are one of the most commonly used data structures in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part2":{"id":"web-dev/typescript/arrays-tuples-and-enums/part2","title":"Tuples","description":"Arrays are useful when all elements have the same type.","sidebar":"tutorialSidebar"},"web-dev/typescript/arrays-tuples-and-enums/part3":{"id":"web-dev/typescript/arrays-tuples-and-enums/part3","title":"Enums","description":"Enums (Enumerations) allow us to define a fixed set of named constants.","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part1":{"id":"web-dev/typescript/classes-and-oops/part1","title":"Classes Fundamentals","description":"Classes are one of the core Object-Oriented Programming (OOP) features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part2":{"id":"web-dev/typescript/classes-and-oops/part2","title":"Access Modifiers","description":"One of the biggest advantages of Classes is the ability to control:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part3":{"id":"web-dev/typescript/classes-and-oops/part3","title":"Getters, Setters & Static Members","description":"In Part 6A and 6B, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part4":{"id":"web-dev/typescript/classes-and-oops/part4","title":"Inheritance","description":"One of the biggest advantages of Object-Oriented Programming is:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part5":{"id":"web-dev/typescript/classes-and-oops/part5","title":"Interfaces with Classes","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part6":{"id":"web-dev/typescript/classes-and-oops/part6","title":"Abstract Classes","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/classes-and-oops/part7":{"id":"web-dev/typescript/classes-and-oops/part7","title":"OOP Design Concepts","description":"In previous chapters, we learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part1":{"id":"web-dev/typescript/generics/part1","title":"Generic Functions","description":"Generics are one of the most powerful features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part2":{"id":"web-dev/typescript/generics/part2","title":"Generic Interfaces","description":"In previous chapter, we learned how Generic Functions allow us to write reusable and type-safe functions.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part3":{"id":"web-dev/typescript/generics/part3","title":"Generic Classes","description":"Now we\'ll learn one of the most powerful applications of Generics:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part4":{"id":"web-dev/typescript/generics/part4","title":"Generic Constraints, extends, keyof & Default Generics","description":"Generics are extremely powerful because they allow us to write reusable code.","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part5":{"id":"web-dev/typescript/generics/part5","title":"Utility Types + Generics","description":"Now we are ready to understand one of the most powerful features of TypeScript:","sidebar":"tutorialSidebar"},"web-dev/typescript/generics/part6":{"id":"web-dev/typescript/generics/part6","title":"Advanced Utility Types (Record, Exclude, Extract, NonNullable)","description":"In this chapter, we\'ll cover additional utility types frequently used in:","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part1":{"id":"web-dev/typescript/interfaces/part1","title":"Interface Fundamentals","description":"Interfaces are one of the most important features in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part2":{"id":"web-dev/typescript/interfaces/part2","title":"Advanced Interfaces","description":"In previous chapter, we learned how Interfaces define the structure of objects.","sidebar":"tutorialSidebar"},"web-dev/typescript/interfaces/part3":{"id":"web-dev/typescript/interfaces/part3","title":"Interface vs Type","description":"One of the most common TypeScript interview questions is:","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part1":{"id":"web-dev/typescript/object-types-and-custom-types/part1","title":"Object Types","description":"Objects are one of the most important concepts in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part2":{"id":"web-dev/typescript/object-types-and-custom-types/part2","title":"Type Aliases","description":"In previous chapter, we learned how to define Object Types directly using inline type definitions.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part3":{"id":"web-dev/typescript/object-types-and-custom-types/part3","title":"Utility Types","description":"As applications grow larger, we often need slightly modified versions of existing types.","sidebar":"tutorialSidebar"},"web-dev/typescript/object-types-and-custom-types/part4":{"id":"web-dev/typescript/object-types-and-custom-types/part4","title":"Optional Properties & Readonly Properties","description":"In real-world applications, not every property is always available and not every property should be allowed to change.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part1":{"id":"web-dev/typescript/typescript-fundamentals/part1","title":"Introduction to TypeScript","description":"---","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part2":{"id":"web-dev/typescript/typescript-fundamentals/part2","title":"Primitive Types, Type Annotations & Type Inference","description":"Everything in TypeScript starts with types.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-fundamentals/part3":{"id":"web-dev/typescript/typescript-fundamentals/part3","title":"Functions","description":"Functions are one of the most important concepts in TypeScript.","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part1":{"id":"web-dev/typescript/typescript-in-real-applications/part1","title":"Type Declaration Files (.d.ts) & DefinitelyTyped","description":"So far, we have learned:","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part2":{"id":"web-dev/typescript/typescript-in-real-applications/part2","title":"Typing APIs (fetch, Axios, AxiosResponse & Error Handling)","description":"In real-world applications, one of the most common tasks is:","sidebar":"tutorialSidebar"},"web-dev/typescript/typescript-in-real-applications/part3":{"id":"web-dev/typescript/typescript-in-real-applications/part3","title":"Async TypeScript (Promise Types & Async/Await)","description":"Modern applications spend a significant amount of time performing:","sidebar":"tutorialSidebar"}}}}');
 
 /***/ },
 
@@ -293060,7 +295377,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/cjs_requir
 (module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/module_resolution","title":"Node.js CommonJS Module Resolution — Extensive Practical Notes","description":"When you write:","source":"@site/docs/web-dev/node/modules/02.module_resolution.md","sourceDirName":"web-dev/node/modules","slug":"/web-dev/node/modules/module_resolution","permalink":"/notes/docs/web-dev/node/modules/module_resolution","draft":false,"unlisted":false,"editUrl":"https://github.com/codingsapienss/notes/tree/main/docs/web-dev/node/modules/02.module_resolution.md","tags":[],"version":"current","sidebarPosition":2,"frontMatter":{"sidebar_label":"Node.js CommonJS Module Resolution","sidebar_position":2},"sidebar":"tutorialSidebar","previous":{"title":"Node.js CommonJS Module System","permalink":"/notes/docs/web-dev/node/modules/cjs_require_internals"},"next":{"title":"Node.js ES Modules (ESM)","permalink":"/notes/docs/web-dev/node/modules/es_modules"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/module_resolution","title":"Node.js CommonJS Module Resolution — Extensive Practical Notes","description":"1. What Is Module Resolution?","source":"@site/docs/web-dev/node/modules/02.module_resolution.md","sourceDirName":"web-dev/node/modules","slug":"/web-dev/node/modules/module_resolution","permalink":"/notes/docs/web-dev/node/modules/module_resolution","draft":false,"unlisted":false,"editUrl":"https://github.com/codingsapienss/notes/tree/main/docs/web-dev/node/modules/02.module_resolution.md","tags":[],"version":"current","sidebarPosition":2,"frontMatter":{"sidebar_label":"Node.js CommonJS Module Resolution","sidebar_position":2},"sidebar":"tutorialSidebar","previous":{"title":"Node.js CommonJS Module System","permalink":"/notes/docs/web-dev/node/modules/cjs_require_internals"},"next":{"title":"Node.js ES Modules (ESM)","permalink":"/notes/docs/web-dev/node/modules/es_modules"}}');
 
 /***/ },
 
@@ -293076,7 +295393,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/es_modules
 (module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/cjs_mjs_interop","title":"Node.js CommonJS ↔ ES Modules Interop: CJS/ESM Edges & Dual Packages","description":"Node.js has two module systems:","source":"@site/docs/web-dev/node/modules/04.cjs_mjs_interop.md","sourceDirName":"web-dev/node/modules","slug":"/web-dev/node/modules/cjs_mjs_interop","permalink":"/notes/docs/web-dev/node/modules/cjs_mjs_interop","draft":false,"unlisted":false,"editUrl":"https://github.com/codingsapienss/notes/tree/main/docs/web-dev/node/modules/04.cjs_mjs_interop.md","tags":[],"version":"current","sidebarPosition":4,"frontMatter":{"sidebar_label":"Node.js CommonJS/ESM Interop","sidebar_position":4},"sidebar":"tutorialSidebar","previous":{"title":"Node.js ES Modules (ESM)","permalink":"/notes/docs/web-dev/node/modules/es_modules"},"next":{"title":"Node.js import.meta, URLs, Caching","permalink":"/notes/docs/web-dev/node/modules/import.meta_esm_caching"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"web-dev/node/modules/cjs_mjs_interop","title":"Node.js CommonJS ↔ ES Modules Interop: CJS/ESM Edges & Dual Packages","description":"1. What Is CJS/ESM Interoperability?","source":"@site/docs/web-dev/node/modules/04.cjs_mjs_interop.md","sourceDirName":"web-dev/node/modules","slug":"/web-dev/node/modules/cjs_mjs_interop","permalink":"/notes/docs/web-dev/node/modules/cjs_mjs_interop","draft":false,"unlisted":false,"editUrl":"https://github.com/codingsapienss/notes/tree/main/docs/web-dev/node/modules/04.cjs_mjs_interop.md","tags":[],"version":"current","sidebarPosition":4,"frontMatter":{"sidebar_label":"Node.js CommonJS/ESM Interop","sidebar_position":4},"sidebar":"tutorialSidebar","previous":{"title":"Node.js ES Modules (ESM)","permalink":"/notes/docs/web-dev/node/modules/es_modules"},"next":{"title":"Node.js import.meta, URLs, Caching","permalink":"/notes/docs/web-dev/node/modules/import.meta_esm_caching"}}');
 
 /***/ },
 
