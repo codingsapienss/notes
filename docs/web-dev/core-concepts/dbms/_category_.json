@@ -1,0 +1,8 @@
+{
+  "label": "DBMS",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Database management systems, SQL, NoSQL, and distributed databases."
+  }
+}
