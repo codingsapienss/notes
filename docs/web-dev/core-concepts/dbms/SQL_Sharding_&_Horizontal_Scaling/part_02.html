@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/SQL_Sharding_&_Horizontal_Scaling/part_02" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Sharding Strategies | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Sharding Strategies | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction: How Do We Decide Which Data Goes to Which Shard?"><meta data-rh="true" property="og:description" content="1. Introduction: How Do We Decide Which Data Goes to Which Shard?"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_02"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_02" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_02" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"SQL_Sharding_&_Horizontal_Scaling","item":"https://codingsapienss.github.io/notes/docs/category/sql_sharding__horizontal_scaling"},{"@type":"ListItem","position":5,"name":"Sharding Strategies","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&_Horizontal_Scaling/part_02"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Collapse sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_01"><span title="Sharding Fundamentals" class="linkLabel_WmDU">Sharding Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_02"><span title="Sharding Strategies" class="linkLabel_WmDU">Sharding Strategies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_03"><span title="Query Execution in Sharded Systems" class="linkLabel_WmDU">Query Execution in Sharded Systems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_04"><span title="Sharding Challenges" class="linkLabel_WmDU">Sharding Challenges</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_05"><span title="Sharding vs Normalization vs Replication" class="linkLabel_WmDU">Sharding vs Normalization vs Replication</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span>SQL_Sharding_&amp;_Horizontal_Scaling</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Sharding Strategies</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Sharding Strategies</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction-how-do-we-decide-which-data-goes-to-which-shard">1. Introduction: How Do We Decide Which Data Goes to Which Shard?<a href="#1-introduction-how-do-we-decide-which-data-goes-to-which-shard" class="hash-link" aria-label="Direct link to 1. Introduction: How Do We Decide Which Data Goes to Which Shard?" title="Direct link to 1. Introduction: How Do We Decide Which Data Goes to Which Shard?" translate="no">​</a></h2>
+<p>In last section, we learned that sharding distributes a large dataset across multiple database servers.</p>
+<p>But an important question remains:</p>
+<p><strong>How does the system decide which record belongs to which shard?</strong></p>
+<p>Imagine an e-commerce application with:</p>
+<ul>
+<li class="">100 million users</li>
+<li class="">10 database servers</li>
+<li class="">10 million users per server, ideally</li>
+</ul>
+<p>You need a strategy to distribute users across those servers.</p>
+<p>A poor distribution strategy can create problems:</p>
+<ul>
+<li class="">One server stores too much data.</li>
+<li class="">One server receives most of the traffic.</li>
+<li class="">Some servers remain underutilized.</li>
+<li class="">Adding a new server becomes difficult.</li>
+<li class="">Queries become expensive because the router cannot locate the required data efficiently.</li>
+</ul>
+<p>The strategy used to distribute records is called a <strong>sharding strategy</strong>.</p>
+<p>In this chapter, we will study:</p>
+<ol>
+<li class="">Range-based sharding</li>
+<li class="">Hash-based sharding</li>
+<li class="">Directory-based sharding</li>
+<li class="">Geographic sharding</li>
+<li class="">Tenant-based sharding</li>
+<li class="">Choosing a shard key</li>
+<li class="">Data distribution and workload balance</li>
+<li class="">Hot shards and hot partitions</li>
+<li class="">Consistent hashing</li>
+<li class="">Shard expansion and rebalancing</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-range-based-sharding">2. Range-Based Sharding<a href="#2-range-based-sharding" class="hash-link" aria-label="Direct link to 2. Range-Based Sharding" title="Direct link to 2. Range-Based Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-what-is-range-based-sharding">2.1 What Is Range-Based Sharding?<a href="#21-what-is-range-based-sharding" class="hash-link" aria-label="Direct link to 2.1 What Is Range-Based Sharding?" title="Direct link to 2.1 What Is Range-Based Sharding?" translate="no">​</a></h3>
+<p>Range-based sharding distributes records according to ranges of a shard key.</p>
+<p>For example, suppose you have 100 million users and choose <code>user_id</code> as your shard key.</p>
+<p>You divide the users into ranges:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Shard</th><th>User ID Range</th></tr></thead><tbody><tr><td>Shard 1</td><td>1–10,000,000</td></tr><tr><td>Shard 2</td><td>10,000,001–20,000,000</td></tr><tr><td>Shard 3</td><td>20,000,001–30,000,000</td></tr><tr><td>Shard 4</td><td>30,000,001–40,000,000</td></tr><tr><td>...</td><td>...</td></tr><tr><td>Shard 10</td><td>90,000,001–100,000,000</td></tr></tbody></table>
+<p>Each shard stores records whose shard-key values fall within its assigned range.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-architecture">2.2 Architecture<a href="#22-architecture" class="hash-link" aria-label="Direct link to 2.2 Architecture" title="Direct link to 2.2 Architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          -------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Shard 1     Shard 2     Shard 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       1-1000      1001-2000   2001-3000</span><br></div></code></pre></div></div>
+<p>Suppose the application requests:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1500</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The router checks the range:</p>
+<ul>
+<li class="">1500 is greater than 1000.</li>
+<li class="">1500 is less than or equal to 2000.</li>
+<li class="">Therefore, the query goes to Shard 2.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-how-range-based-routing-works">2.3 How Range-Based Routing Works<a href="#23-how-range-based-routing-works" class="hash-link" aria-label="Direct link to 2.3 How Range-Based Routing Works" title="Direct link to 2.3 How Range-Based Routing Works" translate="no">​</a></h3>
+<p>Conceptually:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">function</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">getShard</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">userId</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">userId </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;shard1&quot;</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">userId </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;shard2&quot;</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">userId </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;shard3&quot;</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;User ID outside configured ranges&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This is a simplified example. Production systems usually maintain shard metadata instead of hardcoding every range.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-advantages">2.4 Advantages<a href="#24-advantages" class="hash-link" aria-label="Direct link to 2.4 Advantages" title="Direct link to 2.4 Advantages" translate="no">​</a></h3>
+<p><strong>1. Efficient range queries</strong></p>
+<p>Suppose you need users with IDs between 1200 and 1800.</p>
+<p>The router knows that the relevant range belongs to Shard 2.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">BETWEEN</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1200</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1800</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Only one shard needs to be queried in this example.</p>
+<p><strong>2. Simple routing</strong></p>
+<p>The router can determine the destination using range boundaries.</p>
+<p><strong>3. Natural ordering</strong></p>
+<p>Range-based sharding can be useful when records are frequently queried by ordered values such as dates or IDs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="25-disadvantages">2.5 Disadvantages<a href="#25-disadvantages" class="hash-link" aria-label="Direct link to 2.5 Disadvantages" title="Direct link to 2.5 Disadvantages" translate="no">​</a></h3>
+<p><strong>1. Uneven distribution</strong></p>
+<p>Suppose most new users receive sequential IDs.</p>
+<p>New registrations may keep going to the shard that owns the newest ID range.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: Older users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: Older users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: Most recent users</span><br></div></code></pre></div></div>
+<p>Shard 3 may receive most of the new writes.</p>
+<p>This creates a hot shard.</p>
+<p><strong>2. Rebalancing complexity</strong></p>
+<p>When a range becomes too large, records may need to be moved to another shard.</p>
+<p><strong>3. Traffic imbalance</strong></p>
+<p>Equal ID ranges do not necessarily mean equal traffic.</p>
+<p>Some ranges may contain more active users than others.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="26-when-should-you-use-range-based-sharding">2.6 When Should You Use Range-Based Sharding?<a href="#26-when-should-you-use-range-based-sharding" class="hash-link" aria-label="Direct link to 2.6 When Should You Use Range-Based Sharding?" title="Direct link to 2.6 When Should You Use Range-Based Sharding?" translate="no">​</a></h3>
+<p>It can be suitable when:</p>
+<ul>
+<li class="">Range queries are common.</li>
+<li class="">The shard key has a meaningful ordering.</li>
+<li class="">Data distribution is reasonably predictable.</li>
+<li class="">The system can manage range boundaries and rebalancing.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li class="">Time-based event records</li>
+<li class="">Historical order data</li>
+<li class="">Sequentially organized datasets</li>
+</ul>
+<p>However, sequential keys require special attention because they can concentrate writes on the newest range.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-hash-based-sharding">3. Hash-Based Sharding<a href="#3-hash-based-sharding" class="hash-link" aria-label="Direct link to 3. Hash-Based Sharding" title="Direct link to 3. Hash-Based Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-what-is-hash-based-sharding">3.1 What Is Hash-Based Sharding?<a href="#31-what-is-hash-based-sharding" class="hash-link" aria-label="Direct link to 3.1 What Is Hash-Based Sharding?" title="Direct link to 3.1 What Is Hash-Based Sharding?" translate="no">​</a></h3>
+<p>Hash-based sharding uses a hash function to calculate which shard should store a record.</p>
+<p>Instead of checking numeric ranges, the system applies a hash function to the shard key.</p>
+<p>The result determines the destination shard.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hash Function</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hash Value</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard Selection</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-example">3.2 Example<a href="#32-example" class="hash-link" aria-label="Direct link to 3.2 Example" title="Direct link to 3.2 Example" translate="no">​</a></h3>
+<p>Suppose you have three shards.</p>
+<p>A simplified hash-based strategy might be:</p>
+<p>[
+\text{Shard Number} = \text{hash(user_id)} \bmod 3
+]</p>
+<p>The modulo operation returns a remainder of 0, 1, or 2.</p>
+<p>We map those values to three shards:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Modulo Result</th><th>Destination</th></tr></thead><tbody><tr><td>0</td><td>Shard 1</td></tr><tr><td>1</td><td>Shard 2</td></tr><tr><td>2</td><td>Shard 3</td></tr></tbody></table>
+<p>For illustration, assume these hash outputs:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>User ID</th><th style="text-align:right">Hash Output</th><th style="text-align:right">Hash % 3</th><th>Shard</th></tr></thead><tbody><tr><td>101</td><td style="text-align:right">42</td><td style="text-align:right">0</td><td>Shard 1</td></tr><tr><td>102</td><td style="text-align:right">76</td><td style="text-align:right">1</td><td>Shard 2</td></tr><tr><td>103</td><td style="text-align:right">83</td><td style="text-align:right">2</td><td>Shard 3</td></tr><tr><td>104</td><td style="text-align:right">57</td><td style="text-align:right">0</td><td>Shard 1</td></tr><tr><td>105</td><td style="text-align:right">91</td><td style="text-align:right">1</td><td>Shard 2</td></tr><tr><td>106</td><td style="text-align:right">120</td><td style="text-align:right">0</td><td>Shard 1</td></tr></tbody></table>
+<p>The actual hash function and outputs depend on the implementation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-how-routing-works">3.3 How Routing Works<a href="#33-how-routing-works" class="hash-link" aria-label="Direct link to 3.3 How Routing Works" title="Direct link to 3.3 How Routing Works" translate="no">​</a></h3>
+<p>Conceptual JavaScript example:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">function</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">getShard</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">userId</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> shardCount </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> hash </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">hashFunction</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">userId</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> shardIndex </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> hash </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> shardCount</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> </span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">shard</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">shardIndex </span><span class="token template-string interpolation operator" style="color:#393A34">+</span><span class="token template-string interpolation"> </span><span class="token template-string interpolation number" style="color:#36acaa">1</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Here, <code>hashFunction()</code> represents a suitable deterministic hash function. It is a placeholder, not a built-in JavaScript function.</p>
+<p>The same key must consistently map to the same shard under the same shard configuration.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-advantages">3.4 Advantages<a href="#34-advantages" class="hash-link" aria-label="Direct link to 3.4 Advantages" title="Direct link to 3.4 Advantages" translate="no">​</a></h3>
+<p><strong>1. Generally good distribution</strong></p>
+<p>A well-designed hash function can distribute records relatively evenly across shards.</p>
+<p><strong>2. Avoids sequential-key concentration</strong></p>
+<p>Sequential IDs are spread across different shards rather than all new IDs going to the newest range.</p>
+<p><strong>3. Simple routing</strong></p>
+<p>The router can calculate the destination from the shard key.</p>
+<p><strong>4. Useful for equality queries</strong></p>
+<p>A query using the shard key can be routed to one shard.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">105</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The router hashes <code>105</code> and identifies the destination shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-disadvantages">3.5 Disadvantages<a href="#35-disadvantages" class="hash-link" aria-label="Direct link to 3.5 Disadvantages" title="Direct link to 3.5 Disadvantages" translate="no">​</a></h3>
+<p><strong>1. Range queries become expensive</strong></p>
+<p>Suppose you need:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">BETWEEN</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">500</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Because IDs are distributed according to hash values, this range may span multiple shards.</p>
+<p>The router may need to query several shards.</p>
+<p><strong>2. Adding a shard can be difficult</strong></p>
+<p>With simple modulo hashing:</p>
+<p>[
+\text{shard} = \text{hash(key)} \bmod N
+]</p>
+<p>Changing the number of shards from 3 to 4 can change the destination for many existing keys.</p>
+<p>This can require substantial data movement.</p>
+<p><strong>3. Data locality is reduced</strong></p>
+<p>Records with nearby key values may be stored on different servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="36-when-should-you-use-hash-based-sharding">3.6 When Should You Use Hash-Based Sharding?<a href="#36-when-should-you-use-hash-based-sharding" class="hash-link" aria-label="Direct link to 3.6 When Should You Use Hash-Based Sharding?" title="Direct link to 3.6 When Should You Use Hash-Based Sharding?" translate="no">​</a></h3>
+<p>It is useful when:</p>
+<ul>
+<li class="">Data should be distributed relatively evenly.</li>
+<li class="">Equality lookups are common.</li>
+<li class="">Sequential inserts would otherwise create a hot range.</li>
+<li class="">Range-query locality is not the primary requirement.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li class="">User accounts</li>
+<li class="">Session records</li>
+<li class="">Customer records</li>
+<li class="">High-volume key-based workloads</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-directory-based-sharding">4. Directory-Based Sharding<a href="#4-directory-based-sharding" class="hash-link" aria-label="Direct link to 4. Directory-Based Sharding" title="Direct link to 4. Directory-Based Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-what-is-directory-based-sharding">4.1 What Is Directory-Based Sharding?<a href="#41-what-is-directory-based-sharding" class="hash-link" aria-label="Direct link to 4.1 What Is Directory-Based Sharding?" title="Direct link to 4.1 What Is Directory-Based Sharding?" translate="no">​</a></h3>
+<p>Directory-based sharding uses a lookup mechanism that explicitly maps records or tenants to their assigned shards.</p>
+<p>Instead of calculating the destination from a range or hash function, the router looks up a mapping.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tenant ID</th><th>Shard</th></tr></thead><tbody><tr><td>101</td><td>Shard 1</td></tr><tr><td>102</td><td>Shard 2</td></tr><tr><td>103</td><td>Shard 1</td></tr><tr><td>104</td><td>Shard 3</td></tr><tr><td>105</td><td>Shard 2</td></tr></tbody></table>
+<p>The directory stores the relationship between a key and its destination shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-architecture">4.2 Architecture<a href="#42-architecture" class="hash-link" aria-label="Direct link to 4.2 Architecture" title="Direct link to 4.2 Architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Shard Directory</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          ---------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Shard 1   Shard 2   Shard 3</span><br></div></code></pre></div></div>
+<p>The directory can be implemented using:</p>
+<ul>
+<li class="">A metadata database</li>
+<li class="">A distributed key-value store</li>
+<li class="">A routing metadata service</li>
+<li class="">A carefully managed configuration system</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-example">4.3 Example<a href="#43-example" class="hash-link" aria-label="Direct link to 4.3 Example" title="Direct link to 4.3 Example" translate="no">​</a></h3>
+<p>Suppose a SaaS application has three shards.</p>
+<p>Tenant 101 belongs to Shard 1.</p>
+<p>Tenant 102 belongs to Shard 2.</p>
+<p>Tenant 103 belongs to Shard 1.</p>
+<p>A request arrives:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">GET /tenants/103/projects</span><br></div></code></pre></div></div>
+<p>The router:</p>
+<ol>
+<li class="">Extracts <code>tenant_id = 103</code>.</li>
+<li class="">Looks up the tenant in the directory.</li>
+<li class="">Finds Shard 1.</li>
+<li class="">Routes the query to Shard 1.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-conceptual-database-design">4.4 Conceptual Database Design<a href="#44-conceptual-database-design" class="hash-link" aria-label="Direct link to 4.4 Conceptual Database Design" title="Direct link to 4.4 Conceptual Database Design" translate="no">​</a></h3>
+<p>A directory might contain:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> tenant_shard_mapping </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    tenant_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    shard_id </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">50</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Example records:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> tenant_shard_mapping</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">tenant_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> shard_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;shard1&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">102</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;shard2&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">103</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;shard1&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">104</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;shard3&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>A routing service can query this mapping to identify the destination.</p>
+<p>This is a conceptual example. In production, the directory must be available, protected against inconsistent updates, and designed to avoid becoming a bottleneck.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="45-advantages">4.5 Advantages<a href="#45-advantages" class="hash-link" aria-label="Direct link to 4.5 Advantages" title="Direct link to 4.5 Advantages" translate="no">​</a></h3>
+<p><strong>1. Flexible distribution</strong></p>
+<p>You can assign different tenants or records to different shards without changing a global hash or range formula.</p>
+<p><strong>2. Easier targeted migration</strong></p>
+<p>You can move a tenant to another shard by updating its mapping, provided the data has been migrated safely.</p>
+<p><strong>3. Supports uneven tenant sizes</strong></p>
+<p>Large tenants can be assigned dedicated shards, while smaller tenants can share shards.</p>
+<p><strong>4. Flexible routing</strong></p>
+<p>The system can make placement decisions using business-specific information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="46-disadvantages">4.6 Disadvantages<a href="#46-disadvantages" class="hash-link" aria-label="Direct link to 4.6 Disadvantages" title="Direct link to 4.6 Disadvantages" translate="no">​</a></h3>
+<p><strong>1. Directory dependency</strong></p>
+<p>The routing system depends on the directory being available and correct.</p>
+<p><strong>2. Metadata management</strong></p>
+<p>Mappings must be updated safely when records move.</p>
+<p><strong>3. Potential bottleneck</strong></p>
+<p>If every request performs an expensive directory lookup, the directory can become a performance bottleneck.</p>
+<p>Caching and efficient lookup mechanisms can reduce this problem.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="47-when-should-you-use-directory-based-sharding">4.7 When Should You Use Directory-Based Sharding?<a href="#47-when-should-you-use-directory-based-sharding" class="hash-link" aria-label="Direct link to 4.7 When Should You Use Directory-Based Sharding?" title="Direct link to 4.7 When Should You Use Directory-Based Sharding?" translate="no">​</a></h3>
+<p>It is useful when:</p>
+<ul>
+<li class="">Tenants have very different sizes.</li>
+<li class="">Data placement needs flexibility.</li>
+<li class="">Records need to be moved between shards.</li>
+<li class="">The system needs explicit control over data location.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li class="">Multi-tenant SaaS platforms</li>
+<li class="">Enterprise applications</li>
+<li class="">Large customer databases</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-geographic-sharding">5. Geographic Sharding<a href="#5-geographic-sharding" class="hash-link" aria-label="Direct link to 5. Geographic Sharding" title="Direct link to 5. Geographic Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-what-is-geographic-sharding">5.1 What Is Geographic Sharding?<a href="#51-what-is-geographic-sharding" class="hash-link" aria-label="Direct link to 5.1 What Is Geographic Sharding?" title="Direct link to 5.1 What Is Geographic Sharding?" translate="no">​</a></h3>
+<p>Geographic sharding distributes data based on geographical location.</p>
+<p>For example, an application may operate in:</p>
+<ul>
+<li class="">India</li>
+<li class="">Europe</li>
+<li class="">North America</li>
+<li class="">Asia-Pacific</li>
+</ul>
+<p>You can assign users to database servers based on their region.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                Global Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  Geographic Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 /        |        \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             India      Europe   North America</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              DB          DB         DB</span><br></div></code></pre></div></div>
+<p>A user associated with India may be routed to an India-region database.</p>
+<p>A user associated with Europe may be routed to a Europe-region database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-why-use-geographic-sharding">5.2 Why Use Geographic Sharding?<a href="#52-why-use-geographic-sharding" class="hash-link" aria-label="Direct link to 5.2 Why Use Geographic Sharding?" title="Direct link to 5.2 Why Use Geographic Sharding?" translate="no">​</a></h3>
+<p><strong>1. Lower latency</strong></p>
+<p>Users can access data from a geographically closer database server.</p>
+<p><strong>2. Data residency requirements</strong></p>
+<p>Some businesses or regulations require certain data to remain within specific geographical boundaries.</p>
+<p><strong>3. Regional workload isolation</strong></p>
+<p>Different regions can process their workloads independently.</p>
+<p><strong>4. Regional autonomy</strong></p>
+<p>A regional database can continue serving some operations even when connectivity to another region is impaired, depending on the architecture.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-example">5.3 Example<a href="#53-example" class="hash-link" aria-label="Direct link to 5.3 Example" title="Direct link to 5.3 Example" translate="no">​</a></h3>
+<p>Imagine an international e-commerce application:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Region</th><th>Database</th></tr></thead><tbody><tr><td>India</td><td>India Shard</td></tr><tr><td>Europe</td><td>Europe Shard</td></tr><tr><td>North America</td><td>North America Shard</td></tr></tbody></table>
+<p>A user in India accesses the India database.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">India User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">India Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">India Database</span><br></div></code></pre></div></div>
+<p>This can reduce the network distance between the user and database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-disadvantages">5.4 Disadvantages<a href="#54-disadvantages" class="hash-link" aria-label="Direct link to 5.4 Disadvantages" title="Direct link to 5.4 Disadvantages" translate="no">​</a></h3>
+<ul>
+<li class="">Users may travel or change regions.</li>
+<li class="">Some records may need to move.</li>
+<li class="">Cross-region queries can be expensive.</li>
+<li class="">Global reporting may require data aggregation.</li>
+<li class="">Regional failover can be complicated.</li>
+<li class="">Data residency rules require careful interpretation.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="55-when-should-you-use-geographic-sharding">5.5 When Should You Use Geographic Sharding?<a href="#55-when-should-you-use-geographic-sharding" class="hash-link" aria-label="Direct link to 5.5 When Should You Use Geographic Sharding?" title="Direct link to 5.5 When Should You Use Geographic Sharding?" translate="no">​</a></h3>
+<p>It is useful for:</p>
+<ul>
+<li class="">Global applications</li>
+<li class="">Regional marketplaces</li>
+<li class="">International SaaS platforms</li>
+<li class="">Applications with geographical data-residency requirements</li>
+</ul>
+<p>Geographic placement must be based on actual business and regulatory requirements, not just user IP addresses.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-tenant-based-sharding">6. Tenant-Based Sharding<a href="#6-tenant-based-sharding" class="hash-link" aria-label="Direct link to 6. Tenant-Based Sharding" title="Direct link to 6. Tenant-Based Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-what-is-tenant-based-sharding">6.1 What Is Tenant-Based Sharding?<a href="#61-what-is-tenant-based-sharding" class="hash-link" aria-label="Direct link to 6.1 What Is Tenant-Based Sharding?" title="Direct link to 6.1 What Is Tenant-Based Sharding?" translate="no">​</a></h3>
+<p>Tenant-based sharding distributes data according to the tenant or customer that owns the data.</p>
+<p>This is common in multi-tenant SaaS applications.</p>
+<p>Imagine a platform used by 10,000 companies.</p>
+<p>Each company has:</p>
+<ul>
+<li class="">Employees</li>
+<li class="">Projects</li>
+<li class="">Tasks</li>
+<li class="">Documents</li>
+<li class="">Activity logs</li>
+</ul>
+<p>The database can distribute tenants across shards.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                SaaS Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             ---------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Shard 1   Shard 2   Shard 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          --------  --------  --------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Tenant    Tenant    Tenant</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          1-3000    3001-6000 6001-10000</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-how-it-works">6.2 How It Works<a href="#62-how-it-works" class="hash-link" aria-label="Direct link to 6.2 How It Works" title="Direct link to 6.2 How It Works" translate="no">​</a></h3>
+<p>Suppose a request arrives:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">GET /tenants/105/projects</span><br></div></code></pre></div></div>
+<p>The backend extracts:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> tenantId </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">105</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The shard router identifies which database contains Tenant 105.</p>
+<p>All tenant-related queries are routed to that shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-example-database-structure">6.3 Example Database Structure<a href="#63-example-database-structure" class="hash-link" aria-label="Direct link to 6.3 Example Database Structure" title="Direct link to 6.3 Example Database Structure" translate="no">​</a></h3>
+<p>Each shard may contain the same tables:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">tenants</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">projects</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">tasks</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">documents</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">tenants</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">projects</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">tasks</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">documents</span><br></div></code></pre></div></div>
+<p>However, each shard contains different tenant records.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-advantages">6.4 Advantages<a href="#64-advantages" class="hash-link" aria-label="Direct link to 6.4 Advantages" title="Direct link to 6.4 Advantages" translate="no">​</a></h3>
+<p><strong>1. Data locality</strong></p>
+<p>Tenant-related data can remain together on one shard.</p>
+<p><strong>2. Efficient tenant-specific queries</strong></p>
+<p>Queries for a single tenant can usually be routed to one shard.</p>
+<p><strong>3. Isolation</strong></p>
+<p>Large or important tenants can be assigned dedicated database capacity.</p>
+<p><strong>4. Flexible placement</strong></p>
+<p>Tenants can be moved to different shards when capacity requirements change.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="65-disadvantages">6.5 Disadvantages<a href="#65-disadvantages" class="hash-link" aria-label="Direct link to 6.5 Disadvantages" title="Direct link to 6.5 Disadvantages" translate="no">​</a></h3>
+<p><strong>1. Hot tenants</strong></p>
+<p>One very large or active tenant can overload its shard.</p>
+<p><strong>2. Cross-tenant queries</strong></p>
+<p>Reports covering all tenants may need to query multiple shards.</p>
+<p><strong>3. Tenant migration</strong></p>
+<p>Moving a tenant requires migrating related data and updating routing metadata safely.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="66-when-should-you-use-tenant-based-sharding">6.6 When Should You Use Tenant-Based Sharding?<a href="#66-when-should-you-use-tenant-based-sharding" class="hash-link" aria-label="Direct link to 6.6 When Should You Use Tenant-Based Sharding?" title="Direct link to 6.6 When Should You Use Tenant-Based Sharding?" translate="no">​</a></h3>
+<p>It is useful when:</p>
+<ul>
+<li class="">The application has a clear tenant identifier.</li>
+<li class="">Most queries are scoped to one tenant.</li>
+<li class="">Tenant data can be managed relatively independently.</li>
+<li class="">The business needs flexible placement of large customers.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-choosing-the-right-shard-key">7. Choosing the Right Shard Key<a href="#7-choosing-the-right-shard-key" class="hash-link" aria-label="Direct link to 7. Choosing the Right Shard Key" title="Direct link to 7. Choosing the Right Shard Key" translate="no">​</a></h2>
+<p>The shard key is one of the most important architectural decisions in sharding.</p>
+<p>A shard key determines how data is distributed and how queries are routed.</p>
+<p>A poor shard key can make an otherwise powerful architecture inefficient.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-what-makes-a-good-shard-key">7.1 What Makes a Good Shard Key?<a href="#71-what-makes-a-good-shard-key" class="hash-link" aria-label="Direct link to 7.1 What Makes a Good Shard Key?" title="Direct link to 7.1 What Makes a Good Shard Key?" translate="no">​</a></h3>
+<p>A good shard key should ideally have:</p>
+<ol>
+<li class="">High cardinality</li>
+<li class="">Even data distribution</li>
+<li class="">Even workload distribution</li>
+<li class="">Frequent use in queries</li>
+<li class="">Low risk of creating hot shards</li>
+<li class="">Stable values</li>
+<li class="">A relationship with the application&#x27;s data access patterns</li>
+</ol>
+<p>Let&#x27;s understand these properties.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-high-cardinality">7.2 High Cardinality<a href="#72-high-cardinality" class="hash-link" aria-label="Direct link to 7.2 High Cardinality" title="Direct link to 7.2 High Cardinality" translate="no">​</a></h3>
+<p>Cardinality refers to the number of distinct values in a field.</p>
+<p>Consider:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th style="text-align:right">Approximate Distinct Values</th></tr></thead><tbody><tr><td><code>country</code></td><td style="text-align:right">200</td></tr><tr><td><code>account_status</code></td><td style="text-align:right">3</td></tr><tr><td><code>user_id</code></td><td style="text-align:right">10 million</td></tr><tr><td><code>tenant_id</code></td><td style="text-align:right">10,000</td></tr></tbody></table>
+<p>A high-cardinality field offers many possible values for distributing records.</p>
+<p>A field such as <code>account_status</code> is usually a poor shard key because it has very few distinct values.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">active   -&gt; Shard 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">inactive -&gt; Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">blocked  -&gt; Shard 3</span><br></div></code></pre></div></div>
+<p>This could create severe imbalance if most accounts are active.</p>
+<p>However, high cardinality alone does not guarantee a good shard key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="73-even-data-distribution">7.3 Even Data Distribution<a href="#73-even-data-distribution" class="hash-link" aria-label="Direct link to 7.3 Even Data Distribution" title="Direct link to 7.3 Even Data Distribution" translate="no">​</a></h3>
+<p>A good shard key should distribute records reasonably evenly.</p>
+<p>Suppose you have three shards:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: 33 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: 33 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: 34 million records</span><br></div></code></pre></div></div>
+<p>This is relatively balanced.</p>
+<p>But consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: 80 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: 10 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: 10 million records</span><br></div></code></pre></div></div>
+<p>Shard 1 is significantly larger.</p>
+<p>This may happen when the shard key distribution is skewed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="74-even-workload-distribution">7.4 Even Workload Distribution<a href="#74-even-workload-distribution" class="hash-link" aria-label="Direct link to 7.4 Even Workload Distribution" title="Direct link to 7.4 Even Workload Distribution" translate="no">​</a></h3>
+<p>Data distribution and workload distribution are not the same.</p>
+<p>Suppose each shard contains 10 million users.</p>
+<p>However:</p>
+<ul>
+<li class="">Shard 1 receives 10,000 requests per second.</li>
+<li class="">Shard 2 receives 1,000 requests per second.</li>
+<li class="">Shard 3 receives 500 requests per second.</li>
+</ul>
+<p>The record counts are balanced, but the workload is not.</p>
+<p>A good shard key should consider both:</p>
+<ul>
+<li class="">How much data is stored.</li>
+<li class="">How much traffic is generated.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="75-query-access-patterns">7.5 Query Access Patterns<a href="#75-query-access-patterns" class="hash-link" aria-label="Direct link to 7.5 Query Access Patterns" title="Direct link to 7.5 Query Access Patterns" translate="no">​</a></h3>
+<p>A shard key should ideally appear in the application&#x27;s common queries.</p>
+<p>Suppose most requests look like:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Using <code>user_id</code> as the shard key may allow the router to send these queries directly to one shard.</p>
+<p>But if most queries are:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">50001</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Then <code>user_id</code> might not be sufficient for direct routing.</p>
+<p>The best shard key depends on the actual query workload.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="76-stability">7.6 Stability<a href="#76-stability" class="hash-link" aria-label="Direct link to 7.6 Stability" title="Direct link to 7.6 Stability" translate="no">​</a></h3>
+<p>A shard key should preferably have a stable value.</p>
+<p>Suppose you use <code>country</code> as the shard key.</p>
+<p>A user moves from India to Germany.</p>
+<p>Now the system may need to move that user&#x27;s data to another shard.</p>
+<p>If the shard key changes frequently, data movement and routing become more complicated.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="77-shard-key-evaluation-checklist">7.7 Shard Key Evaluation Checklist<a href="#77-shard-key-evaluation-checklist" class="hash-link" aria-label="Direct link to 7.7 Shard Key Evaluation Checklist" title="Direct link to 7.7 Shard Key Evaluation Checklist" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Question</th></tr></thead><tbody><tr><td>Cardinality</td><td>Does the field have enough distinct values?</td></tr><tr><td>Distribution</td><td>Will records be distributed evenly?</td></tr><tr><td>Workload</td><td>Will requests be distributed evenly?</td></tr><tr><td>Query patterns</td><td>Do common queries contain this field?</td></tr><tr><td>Stability</td><td>Does the value change frequently?</td></tr><tr><td>Locality</td><td>Does the key keep related records together?</td></tr><tr><td>Hotspot risk</td><td>Can one key or range receive disproportionate traffic?</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-hot-shards-and-hot-partitions">8. Hot Shards and Hot Partitions<a href="#8-hot-shards-and-hot-partitions" class="hash-link" aria-label="Direct link to 8. Hot Shards and Hot Partitions" title="Direct link to 8. Hot Shards and Hot Partitions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-what-is-a-hot-shard">8.1 What Is a Hot Shard?<a href="#81-what-is-a-hot-shard" class="hash-link" aria-label="Direct link to 8.1 What Is a Hot Shard?" title="Direct link to 8.1 What Is a Hot Shard?" translate="no">​</a></h3>
+<p>A hot shard is a database shard receiving disproportionately high traffic or workload compared with other shards.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: 5,000 requests/sec</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: 1,000 requests/sec</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: 900 requests/sec</span><br></div></code></pre></div></div>
+<p>Shard 1 is the hot shard.</p>
+<p>It may experience:</p>
+<ul>
+<li class="">High CPU usage</li>
+<li class="">Increased query latency</li>
+<li class="">Lock contention</li>
+<li class="">Connection exhaustion</li>
+<li class="">Higher storage pressure</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-what-causes-hot-shards">8.2 What Causes Hot Shards?<a href="#82-what-causes-hot-shards" class="hash-link" aria-label="Direct link to 8.2 What Causes Hot Shards?" title="Direct link to 8.2 What Causes Hot Shards?" translate="no">​</a></h3>
+<p><strong>1. Poor shard key</strong></p>
+<p>A shard key may distribute data unevenly.</p>
+<p><strong>2. Sequential writes</strong></p>
+<p>A range-based strategy using sequential IDs can send most new writes to one shard.</p>
+<p><strong>3. Uneven tenant activity</strong></p>
+<p>One tenant may generate much more traffic than others.</p>
+<p><strong>4. Popular records</strong></p>
+<p>A very popular product, account, or customer may receive a large number of requests.</p>
+<p><strong>5. Geographic imbalance</strong></p>
+<p>One region may generate significantly more traffic than others.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-example-hot-tenant">8.3 Example: Hot Tenant<a href="#83-example-hot-tenant" class="hash-link" aria-label="Direct link to 8.3 Example: Hot Tenant" title="Direct link to 8.3 Example: Hot Tenant" translate="no">​</a></h3>
+<p>Imagine a SaaS platform with 1,000 tenants.</p>
+<p>Most tenants have 10–20 employees.</p>
+<p>One enterprise tenant has 100,000 employees and generates most of the platform&#x27;s traffic.</p>
+<p>If tenant IDs are distributed across three shards, that large tenant might overload the shard containing it.</p>
+<p>Possible solutions:</p>
+<ul>
+<li class="">Give the large tenant a dedicated shard.</li>
+<li class="">Distribute its workload using a more suitable data model.</li>
+<li class="">Use caching for highly requested data.</li>
+<li class="">Revisit the shard key.</li>
+<li class="">Rebalance other tenants.</li>
+</ul>
+<p>The right solution depends on whether the bottleneck is storage, CPU, write throughput, or a particular access pattern.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-consistent-hashing">9. Consistent Hashing<a href="#9-consistent-hashing" class="hash-link" aria-label="Direct link to 9. Consistent Hashing" title="Direct link to 9. Consistent Hashing" translate="no">​</a></h2>
+<p>Consistent hashing is a technique used to distribute keys across a changing set of nodes while minimizing the number of keys that need to move when nodes are added or removed.</p>
+<p>It is particularly useful in distributed systems where the number of servers can change.</p>
+<p>Before understanding consistent hashing, let&#x27;s understand the problem with simple modulo hashing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-the-problem-with-modulo-hashing">9.1 The Problem With Modulo Hashing<a href="#91-the-problem-with-modulo-hashing" class="hash-link" aria-label="Direct link to 9.1 The Problem With Modulo Hashing" title="Direct link to 9.1 The Problem With Modulo Hashing" translate="no">​</a></h3>
+<p>Suppose you have three shards.</p>
+<p>You use:</p>
+<p>[
+\text{Shard} = \text{hash(key)} \bmod 3
+]</p>
+<p>Now you add a fourth shard.</p>
+<p>The formula becomes:</p>
+<p>[
+\text{Shard} = \text{hash(key)} \bmod 4
+]</p>
+<p>Because the modulo divisor changed, many keys may now map to different shards.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">Key Hash</th><th style="text-align:right">Modulo 3</th><th style="text-align:right">Modulo 4</th></tr></thead><tbody><tr><td style="text-align:right">10</td><td style="text-align:right">1</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">11</td><td style="text-align:right">2</td><td style="text-align:right">3</td></tr><tr><td style="text-align:right">12</td><td style="text-align:right">0</td><td style="text-align:right">0</td></tr><tr><td style="text-align:right">13</td><td style="text-align:right">1</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">14</td><td style="text-align:right">2</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">15</td><td style="text-align:right">0</td><td style="text-align:right">3</td></tr></tbody></table>
+<p>Several keys change their destinations.</p>
+<p>For a very large dataset, moving so much data can be expensive.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-what-is-consistent-hashing">9.2 What Is Consistent Hashing?<a href="#92-what-is-consistent-hashing" class="hash-link" aria-label="Direct link to 9.2 What Is Consistent Hashing?" title="Direct link to 9.2 What Is Consistent Hashing?" translate="no">​</a></h3>
+<p>Consistent hashing maps both:</p>
+<ul>
+<li class="">Data keys</li>
+<li class="">Database nodes</li>
+</ul>
+<p>onto a logical hash space, often visualized as a ring.</p>
+<p>Each key is assigned to a position on the ring.</p>
+<p>A node is responsible for a section of the ring.</p>
+<p>A key is assigned to the next node encountered when moving around the ring in a specified direction.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-basic-architecture">9.3 Basic Architecture<a href="#93-basic-architecture" class="hash-link" aria-label="Direct link to 9.3 Basic Architecture" title="Direct link to 9.3 Basic Architecture" translate="no">​</a></h3>
+<p>Imagine a circular hash space:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Node A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             .--------------.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          .-&#x27;                &#x27;-.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        .&#x27;                      &#x27;.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> Node D|         HASH RING        |Node B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        &#x27;.                      .&#x27;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          &#x27;-.                .-&#x27;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             &#x27;--------------&#x27;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  Node C</span><br></div></code></pre></div></div>
+<p>Data keys and nodes are both hashed into positions on the ring.</p>
+<p>Each key belongs to the next responsible node according to the ring&#x27;s assignment rule.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="94-what-happens-when-a-node-is-added">9.4 What Happens When a Node Is Added?<a href="#94-what-happens-when-a-node-is-added" class="hash-link" aria-label="Direct link to 9.4 What Happens When a Node Is Added?" title="Direct link to 9.4 What Happens When a Node Is Added?" translate="no">​</a></h3>
+<p>Suppose the system has three nodes:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node C</span><br></div></code></pre></div></div>
+<p>Now you add Node D.</p>
+<p>Only the keys in the portion of the ring that changes ownership generally need to move.</p>
+<p>The rest of the keys can remain on their existing nodes.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Before:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node A -&gt; Node B -&gt; Node C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">After:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node A -&gt; Node B -&gt; Node D -&gt; Node C</span><br></div></code></pre></div></div>
+<p>This minimizes data movement compared with recalculating every key using a changed modulo divisor.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="95-virtual-nodes">9.5 Virtual Nodes<a href="#95-virtual-nodes" class="hash-link" aria-label="Direct link to 9.5 Virtual Nodes" title="Direct link to 9.5 Virtual Nodes" translate="no">​</a></h3>
+<p>A basic consistent-hashing ring may distribute load unevenly.</p>
+<p>To improve distribution, systems can assign multiple virtual positions to each physical node.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Physical Node A:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    A-1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    A-2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    A-3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Physical Node B:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    B-1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    B-2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    B-3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Physical Node C:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    C-1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    C-2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    C-3</span><br></div></code></pre></div></div>
+<p>These are called virtual nodes or vnodes.</p>
+<p>They help distribute key ownership more evenly and can make rebalancing more flexible.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="96-advantages">9.6 Advantages<a href="#96-advantages" class="hash-link" aria-label="Direct link to 9.6 Advantages" title="Direct link to 9.6 Advantages" translate="no">​</a></h3>
+<ul>
+<li class="">Reduces data movement when nodes are added or removed.</li>
+<li class="">Supports changing cluster sizes.</li>
+<li class="">Can improve distribution through virtual nodes.</li>
+<li class="">Useful in distributed storage and caching systems.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="97-disadvantages">9.7 Disadvantages<a href="#97-disadvantages" class="hash-link" aria-label="Direct link to 9.7 Disadvantages" title="Direct link to 9.7 Disadvantages" translate="no">​</a></h3>
+<ul>
+<li class="">More complicated than simple modulo hashing.</li>
+<li class="">Requires ring and ownership management.</li>
+<li class="">Does not automatically guarantee perfectly balanced storage or workload.</li>
+<li class="">Data migration and routing still need to be coordinated.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="98-where-is-consistent-hashing-used">9.8 Where Is Consistent Hashing Used?<a href="#98-where-is-consistent-hashing-used" class="hash-link" aria-label="Direct link to 9.8 Where Is Consistent Hashing Used?" title="Direct link to 9.8 Where Is Consistent Hashing Used?" translate="no">​</a></h3>
+<p>It is useful in distributed systems such as:</p>
+<ul>
+<li class="">Distributed caches</li>
+<li class="">Distributed key-value stores</li>
+<li class="">Distributed storage systems</li>
+<li class="">Systems that need to distribute keys across changing node sets</li>
+</ul>
+<p>Consistent hashing is a distribution technique, not a complete database replication or transaction system.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-shard-expansion-and-rebalancing">10. Shard Expansion and Rebalancing<a href="#10-shard-expansion-and-rebalancing" class="hash-link" aria-label="Direct link to 10. Shard Expansion and Rebalancing" title="Direct link to 10. Shard Expansion and Rebalancing" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-what-is-shard-expansion">10.1 What Is Shard Expansion?<a href="#101-what-is-shard-expansion" class="hash-link" aria-label="Direct link to 10.1 What Is Shard Expansion?" title="Direct link to 10.1 What Is Shard Expansion?" translate="no">​</a></h3>
+<p>Shard expansion means increasing the number of shards as the application grows.</p>
+<p>Suppose you start with three shards:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3</span><br></div></code></pre></div></div>
+<p>Later, your application grows and you add two more:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 4</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 5</span><br></div></code></pre></div></div>
+<p>The challenge is deciding which data should move to the new shards.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-what-is-rebalancing">10.2 What Is Rebalancing?<a href="#102-what-is-rebalancing" class="hash-link" aria-label="Direct link to 10.2 What Is Rebalancing?" title="Direct link to 10.2 What Is Rebalancing?" translate="no">​</a></h3>
+<p>Rebalancing is the process of redistributing data or workload across shards to improve balance.</p>
+<p>Example:</p>
+<p>Before rebalancing:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: 80 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: 10 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: 10 million records</span><br></div></code></pre></div></div>
+<p>After rebalancing:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1: 34 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2: 33 million records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3: 33 million records</span><br></div></code></pre></div></div>
+<p>The exact distribution depends on the workload and sharding design.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-why-is-rebalancing-needed">10.3 Why Is Rebalancing Needed?<a href="#103-why-is-rebalancing-needed" class="hash-link" aria-label="Direct link to 10.3 Why Is Rebalancing Needed?" title="Direct link to 10.3 Why Is Rebalancing Needed?" translate="no">​</a></h3>
+<ul>
+<li class="">One shard becomes too large.</li>
+<li class="">One shard receives too much traffic.</li>
+<li class="">New servers are added.</li>
+<li class="">Existing servers are removed.</li>
+<li class="">Tenant sizes change.</li>
+<li class="">Data distribution becomes uneven.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="104-what-happens-during-rebalancing">10.4 What Happens During Rebalancing?<a href="#104-what-happens-during-rebalancing" class="hash-link" aria-label="Direct link to 10.4 What Happens During Rebalancing?" title="Direct link to 10.4 What Happens During Rebalancing?" translate="no">​</a></h3>
+<p>A simplified process:</p>
+<ol>
+<li class="">Identify overloaded shards.</li>
+<li class="">Determine which data should move.</li>
+<li class="">Copy the required data to the destination shard.</li>
+<li class="">Track writes that happen during migration.</li>
+<li class="">Verify the destination data.</li>
+<li class="">Update routing metadata.</li>
+<li class="">Direct new requests to the destination.</li>
+<li class="">Remove old copies when safe.</li>
+</ol>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Before:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1       Shard 2       Shard 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> 80M            10M            10M</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">During:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1  -------&gt; Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Data Migration</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">After:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1       Shard 2       Shard 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> 34M            33M            33M</span><br></div></code></pre></div></div>
+<p>This is a conceptual example. Real online migration requires careful coordination so that concurrent writes are not lost and clients do not read inconsistent copies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="105-challenges-during-rebalancing">10.5 Challenges During Rebalancing<a href="#105-challenges-during-rebalancing" class="hash-link" aria-label="Direct link to 10.5 Challenges During Rebalancing" title="Direct link to 10.5 Challenges During Rebalancing" translate="no">​</a></h3>
+<ul>
+<li class="">Data movement consumes network bandwidth.</li>
+<li class="">Source and destination servers need extra resources.</li>
+<li class="">Writes may continue while data is moving.</li>
+<li class="">Routing metadata must remain consistent.</li>
+<li class="">Duplicate or missing records must be avoided.</li>
+<li class="">Application queries may need to handle migration states.</li>
+</ul>
+<p>Rebalancing is not just copying rows from one server to another. It is a distributed data migration problem.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-comparing-sharding-strategies">11. Comparing Sharding Strategies<a href="#11-comparing-sharding-strategies" class="hash-link" aria-label="Direct link to 11. Comparing Sharding Strategies" title="Direct link to 11. Comparing Sharding Strategies" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Strategy</th><th>How It Distributes Data</th><th>Main Advantage</th><th>Main Disadvantage</th></tr></thead><tbody><tr><td>Range-based</td><td>Key ranges</td><td>Efficient range queries</td><td>Hot ranges and uneven distribution</td></tr><tr><td>Hash-based</td><td>Hash of shard key</td><td>Generally even distribution</td><td>Poor range locality</td></tr><tr><td>Directory-based</td><td>Explicit key-to-shard mapping</td><td>Flexible placement</td><td>Directory management</td></tr><tr><td>Geographic</td><td>Region or location</td><td>Regional locality</td><td>Cross-region coordination</td></tr><tr><td>Tenant-based</td><td>Tenant identifier</td><td>Tenant data locality</td><td>Hot tenants</td></tr><tr><td>Consistent hashing</td><td>Keys and nodes on a hash ring</td><td>Less movement when nodes change</td><td>More complex ownership management</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="which-strategy-should-you-choose">Which Strategy Should You Choose?<a href="#which-strategy-should-you-choose" class="hash-link" aria-label="Direct link to Which Strategy Should You Choose?" title="Direct link to Which Strategy Should You Choose?" translate="no">​</a></h3>
+<p>There is no universally best strategy.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Potential Strategy</th></tr></thead><tbody><tr><td>Frequent range queries</td><td>Range-based</td></tr><tr><td>Even key distribution</td><td>Hash-based</td></tr><tr><td>Flexible tenant placement</td><td>Directory-based</td></tr><tr><td>Regional data locality</td><td>Geographic</td></tr><tr><td>Tenant-isolated workloads</td><td>Tenant-based</td></tr><tr><td>Cluster membership changes frequently</td><td>Consistent hashing</td></tr></tbody></table>
+<p>Some strategies can be combined.</p>
+<p>For example, a SaaS platform could use directory-based tenant placement and then use range or hash distribution within a large tenant.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-practical-backend-example-choosing-a-sharding-strategy">12. Practical Backend Example: Choosing a Sharding Strategy<a href="#12-practical-backend-example-choosing-a-sharding-strategy" class="hash-link" aria-label="Direct link to 12. Practical Backend Example: Choosing a Sharding Strategy" title="Direct link to 12. Practical Backend Example: Choosing a Sharding Strategy" translate="no">​</a></h2>
+<p>Imagine you are designing a database architecture for an e-commerce platform.</p>
+<p>The platform contains:</p>
+<ul>
+<li class="">Users</li>
+<li class="">Products</li>
+<li class="">Orders</li>
+<li class="">Payments</li>
+<li class="">Inventory</li>
+</ul>
+<p>You need to decide how to distribute the data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-a-user-based-sharding">Option A: User-Based Sharding<a href="#option-a-user-based-sharding" class="hash-link" aria-label="Direct link to Option A: User-Based Sharding" title="Direct link to Option A: User-Based Sharding" translate="no">​</a></h3>
+<p>Use <code>user_id</code> as the shard key.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Users 1-1000000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Their related orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Users 1000001-2000000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Their related orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Users 2000001-3000000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Their related orders</span><br></div></code></pre></div></div>
+<p>Suitable when most queries are user-specific.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-b-hash-based-user-sharding">Option B: Hash-Based User Sharding<a href="#option-b-hash-based-user-sharding" class="hash-link" aria-label="Direct link to Option B: Hash-Based User Sharding" title="Direct link to Option B: Hash-Based User Sharding" translate="no">​</a></h3>
+<p>Use a hash of <code>user_id</code>.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">hash(user_id) % 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Result 0 -&gt; Shard 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Result 1 -&gt; Shard 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Result 2 -&gt; Shard 3</span><br></div></code></pre></div></div>
+<p>Suitable when you want to distribute user records without concentrating sequential IDs on one shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-c-tenant-based-sharding">Option C: Tenant-Based Sharding<a href="#option-c-tenant-based-sharding" class="hash-link" aria-label="Direct link to Option C: Tenant-Based Sharding" title="Direct link to Option C: Tenant-Based Sharding" translate="no">​</a></h3>
+<p>If the application serves multiple businesses, use <code>tenant_id</code>.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Shard 1 -&gt; Tenants A, B, C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 2 -&gt; Tenants D, E, F</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard 3 -&gt; Tenants G, H, I</span><br></div></code></pre></div></div>
+<p>Suitable when most operations are scoped to one tenant.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-d-geographic-sharding">Option D: Geographic Sharding<a href="#option-d-geographic-sharding" class="hash-link" aria-label="Direct link to Option D: Geographic Sharding" title="Direct link to Option D: Geographic Sharding" translate="no">​</a></h3>
+<p>Use region as the placement key.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">India users -&gt; India database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Europe users -&gt; Europe database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">US users -&gt; US database</span><br></div></code></pre></div></div>
+<p>Suitable when geographical locality or data residency is a major requirement.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-decision">Final Decision<a href="#final-decision" class="hash-link" aria-label="Direct link to Final Decision" title="Direct link to Final Decision" translate="no">​</a></h3>
+<p>The correct strategy depends on:</p>
+<ul>
+<li class="">Most frequent queries</li>
+<li class="">Data volume</li>
+<li class="">Write volume</li>
+<li class="">Tenant distribution</li>
+<li class="">Regional requirements</li>
+<li class="">Growth patterns</li>
+<li class="">Rebalancing requirements</li>
+</ul>
+<p>Never choose a shard key based only on the database schema. Choose it based on how the application accesses and modifies data.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-common-misconceptions">13. Common Misconceptions<a href="#13-common-misconceptions" class="hash-link" aria-label="Direct link to 13. Common Misconceptions" title="Direct link to 13. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-hash-based-sharding-guarantees-perfectly-equal-distribution">Misconception 1: Hash-based sharding guarantees perfectly equal distribution.<a href="#misconception-1-hash-based-sharding-guarantees-perfectly-equal-distribution" class="hash-link" aria-label="Direct link to Misconception 1: Hash-based sharding guarantees perfectly equal distribution." title="Direct link to Misconception 1: Hash-based sharding guarantees perfectly equal distribution." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A good hash function generally improves distribution, but record frequency, workload patterns, and skew can still create hotspots.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-range-based-sharding-is-always-bad">Misconception 2: Range-based sharding is always bad.<a href="#misconception-2-range-based-sharding-is-always-bad" class="hash-link" aria-label="Direct link to Misconception 2: Range-based sharding is always bad." title="Direct link to Misconception 2: Range-based sharding is always bad." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>It can be highly effective when range queries are common and the key distribution is suitable.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-high-cardinality-automatically-makes-a-good-shard-key">Misconception 3: High cardinality automatically makes a good shard key.<a href="#misconception-3-high-cardinality-automatically-makes-a-good-shard-key" class="hash-link" aria-label="Direct link to Misconception 3: High cardinality automatically makes a good shard key." title="Direct link to Misconception 3: High cardinality automatically makes a good shard key." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>The key must also distribute workload appropriately and match common query patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-adding-a-shard-automatically-redistributes-existing-data">Misconception 4: Adding a shard automatically redistributes existing data.<a href="#misconception-4-adding-a-shard-automatically-redistributes-existing-data" class="hash-link" aria-label="Direct link to Misconception 4: Adding a shard automatically redistributes existing data." title="Direct link to Misconception 4: Adding a shard automatically redistributes existing data." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>The system needs an explicit data migration and routing strategy.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-consistent-hashing-eliminates-data-migration">Misconception 5: Consistent hashing eliminates data migration.<a href="#misconception-5-consistent-hashing-eliminates-data-migration" class="hash-link" aria-label="Direct link to Misconception 5: Consistent hashing eliminates data migration." title="Direct link to Misconception 5: Consistent hashing eliminates data migration." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>It minimizes the number of keys that need to move when membership changes. The affected data still needs to be transferred safely.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-equal-record-counts-mean-equal-workload">Misconception 6: Equal record counts mean equal workload.<a href="#misconception-6-equal-record-counts-mean-equal-workload" class="hash-link" aria-label="Direct link to Misconception 6: Equal record counts mean equal workload." title="Direct link to Misconception 6: Equal record counts mean equal workload." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Some records may receive much more traffic than others.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-tenant-based-sharding-guarantees-tenant-isolation">Misconception 7: Tenant-based sharding guarantees tenant isolation.<a href="#misconception-7-tenant-based-sharding-guarantees-tenant-isolation" class="hash-link" aria-label="Direct link to Misconception 7: Tenant-based sharding guarantees tenant isolation." title="Direct link to Misconception 7: Tenant-based sharding guarantees tenant isolation." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>It helps with data placement, but authorization and access-control checks are still necessary.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-8-geographic-sharding-means-users-must-always-stay-in-one-region">Misconception 8: Geographic sharding means users must always stay in one region.<a href="#misconception-8-geographic-sharding-means-users-must-always-stay-in-one-region" class="hash-link" aria-label="Direct link to Misconception 8: Geographic sharding means users must always stay in one region." title="Direct link to Misconception 8: Geographic sharding means users must always stay in one region." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>User movement, business requirements, and data-residency rules may require data migration or special routing.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-interview-questions">14. Interview Questions<a href="#14-interview-questions" class="hash-link" aria-label="Direct link to 14. Interview Questions" title="Direct link to 14. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-are-the-main-sharding-strategies">Q1. What are the main sharding strategies?<a href="#q1-what-are-the-main-sharding-strategies" class="hash-link" aria-label="Direct link to Q1. What are the main sharding strategies?" title="Direct link to Q1. What are the main sharding strategies?" translate="no">​</a></h3>
+<p>Common strategies include range-based, hash-based, directory-based, geographic, and tenant-based sharding.</p>
+<p>Consistent hashing is also an important technique for distributing keys across changing node sets.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-range-based-sharding">Q2. What is range-based sharding?<a href="#q2-what-is-range-based-sharding" class="hash-link" aria-label="Direct link to Q2. What is range-based sharding?" title="Direct link to Q2. What is range-based sharding?" translate="no">​</a></h3>
+<p>It distributes records according to ranges of a shard key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-hash-based-sharding">Q3. What is hash-based sharding?<a href="#q3-what-is-hash-based-sharding" class="hash-link" aria-label="Direct link to Q3. What is hash-based sharding?" title="Direct link to Q3. What is hash-based sharding?" translate="no">​</a></h3>
+<p>It applies a hash function to a shard key and uses the result to select a shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-directory-based-sharding">Q4. What is directory-based sharding?<a href="#q4-what-is-directory-based-sharding" class="hash-link" aria-label="Direct link to Q4. What is directory-based sharding?" title="Direct link to Q4. What is directory-based sharding?" translate="no">​</a></h3>
+<p>It uses a lookup structure that explicitly maps keys or tenants to their destination shards.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-a-shard-key">Q5. What is a shard key?<a href="#q5-what-is-a-shard-key" class="hash-link" aria-label="Direct link to Q5. What is a shard key?" title="Direct link to Q5. What is a shard key?" translate="no">​</a></h3>
+<p>A shard key is the field or combination of fields used to determine where a record is stored.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-are-the-characteristics-of-a-good-shard-key">Q6. What are the characteristics of a good shard key?<a href="#q6-what-are-the-characteristics-of-a-good-shard-key" class="hash-link" aria-label="Direct link to Q6. What are the characteristics of a good shard key?" title="Direct link to Q6. What are the characteristics of a good shard key?" translate="no">​</a></h3>
+<p>High cardinality, reasonably even data and workload distribution, stable values, and alignment with common query patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-a-hot-shard">Q7. What is a hot shard?<a href="#q7-what-is-a-hot-shard" class="hash-link" aria-label="Direct link to Q7. What is a hot shard?" title="Direct link to Q7. What is a hot shard?" translate="no">​</a></h3>
+<p>A shard that receives disproportionately high traffic or workload compared with other shards.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-why-can-range-based-sharding-create-hot-shards">Q8. Why can range-based sharding create hot shards?<a href="#q8-why-can-range-based-sharding-create-hot-shards" class="hash-link" aria-label="Direct link to Q8. Why can range-based sharding create hot shards?" title="Direct link to Q8. Why can range-based sharding create hot shards?" translate="no">​</a></h3>
+<p>Sequential keys or skewed key distributions can cause most new writes or queries to target one range.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-why-is-hash-based-sharding-useful">Q9. Why is hash-based sharding useful?<a href="#q9-why-is-hash-based-sharding-useful" class="hash-link" aria-label="Direct link to Q9. Why is hash-based sharding useful?" title="Direct link to Q9. Why is hash-based sharding useful?" translate="no">​</a></h3>
+<p>It can distribute records more evenly and reduce hotspots caused by sequential keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-the-disadvantage-of-hash-based-sharding">Q10. What is the disadvantage of hash-based sharding?<a href="#q10-what-is-the-disadvantage-of-hash-based-sharding" class="hash-link" aria-label="Direct link to Q10. What is the disadvantage of hash-based sharding?" title="Direct link to Q10. What is the disadvantage of hash-based sharding?" translate="no">​</a></h3>
+<p>It reduces locality for range queries and can make adding shards expensive when simple modulo hashing is used.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-consistent-hashing">Q11. What is consistent hashing?<a href="#q11-what-is-consistent-hashing" class="hash-link" aria-label="Direct link to Q11. What is consistent hashing?" title="Direct link to Q11. What is consistent hashing?" translate="no">​</a></h3>
+<p>It maps keys and nodes into a logical hash space so that adding or removing nodes generally requires moving only a portion of the keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-are-virtual-nodes">Q12. What are virtual nodes?<a href="#q12-what-are-virtual-nodes" class="hash-link" aria-label="Direct link to Q12. What are virtual nodes?" title="Direct link to Q12. What are virtual nodes?" translate="no">​</a></h3>
+<p>Virtual nodes are multiple logical positions assigned to one physical node on a consistent-hashing ring. They help improve distribution and balancing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-shard-rebalancing">Q13. What is shard rebalancing?<a href="#q13-what-is-shard-rebalancing" class="hash-link" aria-label="Direct link to Q13. What is shard rebalancing?" title="Direct link to Q13. What is shard rebalancing?" translate="no">​</a></h3>
+<p>It is the process of redistributing data or workload across shards to improve capacity and balance.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-what-is-tenant-based-sharding">Q14. What is tenant-based sharding?<a href="#q14-what-is-tenant-based-sharding" class="hash-link" aria-label="Direct link to Q14. What is tenant-based sharding?" title="Direct link to Q14. What is tenant-based sharding?" translate="no">​</a></h3>
+<p>It distributes tenant-owned data across shards using a tenant identifier or tenant-placement mapping.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-what-is-the-difference-between-range-and-hash-sharding">Q15. What is the difference between range and hash sharding?<a href="#q15-what-is-the-difference-between-range-and-hash-sharding" class="hash-link" aria-label="Direct link to Q15. What is the difference between range and hash sharding?" title="Direct link to Q15. What is the difference between range and hash sharding?" translate="no">​</a></h3>
+<p>Range sharding uses key ranges, while hash sharding uses a hash function to determine placement.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q16-what-is-the-difference-between-directory-based-and-hash-based-sharding">Q16. What is the difference between directory-based and hash-based sharding?<a href="#q16-what-is-the-difference-between-directory-based-and-hash-based-sharding" class="hash-link" aria-label="Direct link to Q16. What is the difference between directory-based and hash-based sharding?" title="Direct link to Q16. What is the difference between directory-based and hash-based sharding?" translate="no">​</a></h3>
+<p>Hash-based sharding calculates the destination from a hash function. Directory-based sharding looks up an explicit mapping.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q17-why-is-a-shard-key-important">Q17. Why is a shard key important?<a href="#q17-why-is-a-shard-key-important" class="hash-link" aria-label="Direct link to Q17. Why is a shard key important?" title="Direct link to Q17. Why is a shard key important?" translate="no">​</a></h3>
+<p>It influences data distribution, query routing, workload balance, and the cost of cross-shard operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q18-what-happens-when-a-new-shard-is-added-to-a-simple-modulo-hashing-system">Q18. What happens when a new shard is added to a simple modulo-hashing system?<a href="#q18-what-happens-when-a-new-shard-is-added-to-a-simple-modulo-hashing-system" class="hash-link" aria-label="Direct link to Q18. What happens when a new shard is added to a simple modulo-hashing system?" title="Direct link to Q18. What happens when a new shard is added to a simple modulo-hashing system?" translate="no">​</a></h3>
+<p>The modulo divisor changes, causing many keys to map to different shards. Significant data redistribution may be required.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q19-does-consistent-hashing-guarantee-perfectly-balanced-shards">Q19. Does consistent hashing guarantee perfectly balanced shards?<a href="#q19-does-consistent-hashing-guarantee-perfectly-balanced-shards" class="hash-link" aria-label="Direct link to Q19. Does consistent hashing guarantee perfectly balanced shards?" title="Direct link to Q19. Does consistent hashing guarantee perfectly balanced shards?" translate="no">​</a></h3>
+<p>No. It reduces redistribution during node changes, but balance depends on the hash distribution, virtual nodes, workload, and key popularity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q20-how-would-you-shard-a-multi-tenant-saas-application">Q20. How would you shard a multi-tenant SaaS application?<a href="#q20-how-would-you-shard-a-multi-tenant-saas-application" class="hash-link" aria-label="Direct link to Q20. How would you shard a multi-tenant SaaS application?" title="Direct link to Q20. How would you shard a multi-tenant SaaS application?" translate="no">​</a></h3>
+<p>Tenant-based sharding is a natural option when most queries are tenant-scoped. Directory-based placement can help distribute tenants according to their size and workload.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-practical-learning-exercise">15. Practical Learning Exercise<a href="#15-practical-learning-exercise" class="hash-link" aria-label="Direct link to 15. Practical Learning Exercise" title="Direct link to 15. Practical Learning Exercise" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-a-range-based-sharding">Exercise A: Range-Based Sharding<a href="#exercise-a-range-based-sharding" class="hash-link" aria-label="Direct link to Exercise A: Range-Based Sharding" title="Direct link to Exercise A: Range-Based Sharding" translate="no">​</a></h3>
+<p>You have three shards:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Shard</th><th>Range</th></tr></thead><tbody><tr><td>Shard 1</td><td>1–1000</td></tr><tr><td>Shard 2</td><td>1001–2000</td></tr><tr><td>Shard 3</td><td>2001–3000</td></tr></tbody></table>
+<p>Identify the destination for:</p>
+<ol>
+<li class="">User 500</li>
+<li class="">User 1500</li>
+<li class="">User 2500</li>
+<li class="">User 999</li>
+<li class="">User 2001</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-b-hash-based-sharding">Exercise B: Hash-Based Sharding<a href="#exercise-b-hash-based-sharding" class="hash-link" aria-label="Direct link to Exercise B: Hash-Based Sharding" title="Direct link to Exercise B: Hash-Based Sharding" translate="no">​</a></h3>
+<p>Assume:</p>
+<p>[
+\text{Shard} = \text{hash(key)} \bmod 3
+]</p>
+<p>Given these hash outputs:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key</th><th style="text-align:right">Hash Output</th></tr></thead><tbody><tr><td>A</td><td style="text-align:right">15</td></tr><tr><td>B</td><td style="text-align:right">22</td></tr><tr><td>C</td><td style="text-align:right">34</td></tr><tr><td>D</td><td style="text-align:right">45</td></tr><tr><td>E</td><td style="text-align:right">53</td></tr></tbody></table>
+<p>Calculate the modulo result and destination shard.</p>
+<p>Use:</p>
+<ul>
+<li class="">0 → Shard 1</li>
+<li class="">1 → Shard 2</li>
+<li class="">2 → Shard 3</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-c-choose-a-shard-key">Exercise C: Choose a Shard Key<a href="#exercise-c-choose-a-shard-key" class="hash-link" aria-label="Direct link to Exercise C: Choose a Shard Key" title="Direct link to Exercise C: Choose a Shard Key" translate="no">​</a></h3>
+<p>Consider these applications:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Application</th><th>Potential Shard Key</th></tr></thead><tbody><tr><td>Social network</td><td><code>user_id</code></td></tr><tr><td>Multi-tenant SaaS</td><td><code>tenant_id</code></td></tr><tr><td>Regional marketplace</td><td><code>region_id</code></td></tr><tr><td>Customer account platform</td><td><code>customer_id</code></td></tr><tr><td>Time-series event storage</td><td>Timestamp or time bucket, with hotspot considerations</td></tr></tbody></table>
+<p>For each, explain:</p>
+<ol>
+<li class="">Why the key is suitable.</li>
+<li class="">Which common queries it supports.</li>
+<li class="">What kind of hotspot it could create.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-d-identify-the-problem">Exercise D: Identify the Problem<a href="#exercise-d-identify-the-problem" class="hash-link" aria-label="Direct link to Exercise D: Identify the Problem" title="Direct link to Exercise D: Identify the Problem" translate="no">​</a></h3>
+<p>For each scenario, identify the problem.</p>
+<ol>
+<li class="">One shard receives 80% of all writes.</li>
+<li class="">Adding a fourth shard changes the destination of most keys under modulo hashing.</li>
+<li class="">One tenant consumes most of the database resources.</li>
+<li class="">A query needs records from all shards.</li>
+<li class="">A range-based system receives most new sequential IDs on the newest shard.</li>
+</ol>
+<p>Expected answers:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Scenario</th><th>Problem</th></tr></thead><tbody><tr><td>1</td><td>Workload imbalance / hot shard</td></tr><tr><td>2</td><td>Expensive redistribution</td></tr><tr><td>3</td><td>Hot tenant</td></tr><tr><td>4</td><td>Scatter-gather query</td></tr><tr><td>5</td><td>Hot range</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-chapter-summary">16. Chapter Summary<a href="#16-chapter-summary" class="hash-link" aria-label="Direct link to 16. Chapter Summary" title="Direct link to 16. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Key Takeaway</th></tr></thead><tbody><tr><td>Range-Based Sharding</td><td>Distributes records according to key ranges</td></tr><tr><td>Hash-Based Sharding</td><td>Uses a hash function to select a shard</td></tr><tr><td>Directory-Based Sharding</td><td>Uses explicit key-to-shard mappings</td></tr><tr><td>Geographic Sharding</td><td>Distributes data by region</td></tr><tr><td>Tenant-Based Sharding</td><td>Distributes data by tenant</td></tr><tr><td>Shard Key</td><td>Determines data placement</td></tr><tr><td>Cardinality</td><td>Number of distinct values in a field</td></tr><tr><td>Hot Shard</td><td>A shard with disproportionate workload</td></tr><tr><td>Consistent Hashing</td><td>Minimizes key movement when nodes change</td></tr><tr><td>Virtual Nodes</td><td>Multiple logical positions for one physical node</td></tr><tr><td>Shard Expansion</td><td>Adding more shards</td></tr><tr><td>Rebalancing</td><td>Redistributing data or workload</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-most-important-mental-model">The most important mental model<a href="#the-most-important-mental-model" class="hash-link" aria-label="Direct link to The most important mental model" title="Direct link to The most important mental model" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">RANGE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Choose a shard based on key ranges.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">HASH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Calculate a shard using a hash function.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">DIRECTORY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Look up the key in a shard mapping.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">GEOGRAPHIC</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Choose a shard based on region.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">TENANT</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Choose a shard based on tenant identity.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CONSISTENT HASHING</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Distribute keys across nodes while minimizing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">movement when nodes are added or removed.</span><br></div></code></pre></div></div>
+<p>The most important architectural lesson:</p>
+<p><strong>A good sharding strategy is not just about distributing records evenly. It must also distribute workload effectively and make common queries easy to route.</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/07_SQL_Sharding_&amp;_Horizontal_Scaling/part_02.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_01"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Sharding Fundamentals</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Sharding_&amp;_Horizontal_Scaling/part_03"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Query Execution in Sharded Systems</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction-how-do-we-decide-which-data-goes-to-which-shard" class="table-of-contents__link toc-highlight">1. Introduction: How Do We Decide Which Data Goes to Which Shard?</a></li><li><a href="#2-range-based-sharding" class="table-of-contents__link toc-highlight">2. Range-Based Sharding</a><ul><li><a href="#21-what-is-range-based-sharding" class="table-of-contents__link toc-highlight">2.1 What Is Range-Based Sharding?</a></li><li><a href="#22-architecture" class="table-of-contents__link toc-highlight">2.2 Architecture</a></li><li><a href="#23-how-range-based-routing-works" class="table-of-contents__link toc-highlight">2.3 How Range-Based Routing Works</a></li><li><a href="#24-advantages" class="table-of-contents__link toc-highlight">2.4 Advantages</a></li><li><a href="#25-disadvantages" class="table-of-contents__link toc-highlight">2.5 Disadvantages</a></li><li><a href="#26-when-should-you-use-range-based-sharding" class="table-of-contents__link toc-highlight">2.6 When Should You Use Range-Based Sharding?</a></li></ul></li><li><a href="#3-hash-based-sharding" class="table-of-contents__link toc-highlight">3. Hash-Based Sharding</a><ul><li><a href="#31-what-is-hash-based-sharding" class="table-of-contents__link toc-highlight">3.1 What Is Hash-Based Sharding?</a></li><li><a href="#32-example" class="table-of-contents__link toc-highlight">3.2 Example</a></li><li><a href="#33-how-routing-works" class="table-of-contents__link toc-highlight">3.3 How Routing Works</a></li><li><a href="#34-advantages" class="table-of-contents__link toc-highlight">3.4 Advantages</a></li><li><a href="#35-disadvantages" class="table-of-contents__link toc-highlight">3.5 Disadvantages</a></li><li><a href="#36-when-should-you-use-hash-based-sharding" class="table-of-contents__link toc-highlight">3.6 When Should You Use Hash-Based Sharding?</a></li></ul></li><li><a href="#4-directory-based-sharding" class="table-of-contents__link toc-highlight">4. Directory-Based Sharding</a><ul><li><a href="#41-what-is-directory-based-sharding" class="table-of-contents__link toc-highlight">4.1 What Is Directory-Based Sharding?</a></li><li><a href="#42-architecture" class="table-of-contents__link toc-highlight">4.2 Architecture</a></li><li><a href="#43-example" class="table-of-contents__link toc-highlight">4.3 Example</a></li><li><a href="#44-conceptual-database-design" class="table-of-contents__link toc-highlight">4.4 Conceptual Database Design</a></li><li><a href="#45-advantages" class="table-of-contents__link toc-highlight">4.5 Advantages</a></li><li><a href="#46-disadvantages" class="table-of-contents__link toc-highlight">4.6 Disadvantages</a></li><li><a href="#47-when-should-you-use-directory-based-sharding" class="table-of-contents__link toc-highlight">4.7 When Should You Use Directory-Based Sharding?</a></li></ul></li><li><a href="#5-geographic-sharding" class="table-of-contents__link toc-highlight">5. Geographic Sharding</a><ul><li><a href="#51-what-is-geographic-sharding" class="table-of-contents__link toc-highlight">5.1 What Is Geographic Sharding?</a></li><li><a href="#52-why-use-geographic-sharding" class="table-of-contents__link toc-highlight">5.2 Why Use Geographic Sharding?</a></li><li><a href="#53-example" class="table-of-contents__link toc-highlight">5.3 Example</a></li><li><a href="#54-disadvantages" class="table-of-contents__link toc-highlight">5.4 Disadvantages</a></li><li><a href="#55-when-should-you-use-geographic-sharding" class="table-of-contents__link toc-highlight">5.5 When Should You Use Geographic Sharding?</a></li></ul></li><li><a href="#6-tenant-based-sharding" class="table-of-contents__link toc-highlight">6. Tenant-Based Sharding</a><ul><li><a href="#61-what-is-tenant-based-sharding" class="table-of-contents__link toc-highlight">6.1 What Is Tenant-Based Sharding?</a></li><li><a href="#62-how-it-works" class="table-of-contents__link toc-highlight">6.2 How It Works</a></li><li><a href="#63-example-database-structure" class="table-of-contents__link toc-highlight">6.3 Example Database Structure</a></li><li><a href="#64-advantages" class="table-of-contents__link toc-highlight">6.4 Advantages</a></li><li><a href="#65-disadvantages" class="table-of-contents__link toc-highlight">6.5 Disadvantages</a></li><li><a href="#66-when-should-you-use-tenant-based-sharding" class="table-of-contents__link toc-highlight">6.6 When Should You Use Tenant-Based Sharding?</a></li></ul></li><li><a href="#7-choosing-the-right-shard-key" class="table-of-contents__link toc-highlight">7. Choosing the Right Shard Key</a><ul><li><a href="#71-what-makes-a-good-shard-key" class="table-of-contents__link toc-highlight">7.1 What Makes a Good Shard Key?</a></li><li><a href="#72-high-cardinality" class="table-of-contents__link toc-highlight">7.2 High Cardinality</a></li><li><a href="#73-even-data-distribution" class="table-of-contents__link toc-highlight">7.3 Even Data Distribution</a></li><li><a href="#74-even-workload-distribution" class="table-of-contents__link toc-highlight">7.4 Even Workload Distribution</a></li><li><a href="#75-query-access-patterns" class="table-of-contents__link toc-highlight">7.5 Query Access Patterns</a></li><li><a href="#76-stability" class="table-of-contents__link toc-highlight">7.6 Stability</a></li><li><a href="#77-shard-key-evaluation-checklist" class="table-of-contents__link toc-highlight">7.7 Shard Key Evaluation Checklist</a></li></ul></li><li><a href="#8-hot-shards-and-hot-partitions" class="table-of-contents__link toc-highlight">8. Hot Shards and Hot Partitions</a><ul><li><a href="#81-what-is-a-hot-shard" class="table-of-contents__link toc-highlight">8.1 What Is a Hot Shard?</a></li><li><a href="#82-what-causes-hot-shards" class="table-of-contents__link toc-highlight">8.2 What Causes Hot Shards?</a></li><li><a href="#83-example-hot-tenant" class="table-of-contents__link toc-highlight">8.3 Example: Hot Tenant</a></li></ul></li><li><a href="#9-consistent-hashing" class="table-of-contents__link toc-highlight">9. Consistent Hashing</a><ul><li><a href="#91-the-problem-with-modulo-hashing" class="table-of-contents__link toc-highlight">9.1 The Problem With Modulo Hashing</a></li><li><a href="#92-what-is-consistent-hashing" class="table-of-contents__link toc-highlight">9.2 What Is Consistent Hashing?</a></li><li><a href="#93-basic-architecture" class="table-of-contents__link toc-highlight">9.3 Basic Architecture</a></li><li><a href="#94-what-happens-when-a-node-is-added" class="table-of-contents__link toc-highlight">9.4 What Happens When a Node Is Added?</a></li><li><a href="#95-virtual-nodes" class="table-of-contents__link toc-highlight">9.5 Virtual Nodes</a></li><li><a href="#96-advantages" class="table-of-contents__link toc-highlight">9.6 Advantages</a></li><li><a href="#97-disadvantages" class="table-of-contents__link toc-highlight">9.7 Disadvantages</a></li><li><a href="#98-where-is-consistent-hashing-used" class="table-of-contents__link toc-highlight">9.8 Where Is Consistent Hashing Used?</a></li></ul></li><li><a href="#10-shard-expansion-and-rebalancing" class="table-of-contents__link toc-highlight">10. Shard Expansion and Rebalancing</a><ul><li><a href="#101-what-is-shard-expansion" class="table-of-contents__link toc-highlight">10.1 What Is Shard Expansion?</a></li><li><a href="#102-what-is-rebalancing" class="table-of-contents__link toc-highlight">10.2 What Is Rebalancing?</a></li><li><a href="#103-why-is-rebalancing-needed" class="table-of-contents__link toc-highlight">10.3 Why Is Rebalancing Needed?</a></li><li><a href="#104-what-happens-during-rebalancing" class="table-of-contents__link toc-highlight">10.4 What Happens During Rebalancing?</a></li><li><a href="#105-challenges-during-rebalancing" class="table-of-contents__link toc-highlight">10.5 Challenges During Rebalancing</a></li></ul></li><li><a href="#11-comparing-sharding-strategies" class="table-of-contents__link toc-highlight">11. Comparing Sharding Strategies</a><ul><li><a href="#which-strategy-should-you-choose" class="table-of-contents__link toc-highlight">Which Strategy Should You Choose?</a></li></ul></li><li><a href="#12-practical-backend-example-choosing-a-sharding-strategy" class="table-of-contents__link toc-highlight">12. Practical Backend Example: Choosing a Sharding Strategy</a><ul><li><a href="#option-a-user-based-sharding" class="table-of-contents__link toc-highlight">Option A: User-Based Sharding</a></li><li><a href="#option-b-hash-based-user-sharding" class="table-of-contents__link toc-highlight">Option B: Hash-Based User Sharding</a></li><li><a href="#option-c-tenant-based-sharding" class="table-of-contents__link toc-highlight">Option C: Tenant-Based Sharding</a></li><li><a href="#option-d-geographic-sharding" class="table-of-contents__link toc-highlight">Option D: Geographic Sharding</a></li><li><a href="#final-decision" class="table-of-contents__link toc-highlight">Final Decision</a></li></ul></li><li><a href="#13-common-misconceptions" class="table-of-contents__link toc-highlight">13. Common Misconceptions</a><ul><li><a href="#misconception-1-hash-based-sharding-guarantees-perfectly-equal-distribution" class="table-of-contents__link toc-highlight">Misconception 1: Hash-based sharding guarantees perfectly equal distribution.</a></li><li><a href="#misconception-2-range-based-sharding-is-always-bad" class="table-of-contents__link toc-highlight">Misconception 2: Range-based sharding is always bad.</a></li><li><a href="#misconception-3-high-cardinality-automatically-makes-a-good-shard-key" class="table-of-contents__link toc-highlight">Misconception 3: High cardinality automatically makes a good shard key.</a></li><li><a href="#misconception-4-adding-a-shard-automatically-redistributes-existing-data" class="table-of-contents__link toc-highlight">Misconception 4: Adding a shard automatically redistributes existing data.</a></li><li><a href="#misconception-5-consistent-hashing-eliminates-data-migration" class="table-of-contents__link toc-highlight">Misconception 5: Consistent hashing eliminates data migration.</a></li><li><a href="#misconception-6-equal-record-counts-mean-equal-workload" class="table-of-contents__link toc-highlight">Misconception 6: Equal record counts mean equal workload.</a></li><li><a href="#misconception-7-tenant-based-sharding-guarantees-tenant-isolation" class="table-of-contents__link toc-highlight">Misconception 7: Tenant-based sharding guarantees tenant isolation.</a></li><li><a href="#misconception-8-geographic-sharding-means-users-must-always-stay-in-one-region" class="table-of-contents__link toc-highlight">Misconception 8: Geographic sharding means users must always stay in one region.</a></li></ul></li><li><a href="#14-interview-questions" class="table-of-contents__link toc-highlight">14. Interview Questions</a><ul><li><a href="#q1-what-are-the-main-sharding-strategies" class="table-of-contents__link toc-highlight">Q1. What are the main sharding strategies?</a></li><li><a href="#q2-what-is-range-based-sharding" class="table-of-contents__link toc-highlight">Q2. What is range-based sharding?</a></li><li><a href="#q3-what-is-hash-based-sharding" class="table-of-contents__link toc-highlight">Q3. What is hash-based sharding?</a></li><li><a href="#q4-what-is-directory-based-sharding" class="table-of-contents__link toc-highlight">Q4. What is directory-based sharding?</a></li><li><a href="#q5-what-is-a-shard-key" class="table-of-contents__link toc-highlight">Q5. What is a shard key?</a></li><li><a href="#q6-what-are-the-characteristics-of-a-good-shard-key" class="table-of-contents__link toc-highlight">Q6. What are the characteristics of a good shard key?</a></li><li><a href="#q7-what-is-a-hot-shard" class="table-of-contents__link toc-highlight">Q7. What is a hot shard?</a></li><li><a href="#q8-why-can-range-based-sharding-create-hot-shards" class="table-of-contents__link toc-highlight">Q8. Why can range-based sharding create hot shards?</a></li><li><a href="#q9-why-is-hash-based-sharding-useful" class="table-of-contents__link toc-highlight">Q9. Why is hash-based sharding useful?</a></li><li><a href="#q10-what-is-the-disadvantage-of-hash-based-sharding" class="table-of-contents__link toc-highlight">Q10. What is the disadvantage of hash-based sharding?</a></li><li><a href="#q11-what-is-consistent-hashing" class="table-of-contents__link toc-highlight">Q11. What is consistent hashing?</a></li><li><a href="#q12-what-are-virtual-nodes" class="table-of-contents__link toc-highlight">Q12. What are virtual nodes?</a></li><li><a href="#q13-what-is-shard-rebalancing" class="table-of-contents__link toc-highlight">Q13. What is shard rebalancing?</a></li><li><a href="#q14-what-is-tenant-based-sharding" class="table-of-contents__link toc-highlight">Q14. What is tenant-based sharding?</a></li><li><a href="#q15-what-is-the-difference-between-range-and-hash-sharding" class="table-of-contents__link toc-highlight">Q15. What is the difference between range and hash sharding?</a></li><li><a href="#q16-what-is-the-difference-between-directory-based-and-hash-based-sharding" class="table-of-contents__link toc-highlight">Q16. What is the difference between directory-based and hash-based sharding?</a></li><li><a href="#q17-why-is-a-shard-key-important" class="table-of-contents__link toc-highlight">Q17. Why is a shard key important?</a></li><li><a href="#q18-what-happens-when-a-new-shard-is-added-to-a-simple-modulo-hashing-system" class="table-of-contents__link toc-highlight">Q18. What happens when a new shard is added to a simple modulo-hashing system?</a></li><li><a href="#q19-does-consistent-hashing-guarantee-perfectly-balanced-shards" class="table-of-contents__link toc-highlight">Q19. Does consistent hashing guarantee perfectly balanced shards?</a></li><li><a href="#q20-how-would-you-shard-a-multi-tenant-saas-application" class="table-of-contents__link toc-highlight">Q20. How would you shard a multi-tenant SaaS application?</a></li></ul></li><li><a href="#15-practical-learning-exercise" class="table-of-contents__link toc-highlight">15. Practical Learning Exercise</a><ul><li><a href="#exercise-a-range-based-sharding" class="table-of-contents__link toc-highlight">Exercise A: Range-Based Sharding</a></li><li><a href="#exercise-b-hash-based-sharding" class="table-of-contents__link toc-highlight">Exercise B: Hash-Based Sharding</a></li><li><a href="#exercise-c-choose-a-shard-key" class="table-of-contents__link toc-highlight">Exercise C: Choose a Shard Key</a></li><li><a href="#exercise-d-identify-the-problem" class="table-of-contents__link toc-highlight">Exercise D: Identify the Problem</a></li></ul></li><li><a href="#16-chapter-summary" class="table-of-contents__link toc-highlight">16. Chapter Summary</a><ul><li><a href="#the-most-important-mental-model" class="table-of-contents__link toc-highlight">The most important mental model</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

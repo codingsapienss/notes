@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Database_Normalization/part_01" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Normalization Fundamentals | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Normalization Fundamentals | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction to Database Normalization"><meta data-rh="true" property="og:description" content="1. Introduction to Database Normalization"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Database_Normalization","item":"https://codingsapienss.github.io/notes/docs/category/database_normalization"},{"@type":"ListItem","position":5,"name":"Normalization Fundamentals","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Collapse sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"><span title="Normalization Fundamentals" class="linkLabel_WmDU">Normalization Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"><span title="Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)" class="linkLabel_WmDU">Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_03"><span title="Normalization in Practice" class="linkLabel_WmDU">Normalization in Practice</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/database_normalization"><span>Database_Normalization</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Normalization Fundamentals</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Normalization Fundamentals</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction-to-database-normalization">1. Introduction to Database Normalization<a href="#1-introduction-to-database-normalization" class="hash-link" aria-label="Direct link to 1. Introduction to Database Normalization" title="Direct link to 1. Introduction to Database Normalization" translate="no">​</a></h2>
+<p>Database normalization is the process of organizing data in relational database tables to:</p>
+<ol>
+<li class="">Reduce unnecessary data duplication.</li>
+<li class="">Prevent data inconsistencies.</li>
+<li class="">Avoid insertion, update, and deletion anomalies.</li>
+<li class="">Improve data integrity.</li>
+<li class="">Create logical relationships between tables.</li>
+</ol>
+<p>Consider an e-commerce application.</p>
+<p>Initially, we might store everything in one table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer_name</th><th>customer_email</th><th>product_name</th><th style="text-align:right">product_price</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td>Laptop</td><td style="text-align:right">50000</td></tr><tr><td style="text-align:right">102</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td>Mouse</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td>Amit</td><td><a href="mailto:amit@gmail.com" target="_blank" rel="noopener noreferrer" class="">amit@gmail.com</a></td><td>Keyboard</td><td style="text-align:right">1500</td></tr><tr><td style="text-align:right">104</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td>Keyboard</td><td style="text-align:right">1500</td></tr></tbody></table>
+<p>This table contains customer information repeatedly.</p>
+<p>Rahul&#x27;s name and email appear three times.</p>
+<p>If Rahul changes his email address, we need to update multiple rows.</p>
+<p>What happens if we update only two rows and forget the third?</p>
+<p>Our database now contains inconsistent information.</p>
+<p>This is one of the problems database normalization aims to solve.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="definition">Definition<a href="#definition" class="hash-link" aria-label="Direct link to Definition" title="Direct link to Definition" translate="no">​</a></h3>
+<p><strong>Database normalization is a systematic process of decomposing relational tables into smaller, logically related tables to reduce redundancy and prevent data anomalies while preserving the required relationships between data.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-why-do-we-need-normalization">2. Why Do We Need Normalization?<a href="#2-why-do-we-need-normalization" class="hash-link" aria-label="Direct link to 2. Why Do We Need Normalization?" title="Direct link to 2. Why Do We Need Normalization?" translate="no">​</a></h2>
+<p>Let&#x27;s understand the problems using a practical example.</p>
+<p>Suppose we have this table:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="orders-table">Orders Table<a href="#orders-table" class="hash-link" aria-label="Direct link to Orders Table" title="Direct link to Orders Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th>customer_name</th><th>customer_email</th><th style="text-align:right">product_id</th><th>product_name</th><th style="text-align:right">product_price</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td style="text-align:right">501</td><td>Laptop</td><td style="text-align:right">50000</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td style="text-align:right">502</td><td>Mouse</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td>Amit</td><td><a href="mailto:amit@gmail.com" target="_blank" rel="noopener noreferrer" class="">amit@gmail.com</a></td><td style="text-align:right">503</td><td>Keyboard</td><td style="text-align:right">1500</td></tr><tr><td style="text-align:right">104</td><td style="text-align:right">1</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td><td style="text-align:right">503</td><td>Keyboard</td><td style="text-align:right">1500</td></tr></tbody></table>
+<p>Notice the duplication:</p>
+<ul>
+<li class="">Rahul&#x27;s information appears three times.</li>
+<li class="">The Keyboard product information appears twice.</li>
+<li class="">Product and customer information are stored alongside order information.</li>
+</ul>
+<p>This creates several problems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-1-data-redundancy">Problem 1: Data Redundancy<a href="#problem-1-data-redundancy" class="hash-link" aria-label="Direct link to Problem 1: Data Redundancy" title="Direct link to Problem 1: Data Redundancy" translate="no">​</a></h3>
+<p>Data redundancy means storing the same information unnecessarily in multiple places.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer_name</th><th>customer_email</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr><tr><td style="text-align:right">102</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr><tr><td style="text-align:right">104</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr></tbody></table>
+<p>The customer&#x27;s information is duplicated.</p>
+<p><strong>Why is this a problem?</strong></p>
+<ul>
+<li class="">More storage is consumed.</li>
+<li class="">Updates become repetitive.</li>
+<li class="">Inconsistent values can appear.</li>
+<li class="">Maintaining data becomes difficult.</li>
+</ul>
+<p>Normalization helps store each fact in an appropriate place.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-2-data-inconsistency">Problem 2: Data Inconsistency<a href="#problem-2-data-inconsistency" class="hash-link" aria-label="Direct link to Problem 2: Data Inconsistency" title="Direct link to Problem 2: Data Inconsistency" translate="no">​</a></h3>
+<p>Suppose Rahul changes his email.</p>
+<p>We update only two rows:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer_name</th><th>customer_email</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td><a href="mailto:rahul.sharma@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul.sharma@gmail.com</a></td></tr><tr><td style="text-align:right">102</td><td>Rahul</td><td><a href="mailto:rahul.sharma@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul.sharma@gmail.com</a></td></tr><tr><td style="text-align:right">104</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr></tbody></table>
+<p>Now the same customer has two different email addresses.</p>
+<p>Which one is correct?</p>
+<p>This is a data inconsistency problem.</p>
+<p>Normalization reduces the chance of this happening by storing customer information separately.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="problem-3-difficult-data-maintenance">Problem 3: Difficult Data Maintenance<a href="#problem-3-difficult-data-maintenance" class="hash-link" aria-label="Direct link to Problem 3: Difficult Data Maintenance" title="Direct link to Problem 3: Difficult Data Maintenance" translate="no">​</a></h3>
+<p>Suppose the product price changes from ₹50,000 to ₹55,000.</p>
+<p>If the product appears in multiple rows, we may need to update all those rows.</p>
+<p>Missing even one row can create inconsistent product information.</p>
+<p>However, there is an important business distinction:</p>
+<p>An order often needs to preserve the price actually charged at the time of purchase. That historical order-item price should not automatically change when the current catalog price changes.</p>
+<p>Normalization separates current product information from historical transaction facts. It does not mean every repeated-looking value should always be updated together.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-three-types-of-database-anomalies">3. Three Types of Database Anomalies<a href="#3-three-types-of-database-anomalies" class="hash-link" aria-label="Direct link to 3. Three Types of Database Anomalies" title="Direct link to 3. Three Types of Database Anomalies" translate="no">​</a></h2>
+<p>One of the most important reasons for normalization is preventing data anomalies.</p>
+<p>There are three major anomalies:</p>
+<ol>
+<li class="">Insertion anomaly.</li>
+<li class="">Update anomaly.</li>
+<li class="">Deletion anomaly.</li>
+</ol>
+<p>Let&#x27;s understand each one.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-insertion-anomaly">3.1 Insertion Anomaly<a href="#31-insertion-anomaly" class="hash-link" aria-label="Direct link to 3.1 Insertion Anomaly" title="Direct link to 3.1 Insertion Anomaly" translate="no">​</a></h3>
+<p>An insertion anomaly occurs when we cannot insert certain information without inserting unrelated information as well.</p>
+<p>Consider this table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer_name</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td>Laptop</td></tr><tr><td style="text-align:right">102</td><td>Amit</td><td>Mouse</td></tr></tbody></table>
+<p>Suppose we want to add a new product:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Product: Monitor</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Price: 12000</span><br></div></code></pre></div></div>
+<p>But no customer has purchased it yet.</p>
+<p>Our current table requires an <code>order_id</code> and <code>customer_name</code> to store a product.</p>
+<p>We cannot independently add the product without creating unrelated order information or allowing missing values.</p>
+<p>This is an insertion anomaly.</p>
+<p><strong>Solution:</strong> Store product information separately from order information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-update-anomaly">3.2 Update Anomaly<a href="#32-update-anomaly" class="hash-link" aria-label="Direct link to 3.2 Update Anomaly" title="Direct link to 3.2 Update Anomaly" translate="no">​</a></h3>
+<p>An update anomaly occurs when the same information is stored in multiple rows and must be updated consistently.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th>customer_email</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr><tr><td style="text-align:right">104</td><td style="text-align:right">1</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr></tbody></table>
+<p>Suppose Rahul changes his email address.</p>
+<p>We must update all three rows.</p>
+<p>If we update only two, the database becomes inconsistent.</p>
+<p><strong>Solution:</strong> Store customer email once in a separate customers table.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-deletion-anomaly">3.3 Deletion Anomaly<a href="#33-deletion-anomaly" class="hash-link" aria-label="Direct link to 3.3 Deletion Anomaly" title="Direct link to 3.3 Deletion Anomaly" translate="no">​</a></h3>
+<p>A deletion anomaly occurs when deleting one record unintentionally removes other information that should have been preserved.</p>
+<p>Consider:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer_name</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td>Laptop</td></tr><tr><td style="text-align:right">102</td><td>Amit</td><td>Mouse</td></tr><tr><td style="text-align:right">103</td><td>Priya</td><td>Keyboard</td></tr></tbody></table>
+<p>Suppose Amit cancels his only order.</p>
+<p>We delete the row:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">102</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If customer information exists only in this table, Amit&#x27;s customer information is also lost.</p>
+<p>We may have wanted to delete only the order, not the customer.</p>
+<p><strong>Solution:</strong> Store customers and orders independently.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-comparison">3.4 Comparison<a href="#34-comparison" class="hash-link" aria-label="Direct link to 3.4 Comparison" title="Direct link to 3.4 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Anomaly</th><th>Problem</th><th>Example</th></tr></thead><tbody><tr><td>Insertion anomaly</td><td>Cannot insert information independently</td><td>Cannot add a product without an order</td></tr><tr><td>Update anomaly</td><td>Same fact must be updated in multiple rows</td><td>Customer email changes in multiple records</td></tr><tr><td>Deletion anomaly</td><td>Deleting one fact removes another useful fact</td><td>Deleting an order removes customer information</td></tr></tbody></table>
+<p><strong>Remember:</strong> Normalization is primarily about organizing data so that independent facts can be stored and maintained independently.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-understanding-functional-dependency">4. Understanding Functional Dependency<a href="#4-understanding-functional-dependency" class="hash-link" aria-label="Direct link to 4. Understanding Functional Dependency" title="Direct link to 4. Understanding Functional Dependency" translate="no">​</a></h2>
+<p>Before learning normal forms, we need to understand functional dependency.</p>
+<p>Functional dependency is a relationship between attributes (columns) in a relational table.</p>
+<p>If one attribute determines another attribute, we express it as:</p>
+<p>[
+A \rightarrow B
+]</p>
+<p>This means:</p>
+<p><strong>If we know the value of A, we can uniquely determine the value of B.</strong></p>
+<p>Here:</p>
+<ul>
+<li class="">A is called the determinant.</li>
+<li class="">B is the dependent attribute.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-example-customer-table">4.1 Example: Customer Table<a href="#41-example-customer-table" class="hash-link" aria-label="Direct link to 4.1 Example: Customer Table" title="Direct link to 4.1 Example: Customer Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">customer_id</th><th>customer_name</th><th>customer_email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td><a href="mailto:rahul@gmail.com" target="_blank" rel="noopener noreferrer" class="">rahul@gmail.com</a></td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td><a href="mailto:amit@gmail.com" target="_blank" rel="noopener noreferrer" class="">amit@gmail.com</a></td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td><a href="mailto:priya@gmail.com" target="_blank" rel="noopener noreferrer" class="">priya@gmail.com</a></td></tr></tbody></table>
+<p>Assuming <code>customer_id</code> uniquely identifies a customer:</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<p>[
+customer_id \rightarrow customer_email
+]</p>
+<p>This means customer ID determines the customer&#x27;s name and email.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">customer_id = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">customer_name = Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">customer_email = rahul@gmail.com</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-functional-dependency-does-not-mean-one-to-one">4.2 Functional Dependency Does Not Mean One-to-One<a href="#42-functional-dependency-does-not-mean-one-to-one" class="hash-link" aria-label="Direct link to 4.2 Functional Dependency Does Not Mean One-to-One" title="Direct link to 4.2 Functional Dependency Does Not Mean One-to-One" translate="no">​</a></h3>
+<p>Consider:</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<p>This does not mean every customer name must be unique.</p>
+<p>Two different customers can have the same name.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">customer_id</th><th>customer_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p>The functional dependency still holds because each customer ID identifies exactly one name value.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-another-example-product-table">4.3 Another Example: Product Table<a href="#43-another-example-product-table" class="hash-link" aria-label="Direct link to 4.3 Another Example: Product Table" title="Direct link to 4.3 Another Example: Product Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">product_id</th><th>product_name</th><th style="text-align:right">price</th></tr></thead><tbody><tr><td style="text-align:right">501</td><td>Laptop</td><td style="text-align:right">50000</td></tr><tr><td style="text-align:right">502</td><td>Mouse</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">503</td><td>Keyboard</td><td style="text-align:right">1500</td></tr></tbody></table>
+<p>Dependencies:</p>
+<p>[
+product_id \rightarrow product_name
+]</p>
+<p>[
+product_id \rightarrow price
+]</p>
+<p>The product ID determines the product name and its current catalog price.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-functional-dependency-and-business-rules">4.4 Functional Dependency and Business Rules<a href="#44-functional-dependency-and-business-rules" class="hash-link" aria-label="Direct link to 4.4 Functional Dependency and Business Rules" title="Direct link to 4.4 Functional Dependency and Business Rules" translate="no">​</a></h3>
+<p>Functional dependencies are based on the rules of the data model, not just the values currently present in a sample table.</p>
+<p>For example, two customers may currently have different email addresses. That alone does not prove that email uniquely identifies customers.</p>
+<p>The application must have a business rule such as:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Every customer must have a unique email address.</span><br></div></code></pre></div></div>
+<p>Then we can model:</p>
+<p>[
+email \rightarrow customer_id
+]</p>
+<p>A database can enforce this rule using a UNIQUE constraint.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">ALTER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> customers</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ADD</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">CONSTRAINT</span><span class="token plain"> customers_email_unique</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">email</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-types-of-functional-dependencies">5. Types of Functional Dependencies<a href="#5-types-of-functional-dependencies" class="hash-link" aria-label="Direct link to 5. Types of Functional Dependencies" title="Direct link to 5. Types of Functional Dependencies" translate="no">​</a></h2>
+<p>There are several functional dependency concepts used when studying normalization.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-trivial-functional-dependency">5.1 Trivial Functional Dependency<a href="#51-trivial-functional-dependency" class="hash-link" aria-label="Direct link to 5.1 Trivial Functional Dependency" title="Direct link to 5.1 Trivial Functional Dependency" translate="no">​</a></h3>
+<p>A functional dependency is trivial when the right-hand side is already a subset of the left-hand side.</p>
+<p>Example:</p>
+<p>[
+{A,B} \rightarrow A
+]</p>
+<p>Knowing A and B obviously determines A.</p>
+<p>Another example:</p>
+<p>[
+{A,B} \rightarrow {A,B}
+]</p>
+<p>These dependencies are always true.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-non-trivial-functional-dependency">5.2 Non-Trivial Functional Dependency<a href="#52-non-trivial-functional-dependency" class="hash-link" aria-label="Direct link to 5.2 Non-Trivial Functional Dependency" title="Direct link to 5.2 Non-Trivial Functional Dependency" translate="no">​</a></h3>
+<p>A dependency is non-trivial when the right-hand side is not a subset of the left-hand side.</p>
+<p>Example:</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<p>The customer name is not part of the determinant.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-fully-non-trivial-functional-dependency">5.3 Fully Non-Trivial Functional Dependency<a href="#53-fully-non-trivial-functional-dependency" class="hash-link" aria-label="Direct link to 5.3 Fully Non-Trivial Functional Dependency" title="Direct link to 5.3 Fully Non-Trivial Functional Dependency" translate="no">​</a></h3>
+<p>A dependency is fully non-trivial when the left-hand and right-hand sides have no attributes in common.</p>
+<p>Example:</p>
+<p>[
+customer_id \rightarrow customer_email
+]</p>
+<p>There are no common attributes between the two sides.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-transitive-dependency">5.4 Transitive Dependency<a href="#54-transitive-dependency" class="hash-link" aria-label="Direct link to 5.4 Transitive Dependency" title="Direct link to 5.4 Transitive Dependency" translate="no">​</a></h3>
+<p>A transitive dependency occurs when one attribute determines another through an intermediate attribute.</p>
+<p>Consider:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">employee_id</th><th style="text-align:right">department_id</th><th>department_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">3</td><td style="text-align:right">20</td><td>Sales</td></tr></tbody></table>
+<p>Assume:</p>
+<p>[
+employee_id \rightarrow department_id
+]</p>
+<p>And:</p>
+<p>[
+department_id \rightarrow department_name
+]</p>
+<p>Therefore:</p>
+<p>[
+employee_id \rightarrow department_name
+]</p>
+<p>through <code>department_id</code>.</p>
+<p>This is a transitive dependency.</p>
+<p>It becomes important when studying Third Normal Form (3NF).</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-keys-and-their-relationship-with-normalization">6. Keys and Their Relationship With Normalization<a href="#6-keys-and-their-relationship-with-normalization" class="hash-link" aria-label="Direct link to 6. Keys and Their Relationship With Normalization" title="Direct link to 6. Keys and Their Relationship With Normalization" translate="no">​</a></h2>
+<p>Keys help identify records and understand functional dependencies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-super-key">6.1 Super Key<a href="#61-super-key" class="hash-link" aria-label="Direct link to 6.1 Super Key" title="Direct link to 6.1 Super Key" translate="no">​</a></h3>
+<p>A super key is any set of one or more attributes that uniquely identifies a row.</p>
+<p>Consider:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>email</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td><a href="mailto:a@example.com" target="_blank" rel="noopener noreferrer" class="">a@example.com</a></td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td><a href="mailto:b@example.com" target="_blank" rel="noopener noreferrer" class="">b@example.com</a></td><td>Amit</td></tr></tbody></table>
+<p>Possible super keys:</p>
+<ul>
+<li class=""><code>student_id</code></li>
+<li class=""><code>email</code></li>
+<li class=""><code>(student_id, email)</code></li>
+<li class=""><code>(student_id, name)</code> if <code>student_id</code> is unique</li>
+</ul>
+<p>A super key may contain unnecessary attributes.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-candidate-key">6.2 Candidate Key<a href="#62-candidate-key" class="hash-link" aria-label="Direct link to 6.2 Candidate Key" title="Direct link to 6.2 Candidate Key" translate="no">​</a></h3>
+<p>A candidate key is a minimal super key.</p>
+<p>Minimal means removing any attribute would cause it to stop uniquely identifying a row.</p>
+<p>In the example:</p>
+<ul>
+<li class=""><code>student_id</code></li>
+<li class=""><code>email</code></li>
+</ul>
+<p>can both be candidate keys, assuming both are unique and non-null.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-primary-key">6.3 Primary Key<a href="#63-primary-key" class="hash-link" aria-label="Direct link to 6.3 Primary Key" title="Direct link to 6.3 Primary Key" translate="no">​</a></h3>
+<p>A primary key is the candidate key selected as the main identifier for the table.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> students </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<ul>
+<li class=""><code>student_id</code> is the primary key.</li>
+<li class=""><code>email</code> is an alternate candidate key, assuming the business rule requires uniqueness.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-composite-key">6.4 Composite Key<a href="#64-composite-key" class="hash-link" aria-label="Direct link to 6.4 Composite Key" title="Direct link to 6.4 Composite Key" translate="no">​</a></h3>
+<p>A composite key contains multiple columns.</p>
+<p>Consider an enrollment table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>enrollment_date</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>2026-01-01</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td><td>2026-01-02</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>2026-01-03</td></tr></tbody></table>
+<p>A student can enroll in multiple courses, and a course can have multiple students.</p>
+<p>The combination uniquely identifies an enrollment:</p>
+<p>[
+(student_id, course_id)
+\rightarrow enrollment_date
+]</p>
+<p>SQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> enrollments </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    enrollment_date </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="65-prime-and-non-prime-attributes">6.5 Prime and Non-Prime Attributes<a href="#65-prime-and-non-prime-attributes" class="hash-link" aria-label="Direct link to 6.5 Prime and Non-Prime Attributes" title="Direct link to 6.5 Prime and Non-Prime Attributes" translate="no">​</a></h3>
+<p>These concepts become important in 2NF and 3NF.</p>
+<ul>
+<li class=""><strong>Prime attribute:</strong> An attribute that belongs to at least one candidate key.</li>
+<li class=""><strong>Non-prime attribute:</strong> An attribute that does not belong to any candidate key.</li>
+</ul>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>student_name</th><th>course_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>Rahul</td><td>DBMS</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td><td>Rahul</td><td>Operating Systems</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>Amit</td><td>DBMS</td></tr></tbody></table>
+<p>Assume the candidate key is:</p>
+<p>[
+(student_id, course_id)
+]</p>
+<p>Then:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Attribute</th><th>Classification</th></tr></thead><tbody><tr><td>student_id</td><td>Prime</td></tr><tr><td>course_id</td><td>Prime</td></tr><tr><td>student_name</td><td>Non-prime</td></tr><tr><td>course_name</td><td>Non-prime</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-understanding-decomposition">7. Understanding Decomposition<a href="#7-understanding-decomposition" class="hash-link" aria-label="Direct link to 7. Understanding Decomposition" title="Direct link to 7. Understanding Decomposition" translate="no">​</a></h2>
+<p>Decomposition means splitting one table into smaller tables.</p>
+<p>This is the primary technique used in normalization.</p>
+<p>Consider:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="original-table">Original Table<a href="#original-table" class="hash-link" aria-label="Direct link to Original Table" title="Direct link to Original Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th>customer_name</th><th style="text-align:right">product_id</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">501</td><td>Laptop</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">502</td><td>Mouse</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td>Amit</td><td style="text-align:right">503</td><td>Keyboard</td></tr></tbody></table>
+<p>We can decompose it into three tables.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="customers">Customers<a href="#customers" class="hash-link" aria-label="Direct link to Customers" title="Direct link to Customers" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">customer_id</th><th>customer_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Amit</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="products">Products<a href="#products" class="hash-link" aria-label="Direct link to Products" title="Direct link to Products" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">product_id</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">501</td><td>Laptop</td></tr><tr><td style="text-align:right">502</td><td>Mouse</td></tr><tr><td style="text-align:right">503</td><td>Keyboard</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="orders">Orders<a href="#orders" class="hash-link" aria-label="Direct link to Orders" title="Direct link to Orders" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th style="text-align:right">product_id</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">501</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">502</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">503</td></tr></tbody></table>
+<p>Now customer information exists in one place, and product information exists in another.</p>
+<p>The relationships are maintained through foreign keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sql-implementation">SQL Implementation<a href="#sql-implementation" class="hash-link" aria-label="Direct link to SQL Implementation" title="Direct link to SQL Implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> customers </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> customers</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">customer_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-why-is-decomposition-useful">7.1 Why is decomposition useful?<a href="#71-why-is-decomposition-useful" class="hash-link" aria-label="Direct link to 7.1 Why is decomposition useful?" title="Direct link to 7.1 Why is decomposition useful?" translate="no">​</a></h3>
+<ul>
+<li class="">Reduces duplicated information.</li>
+<li class="">Makes updates easier.</li>
+<li class="">Separates independent entities.</li>
+<li class="">Improves consistency.</li>
+<li class="">Makes relationships explicit.</li>
+</ul>
+<p>However, decomposition must be performed carefully.</p>
+<p>Splitting tables incorrectly can introduce problems such as losing information when joining them back together.</p>
+<p>This brings us to two important properties.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-properties-of-good-decomposition">8. Properties of Good Decomposition<a href="#8-properties-of-good-decomposition" class="hash-link" aria-label="Direct link to 8. Properties of Good Decomposition" title="Direct link to 8. Properties of Good Decomposition" translate="no">​</a></h2>
+<p>A good decomposition should ideally satisfy two important properties:</p>
+<ol>
+<li class="">Lossless Join.</li>
+<li class="">Dependency Preservation.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-lossless-join-decomposition">8.1 Lossless Join Decomposition<a href="#81-lossless-join-decomposition" class="hash-link" aria-label="Direct link to 8.1 Lossless Join Decomposition" title="Direct link to 8.1 Lossless Join Decomposition" translate="no">​</a></h3>
+<p>A decomposition is lossless when joining the decomposed tables reconstructs exactly the original relation, without losing information or introducing spurious rows.</p>
+<p>Consider the original table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">employee_id</th><th style="text-align:right">department_id</th><th>department_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">3</td><td style="text-align:right">20</td><td>Sales</td></tr></tbody></table>
+<p>We decompose it into:</p>
+<p><strong>Employee</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">employee_id</th><th style="text-align:right">department_id</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">10</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">10</td></tr><tr><td style="text-align:right">3</td><td style="text-align:right">20</td></tr></tbody></table>
+<p><strong>Department</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">department_id</th><th>department_name</th></tr></thead><tbody><tr><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">20</td><td>Sales</td></tr></tbody></table>
+<p>Now join them:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">employee_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    d</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> employees e</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> departments d</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> d</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The original information can be reconstructed correctly.</p>
+<p>This is a lossless decomposition.</p>
+<p><strong>Why does it work?</strong></p>
+<p>Because <code>department_id</code> uniquely identifies a department in the Department table.</p>
+<p>For a binary decomposition of relation R into R1 and R2, a standard lossless-join condition is that their common attributes functionally determine all attributes of at least one of the two decomposed relations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-lossy-decomposition">8.2 Lossy Decomposition<a href="#82-lossy-decomposition" class="hash-link" aria-label="Direct link to 8.2 Lossy Decomposition" title="Direct link to 8.2 Lossy Decomposition" translate="no">​</a></h3>
+<p>A lossy decomposition can create incorrect combinations when the decomposed tables are joined.</p>
+<p>Consider the original relation:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>student</th><th>course</th></tr></thead><tbody><tr><td>Rahul</td><td>DBMS</td></tr><tr><td>Amit</td><td>Operating Systems</td></tr></tbody></table>
+<p>Suppose we decompose it incorrectly.</p>
+<p><strong>Students</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>student</th></tr></thead><tbody><tr><td>Rahul</td></tr><tr><td>Amit</td></tr></tbody></table>
+<p><strong>Courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>course</th></tr></thead><tbody><tr><td>DBMS</td></tr><tr><td>Operating Systems</td></tr></tbody></table>
+<p>Joining these tables without a relationship produces:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>student</th><th>course</th></tr></thead><tbody><tr><td>Rahul</td><td>DBMS</td></tr><tr><td>Rahul</td><td>Operating Systems</td></tr><tr><td>Amit</td><td>DBMS</td></tr><tr><td>Amit</td><td>Operating Systems</td></tr></tbody></table>
+<p>Two extra combinations have been introduced.</p>
+<p>These are called spurious tuples.</p>
+<p>The original relationship between students and courses has been lost.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-dependency-preservation">8.3 Dependency Preservation<a href="#83-dependency-preservation" class="hash-link" aria-label="Direct link to 8.3 Dependency Preservation" title="Direct link to 8.3 Dependency Preservation" translate="no">​</a></h3>
+<p>A decomposition is dependency-preserving when the original functional dependencies can be enforced by checking the decomposed relations individually, without requiring joins.</p>
+<p>Consider:</p>
+<p>[
+A \rightarrow B
+]</p>
+<p>[
+B \rightarrow C
+]</p>
+<p>Suppose the original relation is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">R(A, B, C)</span><br></div></code></pre></div></div>
+<p>We decompose it into:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">R1(A, B)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">R2(B, C)</span><br></div></code></pre></div></div>
+<p>The first dependency can be checked in R1.</p>
+<p>The second dependency can be checked in R2.</p>
+<p>Both dependencies are preserved.</p>
+<p>However, some decompositions may lose the ability to enforce all original dependencies locally.</p>
+<p>In those situations, enforcing the original rules may require joining tables.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="84-lossless-join-vs-dependency-preservation">8.4 Lossless Join vs Dependency Preservation<a href="#84-lossless-join-vs-dependency-preservation" class="hash-link" aria-label="Direct link to 8.4 Lossless Join vs Dependency Preservation" title="Direct link to 8.4 Lossless Join vs Dependency Preservation" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Main purpose</th></tr></thead><tbody><tr><td>Lossless Join</td><td>Ensures no information is lost or invented during reconstruction</td></tr><tr><td>Dependency Preservation</td><td>Ensures functional dependencies can be enforced without joining decomposed tables</td></tr></tbody></table>
+<p>A good normalization design aims to satisfy both where possible.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-normalization-vs-denormalization">9. Normalization vs Denormalization<a href="#9-normalization-vs-denormalization" class="hash-link" aria-label="Direct link to 9. Normalization vs Denormalization" title="Direct link to 9. Normalization vs Denormalization" translate="no">​</a></h2>
+<p>Normalization and denormalization are related but different database design approaches.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-normalization">9.1 Normalization<a href="#91-normalization" class="hash-link" aria-label="Direct link to 9.1 Normalization" title="Direct link to 9.1 Normalization" translate="no">​</a></h3>
+<p>Normalization separates independent entities into logically related tables.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Customers</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Products</span><br></div></code></pre></div></div>
+<p>More precisely, orders and products are commonly connected through an order-items table in a real e-commerce system.</p>
+<p>Benefits:</p>
+<ul>
+<li class="">Reduced unnecessary duplication.</li>
+<li class="">Better data integrity.</li>
+<li class="">Easier independent updates.</li>
+<li class="">Clear relationships.</li>
+</ul>
+<p>Potential tradeoffs:</p>
+<ul>
+<li class="">More tables.</li>
+<li class="">More JOIN operations.</li>
+<li class="">Some queries become more complex.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-denormalization">9.2 Denormalization<a href="#92-denormalization" class="hash-link" aria-label="Direct link to 9.2 Denormalization" title="Direct link to 9.2 Denormalization" translate="no">​</a></h3>
+<p>Denormalization intentionally introduces redundancy to improve certain query patterns or simplify reads.</p>
+<p>For example, consider an order table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th>customer_name</th><th style="text-align:right">total</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">50800</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">800</td></tr></tbody></table>
+<p>Here, <code>customer_name</code> is stored alongside order data even though it can be retrieved through the customer relationship.</p>
+<p>Why might we do this?</p>
+<p>A reporting system may frequently need the customer&#x27;s name with every order.</p>
+<p>However, storing the current customer name redundantly requires a clear update strategy.</p>
+<p>Another example is storing an order&#x27;s historical customer name or product price as a transaction snapshot. This redundancy may be intentional because historical values must remain unchanged even when the customer profile or product catalog changes.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-comparison">9.3 Comparison<a href="#93-comparison" class="hash-link" aria-label="Direct link to 9.3 Comparison" title="Direct link to 9.3 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Normalization</th><th>Denormalization</th></tr></thead><tbody><tr><td>Data duplication</td><td>Reduces unnecessary duplication</td><td>Introduces controlled redundancy</td></tr><tr><td>Data integrity</td><td>Easier to maintain through centralized facts</td><td>Requires additional synchronization rules</td></tr><tr><td>Read queries</td><td>May require more JOINs</td><td>Can simplify some reads</td></tr><tr><td>Write operations</td><td>Often simpler for independent facts</td><td>May require updating redundant copies</td></tr><tr><td>Storage</td><td>Often more space-efficient for repeated facts</td><td>May consume more space</td></tr><tr><td>Main goal</td><td>Data consistency and logical organization</td><td>Query performance or read simplicity</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="94-when-should-you-denormalize">9.4 When should you denormalize?<a href="#94-when-should-you-denormalize" class="hash-link" aria-label="Direct link to 9.4 When should you denormalize?" title="Direct link to 9.4 When should you denormalize?" translate="no">​</a></h3>
+<p>Consider denormalization when:</p>
+<ul>
+<li class="">A specific read query is demonstrably expensive.</li>
+<li class="">The same joins are repeatedly required.</li>
+<li class="">Read performance is more important than write simplicity.</li>
+<li class="">Redundant data can be maintained reliably.</li>
+<li class="">Caching or materialized views are insufficient or unsuitable.</li>
+</ul>
+<p><strong>Important:</strong> Denormalization should be a deliberate optimization, not an excuse for poor database design.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-normalization-in-real-world-backend-applications">10. Normalization in Real-World Backend Applications<a href="#10-normalization-in-real-world-backend-applications" class="hash-link" aria-label="Direct link to 10. Normalization in Real-World Backend Applications" title="Direct link to 10. Normalization in Real-World Backend Applications" translate="no">​</a></h2>
+<p>Consider an e-commerce system.</p>
+<p>Initially, developers may create a single table:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> order_data </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    quantity </span><span class="token keyword" style="color:#00009f">INT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This combines several independent concepts:</p>
+<ul>
+<li class="">Customers.</li>
+<li class="">Products.</li>
+<li class="">Orders.</li>
+<li class="">Order items.</li>
+</ul>
+<p>A better logical design is:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="customers-1">Customers<a href="#customers-1" class="hash-link" aria-label="Direct link to Customers" title="Direct link to Customers" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> customers </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="products-1">Products<a href="#products-1" class="hash-link" aria-label="Direct link to Products" title="Direct link to Products" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    current_price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="orders-1">Orders<a href="#orders-1" class="hash-link" aria-label="Direct link to Orders" title="Direct link to Orders" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> customers</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    created_at </span><span class="token keyword" style="color:#00009f">TIMESTAMP</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DEFAULT</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">NOW</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="order-items">Order Items<a href="#order-items" class="hash-link" aria-label="Direct link to Order Items" title="Direct link to Order Items" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> order_items </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    quantity </span><span class="token keyword" style="color:#00009f">INT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    unit_price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Notice that <code>unit_price</code> is stored in <code>order_items</code>.</p>
+<p>Why?</p>
+<p>Because the price charged at the time of purchase is a historical transaction fact.</p>
+<p>Suppose:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Product catalog price: ₹50,000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order placed at: ₹48,000</span><br></div></code></pre></div></div>
+<p>Later, the catalog price changes to ₹55,000.</p>
+<p>The historical order must still show ₹48,000.</p>
+<p>This is not accidental redundancy. It is an intentional snapshot of the transaction.</p>
+<p>This example demonstrates an important principle:</p>
+<p><strong>Normalization does not mean eliminating every repeated value. It means identifying which facts belong to which entities and relationships.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-common-misconceptions">11. Common Misconceptions<a href="#11-common-misconceptions" class="hash-link" aria-label="Direct link to 11. Common Misconceptions" title="Direct link to 11. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-normalization-means-creating-as-many-tables-as-possible">Misconception 1: Normalization means creating as many tables as possible.<a href="#misconception-1-normalization-means-creating-as-many-tables-as-possible" class="hash-link" aria-label="Direct link to Misconception 1: Normalization means creating as many tables as possible." title="Direct link to Misconception 1: Normalization means creating as many tables as possible." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>The objective is to organize data according to dependencies and business rules, not maximize table count.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-normalization-always-improves-query-performance">Misconception 2: Normalization always improves query performance.<a href="#misconception-2-normalization-always-improves-query-performance" class="hash-link" aria-label="Direct link to Misconception 2: Normalization always improves query performance." title="Direct link to Misconception 2: Normalization always improves query performance." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Normalization can reduce redundant storage and improve consistency, but queries may require additional joins.</p>
+<p>Performance depends on the workload and execution plan.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-duplicate-values-are-always-bad">Misconception 3: Duplicate values are always bad.<a href="#misconception-3-duplicate-values-are-always-bad" class="hash-link" aria-label="Direct link to Misconception 3: Duplicate values are always bad." title="Direct link to Misconception 3: Duplicate values are always bad." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Some repeated values are intentional.</p>
+<p>For example, historical order prices should remain fixed even if product prices change.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-foreign-keys-automatically-solve-normalization">Misconception 4: Foreign keys automatically solve normalization.<a href="#misconception-4-foreign-keys-automatically-solve-normalization" class="hash-link" aria-label="Direct link to Misconception 4: Foreign keys automatically solve normalization." title="Direct link to Misconception 4: Foreign keys automatically solve normalization." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Foreign keys enforce referential integrity. They do not automatically eliminate redundancy or guarantee that a schema satisfies a normal form.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-a-primary-key-means-a-table-is-normalized">Misconception 5: A primary key means a table is normalized.<a href="#misconception-5-a-primary-key-means-a-table-is-normalized" class="hash-link" aria-label="Direct link to Misconception 5: A primary key means a table is normalized." title="Direct link to Misconception 5: A primary key means a table is normalized." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A table can have a primary key and still contain partial or transitive dependencies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-denormalization-is-always-bad">Misconception 6: Denormalization is always bad.<a href="#misconception-6-denormalization-is-always-bad" class="hash-link" aria-label="Direct link to Misconception 6: Denormalization is always bad." title="Direct link to Misconception 6: Denormalization is always bad." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Controlled denormalization can be useful for performance, reporting, and historical snapshots.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-normalization-is-only-about-storage-optimization">Misconception 7: Normalization is only about storage optimization.<a href="#misconception-7-normalization-is-only-about-storage-optimization" class="hash-link" aria-label="Direct link to Misconception 7: Normalization is only about storage optimization." title="Direct link to Misconception 7: Normalization is only about storage optimization." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Its central purpose is sound data organization and avoiding anomalies caused by inappropriate dependencies and redundancy.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-important-interview-questions">12. Important Interview Questions<a href="#12-important-interview-questions" class="hash-link" aria-label="Direct link to 12. Important Interview Questions" title="Direct link to 12. Important Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-database-normalization">Q1. What is database normalization?<a href="#q1-what-is-database-normalization" class="hash-link" aria-label="Direct link to Q1. What is database normalization?" title="Direct link to Q1. What is database normalization?" translate="no">​</a></h3>
+<p>It is the process of organizing relational tables to reduce unnecessary redundancy and prevent data anomalies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-why-do-we-need-normalization">Q2. Why do we need normalization?<a href="#q2-why-do-we-need-normalization" class="hash-link" aria-label="Direct link to Q2. Why do we need normalization?" title="Direct link to Q2. Why do we need normalization?" translate="no">​</a></h3>
+<p>To reduce duplication, improve consistency, simplify updates, and maintain data integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-are-the-three-data-anomalies">Q3. What are the three data anomalies?<a href="#q3-what-are-the-three-data-anomalies" class="hash-link" aria-label="Direct link to Q3. What are the three data anomalies?" title="Direct link to Q3. What are the three data anomalies?" translate="no">​</a></h3>
+<ul>
+<li class="">Insertion anomaly.</li>
+<li class="">Update anomaly.</li>
+<li class="">Deletion anomaly.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-functional-dependency">Q4. What is functional dependency?<a href="#q4-what-is-functional-dependency" class="hash-link" aria-label="Direct link to Q4. What is functional dependency?" title="Direct link to Q4. What is functional dependency?" translate="no">​</a></h3>
+<p>A relationship where one set of attributes uniquely determines another set of attributes.</p>
+<p>Example:</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-a-trivial-functional-dependency">Q5. What is a trivial functional dependency?<a href="#q5-what-is-a-trivial-functional-dependency" class="hash-link" aria-label="Direct link to Q5. What is a trivial functional dependency?" title="Direct link to Q5. What is a trivial functional dependency?" translate="no">​</a></h3>
+<p>A dependency where the right-hand side is a subset of the left-hand side.</p>
+<p>Example:</p>
+<p>[
+(A,B) \rightarrow A
+]</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-a-transitive-dependency">Q6. What is a transitive dependency?<a href="#q6-what-is-a-transitive-dependency" class="hash-link" aria-label="Direct link to Q6. What is a transitive dependency?" title="Direct link to Q6. What is a transitive dependency?" translate="no">​</a></h3>
+<p>A dependency where one attribute determines another through an intermediate attribute.</p>
+<p>Example:</p>
+<p>[
+A \rightarrow B,\quad B \rightarrow C
+]</p>
+<p>Therefore, A determines C transitively.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-the-difference-between-a-super-key-and-a-candidate-key">Q7. What is the difference between a super key and a candidate key?<a href="#q7-what-is-the-difference-between-a-super-key-and-a-candidate-key" class="hash-link" aria-label="Direct link to Q7. What is the difference between a super key and a candidate key?" title="Direct link to Q7. What is the difference between a super key and a candidate key?" translate="no">​</a></h3>
+<p>A super key uniquely identifies a row. A candidate key is a minimal super key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-a-prime-attribute">Q8. What is a prime attribute?<a href="#q8-what-is-a-prime-attribute" class="hash-link" aria-label="Direct link to Q8. What is a prime attribute?" title="Direct link to Q8. What is a prime attribute?" translate="no">​</a></h3>
+<p>An attribute that belongs to at least one candidate key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-decomposition">Q9. What is decomposition?<a href="#q9-what-is-decomposition" class="hash-link" aria-label="Direct link to Q9. What is decomposition?" title="Direct link to Q9. What is decomposition?" translate="no">​</a></h3>
+<p>Splitting a relation into smaller relations while maintaining the required information and dependencies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-lossless-decomposition">Q10. What is lossless decomposition?<a href="#q10-what-is-lossless-decomposition" class="hash-link" aria-label="Direct link to Q10. What is lossless decomposition?" title="Direct link to Q10. What is lossless decomposition?" translate="no">​</a></h3>
+<p>A decomposition that allows the original relation to be reconstructed without losing information or generating spurious tuples.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-dependency-preservation">Q11. What is dependency preservation?<a href="#q11-what-is-dependency-preservation" class="hash-link" aria-label="Direct link to Q11. What is dependency preservation?" title="Direct link to Q11. What is dependency preservation?" translate="no">​</a></h3>
+<p>A property that allows the original functional dependencies to be enforced using the decomposed tables without requiring joins.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-denormalization">Q12. What is denormalization?<a href="#q12-what-is-denormalization" class="hash-link" aria-label="Direct link to Q12. What is denormalization?" title="Direct link to Q12. What is denormalization?" translate="no">​</a></h3>
+<p>The intentional introduction of redundancy to improve selected read patterns or simplify queries.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-is-normalization-always-better-than-denormalization">Q13. Is normalization always better than denormalization?<a href="#q13-is-normalization-always-better-than-denormalization" class="hash-link" aria-label="Direct link to Q13. Is normalization always better than denormalization?" title="Direct link to Q13. Is normalization always better than denormalization?" translate="no">​</a></h3>
+<p>No. Normalization supports data integrity and logical organization. Denormalization can improve certain workloads but introduces synchronization responsibilities.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-can-a-table-with-a-primary-key-still-have-redundancy">Q14. Can a table with a primary key still have redundancy?<a href="#q14-can-a-table-with-a-primary-key-still-have-redundancy" class="hash-link" aria-label="Direct link to Q14. Can a table with a primary key still have redundancy?" title="Direct link to Q14. Can a table with a primary key still have redundancy?" translate="no">​</a></h3>
+<p>Yes. A primary key guarantees row identification, not compliance with all normal forms.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-does-normalization-eliminate-all-duplicate-data">Q15. Does normalization eliminate all duplicate data?<a href="#q15-does-normalization-eliminate-all-duplicate-data" class="hash-link" aria-label="Direct link to Q15. Does normalization eliminate all duplicate data?" title="Direct link to Q15. Does normalization eliminate all duplicate data?" translate="no">​</a></h3>
+<p>No. It reduces unnecessary redundancy. Some repeated values are valid and intentional.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-chapter-summary">13. Chapter Summary<a href="#13-chapter-summary" class="hash-link" aria-label="Direct link to 13. Chapter Summary" title="Direct link to 13. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Key takeaway</th></tr></thead><tbody><tr><td>Normalization</td><td>Organizing tables to reduce unnecessary redundancy</td></tr><tr><td>Data redundancy</td><td>Repeated storage of the same fact</td></tr><tr><td>Insertion anomaly</td><td>Difficulty inserting independent information</td></tr><tr><td>Update anomaly</td><td>Inconsistent updates across repeated records</td></tr><tr><td>Deletion anomaly</td><td>Deleting one fact unintentionally removes another</td></tr><tr><td>Functional dependency</td><td>One attribute set determines another</td></tr><tr><td>Trivial dependency</td><td>Right-hand side is a subset of the left-hand side</td></tr><tr><td>Non-trivial dependency</td><td>Right-hand side is not a subset of the left-hand side</td></tr><tr><td>Transitive dependency</td><td>Dependency through an intermediate attribute</td></tr><tr><td>Super key</td><td>Any unique identifier</td></tr><tr><td>Candidate key</td><td>Minimal super key</td></tr><tr><td>Primary key</td><td>Selected candidate key</td></tr><tr><td>Prime attribute</td><td>Attribute belonging to a candidate key</td></tr><tr><td>Decomposition</td><td>Splitting a relation into smaller relations</td></tr><tr><td>Lossless join</td><td>Reconstruction without losing or inventing information</td></tr><tr><td>Dependency preservation</td><td>Dependencies remain enforceable without joins</td></tr><tr><td>Denormalization</td><td>Intentional redundancy for selected workloads</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-most-important-mental-model">The most important mental model<a href="#the-most-important-mental-model" class="hash-link" aria-label="Direct link to The most important mental model" title="Direct link to The most important mental model" translate="no">​</a></h3>
+<p>Normalization is not simply about splitting one large table into multiple smaller tables.</p>
+<p>It is about understanding:</p>
+<ol>
+<li class="">What facts are being stored?</li>
+<li class="">Which attributes determine other attributes?</li>
+<li class="">Which facts belong to independent entities?</li>
+<li class="">What anomalies can occur when facts are stored together?</li>
+<li class="">How can tables be decomposed without losing relationships or dependencies?</li>
+</ol>
+<p>Once you understand functional dependencies and anomalies, the different normal forms become much easier to understand.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/04_Database_Normalization/part_01.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/category/database_normalization"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Database_Normalization</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction-to-database-normalization" class="table-of-contents__link toc-highlight">1. Introduction to Database Normalization</a><ul><li><a href="#definition" class="table-of-contents__link toc-highlight">Definition</a></li></ul></li><li><a href="#2-why-do-we-need-normalization" class="table-of-contents__link toc-highlight">2. Why Do We Need Normalization?</a><ul><li><a href="#orders-table" class="table-of-contents__link toc-highlight">Orders Table</a></li><li><a href="#problem-1-data-redundancy" class="table-of-contents__link toc-highlight">Problem 1: Data Redundancy</a></li><li><a href="#problem-2-data-inconsistency" class="table-of-contents__link toc-highlight">Problem 2: Data Inconsistency</a></li><li><a href="#problem-3-difficult-data-maintenance" class="table-of-contents__link toc-highlight">Problem 3: Difficult Data Maintenance</a></li></ul></li><li><a href="#3-three-types-of-database-anomalies" class="table-of-contents__link toc-highlight">3. Three Types of Database Anomalies</a><ul><li><a href="#31-insertion-anomaly" class="table-of-contents__link toc-highlight">3.1 Insertion Anomaly</a></li><li><a href="#32-update-anomaly" class="table-of-contents__link toc-highlight">3.2 Update Anomaly</a></li><li><a href="#33-deletion-anomaly" class="table-of-contents__link toc-highlight">3.3 Deletion Anomaly</a></li><li><a href="#34-comparison" class="table-of-contents__link toc-highlight">3.4 Comparison</a></li></ul></li><li><a href="#4-understanding-functional-dependency" class="table-of-contents__link toc-highlight">4. Understanding Functional Dependency</a><ul><li><a href="#41-example-customer-table" class="table-of-contents__link toc-highlight">4.1 Example: Customer Table</a></li><li><a href="#42-functional-dependency-does-not-mean-one-to-one" class="table-of-contents__link toc-highlight">4.2 Functional Dependency Does Not Mean One-to-One</a></li><li><a href="#43-another-example-product-table" class="table-of-contents__link toc-highlight">4.3 Another Example: Product Table</a></li><li><a href="#44-functional-dependency-and-business-rules" class="table-of-contents__link toc-highlight">4.4 Functional Dependency and Business Rules</a></li></ul></li><li><a href="#5-types-of-functional-dependencies" class="table-of-contents__link toc-highlight">5. Types of Functional Dependencies</a><ul><li><a href="#51-trivial-functional-dependency" class="table-of-contents__link toc-highlight">5.1 Trivial Functional Dependency</a></li><li><a href="#52-non-trivial-functional-dependency" class="table-of-contents__link toc-highlight">5.2 Non-Trivial Functional Dependency</a></li><li><a href="#53-fully-non-trivial-functional-dependency" class="table-of-contents__link toc-highlight">5.3 Fully Non-Trivial Functional Dependency</a></li><li><a href="#54-transitive-dependency" class="table-of-contents__link toc-highlight">5.4 Transitive Dependency</a></li></ul></li><li><a href="#6-keys-and-their-relationship-with-normalization" class="table-of-contents__link toc-highlight">6. Keys and Their Relationship With Normalization</a><ul><li><a href="#61-super-key" class="table-of-contents__link toc-highlight">6.1 Super Key</a></li><li><a href="#62-candidate-key" class="table-of-contents__link toc-highlight">6.2 Candidate Key</a></li><li><a href="#63-primary-key" class="table-of-contents__link toc-highlight">6.3 Primary Key</a></li><li><a href="#64-composite-key" class="table-of-contents__link toc-highlight">6.4 Composite Key</a></li><li><a href="#65-prime-and-non-prime-attributes" class="table-of-contents__link toc-highlight">6.5 Prime and Non-Prime Attributes</a></li></ul></li><li><a href="#7-understanding-decomposition" class="table-of-contents__link toc-highlight">7. Understanding Decomposition</a><ul><li><a href="#original-table" class="table-of-contents__link toc-highlight">Original Table</a></li><li><a href="#customers" class="table-of-contents__link toc-highlight">Customers</a></li><li><a href="#products" class="table-of-contents__link toc-highlight">Products</a></li><li><a href="#orders" class="table-of-contents__link toc-highlight">Orders</a></li><li><a href="#sql-implementation" class="table-of-contents__link toc-highlight">SQL Implementation</a></li><li><a href="#71-why-is-decomposition-useful" class="table-of-contents__link toc-highlight">7.1 Why is decomposition useful?</a></li></ul></li><li><a href="#8-properties-of-good-decomposition" class="table-of-contents__link toc-highlight">8. Properties of Good Decomposition</a><ul><li><a href="#81-lossless-join-decomposition" class="table-of-contents__link toc-highlight">8.1 Lossless Join Decomposition</a></li><li><a href="#82-lossy-decomposition" class="table-of-contents__link toc-highlight">8.2 Lossy Decomposition</a></li><li><a href="#83-dependency-preservation" class="table-of-contents__link toc-highlight">8.3 Dependency Preservation</a></li><li><a href="#84-lossless-join-vs-dependency-preservation" class="table-of-contents__link toc-highlight">8.4 Lossless Join vs Dependency Preservation</a></li></ul></li><li><a href="#9-normalization-vs-denormalization" class="table-of-contents__link toc-highlight">9. Normalization vs Denormalization</a><ul><li><a href="#91-normalization" class="table-of-contents__link toc-highlight">9.1 Normalization</a></li><li><a href="#92-denormalization" class="table-of-contents__link toc-highlight">9.2 Denormalization</a></li><li><a href="#93-comparison" class="table-of-contents__link toc-highlight">9.3 Comparison</a></li><li><a href="#94-when-should-you-denormalize" class="table-of-contents__link toc-highlight">9.4 When should you denormalize?</a></li></ul></li><li><a href="#10-normalization-in-real-world-backend-applications" class="table-of-contents__link toc-highlight">10. Normalization in Real-World Backend Applications</a><ul><li><a href="#customers-1" class="table-of-contents__link toc-highlight">Customers</a></li><li><a href="#products-1" class="table-of-contents__link toc-highlight">Products</a></li><li><a href="#orders-1" class="table-of-contents__link toc-highlight">Orders</a></li><li><a href="#order-items" class="table-of-contents__link toc-highlight">Order Items</a></li></ul></li><li><a href="#11-common-misconceptions" class="table-of-contents__link toc-highlight">11. Common Misconceptions</a><ul><li><a href="#misconception-1-normalization-means-creating-as-many-tables-as-possible" class="table-of-contents__link toc-highlight">Misconception 1: Normalization means creating as many tables as possible.</a></li><li><a href="#misconception-2-normalization-always-improves-query-performance" class="table-of-contents__link toc-highlight">Misconception 2: Normalization always improves query performance.</a></li><li><a href="#misconception-3-duplicate-values-are-always-bad" class="table-of-contents__link toc-highlight">Misconception 3: Duplicate values are always bad.</a></li><li><a href="#misconception-4-foreign-keys-automatically-solve-normalization" class="table-of-contents__link toc-highlight">Misconception 4: Foreign keys automatically solve normalization.</a></li><li><a href="#misconception-5-a-primary-key-means-a-table-is-normalized" class="table-of-contents__link toc-highlight">Misconception 5: A primary key means a table is normalized.</a></li><li><a href="#misconception-6-denormalization-is-always-bad" class="table-of-contents__link toc-highlight">Misconception 6: Denormalization is always bad.</a></li><li><a href="#misconception-7-normalization-is-only-about-storage-optimization" class="table-of-contents__link toc-highlight">Misconception 7: Normalization is only about storage optimization.</a></li></ul></li><li><a href="#12-important-interview-questions" class="table-of-contents__link toc-highlight">12. Important Interview Questions</a><ul><li><a href="#q1-what-is-database-normalization" class="table-of-contents__link toc-highlight">Q1. What is database normalization?</a></li><li><a href="#q2-why-do-we-need-normalization" class="table-of-contents__link toc-highlight">Q2. Why do we need normalization?</a></li><li><a href="#q3-what-are-the-three-data-anomalies" class="table-of-contents__link toc-highlight">Q3. What are the three data anomalies?</a></li><li><a href="#q4-what-is-functional-dependency" class="table-of-contents__link toc-highlight">Q4. What is functional dependency?</a></li><li><a href="#q5-what-is-a-trivial-functional-dependency" class="table-of-contents__link toc-highlight">Q5. What is a trivial functional dependency?</a></li><li><a href="#q6-what-is-a-transitive-dependency" class="table-of-contents__link toc-highlight">Q6. What is a transitive dependency?</a></li><li><a href="#q7-what-is-the-difference-between-a-super-key-and-a-candidate-key" class="table-of-contents__link toc-highlight">Q7. What is the difference between a super key and a candidate key?</a></li><li><a href="#q8-what-is-a-prime-attribute" class="table-of-contents__link toc-highlight">Q8. What is a prime attribute?</a></li><li><a href="#q9-what-is-decomposition" class="table-of-contents__link toc-highlight">Q9. What is decomposition?</a></li><li><a href="#q10-what-is-lossless-decomposition" class="table-of-contents__link toc-highlight">Q10. What is lossless decomposition?</a></li><li><a href="#q11-what-is-dependency-preservation" class="table-of-contents__link toc-highlight">Q11. What is dependency preservation?</a></li><li><a href="#q12-what-is-denormalization" class="table-of-contents__link toc-highlight">Q12. What is denormalization?</a></li><li><a href="#q13-is-normalization-always-better-than-denormalization" class="table-of-contents__link toc-highlight">Q13. Is normalization always better than denormalization?</a></li><li><a href="#q14-can-a-table-with-a-primary-key-still-have-redundancy" class="table-of-contents__link toc-highlight">Q14. Can a table with a primary key still have redundancy?</a></li><li><a href="#q15-does-normalization-eliminate-all-duplicate-data" class="table-of-contents__link toc-highlight">Q15. Does normalization eliminate all duplicate data?</a></li></ul></li><li><a href="#13-chapter-summary" class="table-of-contents__link toc-highlight">13. Chapter Summary</a><ul><li><a href="#the-most-important-mental-model" class="table-of-contents__link toc-highlight">The most important mental model</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

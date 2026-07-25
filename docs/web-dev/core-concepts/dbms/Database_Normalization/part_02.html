@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Database_Normalization/part_02" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF) | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF) | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction to Normal Forms"><meta data-rh="true" property="og:description" content="1. Introduction to Normal Forms"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Database_Normalization","item":"https://codingsapienss.github.io/notes/docs/category/database_normalization"},{"@type":"ListItem","position":5,"name":"Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Collapse sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"><span title="Normalization Fundamentals" class="linkLabel_WmDU">Normalization Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_02"><span title="Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)" class="linkLabel_WmDU">Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_03"><span title="Normalization in Practice" class="linkLabel_WmDU">Normalization in Practice</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/database_normalization"><span>Database_Normalization</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Normal Forms (0NF/UNF, 1NF, 2NF, 3NF, BCNF)</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction-to-normal-forms">1. Introduction to Normal Forms<a href="#1-introduction-to-normal-forms" class="hash-link" aria-label="Direct link to 1. Introduction to Normal Forms" title="Direct link to 1. Introduction to Normal Forms" translate="no">​</a></h2>
+<p>In last section, we studied database normalization, functional dependencies, keys, and data anomalies.</p>
+<p>Now we will study the different levels of normalization called <strong>Normal Forms</strong>.</p>
+<p>A normal form is a set of rules that a relational database table must satisfy.</p>
+<p>The major normal forms covered in this chapter are:</p>
+<ol>
+<li class="">UNF / 0NF — Unnormalized Form</li>
+<li class="">1NF — First Normal Form</li>
+<li class="">2NF — Second Normal Form</li>
+<li class="">3NF — Third Normal Form</li>
+<li class="">BCNF — Boyce-Codd Normal Form</li>
+</ol>
+<p>Each normal form addresses particular problems in database design.</p>
+<p><text weight="semibold" color="default">Normalization progression</text></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">       UNF / 0NF</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          1NF</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          2NF</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          3NF</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          BCNF</span><br></div></code></pre></div></div>
+<p>Each higher normal form builds on the requirements of the preceding normal forms.</p>
+<p>For example:</p>
+<ul>
+<li class="">A table in 2NF must already satisfy 1NF.</li>
+<li class="">A table in 3NF must already satisfy 2NF.</li>
+<li class="">A table in BCNF must already satisfy 3NF.</li>
+</ul>
+<p>The purpose is not to blindly reach the highest normal form. It is to design a schema that maintains correctness, integrity, and practical performance.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-unnormalized-form-unf--0nf">2. Unnormalized Form (UNF / 0NF)<a href="#2-unnormalized-form-unf--0nf" class="hash-link" aria-label="Direct link to 2. Unnormalized Form (UNF / 0NF)" title="Direct link to 2. Unnormalized Form (UNF / 0NF)" translate="no">​</a></h2>
+<p>UNF represents data that has not yet been organized according to the requirements of 1NF.</p>
+<p>It can contain:</p>
+<ul>
+<li class="">Multiple values in one column.</li>
+<li class="">Repeating groups.</li>
+<li class="">Nested or structured values.</li>
+<li class="">Repeated information.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-example">2.1 Example<a href="#21-example" class="hash-link" aria-label="Direct link to 2.1 Example" title="Direct link to 2.1 Example" translate="no">​</a></h3>
+<p>Consider a student table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>courses</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS, SQL, Java</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python, Java</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td>DBMS, Python, React</td></tr></tbody></table>
+<p>The <code>courses</code> column contains multiple values.</p>
+<p>This is an example of unnormalized data.</p>
+<p>A relational column is intended to represent one value from its defined domain in each row, rather than an embedded list of independent course values.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-another-example-repeating-groups">2.2 Another Example: Repeating Groups<a href="#22-another-example-repeating-groups" class="hash-link" aria-label="Direct link to 2.2 Another Example: Repeating Groups" title="Direct link to 2.2 Another Example: Repeating Groups" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>course_1</th><th>course_2</th><th>course_3</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS</td><td>SQL</td><td>Java</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python</td><td>Java</td><td>NULL</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td>DBMS</td><td>Python</td><td>React</td></tr></tbody></table>
+<p>This design also contains repeating groups.</p>
+<p>Problems:</p>
+<ul>
+<li class="">What happens when a student takes four courses?</li>
+<li class="">What happens when a student takes ten courses?</li>
+<li class="">How do we search for students enrolled in SQL?</li>
+<li class="">How do we count students enrolled in each course?</li>
+<li class="">What happens when a student has no course?</li>
+</ul>
+<p>The structure is difficult to maintain and query.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-how-to-improve-it">2.3 How to Improve It<a href="#23-how-to-improve-it" class="hash-link" aria-label="Direct link to 2.3 How to Improve It" title="Direct link to 2.3 How to Improve It" translate="no">​</a></h3>
+<p>Instead of storing multiple courses in one row, create separate rows.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>course</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS</td></tr><tr><td style="text-align:right">1</td><td>Rahul</td><td>SQL</td></tr><tr><td style="text-align:right">1</td><td>Rahul</td><td>Java</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Java</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td>DBMS</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td>Python</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td>React</td></tr></tbody></table>
+<p>This is closer to First Normal Form.</p>
+<p><strong>Key takeaway:</strong> UNF is a starting point where repeating groups and non-atomic structures may exist.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-first-normal-form-1nf">3. First Normal Form (1NF)<a href="#3-first-normal-form-1nf" class="hash-link" aria-label="Direct link to 3. First Normal Form (1NF)" title="Direct link to 3. First Normal Form (1NF)" translate="no">​</a></h2>
+<p>A relation satisfies First Normal Form when every attribute contains a single value from its defined domain in each row, rather than a repeating group or collection of values.</p>
+<p>In practical terms:</p>
+<ol>
+<li class="">Each cell contains one value.</li>
+<li class="">There are no repeating groups of columns.</li>
+<li class="">Each row can be uniquely identified.</li>
+<li class="">Each column represents a consistent attribute.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-example-violating-1nf">3.1 Example: Violating 1NF<a href="#31-example-violating-1nf" class="hash-link" aria-label="Direct link to 3.1 Example: Violating 1NF" title="Direct link to 3.1 Example: Violating 1NF" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>courses</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS, SQL</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python, Java</td></tr></tbody></table>
+<p>The <code>courses</code> column contains multiple values.</p>
+<p>This violates the intended 1NF structure.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-convert-to-1nf">3.2 Convert to 1NF<a href="#32-convert-to-1nf" class="hash-link" aria-label="Direct link to 3.2 Convert to 1NF" title="Direct link to 3.2 Convert to 1NF" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>course</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS</td></tr><tr><td style="text-align:right">1</td><td>Rahul</td><td>SQL</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Java</td></tr></tbody></table>
+<p>Now each cell contains one course value.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-sql-implementation">3.3 SQL Implementation<a href="#33-sql-implementation" class="hash-link" aria-label="Direct link to 3.3 SQL Implementation" title="Direct link to 3.3 SQL Implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The composite primary key prevents the same student-course combination from being inserted twice.</p>
+<p>Example inserts:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> student_courses</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> student_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Rahul&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;DBMS&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Rahul&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;SQL&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Amit&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Python&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Amit&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Java&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-what-1nf-does-not-solve">3.4 What 1NF Does Not Solve<a href="#34-what-1nf-does-not-solve" class="hash-link" aria-label="Direct link to 3.4 What 1NF Does Not Solve" title="Direct link to 3.4 What 1NF Does Not Solve" translate="no">​</a></h3>
+<p>Consider:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th><th>course</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td>DBMS</td></tr><tr><td style="text-align:right">1</td><td>Rahul</td><td>SQL</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Python</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td>Java</td></tr></tbody></table>
+<p>We have removed the multiple values from individual cells.</p>
+<p>However, Rahul&#x27;s name is repeated.</p>
+<p>Suppose Rahul changes his name due to a correction.</p>
+<p>We must update multiple rows.</p>
+<p>This is still an update anomaly.</p>
+<p>1NF solves the problem of repeating groups and non-atomic column values, but it does not eliminate all redundancy.</p>
+<p><strong>Important:</strong> 1NF does not mean that every value in the entire table must be unique. Repeated values across rows are perfectly valid.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-second-normal-form-2nf">4. Second Normal Form (2NF)<a href="#4-second-normal-form-2nf" class="hash-link" aria-label="Direct link to 4. Second Normal Form (2NF)" title="Direct link to 4. Second Normal Form (2NF)" translate="no">​</a></h2>
+<p>Second Normal Form builds on 1NF.</p>
+<p>A relation is in 2NF when:</p>
+<ol>
+<li class="">It is already in 1NF.</li>
+<li class="">Every non-prime attribute is fully functionally dependent on every candidate key.</li>
+</ol>
+<p>In simpler language:</p>
+<p><strong>A non-key attribute must depend on the whole candidate key, not just part of a composite candidate key.</strong></p>
+<p>This is where partial dependencies become important.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-understanding-partial-dependency">4.1 Understanding Partial Dependency<a href="#41-understanding-partial-dependency" class="hash-link" aria-label="Direct link to 4.1 Understanding Partial Dependency" title="Direct link to 4.1 Understanding Partial Dependency" translate="no">​</a></h3>
+<p>A partial dependency occurs when a non-prime attribute depends on only a proper subset of a composite candidate key.</p>
+<p>Let&#x27;s understand through an example.</p>
+<p>Consider:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="student-courses-table">Student Courses Table<a href="#student-courses-table" class="hash-link" aria-label="Direct link to Student Courses Table" title="Direct link to Student Courses Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>student_name</th><th>course_name</th><th>grade</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>Rahul</td><td>DBMS</td><td>A</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td><td>Rahul</td><td>SQL</td><td>B</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>Amit</td><td>DBMS</td><td>A</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">103</td><td>Amit</td><td>Java</td><td>B</td></tr></tbody></table>
+<p>Assume:</p>
+<ul>
+<li class="">A student can enroll in multiple courses.</li>
+<li class="">A course can have multiple students.</li>
+<li class="">Each student-course combination identifies one enrollment.</li>
+</ul>
+<p>The candidate key is:</p>
+<p>[
+(student_id, course_id)
+]</p>
+<p>Now examine the functional dependencies.</p>
+<p>[
+student_id \rightarrow student_name
+]</p>
+<p>[
+course_id \rightarrow course_name
+]</p>
+<p>[
+(student_id, course_id) \rightarrow grade
+]</p>
+<p>Notice:</p>
+<ul>
+<li class=""><code>student_name</code> depends only on <code>student_id</code>.</li>
+<li class=""><code>course_name</code> depends only on <code>course_id</code>.</li>
+<li class=""><code>grade</code> depends on the complete combination of <code>student_id</code> and <code>course_id</code>.</li>
+</ul>
+<p>The first two are partial dependencies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-why-is-this-a-problem">4.2 Why Is This a Problem?<a href="#42-why-is-this-a-problem" class="hash-link" aria-label="Direct link to 4.2 Why Is This a Problem?" title="Direct link to 4.2 Why Is This a Problem?" translate="no">​</a></h3>
+<p>Suppose Rahul enrolls in five courses.</p>
+<p>His name will be stored five times.</p>
+<p>If his name changes, multiple records must be updated.</p>
+<p>Similarly, the course name <code>DBMS</code> will be repeated for every student enrolled in that course.</p>
+<p>This creates unnecessary redundancy and update anomalies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-convert-to-2nf">4.3 Convert to 2NF<a href="#43-convert-to-2nf" class="hash-link" aria-label="Direct link to 4.3 Convert to 2NF" title="Direct link to 4.3 Convert to 2NF" translate="no">​</a></h3>
+<p>Split the original table into three tables.</p>
+<p><strong>Students</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>student_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Amit</td></tr></tbody></table>
+<p><strong>Courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">course_id</th><th>course_name</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>DBMS</td></tr><tr><td style="text-align:right">102</td><td>SQL</td></tr><tr><td style="text-align:right">103</td><td>Java</td></tr></tbody></table>
+<p><strong>Enrollments</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>grade</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>A</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td><td>B</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>A</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">103</td><td>B</td></tr></tbody></table>
+<p>Now:</p>
+<ul>
+<li class="">Student details depend on <code>student_id</code>.</li>
+<li class="">Course details depend on <code>course_id</code>.</li>
+<li class="">Grade depends on the complete student-course combination.</li>
+</ul>
+<p>The partial dependencies have been removed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-sql-implementation">4.4 SQL Implementation<a href="#44-sql-implementation" class="hash-link" aria-label="Direct link to 4.4 SQL Implementation" title="Direct link to 4.4 SQL Implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> students </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> enrollments </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> students</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> courses</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    grade </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="45-important-point-2nf-and-single-column-keys">4.5 Important Point: 2NF and Single-Column Keys<a href="#45-important-point-2nf-and-single-column-keys" class="hash-link" aria-label="Direct link to 4.5 Important Point: 2NF and Single-Column Keys" title="Direct link to 4.5 Important Point: 2NF and Single-Column Keys" translate="no">​</a></h3>
+<p>If a table has only one candidate key and that key consists of a single attribute, it cannot have a partial dependency on a proper subset of that key.</p>
+<p>Therefore, a table in 1NF with only single-attribute candidate keys automatically satisfies 2NF.</p>
+<p>This is why partial dependency is especially relevant when composite candidate keys exist.</p>
+<p><strong>Key takeaway:</strong> 2NF removes partial dependencies of non-prime attributes on candidate keys.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-third-normal-form-3nf">5. Third Normal Form (3NF)<a href="#5-third-normal-form-3nf" class="hash-link" aria-label="Direct link to 5. Third Normal Form (3NF)" title="Direct link to 5. Third Normal Form (3NF)" translate="no">​</a></h2>
+<p>Third Normal Form builds on 2NF.</p>
+<p>A relation is in 3NF when:</p>
+<ol>
+<li class="">It is already in 2NF.</li>
+<li class="">It has no disallowed transitive dependency of non-prime attributes on candidate keys.</li>
+</ol>
+<p>A commonly used formal definition is:</p>
+<p>For every non-trivial functional dependency:</p>
+<p>[
+X \rightarrow A
+]</p>
+<p>at least one of the following must be true:</p>
+<ul>
+<li class="">X is a super key.</li>
+<li class="">A is a prime attribute.</li>
+</ul>
+<p>This formal definition is important because the simpler explanation about transitive dependencies does not cover every possible 3NF case.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-example">5.1 Example<a href="#51-example" class="hash-link" aria-label="Direct link to 5.1 Example" title="Direct link to 5.1 Example" translate="no">​</a></h3>
+<p>Consider an employee table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">employee_id</th><th>employee_name</th><th style="text-align:right">department_id</th><th>department_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td style="text-align:right">20</td><td>Sales</td></tr><tr><td style="text-align:right">4</td><td>Neha</td><td style="text-align:right">20</td><td>Sales</td></tr></tbody></table>
+<p>Assume:</p>
+<ul>
+<li class="">Each employee belongs to one department.</li>
+<li class="">Each department has one department name.</li>
+<li class=""><code>employee_id</code> uniquely identifies an employee.</li>
+<li class=""><code>department_id</code> uniquely identifies a department.</li>
+</ul>
+<p>Functional dependencies:</p>
+<p>[
+employee_id \rightarrow employee_name
+]</p>
+<p>[
+employee_id \rightarrow department_id
+]</p>
+<p>[
+department_id \rightarrow department_name
+]</p>
+<p>Therefore:</p>
+<p>[
+employee_id \rightarrow department_name
+]</p>
+<p>through <code>department_id</code>.</p>
+<p>This is a transitive dependency.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-why-is-this-a-problem">5.2 Why Is This a Problem?<a href="#52-why-is-this-a-problem" class="hash-link" aria-label="Direct link to 5.2 Why Is This a Problem?" title="Direct link to 5.2 Why Is This a Problem?" translate="no">​</a></h3>
+<p>Suppose the Engineering department is renamed to Platform Engineering.</p>
+<p>We must update every employee record belonging to that department.</p>
+<p>If we update only some rows, the database becomes inconsistent.</p>
+<p>Department information should be stored independently of employee information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-convert-to-3nf">5.3 Convert to 3NF<a href="#53-convert-to-3nf" class="hash-link" aria-label="Direct link to 5.3 Convert to 3NF" title="Direct link to 5.3 Convert to 3NF" translate="no">​</a></h3>
+<p>Create two tables.</p>
+<p><strong>Employees</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">employee_id</th><th>employee_name</th><th style="text-align:right">department_id</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">10</td></tr><tr><td style="text-align:right">2</td><td>Amit</td><td style="text-align:right">10</td></tr><tr><td style="text-align:right">3</td><td>Priya</td><td style="text-align:right">20</td></tr><tr><td style="text-align:right">4</td><td>Neha</td><td style="text-align:right">20</td></tr></tbody></table>
+<p><strong>Departments</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">department_id</th><th>department_name</th></tr></thead><tbody><tr><td style="text-align:right">10</td><td>Engineering</td></tr><tr><td style="text-align:right">20</td><td>Sales</td></tr></tbody></table>
+<p>Now department information exists in one place.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-sql-implementation">5.4 SQL Implementation<a href="#54-sql-implementation" class="hash-link" aria-label="Direct link to 5.4 SQL Implementation" title="Direct link to 5.4 SQL Implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> departments </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    department_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    department_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> employees </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    employee_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    employee_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    department_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> departments</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">department_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="55-querying-the-data">5.5 Querying the Data<a href="#55-querying-the-data" class="hash-link" aria-label="Direct link to 5.5 Querying the Data" title="Direct link to 5.5 Querying the Data" translate="no">​</a></h3>
+<p>Although the data is split into two tables, we can retrieve it using a JOIN.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">employee_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">employee_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    d</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> employees e</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> departments d</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> d</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">department_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application still receives the required information.</p>
+<p>The difference is that department information is maintained in one location.</p>
+<p><strong>Key takeaway:</strong> 3NF removes disallowed transitive dependencies and ensures non-key facts are associated with the keys, the whole key, and nothing but the key.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-boyce-codd-normal-form-bcnf">6. Boyce-Codd Normal Form (BCNF)<a href="#6-boyce-codd-normal-form-bcnf" class="hash-link" aria-label="Direct link to 6. Boyce-Codd Normal Form (BCNF)" title="Direct link to 6. Boyce-Codd Normal Form (BCNF)" translate="no">​</a></h2>
+<p>BCNF is a stricter version of Third Normal Form.</p>
+<p>A relation is in BCNF if, for every non-trivial functional dependency:</p>
+<p>[
+X \rightarrow Y
+]</p>
+<p>X must be a super key.</p>
+<p>In simpler terms:</p>
+<p><strong>Every determinant must be a super key.</strong></p>
+<p>BCNF addresses certain anomalies that can still exist in tables satisfying 3NF.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-example">6.1 Example<a href="#61-example" class="hash-link" aria-label="Direct link to 6.1 Example" title="Direct link to 6.1 Example" translate="no">​</a></h3>
+<p>Consider a university table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>instructor</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>Rahul</td></tr><tr><td style="text-align:right">3</td><td style="text-align:right">102</td><td>Amit</td></tr></tbody></table>
+<p>Assume these business rules:</p>
+<ol>
+<li class="">A student can enroll in multiple courses.</li>
+<li class="">Each course has one instructor.</li>
+<li class="">Each instructor teaches only one course.</li>
+</ol>
+<p>The functional dependencies are:</p>
+<p>[
+(student_id, course_id) \rightarrow instructor
+]</p>
+<p>[
+instructor \rightarrow course_id
+]</p>
+<p>The candidate keys are:</p>
+<ul>
+<li class=""><code>(student_id, course_id)</code></li>
+<li class=""><code>(student_id, instructor)</code></li>
+</ul>
+<p>Why is <code>(student_id, instructor)</code> also a candidate key?</p>
+<p>Because the instructor determines the course, and the student plus course identifies an enrollment.</p>
+<p>Now examine:</p>
+<p>[
+instructor \rightarrow course_id
+]</p>
+<p>Is <code>instructor</code> a super key?</p>
+<p>No.</p>
+<p>An instructor can teach multiple students, so instructor alone does not uniquely identify a row.</p>
+<p>Therefore, the relation violates BCNF.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-does-it-satisfy-3nf">6.2 Does It Satisfy 3NF?<a href="#62-does-it-satisfy-3nf" class="hash-link" aria-label="Direct link to 6.2 Does It Satisfy 3NF?" title="Direct link to 6.2 Does It Satisfy 3NF?" translate="no">​</a></h3>
+<p>Yes, under the stated business rules.</p>
+<p>For the dependency:</p>
+<p>[
+instructor \rightarrow course_id
+]</p>
+<ul>
+<li class=""><code>instructor</code> is not a super key.</li>
+<li class=""><code>course_id</code> is a prime attribute because it belongs to the candidate key <code>(student_id, course_id)</code>.</li>
+</ul>
+<p>The formal 3NF condition is satisfied.</p>
+<p>But the BCNF condition is not satisfied because the determinant is not a super key.</p>
+<p>This is an important example of how 3NF and BCNF differ.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-problems-in-the-original-table">6.3 Problems in the Original Table<a href="#63-problems-in-the-original-table" class="hash-link" aria-label="Direct link to 6.3 Problems in the Original Table" title="Direct link to 6.3 Problems in the Original Table" translate="no">​</a></h3>
+<p>Suppose a new course is assigned to instructor Amit, but no student has enrolled yet.</p>
+<p>We cannot represent the instructor-course assignment independently without introducing a student record.</p>
+<p>This is an insertion anomaly.</p>
+<p>Also, the same instructor-course relationship is repeated for every enrolled student.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-convert-to-bcnf">6.4 Convert to BCNF<a href="#64-convert-to-bcnf" class="hash-link" aria-label="Direct link to 6.4 Convert to BCNF" title="Direct link to 6.4 Convert to BCNF" translate="no">​</a></h3>
+<p>Decompose the relation into two tables.</p>
+<p><strong>Instructor Courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>instructor</th><th style="text-align:right">course_id</th></tr></thead><tbody><tr><td>Rahul</td><td style="text-align:right">101</td></tr><tr><td>Amit</td><td style="text-align:right">102</td></tr></tbody></table>
+<p><strong>Student Instructors</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th>instructor</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr><tr><td style="text-align:right">3</td><td>Amit</td></tr></tbody></table>
+<p>The first table records which course an instructor teaches.</p>
+<p>The second records which instructor is associated with a student.</p>
+<p>The decomposition is lossless under the stated functional dependencies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="65-sql-implementation">6.5 SQL Implementation<a href="#65-sql-implementation" class="hash-link" aria-label="Direct link to 6.5 SQL Implementation" title="Direct link to 6.5 SQL Implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> instructor_courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    instructor </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_instructors </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    instructor </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> instructor_courses</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">instructor</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> instructor</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The exact constraints depend on the business rules. For example, if courses also have independent identifiers and course assignments require additional attributes, the schema may need further refinement.</p>
+<p><strong>Key takeaway:</strong> BCNF requires every determinant in every non-trivial functional dependency to be a super key.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-comparison-of-all-normal-forms">7. Comparison of All Normal Forms<a href="#7-comparison-of-all-normal-forms" class="hash-link" aria-label="Direct link to 7. Comparison of All Normal Forms" title="Direct link to 7. Comparison of All Normal Forms" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Normal Form</th><th>Main requirement</th><th>Problem addressed</th></tr></thead><tbody><tr><td>UNF / 0NF</td><td>No formal normalization requirements</td><td>Repeating groups and unstructured data</td></tr><tr><td>1NF</td><td>Atomic values and no repeating groups</td><td>Multiple values in a cell</td></tr><tr><td>2NF</td><td>1NF + no partial dependency of non-prime attributes</td><td>Partial dependency</td></tr><tr><td>3NF</td><td>2NF + formal 3NF dependency condition</td><td>Transitive and other disallowed dependencies</td></tr><tr><td>BCNF</td><td>Every determinant is a super key</td><td>Remaining dependency anomalies not eliminated by 3NF</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="quick-memory-technique">Quick Memory Technique<a href="#quick-memory-technique" class="hash-link" aria-label="Direct link to Quick Memory Technique" title="Direct link to Quick Memory Technique" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>1NF:</strong> One value per cell.</li>
+<li class=""><strong>2NF:</strong> Depend on the whole candidate key.</li>
+<li class=""><strong>3NF:</strong> Depend on the key, not through a non-key determinant.</li>
+<li class=""><strong>BCNF:</strong> Every determinant must be a super key.</li>
+</ul>
+<p>These are memory aids, not substitutes for the formal definitions.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-complete-example-normalizing-an-e-commerce-table">8. Complete Example: Normalizing an E-commerce Table<a href="#8-complete-example-normalizing-an-e-commerce-table" class="hash-link" aria-label="Direct link to 8. Complete Example: Normalizing an E-commerce Table" title="Direct link to 8. Complete Example: Normalizing an E-commerce Table" translate="no">​</a></h2>
+<p>Let&#x27;s take a larger example and move through the normal forms.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="initial-table--unf">Initial Table — UNF<a href="#initial-table--unf" class="hash-link" aria-label="Direct link to Initial Table — UNF" title="Direct link to Initial Table — UNF" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th>customer</th><th>products</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td>Laptop, Mouse</td></tr><tr><td style="text-align:right">102</td><td>Amit</td><td>Keyboard</td></tr><tr><td style="text-align:right">103</td><td>Rahul</td><td>Monitor, Mouse</td></tr></tbody></table>
+<p>The <code>products</code> column contains multiple values.</p>
+<p>This is UNF.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1--convert-to-1nf">Step 1 — Convert to 1NF<a href="#step-1--convert-to-1nf" class="hash-link" aria-label="Direct link to Step 1 — Convert to 1NF" title="Direct link to Step 1 — Convert to 1NF" translate="no">​</a></h3>
+<p>Create one row for each order-product combination.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th><th>customer_name</th><th style="text-align:right">product_id</th><th>product_name</th><th style="text-align:right">quantity</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">501</td><td>Laptop</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">502</td><td>Mouse</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td><td>Amit</td><td style="text-align:right">503</td><td>Keyboard</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">504</td><td>Monitor</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td><td>Rahul</td><td style="text-align:right">502</td><td>Mouse</td><td style="text-align:right">1</td></tr></tbody></table>
+<p>Assume each product appears at most once per order.</p>
+<p>The candidate key is:</p>
+<p>[
+(order_id, product_id)
+]</p>
+<p>Functional dependencies:</p>
+<p>[
+order_id \rightarrow customer_id
+]</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<p>[
+product_id \rightarrow product_name
+]</p>
+<p>[
+(order_id, product_id) \rightarrow quantity
+]</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2--convert-to-2nf">Step 2 — Convert to 2NF<a href="#step-2--convert-to-2nf" class="hash-link" aria-label="Direct link to Step 2 — Convert to 2NF" title="Direct link to Step 2 — Convert to 2NF" translate="no">​</a></h3>
+<p>The non-prime attributes <code>customer_id</code>, <code>customer_name</code>, and <code>product_name</code> do not all depend on the complete composite key.</p>
+<p>For example:</p>
+<p>[
+order_id \rightarrow customer_id
+]</p>
+<p>[
+product_id \rightarrow product_name
+]</p>
+<p>Split the table.</p>
+<p><strong>Orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td></tr></tbody></table>
+<p><strong>Products</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">product_id</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">501</td><td>Laptop</td></tr><tr><td style="text-align:right">502</td><td>Mouse</td></tr><tr><td style="text-align:right">503</td><td>Keyboard</td></tr><tr><td style="text-align:right">504</td><td>Monitor</td></tr></tbody></table>
+<p><strong>Order Items</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">product_id</th><th style="text-align:right">quantity</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">501</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">101</td><td style="text-align:right">502</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">503</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">504</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">502</td><td style="text-align:right">1</td></tr></tbody></table>
+<p>Now the attributes depend on the relevant complete keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3--convert-to-3nf">Step 3 — Convert to 3NF<a href="#step-3--convert-to-3nf" class="hash-link" aria-label="Direct link to Step 3 — Convert to 3NF" title="Direct link to Step 3 — Convert to 3NF" translate="no">​</a></h3>
+<p>Notice:</p>
+<p>[
+order_id \rightarrow customer_id
+]</p>
+<p>[
+customer_id \rightarrow customer_name
+]</p>
+<p>The customer name is transitively dependent on the order ID.</p>
+<p>Create a separate Customers table.</p>
+<p><strong>Customers</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">customer_id</th><th>customer_name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Amit</td></tr></tbody></table>
+<p><strong>Orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">customer_id</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td></tr></tbody></table>
+<p><strong>Products</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">product_id</th><th>product_name</th></tr></thead><tbody><tr><td style="text-align:right">501</td><td>Laptop</td></tr><tr><td style="text-align:right">502</td><td>Mouse</td></tr><tr><td style="text-align:right">503</td><td>Keyboard</td></tr><tr><td style="text-align:right">504</td><td>Monitor</td></tr></tbody></table>
+<p><strong>Order Items</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">order_id</th><th style="text-align:right">product_id</th><th style="text-align:right">quantity</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">501</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">101</td><td style="text-align:right">502</td><td style="text-align:right">2</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">503</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">504</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">502</td><td style="text-align:right">1</td></tr></tbody></table>
+<p>The design now separates customers, orders, products, and order items.</p>
+<p>Under the stated dependencies, these relations satisfy the relevant 3NF conditions and are also in BCNF.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-business-detail-product-price">Important Business Detail: Product Price<a href="#important-business-detail-product-price" class="hash-link" aria-label="Direct link to Important Business Detail: Product Price" title="Direct link to Important Business Detail: Product Price" translate="no">​</a></h3>
+<p>In a real e-commerce system, the order item should usually also store the price charged at purchase time:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> order_items </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    quantity </span><span class="token keyword" style="color:#00009f">INT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    unit_price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p><code>unit_price</code> is a historical transaction value, not necessarily the current product catalog price.</p>
+<p>Do not remove it merely because the product table also has a price column.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-practical-postgresql-exercise">9. Practical PostgreSQL Exercise<a href="#9-practical-postgresql-exercise" class="hash-link" aria-label="Direct link to 9. Practical PostgreSQL Exercise" title="Direct link to 9. Practical PostgreSQL Exercise" translate="no">​</a></h2>
+<p>Use the following exercise to test your understanding.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-create-an-unnormalized-style-table">Step 1: Create an unnormalized-style table<a href="#step-1-create-an-unnormalized-style-table" class="hash-link" aria-label="Direct link to Step 1: Create an unnormalized-style table" title="Direct link to Step 1: Create an unnormalized-style table" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_data </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_1 </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_2 </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_3 </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Insert data:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> student_data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Rahul&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;DBMS&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;SQL&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Java&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Amit&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Python&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Java&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">3</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Priya&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;DBMS&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;React&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Python&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-identify-the-problems">Step 2: Identify the problems<a href="#step-2-identify-the-problems" class="hash-link" aria-label="Direct link to Step 2: Identify the problems" title="Direct link to Step 2: Identify the problems" translate="no">​</a></h3>
+<ul>
+<li class="">Repeating groups.</li>
+<li class="">Difficult course searches.</li>
+<li class="">Fixed limit of three courses.</li>
+<li class="">Difficult course counts.</li>
+<li class="">Repeated student information after restructuring into multiple rows.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-design-a-1nf-table">Step 3: Design a 1NF table<a href="#step-3-design-a-1nf-table" class="hash-link" aria-label="Direct link to Step 3: Design a 1NF table" title="Direct link to Step 3: Design a 1NF table" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_name</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-design-a-2nf-structure">Step 4: Design a 2NF structure<a href="#step-4-design-a-2nf-structure" class="hash-link" aria-label="Direct link to Step 4: Design a 2NF structure" title="Direct link to Step 4: Design a 2NF structure" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> students </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> enrollments </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> students</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> courses</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now student and course details are stored independently.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-5-verify-the-relationships">Step 5: Verify the relationships<a href="#step-5-verify-the-relationships" class="hash-link" aria-label="Direct link to Step 5: Verify the relationships" title="Direct link to Step 5: Verify the relationships" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    s</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">student_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">course_name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> enrollments e</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> students s</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> s</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">student_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">student_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> courses c</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">course_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> e</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">course_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The normalized structure allows us to retrieve the same information without storing student and course names repeatedly in every enrollment row.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-common-mistakes-and-misconceptions">10. Common Mistakes and Misconceptions<a href="#10-common-mistakes-and-misconceptions" class="hash-link" aria-label="Direct link to 10. Common Mistakes and Misconceptions" title="Direct link to 10. Common Mistakes and Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-1-assuming-1nf-means-no-duplicate-rows">Mistake 1: Assuming 1NF means no duplicate rows<a href="#mistake-1-assuming-1nf-means-no-duplicate-rows" class="hash-link" aria-label="Direct link to Mistake 1: Assuming 1NF means no duplicate rows" title="Direct link to Mistake 1: Assuming 1NF means no duplicate rows" translate="no">​</a></h3>
+<p>1NF concerns atomic values and repeating groups. It does not prohibit repeated values across different rows.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-2-thinking-2nf-applies-only-to-composite-primary-keys">Mistake 2: Thinking 2NF applies only to composite primary keys<a href="#mistake-2-thinking-2nf-applies-only-to-composite-primary-keys" class="hash-link" aria-label="Direct link to Mistake 2: Thinking 2NF applies only to composite primary keys" title="Direct link to Mistake 2: Thinking 2NF applies only to composite primary keys" translate="no">​</a></h3>
+<p>The formal definition considers all candidate keys, not just the selected primary key.</p>
+<p>Partial dependency is particularly relevant when candidate keys are composite.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-3-confusing-partial-and-transitive-dependencies">Mistake 3: Confusing partial and transitive dependencies<a href="#mistake-3-confusing-partial-and-transitive-dependencies" class="hash-link" aria-label="Direct link to Mistake 3: Confusing partial and transitive dependencies" title="Direct link to Mistake 3: Confusing partial and transitive dependencies" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Partial dependency</th><th>Transitive dependency</th></tr></thead><tbody><tr><td>Depends on part of a composite candidate key</td><td>Depends through another determinant</td></tr><tr><td>Addressed by 2NF</td><td>Addressed by 3NF</td></tr><tr><td>Example: <code>student_id → student_name</code> when key is <code>(student_id, course_id)</code></td><td>Example: <code>employee_id → department_id → department_name</code></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-4-assuming-every-3nf-table-is-in-bcnf">Mistake 4: Assuming every 3NF table is in BCNF<a href="#mistake-4-assuming-every-3nf-table-is-in-bcnf" class="hash-link" aria-label="Direct link to Mistake 4: Assuming every 3NF table is in BCNF" title="Direct link to Mistake 4: Assuming every 3NF table is in BCNF" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>BCNF is stricter.</p>
+<p>A table can satisfy 3NF because the dependent attribute is prime, while the determinant is not a super key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-5-assuming-bcnf-always-preserves-dependencies">Mistake 5: Assuming BCNF always preserves dependencies<a href="#mistake-5-assuming-bcnf-always-preserves-dependencies" class="hash-link" aria-label="Direct link to Mistake 5: Assuming BCNF always preserves dependencies" title="Direct link to Mistake 5: Assuming BCNF always preserves dependencies" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>BCNF decomposition can lose dependency preservation.</p>
+<p>This is an important tradeoff when designing schemas.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-6-splitting-tables-without-checking-lossless-joins">Mistake 6: Splitting tables without checking lossless joins<a href="#mistake-6-splitting-tables-without-checking-lossless-joins" class="hash-link" aria-label="Direct link to Mistake 6: Splitting tables without checking lossless joins" title="Direct link to Mistake 6: Splitting tables without checking lossless joins" translate="no">​</a></h3>
+<p>Incorrect decomposition can create spurious tuples or lose relationships.</p>
+<p>Always consider the lossless-join property.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-7-normalizing-historical-transaction-values-incorrectly">Mistake 7: Normalizing historical transaction values incorrectly<a href="#mistake-7-normalizing-historical-transaction-values-incorrectly" class="hash-link" aria-label="Direct link to Mistake 7: Normalizing historical transaction values incorrectly" title="Direct link to Mistake 7: Normalizing historical transaction values incorrectly" translate="no">​</a></h3>
+<p>A product&#x27;s current price and an order&#x27;s historical purchase price represent different facts.</p>
+<p>They should not be treated as interchangeable.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-important-interview-questions">11. Important Interview Questions<a href="#11-important-interview-questions" class="hash-link" aria-label="Direct link to 11. Important Interview Questions" title="Direct link to 11. Important Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-are-normal-forms">Q1. What are normal forms?<a href="#q1-what-are-normal-forms" class="hash-link" aria-label="Direct link to Q1. What are normal forms?" title="Direct link to Q1. What are normal forms?" translate="no">​</a></h3>
+<p>Normal forms are formal rules used to evaluate and improve relational database design.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-1nf">Q2. What is 1NF?<a href="#q2-what-is-1nf" class="hash-link" aria-label="Direct link to Q2. What is 1NF?" title="Direct link to Q2. What is 1NF?" translate="no">​</a></h3>
+<p>A relation is in 1NF when attributes contain single values from their domains and there are no repeating groups.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-2nf">Q3. What is 2NF?<a href="#q3-what-is-2nf" class="hash-link" aria-label="Direct link to Q3. What is 2NF?" title="Direct link to Q3. What is 2NF?" translate="no">​</a></h3>
+<p>A relation is in 2NF when it is in 1NF and every non-prime attribute is fully functionally dependent on every candidate key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-partial-dependency">Q4. What is partial dependency?<a href="#q4-what-is-partial-dependency" class="hash-link" aria-label="Direct link to Q4. What is partial dependency?" title="Direct link to Q4. What is partial dependency?" translate="no">​</a></h3>
+<p>A non-prime attribute depends on a proper subset of a composite candidate key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-3nf">Q5. What is 3NF?<a href="#q5-what-is-3nf" class="hash-link" aria-label="Direct link to Q5. What is 3NF?" title="Direct link to Q5. What is 3NF?" translate="no">​</a></h3>
+<p>A relation is in 3NF when, for every non-trivial functional dependency X → A, either X is a super key or A is a prime attribute.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-transitive-dependency">Q6. What is transitive dependency?<a href="#q6-what-is-transitive-dependency" class="hash-link" aria-label="Direct link to Q6. What is transitive dependency?" title="Direct link to Q6. What is transitive dependency?" translate="no">​</a></h3>
+<p>A dependency where one attribute determines another through an intermediate attribute.</p>
+<p>Example:</p>
+<p>[
+A \rightarrow B,\quad B \rightarrow C
+]</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-bcnf">Q7. What is BCNF?<a href="#q7-what-is-bcnf" class="hash-link" aria-label="Direct link to Q7. What is BCNF?" title="Direct link to Q7. What is BCNF?" translate="no">​</a></h3>
+<p>A relation is in BCNF when, for every non-trivial functional dependency, the determinant is a super key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-the-difference-between-3nf-and-bcnf">Q8. What is the difference between 3NF and BCNF?<a href="#q8-what-is-the-difference-between-3nf-and-bcnf" class="hash-link" aria-label="Direct link to Q8. What is the difference between 3NF and BCNF?" title="Direct link to Q8. What is the difference between 3NF and BCNF?" translate="no">​</a></h3>
+<p>3NF permits a dependency whose determinant is not a super key if the dependent attribute is prime. BCNF does not permit this exception.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-can-a-table-be-in-3nf-but-not-bcnf">Q9. Can a table be in 3NF but not BCNF?<a href="#q9-can-a-table-be-in-3nf-but-not-bcnf" class="hash-link" aria-label="Direct link to Q9. Can a table be in 3NF but not BCNF?" title="Direct link to Q9. Can a table be in 3NF but not BCNF?" translate="no">​</a></h3>
+<p>Yes. This can happen when a non-super-key determinant determines a prime attribute.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-can-bcnf-decomposition-lose-dependency-preservation">Q10. Can BCNF decomposition lose dependency preservation?<a href="#q10-can-bcnf-decomposition-lose-dependency-preservation" class="hash-link" aria-label="Direct link to Q10. Can BCNF decomposition lose dependency preservation?" title="Direct link to Q10. Can BCNF decomposition lose dependency preservation?" translate="no">​</a></h3>
+<p>Yes. Some BCNF decompositions are lossless but do not preserve all original functional dependencies locally.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-the-difference-between-1nf-and-2nf">Q11. What is the difference between 1NF and 2NF?<a href="#q11-what-is-the-difference-between-1nf-and-2nf" class="hash-link" aria-label="Direct link to Q11. What is the difference between 1NF and 2NF?" title="Direct link to Q11. What is the difference between 1NF and 2NF?" translate="no">​</a></h3>
+<p>1NF focuses on atomic values and repeating groups. 2NF additionally removes partial dependencies of non-prime attributes on candidate keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-the-difference-between-2nf-and-3nf">Q12. What is the difference between 2NF and 3NF?<a href="#q12-what-is-the-difference-between-2nf-and-3nf" class="hash-link" aria-label="Direct link to Q12. What is the difference between 2NF and 3NF?" title="Direct link to Q12. What is the difference between 2NF and 3NF?" translate="no">​</a></h3>
+<p>2NF removes partial dependencies. 3NF addresses transitive and other disallowed dependencies according to its formal condition.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-the-difference-between-3nf-and-denormalization">Q13. What is the difference between 3NF and denormalization?<a href="#q13-what-is-the-difference-between-3nf-and-denormalization" class="hash-link" aria-label="Direct link to Q13. What is the difference between 3NF and denormalization?" title="Direct link to Q13. What is the difference between 3NF and denormalization?" translate="no">​</a></h3>
+<p>3NF is a schema-design normal form. Denormalization intentionally introduces redundancy for selected workload requirements.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-which-normal-form-is-commonly-used-in-application-databases">Q14. Which normal form is commonly used in application databases?<a href="#q14-which-normal-form-is-commonly-used-in-application-databases" class="hash-link" aria-label="Direct link to Q14. Which normal form is commonly used in application databases?" title="Direct link to Q14. Which normal form is commonly used in application databases?" translate="no">​</a></h3>
+<p>Many transactional relational schemas are designed around 3NF or BCNF principles, with selective denormalization where justified.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-does-normalization-guarantee-faster-queries">Q15. Does normalization guarantee faster queries?<a href="#q15-does-normalization-guarantee-faster-queries" class="hash-link" aria-label="Direct link to Q15. Does normalization guarantee faster queries?" title="Direct link to Q15. Does normalization guarantee faster queries?" translate="no">​</a></h3>
+<p>No. It improves logical organization and helps prevent anomalies, but additional joins can affect query performance.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-chapter-summary">12. Chapter Summary<a href="#12-chapter-summary" class="hash-link" aria-label="Direct link to 12. Chapter Summary" title="Direct link to 12. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Normal Form</th><th>Main Rule</th><th>Primary Problem Addressed</th></tr></thead><tbody><tr><td>UNF / 0NF</td><td>Unstructured data may contain repeating groups</td><td>Poor initial structure</td></tr><tr><td>1NF</td><td>Atomic values and no repeating groups</td><td>Multiple values in cells</td></tr><tr><td>2NF</td><td>No partial dependency of non-prime attributes</td><td>Partial dependency</td></tr><tr><td>3NF</td><td>Every non-trivial dependency has a super-key determinant or prime dependent attribute</td><td>Transitive and other disallowed dependencies</td></tr><tr><td>BCNF</td><td>Every non-trivial determinant must be a super key</td><td>Remaining anomalies in some 3NF relations</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-revision-technique">Final revision technique<a href="#final-revision-technique" class="hash-link" aria-label="Direct link to Final revision technique" title="Direct link to Final revision technique" translate="no">​</a></h3>
+<p>Remember these four rules:</p>
+<ol>
+<li class=""><strong>1NF:</strong> One value per cell.</li>
+<li class=""><strong>2NF:</strong> Every non-prime attribute depends on the whole candidate key.</li>
+<li class=""><strong>3NF:</strong> For every non-trivial dependency, the determinant is a super key or the dependent attribute is prime.</li>
+<li class=""><strong>BCNF:</strong> Every non-trivial determinant is a super key.</li>
+</ol>
+<p>The most important thing is to understand the functional dependencies before attempting normalization.</p>
+<p>If you cannot identify the candidate keys and functional dependencies correctly, you cannot reliably determine whether a table satisfies 2NF, 3NF, or BCNF.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/04_Database_Normalization/part_02.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_01"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Normalization Fundamentals</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Database_Normalization/part_03"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Normalization in Practice</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction-to-normal-forms" class="table-of-contents__link toc-highlight">1. Introduction to Normal Forms</a></li><li><a href="#2-unnormalized-form-unf--0nf" class="table-of-contents__link toc-highlight">2. Unnormalized Form (UNF / 0NF)</a><ul><li><a href="#21-example" class="table-of-contents__link toc-highlight">2.1 Example</a></li><li><a href="#22-another-example-repeating-groups" class="table-of-contents__link toc-highlight">2.2 Another Example: Repeating Groups</a></li><li><a href="#23-how-to-improve-it" class="table-of-contents__link toc-highlight">2.3 How to Improve It</a></li></ul></li><li><a href="#3-first-normal-form-1nf" class="table-of-contents__link toc-highlight">3. First Normal Form (1NF)</a><ul><li><a href="#31-example-violating-1nf" class="table-of-contents__link toc-highlight">3.1 Example: Violating 1NF</a></li><li><a href="#32-convert-to-1nf" class="table-of-contents__link toc-highlight">3.2 Convert to 1NF</a></li><li><a href="#33-sql-implementation" class="table-of-contents__link toc-highlight">3.3 SQL Implementation</a></li><li><a href="#34-what-1nf-does-not-solve" class="table-of-contents__link toc-highlight">3.4 What 1NF Does Not Solve</a></li></ul></li><li><a href="#4-second-normal-form-2nf" class="table-of-contents__link toc-highlight">4. Second Normal Form (2NF)</a><ul><li><a href="#41-understanding-partial-dependency" class="table-of-contents__link toc-highlight">4.1 Understanding Partial Dependency</a></li><li><a href="#student-courses-table" class="table-of-contents__link toc-highlight">Student Courses Table</a></li><li><a href="#42-why-is-this-a-problem" class="table-of-contents__link toc-highlight">4.2 Why Is This a Problem?</a></li><li><a href="#43-convert-to-2nf" class="table-of-contents__link toc-highlight">4.3 Convert to 2NF</a></li><li><a href="#44-sql-implementation" class="table-of-contents__link toc-highlight">4.4 SQL Implementation</a></li><li><a href="#45-important-point-2nf-and-single-column-keys" class="table-of-contents__link toc-highlight">4.5 Important Point: 2NF and Single-Column Keys</a></li></ul></li><li><a href="#5-third-normal-form-3nf" class="table-of-contents__link toc-highlight">5. Third Normal Form (3NF)</a><ul><li><a href="#51-example" class="table-of-contents__link toc-highlight">5.1 Example</a></li><li><a href="#52-why-is-this-a-problem" class="table-of-contents__link toc-highlight">5.2 Why Is This a Problem?</a></li><li><a href="#53-convert-to-3nf" class="table-of-contents__link toc-highlight">5.3 Convert to 3NF</a></li><li><a href="#54-sql-implementation" class="table-of-contents__link toc-highlight">5.4 SQL Implementation</a></li><li><a href="#55-querying-the-data" class="table-of-contents__link toc-highlight">5.5 Querying the Data</a></li></ul></li><li><a href="#6-boyce-codd-normal-form-bcnf" class="table-of-contents__link toc-highlight">6. Boyce-Codd Normal Form (BCNF)</a><ul><li><a href="#61-example" class="table-of-contents__link toc-highlight">6.1 Example</a></li><li><a href="#62-does-it-satisfy-3nf" class="table-of-contents__link toc-highlight">6.2 Does It Satisfy 3NF?</a></li><li><a href="#63-problems-in-the-original-table" class="table-of-contents__link toc-highlight">6.3 Problems in the Original Table</a></li><li><a href="#64-convert-to-bcnf" class="table-of-contents__link toc-highlight">6.4 Convert to BCNF</a></li><li><a href="#65-sql-implementation" class="table-of-contents__link toc-highlight">6.5 SQL Implementation</a></li></ul></li><li><a href="#7-comparison-of-all-normal-forms" class="table-of-contents__link toc-highlight">7. Comparison of All Normal Forms</a><ul><li><a href="#quick-memory-technique" class="table-of-contents__link toc-highlight">Quick Memory Technique</a></li></ul></li><li><a href="#8-complete-example-normalizing-an-e-commerce-table" class="table-of-contents__link toc-highlight">8. Complete Example: Normalizing an E-commerce Table</a><ul><li><a href="#initial-table--unf" class="table-of-contents__link toc-highlight">Initial Table — UNF</a></li><li><a href="#step-1--convert-to-1nf" class="table-of-contents__link toc-highlight">Step 1 — Convert to 1NF</a></li><li><a href="#step-2--convert-to-2nf" class="table-of-contents__link toc-highlight">Step 2 — Convert to 2NF</a></li><li><a href="#step-3--convert-to-3nf" class="table-of-contents__link toc-highlight">Step 3 — Convert to 3NF</a></li><li><a href="#important-business-detail-product-price" class="table-of-contents__link toc-highlight">Important Business Detail: Product Price</a></li></ul></li><li><a href="#9-practical-postgresql-exercise" class="table-of-contents__link toc-highlight">9. Practical PostgreSQL Exercise</a><ul><li><a href="#step-1-create-an-unnormalized-style-table" class="table-of-contents__link toc-highlight">Step 1: Create an unnormalized-style table</a></li><li><a href="#step-2-identify-the-problems" class="table-of-contents__link toc-highlight">Step 2: Identify the problems</a></li><li><a href="#step-3-design-a-1nf-table" class="table-of-contents__link toc-highlight">Step 3: Design a 1NF table</a></li><li><a href="#step-4-design-a-2nf-structure" class="table-of-contents__link toc-highlight">Step 4: Design a 2NF structure</a></li><li><a href="#step-5-verify-the-relationships" class="table-of-contents__link toc-highlight">Step 5: Verify the relationships</a></li></ul></li><li><a href="#10-common-mistakes-and-misconceptions" class="table-of-contents__link toc-highlight">10. Common Mistakes and Misconceptions</a><ul><li><a href="#mistake-1-assuming-1nf-means-no-duplicate-rows" class="table-of-contents__link toc-highlight">Mistake 1: Assuming 1NF means no duplicate rows</a></li><li><a href="#mistake-2-thinking-2nf-applies-only-to-composite-primary-keys" class="table-of-contents__link toc-highlight">Mistake 2: Thinking 2NF applies only to composite primary keys</a></li><li><a href="#mistake-3-confusing-partial-and-transitive-dependencies" class="table-of-contents__link toc-highlight">Mistake 3: Confusing partial and transitive dependencies</a></li><li><a href="#mistake-4-assuming-every-3nf-table-is-in-bcnf" class="table-of-contents__link toc-highlight">Mistake 4: Assuming every 3NF table is in BCNF</a></li><li><a href="#mistake-5-assuming-bcnf-always-preserves-dependencies" class="table-of-contents__link toc-highlight">Mistake 5: Assuming BCNF always preserves dependencies</a></li><li><a href="#mistake-6-splitting-tables-without-checking-lossless-joins" class="table-of-contents__link toc-highlight">Mistake 6: Splitting tables without checking lossless joins</a></li><li><a href="#mistake-7-normalizing-historical-transaction-values-incorrectly" class="table-of-contents__link toc-highlight">Mistake 7: Normalizing historical transaction values incorrectly</a></li></ul></li><li><a href="#11-important-interview-questions" class="table-of-contents__link toc-highlight">11. Important Interview Questions</a><ul><li><a href="#q1-what-are-normal-forms" class="table-of-contents__link toc-highlight">Q1. What are normal forms?</a></li><li><a href="#q2-what-is-1nf" class="table-of-contents__link toc-highlight">Q2. What is 1NF?</a></li><li><a href="#q3-what-is-2nf" class="table-of-contents__link toc-highlight">Q3. What is 2NF?</a></li><li><a href="#q4-what-is-partial-dependency" class="table-of-contents__link toc-highlight">Q4. What is partial dependency?</a></li><li><a href="#q5-what-is-3nf" class="table-of-contents__link toc-highlight">Q5. What is 3NF?</a></li><li><a href="#q6-what-is-transitive-dependency" class="table-of-contents__link toc-highlight">Q6. What is transitive dependency?</a></li><li><a href="#q7-what-is-bcnf" class="table-of-contents__link toc-highlight">Q7. What is BCNF?</a></li><li><a href="#q8-what-is-the-difference-between-3nf-and-bcnf" class="table-of-contents__link toc-highlight">Q8. What is the difference between 3NF and BCNF?</a></li><li><a href="#q9-can-a-table-be-in-3nf-but-not-bcnf" class="table-of-contents__link toc-highlight">Q9. Can a table be in 3NF but not BCNF?</a></li><li><a href="#q10-can-bcnf-decomposition-lose-dependency-preservation" class="table-of-contents__link toc-highlight">Q10. Can BCNF decomposition lose dependency preservation?</a></li><li><a href="#q11-what-is-the-difference-between-1nf-and-2nf" class="table-of-contents__link toc-highlight">Q11. What is the difference between 1NF and 2NF?</a></li><li><a href="#q12-what-is-the-difference-between-2nf-and-3nf" class="table-of-contents__link toc-highlight">Q12. What is the difference between 2NF and 3NF?</a></li><li><a href="#q13-what-is-the-difference-between-3nf-and-denormalization" class="table-of-contents__link toc-highlight">Q13. What is the difference between 3NF and denormalization?</a></li><li><a href="#q14-which-normal-form-is-commonly-used-in-application-databases" class="table-of-contents__link toc-highlight">Q14. Which normal form is commonly used in application databases?</a></li><li><a href="#q15-does-normalization-guarantee-faster-queries" class="table-of-contents__link toc-highlight">Q15. Does normalization guarantee faster queries?</a></li></ul></li><li><a href="#12-chapter-summary" class="table-of-contents__link toc-highlight">12. Chapter Summary</a><ul><li><a href="#final-revision-technique" class="table-of-contents__link toc-highlight">Final revision technique</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

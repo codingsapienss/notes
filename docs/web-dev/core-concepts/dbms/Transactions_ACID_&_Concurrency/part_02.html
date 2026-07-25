@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Transactions_ACID_&_Concurrency/part_02" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">ACID Properties | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="ACID Properties | Knowledge Base"><meta data-rh="true" name="description" content="1. What Is ACID?"><meta data-rh="true" property="og:description" content="1. What Is ACID?"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_02"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_02" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_02" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Transactions_ACID_&_Concurrency","item":"https://codingsapienss.github.io/notes/docs/category/transactions_acid__concurrency"},{"@type":"ListItem","position":5,"name":"ACID Properties","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&_Concurrency/part_02"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Collapse sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_01"><span title="Transactions" class="linkLabel_WmDU">Transactions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_02"><span title="ACID Properties" class="linkLabel_WmDU">ACID Properties</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_03"><span title="Isolation Problems" class="linkLabel_WmDU">Isolation Problems</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_04"><span title="Database Isolation Levels" class="linkLabel_WmDU">Database Isolation Levels</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_05"><span title="How Databases Implement Isolation" class="linkLabel_WmDU">How Databases Implement Isolation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_06"><span title="Database Deadlocks" class="linkLabel_WmDU">Database Deadlocks</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/transactions_acid__concurrency"><span>Transactions_ACID_&amp;_Concurrency</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">ACID Properties</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>ACID Properties</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-what-is-acid">1. What Is ACID?<a href="#1-what-is-acid" class="hash-link" aria-label="Direct link to 1. What Is ACID?" title="Direct link to 1. What Is ACID?" translate="no">​</a></h2>
+<p>ACID is a set of four properties that describe important guarantees provided by database transactions.</p>
+<p>These properties help databases maintain reliable and correct data when:</p>
+<ul>
+<li class="">Multiple operations execute together.</li>
+<li class="">Multiple users access the database simultaneously.</li>
+<li class="">An operation fails.</li>
+<li class="">The database crashes.</li>
+<li class="">The system experiences unexpected interruptions.</li>
+</ul>
+<p>The four properties are:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Meaning</th><th>Main purpose</th></tr></thead><tbody><tr><td>Atomicity</td><td>All or nothing</td><td>Prevent partially completed transactions</td></tr><tr><td>Consistency</td><td>Valid state to valid state</td><td>Preserve database integrity rules</td></tr><tr><td>Isolation</td><td>Transactions do not interfere incorrectly</td><td>Control concurrent execution</td></tr><tr><td>Durability</td><td>Committed changes persist</td><td>Protect committed data against failures</td></tr></tbody></table>
+<p>Let&#x27;s understand each property using a common example.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-banking-transaction">Example: Banking transaction<a href="#example-banking-transaction" class="hash-link" aria-label="Direct link to Example: Banking transaction" title="Direct link to Example: Banking transaction" translate="no">​</a></h3>
+<p>Suppose we transfer ₹2,000 from Account A to Account B.</p>
+<p>Initial balances:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Account</th><th style="text-align:right">Balance</th></tr></thead><tbody><tr><td>Account A</td><td style="text-align:right">₹10,000</td></tr><tr><td>Account B</td><td style="text-align:right">₹5,000</td></tr><tr><td><strong>Total</strong></td><td style="text-align:right"><strong>₹15,000</strong></td></tr></tbody></table>
+<p>Required operations:</p>
+<ol>
+<li class="">Deduct ₹2,000 from Account A.</li>
+<li class="">Add ₹2,000 to Account B.</li>
+</ol>
+<p>Expected final balances:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Account</th><th style="text-align:right">Balance</th></tr></thead><tbody><tr><td>Account A</td><td style="text-align:right">₹8,000</td></tr><tr><td>Account B</td><td style="text-align:right">₹7,000</td></tr><tr><td><strong>Total</strong></td><td style="text-align:right"><strong>₹15,000</strong></td></tr></tbody></table>
+<p>The total money remains unchanged.</p>
+<p>All four ACID properties contribute to making this transaction reliable.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-atomicity--all-or-nothing">2. Atomicity — All or Nothing<a href="#2-atomicity--all-or-nothing" class="hash-link" aria-label="Direct link to 2. Atomicity — All or Nothing" title="Direct link to 2. Atomicity — All or Nothing" translate="no">​</a></h2>
+<p>Atomicity means that a transaction&#x27;s changes are treated as one indivisible logical unit.</p>
+<p>Either the transaction completes successfully, or its uncommitted changes are rolled back.</p>
+<p>In simple terms:</p>
+<p><strong>All required operations succeed together, or none of the transaction&#x27;s uncommitted changes are retained.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-why-do-we-need-atomicity">2.1 Why do we need atomicity?<a href="#21-why-do-we-need-atomicity" class="hash-link" aria-label="Direct link to 2.1 Why do we need atomicity?" title="Direct link to 2.1 Why do we need atomicity?" translate="no">​</a></h3>
+<p>Consider our banking example.</p>
+<p>Starting balances:</p>
+<ul>
+<li class="">Account A = ₹10,000</li>
+<li class="">Account B = ₹5,000</li>
+</ul>
+<p>We execute:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Suppose the first update succeeds, but the second update encounters an error.</p>
+<p>Without atomicity, the first update could remain while the second fails.</p>
+<p>The result would be:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Account</th><th style="text-align:right">Before</th><th style="text-align:right">Incorrect result</th></tr></thead><tbody><tr><td>Account A</td><td style="text-align:right">₹10,000</td><td style="text-align:right">₹8,000</td></tr><tr><td>Account B</td><td style="text-align:right">₹5,000</td><td style="text-align:right">₹5,000</td></tr><tr><td><strong>Total</strong></td><td style="text-align:right"><strong>₹15,000</strong></td><td style="text-align:right"><strong>₹13,000</strong></td></tr></tbody></table>
+<p>The transaction would have completed only partially.</p>
+<p>Atomicity ensures that the database does not retain the uncommitted deduction as a completed transaction.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-how-does-atomicity-work">2.2 How does atomicity work?<a href="#22-how-does-atomicity-work" class="hash-link" aria-label="Direct link to 2.2 How does atomicity work?" title="Direct link to 2.2 How does atomicity work?" translate="no">​</a></h3>
+<p>A database uses internal mechanisms to track transaction changes and recover from failures.</p>
+<p>One important mechanism is a <strong>transaction log</strong>.</p>
+<p>For example, PostgreSQL uses Write-Ahead Logging (WAL).</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">          BEGIN TRANSACTION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Record transaction changes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Execute database operations</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Success       Failure</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         COMMIT      ABORT</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Keep committed  Undo uncommitted</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      transaction     changes</span><br></div></code></pre></div></div>
+<p>The actual implementation is more sophisticated.</p>
+<p>For example, a database may record enough information to redo or undo operations during recovery.</p>
+<p>The important point is that the database maintains the information required to handle transaction completion and failure.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-example-using-rollback">2.3 Example using ROLLBACK<a href="#23-example-using-rollback" class="hash-link" aria-label="Direct link to 2.3 Example using ROLLBACK" title="Direct link to 2.3 Example using ROLLBACK" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">-- An error or business-rule failure occurs.</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ROLLBACK</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>After rollback, the uncommitted deduction is undone.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-atomicity-in-real-applications">2.4 Atomicity in real applications<a href="#24-atomicity-in-real-applications" class="hash-link" aria-label="Direct link to 2.4 Atomicity in real applications" title="Direct link to 2.4 Atomicity in real applications" translate="no">​</a></h3>
+<p><strong>E-commerce order placement</strong></p>
+<p>Suppose placing an order involves:</p>
+<ol>
+<li class="">Creating an order record.</li>
+<li class="">Creating order-item records.</li>
+<li class="">Reserving inventory.</li>
+<li class="">Recording a payment-related database entry.</li>
+</ol>
+<p>If a required operation fails, the transaction can be rolled back.</p>
+<p>This prevents the database from retaining only part of the order operation.</p>
+<p>However, an external payment gateway is not automatically included in a database transaction. External operations require additional coordination.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="25-important-clarification">2.5 Important clarification<a href="#25-important-clarification" class="hash-link" aria-label="Direct link to 2.5 Important clarification" title="Direct link to 2.5 Important clarification" translate="no">​</a></h3>
+<p>Atomicity applies to the transaction&#x27;s database changes.</p>
+<p>It does not automatically undo external side effects such as:</p>
+<ul>
+<li class="">Sending an email.</li>
+<li class="">Calling a payment gateway.</li>
+<li class="">Publishing a message to an external service.</li>
+<li class="">Sending an SMS.</li>
+</ul>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">BEGIN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Update database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Send email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database transaction fails</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ROLLBACK</span><br></div></code></pre></div></div>
+<p>The database changes can be rolled back, but the email cannot be unsent.</p>
+<p>This is why distributed applications often need patterns such as the transactional outbox or saga.</p>
+<p>We will encounter these concepts when studying distributed systems and system architecture.</p>
+<p><strong>Remember:</strong> Atomicity does not mean every external operation is automatically reversible.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-consistency--valid-state-to-valid-state">3. Consistency — Valid State to Valid State<a href="#3-consistency--valid-state-to-valid-state" class="hash-link" aria-label="Direct link to 3. Consistency — Valid State to Valid State" title="Direct link to 3. Consistency — Valid State to Valid State" translate="no">​</a></h2>
+<p>Consistency means that a successfully committed transaction preserves the database&#x27;s defined integrity rules.</p>
+<p>A transaction should take the database from one valid state to another valid state.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-what-is-a-consistent-database-state">3.1 What is a consistent database state?<a href="#31-what-is-a-consistent-database-state" class="hash-link" aria-label="Direct link to 3.1 What is a consistent database state?" title="Direct link to 3.1 What is a consistent database state?" translate="no">​</a></h3>
+<p>A database is consistent when its applicable constraints and integrity rules are satisfied.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Primary keys must be unique.</li>
+<li class="">Required columns cannot be NULL.</li>
+<li class="">Foreign keys must reference valid records.</li>
+<li class="">Product stock cannot be negative if the database enforces that rule.</li>
+<li class="">Account balances must satisfy applicable constraints.</li>
+</ul>
+<p>Consider:</p>
+<p><strong>accounts</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">account_id</th><th style="text-align:right">balance</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">10000</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">5000</td></tr></tbody></table>
+<p>Suppose our application requires account balances to be non-negative.</p>
+<p>We can enforce this using a database constraint.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> accounts </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    account_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    balance </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">12</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">balance </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">5000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database rejects this update because it violates the <code>CHECK</code> constraint.</p>
+<p>The database prevents the transaction from committing an invalid balance.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-how-does-consistency-work">3.2 How does consistency work?<a href="#32-how-does-consistency-work" class="hash-link" aria-label="Direct link to 3.2 How does consistency work?" title="Direct link to 3.2 How does consistency work?" translate="no">​</a></h3>
+<p>A DBMS uses mechanisms such as:</p>
+<ul>
+<li class="">Primary-key constraints.</li>
+<li class="">Foreign-key constraints.</li>
+<li class="">UNIQUE constraints.</li>
+<li class="">NOT NULL constraints.</li>
+<li class="">CHECK constraints.</li>
+<li class="">Data types.</li>
+<li class="">Triggers.</li>
+<li class="">Application-level validation.</li>
+<li class="">Transaction processing.</li>
+</ul>
+<p>These mechanisms help enforce the rules defined by the database and application.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-example-foreign-key-consistency">3.3 Example: Foreign-key consistency<a href="#33-example-foreign-key-consistency" class="hash-link" aria-label="Direct link to 3.3 Example: Foreign-key consistency" title="Direct link to 3.3 Example: Foreign-key consistency" translate="no">​</a></h3>
+<p>Suppose we have:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td></tr></tbody></table>
+<p>We define a foreign key:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now try:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">103</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">99</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If user 99 does not exist, the database rejects the insertion.</p>
+<p>The foreign-key constraint preserves referential integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-consistency-in-the-banking-example">3.4 Consistency in the banking example<a href="#34-consistency-in-the-banking-example" class="hash-link" aria-label="Direct link to 3.4 Consistency in the banking example" title="Direct link to 3.4 Consistency in the banking example" translate="no">​</a></h3>
+<p>Suppose:</p>
+<ul>
+<li class="">Account A has ₹10,000.</li>
+<li class="">Account B has ₹5,000.</li>
+</ul>
+<p>We transfer ₹2,000.</p>
+<p>Before the transaction:</p>
+<p>[
+10000 + 5000 = 15000
+]</p>
+<p>After the transaction:</p>
+<p>[
+8000 + 7000 = 15000
+]</p>
+<p>The total remains ₹15,000.</p>
+<p>This is an application-level business invariant.</p>
+<p>The transaction should preserve it.</p>
+<p>However, a critical distinction is necessary:</p>
+<p><strong>A database does not automatically understand every business rule.</strong></p>
+<p>For example, a database cannot infer that the sum of all account balances must remain unchanged merely because we are transferring money.</p>
+<p>That rule must be correctly implemented through transaction logic and appropriate constraints or other mechanisms.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-consistency-is-not-the-same-as-data-validation">3.5 Consistency is not the same as data validation<a href="#35-consistency-is-not-the-same-as-data-validation" class="hash-link" aria-label="Direct link to 3.5 Consistency is not the same as data validation" title="Direct link to 3.5 Consistency is not the same as data validation" translate="no">​</a></h3>
+<p>Data validation checks whether individual input values satisfy certain rules.</p>
+<p>Database consistency is broader.</p>
+<p>It includes preserving all relevant integrity constraints across database operations.</p>
+<p>Example:</p>
+<ul>
+<li class=""><code>age &gt;= 18</code> is a validation rule.</li>
+<li class="">Every order must reference an existing user is a referential-integrity rule.</li>
+<li class="">A financial transfer must not create or destroy money is a business invariant.</li>
+</ul>
+<p>These rules may be enforced at different layers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="36-who-is-responsible-for-consistency">3.6 Who is responsible for consistency?<a href="#36-who-is-responsible-for-consistency" class="hash-link" aria-label="Direct link to 3.6 Who is responsible for consistency?" title="Direct link to 3.6 Who is responsible for consistency?" translate="no">​</a></h3>
+<p>Both the database and application can have responsibilities.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Layer</th><th>Responsibility</th></tr></thead><tbody><tr><td>Database</td><td>Enforce declared constraints and transactional guarantees</td></tr><tr><td>Backend application</td><td>Enforce business rules and coordinate operations</td></tr><tr><td>External services</td><td>Provide their own guarantees for external operations</td></tr></tbody></table>
+<p>A reliable application should not depend exclusively on frontend validation for critical data-integrity rules.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-isolation--transactions-should-not-interfere-incorrectly">4. Isolation — Transactions Should Not Interfere Incorrectly<a href="#4-isolation--transactions-should-not-interfere-incorrectly" class="hash-link" aria-label="Direct link to 4. Isolation — Transactions Should Not Interfere Incorrectly" title="Direct link to 4. Isolation — Transactions Should Not Interfere Incorrectly" translate="no">​</a></h2>
+<p>Isolation controls how concurrent transactions interact with each other.</p>
+<p>Multiple users may access and modify the same data simultaneously.</p>
+<p>Without appropriate concurrency control, one transaction may observe or overwrite another transaction&#x27;s changes in undesirable ways.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-why-do-we-need-isolation">4.1 Why do we need isolation?<a href="#41-why-do-we-need-isolation" class="hash-link" aria-label="Direct link to 4.1 Why do we need isolation?" title="Direct link to 4.1 Why do we need isolation?" translate="no">​</a></h3>
+<p>Suppose two customers try to purchase the last available laptop.</p>
+<p>Initial stock:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Available stock = 1</span><br></div></code></pre></div></div>
+<p>Two transactions execute almost simultaneously.</p>
+<p><strong>Transaction A:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Read stock = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Purchase one laptop</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Update stock = 0</span><br></div></code></pre></div></div>
+<p><strong>Transaction B:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Read stock = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Purchase one laptop</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Update stock = 0</span><br></div></code></pre></div></div>
+<p>Both transactions may believe the laptop is available.</p>
+<p>The system may accidentally confirm two purchases when only one unit exists.</p>
+<p>This is a concurrency problem.</p>
+<p>Isolation helps control how transactions interact so that conflicting operations do not produce invalid results.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-what-does-isolation-mean">4.2 What does isolation mean?<a href="#42-what-does-isolation-mean" class="hash-link" aria-label="Direct link to 4.2 What does isolation mean?" title="Direct link to 4.2 What does isolation mean?" translate="no">​</a></h3>
+<p>Isolation does not necessarily mean that only one transaction can execute at a time.</p>
+<p>That would significantly reduce concurrency.</p>
+<p>Instead, databases use mechanisms such as:</p>
+<ul>
+<li class="">Locks.</li>
+<li class="">MVCC (Multi-Version Concurrency Control).</li>
+<li class="">Snapshot-based reads.</li>
+<li class="">Serialization checks.</li>
+<li class="">Other concurrency-control techniques.</li>
+</ul>
+<p>These mechanisms allow multiple transactions to execute concurrently while providing defined isolation guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-example-concurrent-bank-withdrawals">4.3 Example: Concurrent bank withdrawals<a href="#43-example-concurrent-bank-withdrawals" class="hash-link" aria-label="Direct link to 4.3 Example: Concurrent bank withdrawals" title="Direct link to 4.3 Example: Concurrent bank withdrawals" translate="no">​</a></h3>
+<p>Suppose an account has ₹5,000.</p>
+<p>Two transactions attempt to withdraw ₹4,000 simultaneously.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Initial balance = ₹5,000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Transaction A wants to withdraw ₹4,000.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Transaction B wants to withdraw ₹4,000.</span><br></div></code></pre></div></div>
+<p>Both transactions must not successfully withdraw ₹4,000 based on the same initial balance.</p>
+<p>Appropriate concurrency control can coordinate the operations so that the balance does not become invalid.</p>
+<p>One possible PostgreSQL approach is:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> balance</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FOR</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4000</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The row lock helps serialize conflicting modifications to that account.</p>
+<p>A production implementation should also check whether the update affected a row and roll back if the withdrawal was unsuccessful.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-isolation-levels">4.4 Isolation levels<a href="#44-isolation-levels" class="hash-link" aria-label="Direct link to 4.4 Isolation levels" title="Direct link to 4.4 Isolation levels" translate="no">​</a></h3>
+<p>Databases provide different isolation levels.</p>
+<p>Common SQL isolation levels are:</p>
+<ol>
+<li class="">Read Uncommitted.</li>
+<li class="">Read Committed.</li>
+<li class="">Repeatable Read.</li>
+<li class="">Serializable.</li>
+</ol>
+<p>Each level provides different guarantees concerning what a transaction can observe from other concurrent transactions.</p>
+<p>We will study these levels and the anomalies they address in:</p>
+<ul>
+<li class="">Part 2C — Isolation Problems.</li>
+<li class="">Part 2D — Isolation Levels.</li>
+<li class="">Part 2E — How Databases Implement Isolation.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-durability--committed-changes-must-persist">5. Durability — Committed Changes Must Persist<a href="#5-durability--committed-changes-must-persist" class="hash-link" aria-label="Direct link to 5. Durability — Committed Changes Must Persist" title="Direct link to 5. Durability — Committed Changes Must Persist" translate="no">​</a></h2>
+<p>Durability means that once a transaction has successfully committed, its changes are protected against failures according to the database&#x27;s durability guarantees.</p>
+<p>In simple terms:</p>
+<p><strong>A committed transaction should not disappear simply because the database or server crashes immediately afterward.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-why-do-we-need-durability">5.1 Why do we need durability?<a href="#51-why-do-we-need-durability" class="hash-link" aria-label="Direct link to 5.1 Why do we need durability?" title="Direct link to 5.1 Why do we need durability?" translate="no">​</a></h3>
+<p>Suppose a customer completes a payment of ₹5,000.</p>
+<p>The database updates the payment record:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> payments</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">status</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;SUCCESS&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> payment_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The transaction commits successfully.</p>
+<p>Immediately afterward, the database server crashes.</p>
+<p>When the database restarts, the committed payment update should still be present, assuming the configured durability guarantees were met.</p>
+<p>Without durability, committed transactions could be lost after a crash.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-how-does-a-database-provide-durability">5.2 How does a database provide durability?<a href="#52-how-does-a-database-provide-durability" class="hash-link" aria-label="Direct link to 5.2 How does a database provide durability?" title="Direct link to 5.2 How does a database provide durability?" translate="no">​</a></h3>
+<p>Databases use mechanisms such as:</p>
+<ul>
+<li class="">Write-Ahead Logging (WAL).</li>
+<li class="">Transaction logs.</li>
+<li class="">Checkpoints.</li>
+<li class="">Recovery procedures.</li>
+<li class="">Durable storage.</li>
+<li class="">Replication and backups for additional protection.</li>
+</ul>
+<p>For example, PostgreSQL uses WAL.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-understanding-write-ahead-logging-wal">5.3 Understanding Write-Ahead Logging (WAL)<a href="#53-understanding-write-ahead-logging-wal" class="hash-link" aria-label="Direct link to 5.3 Understanding Write-Ahead Logging (WAL)" title="Direct link to 5.3 Understanding Write-Ahead Logging (WAL)" translate="no">​</a></h3>
+<p>WAL follows an important principle:</p>
+<p><strong>The database records the necessary change information in the log before the corresponding modified data pages need to be written to their final locations.</strong></p>
+<p>Why is this useful?</p>
+<p>Writing database data pages directly to their final disk locations can be expensive and may involve multiple disk operations.</p>
+<p>Instead, the database records changes in a sequential log.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">       Transaction</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Modify data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Generate WAL records</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Flush required WAL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          COMMIT</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   Data pages written later</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   as part of normal processing</span><br></div></code></pre></div></div>
+<p>The actual write and commit behavior depends on database configuration and implementation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-what-happens-if-the-server-crashes">5.4 What happens if the server crashes?<a href="#54-what-happens-if-the-server-crashes" class="hash-link" aria-label="Direct link to 5.4 What happens if the server crashes?" title="Direct link to 5.4 What happens if the server crashes?" translate="no">​</a></h3>
+<p>Suppose a transaction successfully commits.</p>
+<p>The corresponding WAL information has been made durable according to the configured commit guarantees.</p>
+<p>Then the server crashes before all modified data pages have been written to their final locations.</p>
+<p>When PostgreSQL restarts:</p>
+<ol>
+<li class="">It examines the available WAL and recovery information.</li>
+<li class="">It identifies changes that need to be replayed.</li>
+<li class="">It redoes required changes.</li>
+<li class="">It restores the database to a recoverable state.</li>
+</ol>
+<p>This is why committed changes can survive a crash even if the corresponding data pages were not all written before the crash.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="55-does-durability-mean-data-can-never-be-lost">5.5 Does durability mean data can never be lost?<a href="#55-does-durability-mean-data-can-never-be-lost" class="hash-link" aria-label="Direct link to 5.5 Does durability mean data can never be lost?" title="Direct link to 5.5 Does durability mean data can never be lost?" translate="no">​</a></h3>
+<p>No.</p>
+<p>Durability has limits and depends on configuration and failure assumptions.</p>
+<p>For example:</p>
+<ul>
+<li class="">A disk can fail.</li>
+<li class="">A storage device can be destroyed.</li>
+<li class="">A database can be misconfigured.</li>
+<li class="">A committed transaction may not have been replicated to a standby server yet.</li>
+<li class="">A user can accidentally delete important records.</li>
+</ul>
+<p>Therefore, production systems also need:</p>
+<ul>
+<li class="">Backups.</li>
+<li class="">Replication.</li>
+<li class="">Monitoring.</li>
+<li class="">Disaster recovery procedures.</li>
+<li class="">Appropriate storage configuration.</li>
+</ul>
+<p><strong>Important distinction:</strong></p>
+<ul>
+<li class="">WAL helps recover database changes after failures.</li>
+<li class="">Replication maintains copies of data on other database instances.</li>
+<li class="">Backups provide recovery from a wider range of failures, including accidental deletion and some forms of corruption.</li>
+</ul>
+<p>These mechanisms complement one another; they are not interchangeable.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-understanding-all-four-acid-properties-together">6. Understanding All Four ACID Properties Together<a href="#6-understanding-all-four-acid-properties-together" class="hash-link" aria-label="Direct link to 6. Understanding All Four ACID Properties Together" title="Direct link to 6. Understanding All Four ACID Properties Together" translate="no">​</a></h2>
+<p>Let&#x27;s return to the banking transaction.</p>
+<p>Initial state:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Account</th><th style="text-align:right">Balance</th></tr></thead><tbody><tr><td>A</td><td style="text-align:right">₹10,000</td></tr><tr><td>B</td><td style="text-align:right">₹5,000</td></tr></tbody></table>
+<p>Transfer ₹2,000 from A to B.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="atomicity">Atomicity<a href="#atomicity" class="hash-link" aria-label="Direct link to Atomicity" title="Direct link to Atomicity" translate="no">​</a></h3>
+<p>Both database updates must succeed together, or the transaction&#x27;s uncommitted changes must be rolled back.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="consistency">Consistency<a href="#consistency" class="hash-link" aria-label="Direct link to Consistency" title="Direct link to Consistency" translate="no">​</a></h3>
+<p>The transaction must preserve applicable database constraints and business invariants, such as non-negative balances and conservation of money during the transfer.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="isolation">Isolation<a href="#isolation" class="hash-link" aria-label="Direct link to Isolation" title="Direct link to Isolation" translate="no">​</a></h3>
+<p>Concurrent transactions must not interfere in a way that allows invalid transfers or inconsistent results.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="durability">Durability<a href="#durability" class="hash-link" aria-label="Direct link to Durability" title="Direct link to Durability" translate="no">​</a></h3>
+<p>After the transfer commits, the committed changes must survive failures covered by the database&#x27;s durability guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="combined-diagram">Combined diagram<a href="#combined-diagram" class="hash-link" aria-label="Direct link to Combined diagram" title="Direct link to Combined diagram" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              BANK TRANSFER</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             BEGIN TRANSACTION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Deduct ₹2,000 from A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Add ₹2,000 to B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              COMMIT</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   Atomicity    Consistency   Isolation</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   All or none  Valid state   Safe concurrent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                              execution</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                Durability</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Committed data persists</span><br></div></code></pre></div></div>
+<p>All four properties work together to provide reliable transaction processing.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-acid-what-happens-without-each-property">7. ACID: What Happens Without Each Property?<a href="#7-acid-what-happens-without-each-property" class="hash-link" aria-label="Direct link to 7. ACID: What Happens Without Each Property?" title="Direct link to 7. ACID: What Happens Without Each Property?" translate="no">​</a></h2>
+<p>This is a useful way to remember the four properties.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Missing property</th><th>Possible problem</th><th>Example</th></tr></thead><tbody><tr><td>Atomicity</td><td>Partial transaction changes</td><td>Money deducted but not credited</td></tr><tr><td>Consistency</td><td>Invalid database state</td><td>Negative stock or invalid references</td></tr><tr><td>Isolation</td><td>Concurrent transactions interfere</td><td>Two customers purchase the last item</td></tr><tr><td>Durability</td><td>Committed changes disappear</td><td>Successful payment record lost after a crash</td></tr></tbody></table>
+<p>These are conceptual examples. A particular database may prevent some problems through constraints or other mechanisms even when a transaction is not explicitly written.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-does-acid-reduce-database-performance">8. Does ACID Reduce Database Performance?<a href="#8-does-acid-reduce-database-performance" class="hash-link" aria-label="Direct link to 8. Does ACID Reduce Database Performance?" title="Direct link to 8. Does ACID Reduce Database Performance?" translate="no">​</a></h2>
+<p>ACID guarantees require database mechanisms that consume resources.</p>
+<p>However, the statement &quot;ACID always makes databases slow&quot; is incorrect.</p>
+<p>Performance depends on:</p>
+<ul>
+<li class="">Transaction complexity.</li>
+<li class="">Isolation level.</li>
+<li class="">Lock contention.</li>
+<li class="">Indexes.</li>
+<li class="">Storage performance.</li>
+<li class="">WAL configuration.</li>
+<li class="">Query design.</li>
+<li class="">Hardware.</li>
+<li class="">Database architecture.</li>
+<li class="">Workload characteristics.</li>
+</ul>
+<p>Let&#x27;s understand the tradeoffs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-atomicity-overhead">8.1 Atomicity overhead<a href="#81-atomicity-overhead" class="hash-link" aria-label="Direct link to 8.1 Atomicity overhead" title="Direct link to 8.1 Atomicity overhead" translate="no">​</a></h3>
+<p>The database needs to track transaction changes and support rollback and recovery.</p>
+<p>This requires logging and transaction-management work.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-consistency-overhead">8.2 Consistency overhead<a href="#82-consistency-overhead" class="hash-link" aria-label="Direct link to 8.2 Consistency overhead" title="Direct link to 8.2 Consistency overhead" translate="no">​</a></h3>
+<p>Constraints may require additional checks.</p>
+<p>For example:</p>
+<ul>
+<li class="">UNIQUE constraints require checking for conflicting values.</li>
+<li class="">Foreign keys require validating references.</li>
+<li class="">CHECK constraints require evaluating conditions.</li>
+</ul>
+<p>These checks consume resources, but they protect data integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-isolation-overhead">8.3 Isolation overhead<a href="#83-isolation-overhead" class="hash-link" aria-label="Direct link to 8.3 Isolation overhead" title="Direct link to 8.3 Isolation overhead" translate="no">​</a></h3>
+<p>Higher isolation guarantees can require additional coordination.</p>
+<p>For example:</p>
+<ul>
+<li class="">Transactions may wait for locks.</li>
+<li class="">Conflicting transactions may be aborted.</li>
+<li class="">Serializable transactions may require retries.</li>
+</ul>
+<p>This can affect throughput under heavy contention.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="84-durability-overhead">8.4 Durability overhead<a href="#84-durability-overhead" class="hash-link" aria-label="Direct link to 8.4 Durability overhead" title="Direct link to 8.4 Durability overhead" translate="no">​</a></h3>
+<p>Making committed data durable may require flushing log records to persistent storage.</p>
+<p>This introduces I/O work.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="85-summary">8.5 Summary<a href="#85-summary" class="hash-link" aria-label="Direct link to 8.5 Summary" title="Direct link to 8.5 Summary" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>ACID property</th><th>Potential overhead</th></tr></thead><tbody><tr><td>Atomicity</td><td>Transaction logging and rollback support</td></tr><tr><td>Consistency</td><td>Constraint validation</td></tr><tr><td>Isolation</td><td>Locking, version management, conflict detection</td></tr><tr><td>Durability</td><td>Log persistence and recovery support</td></tr></tbody></table>
+<p>The goal is not to eliminate ACID guarantees to improve performance blindly.</p>
+<p>The goal is to choose appropriate database architecture, transaction boundaries, isolation settings, and storage configuration for the application&#x27;s requirements.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-do-nosql-databases-support-acid">9. Do NoSQL Databases Support ACID?<a href="#9-do-nosql-databases-support-acid" class="hash-link" aria-label="Direct link to 9. Do NoSQL Databases Support ACID?" title="Direct link to 9. Do NoSQL Databases Support ACID?" translate="no">​</a></h2>
+<p>A common misconception is:</p>
+<p><strong>SQL databases support ACID, but NoSQL databases do not.</strong></p>
+<p>This is incorrect.</p>
+<p>NoSQL does not automatically mean the absence of transactions or ACID guarantees.</p>
+<p>Different NoSQL databases provide different transaction capabilities.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-mongodb">9.1 MongoDB<a href="#91-mongodb" class="hash-link" aria-label="Direct link to 9.1 MongoDB" title="Direct link to 9.1 MongoDB" translate="no">​</a></h3>
+<p>MongoDB supports atomic operations at the single-document level.</p>
+<p>It also supports multi-document transactions.</p>
+<p>Example:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> session </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> client</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">startSession</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword control-flow" style="color:#00009f">try</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  session</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">startTransaction</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> accounts</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">updateOne</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">accountId</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">$inc</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">balance</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">2000</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> session </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> accounts</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">updateOne</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">accountId</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">$inc</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token literal-property property" style="color:#36acaa">balance</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2000</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> session </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> session</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">commitTransaction</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">catch</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> session</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">abortTransaction</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">throw</span><span class="token plain"> error</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">finally</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> session</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">endSession</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Both account updates participate in the same transaction.</p>
+<p>MongoDB provides multi-document transaction support, although its guarantees and operational constraints should be understood for the deployment architecture being used.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-redis">9.2 Redis<a href="#92-redis" class="hash-link" aria-label="Direct link to 9.2 Redis" title="Direct link to 9.2 Redis" translate="no">​</a></h3>
+<p>Redis provides atomic execution of individual commands.</p>
+<p>It also supports transaction mechanisms through <code>MULTI</code>, <code>EXEC</code>, and related commands.</p>
+<p>However, Redis transactions do not behave identically to PostgreSQL transactions.</p>
+<p>For example, Redis transactions do not provide the same general-purpose rollback behavior as traditional relational transactions.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-cassandra">9.3 Cassandra<a href="#93-cassandra" class="hash-link" aria-label="Direct link to 9.3 Cassandra" title="Direct link to 9.3 Cassandra" translate="no">​</a></h3>
+<p>Apache Cassandra provides lightweight transactions using its Paxos-based conditional update mechanism.</p>
+<p>It also provides atomicity at the individual partition level for ordinary mutations.</p>
+<p>Its transaction and consistency semantics differ significantly from traditional relational databases.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="94-important-comparison">9.4 Important comparison<a href="#94-important-comparison" class="hash-link" aria-label="Direct link to 9.4 Important comparison" title="Direct link to 9.4 Important comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Database</th><th>Transaction support</th></tr></thead><tbody><tr><td>PostgreSQL</td><td>Full relational transactions with ACID guarantees</td></tr><tr><td>MySQL (InnoDB)</td><td>ACID transactions</td></tr><tr><td>MongoDB</td><td>Single-document atomicity and multi-document transactions</td></tr><tr><td>Redis</td><td>Atomic commands and transaction mechanisms with different rollback semantics</td></tr><tr><td>Cassandra</td><td>Partition-level atomicity and lightweight transactions for conditional operations</td></tr></tbody></table>
+<p><strong>Important:</strong> Do not judge a database only by whether it supports the word ACID. Evaluate its actual transaction scope, isolation guarantees, durability configuration, and failure behavior.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-acid-vs-base">10. ACID vs BASE<a href="#10-acid-vs-base" class="hash-link" aria-label="Direct link to 10. ACID vs BASE" title="Direct link to 10. ACID vs BASE" translate="no">​</a></h2>
+<p>ACID is often discussed alongside BASE, particularly when comparing traditional relational databases with distributed NoSQL systems.</p>
+<p>BASE stands for:</p>
+<ul>
+<li class="">Basically Available.</li>
+<li class="">Soft State.</li>
+<li class="">Eventual Consistency.</li>
+</ul>
+<p>BASE is a broad design philosophy associated with some distributed systems. It is not a formal replacement for ACID, nor does every NoSQL database strictly follow it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-basically-available">10.1 Basically Available<a href="#101-basically-available" class="hash-link" aria-label="Direct link to 10.1 Basically Available" title="Direct link to 10.1 Basically Available" translate="no">​</a></h3>
+<p>The system aims to remain available for requests despite certain failures.</p>
+<p>This does not mean every request must always succeed or that every replica has the latest data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-soft-state">10.2 Soft State<a href="#102-soft-state" class="hash-link" aria-label="Direct link to 10.2 Soft State" title="Direct link to 10.2 Soft State" translate="no">​</a></h3>
+<p>The system&#x27;s state may change over time even without new user input, as replicas synchronize and background processes run.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-eventual-consistency">10.3 Eventual Consistency<a href="#103-eventual-consistency" class="hash-link" aria-label="Direct link to 10.3 Eventual Consistency" title="Direct link to 10.3 Eventual Consistency" translate="no">​</a></h3>
+<p>If updates stop and the system continues operating normally, replicas are expected to converge to a consistent state eventually.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User updates profile</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary node updated</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica A receives update</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica B receives update</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replicas converge</span><br></div></code></pre></div></div>
+<p>During propagation, different replicas may temporarily return different values.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="104-acid-vs-base-comparison">10.4 ACID vs BASE comparison<a href="#104-acid-vs-base-comparison" class="hash-link" aria-label="Direct link to 10.4 ACID vs BASE comparison" title="Direct link to 10.4 ACID vs BASE comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>ACID</th><th>BASE</th></tr></thead><tbody><tr><td>Focuses on transaction guarantees</td><td>Focuses on availability and eventual convergence in distributed systems</td></tr><tr><td>Commonly associated with transactional database design</td><td>Commonly associated with some distributed database designs</td></tr><tr><td>Consistency is tied to defined integrity and transaction guarantees</td><td>Eventual consistency allows temporary divergence</td></tr><tr><td>Often requires coordination for stronger guarantees</td><td>May relax immediate consistency to improve availability or scalability</td></tr></tbody></table>
+<p><strong>Important:</strong> ACID and BASE are not strict opposites.</p>
+<p>A distributed system can provide strong transactional guarantees in some operations and eventual consistency in other parts of its architecture.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-acid-does-not-mean-every-transaction-is-automatically-correct">11. ACID Does Not Mean Every Transaction Is Automatically Correct<a href="#11-acid-does-not-mean-every-transaction-is-automatically-correct" class="hash-link" aria-label="Direct link to 11. ACID Does Not Mean Every Transaction Is Automatically Correct" title="Direct link to 11. ACID Does Not Mean Every Transaction Is Automatically Correct" translate="no">​</a></h2>
+<p>This is a critical distinction.</p>
+<p>ACID provides transaction guarantees, but it cannot automatically fix incorrect business logic.</p>
+<p>Suppose an application performs:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Assume Account 1 has only ₹1,000.</p>
+<p>If the database schema does not prevent negative balances, this transaction can successfully commit a balance of -₹4,000.</p>
+<p>The transaction may have executed atomically and durably.</p>
+<p>But the business operation is incorrect.</p>
+<p>To prevent this, enforce an appropriate constraint:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">ALTER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ADD</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">CONSTRAINT</span><span class="token plain"> balance_non_negative</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">balance </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Or implement a conditional update:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5000</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application must also check whether a row was updated.</p>
+<p>This demonstrates an important principle:</p>
+<p><strong>ACID protects transaction processing; correct business rules still need to be designed and enforced.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-common-misconceptions">12. Common Misconceptions<a href="#12-common-misconceptions" class="hash-link" aria-label="Direct link to 12. Common Misconceptions" title="Direct link to 12. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-acid-means-a-database-can-never-fail">Misconception 1: ACID means a database can never fail.<a href="#misconception-1-acid-means-a-database-can-never-fail" class="hash-link" aria-label="Direct link to Misconception 1: ACID means a database can never fail." title="Direct link to Misconception 1: ACID means a database can never fail." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Databases can crash, disks can fail, and network connections can be interrupted. ACID mechanisms help maintain and recover transaction state according to the database&#x27;s guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-atomicity-and-durability-mean-the-same-thing">Misconception 2: Atomicity and durability mean the same thing.<a href="#misconception-2-atomicity-and-durability-mean-the-same-thing" class="hash-link" aria-label="Direct link to Misconception 2: Atomicity and durability mean the same thing." title="Direct link to Misconception 2: Atomicity and durability mean the same thing." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<ul>
+<li class="">Atomicity ensures that a transaction&#x27;s changes are completed together or aborted.</li>
+<li class="">Durability ensures that successfully committed changes persist.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-consistency-means-every-user-always-sees-the-latest-data">Misconception 3: Consistency means every user always sees the latest data.<a href="#misconception-3-consistency-means-every-user-always-sees-the-latest-data" class="hash-link" aria-label="Direct link to Misconception 3: Consistency means every user always sees the latest data." title="Direct link to Misconception 3: Consistency means every user always sees the latest data." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>That is not the meaning of ACID consistency.</p>
+<p>ACID consistency concerns preserving defined database integrity rules. What concurrent transactions can see is primarily governed by isolation and the database&#x27;s consistency model.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-isolation-means-transactions-execute-one-by-one">Misconception 4: Isolation means transactions execute one by one.<a href="#misconception-4-isolation-means-transactions-execute-one-by-one" class="hash-link" aria-label="Direct link to Misconception 4: Isolation means transactions execute one by one." title="Direct link to Misconception 4: Isolation means transactions execute one by one." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Databases allow concurrent execution. They use concurrency-control mechanisms to provide defined isolation guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-acid-is-available-only-in-sql-databases">Misconception 5: ACID is available only in SQL databases.<a href="#misconception-5-acid-is-available-only-in-sql-databases" class="hash-link" aria-label="Direct link to Misconception 5: ACID is available only in SQL databases." title="Direct link to Misconception 5: ACID is available only in SQL databases." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Some NoSQL databases support ACID transactions, but transaction scope and guarantees differ.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-acid-always-causes-poor-performance">Misconception 6: ACID always causes poor performance.<a href="#misconception-6-acid-always-causes-poor-performance" class="hash-link" aria-label="Direct link to Misconception 6: ACID always causes poor performance." title="Direct link to Misconception 6: ACID always causes poor performance." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>ACID mechanisms introduce overhead, but their impact depends on the workload and implementation. Well-designed transactional systems can achieve high throughput.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-a-successful-commit-means-every-external-operation-also-succeeded">Misconception 7: A successful COMMIT means every external operation also succeeded.<a href="#misconception-7-a-successful-commit-means-every-external-operation-also-succeeded" class="hash-link" aria-label="Direct link to Misconception 7: A successful COMMIT means every external operation also succeeded." title="Direct link to Misconception 7: A successful COMMIT means every external operation also succeeded." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A database transaction does not automatically include external payment providers, email services, or other systems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-8-acid-guarantees-that-application-business-logic-is-correct">Misconception 8: ACID guarantees that application business logic is correct.<a href="#misconception-8-acid-guarantees-that-application-business-logic-is-correct" class="hash-link" aria-label="Direct link to Misconception 8: ACID guarantees that application business logic is correct." title="Direct link to Misconception 8: ACID guarantees that application business logic is correct." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>ACID cannot compensate for incorrect application logic or missing integrity constraints.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-interview-questions">13. Interview Questions<a href="#13-interview-questions" class="hash-link" aria-label="Direct link to 13. Interview Questions" title="Direct link to 13. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-acid">Q1. What is ACID?<a href="#q1-what-is-acid" class="hash-link" aria-label="Direct link to Q1. What is ACID?" title="Direct link to Q1. What is ACID?" translate="no">​</a></h3>
+<p>ACID is a set of four transaction properties: Atomicity, Consistency, Isolation, and Durability.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-explain-atomicity-with-an-example">Q2. Explain atomicity with an example.<a href="#q2-explain-atomicity-with-an-example" class="hash-link" aria-label="Direct link to Q2. Explain atomicity with an example." title="Direct link to Q2. Explain atomicity with an example." translate="no">​</a></h3>
+<p>In a money transfer, both the debit and credit operations must succeed together. If the transaction is aborted, its uncommitted changes are rolled back.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-consistency-in-acid">Q3. What is consistency in ACID?<a href="#q3-what-is-consistency-in-acid" class="hash-link" aria-label="Direct link to Q3. What is consistency in ACID?" title="Direct link to Q3. What is consistency in ACID?" translate="no">​</a></h3>
+<p>Consistency ensures that a successfully committed transaction preserves the database&#x27;s defined integrity constraints and rules.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-isolation">Q4. What is isolation?<a href="#q4-what-is-isolation" class="hash-link" aria-label="Direct link to Q4. What is isolation?" title="Direct link to Q4. What is isolation?" translate="no">​</a></h3>
+<p>Isolation controls how concurrent transactions interact and what data they can observe, preventing undesirable interference according to the selected isolation guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-durability">Q5. What is durability?<a href="#q5-what-is-durability" class="hash-link" aria-label="Direct link to Q5. What is durability?" title="Direct link to Q5. What is durability?" translate="no">​</a></h3>
+<p>Durability means committed changes are protected against failures according to the database&#x27;s durability guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-the-difference-between-atomicity-and-consistency">Q6. What is the difference between atomicity and consistency?<a href="#q6-what-is-the-difference-between-atomicity-and-consistency" class="hash-link" aria-label="Direct link to Q6. What is the difference between atomicity and consistency?" title="Direct link to Q6. What is the difference between atomicity and consistency?" translate="no">​</a></h3>
+<p>Atomicity concerns whether transaction changes are completed together or aborted. Consistency concerns whether the resulting database state satisfies defined integrity rules.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-the-difference-between-consistency-and-isolation">Q7. What is the difference between consistency and isolation?<a href="#q7-what-is-the-difference-between-consistency-and-isolation" class="hash-link" aria-label="Direct link to Q7. What is the difference between consistency and isolation?" title="Direct link to Q7. What is the difference between consistency and isolation?" translate="no">​</a></h3>
+<p>Consistency preserves database rules. Isolation controls the interaction and visibility of concurrent transactions.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-how-does-postgresql-provide-durability">Q8. How does PostgreSQL provide durability?<a href="#q8-how-does-postgresql-provide-durability" class="hash-link" aria-label="Direct link to Q8. How does PostgreSQL provide durability?" title="Direct link to Q8. How does PostgreSQL provide durability?" translate="no">​</a></h3>
+<p>PostgreSQL uses Write-Ahead Logging (WAL), recovery mechanisms, and storage persistence to protect committed changes according to its configuration.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-write-ahead-logging">Q9. What is Write-Ahead Logging?<a href="#q9-what-is-write-ahead-logging" class="hash-link" aria-label="Direct link to Q9. What is Write-Ahead Logging?" title="Direct link to Q9. What is Write-Ahead Logging?" translate="no">​</a></h3>
+<p>WAL is a logging mechanism in which the database records change information before corresponding modified data pages need to be written to their final locations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-do-nosql-databases-support-acid">Q10. Do NoSQL databases support ACID?<a href="#q10-do-nosql-databases-support-acid" class="hash-link" aria-label="Direct link to Q10. Do NoSQL databases support ACID?" title="Direct link to Q10. Do NoSQL databases support ACID?" translate="no">​</a></h3>
+<p>Some do. For example, MongoDB supports multi-document transactions. However, transaction scope and guarantees differ between NoSQL systems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-base">Q11. What is BASE?<a href="#q11-what-is-base" class="hash-link" aria-label="Direct link to Q11. What is BASE?" title="Direct link to Q11. What is BASE?" translate="no">​</a></h3>
+<p>BASE stands for Basically Available, Soft State, and Eventual Consistency. It describes a broad design philosophy used in some distributed systems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-does-acid-guarantee-that-money-transfers-are-implemented-correctly">Q12. Does ACID guarantee that money transfers are implemented correctly?<a href="#q12-does-acid-guarantee-that-money-transfers-are-implemented-correctly" class="hash-link" aria-label="Direct link to Q12. Does ACID guarantee that money transfers are implemented correctly?" title="Direct link to Q12. Does ACID guarantee that money transfers are implemented correctly?" translate="no">​</a></h3>
+<p>No. ACID provides transaction guarantees, but developers must implement the correct business rules, such as sufficient-balance checks and appropriate concurrency control.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-can-a-transaction-be-acid-compliant-and-still-have-incorrect-business-results">Q13. Can a transaction be ACID-compliant and still have incorrect business results?<a href="#q13-can-a-transaction-be-acid-compliant-and-still-have-incorrect-business-results" class="hash-link" aria-label="Direct link to Q13. Can a transaction be ACID-compliant and still have incorrect business results?" title="Direct link to Q13. Can a transaction be ACID-compliant and still have incorrect business results?" translate="no">​</a></h3>
+<p>Yes. A transaction can satisfy its database constraints while application logic implements an incorrect business operation. ACID does not automatically validate every business invariant.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-chapter-summary">14. Chapter Summary<a href="#14-chapter-summary" class="hash-link" aria-label="Direct link to 14. Chapter Summary" title="Direct link to 14. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>Atomicity</td><td>All or nothing</td><td>Debit and credit succeed together</td></tr><tr><td>Consistency</td><td>Preserve defined database rules</td><td>Account balance cannot become negative</td></tr><tr><td>Isolation</td><td>Control concurrent transaction interactions</td><td>Two withdrawals cannot incorrectly spend the same balance</td></tr><tr><td>Durability</td><td>Protect committed changes</td><td>A committed transfer survives a database crash covered by durability guarantees</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mechanisms-commonly-associated-with-acid">Mechanisms commonly associated with ACID<a href="#mechanisms-commonly-associated-with-acid" class="hash-link" aria-label="Direct link to Mechanisms commonly associated with ACID" title="Direct link to Mechanisms commonly associated with ACID" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mechanism</th><th>Purpose</th></tr></thead><tbody><tr><td>Transactions</td><td>Group related database operations</td></tr><tr><td>Rollback</td><td>Undo uncommitted changes</td></tr><tr><td>Constraints</td><td>Enforce data-integrity rules</td></tr><tr><td>Locks</td><td>Coordinate conflicting operations</td></tr><tr><td>MVCC</td><td>Manage concurrent access using record versions</td></tr><tr><td>WAL</td><td>Support crash recovery and durability</td></tr><tr><td>Recovery procedures</td><td>Restore the database after failures</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-takeaway">Final takeaway<a href="#final-takeaway" class="hash-link" aria-label="Direct link to Final takeaway" title="Direct link to Final takeaway" translate="no">​</a></h3>
+<p>ACID is the foundation of reliable transaction processing.</p>
+<ul>
+<li class=""><strong>Atomicity:</strong> Do not retain partially completed transactions.</li>
+<li class=""><strong>Consistency:</strong> Preserve the database&#x27;s defined integrity rules.</li>
+<li class=""><strong>Isolation:</strong> Coordinate concurrent transactions safely.</li>
+<li class=""><strong>Durability:</strong> Protect successfully committed changes.</li>
+</ul>
+<p>A reliable database needs more than the ability to store records. It needs mechanisms to ensure that transactions behave correctly under failures and concurrent access.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/02_Transactions_ACID_&amp;_Concurrency/part_02.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_01"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Transactions</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Transactions_ACID_&amp;_Concurrency/part_03"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Isolation Problems</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-what-is-acid" class="table-of-contents__link toc-highlight">1. What Is ACID?</a><ul><li><a href="#example-banking-transaction" class="table-of-contents__link toc-highlight">Example: Banking transaction</a></li></ul></li><li><a href="#2-atomicity--all-or-nothing" class="table-of-contents__link toc-highlight">2. Atomicity — All or Nothing</a><ul><li><a href="#21-why-do-we-need-atomicity" class="table-of-contents__link toc-highlight">2.1 Why do we need atomicity?</a></li><li><a href="#22-how-does-atomicity-work" class="table-of-contents__link toc-highlight">2.2 How does atomicity work?</a></li><li><a href="#23-example-using-rollback" class="table-of-contents__link toc-highlight">2.3 Example using ROLLBACK</a></li><li><a href="#24-atomicity-in-real-applications" class="table-of-contents__link toc-highlight">2.4 Atomicity in real applications</a></li><li><a href="#25-important-clarification" class="table-of-contents__link toc-highlight">2.5 Important clarification</a></li></ul></li><li><a href="#3-consistency--valid-state-to-valid-state" class="table-of-contents__link toc-highlight">3. Consistency — Valid State to Valid State</a><ul><li><a href="#31-what-is-a-consistent-database-state" class="table-of-contents__link toc-highlight">3.1 What is a consistent database state?</a></li><li><a href="#32-how-does-consistency-work" class="table-of-contents__link toc-highlight">3.2 How does consistency work?</a></li><li><a href="#33-example-foreign-key-consistency" class="table-of-contents__link toc-highlight">3.3 Example: Foreign-key consistency</a></li><li><a href="#34-consistency-in-the-banking-example" class="table-of-contents__link toc-highlight">3.4 Consistency in the banking example</a></li><li><a href="#35-consistency-is-not-the-same-as-data-validation" class="table-of-contents__link toc-highlight">3.5 Consistency is not the same as data validation</a></li><li><a href="#36-who-is-responsible-for-consistency" class="table-of-contents__link toc-highlight">3.6 Who is responsible for consistency?</a></li></ul></li><li><a href="#4-isolation--transactions-should-not-interfere-incorrectly" class="table-of-contents__link toc-highlight">4. Isolation — Transactions Should Not Interfere Incorrectly</a><ul><li><a href="#41-why-do-we-need-isolation" class="table-of-contents__link toc-highlight">4.1 Why do we need isolation?</a></li><li><a href="#42-what-does-isolation-mean" class="table-of-contents__link toc-highlight">4.2 What does isolation mean?</a></li><li><a href="#43-example-concurrent-bank-withdrawals" class="table-of-contents__link toc-highlight">4.3 Example: Concurrent bank withdrawals</a></li><li><a href="#44-isolation-levels" class="table-of-contents__link toc-highlight">4.4 Isolation levels</a></li></ul></li><li><a href="#5-durability--committed-changes-must-persist" class="table-of-contents__link toc-highlight">5. Durability — Committed Changes Must Persist</a><ul><li><a href="#51-why-do-we-need-durability" class="table-of-contents__link toc-highlight">5.1 Why do we need durability?</a></li><li><a href="#52-how-does-a-database-provide-durability" class="table-of-contents__link toc-highlight">5.2 How does a database provide durability?</a></li><li><a href="#53-understanding-write-ahead-logging-wal" class="table-of-contents__link toc-highlight">5.3 Understanding Write-Ahead Logging (WAL)</a></li><li><a href="#54-what-happens-if-the-server-crashes" class="table-of-contents__link toc-highlight">5.4 What happens if the server crashes?</a></li><li><a href="#55-does-durability-mean-data-can-never-be-lost" class="table-of-contents__link toc-highlight">5.5 Does durability mean data can never be lost?</a></li></ul></li><li><a href="#6-understanding-all-four-acid-properties-together" class="table-of-contents__link toc-highlight">6. Understanding All Four ACID Properties Together</a><ul><li><a href="#atomicity" class="table-of-contents__link toc-highlight">Atomicity</a></li><li><a href="#consistency" class="table-of-contents__link toc-highlight">Consistency</a></li><li><a href="#isolation" class="table-of-contents__link toc-highlight">Isolation</a></li><li><a href="#durability" class="table-of-contents__link toc-highlight">Durability</a></li><li><a href="#combined-diagram" class="table-of-contents__link toc-highlight">Combined diagram</a></li></ul></li><li><a href="#7-acid-what-happens-without-each-property" class="table-of-contents__link toc-highlight">7. ACID: What Happens Without Each Property?</a></li><li><a href="#8-does-acid-reduce-database-performance" class="table-of-contents__link toc-highlight">8. Does ACID Reduce Database Performance?</a><ul><li><a href="#81-atomicity-overhead" class="table-of-contents__link toc-highlight">8.1 Atomicity overhead</a></li><li><a href="#82-consistency-overhead" class="table-of-contents__link toc-highlight">8.2 Consistency overhead</a></li><li><a href="#83-isolation-overhead" class="table-of-contents__link toc-highlight">8.3 Isolation overhead</a></li><li><a href="#84-durability-overhead" class="table-of-contents__link toc-highlight">8.4 Durability overhead</a></li><li><a href="#85-summary" class="table-of-contents__link toc-highlight">8.5 Summary</a></li></ul></li><li><a href="#9-do-nosql-databases-support-acid" class="table-of-contents__link toc-highlight">9. Do NoSQL Databases Support ACID?</a><ul><li><a href="#91-mongodb" class="table-of-contents__link toc-highlight">9.1 MongoDB</a></li><li><a href="#92-redis" class="table-of-contents__link toc-highlight">9.2 Redis</a></li><li><a href="#93-cassandra" class="table-of-contents__link toc-highlight">9.3 Cassandra</a></li><li><a href="#94-important-comparison" class="table-of-contents__link toc-highlight">9.4 Important comparison</a></li></ul></li><li><a href="#10-acid-vs-base" class="table-of-contents__link toc-highlight">10. ACID vs BASE</a><ul><li><a href="#101-basically-available" class="table-of-contents__link toc-highlight">10.1 Basically Available</a></li><li><a href="#102-soft-state" class="table-of-contents__link toc-highlight">10.2 Soft State</a></li><li><a href="#103-eventual-consistency" class="table-of-contents__link toc-highlight">10.3 Eventual Consistency</a></li><li><a href="#104-acid-vs-base-comparison" class="table-of-contents__link toc-highlight">10.4 ACID vs BASE comparison</a></li></ul></li><li><a href="#11-acid-does-not-mean-every-transaction-is-automatically-correct" class="table-of-contents__link toc-highlight">11. ACID Does Not Mean Every Transaction Is Automatically Correct</a></li><li><a href="#12-common-misconceptions" class="table-of-contents__link toc-highlight">12. Common Misconceptions</a><ul><li><a href="#misconception-1-acid-means-a-database-can-never-fail" class="table-of-contents__link toc-highlight">Misconception 1: ACID means a database can never fail.</a></li><li><a href="#misconception-2-atomicity-and-durability-mean-the-same-thing" class="table-of-contents__link toc-highlight">Misconception 2: Atomicity and durability mean the same thing.</a></li><li><a href="#misconception-3-consistency-means-every-user-always-sees-the-latest-data" class="table-of-contents__link toc-highlight">Misconception 3: Consistency means every user always sees the latest data.</a></li><li><a href="#misconception-4-isolation-means-transactions-execute-one-by-one" class="table-of-contents__link toc-highlight">Misconception 4: Isolation means transactions execute one by one.</a></li><li><a href="#misconception-5-acid-is-available-only-in-sql-databases" class="table-of-contents__link toc-highlight">Misconception 5: ACID is available only in SQL databases.</a></li><li><a href="#misconception-6-acid-always-causes-poor-performance" class="table-of-contents__link toc-highlight">Misconception 6: ACID always causes poor performance.</a></li><li><a href="#misconception-7-a-successful-commit-means-every-external-operation-also-succeeded" class="table-of-contents__link toc-highlight">Misconception 7: A successful COMMIT means every external operation also succeeded.</a></li><li><a href="#misconception-8-acid-guarantees-that-application-business-logic-is-correct" class="table-of-contents__link toc-highlight">Misconception 8: ACID guarantees that application business logic is correct.</a></li></ul></li><li><a href="#13-interview-questions" class="table-of-contents__link toc-highlight">13. Interview Questions</a><ul><li><a href="#q1-what-is-acid" class="table-of-contents__link toc-highlight">Q1. What is ACID?</a></li><li><a href="#q2-explain-atomicity-with-an-example" class="table-of-contents__link toc-highlight">Q2. Explain atomicity with an example.</a></li><li><a href="#q3-what-is-consistency-in-acid" class="table-of-contents__link toc-highlight">Q3. What is consistency in ACID?</a></li><li><a href="#q4-what-is-isolation" class="table-of-contents__link toc-highlight">Q4. What is isolation?</a></li><li><a href="#q5-what-is-durability" class="table-of-contents__link toc-highlight">Q5. What is durability?</a></li><li><a href="#q6-what-is-the-difference-between-atomicity-and-consistency" class="table-of-contents__link toc-highlight">Q6. What is the difference between atomicity and consistency?</a></li><li><a href="#q7-what-is-the-difference-between-consistency-and-isolation" class="table-of-contents__link toc-highlight">Q7. What is the difference between consistency and isolation?</a></li><li><a href="#q8-how-does-postgresql-provide-durability" class="table-of-contents__link toc-highlight">Q8. How does PostgreSQL provide durability?</a></li><li><a href="#q9-what-is-write-ahead-logging" class="table-of-contents__link toc-highlight">Q9. What is Write-Ahead Logging?</a></li><li><a href="#q10-do-nosql-databases-support-acid" class="table-of-contents__link toc-highlight">Q10. Do NoSQL databases support ACID?</a></li><li><a href="#q11-what-is-base" class="table-of-contents__link toc-highlight">Q11. What is BASE?</a></li><li><a href="#q12-does-acid-guarantee-that-money-transfers-are-implemented-correctly" class="table-of-contents__link toc-highlight">Q12. Does ACID guarantee that money transfers are implemented correctly?</a></li><li><a href="#q13-can-a-transaction-be-acid-compliant-and-still-have-incorrect-business-results" class="table-of-contents__link toc-highlight">Q13. Can a transaction be ACID-compliant and still have incorrect business results?</a></li></ul></li><li><a href="#14-chapter-summary" class="table-of-contents__link toc-highlight">14. Chapter Summary</a><ul><li><a href="#mechanisms-commonly-associated-with-acid" class="table-of-contents__link toc-highlight">Mechanisms commonly associated with ACID</a></li><li><a href="#final-takeaway" class="table-of-contents__link toc-highlight">Final takeaway</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

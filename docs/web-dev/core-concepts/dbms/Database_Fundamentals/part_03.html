@@ -1,0 +1,1521 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Database_Fundamentals/part_03" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Relational Database Fundamentals | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Relational Database Fundamentals | Knowledge Base"><meta data-rh="true" name="description" content="1. What Is a Relational Database?"><meta data-rh="true" property="og:description" content="1. What Is a Relational Database?"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Database_Fundamentals","item":"https://codingsapienss.github.io/notes/docs/category/database_fundamentals"},{"@type":"ListItem","position":5,"name":"Relational Database Fundamentals","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Collapse sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_01"><span title="File Storage vs Database" class="linkLabel_WmDU">File Storage vs Database</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"><span title="Introduction to DBMS" class="linkLabel_WmDU">Introduction to DBMS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"><span title="Relational Database Fundamentals" class="linkLabel_WmDU">Relational Database Fundamentals</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/database_fundamentals"><span>Database_Fundamentals</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Relational Database Fundamentals</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Relational Database Fundamentals</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-what-is-a-relational-database">1. What Is a Relational Database?<a href="#1-what-is-a-relational-database" class="hash-link" aria-label="Direct link to 1. What Is a Relational Database?" title="Direct link to 1. What Is a Relational Database?" translate="no">​</a></h2>
+<p>A <strong>relational database</strong> is a database that organizes data into relations, which are commonly represented as tables.</p>
+<p>A table stores information about a particular entity or concept.</p>
+<p>For example, an e-commerce application might have:</p>
+<ul>
+<li class=""><code>users</code> — stores user information.</li>
+<li class=""><code>products</code> — stores product information.</li>
+<li class=""><code>orders</code> — stores order information.</li>
+<li class=""><code>payments</code> — stores payment information.</li>
+</ul>
+<p>Each table contains rows and columns.</p>
+<p>Example: <code>users</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th><th style="text-align:right">age</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td><td style="text-align:right">25</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td><td style="text-align:right">28</td></tr><tr><td style="text-align:right">3</td><td>Amit</td><td><a href="mailto:amit@example.com" target="_blank" rel="noopener noreferrer" class="">amit@example.com</a></td><td style="text-align:right">22</td></tr></tbody></table>
+<p>Here:</p>
+<ul>
+<li class="">The table represents users.</li>
+<li class="">Each row represents one user.</li>
+<li class="">Each column represents an attribute of a user.</li>
+</ul>
+<p>The important idea is that data is organized into related tables instead of necessarily storing everything in one large structure.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="examples-of-relational-databases">Examples of relational databases<a href="#examples-of-relational-databases" class="hash-link" aria-label="Direct link to Examples of relational databases" title="Direct link to Examples of relational databases" translate="no">​</a></h3>
+<ul>
+<li class="">PostgreSQL</li>
+<li class="">MySQL</li>
+<li class="">Microsoft SQL Server</li>
+<li class="">Oracle Database</li>
+<li class="">SQLite</li>
+</ul>
+<p>These systems use the relational model and commonly provide SQL for querying and managing data.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-understanding-tables-rows-and-columns">2. Understanding Tables, Rows, and Columns<a href="#2-understanding-tables-rows-and-columns" class="hash-link" aria-label="Direct link to 2. Understanding Tables, Rows, and Columns" title="Direct link to 2. Understanding Tables, Rows, and Columns" translate="no">​</a></h2>
+<p>These are the three most fundamental components of a relational table.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-table">2.1 Table<a href="#21-table" class="hash-link" aria-label="Direct link to 2.1 Table" title="Direct link to 2.1 Table" translate="no">​</a></h3>
+<p>A table is a logical structure used to organize related data.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    age </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This creates a table named <code>users</code>.</p>
+<p>A table has a defined structure and contains records following that structure.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-row-record--tuple">2.2 Row (Record / Tuple)<a href="#22-row-record--tuple" class="hash-link" aria-label="Direct link to 2.2 Row (Record / Tuple)" title="Direct link to 2.2 Row (Record / Tuple)" translate="no">​</a></h3>
+<p>A row represents one individual record in a table.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th><th style="text-align:right">age</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td><td style="text-align:right">25</td></tr></tbody></table>
+<p>The entire row represents one user.</p>
+<p>In relational terminology, a row is also called a <strong>tuple</strong>.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(1, &#x27;Prashant&#x27;, &#x27;prashant@example.com&#x27;, 25)</span><br></div></code></pre></div></div>
+<p>This tuple contains the values for one user record.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-column-field--attribute">2.3 Column (Field / Attribute)<a href="#23-column-field--attribute" class="hash-link" aria-label="Direct link to 2.3 Column (Field / Attribute)" title="Direct link to 2.3 Column (Field / Attribute)" translate="no">​</a></h3>
+<p>A column represents a particular property of the records stored in a table.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Column</th><th>Meaning</th></tr></thead><tbody><tr><td>id</td><td>User identifier</td></tr><tr><td>name</td><td>User name</td></tr><tr><td>email</td><td>User email address</td></tr><tr><td>age</td><td>User age</td></tr></tbody></table>
+<p>In relational terminology, a column is also called an <strong>attribute</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-visual-representation">2.4 Visual representation<a href="#24-visual-representation" class="hash-link" aria-label="Direct link to 2.4 Visual representation" title="Direct link to 2.4 Visual representation" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                    users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+-------------------------+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  id  |   name    |          email          | age |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+-------------------------+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  1   | Prashant  | prashant@example.com    |  25 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  2   | Rahul     | rahul@example.com       |  28 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  3   | Amit      | amit@example.com        |  22 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+-------------------------+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          ^          ^                ^</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |          |                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Column     Column           Column</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Each horizontal record is a row</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="25-quick-comparison">2.5 Quick comparison<a href="#25-quick-comparison" class="hash-link" aria-label="Direct link to 2.5 Quick comparison" title="Direct link to 2.5 Quick comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Term</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>Table</td><td>Collection of related records</td><td><code>users</code></td></tr><tr><td>Row</td><td>One record</td><td>Prashant&#x27;s user record</td></tr><tr><td>Column</td><td>One attribute</td><td><code>email</code></td></tr><tr><td>Tuple</td><td>Relational term for a row</td><td><code>(1, &#x27;Prashant&#x27;, ...)</code></td></tr><tr><td>Attribute</td><td>Relational term for a column</td><td><code>name</code></td></tr></tbody></table>
+<p><strong>Remember:</strong></p>
+<ul>
+<li class="">Table = collection of records.</li>
+<li class="">Row = one record.</li>
+<li class="">Column = one property of a record.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-data-types-and-domains">3. Data Types and Domains<a href="#3-data-types-and-domains" class="hash-link" aria-label="Direct link to 3. Data Types and Domains" title="Direct link to 3. Data Types and Domains" translate="no">​</a></h2>
+<p>A relational database defines the type of values that can be stored in a column.</p>
+<p>This helps ensure that data follows the expected format.</p>
+<p>Consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    stock </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    is_available </span><span class="token keyword" style="color:#00009f">BOOLEAN</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Column</th><th>Data type</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>INTEGER</td><td>101</td></tr><tr><td>name</td><td>VARCHAR(100)</td><td>Laptop</td></tr><tr><td>price</td><td>NUMERIC(10, 2)</td><td>65000.00</td></tr><tr><td>stock</td><td>INTEGER</td><td>15</td></tr><tr><td>is_available</td><td>BOOLEAN</td><td>TRUE</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-is-a-domain">What is a domain?<a href="#what-is-a-domain" class="hash-link" aria-label="Direct link to What is a domain?" title="Direct link to What is a domain?" translate="no">​</a></h3>
+<p>In relational database terminology, a domain describes the set of valid values an attribute can contain.</p>
+<p>For example:</p>
+<ul>
+<li class="">An age column may contain non-negative integers.</li>
+<li class="">A price column may contain non-negative numeric values.</li>
+<li class="">A status column may allow only a defined set of values.</li>
+</ul>
+<p>A data type defines a broad category of values. Additional constraints can narrow the allowed values.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">price </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here, the <code>CHECK</code> constraint restricts the price to non-negative values.</p>
+<p><strong>Important:</strong> A column&#x27;s data type alone does not necessarily enforce every business rule. Constraints are used to define additional restrictions.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-what-is-a-relational-model">4. What Is a Relational Model?<a href="#4-what-is-a-relational-model" class="hash-link" aria-label="Direct link to 4. What Is a Relational Model?" title="Direct link to 4. What Is a Relational Model?" translate="no">​</a></h2>
+<p>The relational model is a way of representing data using relations and defining how those relations are connected.</p>
+<p>It was introduced by Edgar F. Codd in 1970.</p>
+<p>In practical relational databases, tables represent relations.</p>
+<p>Consider an e-commerce application.</p>
+<p>Instead of storing all information in one large table, we can divide it into separate tables:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="users">Users<a href="#users" class="hash-link" aria-label="Direct link to Users" title="Direct link to Users" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="products">Products<a href="#products" class="hash-link" aria-label="Direct link to Products" title="Direct link to Products" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th style="text-align:right">price</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Laptop</td><td style="text-align:right">65000</td></tr><tr><td style="text-align:right">102</td><td>Mouse</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td>Keyboard</td><td style="text-align:right">1500</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="orders">Orders<a href="#orders" class="hash-link" aria-label="Direct link to Orders" title="Direct link to Orders" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">total_amount</th></tr></thead><tbody><tr><td style="text-align:right">1001</td><td style="text-align:right">1</td><td style="text-align:right">65800</td></tr><tr><td style="text-align:right">1002</td><td style="text-align:right">2</td><td style="text-align:right">1500</td></tr></tbody></table>
+<p>Each table represents a different logical entity.</p>
+<p>The tables are connected through identifiers.</p>
+<p>For example:</p>
+<ul>
+<li class=""><code>users.id</code> identifies a user.</li>
+<li class=""><code>orders.user_id</code> identifies the user who placed an order.</li>
+</ul>
+<p>This allows us to store information separately while still connecting related records.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-separate-tables">Why separate tables?<a href="#why-separate-tables" class="hash-link" aria-label="Direct link to Why separate tables?" title="Direct link to Why separate tables?" translate="no">​</a></h3>
+<p>Imagine storing users and all their orders in one table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">user_id</th><th>user_name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td style="text-align:right">1001</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">1</td><td>Prashant</td><td style="text-align:right">1002</td><td style="text-align:right">4500</td></tr><tr><td style="text-align:right">1</td><td>Prashant</td><td style="text-align:right">1003</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td style="text-align:right">1004</td><td style="text-align:right">3000</td></tr></tbody></table>
+<p>The user&#x27;s information is repeated for every order.</p>
+<p>This creates unnecessary duplication and can introduce data-management problems.</p>
+<p>A relational design separates users and orders:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">1001</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">1002</td><td style="text-align:right">1</td><td style="text-align:right">4500</td></tr><tr><td style="text-align:right">1003</td><td style="text-align:right">1</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">1004</td><td style="text-align:right">2</td><td style="text-align:right">3000</td></tr></tbody></table>
+<p>Now user information is stored once, and orders refer to users through <code>user_id</code>.</p>
+<p>This separation is one of the foundations of relational database design.</p>
+<p>We will study normalization and its rules in detail in Part 4.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-what-is-a-key-in-a-relational-database">5. What Is a Key in a Relational Database?<a href="#5-what-is-a-key-in-a-relational-database" class="hash-link" aria-label="Direct link to 5. What Is a Key in a Relational Database?" title="Direct link to 5. What Is a Key in a Relational Database?" translate="no">​</a></h2>
+<p>A key is an attribute or combination of attributes used to identify records or establish relationships between tables.</p>
+<p>Keys are important because they help databases:</p>
+<ul>
+<li class="">Identify individual records.</li>
+<li class="">Prevent unwanted duplicates.</li>
+<li class="">Connect related tables.</li>
+<li class="">Maintain data integrity.</li>
+</ul>
+<p>The two most important keys for this chapter are:</p>
+<ol>
+<li class="">Primary key.</li>
+<li class="">Foreign key.</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-primary-key-pk">6. Primary Key (PK)<a href="#6-primary-key-pk" class="hash-link" aria-label="Direct link to 6. Primary Key (PK)" title="Direct link to 6. Primary Key (PK)" translate="no">​</a></h2>
+<p>A <strong>primary key</strong> is a column or combination of columns selected to uniquely identify each row in a table.</p>
+<p>Every table should generally have a primary key when individual records need to be uniquely identified.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here, <code>id</code> is the primary key.</p>
+<p>Consider the data:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr><tr><td style="text-align:right">3</td><td>Amit</td><td><a href="mailto:amit@example.com" target="_blank" rel="noopener noreferrer" class="">amit@example.com</a></td></tr></tbody></table>
+<p>Every user has a unique <code>id</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-why-do-we-need-a-primary-key">6.1 Why do we need a primary key?<a href="#61-why-do-we-need-a-primary-key" class="hash-link" aria-label="Direct link to 6.1 Why do we need a primary key?" title="Direct link to 6.1 Why do we need a primary key?" translate="no">​</a></h3>
+<p>Suppose we have:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th>city</th></tr></thead><tbody><tr><td>Rahul</td><td>Delhi</td></tr><tr><td>Rahul</td><td>Delhi</td></tr><tr><td>Amit</td><td>Noida</td></tr></tbody></table>
+<p>If we want to update one particular Rahul&#x27;s record, how do we identify which one?</p>
+<p>Using the name is not reliable because multiple people can have the same name.</p>
+<p>A primary key gives each record a unique identifier.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>city</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Rahul</td><td>Delhi</td></tr><tr><td style="text-align:right">102</td><td>Rahul</td><td>Delhi</td></tr><tr><td style="text-align:right">103</td><td>Amit</td><td>Noida</td></tr></tbody></table>
+<p>Now we can identify each record using its ID.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> city </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;Noida&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Only the record with ID 101 is updated.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-primary-key-rules">6.2 Primary key rules<a href="#62-primary-key-rules" class="hash-link" aria-label="Direct link to 6.2 Primary key rules" title="Direct link to 6.2 Primary key rules" translate="no">​</a></h3>
+<p>A primary key must satisfy two important properties.</p>
+<p><strong>Rule 1: Uniqueness</strong></p>
+<p>No two rows can have the same primary key value.</p>
+<p>Invalid example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">1</td><td>Rahul</td></tr></tbody></table>
+<p>Both rows have the same primary key, so the database rejects the duplicate.</p>
+<p><strong>Rule 2: NOT NULL</strong></p>
+<p>A primary key cannot contain NULL.</p>
+<p>Invalid example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">NULL</td><td>Rahul</td></tr></tbody></table>
+<p>A primary key must identify every row, so a missing identifier is not allowed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-primary-key-automatically-enforces-unique-and-not-null">6.3 PRIMARY KEY automatically enforces UNIQUE and NOT NULL<a href="#63-primary-key-automatically-enforces-unique-and-not-null" class="hash-link" aria-label="Direct link to 6.3 PRIMARY KEY automatically enforces UNIQUE and NOT NULL" title="Direct link to 6.3 PRIMARY KEY automatically enforces UNIQUE and NOT NULL" translate="no">​</a></h3>
+<p>In PostgreSQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This is conceptually equivalent to enforcing:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><br></div></code></pre></div></div>
+<p>However, <code>PRIMARY KEY</code> also declares the column or columns as the table&#x27;s primary key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-can-a-primary-key-contain-multiple-columns">6.4 Can a primary key contain multiple columns?<a href="#64-can-a-primary-key-contain-multiple-columns" class="hash-link" aria-label="Direct link to 6.4 Can a primary key contain multiple columns?" title="Direct link to 6.4 Can a primary key contain multiple columns?" translate="no">​</a></h3>
+<p>Yes.</p>
+<p>A primary key can consist of more than one column.</p>
+<p>This is called a <strong>composite primary key</strong>.</p>
+<p>Example:</p>
+<p>Suppose we have a table tracking which students enroll in which courses.</p>
+<p><strong>student_courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th><th>enrollment_date</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td><td>2026-01-10</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td><td>2026-01-12</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td><td>2026-01-15</td></tr></tbody></table>
+<p>A student can enroll in multiple courses, and a course can have multiple students.</p>
+<p>Neither <code>student_id</code> nor <code>course_id</code> is individually unique.</p>
+<p>But their combination can be unique.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    enrollment_date </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This means:</p>
+<ul>
+<li class="">Student 1 can enroll in Course 101.</li>
+<li class="">Student 1 can also enroll in Course 102.</li>
+<li class="">Student 2 can enroll in Course 101.</li>
+<li class="">Student 1 cannot enroll in Course 101 twice in this table.</li>
+</ul>
+<p>The combination <code>(student_id, course_id)</code> must be unique.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="65-can-a-table-have-multiple-primary-keys">6.5 Can a table have multiple primary keys?<a href="#65-can-a-table-have-multiple-primary-keys" class="hash-link" aria-label="Direct link to 6.5 Can a table have multiple primary keys?" title="Direct link to 6.5 Can a table have multiple primary keys?" translate="no">​</a></h3>
+<p>No.</p>
+<p>A table can have only one primary key constraint.</p>
+<p>However, that primary key can consist of multiple columns.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<p>This is one composite primary key, not two separate primary keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="66-natural-key-vs-surrogate-key">6.6 Natural key vs surrogate key<a href="#66-natural-key-vs-surrogate-key" class="hash-link" aria-label="Direct link to 6.6 Natural key vs surrogate key" title="Direct link to 6.6 Natural key vs surrogate key" translate="no">​</a></h3>
+<p>There are two common approaches to choosing primary-key values.</p>
+<p><strong>Natural key</strong></p>
+<p>A natural key is an attribute that already has meaning in the real world and can uniquely identify a record.</p>
+<p>Examples:</p>
+<ul>
+<li class="">A government-issued identifier.</li>
+<li class="">A company registration number.</li>
+<li class="">A globally unique product code.</li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> countries </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    country_code </span><span class="token keyword" style="color:#00009f">CHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    country_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here, <code>country_code</code> is a natural key.</p>
+<p><strong>Surrogate key</strong></p>
+<p>A surrogate key is an artificially generated identifier that has no direct business meaning.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database generates the ID.</p>
+<p>For many application tables, surrogate keys are convenient because they are stable and independent of changing business attributes.</p>
+<p><strong>Important:</strong> A generated ID does not automatically guarantee that other fields, such as email, are unique. If email must be unique, enforce that separately.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-foreign-key-fk">7. Foreign Key (FK)<a href="#7-foreign-key-fk" class="hash-link" aria-label="Direct link to 7. Foreign Key (FK)" title="Direct link to 7. Foreign Key (FK)" translate="no">​</a></h2>
+<p>A <strong>foreign key</strong> is a column or combination of columns in one table that references a candidate key in another table, commonly its primary key.</p>
+<p>It establishes a relationship between tables and helps maintain referential integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-why-do-we-need-foreign-keys">7.1 Why do we need foreign keys?<a href="#71-why-do-we-need-foreign-keys" class="hash-link" aria-label="Direct link to 7.1 Why do we need foreign keys?" title="Direct link to 7.1 Why do we need foreign keys?" translate="no">​</a></h3>
+<p>Suppose we have two tables.</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr><tr><td style="text-align:right">3</td><td>Amit</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td><td style="text-align:right">4500</td></tr></tbody></table>
+<p>Notice that <code>orders.user_id</code> contains the IDs of users.</p>
+<p>This connects orders to their owners.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Order 101 ---&gt; User 1 ---&gt; Prashant</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 102 ---&gt; User 2 ---&gt; Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 103 ---&gt; User 1 ---&gt; Prashant</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<ul>
+<li class=""><code>users.id</code> is the primary key.</li>
+<li class=""><code>orders.user_id</code> is the foreign key.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-creating-a-foreign-key">7.2 Creating a foreign key<a href="#72-creating-a-foreign-key" class="hash-link" aria-label="Direct link to 7.2 Creating a foreign key" title="Direct link to 7.2 Creating a foreign key" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    amount </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The foreign key establishes a relationship between <code>orders.user_id</code> and <code>users.id</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="73-how-does-a-foreign-key-protect-data">7.3 How does a foreign key protect data?<a href="#73-how-does-a-foreign-key-protect-data" class="hash-link" aria-label="Direct link to 7.3 How does a foreign key protect data?" title="Direct link to 7.3 How does a foreign key protect data?" translate="no">​</a></h3>
+<p>Suppose the users table contains:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p>Now try inserting:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">99</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2500</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This attempts to create an order for user ID 99.</p>
+<p>But user ID 99 does not exist in the <code>users</code> table.</p>
+<p>The database rejects this insertion because the foreign key would reference a nonexistent user.</p>
+<p>This prevents an invalid relationship from being stored.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="74-what-is-referential-integrity">7.4 What is referential integrity?<a href="#74-what-is-referential-integrity" class="hash-link" aria-label="Direct link to 7.4 What is referential integrity?" title="Direct link to 7.4 What is referential integrity?" translate="no">​</a></h3>
+<p>Referential integrity means maintaining valid relationships between related tables.</p>
+<p>For example:</p>
+<ul>
+<li class="">Every order must reference an existing user when <code>user_id</code> is non-NULL.</li>
+<li class="">A payment should reference an existing order if the schema requires that relationship.</li>
+<li class="">An order item should reference an existing product if the schema requires that relationship.</li>
+</ul>
+<p>Foreign keys enforce these rules at the database level.</p>
+<p><strong>Important:</strong> A nullable foreign-key column may contain NULL unless a <code>NOT NULL</code> constraint is also applied. A foreign key does not automatically make its column mandatory.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="75-can-a-foreign-key-contain-duplicate-values">7.5 Can a foreign key contain duplicate values?<a href="#75-can-a-foreign-key-contain-duplicate-values" class="hash-link" aria-label="Direct link to 7.5 Can a foreign key contain duplicate values?" title="Direct link to 7.5 Can a foreign key contain duplicate values?" translate="no">​</a></h3>
+<p>Yes.</p>
+<p>This is one of the most important differences between a primary key and a foreign key.</p>
+<p>Consider:</p>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">3000</td></tr><tr><td style="text-align:right">104</td><td style="text-align:right">1</td><td style="text-align:right">4500</td></tr></tbody></table>
+<p>Multiple orders can belong to the same user.</p>
+<p>Therefore, <code>user_id</code> can contain duplicate values.</p>
+<p>The foreign key only ensures that non-NULL values reference valid parent records.</p>
+<p>It does not require those values to be unique.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="76-can-a-foreign-key-contain-null">7.6 Can a foreign key contain NULL?<a href="#76-can-a-foreign-key-contain-null" class="hash-link" aria-label="Direct link to 7.6 Can a foreign key contain NULL?" title="Direct link to 7.6 Can a foreign key contain NULL?" translate="no">​</a></h3>
+<p>Yes, unless the column is also declared <code>NOT NULL</code>.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here, <code>user_id</code> can contain NULL.</p>
+<p>This may represent an order that is not currently associated with a user, depending on the application&#x27;s data model.</p>
+<p>If every order must have a user:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now <code>user_id</code> cannot be NULL.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-primary-key-vs-foreign-key">8. Primary Key vs Foreign Key<a href="#8-primary-key-vs-foreign-key" class="hash-link" aria-label="Direct link to 8. Primary Key vs Foreign Key" title="Direct link to 8. Primary Key vs Foreign Key" translate="no">​</a></h2>
+<p>This is a frequently asked interview question.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Primary Key</th><th>Foreign Key</th></tr></thead><tbody><tr><td>Uniquely identifies a row in its table</td><td>References a candidate key in another or the same table</td></tr><tr><td>Must be unique</td><td>Duplicates are generally allowed</td></tr><tr><td>Cannot be NULL</td><td>Can be NULL unless declared NOT NULL</td></tr><tr><td>One primary key constraint per table</td><td>A table can have multiple foreign key constraints</td></tr><tr><td>Enforces entity identification</td><td>Enforces referential integrity</td></tr><tr><td>Example: <code>users.id</code></td><td>Example: <code>orders.user_id</code></td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example">Example<a href="#example" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  id  |   name    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  1   | Prashant  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  2   | Rahul     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          ^</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Foreign Key Reference</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+---------+--------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |  id  | user_id | amount |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+---------+--------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       | 101  |    1    |  2500  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       | 102  |    1    |  1800  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       | 103  |    2    |  3000  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+---------+--------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              orders</span><br></div></code></pre></div></div>
+<p>The parent table is <code>users</code>, and the child table is <code>orders</code>.</p>
+<ul>
+<li class=""><code>users.id</code> = Primary key.</li>
+<li class=""><code>orders.user_id</code> = Foreign key.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-relationships-between-tables">9. Relationships Between Tables<a href="#9-relationships-between-tables" class="hash-link" aria-label="Direct link to 9. Relationships Between Tables" title="Direct link to 9. Relationships Between Tables" translate="no">​</a></h2>
+<p>Relational databases allow us to represent different types of relationships between entities.</p>
+<p>Three common relationship types are:</p>
+<ol>
+<li class="">One-to-One.</li>
+<li class="">One-to-Many.</li>
+<li class="">Many-to-Many.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-one-to-one-relationship-11">9.1 One-to-One Relationship (1:1)<a href="#91-one-to-one-relationship-11" class="hash-link" aria-label="Direct link to 9.1 One-to-One Relationship (1:1)" title="Direct link to 9.1 One-to-One Relationship (1:1)" translate="no">​</a></h3>
+<p>One record in Table A is associated with at most one record in Table B, and vice versa.</p>
+<p>Example:</p>
+<p>A user and their profile.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User 1 -------- Profile 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 2 -------- Profile 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 3 -------- Profile 3</span><br></div></code></pre></div></div>
+<p>Possible table design:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>user_profiles</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th>bio</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td>Backend Developer</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td><td>Software Engineer</td></tr></tbody></table>
+<p>To enforce at most one profile per user:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> user_profiles </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    bio </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The <code>UNIQUE</code> constraint prevents multiple profile rows from referencing the same user.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-one-to-many-relationship-1">9.2 One-to-Many Relationship (1:N)<a href="#92-one-to-many-relationship-1" class="hash-link" aria-label="Direct link to 9.2 One-to-Many Relationship (1:N)" title="Direct link to 9.2 One-to-Many Relationship (1:N)" translate="no">​</a></h3>
+<p>One record in Table A can be associated with multiple records in Table B.</p>
+<p>But each record in Table B references at most one record in Table A through the foreign key.</p>
+<p>Example:</p>
+<p>One user can place multiple orders.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User 1 -------- Order 101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |-------- Order 102</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |-------- Order 103</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 2 -------- Order 104</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |-------- Order 105</span><br></div></code></pre></div></div>
+<p>Table design:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td><td style="text-align:right">4500</td></tr><tr><td style="text-align:right">104</td><td style="text-align:right">2</td><td style="text-align:right">3000</td></tr><tr><td style="text-align:right">105</td><td style="text-align:right">2</td><td style="text-align:right">1500</td></tr></tbody></table>
+<p>The foreign key is placed in the many-side table, <code>orders</code>.</p>
+<p>This is one of the most common relationship patterns in relational database design.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-many-to-many-relationship-m">9.3 Many-to-Many Relationship (M:N)<a href="#93-many-to-many-relationship-m" class="hash-link" aria-label="Direct link to 9.3 Many-to-Many Relationship (M:N)" title="Direct link to 9.3 Many-to-Many Relationship (M:N)" translate="no">​</a></h3>
+<p>Multiple records in Table A can be associated with multiple records in Table B.</p>
+<p>Example:</p>
+<ul>
+<li class="">One student can enroll in multiple courses.</li>
+<li class="">One course can have multiple students.</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Student 1 -------- Course 101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |-------- Course 102</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Student 2 -------- Course 101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |-------- Course 103</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Student 3 -------- Course 102</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |-------- Course 103</span><br></div></code></pre></div></div>
+<p>A relational design typically uses a junction table (also called a bridge or associative table).</p>
+<p><strong>students</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td>Database</td></tr><tr><td style="text-align:right">102</td><td>JavaScript</td></tr><tr><td style="text-align:right">103</td><td>System Design</td></tr></tbody></table>
+<p><strong>student_courses</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">student_id</th><th style="text-align:right">course_id</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td style="text-align:right">101</td></tr><tr><td style="text-align:right">1</td><td style="text-align:right">102</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">101</td></tr><tr><td style="text-align:right">2</td><td style="text-align:right">103</td></tr></tbody></table>
+<p>SQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> student_courses </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    student_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    course_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">student_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> students</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">course_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> courses</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The junction table contains two foreign keys.</p>
+<p>It converts a many-to-many relationship into two one-to-many relationships.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">students</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   | One-to-Many</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">student_courses</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ^</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   | Many-to-One</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">courses</span><br></div></code></pre></div></div>
+<p>This is the standard relational approach to representing many-to-many relationships.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-what-happens-when-we-delete-or-update-a-referenced-record">10. What Happens When We Delete or Update a Referenced Record?<a href="#10-what-happens-when-we-delete-or-update-a-referenced-record" class="hash-link" aria-label="Direct link to 10. What Happens When We Delete or Update a Referenced Record?" title="Direct link to 10. What Happens When We Delete or Update a Referenced Record?" translate="no">​</a></h2>
+<p>Consider:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">1800</td></tr></tbody></table>
+<p>Now suppose we try to delete user 1.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>What happens?</p>
+<p>The user still has two orders referencing them.</p>
+<p>Deleting the user could leave those orders referencing a nonexistent record.</p>
+<p>The foreign-key constraint prevents this by default when dependent rows exist.</p>
+<p>However, relational databases provide different referential actions to define what should happen.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-on-delete-restrict--no-action">10.1 ON DELETE RESTRICT / NO ACTION<a href="#101-on-delete-restrict--no-action" class="hash-link" aria-label="Direct link to 10.1 ON DELETE RESTRICT / NO ACTION" title="Direct link to 10.1 ON DELETE RESTRICT / NO ACTION" translate="no">​</a></h3>
+<p>These options prevent deleting a referenced parent record while dependent records exist.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">RESTRICT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If orders reference a user, deleting that user is rejected.</p>
+<p><code>RESTRICT</code> and <code>NO ACTION</code> are similar in intent, but their constraint-checking timing can differ depending on the DBMS and constraint configuration.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-on-delete-cascade">10.2 ON DELETE CASCADE<a href="#102-on-delete-cascade" class="hash-link" aria-label="Direct link to 10.2 ON DELETE CASCADE" title="Direct link to 10.2 ON DELETE CASCADE" translate="no">​</a></h3>
+<p>Deleting a parent record automatically deletes its dependent child records.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">CASCADE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If user 1 is deleted, orders referencing user 1 are also deleted.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Delete User 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Delete Orders belonging to User 1</span><br></div></code></pre></div></div>
+<p>Use this carefully. Deleting a parent could delete many child records.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-on-delete-set-null">10.3 ON DELETE SET NULL<a href="#103-on-delete-set-null" class="hash-link" aria-label="Direct link to 10.3 ON DELETE SET NULL" title="Direct link to 10.3 ON DELETE SET NULL" translate="no">​</a></h3>
+<p>Deleting the parent sets the referencing foreign-key values to NULL.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>After deleting a user, the orders remain, but their <code>user_id</code> becomes NULL.</p>
+<p>The column must allow NULL for this action to work.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="104-on-update-cascade">10.4 ON UPDATE CASCADE<a href="#104-on-update-cascade" class="hash-link" aria-label="Direct link to 10.4 ON UPDATE CASCADE" title="Direct link to 10.4 ON UPDATE CASCADE" translate="no">​</a></h3>
+<p>If a referenced key changes, the corresponding foreign-key values are automatically updated.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">CASCADE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If the referenced user ID changes from 1 to 10, the corresponding <code>orders.user_id</code> values are updated.</p>
+<p>In practice, primary keys are generally designed to remain stable, so updating them is uncommon.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="105-referential-action-comparison">10.5 Referential action comparison<a href="#105-referential-action-comparison" class="hash-link" aria-label="Direct link to 10.5 Referential action comparison" title="Direct link to 10.5 Referential action comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>What happens to child records?</th></tr></thead><tbody><tr><td>RESTRICT</td><td>Prevents deleting the referenced parent while dependent rows exist</td></tr><tr><td>NO ACTION</td><td>Rejects the operation if the constraint is violated when checked</td></tr><tr><td>CASCADE</td><td>Deletes dependent rows when the parent is deleted</td></tr><tr><td>SET NULL</td><td>Sets the child foreign key to NULL</td></tr><tr><td>SET DEFAULT</td><td>Sets the child foreign key to its default value, if that value satisfies the constraint</td></tr></tbody></table>
+<p>The appropriate action depends on the application&#x27;s business rules.</p>
+<p>For example, deleting a customer should not automatically delete historical financial records in many systems.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-how-do-we-retrieve-related-data">11. How Do We Retrieve Related Data?<a href="#11-how-do-we-retrieve-related-data" class="hash-link" aria-label="Direct link to 11. How Do We Retrieve Related Data?" title="Direct link to 11. How Do We Retrieve Related Data?" translate="no">​</a></h2>
+<p>Having separate tables is useful, but we often need information from multiple tables together.</p>
+<p>Consider:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">3000</td></tr></tbody></table>
+<p>Suppose we want to retrieve order information along with the user&#x27;s name.</p>
+<p>We can use a JOIN:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Result:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td>Prashant</td><td style="text-align:right">101</td><td style="text-align:right">2500</td></tr><tr><td>Prashant</td><td style="text-align:right">102</td><td style="text-align:right">1800</td></tr><tr><td>Rahul</td><td style="text-align:right">103</td><td style="text-align:right">3000</td></tr></tbody></table>
+<p>The database combines matching records using the relationship between the tables.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-distinction">Important distinction<a href="#important-distinction" class="hash-link" aria-label="Direct link to Important distinction" title="Direct link to Important distinction" translate="no">​</a></h3>
+<p>A foreign key defines and enforces a relationship.</p>
+<p>A JOIN retrieves related data from multiple tables.</p>
+<p>A JOIN does not strictly require a declared foreign-key constraint. SQL can join tables using any compatible condition.</p>
+<p>However, defining appropriate foreign keys helps ensure that the underlying relationships remain valid.</p>
+<p>We will study joins and their internal execution in detail in Part 5.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-what-if-we-do-not-use-foreign-keys">12. What If We Do Not Use Foreign Keys?<a href="#12-what-if-we-do-not-use-foreign-keys" class="hash-link" aria-label="Direct link to 12. What If We Do Not Use Foreign Keys?" title="Direct link to 12. What If We Do Not Use Foreign Keys?" translate="no">​</a></h2>
+<p>Technically, an application can store identifiers in multiple tables without defining foreign-key constraints.</p>
+<p>For example:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td></tr><tr><td style="text-align:right">2</td><td>Rahul</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">99</td></tr></tbody></table>
+<p>Here, order 102 references user 99, but user 99 does not exist.</p>
+<p>Without a foreign-key constraint, the database does not reject this relationship merely because the referenced user is missing.</p>
+<p>The application would need to prevent such invalid references itself.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-can-this-be-dangerous">Why can this be dangerous?<a href="#why-can-this-be-dangerous" class="hash-link" aria-label="Direct link to Why can this be dangerous?" title="Direct link to Why can this be dangerous?" translate="no">​</a></h3>
+<p>Consider multiple services or application instances accessing the same database.</p>
+<p>If every service implements relationship validation differently, inconsistent data can appear.</p>
+<p>For example:</p>
+<ul>
+<li class="">Service A validates whether a user exists.</li>
+<li class="">Service B forgets to validate.</li>
+<li class="">Service C deletes a user without checking dependent orders.</li>
+</ul>
+<p>The database-level foreign-key constraint provides a central integrity rule.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="are-foreign-keys-always-necessary">Are foreign keys always necessary?<a href="#are-foreign-keys-always-necessary" class="hash-link" aria-label="Direct link to Are foreign keys always necessary?" title="Direct link to Are foreign keys always necessary?" translate="no">​</a></h3>
+<p>Not necessarily.</p>
+<p>Some high-scale systems intentionally avoid foreign keys because they want to control relationships at the application level or reduce certain operational constraints.</p>
+<p>However, doing so shifts responsibility to application code, background validation, and other integrity mechanisms.</p>
+<p>It is not automatically a performance improvement.</p>
+<p>For most conventional relational applications, foreign keys are valuable because they protect data integrity.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-complete-example-e-commerce-database">13. Complete Example: E-Commerce Database<a href="#13-complete-example-e-commerce-database" class="hash-link" aria-label="Direct link to 13. Complete Example: E-Commerce Database" title="Direct link to 13. Complete Example: E-Commerce Database" translate="no">​</a></h2>
+<p>Let&#x27;s combine the concepts in a small relational database design.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="131-users-table">13.1 Users table<a href="#131-users-table" class="hash-link" aria-label="Direct link to 13.1 Users table" title="Direct link to 13.1 Users table" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">SERIAL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="132-products-table">13.2 Products table<a href="#132-products-table" class="hash-link" aria-label="Direct link to 13.2 Products table" title="Direct link to 13.2 Products table" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">SERIAL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">150</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">price </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    stock </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">stock </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="133-orders-table">13.3 Orders table<a href="#133-orders-table" class="hash-link" aria-label="Direct link to 13.3 Orders table" title="Direct link to 13.3 Orders table" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">SERIAL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    total_amount </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="134-order-items-table">13.4 Order items table<a href="#134-order-items-table" class="hash-link" aria-label="Direct link to 13.4 Order items table" title="Direct link to 13.4 Order items table" translate="no">​</a></h3>
+<p>An order can contain multiple products, and a product can appear in multiple orders.</p>
+<p>We use a junction-like table to represent this relationship.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> order_items </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    quantity </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">quantity </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    unit_price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">unit_price </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">FOREIGN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="135-relationship-overview">13.5 Relationship overview<a href="#135-relationship-overview" class="hash-link" aria-label="Direct link to 13.5 Relationship overview" title="Direct link to 13.5 Relationship overview" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              USERS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                | One-to-Many</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              ORDERS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                | One-to-Many</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           ORDER_ITEMS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                ^</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                | Many-to-One</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             PRODUCTS</span><br></div></code></pre></div></div>
+<p>The database now has four tables:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Table</th><th>Primary key</th><th>Foreign key</th></tr></thead><tbody><tr><td>users</td><td>id</td><td>None</td></tr><tr><td>products</td><td>id</td><td>None</td></tr><tr><td>orders</td><td>id</td><td>user_id</td></tr><tr><td>order_items</td><td>(order_id, product_id)</td><td>order_id, product_id</td></tr></tbody></table>
+<p>This design provides:</p>
+<ul>
+<li class="">Unique identification of records.</li>
+<li class="">Relationships between users and orders.</li>
+<li class="">Relationships between orders and products.</li>
+<li class="">Prevention of references to nonexistent users or products.</li>
+<li class="">Prevention of duplicate product entries within the same order.</li>
+</ul>
+<p><strong>Important:</strong> The composite key in <code>order_items</code> means each product can appear only once per order in this design. Its quantity is represented by the <code>quantity</code> column.</p>
+<p>Also, <code>unit_price</code> is stored in the order item so the application can preserve the price charged at purchase time, even if the product&#x27;s current price changes later.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-common-misconceptions">14. Common Misconceptions<a href="#14-common-misconceptions" class="hash-link" aria-label="Direct link to 14. Common Misconceptions" title="Direct link to 14. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-a-primary-key-must-always-be-an-integer">Misconception 1: A primary key must always be an integer.<a href="#misconception-1-a-primary-key-must-always-be-an-integer" class="hash-link" aria-label="Direct link to Misconception 1: A primary key must always be an integer." title="Direct link to Misconception 1: A primary key must always be an integer." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A primary key can use different supported data types, including:</p>
+<ul>
+<li class="">Integer.</li>
+<li class="">UUID.</li>
+<li class="">String.</li>
+<li class="">Composite values.</li>
+</ul>
+<p>The important requirement is uniqueness and non-nullness.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-a-table-can-have-multiple-primary-keys">Misconception 2: A table can have multiple primary keys.<a href="#misconception-2-a-table-can-have-multiple-primary-keys" class="hash-link" aria-label="Direct link to Misconception 2: A table can have multiple primary keys." title="Direct link to Misconception 2: A table can have multiple primary keys." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A table can have only one primary-key constraint. That constraint can contain multiple columns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-foreign-keys-must-contain-unique-values">Misconception 3: Foreign keys must contain unique values.<a href="#misconception-3-foreign-keys-must-contain-unique-values" class="hash-link" aria-label="Direct link to Misconception 3: Foreign keys must contain unique values." title="Direct link to Misconception 3: Foreign keys must contain unique values." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Foreign keys commonly contain duplicates.</p>
+<p>For example, many orders can reference the same user.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-foreign-keys-cannot-contain-null">Misconception 4: Foreign keys cannot contain NULL.<a href="#misconception-4-foreign-keys-cannot-contain-null" class="hash-link" aria-label="Direct link to Misconception 4: Foreign keys cannot contain NULL." title="Direct link to Misconception 4: Foreign keys cannot contain NULL." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A foreign-key column can contain NULL unless it is also declared <code>NOT NULL</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-a-foreign-key-automatically-creates-a-one-to-one-relationship">Misconception 5: A foreign key automatically creates a one-to-one relationship.<a href="#misconception-5-a-foreign-key-automatically-creates-a-one-to-one-relationship" class="hash-link" aria-label="Direct link to Misconception 5: A foreign key automatically creates a one-to-one relationship." title="Direct link to Misconception 5: A foreign key automatically creates a one-to-one relationship." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A foreign key alone usually establishes a many-to-one relationship from the child table to the referenced table.</p>
+<p>To enforce at most one child record per parent, an additional <code>UNIQUE</code> constraint is needed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-a-join-requires-a-foreign-key">Misconception 6: A JOIN requires a foreign key.<a href="#misconception-6-a-join-requires-a-foreign-key" class="hash-link" aria-label="Direct link to Misconception 6: A JOIN requires a foreign key." title="Direct link to Misconception 6: A JOIN requires a foreign key." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A JOIN can use any valid SQL join condition. A declared foreign key is useful for integrity but is not mandatory for executing a JOIN.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-relational-databases-store-all-related-information-in-one-table">Misconception 7: Relational databases store all related information in one table.<a href="#misconception-7-relational-databases-store-all-related-information-in-one-table" class="hash-link" aria-label="Direct link to Misconception 7: Relational databases store all related information in one table." title="Direct link to Misconception 7: Relational databases store all related information in one table." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Relational databases commonly separate entities into multiple tables and connect them through keys.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-8-every-relationship-must-be-enforced-using-a-foreign-key">Misconception 8: Every relationship must be enforced using a foreign key.<a href="#misconception-8-every-relationship-must-be-enforced-using-a-foreign-key" class="hash-link" aria-label="Direct link to Misconception 8: Every relationship must be enforced using a foreign key." title="Direct link to Misconception 8: Every relationship must be enforced using a foreign key." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Applications can manage relationships without database foreign-key constraints. However, this transfers integrity responsibility to application code and other mechanisms.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-interview-questions">15. Interview Questions<a href="#15-interview-questions" class="hash-link" aria-label="Direct link to 15. Interview Questions" title="Direct link to 15. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-a-relational-database">Q1. What is a relational database?<a href="#q1-what-is-a-relational-database" class="hash-link" aria-label="Direct link to Q1. What is a relational database?" title="Direct link to Q1. What is a relational database?" translate="no">​</a></h3>
+<p>A relational database organizes data into relations, commonly represented as tables containing rows and columns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-the-difference-between-a-row-and-a-column">Q2. What is the difference between a row and a column?<a href="#q2-what-is-the-difference-between-a-row-and-a-column" class="hash-link" aria-label="Direct link to Q2. What is the difference between a row and a column?" title="Direct link to Q2. What is the difference between a row and a column?" translate="no">​</a></h3>
+<p>A row represents one record, while a column represents an attribute shared by records in the table.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-a-primary-key">Q3. What is a primary key?<a href="#q3-what-is-a-primary-key" class="hash-link" aria-label="Direct link to Q3. What is a primary key?" title="Direct link to Q3. What is a primary key?" translate="no">​</a></h3>
+<p>A primary key is a column or combination of columns that uniquely identifies each row. It must be unique and cannot contain NULL.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-can-a-primary-key-contain-multiple-columns">Q4. Can a primary key contain multiple columns?<a href="#q4-can-a-primary-key-contain-multiple-columns" class="hash-link" aria-label="Direct link to Q4. Can a primary key contain multiple columns?" title="Direct link to Q4. Can a primary key contain multiple columns?" translate="no">​</a></h3>
+<p>Yes. This is called a composite primary key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-can-a-table-have-multiple-primary-keys">Q5. Can a table have multiple primary keys?<a href="#q5-can-a-table-have-multiple-primary-keys" class="hash-link" aria-label="Direct link to Q5. Can a table have multiple primary keys?" title="Direct link to Q5. Can a table have multiple primary keys?" translate="no">​</a></h3>
+<p>No. A table has one primary-key constraint, although it can contain multiple columns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-a-foreign-key">Q6. What is a foreign key?<a href="#q6-what-is-a-foreign-key" class="hash-link" aria-label="Direct link to Q6. What is a foreign key?" title="Direct link to Q6. What is a foreign key?" translate="no">​</a></h3>
+<p>A foreign key is a column or combination of columns that references a candidate key in another or the same table, helping maintain referential integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-can-a-foreign-key-contain-duplicate-values">Q7. Can a foreign key contain duplicate values?<a href="#q7-can-a-foreign-key-contain-duplicate-values" class="hash-link" aria-label="Direct link to Q7. Can a foreign key contain duplicate values?" title="Direct link to Q7. Can a foreign key contain duplicate values?" translate="no">​</a></h3>
+<p>Yes. Multiple child records can reference the same parent record.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-can-a-foreign-key-contain-null">Q8. Can a foreign key contain NULL?<a href="#q8-can-a-foreign-key-contain-null" class="hash-link" aria-label="Direct link to Q8. Can a foreign key contain NULL?" title="Direct link to Q8. Can a foreign key contain NULL?" translate="no">​</a></h3>
+<p>Yes, unless the column is also declared <code>NOT NULL</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-happens-if-you-insert-a-foreign-key-value-that-does-not-exist-in-the-parent-table">Q9. What happens if you insert a foreign-key value that does not exist in the parent table?<a href="#q9-what-happens-if-you-insert-a-foreign-key-value-that-does-not-exist-in-the-parent-table" class="hash-link" aria-label="Direct link to Q9. What happens if you insert a foreign-key value that does not exist in the parent table?" title="Direct link to Q9. What happens if you insert a foreign-key value that does not exist in the parent table?" translate="no">​</a></h3>
+<p>The database rejects the operation because it would violate referential integrity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-a-composite-primary-key">Q10. What is a composite primary key?<a href="#q10-what-is-a-composite-primary-key" class="hash-link" aria-label="Direct link to Q10. What is a composite primary key?" title="Direct link to Q10. What is a composite primary key?" translate="no">​</a></h3>
+<p>A primary key made up of multiple columns, where the combination uniquely identifies a record.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-a-junction-table">Q11. What is a junction table?<a href="#q11-what-is-a-junction-table" class="hash-link" aria-label="Direct link to Q11. What is a junction table?" title="Direct link to Q11. What is a junction table?" translate="no">​</a></h3>
+<p>A junction table is used to represent a many-to-many relationship by storing foreign keys referencing the related tables.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-referential-integrity">Q12. What is referential integrity?<a href="#q12-what-is-referential-integrity" class="hash-link" aria-label="Direct link to Q12. What is referential integrity?" title="Direct link to Q12. What is referential integrity?" translate="no">​</a></h3>
+<p>Referential integrity ensures that relationships between related records remain valid.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-the-difference-between-a-primary-key-and-a-unique-constraint">Q13. What is the difference between a primary key and a UNIQUE constraint?<a href="#q13-what-is-the-difference-between-a-primary-key-and-a-unique-constraint" class="hash-link" aria-label="Direct link to Q13. What is the difference between a primary key and a UNIQUE constraint?" title="Direct link to Q13. What is the difference between a primary key and a UNIQUE constraint?" translate="no">​</a></h3>
+<p>Both enforce uniqueness. A primary key additionally identifies the table&#x27;s primary record identifier and cannot contain NULL. A table can have multiple UNIQUE constraints but only one primary-key constraint.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-why-should-we-use-foreign-keys">Q14. Why should we use foreign keys?<a href="#q14-why-should-we-use-foreign-keys" class="hash-link" aria-label="Direct link to Q14. Why should we use foreign keys?" title="Direct link to Q14. Why should we use foreign keys?" translate="no">​</a></h3>
+<p>They prevent invalid references and enforce relationships at the database level, reducing the risk of inconsistent data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-can-we-perform-a-join-without-a-foreign-key">Q15. Can we perform a JOIN without a foreign key?<a href="#q15-can-we-perform-a-join-without-a-foreign-key" class="hash-link" aria-label="Direct link to Q15. Can we perform a JOIN without a foreign key?" title="Direct link to Q15. Can we perform a JOIN without a foreign key?" translate="no">​</a></h3>
+<p>Yes. JOINs use SQL join conditions. A foreign-key constraint is not required to execute them.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-chapter-summary">16. Chapter Summary<a href="#16-chapter-summary" class="hash-link" aria-label="Direct link to 16. Chapter Summary" title="Direct link to 16. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Key point</th></tr></thead><tbody><tr><td>Relational database</td><td>Organizes data using relations, commonly represented as tables</td></tr><tr><td>Table</td><td>Collection of related records</td></tr><tr><td>Row</td><td>One record or tuple</td></tr><tr><td>Column</td><td>One attribute</td></tr><tr><td>Domain</td><td>Set of valid values for an attribute</td></tr><tr><td>Primary key</td><td>Uniquely identifies a row</td></tr><tr><td>Composite primary key</td><td>Primary key containing multiple columns</td></tr><tr><td>Natural key</td><td>Key with real-world business meaning</td></tr><tr><td>Surrogate key</td><td>Artificially generated identifier</td></tr><tr><td>Foreign key</td><td>References a candidate key in another or the same table</td></tr><tr><td>Referential integrity</td><td>Maintains valid relationships</td></tr><tr><td>One-to-One</td><td>One record corresponds to at most one record on the other side</td></tr><tr><td>One-to-Many</td><td>One parent can have multiple child records</td></tr><tr><td>Many-to-Many</td><td>Multiple records on both sides are related through a junction table</td></tr><tr><td>ON DELETE CASCADE</td><td>Deletes dependent rows when a referenced parent is deleted</td></tr><tr><td>JOIN</td><td>Combines related data from multiple tables</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-takeaway">Final takeaway<a href="#final-takeaway" class="hash-link" aria-label="Direct link to Final takeaway" title="Direct link to Final takeaway" translate="no">​</a></h3>
+<p>The relational model organizes information into separate tables and connects those tables through keys.</p>
+<ul>
+<li class=""><strong>Tables</strong> organize related information.</li>
+<li class=""><strong>Rows</strong> represent individual records.</li>
+<li class=""><strong>Columns</strong> describe record attributes.</li>
+<li class=""><strong>Primary keys</strong> uniquely identify records.</li>
+<li class=""><strong>Foreign keys</strong> establish and protect relationships.</li>
+<li class=""><strong>Constraints</strong> enforce data integrity.</li>
+</ul>
+<p>Once these concepts are clear, understanding SQL queries, joins, normalization, transactions, and relational database architecture becomes much easier.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/01_Database_Fundamentals/part_03.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Introduction to DBMS</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/category/transactions_acid__concurrency"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Transactions_ACID_&amp;_Concurrency</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-what-is-a-relational-database" class="table-of-contents__link toc-highlight">1. What Is a Relational Database?</a><ul><li><a href="#examples-of-relational-databases" class="table-of-contents__link toc-highlight">Examples of relational databases</a></li></ul></li><li><a href="#2-understanding-tables-rows-and-columns" class="table-of-contents__link toc-highlight">2. Understanding Tables, Rows, and Columns</a><ul><li><a href="#21-table" class="table-of-contents__link toc-highlight">2.1 Table</a></li><li><a href="#22-row-record--tuple" class="table-of-contents__link toc-highlight">2.2 Row (Record / Tuple)</a></li><li><a href="#23-column-field--attribute" class="table-of-contents__link toc-highlight">2.3 Column (Field / Attribute)</a></li><li><a href="#24-visual-representation" class="table-of-contents__link toc-highlight">2.4 Visual representation</a></li><li><a href="#25-quick-comparison" class="table-of-contents__link toc-highlight">2.5 Quick comparison</a></li></ul></li><li><a href="#3-data-types-and-domains" class="table-of-contents__link toc-highlight">3. Data Types and Domains</a><ul><li><a href="#what-is-a-domain" class="table-of-contents__link toc-highlight">What is a domain?</a></li></ul></li><li><a href="#4-what-is-a-relational-model" class="table-of-contents__link toc-highlight">4. What Is a Relational Model?</a><ul><li><a href="#users" class="table-of-contents__link toc-highlight">Users</a></li><li><a href="#products" class="table-of-contents__link toc-highlight">Products</a></li><li><a href="#orders" class="table-of-contents__link toc-highlight">Orders</a></li><li><a href="#why-separate-tables" class="table-of-contents__link toc-highlight">Why separate tables?</a></li></ul></li><li><a href="#5-what-is-a-key-in-a-relational-database" class="table-of-contents__link toc-highlight">5. What Is a Key in a Relational Database?</a></li><li><a href="#6-primary-key-pk" class="table-of-contents__link toc-highlight">6. Primary Key (PK)</a><ul><li><a href="#61-why-do-we-need-a-primary-key" class="table-of-contents__link toc-highlight">6.1 Why do we need a primary key?</a></li><li><a href="#62-primary-key-rules" class="table-of-contents__link toc-highlight">6.2 Primary key rules</a></li><li><a href="#63-primary-key-automatically-enforces-unique-and-not-null" class="table-of-contents__link toc-highlight">6.3 PRIMARY KEY automatically enforces UNIQUE and NOT NULL</a></li><li><a href="#64-can-a-primary-key-contain-multiple-columns" class="table-of-contents__link toc-highlight">6.4 Can a primary key contain multiple columns?</a></li><li><a href="#65-can-a-table-have-multiple-primary-keys" class="table-of-contents__link toc-highlight">6.5 Can a table have multiple primary keys?</a></li><li><a href="#66-natural-key-vs-surrogate-key" class="table-of-contents__link toc-highlight">6.6 Natural key vs surrogate key</a></li></ul></li><li><a href="#7-foreign-key-fk" class="table-of-contents__link toc-highlight">7. Foreign Key (FK)</a><ul><li><a href="#71-why-do-we-need-foreign-keys" class="table-of-contents__link toc-highlight">7.1 Why do we need foreign keys?</a></li><li><a href="#72-creating-a-foreign-key" class="table-of-contents__link toc-highlight">7.2 Creating a foreign key</a></li><li><a href="#73-how-does-a-foreign-key-protect-data" class="table-of-contents__link toc-highlight">7.3 How does a foreign key protect data?</a></li><li><a href="#74-what-is-referential-integrity" class="table-of-contents__link toc-highlight">7.4 What is referential integrity?</a></li><li><a href="#75-can-a-foreign-key-contain-duplicate-values" class="table-of-contents__link toc-highlight">7.5 Can a foreign key contain duplicate values?</a></li><li><a href="#76-can-a-foreign-key-contain-null" class="table-of-contents__link toc-highlight">7.6 Can a foreign key contain NULL?</a></li></ul></li><li><a href="#8-primary-key-vs-foreign-key" class="table-of-contents__link toc-highlight">8. Primary Key vs Foreign Key</a><ul><li><a href="#example" class="table-of-contents__link toc-highlight">Example</a></li></ul></li><li><a href="#9-relationships-between-tables" class="table-of-contents__link toc-highlight">9. Relationships Between Tables</a><ul><li><a href="#91-one-to-one-relationship-11" class="table-of-contents__link toc-highlight">9.1 One-to-One Relationship (1:1)</a></li><li><a href="#92-one-to-many-relationship-1" class="table-of-contents__link toc-highlight">9.2 One-to-Many Relationship (1)</a></li><li><a href="#93-many-to-many-relationship-m" class="table-of-contents__link toc-highlight">9.3 Many-to-Many Relationship (M)</a></li></ul></li><li><a href="#10-what-happens-when-we-delete-or-update-a-referenced-record" class="table-of-contents__link toc-highlight">10. What Happens When We Delete or Update a Referenced Record?</a><ul><li><a href="#101-on-delete-restrict--no-action" class="table-of-contents__link toc-highlight">10.1 ON DELETE RESTRICT / NO ACTION</a></li><li><a href="#102-on-delete-cascade" class="table-of-contents__link toc-highlight">10.2 ON DELETE CASCADE</a></li><li><a href="#103-on-delete-set-null" class="table-of-contents__link toc-highlight">10.3 ON DELETE SET NULL</a></li><li><a href="#104-on-update-cascade" class="table-of-contents__link toc-highlight">10.4 ON UPDATE CASCADE</a></li><li><a href="#105-referential-action-comparison" class="table-of-contents__link toc-highlight">10.5 Referential action comparison</a></li></ul></li><li><a href="#11-how-do-we-retrieve-related-data" class="table-of-contents__link toc-highlight">11. How Do We Retrieve Related Data?</a><ul><li><a href="#important-distinction" class="table-of-contents__link toc-highlight">Important distinction</a></li></ul></li><li><a href="#12-what-if-we-do-not-use-foreign-keys" class="table-of-contents__link toc-highlight">12. What If We Do Not Use Foreign Keys?</a><ul><li><a href="#why-can-this-be-dangerous" class="table-of-contents__link toc-highlight">Why can this be dangerous?</a></li><li><a href="#are-foreign-keys-always-necessary" class="table-of-contents__link toc-highlight">Are foreign keys always necessary?</a></li></ul></li><li><a href="#13-complete-example-e-commerce-database" class="table-of-contents__link toc-highlight">13. Complete Example: E-Commerce Database</a><ul><li><a href="#131-users-table" class="table-of-contents__link toc-highlight">13.1 Users table</a></li><li><a href="#132-products-table" class="table-of-contents__link toc-highlight">13.2 Products table</a></li><li><a href="#133-orders-table" class="table-of-contents__link toc-highlight">13.3 Orders table</a></li><li><a href="#134-order-items-table" class="table-of-contents__link toc-highlight">13.4 Order items table</a></li><li><a href="#135-relationship-overview" class="table-of-contents__link toc-highlight">13.5 Relationship overview</a></li></ul></li><li><a href="#14-common-misconceptions" class="table-of-contents__link toc-highlight">14. Common Misconceptions</a><ul><li><a href="#misconception-1-a-primary-key-must-always-be-an-integer" class="table-of-contents__link toc-highlight">Misconception 1: A primary key must always be an integer.</a></li><li><a href="#misconception-2-a-table-can-have-multiple-primary-keys" class="table-of-contents__link toc-highlight">Misconception 2: A table can have multiple primary keys.</a></li><li><a href="#misconception-3-foreign-keys-must-contain-unique-values" class="table-of-contents__link toc-highlight">Misconception 3: Foreign keys must contain unique values.</a></li><li><a href="#misconception-4-foreign-keys-cannot-contain-null" class="table-of-contents__link toc-highlight">Misconception 4: Foreign keys cannot contain NULL.</a></li><li><a href="#misconception-5-a-foreign-key-automatically-creates-a-one-to-one-relationship" class="table-of-contents__link toc-highlight">Misconception 5: A foreign key automatically creates a one-to-one relationship.</a></li><li><a href="#misconception-6-a-join-requires-a-foreign-key" class="table-of-contents__link toc-highlight">Misconception 6: A JOIN requires a foreign key.</a></li><li><a href="#misconception-7-relational-databases-store-all-related-information-in-one-table" class="table-of-contents__link toc-highlight">Misconception 7: Relational databases store all related information in one table.</a></li><li><a href="#misconception-8-every-relationship-must-be-enforced-using-a-foreign-key" class="table-of-contents__link toc-highlight">Misconception 8: Every relationship must be enforced using a foreign key.</a></li></ul></li><li><a href="#15-interview-questions" class="table-of-contents__link toc-highlight">15. Interview Questions</a><ul><li><a href="#q1-what-is-a-relational-database" class="table-of-contents__link toc-highlight">Q1. What is a relational database?</a></li><li><a href="#q2-what-is-the-difference-between-a-row-and-a-column" class="table-of-contents__link toc-highlight">Q2. What is the difference between a row and a column?</a></li><li><a href="#q3-what-is-a-primary-key" class="table-of-contents__link toc-highlight">Q3. What is a primary key?</a></li><li><a href="#q4-can-a-primary-key-contain-multiple-columns" class="table-of-contents__link toc-highlight">Q4. Can a primary key contain multiple columns?</a></li><li><a href="#q5-can-a-table-have-multiple-primary-keys" class="table-of-contents__link toc-highlight">Q5. Can a table have multiple primary keys?</a></li><li><a href="#q6-what-is-a-foreign-key" class="table-of-contents__link toc-highlight">Q6. What is a foreign key?</a></li><li><a href="#q7-can-a-foreign-key-contain-duplicate-values" class="table-of-contents__link toc-highlight">Q7. Can a foreign key contain duplicate values?</a></li><li><a href="#q8-can-a-foreign-key-contain-null" class="table-of-contents__link toc-highlight">Q8. Can a foreign key contain NULL?</a></li><li><a href="#q9-what-happens-if-you-insert-a-foreign-key-value-that-does-not-exist-in-the-parent-table" class="table-of-contents__link toc-highlight">Q9. What happens if you insert a foreign-key value that does not exist in the parent table?</a></li><li><a href="#q10-what-is-a-composite-primary-key" class="table-of-contents__link toc-highlight">Q10. What is a composite primary key?</a></li><li><a href="#q11-what-is-a-junction-table" class="table-of-contents__link toc-highlight">Q11. What is a junction table?</a></li><li><a href="#q12-what-is-referential-integrity" class="table-of-contents__link toc-highlight">Q12. What is referential integrity?</a></li><li><a href="#q13-what-is-the-difference-between-a-primary-key-and-a-unique-constraint" class="table-of-contents__link toc-highlight">Q13. What is the difference between a primary key and a UNIQUE constraint?</a></li><li><a href="#q14-why-should-we-use-foreign-keys" class="table-of-contents__link toc-highlight">Q14. Why should we use foreign keys?</a></li><li><a href="#q15-can-we-perform-a-join-without-a-foreign-key" class="table-of-contents__link toc-highlight">Q15. Can we perform a JOIN without a foreign key?</a></li></ul></li><li><a href="#16-chapter-summary" class="table-of-contents__link toc-highlight">16. Chapter Summary</a><ul><li><a href="#final-takeaway" class="table-of-contents__link toc-highlight">Final takeaway</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

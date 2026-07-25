@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Graph Database Fundamentals | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Graph Database Fundamentals | Knowledge Base"><meta data-rh="true" name="description" content="So far, we have studied several database types:"><meta data-rh="true" property="og:description" content="So far, we have studied several database types:"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Types_of_NoSQL_DB","item":"https://codingsapienss.github.io/notes/docs/category/types_of_nosql_db"},{"@type":"ListItem","position":5,"name":"Graph_Databases","item":"https://codingsapienss.github.io/notes/docs/category/graph_databases"},{"@type":"ListItem","position":6,"name":"Graph Database Fundamentals","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Collapse sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/key_value_databases"><span title="Key_Value_Databases" class="categoryLinkLabel_W154">Key_Value_Databases</span></a><button aria-label="Expand sidebar category &#x27;Key_Value_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/document_databases"><span title="Document_Databases" class="categoryLinkLabel_W154">Document_Databases</span></a><button aria-label="Expand sidebar category &#x27;Document_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/wide_column_databases"><span title="Wide_Column_Databases" class="categoryLinkLabel_W154">Wide_Column_Databases</span></a><button aria-label="Expand sidebar category &#x27;Wide_Column_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/graph_databases"><span title="Graph_Databases" class="categoryLinkLabel_W154">Graph_Databases</span></a><button aria-label="Collapse sidebar category &#x27;Graph_Databases&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01"><span title="Graph Database Fundamentals" class="linkLabel_WmDU">Graph Database Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_02"><span title="Graph Database Internal Storage" class="linkLabel_WmDU">Graph Database Internal Storage</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_03"><span title="Graph Data Modeling" class="linkLabel_WmDU">Graph Data Modeling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04"><span title="1. Introduction" class="linkLabel_WmDU">1. Introduction</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_05"><span title="Graph Databases: When to Use" class="linkLabel_WmDU">Graph Databases: When to Use</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/types_of_nosql_db"><span>Types_of_NoSQL_DB</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/graph_databases"><span>Graph_Databases</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Graph Database Fundamentals</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Graph Database Fundamentals</h1></header>
+<h1>1. Introduction to Graph Databases</h1>
+<p>So far, we have studied several database types:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Database type</th><th>Primary way of organizing data</th></tr></thead><tbody><tr><td>Relational</td><td>Tables, rows, and columns</td></tr><tr><td>Key-value</td><td>Keys and values</td></tr><tr><td>Document</td><td>Documents and nested fields</td></tr><tr><td>Wide-column</td><td>Partitions, rows, and columns</td></tr><tr><td>Graph</td><td>Nodes and relationships</td></tr></tbody></table>
+<p>Graph databases are designed to store and query <strong>relationships between entities</strong>.</p>
+<p>In a relational database, relationships are typically represented using foreign keys and retrieved using JOINs.</p>
+<p>In a graph database, relationships are first-class elements of the data model.</p>
+<p>This distinction becomes important when an application frequently asks questions involving multiple connected entities.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-a-simple-example">1.1 A Simple Example<a href="#11-a-simple-example" class="hash-link" aria-label="Direct link to 1.1 A Simple Example" title="Direct link to 1.1 A Simple Example" translate="no">​</a></h2>
+<p>Imagine a social networking application.</p>
+<p>Users can:</p>
+<ul>
+<li class="">Follow other users.</li>
+<li class="">Become friends.</li>
+<li class="">Like posts.</li>
+<li class="">Comment on posts.</li>
+<li class="">Join groups.</li>
+<li class="">Share content.</li>
+</ul>
+<p>Consider these relationships:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Prashant ----FOLLOWS----&gt; Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Prashant ----FOLLOWS----&gt; Amit</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Rahul ------FRIENDS------&gt; Amit</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Amit -------LIKES--------&gt; Post101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Rahul ------CREATED------&gt; Post102</span><br></div></code></pre></div></div>
+<p>This is naturally represented as a graph.</p>
+<diagram>
+  <escape></escape>
+</diagram>
+<p>A graph database represents entities as nodes and connections as relationships.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">       (Prashant)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         /    \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    FOLLOWS  FOLLOWS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       /        \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   (Rahul) ---- (Amit)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          FRIENDS</span><br></div></code></pre></div></div>
+<p>The important part is not just storing the users. It is storing how users are connected.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-why-do-we-need-graph-databases">1.2 Why Do We Need Graph Databases?<a href="#12-why-do-we-need-graph-databases" class="hash-link" aria-label="Direct link to 1.2 Why Do We Need Graph Databases?" title="Direct link to 1.2 Why Do We Need Graph Databases?" translate="no">​</a></h2>
+<p>Consider a social media application.</p>
+<p>Suppose you want to answer:</p>
+<ol>
+<li class="">Who does Prashant follow?</li>
+<li class="">Who follows Rahul?</li>
+<li class="">Do Prashant and Rahul have common friends?</li>
+<li class="">Are two users connected through three intermediate users?</li>
+<li class="">What is the shortest connection path between two users?</li>
+<li class="">Which users are influential in a particular network?</li>
+</ol>
+<p>These questions involve traversing relationships.</p>
+<p>A relational database can represent these relationships using tables and JOINs. However, queries involving many levels of relationships can become complicated and expensive, depending on the schema, indexes, data volume, and execution plan.</p>
+<p>Graph databases are designed to make relationship traversal a central operation.</p>
+<p><strong>Core idea:</strong></p>
+<p>A graph database is particularly useful when the connections between data are as important as the data itself.</p>
+<hr>
+<h1>2. Graph Theory Fundamentals</h1>
+<p>Before understanding graph databases, you need to understand some basic graph theory.</p>
+<p>A graph is a mathematical structure consisting of:</p>
+<ul>
+<li class="">Vertices (nodes).</li>
+<li class="">Edges (relationships).</li>
+</ul>
+<p>Mathematically:</p>
+<p>[
+G = (V, E)
+]</p>
+<p>Where:</p>
+<ul>
+<li class="">(G) = Graph.</li>
+<li class="">(V) = Set of vertices.</li>
+<li class="">(E) = Set of edges.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C ---- D</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">V = {A, B, C, D}</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">E = {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (A, B),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (A, C),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (B, D),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (C, D)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>The nodes represent entities, and edges represent connections between them.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-nodes-vertices">2.1 Nodes (Vertices)<a href="#21-nodes-vertices" class="hash-link" aria-label="Direct link to 2.1 Nodes (Vertices)" title="Direct link to 2.1 Nodes (Vertices)" translate="no">​</a></h2>
+<p>A node represents an entity in the application.</p>
+<p>Examples:</p>
+<ul>
+<li class="">User.</li>
+<li class="">Product.</li>
+<li class="">Company.</li>
+<li class="">Bank account.</li>
+<li class="">Transaction.</li>
+<li class="">Location.</li>
+<li class="">Movie.</li>
+<li class="">Device.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node: User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">{</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id: 101,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  name: &quot;Prashant&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  age: 25</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>In a graph database, a node can have properties.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(:User {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id: 101,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Prashant&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    city: &quot;Noida&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">})</span><br></div></code></pre></div></div>
+<p>The notation above resembles Cypher, the query language used by Neo4j.</p>
+<p>A node can have:</p>
+<ul>
+<li class="">A label identifying its type.</li>
+<li class="">Properties describing it.</li>
+<li class="">Relationships connecting it to other nodes.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-edges-relationships">2.2 Edges (Relationships)<a href="#22-edges-relationships" class="hash-link" aria-label="Direct link to 2.2 Edges (Relationships)" title="Direct link to 2.2 Edges (Relationships)" translate="no">​</a></h2>
+<p>An edge represents a connection between two nodes.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Prashant) ----FOLLOWS----&gt; (Rahul)</span><br></div></code></pre></div></div>
+<p>The relationship has:</p>
+<ul>
+<li class="">A source node.</li>
+<li class="">A destination node.</li>
+<li class="">A relationship type.</li>
+<li class="">Potentially its own properties.</li>
+</ul>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Prashant)-[:FOLLOWS {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    since: &quot;2026-01-10&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}]-&gt;(Rahul)</span><br></div></code></pre></div></div>
+<p>The relationship itself contains information.</p>
+<p>This is an important difference from simply storing a foreign key.</p>
+<p>A relationship can represent a meaningful business event or connection.</p>
+<p>Examples:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:PURCHASED]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:FOLLOWS]-&gt;(User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Person)-[:WORKS_AT]-&gt;(Company)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Account)-[:TRANSFERRED_TO]-&gt;(Account)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:RATED]-&gt;(Movie)</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-properties">2.3 Properties<a href="#23-properties" class="hash-link" aria-label="Direct link to 2.3 Properties" title="Direct link to 2.3 Properties" translate="no">​</a></h2>
+<p>Properties are attributes associated with nodes or relationships.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(:User {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    userId: 101,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Prashant&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    city: &quot;Noida&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">})</span><br></div></code></pre></div></div>
+<p>Relationship properties:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Prashant)-[:PURCHASED {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orderId: 5001,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    amount: 2500,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    purchaseDate: &quot;2026-11-14&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}]-&gt;(Laptop)</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<ul>
+<li class=""><code>userId</code>, <code>name</code>, and <code>city</code> are node properties.</li>
+<li class=""><code>orderId</code>, <code>amount</code>, and <code>purchaseDate</code> are relationship properties.</li>
+</ul>
+<p>This allows the relationship itself to carry business information.</p>
+<hr>
+<h1>3. Directed vs Undirected Graphs</h1>
+<p>Graph relationships can be directed or undirected.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-directed-graph">3.1 Directed Graph<a href="#31-directed-graph" class="hash-link" aria-label="Direct link to 3.1 Directed Graph" title="Direct link to 3.1 Directed Graph" translate="no">​</a></h2>
+<p>A directed graph has relationships with a defined direction.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ------&gt; B</span><br></div></code></pre></div></div>
+<p>This means A points to B.</p>
+<p>It does not automatically mean B points to A.</p>
+<p>Real-world examples:</p>
+<ul>
+<li class="">User A follows User B.</li>
+<li class="">Account A transfers money to Account B.</li>
+<li class="">Employee A reports to Manager B.</li>
+<li class="">User A purchased Product B.</li>
+</ul>
+<p>In Neo4j-style notation:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(A)-[:FOLLOWS]-&gt;(B)</span><br></div></code></pre></div></div>
+<p>The direction matters.</p>
+<p>If B follows A, a separate relationship is needed:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(B)-[:FOLLOWS]-&gt;(A)</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-undirected-graph">3.2 Undirected Graph<a href="#32-undirected-graph" class="hash-link" aria-label="Direct link to 3.2 Undirected Graph" title="Direct link to 3.2 Undirected Graph" translate="no">​</a></h2>
+<p>An undirected graph represents a connection without a meaningful direction.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -------- B</span><br></div></code></pre></div></div>
+<p>A and B are connected.</p>
+<p>Examples:</p>
+<ul>
+<li class="">A road connecting two locations.</li>
+<li class="">A symmetric friendship relationship.</li>
+<li class="">Two devices connected through a symmetric link.</li>
+</ul>
+<p>In a graph database, undirected relationships can often be represented by a stored relationship with a direction and queried without considering that direction.</p>
+<p>For example, a friendship can be represented as:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(A)-[:FRIENDS_WITH]-&gt;(B)</span><br></div></code></pre></div></div>
+<p>The application may interpret this relationship symmetrically.</p>
+<p><strong>Important:</strong> A graph database may physically store a relationship in a particular direction even when the business meaning is undirected.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-directed-vs-undirected-comparison">3.3 Directed vs Undirected Comparison<a href="#33-directed-vs-undirected-comparison" class="hash-link" aria-label="Direct link to 3.3 Directed vs Undirected Comparison" title="Direct link to 3.3 Directed vs Undirected Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Directed graph</th><th>Undirected graph</th></tr></thead><tbody><tr><td>Direction</td><td>Has direction</td><td>No meaningful direction</td></tr><tr><td>Relationship</td><td>A → B</td><td>A — B</td></tr><tr><td>Reverse connection</td><td>Not automatically implied</td><td>Same connection works both ways</td></tr><tr><td>Example</td><td>FOLLOWS</td><td>FRIENDS_WITH</td></tr><tr><td>Common use</td><td>Social following, payments, reporting</td><td>Symmetric friendships, undirected networks</td></tr></tbody></table>
+<hr>
+<h1>4. Weighted vs Unweighted Graphs</h1>
+<p>Another important classification is based on whether relationships have weights.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-unweighted-graph">4.1 Unweighted Graph<a href="#41-unweighted-graph" class="hash-link" aria-label="Direct link to 4.1 Unweighted Graph" title="Direct link to 4.1 Unweighted Graph" translate="no">​</a></h2>
+<p>An unweighted graph does not assign a numerical weight to each relationship.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C ---- D</span><br></div></code></pre></div></div>
+<p>Each connection is treated equally for a basic traversal.</p>
+<p>Possible applications:</p>
+<ul>
+<li class="">Simple friendship networks.</li>
+<li class="">Basic dependency relationships.</li>
+<li class="">Connectivity analysis.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-weighted-graph">4.2 Weighted Graph<a href="#42-weighted-graph" class="hash-link" aria-label="Direct link to 4.2 Weighted Graph" title="Direct link to 4.2 Weighted Graph" translate="no">​</a></h2>
+<p>A weighted graph assigns a numerical value to a relationship.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ----10---- B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">5            3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C ----8----- D</span><br></div></code></pre></div></div>
+<p>Weights might represent:</p>
+<ul>
+<li class="">Distance.</li>
+<li class="">Travel time.</li>
+<li class="">Cost.</li>
+<li class="">Similarity.</li>
+<li class="">Risk.</li>
+<li class="">Transaction amount.</li>
+</ul>
+<p>For example, a delivery application might store:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Noida)-[:CONNECTED_TO {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    distanceKm: 15</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}]-&gt;(Delhi)</span><br></div></code></pre></div></div>
+<p>A navigation system can use these weights to calculate routes.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-why-are-weights-important">4.3 Why Are Weights Important?<a href="#43-why-are-weights-important" class="hash-link" aria-label="Direct link to 4.3 Why Are Weights Important?" title="Direct link to 4.3 Why Are Weights Important?" translate="no">​</a></h2>
+<p>Suppose you want to travel from A to D.</p>
+<p>There are two possible paths:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- 5 ---- B ---- 10 ---- D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A ---- 2 ---- C ---- 3 ----- D</span><br></div></code></pre></div></div>
+<p>Path 1:</p>
+<p>[
+5 + 10 = 15
+]</p>
+<p>Path 2:</p>
+<p>[
+2 + 3 = 5
+]</p>
+<p>The second path has the lower total weight.</p>
+<p>This is the foundation of weighted shortest-path algorithms.</p>
+<p>Common algorithms include:</p>
+<ul>
+<li class="">Dijkstra&#x27;s algorithm.</li>
+<li class="">Bellman-Ford algorithm.</li>
+<li class="">A* search.</li>
+</ul>
+<p>These are graph algorithms, not database-specific features. Graph databases can provide ways to execute or integrate such algorithms.</p>
+<hr>
+<h1>5. Types of Graphs</h1>
+<p>Graph structures can be classified in several ways.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-simple-graph">5.1 Simple Graph<a href="#51-simple-graph" class="hash-link" aria-label="Direct link to 5.1 Simple Graph" title="Direct link to 5.1 Simple Graph" translate="no">​</a></h2>
+<p>A simple graph has:</p>
+<ul>
+<li class="">No self-loops.</li>
+<li class="">No multiple edges between the same pair of vertices.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C ---- D</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-cyclic-graph">5.2 Cyclic Graph<a href="#52-cyclic-graph" class="hash-link" aria-label="Direct link to 5.2 Cyclic Graph" title="Direct link to 5.2 Cyclic Graph" translate="no">​</a></h2>
+<p>A cyclic graph contains a path that eventually returns to its starting node.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">D ---- C</span><br></div></code></pre></div></div>
+<p>One cycle is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D -&gt; A</span><br></div></code></pre></div></div>
+<p>Real-world example:</p>
+<p>A social network where several users follow one another in a loop.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-acyclic-graph">5.3 Acyclic Graph<a href="#53-acyclic-graph" class="hash-link" aria-label="Direct link to 5.3 Acyclic Graph" title="Direct link to 5.3 Acyclic Graph" translate="no">​</a></h2>
+<p>An acyclic graph contains no cycles.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">       CEO</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Manager</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Employee</span><br></div></code></pre></div></div>
+<p>A directed acyclic graph is called a DAG.</p>
+<p>DAGs are useful for:</p>
+<ul>
+<li class="">Task dependencies.</li>
+<li class="">Build systems.</li>
+<li class="">Workflow execution.</li>
+<li class="">Package dependencies.</li>
+<li class="">Data processing pipelines.</li>
+</ul>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">       Build</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Test</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Deploy</span><br></div></code></pre></div></div>
+<p>A task cannot be completed before its dependencies.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-connected-graph">5.4 Connected Graph<a href="#54-connected-graph" class="hash-link" aria-label="Direct link to 5.4 Connected Graph" title="Direct link to 5.4 Connected Graph" translate="no">​</a></h2>
+<p>A connected undirected graph has a path between every pair of vertices.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B ---- C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       D</span><br></div></code></pre></div></div>
+<p>Every node can reach every other node.</p>
+<p>If a graph has separate disconnected sections, it is a disconnected graph.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B       C ---- D</span><br></div></code></pre></div></div>
+<p>There is no path between A and C.</p>
+<hr>
+<h1>6. Graph Database Data Model</h1>
+<p>Now let&#x27;s understand how graph databases represent application data.</p>
+<p>The property graph model is one of the most commonly used graph data models.</p>
+<p>It consists of:</p>
+<ol>
+<li class="">Nodes.</li>
+<li class="">Relationships.</li>
+<li class="">Labels.</li>
+<li class="">Properties.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-property-graph-model">6.1 Property Graph Model<a href="#61-property-graph-model" class="hash-link" aria-label="Direct link to 6.1 Property Graph Model" title="Direct link to 6.1 Property Graph Model" translate="no">​</a></h2>
+<p>Consider an e-commerce application.</p>
+<p>Entities:</p>
+<ul>
+<li class="">User.</li>
+<li class="">Product.</li>
+<li class="">Order.</li>
+<li class="">Category.</li>
+</ul>
+<p>Relationships:</p>
+<ul>
+<li class="">User placed an order.</li>
+<li class="">Order contains a product.</li>
+<li class="">Product belongs to a category.</li>
+<li class="">User viewed a product.</li>
+</ul>
+<p>Graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             (User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             PLACED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              (Order)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             CONTAINS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             (Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            BELONGS_TO</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             (Category)</span><br></div></code></pre></div></div>
+<p>Each node can contain properties.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(:User {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    userId: 101,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Prashant&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(:Product {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    productId: 501,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Laptop&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    price: 65000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">})</span><br></div></code></pre></div></div>
+<p>Relationships can also contain properties:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:PLACED {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orderDate: &quot;2026-11-14&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orderValue: 65000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}]-&gt;(Order)</span><br></div></code></pre></div></div>
+<p>This model makes connections explicit.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-labels">6.2 Labels<a href="#62-labels" class="hash-link" aria-label="Direct link to 6.2 Labels" title="Direct link to 6.2 Labels" translate="no">​</a></h2>
+<p>Labels classify nodes.</p>
+<p>Examples:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">:User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:Product</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:Order</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:Company</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:Movie</span><br></div></code></pre></div></div>
+<p>A node may have multiple labels.</p>
+<p>Example:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(:User:Customer {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Prashant&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">})</span><br></div></code></pre></div></div>
+<p>This node has both <code>User</code> and <code>Customer</code> labels.</p>
+<p>Labels help identify the type of node when querying.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-relationship-types">6.3 Relationship Types<a href="#63-relationship-types" class="hash-link" aria-label="Direct link to 6.3 Relationship Types" title="Direct link to 6.3 Relationship Types" translate="no">​</a></h2>
+<p>Relationship types describe how two nodes are connected.</p>
+<p>Examples:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">:FOLLOWS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:FRIENDS_WITH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:PURCHASED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:WORKS_AT</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:CONTAINS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">:REVIEWED</span><br></div></code></pre></div></div>
+<p>Unlike node labels, a relationship has one relationship type in the standard property graph model.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-graph-representation-example">6.4 Graph Representation Example<a href="#64-graph-representation-example" class="hash-link" aria-label="Direct link to 6.4 Graph Representation Example" title="Direct link to 6.4 Graph Representation Example" translate="no">​</a></h2>
+<p>Let&#x27;s represent a small social network.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">         (Prashant)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          /      \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     FOLLOWS    FOLLOWS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        /          \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (Rahul) ----&gt; (Amit)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          FOLLOWS</span><br></div></code></pre></div></div>
+<p>A corresponding conceptual representation:</p>
+<p><strong>Nodes:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Node ID</th><th>Label</th><th>Name</th></tr></thead><tbody><tr><td>1</td><td>User</td><td>Prashant</td></tr><tr><td>2</td><td>User</td><td>Rahul</td></tr><tr><td>3</td><td>User</td><td>Amit</td></tr></tbody></table>
+<p><strong>Relationships:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Source</th><th>Relationship</th><th>Destination</th></tr></thead><tbody><tr><td>Prashant</td><td>FOLLOWS</td><td>Rahul</td></tr><tr><td>Prashant</td><td>FOLLOWS</td><td>Amit</td></tr><tr><td>Rahul</td><td>FOLLOWS</td><td>Amit</td></tr></tbody></table>
+<p>Notice that a graph stores relationships as explicit connections rather than requiring the application to reconstruct every connection from separate foreign-key columns.</p>
+<hr>
+<h1>7. Graph Database vs Relational Database</h1>
+<p>This is one of the most important comparisons in this chapter.</p>
+<p>Both databases can represent connected data, but their data models and query approaches differ.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-relational-representation">7.1 Relational Representation<a href="#71-relational-representation" class="hash-link" aria-label="Direct link to 7.1 Relational Representation" title="Direct link to 7.1 Relational Representation" translate="no">​</a></h2>
+<p>Suppose you have a social network.</p>
+<p>You might create two tables.</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>id</th><th>name</th></tr></thead><tbody><tr><td>1</td><td>Prashant</td></tr><tr><td>2</td><td>Rahul</td></tr><tr><td>3</td><td>Amit</td></tr></tbody></table>
+<p><strong>follows</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>follower_id</th><th>following_id</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr><tr><td>1</td><td>3</td></tr><tr><td>2</td><td>3</td></tr></tbody></table>
+<p>Here:</p>
+<ul>
+<li class=""><code>follower_id</code> references a user.</li>
+<li class=""><code>following_id</code> references another user.</li>
+</ul>
+<p>To find everyone Prashant follows:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> follows f</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> f</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">following_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> f</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">follower_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This works well.</p>
+<p>Now suppose you want to find:</p>
+<ul>
+<li class="">Friends of friends.</li>
+<li class="">Connections three levels away.</li>
+<li class="">The shortest path between two users.</li>
+<li class="">All users connected through a particular chain.</li>
+</ul>
+<p>The query becomes more complicated as the number of relationship levels grows.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-graph-representation">7.2 Graph Representation<a href="#72-graph-representation" class="hash-link" aria-label="Direct link to 7.2 Graph Representation" title="Direct link to 7.2 Graph Representation" translate="no">​</a></h2>
+<p>The same data can be represented as:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Prashant)-[:FOLLOWS]-&gt;(Rahul)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Prashant)-[:FOLLOWS]-&gt;(Amit)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Rahul)-[:FOLLOWS]-&gt;(Amit)</span><br></div></code></pre></div></div>
+<p>A graph query can directly traverse these relationships.</p>
+<p>For example, in Cypher:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS]-&gt;(u:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN u.name;</span><br></div></code></pre></div></div>
+<p>To find users followed by people Prashant follows:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS]-&gt;(:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS]-&gt;(u:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN DISTINCT u.name;</span><br></div></code></pre></div></div>
+<p>This query describes a two-hop traversal.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="73-comparison">7.3 Comparison<a href="#73-comparison" class="hash-link" aria-label="Direct link to 7.3 Comparison" title="Direct link to 7.3 Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Relational database</th><th>Graph database</th></tr></thead><tbody><tr><td>Main structure</td><td>Tables</td><td>Nodes and relationships</td></tr><tr><td>Relationships</td><td>Foreign keys and join tables</td><td>Explicit edges</td></tr><tr><td>Query language</td><td>SQL</td><td>Cypher, Gremlin, SPARQL, depending on database</td></tr><tr><td>Relationship traversal</td><td>JOINs and recursive queries</td><td>Graph traversal</td></tr><tr><td>Schema</td><td>Tables and columns</td><td>Nodes, labels, relationships, properties</td></tr><tr><td>Complex connected queries</td><td>Can become JOIN-heavy</td><td>Natural graph traversal model</td></tr><tr><td>Transactions</td><td>Strong support in mature relational systems</td><td>Depends on graph database</td></tr><tr><td>Best fit</td><td>Structured business data and transactions</td><td>Relationship-centric queries</td></tr></tbody></table>
+<p><strong>Important:</strong> A graph database is not automatically faster than a relational database. The advantage depends on the query pattern, graph structure, indexes, implementation, and data volume.</p>
+<p>A relational database can handle many graph-like workloads effectively, particularly when relationship depth is limited and queries are well indexed.</p>
+<hr>
+<h1>8. Graph Database vs Other NoSQL Databases</h1>
+<p>Let&#x27;s compare graph databases with the NoSQL databases we have already studied.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Database type</th><th>Main focus</th><th>Example workload</th></tr></thead><tbody><tr><td>Key-value</td><td>Key-based retrieval</td><td>Sessions and caching</td></tr><tr><td>Document</td><td>Document-shaped data</td><td>Product and campaign configuration</td></tr><tr><td>Wide-column</td><td>Distributed partition-based workloads</td><td>High-volume event ingestion</td></tr><tr><td>Graph</td><td>Relationships and traversal</td><td>Social networks and recommendations</td></tr></tbody></table>
+<p>Consider an e-commerce application.</p>
+<p><strong>Redis:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">cart:101 -&gt; Shopping cart data</span><br></div></code></pre></div></div>
+<p><strong>MongoDB:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;productId&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">501</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Laptop&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;specifications&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;ram&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;16GB&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;storage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;512GB&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p><strong>Cassandra:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition: user_id + event_date</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Rows: user activity events</span><br></div></code></pre></div></div>
+<p><strong>Graph database:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:PURCHASED]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:VIEWED]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Product)-[:SIMILAR_TO]-&gt;(Product)</span><br></div></code></pre></div></div>
+<p>The graph model focuses on how entities are connected.</p>
+<hr>
+<h1>9. Real-World Use Cases</h1>
+<p>Graph databases become valuable when relationship traversal is a major application requirement.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-social-networks">9.1 Social Networks<a href="#91-social-networks" class="hash-link" aria-label="Direct link to 9.1 Social Networks" title="Direct link to 9.1 Social Networks" translate="no">​</a></h2>
+<p>A social network contains millions or billions of relationships.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Followers.</li>
+<li class="">Friends.</li>
+<li class="">Group membership.</li>
+<li class="">Likes.</li>
+<li class="">Shares.</li>
+<li class="">User connections.</li>
+</ul>
+<p>Possible queries:</p>
+<ul>
+<li class="">Who follows this user?</li>
+<li class="">Who are the mutual connections?</li>
+<li class="">Which users are connected within three steps?</li>
+<li class="">Which communities are highly interconnected?</li>
+</ul>
+<p>Graph databases are a natural fit for these types of relationship-oriented queries.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-recommendation-engines">9.2 Recommendation Engines<a href="#92-recommendation-engines" class="hash-link" aria-label="Direct link to 9.2 Recommendation Engines" title="Direct link to 9.2 Recommendation Engines" translate="no">​</a></h2>
+<p>Imagine an e-commerce platform.</p>
+<p>A user purchases:</p>
+<ul>
+<li class="">Laptop.</li>
+<li class="">Mouse.</li>
+<li class="">Keyboard.</li>
+</ul>
+<p>Other users who purchased the same laptop also purchased a monitor.</p>
+<p>The graph might look like:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User A) ----PURCHASED----&gt; (Laptop)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User A) ----PURCHASED----&gt; (Mouse)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User B) ----PURCHASED----&gt; (Laptop)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User B) ----PURCHASED----&gt; (Monitor)</span><br></div></code></pre></div></div>
+<p>A recommendation system can use these connections to identify potentially relevant products.</p>
+<p>Other relationships may include:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:VIEWED]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:PURCHASED]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Product)-[:SIMILAR_TO]-&gt;(Product)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Product)-[:BELONGS_TO]-&gt;(Category)</span><br></div></code></pre></div></div>
+<p>Graph traversal and graph algorithms can help discover related products.</p>
+<p>However, recommendation systems may also use collaborative filtering, embeddings, vector search, and machine learning. A graph database is one possible component, not a complete recommendation solution by itself.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-fraud-detection">9.3 Fraud Detection<a href="#93-fraud-detection" class="hash-link" aria-label="Direct link to 9.3 Fraud Detection" title="Direct link to 9.3 Fraud Detection" translate="no">​</a></h2>
+<p>Fraud detection often depends on identifying suspicious connections.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User A ----USES----&gt; Device X</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User B ----USES----&gt; Device X</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User C ----USES----&gt; Device X</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User A ----USES----&gt; IP Address Y</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User B ----USES----&gt; IP Address Y</span><br></div></code></pre></div></div>
+<p>A suspicious network may involve:</p>
+<ul>
+<li class="">Multiple accounts sharing one device.</li>
+<li class="">Several accounts using the same payment instrument.</li>
+<li class="">Repeated transactions between connected accounts.</li>
+<li class="">Accounts linked to known fraudulent identities.</li>
+</ul>
+<p>A graph model makes these relationships explicit and can help investigate suspicious connection patterns.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="94-knowledge-graphs">9.4 Knowledge Graphs<a href="#94-knowledge-graphs" class="hash-link" aria-label="Direct link to 9.4 Knowledge Graphs" title="Direct link to 9.4 Knowledge Graphs" translate="no">​</a></h2>
+<p>A knowledge graph represents real-world entities and their relationships.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Person: Albert Einstein)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       BORN_IN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      (Germany)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Person: Albert Einstein)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      WORKED_ON</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      (Relativity)</span><br></div></code></pre></div></div>
+<p>A knowledge graph can connect:</p>
+<ul>
+<li class="">People.</li>
+<li class="">Organizations.</li>
+<li class="">Places.</li>
+<li class="">Concepts.</li>
+<li class="">Events.</li>
+<li class="">Products.</li>
+<li class="">Scientific topics.</li>
+</ul>
+<p>It is useful for search, question answering, entity discovery, and semantic relationships.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="95-network-and-it-infrastructure">9.5 Network and IT Infrastructure<a href="#95-network-and-it-infrastructure" class="hash-link" aria-label="Direct link to 9.5 Network and IT Infrastructure" title="Direct link to 9.5 Network and IT Infrastructure" translate="no">​</a></h2>
+<p>An infrastructure graph may represent:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Application)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  RUNS_ON</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (Server)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> CONNECTED_TO</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (Database)</span><br></div></code></pre></div></div>
+<p>This can help answer:</p>
+<ul>
+<li class="">Which applications depend on this server?</li>
+<li class="">Which services are affected if this database fails?</li>
+<li class="">What is the dependency chain?</li>
+<li class="">Which components are connected to a particular network?</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="96-route-planning">9.6 Route Planning<a href="#96-route-planning" class="hash-link" aria-label="Direct link to 9.6 Route Planning" title="Direct link to 9.6 Route Planning" translate="no">​</a></h2>
+<p>A route-planning system can model:</p>
+<ul>
+<li class="">Cities as nodes.</li>
+<li class="">Roads as relationships.</li>
+<li class="">Distance or travel time as relationship properties.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Noida) ----15 km----&gt; (Delhi)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Noida) ----35 km----&gt; (Meerut)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Delhi) ----70 km----&gt; (Agra)</span><br></div></code></pre></div></div>
+<p>Graph algorithms can help identify shortest or lowest-cost paths.</p>
+<p>For large-scale navigation, specialized routing engines and spatial systems may be more suitable than a general-purpose graph database alone.</p>
+<hr>
+<h1>10. Popular Graph Databases and Query Technologies</h1>
+<p>Several graph database products and technologies exist.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-neo4j">10.1 Neo4j<a href="#101-neo4j" class="hash-link" aria-label="Direct link to 10.1 Neo4j" title="Direct link to 10.1 Neo4j" translate="no">​</a></h2>
+<p><escape> </escape></p>
+<p><strong>Neo4j</strong> is a popular property graph database.</p>
+<p>It uses:</p>
+<ul>
+<li class="">Nodes.</li>
+<li class="">Relationships.</li>
+<li class="">Labels.</li>
+<li class="">Properties.</li>
+<li class="">Cypher query language.</li>
+</ul>
+<p>Example:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">CREATE (p:User {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Prashant&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    city: &quot;Noida&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">});</span><br></div></code></pre></div></div>
+<p>Create another user:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">CREATE (r:User {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: &quot;Rahul&quot;,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    city: &quot;Delhi&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">});</span><br></div></code></pre></div></div>
+<p>Create a relationship:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (r:User {name: &quot;Rahul&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CREATE (p)-[:FOLLOWS]-&gt;(r);</span><br></div></code></pre></div></div>
+<p>Retrieve the relationship:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User)-[:FOLLOWS]-&gt;(r:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN p.name, r.name;</span><br></div></code></pre></div></div>
+<p>Neo4j is commonly used for:</p>
+<ul>
+<li class="">Fraud detection.</li>
+<li class="">Recommendation systems.</li>
+<li class="">Knowledge graphs.</li>
+<li class="">Social networks.</li>
+<li class="">Dependency analysis.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-amazon-neptune">10.2 Amazon Neptune<a href="#102-amazon-neptune" class="hash-link" aria-label="Direct link to 10.2 Amazon Neptune" title="Direct link to 10.2 Amazon Neptune" translate="no">​</a></h2>
+<p>Amazon Neptune is a managed graph database service.</p>
+<p>It supports graph models and query technologies including:</p>
+<ul>
+<li class="">Property graph queries through Gremlin and openCypher.</li>
+<li class="">RDF graph queries through SPARQL.</li>
+</ul>
+<p>It is useful when an organization wants a managed graph database integrated with AWS infrastructure.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-janusgraph">10.3 JanusGraph<a href="#103-janusgraph" class="hash-link" aria-label="Direct link to 10.3 JanusGraph" title="Direct link to 10.3 JanusGraph" translate="no">​</a></h2>
+<p>JanusGraph is an open-source, distributed graph database.</p>
+<p>It can use distributed storage backends such as Cassandra and HBase, depending on the deployment configuration.</p>
+<p>It is designed for large graph workloads that need distributed storage.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="104-arangodb">10.4 ArangoDB<a href="#104-arangodb" class="hash-link" aria-label="Direct link to 10.4 ArangoDB" title="Direct link to 10.4 ArangoDB" translate="no">​</a></h2>
+<p>ArangoDB is a multi-model database.</p>
+<p>It supports multiple data models, including:</p>
+<ul>
+<li class="">Document.</li>
+<li class="">Key-value.</li>
+<li class="">Graph.</li>
+</ul>
+<p>It can be useful when an application needs multiple data models within one database platform.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="105-query-technologies">10.5 Query Technologies<a href="#105-query-technologies" class="hash-link" aria-label="Direct link to 10.5 Query Technologies" title="Direct link to 10.5 Query Technologies" translate="no">​</a></h2>
+<p>Different graph systems use different query languages.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Technology</th><th>Purpose</th></tr></thead><tbody><tr><td>Cypher</td><td>Declarative graph query language used by Neo4j and supported by other systems</td></tr><tr><td>Gremlin</td><td>Graph traversal language from Apache TinkerPop</td></tr><tr><td>SPARQL</td><td>Query language for RDF data</td></tr><tr><td>openCypher</td><td>Open specification based on the Cypher query language</td></tr></tbody></table>
+<p>Do not assume every graph database supports the same query language or data model.</p>
+<hr>
+<h1>11. Important Graph Terminology</h1>
+<p>You should understand these terms before moving to internal graph database architecture.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody><tr><td>Graph</td><td>Collection of nodes and relationships</td></tr><tr><td>Vertex</td><td>Another name for a node</td></tr><tr><td>Edge</td><td>Another name for a relationship</td></tr><tr><td>Node</td><td>Represents an entity</td></tr><tr><td>Relationship</td><td>Represents a connection between entities</td></tr><tr><td>Label</td><td>Identifies a node&#x27;s category</td></tr><tr><td>Relationship type</td><td>Describes the kind of connection</td></tr><tr><td>Property</td><td>Attribute associated with a node or relationship</td></tr><tr><td>Degree</td><td>Number of edges connected to a vertex</td></tr><tr><td>In-degree</td><td>Number of incoming directed edges</td></tr><tr><td>Out-degree</td><td>Number of outgoing directed edges</td></tr><tr><td>Path</td><td>Sequence of connected vertices and edges</td></tr><tr><td>Traversal</td><td>Process of following relationships through a graph</td></tr><tr><td>Hop</td><td>One relationship traversal between two nodes</td></tr><tr><td>Cycle</td><td>Path that returns to its starting vertex</td></tr><tr><td>Connected component</td><td>A maximal connected section of a graph</td></tr><tr><td>DAG</td><td>Directed acyclic graph</td></tr><tr><td>Graph query</td><td>Query that retrieves or traverses graph structures</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="111-what-is-degree">11.1 What Is Degree?<a href="#111-what-is-degree" class="hash-link" aria-label="Direct link to 11.1 What Is Degree?" title="Direct link to 11.1 What Is Degree?" translate="no">​</a></h2>
+<p>The degree of a node is the number of edges connected to it in an undirected graph.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">        B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    C---A---D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        E</span><br></div></code></pre></div></div>
+<p>Node A has degree 4.</p>
+<p>In a directed graph, we distinguish:</p>
+<ul>
+<li class="">In-degree: Number of incoming edges.</li>
+<li class="">Out-degree: Number of outgoing edges.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ----&gt; B ----&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   ---&gt; D</span><br></div></code></pre></div></div>
+<p>For node A:</p>
+<ul>
+<li class="">In-degree = 0.</li>
+<li class="">Out-degree = 2.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="112-what-is-a-path">11.2 What Is a Path?<a href="#112-what-is-a-path" class="hash-link" aria-label="Direct link to 11.2 What Is a Path?" title="Direct link to 11.2 What Is a Path?" translate="no">​</a></h2>
+<p>A path is a sequence of nodes connected by edges.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B ---- C ---- D</span><br></div></code></pre></div></div>
+<p>One path is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D</span><br></div></code></pre></div></div>
+<p>The path contains three edges, so it has three hops.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="113-what-is-a-traversal">11.3 What Is a Traversal?<a href="#113-what-is-a-traversal" class="hash-link" aria-label="Direct link to 11.3 What Is a Traversal?" title="Direct link to 11.3 What Is a Traversal?" translate="no">​</a></h2>
+<p>Traversal means navigating through a graph by following relationships.</p>
+<p>Suppose:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Prashant -&gt; Rahul -&gt; Amit -&gt; Karan</span><br></div></code></pre></div></div>
+<p>Starting from Prashant:</p>
+<ol>
+<li class="">Visit Rahul.</li>
+<li class="">Follow Rahul&#x27;s relationship to Amit.</li>
+<li class="">Follow Amit&#x27;s relationship to Karan.</li>
+</ol>
+<p>This is a traversal through three relationships.</p>
+<p>Traversal is one of the most important operations in graph databases.</p>
+<hr>
+<h1>12. When Should You Consider a Graph Database?</h1>
+<p>A graph database is worth evaluating when:</p>
+<ul>
+<li class="">Relationships are central to the application.</li>
+<li class="">Queries involve multiple levels of connected entities.</li>
+<li class="">The application frequently discovers paths between entities.</li>
+<li class="">Relationship patterns change or evolve.</li>
+<li class="">You need graph algorithms for network analysis.</li>
+<li class="">Complex JOIN-based relationship queries are becoming difficult to maintain or optimize.</li>
+</ul>
+<p>Examples:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Application</th><th>Graph requirement</th></tr></thead><tbody><tr><td>Social network</td><td>User-to-user relationships</td></tr><tr><td>Fraud detection</td><td>Connections between accounts, devices, and payments</td></tr><tr><td>Recommendation engine</td><td>User-product-item relationships</td></tr><tr><td>Knowledge graph</td><td>Entity and concept relationships</td></tr><tr><td>IT dependency analysis</td><td>Service and infrastructure connections</td></tr><tr><td>Network analysis</td><td>Connected devices and routes</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="121-when-might-you-not-need-one">12.1 When Might You Not Need One?<a href="#121-when-might-you-not-need-one" class="hash-link" aria-label="Direct link to 12.1 When Might You Not Need One?" title="Direct link to 12.1 When Might You Not Need One?" translate="no">​</a></h2>
+<p>A graph database may be unnecessary when:</p>
+<ul>
+<li class="">Your data is primarily transactional.</li>
+<li class="">Relationships are simple and limited.</li>
+<li class="">Queries mainly retrieve records by primary key.</li>
+<li class="">You rarely traverse multiple relationships.</li>
+<li class="">A relational database already handles your queries efficiently.</li>
+<li class="">Your team cannot justify the operational cost of another database.</li>
+</ul>
+<p>Example:</p>
+<p>A simple employee management system may only need:</p>
+<ul>
+<li class="">Employees.</li>
+<li class="">Departments.</li>
+<li class="">Salaries.</li>
+<li class="">Attendance.</li>
+<li class="">Leave records.</li>
+</ul>
+<p>PostgreSQL can handle this comfortably.</p>
+<p>Introducing Neo4j just to represent employees and departments would probably add unnecessary complexity.</p>
+<hr>
+<h1>13. Practical Example: Build a Small Social Graph</h1>
+<p>Let&#x27;s create a conceptual social graph.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="131-requirements">13.1 Requirements<a href="#131-requirements" class="hash-link" aria-label="Direct link to 13.1 Requirements" title="Direct link to 13.1 Requirements" translate="no">​</a></h2>
+<p>Users:</p>
+<ul>
+<li class="">Prashant.</li>
+<li class="">Rahul.</li>
+<li class="">Amit.</li>
+<li class="">Karan.</li>
+</ul>
+<p>Relationships:</p>
+<ul>
+<li class="">Prashant follows Rahul.</li>
+<li class="">Prashant follows Amit.</li>
+<li class="">Rahul follows Karan.</li>
+<li class="">Amit follows Karan.</li>
+</ul>
+<p>Graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Prashant</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              /    \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Rahul    Amit</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             \      /</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              v    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Karan</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="132-create-nodes-in-neo4j">13.2 Create Nodes in Neo4j<a href="#132-create-nodes-in-neo4j" class="hash-link" aria-label="Direct link to 13.2 Create Nodes in Neo4j" title="Direct link to 13.2 Create Nodes in Neo4j" translate="no">​</a></h2>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">CREATE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (p:User {name: &quot;Prashant&quot;}),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (r:User {name: &quot;Rahul&quot;}),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (a:User {name: &quot;Amit&quot;}),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (k:User {name: &quot;Karan&quot;});</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="133-create-relationships">13.3 Create Relationships<a href="#133-create-relationships" class="hash-link" aria-label="Direct link to 13.3 Create Relationships" title="Direct link to 13.3 Create Relationships" translate="no">​</a></h2>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (r:User {name: &quot;Rahul&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (a:User {name: &quot;Amit&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (k:User {name: &quot;Karan&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">CREATE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (p)-[:FOLLOWS]-&gt;(r),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (p)-[:FOLLOWS]-&gt;(a),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (r)-[:FOLLOWS]-&gt;(k),</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (a)-[:FOLLOWS]-&gt;(k);</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="134-find-everyone-prashant-follows">13.4 Find Everyone Prashant Follows<a href="#134-find-everyone-prashant-follows" class="hash-link" aria-label="Direct link to 13.4 Find Everyone Prashant Follows" title="Direct link to 13.4 Find Everyone Prashant Follows" translate="no">​</a></h2>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS]-&gt;(u:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN u.name;</span><br></div></code></pre></div></div>
+<p>Expected result:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Amit</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="135-find-users-two-hops-away">13.5 Find Users Two Hops Away<a href="#135-find-users-two-hops-away" class="hash-link" aria-label="Direct link to 13.5 Find Users Two Hops Away" title="Direct link to 13.5 Find Users Two Hops Away" translate="no">​</a></h2>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS*2]-&gt;(u:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN DISTINCT u.name;</span><br></div></code></pre></div></div>
+<p>Expected result:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Karan</span><br></div></code></pre></div></div>
+<p>The expression:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">[:FOLLOWS*2]</span><br></div></code></pre></div></div>
+<p>means traverse exactly two <code>FOLLOWS</code> relationships.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="136-find-a-path-between-two-users">13.6 Find a Path Between Two Users<a href="#136-find-a-path-between-two-users" class="hash-link" aria-label="Direct link to 13.6 Find a Path Between Two Users" title="Direct link to 13.6 Find a Path Between Two Users" translate="no">​</a></h2>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH path =</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (p:User {name: &quot;Prashant&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -[:FOLLOWS*]-&gt;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    (k:User {name: &quot;Karan&quot;})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN path;</span><br></div></code></pre></div></div>
+<p>This finds paths from Prashant to Karan using one or more <code>FOLLOWS</code> relationships.</p>
+<p>In production, traversal depth should be bounded where appropriate. Unrestricted path searches can become expensive on large or highly connected graphs.</p>
+<hr>
+<h1>14. Common Interview Questions</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-a-graph-database">Q1. What is a graph database?<a href="#q1-what-is-a-graph-database" class="hash-link" aria-label="Direct link to Q1. What is a graph database?" title="Direct link to Q1. What is a graph database?" translate="no">​</a></h2>
+<p>A graph database is a database that represents information using nodes and relationships.</p>
+<p>It is designed for applications where relationships and traversals are important.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-the-difference-between-a-node-and-an-edge">Q2. What is the difference between a node and an edge?<a href="#q2-what-is-the-difference-between-a-node-and-an-edge" class="hash-link" aria-label="Direct link to Q2. What is the difference between a node and an edge?" title="Direct link to Q2. What is the difference between a node and an edge?" translate="no">​</a></h2>
+<p>A node represents an entity.</p>
+<p>An edge represents a relationship between two entities.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:PURCHASED]-&gt;(Product)</span><br></div></code></pre></div></div>
+<p>User and Product are nodes. PURCHASED is the relationship.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-a-property-graph">Q3. What is a property graph?<a href="#q3-what-is-a-property-graph" class="hash-link" aria-label="Direct link to Q3. What is a property graph?" title="Direct link to Q3. What is a property graph?" translate="no">​</a></h2>
+<p>A property graph is a graph model where nodes and relationships can contain properties.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(:User {name: &quot;Prashant&quot;})</span><br></div></code></pre></div></div>
+<p>And:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">-[:PURCHASED {amount: 2500}]-&gt;</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-the-difference-between-directed-and-undirected-graphs">Q4. What is the difference between directed and undirected graphs?<a href="#q4-what-is-the-difference-between-directed-and-undirected-graphs" class="hash-link" aria-label="Direct link to Q4. What is the difference between directed and undirected graphs?" title="Direct link to Q4. What is the difference between directed and undirected graphs?" translate="no">​</a></h2>
+<p>A directed graph has relationships with a direction.</p>
+<p>An undirected graph represents connections without a meaningful direction.</p>
+<p>Example:</p>
+<ul>
+<li class="">FOLLOWS: Directed.</li>
+<li class="">FRIENDSHIP: Often modeled as undirected in business meaning.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-a-graph-traversal">Q5. What is a graph traversal?<a href="#q5-what-is-a-graph-traversal" class="hash-link" aria-label="Direct link to Q5. What is a graph traversal?" title="Direct link to Q5. What is a graph traversal?" translate="no">​</a></h2>
+<p>Graph traversal is the process of navigating from one node to another by following relationships.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D</span><br></div></code></pre></div></div>
+<p>Starting from A and following the edges to D is a traversal.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-why-use-a-graph-database-instead-of-postgresql">Q6. Why use a graph database instead of PostgreSQL?<a href="#q6-why-use-a-graph-database-instead-of-postgresql" class="hash-link" aria-label="Direct link to Q6. Why use a graph database instead of PostgreSQL?" title="Direct link to Q6. Why use a graph database instead of PostgreSQL?" translate="no">​</a></h2>
+<p>Use a graph database when the application frequently performs complex relationship traversal.</p>
+<p>PostgreSQL can represent relationships and handle JOINs very well, but deep or variable-length relationship queries can become cumbersome for certain workloads.</p>
+<p>A graph database makes relationships first-class and provides graph-oriented query capabilities.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-is-a-graph-database-a-nosql-database">Q7. Is a graph database a NoSQL database?<a href="#q7-is-a-graph-database-a-nosql-database" class="hash-link" aria-label="Direct link to Q7. Is a graph database a NoSQL database?" title="Direct link to Q7. Is a graph database a NoSQL database?" translate="no">​</a></h2>
+<p>Many popular graph databases are classified as NoSQL databases, but graph describes a data model rather than one universal implementation or consistency model.</p>
+<p>Graph databases differ in query languages, storage architecture, transaction capabilities, and scalability.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-a-path-in-graph-theory">Q8. What is a path in graph theory?<a href="#q8-what-is-a-path-in-graph-theory" class="hash-link" aria-label="Direct link to Q8. What is a path in graph theory?" title="Direct link to Q8. What is a path in graph theory?" translate="no">​</a></h2>
+<p>A path is a sequence of vertices connected by edges.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C</span><br></div></code></pre></div></div>
+<p>This path contains two edges.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-a-cycle">Q9. What is a cycle?<a href="#q9-what-is-a-cycle" class="hash-link" aria-label="Direct link to Q9. What is a cycle?" title="Direct link to Q9. What is a cycle?" translate="no">​</a></h2>
+<p>A cycle is a path that starts and ends at the same vertex.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; A</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-a-dag">Q10. What is a DAG?<a href="#q10-what-is-a-dag" class="hash-link" aria-label="Direct link to Q10. What is a DAG?" title="Direct link to Q10. What is a DAG?" translate="no">​</a></h2>
+<p>A DAG is a Directed Acyclic Graph.</p>
+<p>It contains directed edges but no directed cycles.</p>
+<p>It is useful for representing task dependencies, workflows, and build pipelines.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-a-weighted-graph">Q11. What is a weighted graph?<a href="#q11-what-is-a-weighted-graph" class="hash-link" aria-label="Direct link to Q11. What is a weighted graph?" title="Direct link to Q11. What is a weighted graph?" translate="no">​</a></h2>
+<p>A weighted graph assigns numerical values to edges.</p>
+<p>These values can represent distance, cost, time, or another measurable quantity.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-name-some-graph-databases">Q12. Name some graph databases.<a href="#q12-name-some-graph-databases" class="hash-link" aria-label="Direct link to Q12. Name some graph databases." title="Direct link to Q12. Name some graph databases." translate="no">​</a></h2>
+<p>Examples:</p>
+<ul>
+<li class="">Neo4j.</li>
+<li class="">Amazon Neptune.</li>
+<li class="">JanusGraph.</li>
+<li class="">ArangoDB.</li>
+</ul>
+<hr>
+<h1>15. Practical Exercises</h1>
+<p>Try these exercises before moving to Part 14B.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-1--model-a-social-network">Exercise 1 — Model a Social Network<a href="#exercise-1--model-a-social-network" class="hash-link" aria-label="Direct link to Exercise 1 — Model a Social Network" title="Direct link to Exercise 1 — Model a Social Network" translate="no">​</a></h3>
+<p>Create nodes for:</p>
+<ul>
+<li class="">User A.</li>
+<li class="">User B.</li>
+<li class="">User C.</li>
+<li class="">User D.</li>
+</ul>
+<p>Create relationships:</p>
+<ul>
+<li class="">A follows B.</li>
+<li class="">A follows C.</li>
+<li class="">B follows D.</li>
+<li class="">C follows D.</li>
+</ul>
+<p>Answer:</p>
+<ol>
+<li class="">Who does A follow?</li>
+<li class="">Who is two hops away from A?</li>
+<li class="">How many outgoing relationships does A have?</li>
+<li class="">Is there a path from A to D?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-2--model-an-e-commerce-graph">Exercise 2 — Model an E-commerce Graph<a href="#exercise-2--model-an-e-commerce-graph" class="hash-link" aria-label="Direct link to Exercise 2 — Model an E-commerce Graph" title="Direct link to Exercise 2 — Model an E-commerce Graph" translate="no">​</a></h3>
+<p>Create nodes for:</p>
+<ul>
+<li class="">Users.</li>
+<li class="">Products.</li>
+<li class="">Categories.</li>
+<li class="">Orders.</li>
+</ul>
+<p>Create relationships:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User -&gt; PLACED -&gt; Order</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order -&gt; CONTAINS -&gt; Product</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Product -&gt; BELONGS_TO -&gt; Category</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User -&gt; VIEWED -&gt; Product</span><br></div></code></pre></div></div>
+<p>Think about these questions:</p>
+<ol>
+<li class="">Which products has a user purchased?</li>
+<li class="">Which users viewed a particular product?</li>
+<li class="">Which products belong to a category?</li>
+<li class="">Which products were purchased by users who also viewed another product?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-3--identify-the-best-database">Exercise 3 — Identify the Best Database<a href="#exercise-3--identify-the-best-database" class="hash-link" aria-label="Direct link to Exercise 3 — Identify the Best Database" title="Direct link to Exercise 3 — Identify the Best Database" translate="no">​</a></h3>
+<p>Choose between PostgreSQL, MongoDB, Redis, Cassandra, and Neo4j.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Scenario</th><th>Your choice</th></tr></thead><tbody><tr><td>Store payment transactions</td><td>?</td></tr><tr><td>Store user sessions</td><td>?</td></tr><tr><td>Store campaign configuration</td><td>?</td></tr><tr><td>Store billions of user events</td><td>?</td></tr><tr><td>Find relationships between suspicious bank accounts</td><td>?</td></tr><tr><td>Find friends of friends</td><td>?</td></tr></tbody></table>
+<p>The goal is to identify the database based on the access pattern, not simply the amount of data.</p>
+<hr>
+<h1>16. Part 14A Summary</h1>
+<p>You should now understand the foundational concepts of graph databases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>What to remember</th></tr></thead><tbody><tr><td>Graph</td><td>Collection of nodes and relationships</td></tr><tr><td>Node</td><td>Represents an entity</td></tr><tr><td>Edge</td><td>Represents a connection</td></tr><tr><td>Property</td><td>Describes a node or relationship</td></tr><tr><td>Directed graph</td><td>Relationships have direction</td></tr><tr><td>Undirected graph</td><td>Relationships have no meaningful direction</td></tr><tr><td>Weighted graph</td><td>Edges have numerical weights</td></tr><tr><td>Unweighted graph</td><td>Edges have no numerical weights</td></tr><tr><td>Path</td><td>Sequence of connected nodes</td></tr><tr><td>Traversal</td><td>Following relationships through a graph</td></tr><tr><td>Degree</td><td>Number of edges connected to a node</td></tr><tr><td>Cycle</td><td>Path that returns to its starting node</td></tr><tr><td>DAG</td><td>Directed graph without cycles</td></tr><tr><td>Property graph</td><td>Nodes and relationships with properties</td></tr><tr><td>Neo4j</td><td>Popular graph database using Cypher</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-most-important-mental-model">The Most Important Mental Model<a href="#the-most-important-mental-model" class="hash-link" aria-label="Direct link to The Most Important Mental Model" title="Direct link to The Most Important Mental Model" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Relational Database:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data is organized into tables.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Relationships are represented through keys.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Document Database:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data is organized into documents.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Related information can be embedded or referenced.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Wide-Column Database:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data is organized around partitions and query patterns.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Graph Database:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data is organized around entities and their relationships.</span><br></div></code></pre></div></div>
+<p><strong>Remember:</strong> Graph databases are not automatically better than relational databases. Their primary advantage is making relationship-heavy queries and graph traversal natural parts of the data model.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/11_Types_of_NoSQL_DB/11.4_Graph_Databases/part_01.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/category/graph_databases"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Graph_Databases</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_02"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Graph Database Internal Storage</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#11-a-simple-example" class="table-of-contents__link toc-highlight">1.1 A Simple Example</a></li><li><a href="#12-why-do-we-need-graph-databases" class="table-of-contents__link toc-highlight">1.2 Why Do We Need Graph Databases?</a></li><li><a href="#21-nodes-vertices" class="table-of-contents__link toc-highlight">2.1 Nodes (Vertices)</a></li><li><a href="#22-edges-relationships" class="table-of-contents__link toc-highlight">2.2 Edges (Relationships)</a></li><li><a href="#23-properties" class="table-of-contents__link toc-highlight">2.3 Properties</a></li><li><a href="#31-directed-graph" class="table-of-contents__link toc-highlight">3.1 Directed Graph</a></li><li><a href="#32-undirected-graph" class="table-of-contents__link toc-highlight">3.2 Undirected Graph</a></li><li><a href="#33-directed-vs-undirected-comparison" class="table-of-contents__link toc-highlight">3.3 Directed vs Undirected Comparison</a></li><li><a href="#41-unweighted-graph" class="table-of-contents__link toc-highlight">4.1 Unweighted Graph</a></li><li><a href="#42-weighted-graph" class="table-of-contents__link toc-highlight">4.2 Weighted Graph</a></li><li><a href="#43-why-are-weights-important" class="table-of-contents__link toc-highlight">4.3 Why Are Weights Important?</a></li><li><a href="#51-simple-graph" class="table-of-contents__link toc-highlight">5.1 Simple Graph</a></li><li><a href="#52-cyclic-graph" class="table-of-contents__link toc-highlight">5.2 Cyclic Graph</a></li><li><a href="#53-acyclic-graph" class="table-of-contents__link toc-highlight">5.3 Acyclic Graph</a></li><li><a href="#54-connected-graph" class="table-of-contents__link toc-highlight">5.4 Connected Graph</a></li><li><a href="#61-property-graph-model" class="table-of-contents__link toc-highlight">6.1 Property Graph Model</a></li><li><a href="#62-labels" class="table-of-contents__link toc-highlight">6.2 Labels</a></li><li><a href="#63-relationship-types" class="table-of-contents__link toc-highlight">6.3 Relationship Types</a></li><li><a href="#64-graph-representation-example" class="table-of-contents__link toc-highlight">6.4 Graph Representation Example</a></li><li><a href="#71-relational-representation" class="table-of-contents__link toc-highlight">7.1 Relational Representation</a></li><li><a href="#72-graph-representation" class="table-of-contents__link toc-highlight">7.2 Graph Representation</a></li><li><a href="#73-comparison" class="table-of-contents__link toc-highlight">7.3 Comparison</a></li><li><a href="#91-social-networks" class="table-of-contents__link toc-highlight">9.1 Social Networks</a></li><li><a href="#92-recommendation-engines" class="table-of-contents__link toc-highlight">9.2 Recommendation Engines</a></li><li><a href="#93-fraud-detection" class="table-of-contents__link toc-highlight">9.3 Fraud Detection</a></li><li><a href="#94-knowledge-graphs" class="table-of-contents__link toc-highlight">9.4 Knowledge Graphs</a></li><li><a href="#95-network-and-it-infrastructure" class="table-of-contents__link toc-highlight">9.5 Network and IT Infrastructure</a></li><li><a href="#96-route-planning" class="table-of-contents__link toc-highlight">9.6 Route Planning</a></li><li><a href="#101-neo4j" class="table-of-contents__link toc-highlight">10.1 Neo4j</a></li><li><a href="#102-amazon-neptune" class="table-of-contents__link toc-highlight">10.2 Amazon Neptune</a></li><li><a href="#103-janusgraph" class="table-of-contents__link toc-highlight">10.3 JanusGraph</a></li><li><a href="#104-arangodb" class="table-of-contents__link toc-highlight">10.4 ArangoDB</a></li><li><a href="#105-query-technologies" class="table-of-contents__link toc-highlight">10.5 Query Technologies</a></li><li><a href="#111-what-is-degree" class="table-of-contents__link toc-highlight">11.1 What Is Degree?</a></li><li><a href="#112-what-is-a-path" class="table-of-contents__link toc-highlight">11.2 What Is a Path?</a></li><li><a href="#113-what-is-a-traversal" class="table-of-contents__link toc-highlight">11.3 What Is a Traversal?</a></li><li><a href="#121-when-might-you-not-need-one" class="table-of-contents__link toc-highlight">12.1 When Might You Not Need One?</a></li><li><a href="#131-requirements" class="table-of-contents__link toc-highlight">13.1 Requirements</a></li><li><a href="#132-create-nodes-in-neo4j" class="table-of-contents__link toc-highlight">13.2 Create Nodes in Neo4j</a></li><li><a href="#133-create-relationships" class="table-of-contents__link toc-highlight">13.3 Create Relationships</a></li><li><a href="#134-find-everyone-prashant-follows" class="table-of-contents__link toc-highlight">13.4 Find Everyone Prashant Follows</a></li><li><a href="#135-find-users-two-hops-away" class="table-of-contents__link toc-highlight">13.5 Find Users Two Hops Away</a></li><li><a href="#136-find-a-path-between-two-users" class="table-of-contents__link toc-highlight">13.6 Find a Path Between Two Users</a></li><li><a href="#q1-what-is-a-graph-database" class="table-of-contents__link toc-highlight">Q1. What is a graph database?</a></li><li><a href="#q2-what-is-the-difference-between-a-node-and-an-edge" class="table-of-contents__link toc-highlight">Q2. What is the difference between a node and an edge?</a></li><li><a href="#q3-what-is-a-property-graph" class="table-of-contents__link toc-highlight">Q3. What is a property graph?</a></li><li><a href="#q4-what-is-the-difference-between-directed-and-undirected-graphs" class="table-of-contents__link toc-highlight">Q4. What is the difference between directed and undirected graphs?</a></li><li><a href="#q5-what-is-a-graph-traversal" class="table-of-contents__link toc-highlight">Q5. What is a graph traversal?</a></li><li><a href="#q6-why-use-a-graph-database-instead-of-postgresql" class="table-of-contents__link toc-highlight">Q6. Why use a graph database instead of PostgreSQL?</a></li><li><a href="#q7-is-a-graph-database-a-nosql-database" class="table-of-contents__link toc-highlight">Q7. Is a graph database a NoSQL database?</a></li><li><a href="#q8-what-is-a-path-in-graph-theory" class="table-of-contents__link toc-highlight">Q8. What is a path in graph theory?</a></li><li><a href="#q9-what-is-a-cycle" class="table-of-contents__link toc-highlight">Q9. What is a cycle?</a></li><li><a href="#q10-what-is-a-dag" class="table-of-contents__link toc-highlight">Q10. What is a DAG?</a></li><li><a href="#q11-what-is-a-weighted-graph" class="table-of-contents__link toc-highlight">Q11. What is a weighted graph?</a></li><li><a href="#q12-name-some-graph-databases" class="table-of-contents__link toc-highlight">Q12. Name some graph databases.</a><ul><li><a href="#exercise-1--model-a-social-network" class="table-of-contents__link toc-highlight">Exercise 1 — Model a Social Network</a></li><li><a href="#exercise-2--model-an-e-commerce-graph" class="table-of-contents__link toc-highlight">Exercise 2 — Model an E-commerce Graph</a></li><li><a href="#exercise-3--identify-the-best-database" class="table-of-contents__link toc-highlight">Exercise 3 — Identify the Best Database</a></li></ul></li><li><a href="#the-most-important-mental-model" class="table-of-contents__link toc-highlight">The Most Important Mental Model</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

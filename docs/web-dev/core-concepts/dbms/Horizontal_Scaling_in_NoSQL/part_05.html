@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Sharding vs Normalization vs Replication | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Sharding vs Normalization vs Replication | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Horizontal_Scaling_in_NoSQL","item":"https://codingsapienss.github.io/notes/docs/category/horizontal_scaling_in_nosql"},{"@type":"ListItem","position":5,"name":"Sharding vs Normalization vs Replication","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Collapse sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_01"><span title="Nodes and Partitions" class="linkLabel_WmDU">Nodes and Partitions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_02"><span title="How NoSQL Scales Horizontally" class="linkLabel_WmDU">How NoSQL Scales Horizontally</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_03"><span title="Partitioning Strategies" class="linkLabel_WmDU">Partitioning Strategies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_04"><span title="SQL Sharding vs NoSQL Partitioning" class="linkLabel_WmDU">SQL Sharding vs NoSQL Partitioning</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_05"><span title="Sharding vs Normalization vs Replication" class="linkLabel_WmDU">Sharding vs Normalization vs Replication</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/horizontal_scaling_in_nosql"><span>Horizontal_Scaling_in_NoSQL</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Sharding vs Normalization vs Replication</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Sharding vs Normalization vs Replication</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<p>Sharding, normalization, and replication are three important database concepts.</p>
+<p>They are often discussed together because all three influence how a database stores, organizes, and serves data.</p>
+<p>However, <strong>they solve three different problems</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Primary purpose</th></tr></thead><tbody><tr><td>Normalization</td><td>Organizes data to reduce unnecessary duplication and maintain consistency</td></tr><tr><td>Sharding</td><td>Distributes different subsets of data across multiple database servers</td></tr><tr><td>Replication</td><td>Maintains copies of the same data across multiple database servers</td></tr></tbody></table>
+<p>A simple way to remember:</p>
+<ul>
+<li class=""><strong>Normalization:</strong> How should we organize data?</li>
+<li class=""><strong>Sharding:</strong> Where should different parts of data live?</li>
+<li class=""><strong>Replication:</strong> How should we maintain additional copies of data?</li>
+</ul>
+<p>These concepts are not alternatives. A production database architecture can use all three simultaneously.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-normalization">2. Normalization<a href="#2-normalization" class="hash-link" aria-label="Direct link to 2. Normalization" title="Direct link to 2. Normalization" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-what-is-normalization">2.1 What is normalization?<a href="#21-what-is-normalization" class="hash-link" aria-label="Direct link to 2.1 What is normalization?" title="Direct link to 2.1 What is normalization?" translate="no">​</a></h3>
+<p>Normalization is a database design technique that organizes relational data into tables to reduce unnecessary redundancy and prevent data anomalies.</p>
+<p>Consider an unnormalized e-commerce table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>order_id</th><th>user_name</th><th>user_email</th><th>product_name</th><th>quantity</th></tr></thead><tbody><tr><td>101</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td><td>Laptop</td><td>1</td></tr><tr><td>102</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td><td>Mouse</td><td>2</td></tr><tr><td>103</td><td>Amit</td><td><a href="mailto:amit@example.com" target="_blank" rel="noopener noreferrer" class="">amit@example.com</a></td><td>Keyboard</td><td>1</td></tr></tbody></table>
+<p>Notice that Rahul&#x27;s name and email are repeated.</p>
+<p>If Rahul places 100 orders, his information may be repeated 100 times.</p>
+<p>This creates problems:</p>
+<ul>
+<li class="">Unnecessary data duplication.</li>
+<li class="">Update anomalies.</li>
+<li class="">Insert anomalies.</li>
+<li class="">Delete anomalies.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-normalize-the-data">2.2 Normalize the data<a href="#22-normalize-the-data" class="hash-link" aria-label="Direct link to 2.2 Normalize the data" title="Direct link to 2.2 Normalize the data" translate="no">​</a></h3>
+<p>We can separate users, orders, and products into different tables.</p>
+<p><strong>Users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>user_id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td>1</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr><tr><td>2</td><td>Amit</td><td><a href="mailto:amit@example.com" target="_blank" rel="noopener noreferrer" class="">amit@example.com</a></td></tr></tbody></table>
+<p><strong>Orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>order_id</th><th>user_id</th><th>product_id</th><th>quantity</th></tr></thead><tbody><tr><td>101</td><td>1</td><td>10</td><td>1</td></tr><tr><td>102</td><td>1</td><td>11</td><td>2</td></tr><tr><td>103</td><td>2</td><td>12</td><td>1</td></tr></tbody></table>
+<p><strong>Products</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>product_id</th><th>product_name</th></tr></thead><tbody><tr><td>10</td><td>Laptop</td></tr><tr><td>11</td><td>Mouse</td></tr><tr><td>12</td><td>Keyboard</td></tr></tbody></table>
+<p>Now user information is stored once in the Users table.</p>
+<p>Orders reference users through <code>user_id</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-sql-implementation">2.3 SQL implementation<a href="#23-sql-implementation" class="hash-link" aria-label="Direct link to 2.3 SQL implementation" title="Direct link to 2.3 SQL implementation" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">150</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    quantity </span><span class="token keyword" style="color:#00009f">INT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>We can retrieve the combined information using JOIN:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">email</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> products p</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-what-problem-does-normalization-solve">2.4 What problem does normalization solve?<a href="#24-what-problem-does-normalization-solve" class="hash-link" aria-label="Direct link to 2.4 What problem does normalization solve?" title="Direct link to 2.4 What problem does normalization solve?" translate="no">​</a></h3>
+<p>Normalization primarily addresses data organization and integrity.</p>
+<p>For example, if Rahul changes his email address, we update one row in the users table instead of updating every order record containing his email.</p>
+<p><strong>Normalization does not distribute data across servers.</strong></p>
+<p>It is a data-modeling technique, not a horizontal-scaling technique.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-sharding">3. Sharding<a href="#3-sharding" class="hash-link" aria-label="Direct link to 3. Sharding" title="Direct link to 3. Sharding" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-what-is-sharding">3.1 What is sharding?<a href="#31-what-is-sharding" class="hash-link" aria-label="Direct link to 3.1 What is sharding?" title="Direct link to 3.1 What is sharding?" translate="no">​</a></h3>
+<p>Sharding divides a dataset into smaller subsets and distributes those subsets across multiple independent database servers.</p>
+<p>Each server stores only part of the overall dataset.</p>
+<p>Suppose an application has 30 million users.</p>
+<p>Instead of storing all users on one database server, we distribute them:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              Users Dataset</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               30 Million</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Shard Distribution</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Shard A    Shard B    Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      10 Million 10 Million 10 Million</span><br></div></code></pre></div></div>
+<p>Each shard stores a different subset of users.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-example-hash-based-sharding">3.2 Example: Hash-based sharding<a href="#32-example-hash-based-sharding" class="hash-link" aria-label="Direct link to 3.2 Example: Hash-based sharding" title="Direct link to 3.2 Example: Hash-based sharding" translate="no">​</a></h3>
+<p>Suppose we use the following routing rule:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">function</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">getShard</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">userId</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> userId </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>The mapping is:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>User ID</th><th>Calculation</th><th>Shard</th></tr></thead><tbody><tr><td>100</td><td>100 % 3 = 1</td><td>Shard B</td></tr><tr><td>101</td><td>101 % 3 = 2</td><td>Shard C</td></tr><tr><td>102</td><td>102 % 3 = 0</td><td>Shard A</td></tr><tr><td>103</td><td>103 % 3 = 1</td><td>Shard B</td></tr><tr><td>104</td><td>104 % 3 = 2</td><td>Shard C</td></tr></tbody></table>
+<p>The application routes each user request to the appropriate database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-architecture">3.3 Architecture<a href="#33-architecture" class="hash-link" aria-label="Direct link to 3.3 Architecture" title="Direct link to 3.3 Architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Node.js API</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Shard A    Shard B    Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Database   Database   Database</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-what-problem-does-sharding-solve">3.4 What problem does sharding solve?<a href="#34-what-problem-does-sharding-solve" class="hash-link" aria-label="Direct link to 3.4 What problem does sharding solve?" title="Direct link to 3.4 What problem does sharding solve?" translate="no">​</a></h3>
+<p>Sharding helps distribute:</p>
+<ul>
+<li class="">Storage requirements.</li>
+<li class="">Write workload.</li>
+<li class="">Query workload for targeted requests.</li>
+<li class="">Database resource consumption.</li>
+</ul>
+<p>It can increase the total capacity of a database system beyond what one server can provide.</p>
+<p>However, it introduces additional complexity:</p>
+<ul>
+<li class="">Shard routing.</li>
+<li class="">Cross-shard queries.</li>
+<li class="">Distributed transactions.</li>
+<li class="">Rebalancing.</li>
+<li class="">Global ID generation.</li>
+</ul>
+<p><strong>Sharding is a horizontal data-distribution technique.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-replication">4. Replication<a href="#4-replication" class="hash-link" aria-label="Direct link to 4. Replication" title="Direct link to 4. Replication" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-what-is-replication">4.1 What is replication?<a href="#41-what-is-replication" class="hash-link" aria-label="Direct link to 4.1 What is replication?" title="Direct link to 4.1 What is replication?" translate="no">​</a></h3>
+<p>Replication means maintaining copies of the same data across multiple database servers.</p>
+<p>Unlike sharding, where each server stores a different subset, replicas maintain copies of the same logical dataset.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Primary Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                Replication</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 /         \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Replica A   Replica B</span><br></div></code></pre></div></div>
+<p>All three database servers contain copies of the same database data, subject to replication lag and the configured replication behavior.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-why-do-we-need-replication">4.2 Why do we need replication?<a href="#42-why-do-we-need-replication" class="hash-link" aria-label="Direct link to 4.2 Why do we need replication?" title="Direct link to 4.2 Why do we need replication?" translate="no">​</a></h3>
+<p>Suppose an application has:</p>
+<ul>
+<li class="">10,000 read requests per second.</li>
+<li class="">1,000 write requests per second.</li>
+</ul>
+<p>If every read and write goes to one database server, the primary may become overloaded.</p>
+<p>We can distribute read traffic to replicas.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 Load Balancer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Write Requests            Read Requests</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                    +----+----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Primary                |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                    v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                 Replica A Replica B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------ Replication -------&gt; Replicas</span><br></div></code></pre></div></div>
+<p>A simplified request-routing strategy:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Request</th><th>Database</th></tr></thead><tbody><tr><td>INSERT</td><td>Primary</td></tr><tr><td>UPDATE</td><td>Primary</td></tr><tr><td>DELETE</td><td>Primary</td></tr><tr><td>SELECT</td><td>Replica, when acceptable</td></tr></tbody></table>
+<p>This can improve read capacity.</p>
+<p>However, not every SELECT should automatically go to a replica.</p>
+<p>With asynchronous replication, a replica may not yet have received the latest committed changes.</p>
+<p>For example:</p>
+<ol>
+<li class="">A user updates their profile.</li>
+<li class="">The primary commits the update.</li>
+<li class="">The application immediately reads from a replica.</li>
+<li class="">The replica has not received the update yet.</li>
+<li class="">The application returns the old profile information.</li>
+</ol>
+<p>This is replication lag.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-replication-and-high-availability">4.3 Replication and high availability<a href="#43-replication-and-high-availability" class="hash-link" aria-label="Direct link to 4.3 Replication and high availability" title="Direct link to 4.3 Replication and high availability" translate="no">​</a></h3>
+<p>Replication can also help with availability.</p>
+<p>If the primary becomes unavailable, an eligible replica may be promoted to become the new primary.</p>
+<p>However, replication alone is not a complete high-availability solution. Failover detection, promotion, routing changes, and data-loss considerations also matter.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-what-problem-does-replication-solve">4.4 What problem does replication solve?<a href="#44-what-problem-does-replication-solve" class="hash-link" aria-label="Direct link to 4.4 What problem does replication solve?" title="Direct link to 4.4 What problem does replication solve?" translate="no">​</a></h3>
+<p>Replication primarily helps with:</p>
+<ul>
+<li class="">Read scalability.</li>
+<li class="">Availability.</li>
+<li class="">Redundancy.</li>
+<li class="">Geographic distribution.</li>
+<li class="">Disaster recovery when combined with appropriate backup and recovery procedures.</li>
+</ul>
+<p><strong>Replication maintains copies of data. It does not divide the original dataset into independent subsets.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-the-core-difference-side-by-side-comparison">5. The Core Difference: Side-by-Side Comparison<a href="#5-the-core-difference-side-by-side-comparison" class="hash-link" aria-label="Direct link to 5. The Core Difference: Side-by-Side Comparison" title="Direct link to 5. The Core Difference: Side-by-Side Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Dimension</th><th>Normalization</th><th>Sharding</th><th>Replication</th></tr></thead><tbody><tr><td>Main purpose</td><td>Organize data</td><td>Distribute data</td><td>Copy data</td></tr><tr><td>Primary problem solved</td><td>Redundancy and anomalies</td><td>Capacity and horizontal scaling</td><td>Read scaling and availability</td></tr><tr><td>Data duplication</td><td>Usually reduces unnecessary duplication</td><td>Each shard stores a different subset</td><td>Intentionally creates copies</td></tr><tr><td>Multiple servers required</td><td>No</td><td>Yes</td><td>Yes, in distributed replication</td></tr><tr><td>Data distribution</td><td>No</td><td>Yes</td><td>Copies across servers</td></tr><tr><td>Main concern</td><td>Data integrity and schema design</td><td>Routing and distribution</td><td>Synchronization and consistency</td></tr><tr><td>Example</td><td>Separate users and orders tables</td><td>Users divided across three databases</td><td>Three database servers holding replicated data</td></tr></tbody></table>
+<p>The key distinction:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">NORMALIZATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Organize data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Users / Orders / Products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">SHARDING</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Divide data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Shard A / Shard B / Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">REPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Copy data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Primary / Replica A / Replica B</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-can-we-use-all-three-together">6. Can We Use All Three Together?<a href="#6-can-we-use-all-three-together" class="hash-link" aria-label="Direct link to 6. Can We Use All Three Together?" title="Direct link to 6. Can We Use All Three Together?" translate="no">​</a></h2>
+<p>Yes. In fact, a large production system may use all three.</p>
+<p>Let&#x27;s design a realistic e-commerce architecture.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-business-requirements">6.1 Business requirements<a href="#61-business-requirements" class="hash-link" aria-label="Direct link to 6.1 Business requirements" title="Direct link to 6.1 Business requirements" translate="no">​</a></h3>
+<p>Suppose our application has:</p>
+<ul>
+<li class="">50 million users.</li>
+<li class="">200 million orders.</li>
+<li class="">100,000 products.</li>
+<li class="">Millions of daily transactions.</li>
+<li class="">High read traffic.</li>
+<li class="">Requirements for data integrity and availability.</li>
+</ul>
+<p>We need to consider:</p>
+<ol>
+<li class="">How should the data be organized?</li>
+<li class="">How should it be distributed?</li>
+<li class="">How should it remain available if a database server fails?</li>
+<li class="">How should read traffic be handled?</li>
+</ol>
+<p>We can use normalization, sharding, and replication together.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-step-1-normalize-the-database-schema">6.2 Step 1: Normalize the database schema<a href="#62-step-1-normalize-the-database-schema" class="hash-link" aria-label="Direct link to 6.2 Step 1: Normalize the database schema" title="Direct link to 6.2 Step 1: Normalize the database schema" translate="no">​</a></h3>
+<p>First, organize relational data into tables.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-----</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">--------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">price</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">created_at</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order_Items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-----------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_item_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">quantity</span><br></div></code></pre></div></div>
+<p>This provides a structured relational model.</p>
+<p>Relationships are maintained using primary and foreign keys within the database where those constraints can be enforced.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-step-2-shard-the-data">6.3 Step 2: Shard the data<a href="#63-step-2-shard-the-data" class="hash-link" aria-label="Direct link to 6.3 Step 2: Shard the data" title="Direct link to 6.3 Step 2: Shard the data" translate="no">​</a></h3>
+<p>As the dataset grows, divide users and their associated order data across multiple database shards.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  E-commerce Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             +-------------+-------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v             v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Shard A       Shard B       Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v             v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Users 1-10M   Users 10-20M  Users 20-30M</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Their orders  Their orders  Their orders</span><br></div></code></pre></div></div>
+<p>A possible strategy is to shard by <code>user_id</code>.</p>
+<p>This keeps user-specific orders together when the data model and routing design consistently use the same shard key.</p>
+<p>However, product catalog data may need a separate distribution strategy because many users access the same products.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-step-3-replicate-each-shard">6.4 Step 3: Replicate each shard<a href="#64-step-3-replicate-each-shard" class="hash-link" aria-label="Direct link to 6.4 Step 3: Replicate each shard" title="Direct link to 6.4 Step 3: Replicate each shard" translate="no">​</a></h3>
+<p>Now suppose each shard has one primary and two replicas.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                        Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              +--------------+--------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              |              |              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              v              v              v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Shard A        Shard B        Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              |              |              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +---+---+      +---+---+      +---+---+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |   |   |      |   |   |      |   |   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v   v   v      v   v   v      v   v   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          P   R   R      P   R   R      P   R   R</span><br></div></code></pre></div></div>
+<p>Legend:</p>
+<ul>
+<li class="">P = Primary.</li>
+<li class="">R = Replica.</li>
+</ul>
+<p>Each shard contains only its assigned subset of the total dataset.</p>
+<p>Its replicas contain copies of that shard&#x27;s data.</p>
+<p>This gives us both:</p>
+<ul>
+<li class=""><strong>Sharding:</strong> Distributes different subsets across shard groups.</li>
+<li class=""><strong>Replication:</strong> Copies each subset across multiple servers.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="65-step-4-read-and-write-routing">6.5 Step 4: Read and write routing<a href="#65-step-4-read-and-write-routing" class="hash-link" aria-label="Direct link to 6.5 Step 4: Read and write routing" title="Direct link to 6.5 Step 4: Read and write routing" translate="no">​</a></h3>
+<p>A simplified routing strategy:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">WRITE:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Correct Shard Primary</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">READ:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Correct Shard Replica</span><br></div></code></pre></div></div>
+<p>For read-after-write operations, the application may need to read from the primary or use a consistency-aware strategy.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="66-complete-architecture">6.6 Complete architecture<a href="#66-complete-architecture" class="hash-link" aria-label="Direct link to 6.6 Complete architecture" title="Direct link to 6.6 Complete architecture" translate="no">​</a></h3>
+<p><escape>```text
+Node.js Application
+|
+v
+Shard Router
+|
++-------------+-------------+
+| | |
+v v v
+Shard A Shard B Shard C
+| | |
++---+---+ +---+---+ +---+---+
+| | | | | | | | |
+v v v v v v v v v
+P R R P R R P R R</escape></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">         Each shard contains:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         - Normalized relational tables</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         - A subset of the overall dataset</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         Each replica contains:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         - A copy of its shard&#x27;s data</span><br></div></code></pre></div></div>
+<div class="language-&lt;/escape&gt; codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-&lt;/escape&gt; codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">This is an example of combining all three concepts.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">---</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">## 7. Important Distinction: Replication Does Not Mean Sharding</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Consider a database with 30 million users.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">### Scenario A: Replication</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">```text</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              All 30 Million Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Server A     Server B     Server C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       30 Million   30 Million   30 Million</span><br></div></code></pre></div></div>
+<p>Each server contains the same logical dataset.</p>
+<p>The total logical dataset is still 30 million users.</p>
+<p>Replication improves redundancy and can distribute read traffic, but it does not split the original dataset into smaller independent subsets.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-b-sharding">Scenario B: Sharding<a href="#scenario-b-sharding" class="hash-link" aria-label="Direct link to Scenario B: Sharding" title="Direct link to Scenario B: Sharding" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              All 30 Million Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Server A     Server B     Server C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       10 Million   10 Million   10 Million</span><br></div></code></pre></div></div>
+<p>Each server stores a different subset.</p>
+<p>The complete dataset is distributed across the servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-c-sharding--replication">Scenario C: Sharding + Replication<a href="#scenario-c-sharding--replication" class="hash-link" aria-label="Direct link to Scenario C: Sharding + Replication" title="Direct link to Scenario C: Sharding + Replication" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                   30 Million Users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    Shard Distribution</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Shard A      Shard B      Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +--+--+      +--+--+      +--+--+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |     |      |     |      |     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v     v      v     v      v     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Primary Replica Primary Replica Primary Replica</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       10M     10M     10M     10M     10M     10M</span><br></div></code></pre></div></div>
+<p>Now:</p>
+<ul>
+<li class="">Sharding distributes the 30 million users across three shards.</li>
+<li class="">Replication maintains copies of each shard&#x27;s 10 million users.</li>
+</ul>
+<p>This is a common pattern in distributed database architecture.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-does-normalization-always-improve-performance">8. Does Normalization Always Improve Performance?<a href="#8-does-normalization-always-improve-performance" class="hash-link" aria-label="Direct link to 8. Does Normalization Always Improve Performance?" title="Direct link to 8. Does Normalization Always Improve Performance?" translate="no">​</a></h2>
+<p>No.</p>
+<p>Normalization improves data organization and helps maintain consistency, but it can increase the number of JOINs required by queries.</p>
+<p>Consider this normalized structure:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">products</span><br></div></code></pre></div></div>
+<p>To retrieve a complete order, the database may need several JOINs.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> order_items oi</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> products p</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>For some high-read workloads, repeated JOINs may be expensive.</p>
+<p>A system might deliberately denormalize selected data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-store-a-product-name-in-order-items">Example: Store a product name in order items<a href="#example-store-a-product-name-in-order-items" class="hash-link" aria-label="Direct link to Example: Store a product name in order items" title="Direct link to Example: Store a product name in order items" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">order_items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-----------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_item_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_name_snapshot</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">unit_price_snapshot</span><br></div></code></pre></div></div>
+<p>Why?</p>
+<p>Because historical orders should generally preserve the product name and price as they were at the time of purchase.</p>
+<p>If the product&#x27;s current name or price changes, the historical order should not change.</p>
+<p>This is a form of intentional duplication with a business purpose.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="normalization-vs-denormalization">Normalization vs denormalization<a href="#normalization-vs-denormalization" class="hash-link" aria-label="Direct link to Normalization vs denormalization" title="Direct link to Normalization vs denormalization" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Normalization</th><th>Denormalization</th></tr></thead><tbody><tr><td>Reduces unnecessary duplication</td><td>Intentionally duplicates selected data</td></tr><tr><td>Improves consistency through structured relationships</td><td>Can simplify reads</td></tr><tr><td>Often requires JOINs</td><td>Can reduce JOIN requirements</td></tr><tr><td>Useful for transactional data modeling</td><td>Useful for selected read-heavy access patterns</td></tr><tr><td>Reduces update anomalies</td><td>Requires careful synchronization or snapshot semantics</td></tr></tbody></table>
+<p><strong>Important:</strong> Denormalization is not automatically bad database design. It is a deliberate trade-off when the benefits justify the added consistency responsibilities.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-does-sharding-automatically-improve-query-performance">9. Does Sharding Automatically Improve Query Performance?<a href="#9-does-sharding-automatically-improve-query-performance" class="hash-link" aria-label="Direct link to 9. Does Sharding Automatically Improve Query Performance?" title="Direct link to 9. Does Sharding Automatically Improve Query Performance?" translate="no">​</a></h2>
+<p>No.</p>
+<p>Sharding can increase total system capacity, but an individual query may become slower if it needs to contact multiple shards.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="targeted-query">Targeted query<a href="#targeted-query" class="hash-link" aria-label="Direct link to Targeted query" title="Direct link to Targeted query" translate="no">​</a></h3>
+<p>Suppose we shard by <code>user_id</code>.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1050</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application can identify the responsible shard.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Shard B</span><br></div></code></pre></div></div>
+<p>Only one shard needs to be contacted.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scatter-gather-query">Scatter-gather query<a href="#scatter-gather-query" class="hash-link" aria-label="Direct link to Scatter-gather query" title="Direct link to Scatter-gather query" translate="no">​</a></h3>
+<p>Now consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">COUNT</span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">status</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;pending&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If <code>status</code> is not part of the shard key or another routing mechanism, the query may need to contact all shards.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 Query Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Shard A     Shard B     Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               Merge Results</span><br></div></code></pre></div></div>
+<p>This is called a scatter-gather operation.</p>
+<p>The application or distributed query engine combines results from multiple shards.</p>
+<p>Therefore:</p>
+<ul>
+<li class="">Sharding can improve overall throughput.</li>
+<li class="">Targeted queries can benefit significantly.</li>
+<li class="">Scatter-gather queries may introduce network and coordination costs.</li>
+<li class="">Sharding does not automatically make every query faster.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-does-replication-automatically-improve-availability">10. Does Replication Automatically Improve Availability?<a href="#10-does-replication-automatically-improve-availability" class="hash-link" aria-label="Direct link to 10. Does Replication Automatically Improve Availability?" title="Direct link to 10. Does Replication Automatically Improve Availability?" translate="no">​</a></h2>
+<p>No.</p>
+<p>Replication provides additional copies, but availability depends on the complete system.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Primary Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   Replicas</span><br></div></code></pre></div></div>
+<p>If the primary fails, the system needs a mechanism to:</p>
+<ol>
+<li class="">Detect the failure.</li>
+<li class="">Select an eligible replica.</li>
+<li class="">Promote the replica.</li>
+<li class="">Redirect application traffic.</li>
+<li class="">Prevent conflicting primaries.</li>
+<li class="">Recover or reconcile any missing data, if necessary.</li>
+</ol>
+<p>Other risks include:</p>
+<ul>
+<li class="">Replication lag.</li>
+<li class="">Network partitions.</li>
+<li class="">Incorrect failover configuration.</li>
+<li class="">Accidental deletion replicated to all replicas.</li>
+<li class="">Replica corruption.</li>
+</ul>
+<p>Also, <strong>replication is not a backup</strong>.</p>
+<p>If a user accidentally deletes a record and that deletion is replicated, all replicas may also lose the record.</p>
+<p>Backups and point-in-time recovery protect against different failure scenarios.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-comparing-the-three-through-real-world-scenarios">11. Comparing the Three Through Real-World Scenarios<a href="#11-comparing-the-three-through-real-world-scenarios" class="hash-link" aria-label="Direct link to 11. Comparing the Three Through Real-World Scenarios" title="Direct link to 11. Comparing the Three Through Real-World Scenarios" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Normalization</th><th>Sharding</th><th>Replication</th></tr></thead><tbody><tr><td>Reduce repeated user information</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td>Divide 100 million users across servers</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>Maintain copies of database data</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Reduce update anomalies</td><td>Yes</td><td>No</td><td>No</td></tr><tr><td>Distribute read traffic</td><td>No, not by itself</td><td>Can distribute queries</td><td>Yes, with suitable read routing</td></tr><tr><td>Increase total storage capacity across database nodes</td><td>No</td><td>Yes</td><td>Generally no, because replicas duplicate data</td></tr><tr><td>Help with database failover</td><td>No</td><td>Not by itself</td><td>Yes, with failover infrastructure</td></tr><tr><td>Reduce JOIN requirements</td><td>Not necessarily</td><td>Not necessarily</td><td>No</td></tr><tr><td>Maintain relational data integrity</td><td>Yes, with appropriate constraints and design</td><td>Within the scope of enforceable shard-local constraints</td><td>Copies existing data and constraints</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-common-misconceptions">12. Common Misconceptions<a href="#12-common-misconceptions" class="hash-link" aria-label="Direct link to 12. Common Misconceptions" title="Direct link to 12. Common Misconceptions" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Misconception</th><th>Correct understanding</th></tr></thead><tbody><tr><td>Normalization is a scaling technique</td><td>It is primarily a relational data-modeling technique</td></tr><tr><td>Sharding creates copies of data</td><td>Sharding distributes different subsets</td></tr><tr><td>Replication divides data into smaller subsets</td><td>Replication creates copies of the same logical data</td></tr><tr><td>Replication increases total logical storage capacity</td><td>It increases physical storage consumption because data is copied</td></tr><tr><td>Sharding automatically improves every query</td><td>Cross-shard queries may become more expensive</td></tr><tr><td>Normalization always improves read performance</td><td>It can require additional JOINs</td></tr><tr><td>Denormalization is always bad</td><td>It can be useful when duplication is intentional and managed</td></tr><tr><td>Replication is a backup</td><td>Replication alone does not protect against all data-loss scenarios</td></tr><tr><td>We must choose only one of the three</td><td>They solve different problems and can be combined</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-interview-questions-and-answers">13. Interview Questions and Answers<a href="#13-interview-questions-and-answers" class="hash-link" aria-label="Direct link to 13. Interview Questions and Answers" title="Direct link to 13. Interview Questions and Answers" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-the-difference-between-normalization-and-sharding">Q1. What is the difference between normalization and sharding?<a href="#q1-what-is-the-difference-between-normalization-and-sharding" class="hash-link" aria-label="Direct link to Q1. What is the difference between normalization and sharding?" title="Direct link to Q1. What is the difference between normalization and sharding?" translate="no">​</a></h3>
+<p>Normalization organizes data into related tables to reduce unnecessary redundancy. Sharding distributes different subsets of data across multiple database servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-the-difference-between-sharding-and-replication">Q2. What is the difference between sharding and replication?<a href="#q2-what-is-the-difference-between-sharding-and-replication" class="hash-link" aria-label="Direct link to Q2. What is the difference between sharding and replication?" title="Direct link to Q2. What is the difference between sharding and replication?" translate="no">​</a></h3>
+<p>Sharding distributes different subsets of data across servers. Replication maintains copies of the same data across servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-can-we-use-sharding-and-replication-together">Q3. Can we use sharding and replication together?<a href="#q3-can-we-use-sharding-and-replication-together" class="hash-link" aria-label="Direct link to Q3. Can we use sharding and replication together?" title="Direct link to Q3. Can we use sharding and replication together?" translate="no">​</a></h3>
+<p>Yes. Each shard can have its own replicas. This distributes the overall dataset and maintains additional copies of each subset.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-can-we-use-normalization-with-sharding">Q4. Can we use normalization with sharding?<a href="#q4-can-we-use-normalization-with-sharding" class="hash-link" aria-label="Direct link to Q4. Can we use normalization with sharding?" title="Direct link to Q4. Can we use normalization with sharding?" translate="no">​</a></h3>
+<p>Yes. Each shard can contain normalized relational tables. The application distributes records across shards according to a shard key.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-does-replication-improve-write-performance">Q5. Does replication improve write performance?<a href="#q5-does-replication-improve-write-performance" class="hash-link" aria-label="Direct link to Q5. Does replication improve write performance?" title="Direct link to Q5. Does replication improve write performance?" translate="no">​</a></h3>
+<p>Not necessarily. In primary-based replication architectures, writes generally go through the primary. Synchronous replication may add write latency because replicas must acknowledge changes.</p>
+<p>Some distributed databases distribute writes differently, but replication itself should not be assumed to increase write capacity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-does-sharding-improve-read-performance">Q6. Does sharding improve read performance?<a href="#q6-does-sharding-improve-read-performance" class="hash-link" aria-label="Direct link to Q6. Does sharding improve read performance?" title="Direct link to Q6. Does sharding improve read performance?" translate="no">​</a></h3>
+<p>It can. If queries are targeted to individual shards, read workload can be distributed. Scatter-gather queries may become more expensive.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-why-do-we-need-normalization-if-we-can-use-joins">Q7. Why do we need normalization if we can use JOINs?<a href="#q7-why-do-we-need-normalization-if-we-can-use-joins" class="hash-link" aria-label="Direct link to Q7. Why do we need normalization if we can use JOINs?" title="Direct link to Q7. Why do we need normalization if we can use JOINs?" translate="no">​</a></h3>
+<p>JOINs allow related data to be stored separately while still being retrieved together. This reduces unnecessary duplication and update anomalies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-denormalization">Q8. What is denormalization?<a href="#q8-what-is-denormalization" class="hash-link" aria-label="Direct link to Q8. What is denormalization?" title="Direct link to Q8. What is denormalization?" translate="no">​</a></h3>
+<p>Denormalization intentionally duplicates selected data to improve query performance or simplify read access. It introduces additional data consistency responsibilities.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-is-replication-a-backup">Q9. Is replication a backup?<a href="#q9-is-replication-a-backup" class="hash-link" aria-label="Direct link to Q9. Is replication a backup?" title="Direct link to Q9. Is replication a backup?" translate="no">​</a></h3>
+<p>No. Replication copies changes, including accidental updates and deletions. Backups provide recovery from scenarios that replication cannot protect against.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-happens-when-one-shard-fails">Q10. What happens when one shard fails?<a href="#q10-what-happens-when-one-shard-fails" class="hash-link" aria-label="Direct link to Q10. What happens when one shard fails?" title="Direct link to Q10. What happens when one shard fails?" translate="no">​</a></h3>
+<p>The affected data may become unavailable unless the shard has suitable replicas and a configured failover mechanism.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-can-we-replicate-each-shard-independently">Q11. Can we replicate each shard independently?<a href="#q11-can-we-replicate-each-shard-independently" class="hash-link" aria-label="Direct link to Q11. Can we replicate each shard independently?" title="Direct link to Q11. Can we replicate each shard independently?" translate="no">​</a></h3>
+<p>Yes. A common distributed architecture maintains a primary and one or more replicas for every shard.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-the-difference-between-horizontal-scaling-and-replication">Q12. What is the difference between horizontal scaling and replication?<a href="#q12-what-is-the-difference-between-horizontal-scaling-and-replication" class="hash-link" aria-label="Direct link to Q12. What is the difference between horizontal scaling and replication?" title="Direct link to Q12. What is the difference between horizontal scaling and replication?" translate="no">​</a></h3>
+<p>Horizontal scaling adds machines to distribute workload or capacity. Replication copies data across machines. Replication can support horizontal read scaling, but it is not the same as distributing different data subsets.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-which-is-more-important-normalization-or-denormalization">Q13. Which is more important: normalization or denormalization?<a href="#q13-which-is-more-important-normalization-or-denormalization" class="hash-link" aria-label="Direct link to Q13. Which is more important: normalization or denormalization?" title="Direct link to Q13. Which is more important: normalization or denormalization?" translate="no">​</a></h3>
+<p>Neither is universally better. Start with a data model that preserves correctness and supports the required queries. Introduce denormalization when measured workload requirements justify it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-can-replication-cause-stale-reads">Q14. Can replication cause stale reads?<a href="#q14-can-replication-cause-stale-reads" class="hash-link" aria-label="Direct link to Q14. Can replication cause stale reads?" title="Direct link to Q14. Can replication cause stale reads?" translate="no">​</a></h3>
+<p>Yes. Asynchronous replication can cause replication lag, so a replica may return older data than the primary.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-what-are-the-three-concepts-in-one-sentence">Q15. What are the three concepts in one sentence?<a href="#q15-what-are-the-three-concepts-in-one-sentence" class="hash-link" aria-label="Direct link to Q15. What are the three concepts in one sentence?" title="Direct link to Q15. What are the three concepts in one sentence?" translate="no">​</a></h3>
+<p>Normalization organizes data, sharding distributes data, and replication copies data.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-practical-exercises">14. Practical Exercises<a href="#14-practical-exercises" class="hash-link" aria-label="Direct link to 14. Practical Exercises" title="Direct link to 14. Practical Exercises" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-1-identify-the-concept">Exercise 1: Identify the concept<a href="#exercise-1-identify-the-concept" class="hash-link" aria-label="Direct link to Exercise 1: Identify the concept" title="Direct link to Exercise 1: Identify the concept" translate="no">​</a></h3>
+<p>Identify whether each situation uses normalization, sharding, replication, or a combination.</p>
+<ol>
+<li class="">Moving user information into a separate Users table.</li>
+<li class="">Dividing 30 million users across three PostgreSQL databases.</li>
+<li class="">Maintaining two standby copies of a PostgreSQL primary.</li>
+<li class="">Keeping each shard&#x27;s data on three database servers.</li>
+<li class="">Storing a historical product name in an order item.</li>
+<li class="">Dividing a large orders table into monthly partitions on one PostgreSQL instance.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-2-design-an-architecture">Exercise 2: Design an architecture<a href="#exercise-2-design-an-architecture" class="hash-link" aria-label="Direct link to Exercise 2: Design an architecture" title="Direct link to Exercise 2: Design an architecture" translate="no">​</a></h3>
+<p>You are building an application with:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Users: 50 Million</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Orders: 200 Million</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Products: 100,000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Payments: 80 Million</span><br></div></code></pre></div></div>
+<p>Design a database architecture.</p>
+<p>Answer these questions:</p>
+<ol>
+<li class="">Which tables should be normalized?</li>
+<li class="">Which data could be intentionally denormalized?</li>
+<li class="">Would you shard by <code>user_id</code>, <code>order_id</code>, or another key?</li>
+<li class="">How would you keep a user&#x27;s orders accessible?</li>
+<li class="">Would each shard need replicas?</li>
+<li class="">How would you route reads and writes?</li>
+<li class="">How would you handle a user update followed immediately by a read?</li>
+<li class="">What would happen if one shard&#x27;s primary failed?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-3-analyze-this-architecture">Exercise 3: Analyze this architecture<a href="#exercise-3-analyze-this-architecture" class="hash-link" aria-label="Direct link to Exercise 3: Analyze this architecture" title="Direct link to Exercise 3: Analyze this architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  Shard Router</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Shard A      Shard B      Shard C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Replica      Replica      Replica</span><br></div></code></pre></div></div>
+<p>Explain:</p>
+<ol>
+<li class="">Where is sharding happening?</li>
+<li class="">Where is replication happening?</li>
+<li class="">What is the responsibility of the shard router?</li>
+<li class="">What happens if Shard B&#x27;s primary fails?</li>
+<li class="">Can a query access data from multiple shards?</li>
+<li class="">Does this architecture guarantee that every read is up to date?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-4-choose-the-correct-technique">Exercise 4: Choose the correct technique<a href="#exercise-4-choose-the-correct-technique" class="hash-link" aria-label="Direct link to Exercise 4: Choose the correct technique" title="Direct link to Exercise 4: Choose the correct technique" translate="no">​</a></h3>
+<p>For each requirement, choose the most relevant technique.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Your answer</th></tr></thead><tbody><tr><td>Reduce duplicate customer information</td><td>?</td></tr><tr><td>Store different customers on different servers</td><td>?</td></tr><tr><td>Maintain another copy of the database</td><td>?</td></tr><tr><td>Reduce read load on the primary</td><td>?</td></tr><tr><td>Keep historical order prices unchanged</td><td>?</td></tr><tr><td>Increase total storage capacity across database nodes</td><td>?</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-chapter-summary">15. Chapter Summary<a href="#15-chapter-summary" class="hash-link" aria-label="Direct link to 15. Chapter Summary" title="Direct link to 15. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Remember</th></tr></thead><tbody><tr><td>Normalization</td><td>Organizes relational data and reduces unnecessary duplication</td></tr><tr><td>Denormalization</td><td>Intentionally duplicates selected data for a workload-specific reason</td></tr><tr><td>Sharding</td><td>Distributes different subsets of data across database servers</td></tr><tr><td>Replication</td><td>Maintains copies of data across database servers</td></tr><tr><td>Shard key</td><td>Determines how records are distributed</td></tr><tr><td>Replica</td><td>A copy of data maintained by a replication mechanism</td></tr><tr><td>Scatter-gather</td><td>Queries multiple shards and combines their results</td></tr><tr><td>Replication lag</td><td>Delay between a change on the source and its availability on a replica</td></tr><tr><td>Failover</td><td>Switching service to another eligible database node after a failure</td></tr><tr><td>Backup</td><td>A separate recovery mechanism for protecting against data loss</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-mental-model">Final mental model<a href="#final-mental-model" class="hash-link" aria-label="Direct link to Final mental model" title="Direct link to Final mental model" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  DATABASE ARCHITECTURE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------------+----------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                |                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                v                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     NORMALIZATION       SHARDING       REPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                |                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                v                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Organize           Divide            Copy</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Data               Data              Data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                |                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                v                v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Data Integrity    Horizontal Scale   Availability /</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                        Read Scalability</span><br></div></code></pre></div></div>
+<p><strong>The engineering takeaway:</strong></p>
+<p>Do not treat normalization, sharding, and replication as competing database strategies.</p>
+<p>They address different architectural problems:</p>
+<ul>
+<li class="">Normalize to organize relational data correctly.</li>
+<li class="">Shard when one database server cannot efficiently handle the required data volume or workload.</li>
+<li class="">Replicate when you need additional copies for read scaling, availability, or recovery objectives.</li>
+</ul>
+<p>A well-designed distributed database architecture may use all three.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/10_Horizontal_Scaling_in_NoSQL/part_05.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Horizontal_Scaling_in_NoSQL/part_04"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">SQL Sharding vs NoSQL Partitioning</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/category/types_of_nosql_db"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Types_of_NoSQL_DB</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a></li><li><a href="#2-normalization" class="table-of-contents__link toc-highlight">2. Normalization</a><ul><li><a href="#21-what-is-normalization" class="table-of-contents__link toc-highlight">2.1 What is normalization?</a></li><li><a href="#22-normalize-the-data" class="table-of-contents__link toc-highlight">2.2 Normalize the data</a></li><li><a href="#23-sql-implementation" class="table-of-contents__link toc-highlight">2.3 SQL implementation</a></li><li><a href="#24-what-problem-does-normalization-solve" class="table-of-contents__link toc-highlight">2.4 What problem does normalization solve?</a></li></ul></li><li><a href="#3-sharding" class="table-of-contents__link toc-highlight">3. Sharding</a><ul><li><a href="#31-what-is-sharding" class="table-of-contents__link toc-highlight">3.1 What is sharding?</a></li><li><a href="#32-example-hash-based-sharding" class="table-of-contents__link toc-highlight">3.2 Example: Hash-based sharding</a></li><li><a href="#33-architecture" class="table-of-contents__link toc-highlight">3.3 Architecture</a></li><li><a href="#34-what-problem-does-sharding-solve" class="table-of-contents__link toc-highlight">3.4 What problem does sharding solve?</a></li></ul></li><li><a href="#4-replication" class="table-of-contents__link toc-highlight">4. Replication</a><ul><li><a href="#41-what-is-replication" class="table-of-contents__link toc-highlight">4.1 What is replication?</a></li><li><a href="#42-why-do-we-need-replication" class="table-of-contents__link toc-highlight">4.2 Why do we need replication?</a></li><li><a href="#43-replication-and-high-availability" class="table-of-contents__link toc-highlight">4.3 Replication and high availability</a></li><li><a href="#44-what-problem-does-replication-solve" class="table-of-contents__link toc-highlight">4.4 What problem does replication solve?</a></li></ul></li><li><a href="#5-the-core-difference-side-by-side-comparison" class="table-of-contents__link toc-highlight">5. The Core Difference: Side-by-Side Comparison</a></li><li><a href="#6-can-we-use-all-three-together" class="table-of-contents__link toc-highlight">6. Can We Use All Three Together?</a><ul><li><a href="#61-business-requirements" class="table-of-contents__link toc-highlight">6.1 Business requirements</a></li><li><a href="#62-step-1-normalize-the-database-schema" class="table-of-contents__link toc-highlight">6.2 Step 1: Normalize the database schema</a></li><li><a href="#63-step-2-shard-the-data" class="table-of-contents__link toc-highlight">6.3 Step 2: Shard the data</a></li><li><a href="#64-step-3-replicate-each-shard" class="table-of-contents__link toc-highlight">6.4 Step 3: Replicate each shard</a></li><li><a href="#65-step-4-read-and-write-routing" class="table-of-contents__link toc-highlight">6.5 Step 4: Read and write routing</a></li><li><a href="#66-complete-architecture" class="table-of-contents__link toc-highlight">6.6 Complete architecture</a></li><li><a href="#scenario-b-sharding" class="table-of-contents__link toc-highlight">Scenario B: Sharding</a></li><li><a href="#scenario-c-sharding--replication" class="table-of-contents__link toc-highlight">Scenario C: Sharding + Replication</a></li></ul></li><li><a href="#8-does-normalization-always-improve-performance" class="table-of-contents__link toc-highlight">8. Does Normalization Always Improve Performance?</a><ul><li><a href="#example-store-a-product-name-in-order-items" class="table-of-contents__link toc-highlight">Example: Store a product name in order items</a></li><li><a href="#normalization-vs-denormalization" class="table-of-contents__link toc-highlight">Normalization vs denormalization</a></li></ul></li><li><a href="#9-does-sharding-automatically-improve-query-performance" class="table-of-contents__link toc-highlight">9. Does Sharding Automatically Improve Query Performance?</a><ul><li><a href="#targeted-query" class="table-of-contents__link toc-highlight">Targeted query</a></li><li><a href="#scatter-gather-query" class="table-of-contents__link toc-highlight">Scatter-gather query</a></li></ul></li><li><a href="#10-does-replication-automatically-improve-availability" class="table-of-contents__link toc-highlight">10. Does Replication Automatically Improve Availability?</a></li><li><a href="#11-comparing-the-three-through-real-world-scenarios" class="table-of-contents__link toc-highlight">11. Comparing the Three Through Real-World Scenarios</a></li><li><a href="#12-common-misconceptions" class="table-of-contents__link toc-highlight">12. Common Misconceptions</a></li><li><a href="#13-interview-questions-and-answers" class="table-of-contents__link toc-highlight">13. Interview Questions and Answers</a><ul><li><a href="#q1-what-is-the-difference-between-normalization-and-sharding" class="table-of-contents__link toc-highlight">Q1. What is the difference between normalization and sharding?</a></li><li><a href="#q2-what-is-the-difference-between-sharding-and-replication" class="table-of-contents__link toc-highlight">Q2. What is the difference between sharding and replication?</a></li><li><a href="#q3-can-we-use-sharding-and-replication-together" class="table-of-contents__link toc-highlight">Q3. Can we use sharding and replication together?</a></li><li><a href="#q4-can-we-use-normalization-with-sharding" class="table-of-contents__link toc-highlight">Q4. Can we use normalization with sharding?</a></li><li><a href="#q5-does-replication-improve-write-performance" class="table-of-contents__link toc-highlight">Q5. Does replication improve write performance?</a></li><li><a href="#q6-does-sharding-improve-read-performance" class="table-of-contents__link toc-highlight">Q6. Does sharding improve read performance?</a></li><li><a href="#q7-why-do-we-need-normalization-if-we-can-use-joins" class="table-of-contents__link toc-highlight">Q7. Why do we need normalization if we can use JOINs?</a></li><li><a href="#q8-what-is-denormalization" class="table-of-contents__link toc-highlight">Q8. What is denormalization?</a></li><li><a href="#q9-is-replication-a-backup" class="table-of-contents__link toc-highlight">Q9. Is replication a backup?</a></li><li><a href="#q10-what-happens-when-one-shard-fails" class="table-of-contents__link toc-highlight">Q10. What happens when one shard fails?</a></li><li><a href="#q11-can-we-replicate-each-shard-independently" class="table-of-contents__link toc-highlight">Q11. Can we replicate each shard independently?</a></li><li><a href="#q12-what-is-the-difference-between-horizontal-scaling-and-replication" class="table-of-contents__link toc-highlight">Q12. What is the difference between horizontal scaling and replication?</a></li><li><a href="#q13-which-is-more-important-normalization-or-denormalization" class="table-of-contents__link toc-highlight">Q13. Which is more important: normalization or denormalization?</a></li><li><a href="#q14-can-replication-cause-stale-reads" class="table-of-contents__link toc-highlight">Q14. Can replication cause stale reads?</a></li><li><a href="#q15-what-are-the-three-concepts-in-one-sentence" class="table-of-contents__link toc-highlight">Q15. What are the three concepts in one sentence?</a></li></ul></li><li><a href="#14-practical-exercises" class="table-of-contents__link toc-highlight">14. Practical Exercises</a><ul><li><a href="#exercise-1-identify-the-concept" class="table-of-contents__link toc-highlight">Exercise 1: Identify the concept</a></li><li><a href="#exercise-2-design-an-architecture" class="table-of-contents__link toc-highlight">Exercise 2: Design an architecture</a></li><li><a href="#exercise-3-analyze-this-architecture" class="table-of-contents__link toc-highlight">Exercise 3: Analyze this architecture</a></li><li><a href="#exercise-4-choose-the-correct-technique" class="table-of-contents__link toc-highlight">Exercise 4: Choose the correct technique</a></li></ul></li><li><a href="#15-chapter-summary" class="table-of-contents__link toc-highlight">15. Chapter Summary</a><ul><li><a href="#final-mental-model" class="table-of-contents__link toc-highlight">Final mental model</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Database_Fundamentals/part_02" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Introduction to DBMS | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Introduction to DBMS | Knowledge Base"><meta data-rh="true" name="description" content="1. What Is a DBMS?"><meta data-rh="true" property="og:description" content="1. What Is a DBMS?"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Database_Fundamentals","item":"https://codingsapienss.github.io/notes/docs/category/database_fundamentals"},{"@type":"ListItem","position":5,"name":"Introduction to DBMS","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Collapse sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_01"><span title="File Storage vs Database" class="linkLabel_WmDU">File Storage vs Database</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_02"><span title="Introduction to DBMS" class="linkLabel_WmDU">Introduction to DBMS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"><span title="Relational Database Fundamentals" class="linkLabel_WmDU">Relational Database Fundamentals</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/database_fundamentals"><span>Database_Fundamentals</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Introduction to DBMS</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Introduction to DBMS</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-what-is-a-dbms">1. What Is a DBMS?<a href="#1-what-is-a-dbms" class="hash-link" aria-label="Direct link to 1. What Is a DBMS?" title="Direct link to 1. What Is a DBMS?" translate="no">​</a></h2>
+<p>DBMS stands for <strong>Database Management System</strong>.</p>
+<p>A DBMS is software that allows applications and users to create, store, retrieve, update, delete, and manage data in a controlled and organized way.</p>
+<p>It acts as an intermediary between the application and the stored data.</p>
+<p>Instead of making every application responsible for directly managing files, searching records, maintaining indexes, handling concurrent access, and recovering from failures, a DBMS provides these capabilities as an integrated system.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example">Example<a href="#example" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example" translate="no">​</a></h3>
+<p>Consider an e-commerce application.</p>
+<p>It needs to manage:</p>
+<ul>
+<li class="">Users</li>
+<li class="">Products</li>
+<li class="">Orders</li>
+<li class="">Payments</li>
+<li class="">Inventory</li>
+<li class="">Reviews</li>
+</ul>
+<p>Without a DBMS, the application would need to implement much of the data-management functionality itself.</p>
+<p>With a DBMS, the application sends requests to the database system.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> email </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;prashant@example.com&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The DBMS processes this request and returns the matching data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="basic-architecture">Basic architecture<a href="#basic-architecture" class="hash-link" aria-label="Direct link to Basic architecture" title="Direct link to Basic architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  | Query / Request</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |       DBMS       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Query Processing |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Index Management |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Transaction Mgmt |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Storage Mgmt     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |    Database      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Tables / Records |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          | Indexes / Data   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Disk / SSD</span><br></div></code></pre></div></div>
+<p>The application generally does not need to know the physical details of how the database stores each record.</p>
+<p>The DBMS handles those details.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-what-is-a-database">2. What Is a Database?<a href="#2-what-is-a-database" class="hash-link" aria-label="Direct link to 2. What Is a Database?" title="Direct link to 2. What Is a Database?" translate="no">​</a></h2>
+<p>A <strong>database</strong> is an organized collection of related data that can be stored, accessed, and managed.</p>
+<p>For example, an e-commerce database might contain:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ecommerce_db</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- payments</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- reviews</span><br></div></code></pre></div></div>
+<p>Each of these represents a logical collection of information.</p>
+<p>In a relational database such as PostgreSQL, data is generally organized into tables.</p>
+<p>In a document database such as MongoDB, data is organized into collections containing documents.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="database-vs-dbms">Database vs DBMS<a href="#database-vs-dbms" class="hash-link" aria-label="Direct link to Database vs DBMS" title="Direct link to Database vs DBMS" translate="no">​</a></h3>
+<p>These terms are related, but they are not interchangeable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Database</th><th>DBMS</th></tr></thead><tbody><tr><td>Collection of organized data</td><td>Software that manages databases</td></tr><tr><td>Contains application information</td><td>Provides tools and mechanisms to manage that information</td></tr><tr><td>Example: <code>ecommerce_db</code></td><td>Example: PostgreSQL</td></tr><tr><td>Represents the stored data</td><td>Manages storage, queries, indexes, transactions, etc.</td></tr></tbody></table>
+<p>Think of it this way:</p>
+<ul>
+<li class="">Database = the data being managed.</li>
+<li class="">DBMS = the software managing that data.</li>
+</ul>
+<p>A database needs some system to create, access, and manage it. That system is the DBMS.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-why-do-we-need-a-dbms">3. Why Do We Need a DBMS?<a href="#3-why-do-we-need-a-dbms" class="hash-link" aria-label="Direct link to 3. Why Do We Need a DBMS?" title="Direct link to 3. Why Do We Need a DBMS?" translate="no">​</a></h2>
+<p>We already discussed in Part 1A that applications can store data directly in files.</p>
+<p>The problem is that building a reliable data-management system becomes increasingly difficult as the application grows.</p>
+<p>A DBMS provides several important capabilities.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-data-organization">3.1 Data organization<a href="#31-data-organization" class="hash-link" aria-label="Direct link to 3.1 Data organization" title="Direct link to 3.1 Data organization" translate="no">​</a></h3>
+<p>A DBMS provides a structured way to organize information.</p>
+<p>For example, a relational database can organize application data into tables:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td><td style="text-align:right">1800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">1</td><td style="text-align:right">4500</td></tr></tbody></table>
+<p>The DBMS manages these tables and provides mechanisms to retrieve and modify their data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-efficient-data-retrieval">3.2 Efficient data retrieval<a href="#32-efficient-data-retrieval" class="hash-link" aria-label="Direct link to 3.2 Efficient data retrieval" title="Direct link to 3.2 Efficient data retrieval" translate="no">​</a></h3>
+<p>A DBMS provides query languages and execution mechanisms.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database can use indexes, query optimization, and other mechanisms to retrieve the required records efficiently.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-data-integrity">3.3 Data integrity<a href="#33-data-integrity" class="hash-link" aria-label="Direct link to 3.3 Data integrity" title="Direct link to 3.3 Data integrity" translate="no">​</a></h3>
+<p>Data integrity means maintaining the correctness and validity of stored data.</p>
+<p>Consider a user registration system.</p>
+<p>We may want to ensure:</p>
+<ul>
+<li class="">Every user has a unique ID.</li>
+<li class="">Email addresses cannot be duplicated.</li>
+<li class="">Age must be a valid integer.</li>
+<li class="">Required fields cannot be empty.</li>
+</ul>
+<p>A relational database can enforce these rules through constraints.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">SERIAL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    age </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">CHECK</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">age </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">18</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<ul>
+<li class=""><code>PRIMARY KEY</code> ensures unique, non-null identification.</li>
+<li class=""><code>UNIQUE</code> prevents duplicate email values.</li>
+<li class=""><code>NOT NULL</code> prevents missing required values.</li>
+<li class=""><code>CHECK</code> enforces a condition on the age column.</li>
+</ul>
+<p>The database enforces these rules even if multiple applications connect to it.</p>
+<p><strong>Important:</strong> Database constraints are not a replacement for all application-level validation. Both layers may be needed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-concurrency-control">3.4 Concurrency control<a href="#34-concurrency-control" class="hash-link" aria-label="Direct link to 3.4 Concurrency control" title="Direct link to 3.4 Concurrency control" translate="no">​</a></h3>
+<p>A DBMS allows multiple users and application processes to access data simultaneously.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User A ----\</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User B -------&gt; Backend API ---&gt; Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            /</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User C ----/</span><br></div></code></pre></div></div>
+<p>All three users might try to access or modify the same product.</p>
+<p>The DBMS provides mechanisms such as locking and MVCC to coordinate concurrent operations.</p>
+<p>This helps prevent conflicting updates and inconsistent data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-security-and-access-control">3.5 Security and access control<a href="#35-security-and-access-control" class="hash-link" aria-label="Direct link to 3.5 Security and access control" title="Direct link to 3.5 Security and access control" translate="no">​</a></h3>
+<p>A DBMS provides mechanisms to control who can access or modify data.</p>
+<p>For example:</p>
+<ul>
+<li class="">An administrator may have permission to create and delete tables.</li>
+<li class="">A backend application account may only have permission to read and update certain tables.</li>
+<li class="">An analyst may have read-only access.</li>
+<li class="">A user may only access information exposed by the application.</li>
+</ul>
+<p>In PostgreSQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> ROLE app_user LOGIN PASSWORD </span><span class="token string" style="color:#e3116c">&#x27;example_password&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GRANT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INSERT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">TO</span><span class="token plain"> app_user</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This grants the role selected permissions on the <code>users</code> table.</p>
+<p>The exact security model differs between database systems.</p>
+<p><strong>Important:</strong> Database-level permissions and application-level authorization solve related but different problems. A database role does not automatically know which end user is making an API request.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="36-backup-and-recovery">3.6 Backup and recovery<a href="#36-backup-and-recovery" class="hash-link" aria-label="Direct link to 3.6 Backup and recovery" title="Direct link to 3.6 Backup and recovery" translate="no">​</a></h3>
+<p>A DBMS provides mechanisms to recover data after failures.</p>
+<p>Possible failures include:</p>
+<ul>
+<li class="">Application crashes.</li>
+<li class="">Database process crashes.</li>
+<li class="">Operating system failures.</li>
+<li class="">Hardware failures.</li>
+<li class="">Unexpected shutdowns.</li>
+</ul>
+<p>Databases use mechanisms such as logs, checkpoints, backups, and recovery procedures.</p>
+<p>These mechanisms help restore data to a consistent state.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="37-data-independence">3.7 Data independence<a href="#37-data-independence" class="hash-link" aria-label="Direct link to 3.7 Data independence" title="Direct link to 3.7 Data independence" translate="no">​</a></h3>
+<p>Applications should not need to understand every physical detail of how data is stored.</p>
+<p>A DBMS provides an abstraction layer between applications and physical storage.</p>
+<p>For example, a PostgreSQL application can query a table without knowing which disk blocks contain its records.</p>
+<p>This separation is called <strong>data independence</strong>.</p>
+<p>We will explore it in detail later in this chapter.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-main-responsibilities-of-a-dbms">4. Main Responsibilities of a DBMS<a href="#4-main-responsibilities-of-a-dbms" class="hash-link" aria-label="Direct link to 4. Main Responsibilities of a DBMS" title="Direct link to 4. Main Responsibilities of a DBMS" translate="no">​</a></h2>
+<p>A DBMS is not just a query execution tool. It contains multiple logical subsystems that work together.</p>
+<p>The exact internal architecture differs between database products, but the following responsibilities are common.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-query-processor">4.1 Query processor<a href="#41-query-processor" class="hash-link" aria-label="Direct link to 4.1 Query processor" title="Direct link to 4.1 Query processor" translate="no">​</a></h3>
+<p>The query processor handles database queries.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> age </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">25</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The query processor is responsible for interpreting and preparing the query for execution.</p>
+<p>Its work commonly includes:</p>
+<ol>
+<li class="">Parsing the query.</li>
+<li class="">Checking its syntax and meaning.</li>
+<li class="">Transforming it into an internal representation.</li>
+<li class="">Considering possible execution strategies.</li>
+<li class="">Selecting an execution plan.</li>
+<li class="">Executing the plan through the database&#x27;s execution machinery.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-query-optimizer">4.2 Query optimizer<a href="#42-query-optimizer" class="hash-link" aria-label="Direct link to 4.2 Query optimizer" title="Direct link to 4.2 Query optimizer" translate="no">​</a></h3>
+<p>The query optimizer determines an efficient execution strategy for a query.</p>
+<p>Suppose we execute:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> email </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;prashant@example.com&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>There may be multiple ways to retrieve the matching record.</p>
+<p>For example:</p>
+<ul>
+<li class="">Scan the entire table.</li>
+<li class="">Use an index on the email column.</li>
+</ul>
+<p>If a suitable index exists and the optimizer estimates that using it is cheaper, the database may choose an index-based plan.</p>
+<p>The optimizer considers factors such as:</p>
+<ul>
+<li class="">Available indexes.</li>
+<li class="">Estimated number of matching records.</li>
+<li class="">Table statistics.</li>
+<li class="">Join strategies.</li>
+<li class="">Estimated I/O and CPU costs.</li>
+</ul>
+<p><strong>Important:</strong> The optimizer does not guarantee the theoretically fastest plan. It chooses based on its cost model and available information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-storage-manager">4.3 Storage manager<a href="#43-storage-manager" class="hash-link" aria-label="Direct link to 4.3 Storage manager" title="Direct link to 4.3 Storage manager" translate="no">​</a></h3>
+<p>The storage manager handles how data is stored and accessed.</p>
+<p>Its responsibilities may include:</p>
+<ul>
+<li class="">Managing database files.</li>
+<li class="">Reading and writing pages.</li>
+<li class="">Managing indexes.</li>
+<li class="">Managing buffer pools.</li>
+<li class="">Organizing stored records.</li>
+<li class="">Interacting with the operating system and storage devices.</li>
+</ul>
+<p>For example, when a query needs a particular row, the database may need to locate and read the page containing that row.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-transaction-manager">4.4 Transaction manager<a href="#44-transaction-manager" class="hash-link" aria-label="Direct link to 4.4 Transaction manager" title="Direct link to 4.4 Transaction manager" translate="no">​</a></h3>
+<p>The transaction manager coordinates transactions.</p>
+<p>A transaction represents a logical unit of database work.</p>
+<p>For example, transferring ₹1,000 between two accounts involves:</p>
+<ol>
+<li class="">Deducting ₹1,000 from Account A.</li>
+<li class="">Adding ₹1,000 to Account B.</li>
+</ol>
+<p>Both operations should succeed together.</p>
+<p>A transaction can group these operations:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If something goes wrong before the transaction commits, it can be rolled back.</p>
+<p>Transaction management is responsible for coordinating this work with the database&#x27;s concurrency and recovery mechanisms.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="45-concurrency-control-manager">4.5 Concurrency-control manager<a href="#45-concurrency-control-manager" class="hash-link" aria-label="Direct link to 4.5 Concurrency-control manager" title="Direct link to 4.5 Concurrency-control manager" translate="no">​</a></h3>
+<p>The concurrency-control system coordinates operations running at the same time.</p>
+<p>It may use:</p>
+<ul>
+<li class="">Shared locks.</li>
+<li class="">Exclusive locks.</li>
+<li class="">Row-level locks.</li>
+<li class="">Table-level locks.</li>
+<li class="">MVCC.</li>
+<li class="">Other database-specific mechanisms.</li>
+</ul>
+<p>Its goal is to preserve the required transaction guarantees while allowing concurrent operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="46-recovery-manager">4.6 Recovery manager<a href="#46-recovery-manager" class="hash-link" aria-label="Direct link to 4.6 Recovery manager" title="Direct link to 4.6 Recovery manager" translate="no">​</a></h3>
+<p>The recovery system helps restore the database after failures.</p>
+<p>For example, a database may use a write-ahead log (WAL) to record changes before the corresponding data pages are written to their final locations.</p>
+<p>After a crash, the database can use recovery information to determine which operations need to be redone or undone.</p>
+<p>The exact recovery procedure depends on the DBMS.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="47-authorization-and-security-manager">4.7 Authorization and security manager<a href="#47-authorization-and-security-manager" class="hash-link" aria-label="Direct link to 4.7 Authorization and security manager" title="Direct link to 4.7 Authorization and security manager" translate="no">​</a></h3>
+<p>This subsystem is responsible for checking permissions and controlling access to database resources.</p>
+<p>It can enforce rules such as:</p>
+<ul>
+<li class="">Whether a user can read a table.</li>
+<li class="">Whether a role can insert records.</li>
+<li class="">Whether a user can create database objects.</li>
+<li class="">Whether an operation is permitted.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="overall-dbms-architecture">Overall DBMS architecture<a href="#overall-dbms-architecture" class="hash-link" aria-label="Direct link to Overall DBMS architecture" title="Direct link to Overall DBMS architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                SQL / Query</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |     Query Processor    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Parser                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Query Rewriter        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Query Optimizer       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Execution Engine      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |     Storage Manager    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Buffer Management     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  File Management       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |  Index Management      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v           v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Transaction  Concurrency   Recovery</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Manager      Control      Manager</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               Persistent Storage</span><br></div></code></pre></div></div>
+<p>This is a conceptual architecture. Real database systems may organize these components differently or combine their responsibilities.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-types-of-dbms">5. Types of DBMS<a href="#5-types-of-dbms" class="hash-link" aria-label="Direct link to 5. Types of DBMS" title="Direct link to 5. Types of DBMS" translate="no">​</a></h2>
+<p>DBMS products can be categorized according to their data models and the way they organize information.</p>
+<p>The major categories include:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-hierarchical-dbms">5.1 Hierarchical DBMS<a href="#51-hierarchical-dbms" class="hash-link" aria-label="Direct link to 5.1 Hierarchical DBMS" title="Direct link to 5.1 Hierarchical DBMS" translate="no">​</a></h3>
+<p>A hierarchical database organizes data in a tree-like structure.</p>
+<p>Each child record generally has one parent.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Company</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- Department A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      +-- Employee 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      +-- Employee 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- Department B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         +-- Employee 3</span><br></div></code></pre></div></div>
+<p>Characteristics:</p>
+<ul>
+<li class="">Tree-based organization.</li>
+<li class="">Parent-child relationships.</li>
+<li class="">Typically one parent per child.</li>
+<li class="">Useful for naturally hierarchical data.</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li class="">Many-to-many relationships are difficult to represent.</li>
+<li class="">Changes in the hierarchy can be complicated.</li>
+<li class="">Applications may become tightly coupled to the data structure.</li>
+</ul>
+<p>Historically, IBM&#x27;s IMS is a prominent hierarchical database system.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-network-dbms">5.2 Network DBMS<a href="#52-network-dbms" class="hash-link" aria-label="Direct link to 5.2 Network DBMS" title="Direct link to 5.2 Network DBMS" translate="no">​</a></h3>
+<p>A network database model allows records to have multiple relationships and multiple parent records.</p>
+<p>Unlike a strict hierarchical model, it can represent more complex interconnected relationships.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Student A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              /    \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             /      \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Course 1   Course 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             \      /</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              \    /</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Student B</span><br></div></code></pre></div></div>
+<p>A student can enroll in multiple courses, and a course can have multiple students.</p>
+<p>This model is more flexible than a strict tree structure, but navigating and managing relationships can be complex.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-relational-dbms-rdbms">5.3 Relational DBMS (RDBMS)<a href="#53-relational-dbms-rdbms" class="hash-link" aria-label="Direct link to 5.3 Relational DBMS (RDBMS)" title="Direct link to 5.3 Relational DBMS (RDBMS)" translate="no">​</a></h3>
+<p>A relational DBMS stores data using relations, commonly represented as tables.</p>
+<p>Example:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">2500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">2</td><td style="text-align:right">1800</td></tr></tbody></table>
+<p>The tables can be related using keys.</p>
+<p>For example, <code>orders.user_id</code> can reference <code>users.id</code>.</p>
+<p>Common relational database systems:</p>
+<ul>
+<li class="">PostgreSQL</li>
+<li class="">MySQL</li>
+<li class="">Microsoft SQL Server</li>
+<li class="">Oracle Database</li>
+<li class="">SQLite</li>
+</ul>
+<p>Common characteristics:</p>
+<ul>
+<li class="">Tables and columns.</li>
+<li class="">Rows and values.</li>
+<li class="">Primary keys.</li>
+<li class="">Foreign keys.</li>
+<li class="">SQL querying.</li>
+<li class="">Constraints.</li>
+<li class="">Transaction support.</li>
+</ul>
+<p>Relational databases are widely used for business applications, financial systems, e-commerce, and other applications that benefit from structured relationships and transactional guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-nosql-dbms">5.4 NoSQL DBMS<a href="#54-nosql-dbms" class="hash-link" aria-label="Direct link to 5.4 NoSQL DBMS" title="Direct link to 5.4 NoSQL DBMS" translate="no">​</a></h3>
+<p>NoSQL databases use data models other than the traditional relational table model, or provide non-relational approaches to data management.</p>
+<p>NoSQL is commonly expanded as &quot;Not Only SQL.&quot;</p>
+<p>Major categories include:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th>Data organization</th><th>Examples</th></tr></thead><tbody><tr><td>Key-value</td><td>Key and associated value</td><td>Redis, Amazon DynamoDB</td></tr><tr><td>Document</td><td>Documents containing fields and values</td><td>MongoDB, Couchbase</td></tr><tr><td>Wide-column</td><td>Rows organized around column families</td><td>Apache Cassandra, HBase</td></tr><tr><td>Graph</td><td>Nodes and relationships</td><td>Neo4j, Amazon Neptune</td></tr></tbody></table>
+<p>NoSQL systems are often designed around particular data-access patterns, scalability requirements, or flexible data models.</p>
+<p>However, NoSQL does not automatically mean:</p>
+<ul>
+<li class="">No transactions.</li>
+<li class="">No consistency.</li>
+<li class="">No indexes.</li>
+<li class="">No structured data.</li>
+<li class="">Better performance in every situation.</li>
+</ul>
+<p>Different NoSQL products provide different capabilities and guarantees.</p>
+<p>We will study these database categories in detail in later parts of the roadmap.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-database-schema-and-database-instance">6. Database Schema and Database Instance<a href="#6-database-schema-and-database-instance" class="hash-link" aria-label="Direct link to 6. Database Schema and Database Instance" title="Direct link to 6. Database Schema and Database Instance" translate="no">​</a></h2>
+<p>These are two fundamental DBMS concepts.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-what-is-a-database-schema">6.1 What is a database schema?<a href="#61-what-is-a-database-schema" class="hash-link" aria-label="Direct link to 6.1 What is a database schema?" title="Direct link to 6.1 What is a database schema?" translate="no">​</a></h3>
+<p>A database schema defines the logical structure of a database.</p>
+<p>It describes how data is organized.</p>
+<p>In a relational database, a schema can define:</p>
+<ul>
+<li class="">Tables.</li>
+<li class="">Columns.</li>
+<li class="">Data types.</li>
+<li class="">Primary keys.</li>
+<li class="">Foreign keys.</li>
+<li class="">Constraints.</li>
+<li class="">Relationships.</li>
+<li class="">Indexes and other database objects.</li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> users </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">255</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">UNIQUE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This statement defines part of the database schema.</p>
+<p>It specifies that the <code>users</code> table has three columns and defines constraints on the <code>id</code> and <code>email</code> columns.</p>
+<p>Think of the schema as the structure or blueprint of the database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-what-is-a-database-instance">6.2 What is a database instance?<a href="#62-what-is-a-database-instance" class="hash-link" aria-label="Direct link to 6.2 What is a database instance?" title="Direct link to 6.2 What is a database instance?" translate="no">​</a></h3>
+<p>A database instance, in this context, means the actual data stored in the database at a particular point in time.</p>
+<p>Suppose the schema is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email</span><br></div></code></pre></div></div>
+<p>The current instance might contain:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th><th>email</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Prashant</td><td><a href="mailto:prashant@example.com" target="_blank" rel="noopener noreferrer" class="">prashant@example.com</a></td></tr><tr><td style="text-align:right">2</td><td>Rahul</td><td><a href="mailto:rahul@example.com" target="_blank" rel="noopener noreferrer" class="">rahul@example.com</a></td></tr></tbody></table>
+<p>After inserting another user, the instance changes.</p>
+<p>The schema may remain unchanged.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-schema-vs-instance">6.3 Schema vs instance<a href="#63-schema-vs-instance" class="hash-link" aria-label="Direct link to 6.3 Schema vs instance" title="Direct link to 6.3 Schema vs instance" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Schema</th><th>Instance</th></tr></thead><tbody><tr><td>Defines database structure</td><td>Represents current stored data</td></tr><tr><td>Changes relatively infrequently</td><td>Changes frequently</td></tr><tr><td>Comparable to a blueprint</td><td>Comparable to the actual contents</td></tr><tr><td>Defines columns and constraints</td><td>Contains actual records and values</td></tr></tbody></table>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">SCHEMA</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id: INTEGER</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name: VARCHAR</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    email: VARCHAR</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">INSTANCE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Row 1: 1, Prashant, prashant@example.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Row 2: 2, Rahul, rahul@example.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Row 3: 3, Amit, amit@example.com</span><br></div></code></pre></div></div>
+<p><strong>Interview point:</strong> Schema is the structure; instance is the data present at a particular moment.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-database-architecture-three-schema-architecture">7. Database Architecture: Three-Schema Architecture<a href="#7-database-architecture-three-schema-architecture" class="hash-link" aria-label="Direct link to 7. Database Architecture: Three-Schema Architecture" title="Direct link to 7. Database Architecture: Three-Schema Architecture" translate="no">​</a></h2>
+<p>The three-schema architecture is a conceptual model used to explain how a DBMS separates user views from logical database structure and physical storage.</p>
+<p>It has three levels:</p>
+<ol>
+<li class="">External level.</li>
+<li class="">Conceptual level.</li>
+<li class="">Internal level.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-external-level--view-level">7.1 External level — View level<a href="#71-external-level--view-level" class="hash-link" aria-label="Direct link to 7.1 External level — View level" title="Direct link to 7.1 External level — View level" translate="no">​</a></h3>
+<p>The external level describes how individual users or applications see the data.</p>
+<p>Different users may need different views of the same database.</p>
+<p>Example:</p>
+<p>An e-commerce application has a database containing:</p>
+<ul>
+<li class="">User information.</li>
+<li class="">Payment information.</li>
+<li class="">Orders.</li>
+<li class="">Inventory.</li>
+<li class="">Employee records.</li>
+</ul>
+<p>A customer should not need to see internal employee information.</p>
+<p>A warehouse employee may need access to inventory but not sensitive payment details.</p>
+<p>Therefore, different users can have different views of the same underlying database.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |            |            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v            v            v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Customer     Admin       Warehouse</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       View        View          View</span><br></div></code></pre></div></div>
+<p>The external level focuses on what each user or application needs to see.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-conceptual-level--logical-level">7.2 Conceptual level — Logical level<a href="#72-conceptual-level--logical-level" class="hash-link" aria-label="Direct link to 7.2 Conceptual level — Logical level" title="Direct link to 7.2 Conceptual level — Logical level" translate="no">​</a></h3>
+<p>The conceptual level describes the overall logical structure of the database.</p>
+<p>It defines:</p>
+<ul>
+<li class="">What entities exist.</li>
+<li class="">What attributes they have.</li>
+<li class="">How entities are related.</li>
+<li class="">What constraints apply.</li>
+<li class="">How the database is logically organized.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  total_amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  price</span><br></div></code></pre></div></div>
+<p>At this level, we care about the logical organization of the data, not exactly where its bytes are stored on disk.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="73-internal-level--physical-level">7.3 Internal level — Physical level<a href="#73-internal-level--physical-level" class="hash-link" aria-label="Direct link to 7.3 Internal level — Physical level" title="Direct link to 7.3 Internal level — Physical level" translate="no">​</a></h3>
+<p>The internal level describes how the DBMS physically stores and accesses data.</p>
+<p>It may include:</p>
+<ul>
+<li class="">Data files.</li>
+<li class="">Pages and blocks.</li>
+<li class="">Record layouts.</li>
+<li class="">Index structures.</li>
+<li class="">Storage allocation.</li>
+<li class="">Compression.</li>
+<li class="">Physical placement.</li>
+</ul>
+<p>For example, a relational database may store table data in pages and use B-tree indexes to locate records.</p>
+<p>The application does not normally need to know which physical page contains a particular row.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="74-three-levels-together">7.4 Three levels together<a href="#74-three-levels-together" class="hash-link" aria-label="Direct link to 7.4 Three levels together" title="Direct link to 7.4 Three levels together" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |      External Level      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Customer View            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Admin View               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Warehouse View           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |     Conceptual Level     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Tables                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Relationships            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Constraints              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |      Internal Level      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |                          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Files                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Pages                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Indexes                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        | Physical Storage         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 Disk</span><br></div></code></pre></div></div>
+<p>This architecture provides a way to understand data abstraction and data independence.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-data-independence">8. Data Independence<a href="#8-data-independence" class="hash-link" aria-label="Direct link to 8. Data Independence" title="Direct link to 8. Data Independence" translate="no">​</a></h2>
+<p>Data independence means that changes at one level of database architecture should have minimal or no impact on higher levels.</p>
+<p>There are two main types.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-physical-data-independence">8.1 Physical data independence<a href="#81-physical-data-independence" class="hash-link" aria-label="Direct link to 8.1 Physical data independence" title="Direct link to 8.1 Physical data independence" translate="no">​</a></h3>
+<p>Physical data independence means changing the internal physical storage without requiring changes to the conceptual schema or application programs.</p>
+<p>Example:</p>
+<p>Initially, a database uses one index structure.</p>
+<p>Later, the database administrator creates another index to improve query performance.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_users_email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">email</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application&#x27;s query can remain the same:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> email </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;prashant@example.com&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application does not need to know that the physical access structure has changed.</p>
+<p>Other examples include:</p>
+<ul>
+<li class="">Changing storage allocation.</li>
+<li class="">Changing physical file organization.</li>
+<li class="">Introducing or modifying indexes.</li>
+<li class="">Changing certain storage parameters.</li>
+</ul>
+<p>These changes can affect performance, but they do not necessarily require changes to the logical table structure or application queries.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-logical-data-independence">8.2 Logical data independence<a href="#82-logical-data-independence" class="hash-link" aria-label="Direct link to 8.2 Logical data independence" title="Direct link to 8.2 Logical data independence" translate="no">​</a></h3>
+<p>Logical data independence means changing the conceptual schema without requiring changes to external views or application programs, provided their required data remains available through a compatible interface.</p>
+<p>Example:</p>
+<p>Suppose the original users table is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  email</span><br></div></code></pre></div></div>
+<p>Later, we add a column:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  phone</span><br></div></code></pre></div></div>
+<p>An application that only reads <code>id</code>, <code>name</code>, and <code>email</code> may continue working without modification.</p>
+<p>However, logical changes are not always transparent.</p>
+<p>For example, renaming a column used by an application can break that application unless a compatible view or interface is maintained.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-physical-vs-logical-data-independence">8.3 Physical vs logical data independence<a href="#83-physical-vs-logical-data-independence" class="hash-link" aria-label="Direct link to 8.3 Physical vs logical data independence" title="Direct link to 8.3 Physical vs logical data independence" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Physical data independence</th><th>Logical data independence</th></tr></thead><tbody><tr><td>Changes internal storage</td><td>Changes logical database structure</td></tr><tr><td>Internal level is affected</td><td>Conceptual level is affected</td></tr><tr><td>Higher logical structure remains stable</td><td>External views should remain stable</td></tr><tr><td>Example: changing an index or storage organization</td><td>Example: adding a column while preserving existing application views</td></tr></tbody></table>
+<p>Physical data independence is generally easier to achieve than logical data independence.</p>
+<p>This is because application programs often depend directly on logical structures such as table and column names.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-database-languages">9. Database Languages<a href="#9-database-languages" class="hash-link" aria-label="Direct link to 9. Database Languages" title="Direct link to 9. Database Languages" translate="no">​</a></h2>
+<p>A DBMS provides languages and commands to interact with the database.</p>
+<p>SQL is the most widely known language for relational database systems.</p>
+<p>SQL commands are commonly categorized into several groups.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-ddl--data-definition-language">9.1 DDL — Data Definition Language<a href="#91-ddl--data-definition-language" class="hash-link" aria-label="Direct link to 9.1 DDL — Data Definition Language" title="Direct link to 9.1 DDL — Data Definition Language" translate="no">​</a></h3>
+<p>DDL is used to define or modify database structures.</p>
+<p>Examples:</p>
+<ul>
+<li class=""><code>CREATE</code></li>
+<li class=""><code>ALTER</code></li>
+<li class=""><code>DROP</code></li>
+<li class=""><code>TRUNCATE</code></li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id </span><span class="token keyword" style="color:#00009f">SERIAL</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    name </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    price </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Modify the table:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">ALTER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ADD</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">COLUMN</span><span class="token plain"> stock </span><span class="token keyword" style="color:#00009f">INTEGER</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Delete the table:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">DROP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-dml--data-manipulation-language">9.2 DML — Data Manipulation Language<a href="#92-dml--data-manipulation-language" class="hash-link" aria-label="Direct link to 9.2 DML — Data Manipulation Language" title="Direct link to 9.2 DML — Data Manipulation Language" translate="no">​</a></h3>
+<p>DML is used to manipulate the data stored in database objects.</p>
+<p>Common commands:</p>
+<ul>
+<li class=""><code>INSERT</code></li>
+<li class=""><code>UPDATE</code></li>
+<li class=""><code>DELETE</code></li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> products </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> price</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;Laptop&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">65000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Update:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> price </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">62000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Delete:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">DELETE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-dql--data-query-language">9.3 DQL — Data Query Language<a href="#93-dql--data-query-language" class="hash-link" aria-label="Direct link to 9.3 DQL — Data Query Language" title="Direct link to 9.3 DQL — Data Query Language" translate="no">​</a></h3>
+<p>DQL is commonly used to refer to commands that retrieve data.</p>
+<p>The primary command is:</p>
+<ul>
+<li class=""><code>SELECT</code></li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> products</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Note: Some educational classifications treat <code>SELECT</code> as part of DML rather than a separate DQL category. The distinction is a teaching convention.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="94-dcl--data-control-language">9.4 DCL — Data Control Language<a href="#94-dcl--data-control-language" class="hash-link" aria-label="Direct link to 9.4 DCL — Data Control Language" title="Direct link to 9.4 DCL — Data Control Language" translate="no">​</a></h3>
+<p>DCL is used to manage database access and permissions.</p>
+<p>Common commands:</p>
+<ul>
+<li class=""><code>GRANT</code></li>
+<li class=""><code>REVOKE</code></li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">GRANT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">TO</span><span class="token plain"> app_user</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This allows <code>app_user</code> to read from the <code>products</code> table.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="95-tcl--transaction-control-language">9.5 TCL — Transaction Control Language<a href="#95-tcl--transaction-control-language" class="hash-link" aria-label="Direct link to 9.5 TCL — Transaction Control Language" title="Direct link to 9.5 TCL — Transaction Control Language" translate="no">​</a></h3>
+<p>TCL is used to control transactions.</p>
+<p>Common commands:</p>
+<ul>
+<li class=""><code>BEGIN</code></li>
+<li class=""><code>COMMIT</code></li>
+<li class=""><code>ROLLBACK</code></li>
+<li class=""><code>SAVEPOINT</code></li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The two updates are grouped into one transaction.</p>
+<p>If the transaction must be abandoned before committing:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">ROLLBACK</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="96-summary">9.6 Summary<a href="#96-summary" class="hash-link" aria-label="Direct link to 9.6 Summary" title="Direct link to 9.6 Summary" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Category</th><th>Purpose</th><th>Common commands</th></tr></thead><tbody><tr><td>DDL</td><td>Define database structures</td><td>CREATE, ALTER, DROP</td></tr><tr><td>DML</td><td>Insert, modify, and delete data</td><td>INSERT, UPDATE, DELETE</td></tr><tr><td>DQL</td><td>Retrieve data</td><td>SELECT</td></tr><tr><td>DCL</td><td>Manage permissions</td><td>GRANT, REVOKE</td></tr><tr><td>TCL</td><td>Control transactions</td><td>BEGIN, COMMIT, ROLLBACK</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-types-of-database-users">10. Types of Database Users<a href="#10-types-of-database-users" class="hash-link" aria-label="Direct link to 10. Types of Database Users" title="Direct link to 10. Types of Database Users" translate="no">​</a></h2>
+<p>Different people interact with a DBMS in different ways.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-database-administrator-dba">10.1 Database Administrator (DBA)<a href="#101-database-administrator-dba" class="hash-link" aria-label="Direct link to 10.1 Database Administrator (DBA)" title="Direct link to 10.1 Database Administrator (DBA)" translate="no">​</a></h3>
+<p>A DBA is responsible for managing and maintaining database systems.</p>
+<p>Typical responsibilities:</p>
+<ul>
+<li class="">Database installation and configuration.</li>
+<li class="">User and permission management.</li>
+<li class="">Backup and recovery.</li>
+<li class="">Performance monitoring.</li>
+<li class="">Capacity planning.</li>
+<li class="">Security management.</li>
+<li class="">Replication and availability.</li>
+<li class="">Database maintenance.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-database-designers">10.2 Database designers<a href="#102-database-designers" class="hash-link" aria-label="Direct link to 10.2 Database designers" title="Direct link to 10.2 Database designers" translate="no">​</a></h3>
+<p>Database designers define how data should be organized.</p>
+<p>Their responsibilities may include:</p>
+<ul>
+<li class="">Identifying entities.</li>
+<li class="">Defining attributes.</li>
+<li class="">Designing relationships.</li>
+<li class="">Defining constraints.</li>
+<li class="">Designing schemas.</li>
+<li class="">Choosing appropriate data types.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-application-developers">10.3 Application developers<a href="#103-application-developers" class="hash-link" aria-label="Direct link to 10.3 Application developers" title="Direct link to 10.3 Application developers" translate="no">​</a></h3>
+<p>Application developers build software that interacts with databases.</p>
+<p>For example, a Node.js developer might use:</p>
+<ul>
+<li class=""><code>pg</code> for PostgreSQL.</li>
+<li class=""><code>mysql2</code> for MySQL.</li>
+<li class="">Mongoose for MongoDB.</li>
+</ul>
+<p>Example using PostgreSQL:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> pool</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">query</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;SELECT * FROM users WHERE id = $1&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">rows</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The application sends a query through the database driver. The database executes it and returns a result.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="104-end-users">10.4 End users<a href="#104-end-users" class="hash-link" aria-label="Direct link to 10.4 End users" title="Direct link to 10.4 End users" translate="no">​</a></h3>
+<p>End users interact with applications that use the database.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Customers placing orders.</li>
+<li class="">Employees checking inventory.</li>
+<li class="">Managers viewing reports.</li>
+<li class="">Users updating their profiles.</li>
+</ul>
+<p>Most end users do not interact directly with SQL.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="105-data-analysts">10.5 Data analysts<a href="#105-data-analysts" class="hash-link" aria-label="Direct link to 10.5 Data analysts" title="Direct link to 10.5 Data analysts" translate="no">​</a></h3>
+<p>Data analysts retrieve and analyze information to support business decisions.</p>
+<p>They may write queries involving:</p>
+<ul>
+<li class="">Aggregations.</li>
+<li class="">Grouping.</li>
+<li class="">Filtering.</li>
+<li class="">Joins.</li>
+<li class="">Reports.</li>
+</ul>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> total_spent</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-database-server-dbms-database-and-client">11. Database Server, DBMS, Database, and Client<a href="#11-database-server-dbms-database-and-client" class="hash-link" aria-label="Direct link to 11. Database Server, DBMS, Database, and Client" title="Direct link to 11. Database Server, DBMS, Database, and Client" translate="no">​</a></h2>
+<p>These terms are often confused.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="database-server">Database server<a href="#database-server" class="hash-link" aria-label="Direct link to Database server" title="Direct link to Database server" translate="no">​</a></h3>
+<p>A database server is the system or service that runs database software and handles database requests.</p>
+<p>It may run on:</p>
+<ul>
+<li class="">A physical machine.</li>
+<li class="">A virtual machine.</li>
+<li class="">A cloud instance.</li>
+<li class="">A container.</li>
+<li class="">A managed cloud database service.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dbms">DBMS<a href="#dbms" class="hash-link" aria-label="Direct link to DBMS" title="Direct link to DBMS" translate="no">​</a></h3>
+<p>The DBMS is the database-management software running on the server.</p>
+<p>Examples:</p>
+<ul>
+<li class="">PostgreSQL.</li>
+<li class="">MySQL.</li>
+<li class="">MongoDB.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="database">Database<a href="#database" class="hash-link" aria-label="Direct link to Database" title="Direct link to Database" translate="no">​</a></h3>
+<p>A database is the organized data managed by the DBMS.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">PostgreSQL Server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- ecommerce_db</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- analytics_db</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |-- inventory_db</span><br></div></code></pre></div></div>
+<p>A PostgreSQL server can manage multiple databases.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="database-client">Database client<a href="#database-client" class="hash-link" aria-label="Direct link to Database client" title="Direct link to Database client" translate="no">​</a></h3>
+<p>A database client is software that connects to a database server and sends requests.</p>
+<p>Examples:</p>
+<ul>
+<li class="">pgAdmin.</li>
+<li class="">DBeaver.</li>
+<li class="">psql.</li>
+<li class="">Node.js applications using a PostgreSQL driver.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-architecture">Example architecture<a href="#example-architecture" class="hash-link" aria-label="Direct link to Example architecture" title="Direct link to Example architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">          User / Browser</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Frontend App</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Backend API</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Node.js</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Database Driver</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          PostgreSQL Server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            DBMS Engine</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Database</span><br></div></code></pre></div></div>
+<p>The backend application does not normally access PostgreSQL&#x27;s data files directly.</p>
+<p>It communicates with PostgreSQL through a supported database protocol and client library.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-real-world-example-how-a-dbms-handles-a-request">12. Real-World Example: How a DBMS Handles a Request<a href="#12-real-world-example-how-a-dbms-handles-a-request" class="hash-link" aria-label="Direct link to 12. Real-World Example: How a DBMS Handles a Request" title="Direct link to 12. Real-World Example: How a DBMS Handles a Request" translate="no">​</a></h2>
+<p>Consider a user logging into an application.</p>
+<p>The user submits:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Email: prashant@example.com</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Password: ********</span><br></div></code></pre></div></div>
+<p>The backend receives the request.</p>
+<p>It may execute a parameterized query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> email</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> password_hash</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> email </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> $</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The following steps occur conceptually:</p>
+<ol>
+<li class="">The application sends the query to the database server.</li>
+<li class="">The DBMS parses and validates the query.</li>
+<li class="">The optimizer determines an execution strategy.</li>
+<li class="">The execution engine retrieves the required record.</li>
+<li class="">An appropriate index may be used.</li>
+<li class="">The database returns the result.</li>
+<li class="">The backend verifies the submitted password against the stored password hash.</li>
+<li class="">The backend returns an authentication response.</li>
+</ol>
+<p>The DBMS manages database retrieval. The backend handles application-specific authentication logic.</p>
+<p>This distinction matters.</p>
+<p>A DBMS does not automatically implement every business rule of an application.</p>
+<p>It provides the data-management mechanisms that the application uses.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-common-misconceptions">13. Common Misconceptions<a href="#13-common-misconceptions" class="hash-link" aria-label="Direct link to 13. Common Misconceptions" title="Direct link to 13. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-database-and-dbms-are-the-same-thing">Misconception 1: Database and DBMS are the same thing.<a href="#misconception-1-database-and-dbms-are-the-same-thing" class="hash-link" aria-label="Direct link to Misconception 1: Database and DBMS are the same thing." title="Direct link to Misconception 1: Database and DBMS are the same thing." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A database is the organized data. A DBMS is the software that manages it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-sql-is-a-database">Misconception 2: SQL is a database.<a href="#misconception-2-sql-is-a-database" class="hash-link" aria-label="Direct link to Misconception 2: SQL is a database." title="Direct link to Misconception 2: SQL is a database." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>SQL is a language used to communicate with relational database systems. PostgreSQL and MySQL are database-management systems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-every-dbms-uses-sql">Misconception 3: Every DBMS uses SQL.<a href="#misconception-3-every-dbms-uses-sql" class="hash-link" aria-label="Direct link to Misconception 3: Every DBMS uses SQL." title="Direct link to Misconception 3: Every DBMS uses SQL." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Relational DBMSs commonly use SQL. NoSQL systems may use document queries, key-value operations, graph query languages, or their own APIs.</p>
+<p>Some NoSQL databases also support SQL-like query interfaces.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-a-dbms-always-stores-data-in-tables">Misconception 4: A DBMS always stores data in tables.<a href="#misconception-4-a-dbms-always-stores-data-in-tables" class="hash-link" aria-label="Direct link to Misconception 4: A DBMS always stores data in tables." title="Direct link to Misconception 4: A DBMS always stores data in tables." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Relational DBMSs organize data into tables. Other database systems use documents, key-value pairs, graphs, or other models.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-the-query-optimizer-always-selects-the-best-possible-plan">Misconception 5: The query optimizer always selects the best possible plan.<a href="#misconception-5-the-query-optimizer-always-selects-the-best-possible-plan" class="hash-link" aria-label="Direct link to Misconception 5: The query optimizer always selects the best possible plan." title="Direct link to Misconception 5: The query optimizer always selects the best possible plan." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>It selects a plan based on estimates, statistics, available indexes, and its cost model. Poor statistics or inaccurate estimates can result in inefficient plans.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-data-independence-means-applications-never-need-changes-when-a-database-changes">Misconception 6: Data independence means applications never need changes when a database changes.<a href="#misconception-6-data-independence-means-applications-never-need-changes-when-a-database-changes" class="hash-link" aria-label="Direct link to Misconception 6: Data independence means applications never need changes when a database changes." title="Direct link to Misconception 6: Data independence means applications never need changes when a database changes." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Data independence reduces dependencies between database architecture levels. Applications can still break when changes affect the schema or interfaces they depend on.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-a-database-automatically-guarantees-correct-business-logic">Misconception 7: A database automatically guarantees correct business logic.<a href="#misconception-7-a-database-automatically-guarantees-correct-business-logic" class="hash-link" aria-label="Direct link to Misconception 7: A database automatically guarantees correct business logic." title="Direct link to Misconception 7: A database automatically guarantees correct business logic." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A database can enforce constraints and transactional rules, but business logic such as eligibility, pricing policies, and authentication generally requires application-level implementation as well.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-interview-questions">14. Interview Questions<a href="#14-interview-questions" class="hash-link" aria-label="Direct link to 14. Interview Questions" title="Direct link to 14. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-a-dbms">Q1. What is a DBMS?<a href="#q1-what-is-a-dbms" class="hash-link" aria-label="Direct link to Q1. What is a DBMS?" title="Direct link to Q1. What is a DBMS?" translate="no">​</a></h3>
+<p>A DBMS is software that allows users and applications to create, store, retrieve, update, and manage data while providing mechanisms such as querying, indexing, concurrency control, security, and recovery.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-the-difference-between-a-database-and-a-dbms">Q2. What is the difference between a database and a DBMS?<a href="#q2-what-is-the-difference-between-a-database-and-a-dbms" class="hash-link" aria-label="Direct link to Q2. What is the difference between a database and a DBMS?" title="Direct link to Q2. What is the difference between a database and a DBMS?" translate="no">​</a></h3>
+<p>A database is an organized collection of data. A DBMS is the software that manages that data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-are-the-main-responsibilities-of-a-dbms">Q3. What are the main responsibilities of a DBMS?<a href="#q3-what-are-the-main-responsibilities-of-a-dbms" class="hash-link" aria-label="Direct link to Q3. What are the main responsibilities of a DBMS?" title="Direct link to Q3. What are the main responsibilities of a DBMS?" translate="no">​</a></h3>
+<ul>
+<li class="">Data storage and retrieval.</li>
+<li class="">Query processing.</li>
+<li class="">Query optimization.</li>
+<li class="">Index management.</li>
+<li class="">Transaction management.</li>
+<li class="">Concurrency control.</li>
+<li class="">Security and authorization.</li>
+<li class="">Backup and recovery.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-a-database-schema">Q4. What is a database schema?<a href="#q4-what-is-a-database-schema" class="hash-link" aria-label="Direct link to Q4. What is a database schema?" title="Direct link to Q4. What is a database schema?" translate="no">​</a></h3>
+<p>A schema defines the logical structure of a database, including tables, columns, data types, relationships, and constraints.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-a-database-instance">Q5. What is a database instance?<a href="#q5-what-is-a-database-instance" class="hash-link" aria-label="Direct link to Q5. What is a database instance?" title="Direct link to Q5. What is a database instance?" translate="no">​</a></h3>
+<p>A database instance, in the schema-versus-instance context, refers to the actual data stored in the database at a particular moment.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-the-three-schema-architecture">Q6. What is the three-schema architecture?<a href="#q6-what-is-the-three-schema-architecture" class="hash-link" aria-label="Direct link to Q6. What is the three-schema architecture?" title="Direct link to Q6. What is the three-schema architecture?" translate="no">​</a></h3>
+<p>It is a conceptual architecture that separates database representation into external, conceptual, and internal levels.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-data-independence">Q7. What is data independence?<a href="#q7-what-is-data-independence" class="hash-link" aria-label="Direct link to Q7. What is data independence?" title="Direct link to Q7. What is data independence?" translate="no">​</a></h3>
+<p>Data independence is the ability to change one level of database architecture without requiring corresponding changes at higher levels.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-the-difference-between-logical-and-physical-data-independence">Q8. What is the difference between logical and physical data independence?<a href="#q8-what-is-the-difference-between-logical-and-physical-data-independence" class="hash-link" aria-label="Direct link to Q8. What is the difference between logical and physical data independence?" title="Direct link to Q8. What is the difference between logical and physical data independence?" translate="no">​</a></h3>
+<p>Logical data independence concerns changes to the conceptual schema without affecting external views. Physical data independence concerns changes to internal storage without affecting the conceptual schema.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-the-role-of-a-query-optimizer">Q9. What is the role of a query optimizer?<a href="#q9-what-is-the-role-of-a-query-optimizer" class="hash-link" aria-label="Direct link to Q9. What is the role of a query optimizer?" title="Direct link to Q9. What is the role of a query optimizer?" translate="no">​</a></h3>
+<p>It evaluates possible execution strategies and selects an estimated efficient execution plan.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-is-the-difference-between-a-dba-and-a-database-developer">Q10. What is the difference between a DBA and a database developer?<a href="#q10-what-is-the-difference-between-a-dba-and-a-database-developer" class="hash-link" aria-label="Direct link to Q10. What is the difference between a DBA and a database developer?" title="Direct link to Q10. What is the difference between a DBA and a database developer?" translate="no">​</a></h3>
+<p>A DBA focuses on database administration, security, availability, maintenance, and performance. A database developer focuses on designing and implementing database structures, queries, and data-access logic.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-what-is-the-difference-between-a-database-server-and-a-database-client">Q11. What is the difference between a database server and a database client?<a href="#q11-what-is-the-difference-between-a-database-server-and-a-database-client" class="hash-link" aria-label="Direct link to Q11. What is the difference between a database server and a database client?" title="Direct link to Q11. What is the difference between a database server and a database client?" translate="no">​</a></h3>
+<p>A database server runs database software and processes requests. A database client connects to it and sends queries or other commands.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-the-difference-between-an-rdbms-and-a-nosql-dbms">Q12. What is the difference between an RDBMS and a NoSQL DBMS?<a href="#q12-what-is-the-difference-between-an-rdbms-and-a-nosql-dbms" class="hash-link" aria-label="Direct link to Q12. What is the difference between an RDBMS and a NoSQL DBMS?" title="Direct link to Q12. What is the difference between an RDBMS and a NoSQL DBMS?" translate="no">​</a></h3>
+<p>An RDBMS organizes data using relational structures and commonly uses SQL. NoSQL systems use other data models, such as documents, key-value pairs, wide-column structures, and graphs.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-chapter-summary">15. Chapter Summary<a href="#15-chapter-summary" class="hash-link" aria-label="Direct link to 15. Chapter Summary" title="Direct link to 15. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Key point</th></tr></thead><tbody><tr><td>DBMS</td><td>Software that manages databases</td></tr><tr><td>Database</td><td>Organized collection of data</td></tr><tr><td>Query processor</td><td>Handles and executes database queries</td></tr><tr><td>Query optimizer</td><td>Selects an estimated efficient execution plan</td></tr><tr><td>Storage manager</td><td>Handles data storage and access</td></tr><tr><td>Transaction manager</td><td>Coordinates transactions</td></tr><tr><td>Concurrency control</td><td>Coordinates simultaneous database operations</td></tr><tr><td>Recovery manager</td><td>Helps recover from failures</td></tr><tr><td>Schema</td><td>Logical structure of the database</td></tr><tr><td>Instance</td><td>Actual data at a particular point in time</td></tr><tr><td>External level</td><td>User-specific view of data</td></tr><tr><td>Conceptual level</td><td>Overall logical database structure</td></tr><tr><td>Internal level</td><td>Physical storage representation</td></tr><tr><td>Physical data independence</td><td>Changes to physical storage without changing logical structure</td></tr><tr><td>Logical data independence</td><td>Changes to logical structure without affecting external views</td></tr><tr><td>DDL</td><td>Defines database structures</td></tr><tr><td>DML</td><td>Modifies stored data</td></tr><tr><td>DQL</td><td>Retrieves data</td></tr><tr><td>DCL</td><td>Controls permissions</td></tr><tr><td>TCL</td><td>Controls transactions</td></tr><tr><td>DBA</td><td>Administers and maintains database systems</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-takeaway">Final takeaway<a href="#final-takeaway" class="hash-link" aria-label="Direct link to Final takeaway" title="Direct link to Final takeaway" translate="no">​</a></h3>
+<p>A DBMS is much more than a place to store records.</p>
+<p>It is a software system responsible for managing the complete data lifecycle: defining structures, storing information, processing queries, maintaining integrity, coordinating concurrent operations, controlling access, and recovering from failures.</p>
+<p>Understanding these responsibilities is essential before studying how relational databases organize data, how transactions work, and how databases achieve performance and scalability.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/01_Database_Fundamentals/part_02.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_01"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">File Storage vs Database</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Database_Fundamentals/part_03"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Relational Database Fundamentals</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-what-is-a-dbms" class="table-of-contents__link toc-highlight">1. What Is a DBMS?</a><ul><li><a href="#example" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#basic-architecture" class="table-of-contents__link toc-highlight">Basic architecture</a></li></ul></li><li><a href="#2-what-is-a-database" class="table-of-contents__link toc-highlight">2. What Is a Database?</a><ul><li><a href="#database-vs-dbms" class="table-of-contents__link toc-highlight">Database vs DBMS</a></li></ul></li><li><a href="#3-why-do-we-need-a-dbms" class="table-of-contents__link toc-highlight">3. Why Do We Need a DBMS?</a><ul><li><a href="#31-data-organization" class="table-of-contents__link toc-highlight">3.1 Data organization</a></li><li><a href="#32-efficient-data-retrieval" class="table-of-contents__link toc-highlight">3.2 Efficient data retrieval</a></li><li><a href="#33-data-integrity" class="table-of-contents__link toc-highlight">3.3 Data integrity</a></li><li><a href="#34-concurrency-control" class="table-of-contents__link toc-highlight">3.4 Concurrency control</a></li><li><a href="#35-security-and-access-control" class="table-of-contents__link toc-highlight">3.5 Security and access control</a></li><li><a href="#36-backup-and-recovery" class="table-of-contents__link toc-highlight">3.6 Backup and recovery</a></li><li><a href="#37-data-independence" class="table-of-contents__link toc-highlight">3.7 Data independence</a></li></ul></li><li><a href="#4-main-responsibilities-of-a-dbms" class="table-of-contents__link toc-highlight">4. Main Responsibilities of a DBMS</a><ul><li><a href="#41-query-processor" class="table-of-contents__link toc-highlight">4.1 Query processor</a></li><li><a href="#42-query-optimizer" class="table-of-contents__link toc-highlight">4.2 Query optimizer</a></li><li><a href="#43-storage-manager" class="table-of-contents__link toc-highlight">4.3 Storage manager</a></li><li><a href="#44-transaction-manager" class="table-of-contents__link toc-highlight">4.4 Transaction manager</a></li><li><a href="#45-concurrency-control-manager" class="table-of-contents__link toc-highlight">4.5 Concurrency-control manager</a></li><li><a href="#46-recovery-manager" class="table-of-contents__link toc-highlight">4.6 Recovery manager</a></li><li><a href="#47-authorization-and-security-manager" class="table-of-contents__link toc-highlight">4.7 Authorization and security manager</a></li><li><a href="#overall-dbms-architecture" class="table-of-contents__link toc-highlight">Overall DBMS architecture</a></li></ul></li><li><a href="#5-types-of-dbms" class="table-of-contents__link toc-highlight">5. Types of DBMS</a><ul><li><a href="#51-hierarchical-dbms" class="table-of-contents__link toc-highlight">5.1 Hierarchical DBMS</a></li><li><a href="#52-network-dbms" class="table-of-contents__link toc-highlight">5.2 Network DBMS</a></li><li><a href="#53-relational-dbms-rdbms" class="table-of-contents__link toc-highlight">5.3 Relational DBMS (RDBMS)</a></li><li><a href="#54-nosql-dbms" class="table-of-contents__link toc-highlight">5.4 NoSQL DBMS</a></li></ul></li><li><a href="#6-database-schema-and-database-instance" class="table-of-contents__link toc-highlight">6. Database Schema and Database Instance</a><ul><li><a href="#61-what-is-a-database-schema" class="table-of-contents__link toc-highlight">6.1 What is a database schema?</a></li><li><a href="#62-what-is-a-database-instance" class="table-of-contents__link toc-highlight">6.2 What is a database instance?</a></li><li><a href="#63-schema-vs-instance" class="table-of-contents__link toc-highlight">6.3 Schema vs instance</a></li></ul></li><li><a href="#7-database-architecture-three-schema-architecture" class="table-of-contents__link toc-highlight">7. Database Architecture: Three-Schema Architecture</a><ul><li><a href="#71-external-level--view-level" class="table-of-contents__link toc-highlight">7.1 External level — View level</a></li><li><a href="#72-conceptual-level--logical-level" class="table-of-contents__link toc-highlight">7.2 Conceptual level — Logical level</a></li><li><a href="#73-internal-level--physical-level" class="table-of-contents__link toc-highlight">7.3 Internal level — Physical level</a></li><li><a href="#74-three-levels-together" class="table-of-contents__link toc-highlight">7.4 Three levels together</a></li></ul></li><li><a href="#8-data-independence" class="table-of-contents__link toc-highlight">8. Data Independence</a><ul><li><a href="#81-physical-data-independence" class="table-of-contents__link toc-highlight">8.1 Physical data independence</a></li><li><a href="#82-logical-data-independence" class="table-of-contents__link toc-highlight">8.2 Logical data independence</a></li><li><a href="#83-physical-vs-logical-data-independence" class="table-of-contents__link toc-highlight">8.3 Physical vs logical data independence</a></li></ul></li><li><a href="#9-database-languages" class="table-of-contents__link toc-highlight">9. Database Languages</a><ul><li><a href="#91-ddl--data-definition-language" class="table-of-contents__link toc-highlight">9.1 DDL — Data Definition Language</a></li><li><a href="#92-dml--data-manipulation-language" class="table-of-contents__link toc-highlight">9.2 DML — Data Manipulation Language</a></li><li><a href="#93-dql--data-query-language" class="table-of-contents__link toc-highlight">9.3 DQL — Data Query Language</a></li><li><a href="#94-dcl--data-control-language" class="table-of-contents__link toc-highlight">9.4 DCL — Data Control Language</a></li><li><a href="#95-tcl--transaction-control-language" class="table-of-contents__link toc-highlight">9.5 TCL — Transaction Control Language</a></li><li><a href="#96-summary" class="table-of-contents__link toc-highlight">9.6 Summary</a></li></ul></li><li><a href="#10-types-of-database-users" class="table-of-contents__link toc-highlight">10. Types of Database Users</a><ul><li><a href="#101-database-administrator-dba" class="table-of-contents__link toc-highlight">10.1 Database Administrator (DBA)</a></li><li><a href="#102-database-designers" class="table-of-contents__link toc-highlight">10.2 Database designers</a></li><li><a href="#103-application-developers" class="table-of-contents__link toc-highlight">10.3 Application developers</a></li><li><a href="#104-end-users" class="table-of-contents__link toc-highlight">10.4 End users</a></li><li><a href="#105-data-analysts" class="table-of-contents__link toc-highlight">10.5 Data analysts</a></li></ul></li><li><a href="#11-database-server-dbms-database-and-client" class="table-of-contents__link toc-highlight">11. Database Server, DBMS, Database, and Client</a><ul><li><a href="#database-server" class="table-of-contents__link toc-highlight">Database server</a></li><li><a href="#dbms" class="table-of-contents__link toc-highlight">DBMS</a></li><li><a href="#database" class="table-of-contents__link toc-highlight">Database</a></li><li><a href="#database-client" class="table-of-contents__link toc-highlight">Database client</a></li><li><a href="#example-architecture" class="table-of-contents__link toc-highlight">Example architecture</a></li></ul></li><li><a href="#12-real-world-example-how-a-dbms-handles-a-request" class="table-of-contents__link toc-highlight">12. Real-World Example: How a DBMS Handles a Request</a></li><li><a href="#13-common-misconceptions" class="table-of-contents__link toc-highlight">13. Common Misconceptions</a><ul><li><a href="#misconception-1-database-and-dbms-are-the-same-thing" class="table-of-contents__link toc-highlight">Misconception 1: Database and DBMS are the same thing.</a></li><li><a href="#misconception-2-sql-is-a-database" class="table-of-contents__link toc-highlight">Misconception 2: SQL is a database.</a></li><li><a href="#misconception-3-every-dbms-uses-sql" class="table-of-contents__link toc-highlight">Misconception 3: Every DBMS uses SQL.</a></li><li><a href="#misconception-4-a-dbms-always-stores-data-in-tables" class="table-of-contents__link toc-highlight">Misconception 4: A DBMS always stores data in tables.</a></li><li><a href="#misconception-5-the-query-optimizer-always-selects-the-best-possible-plan" class="table-of-contents__link toc-highlight">Misconception 5: The query optimizer always selects the best possible plan.</a></li><li><a href="#misconception-6-data-independence-means-applications-never-need-changes-when-a-database-changes" class="table-of-contents__link toc-highlight">Misconception 6: Data independence means applications never need changes when a database changes.</a></li><li><a href="#misconception-7-a-database-automatically-guarantees-correct-business-logic" class="table-of-contents__link toc-highlight">Misconception 7: A database automatically guarantees correct business logic.</a></li></ul></li><li><a href="#14-interview-questions" class="table-of-contents__link toc-highlight">14. Interview Questions</a><ul><li><a href="#q1-what-is-a-dbms" class="table-of-contents__link toc-highlight">Q1. What is a DBMS?</a></li><li><a href="#q2-what-is-the-difference-between-a-database-and-a-dbms" class="table-of-contents__link toc-highlight">Q2. What is the difference between a database and a DBMS?</a></li><li><a href="#q3-what-are-the-main-responsibilities-of-a-dbms" class="table-of-contents__link toc-highlight">Q3. What are the main responsibilities of a DBMS?</a></li><li><a href="#q4-what-is-a-database-schema" class="table-of-contents__link toc-highlight">Q4. What is a database schema?</a></li><li><a href="#q5-what-is-a-database-instance" class="table-of-contents__link toc-highlight">Q5. What is a database instance?</a></li><li><a href="#q6-what-is-the-three-schema-architecture" class="table-of-contents__link toc-highlight">Q6. What is the three-schema architecture?</a></li><li><a href="#q7-what-is-data-independence" class="table-of-contents__link toc-highlight">Q7. What is data independence?</a></li><li><a href="#q8-what-is-the-difference-between-logical-and-physical-data-independence" class="table-of-contents__link toc-highlight">Q8. What is the difference between logical and physical data independence?</a></li><li><a href="#q9-what-is-the-role-of-a-query-optimizer" class="table-of-contents__link toc-highlight">Q9. What is the role of a query optimizer?</a></li><li><a href="#q10-what-is-the-difference-between-a-dba-and-a-database-developer" class="table-of-contents__link toc-highlight">Q10. What is the difference between a DBA and a database developer?</a></li><li><a href="#q11-what-is-the-difference-between-a-database-server-and-a-database-client" class="table-of-contents__link toc-highlight">Q11. What is the difference between a database server and a database client?</a></li><li><a href="#q12-what-is-the-difference-between-an-rdbms-and-a-nosql-dbms" class="table-of-contents__link toc-highlight">Q12. What is the difference between an RDBMS and a NoSQL DBMS?</a></li></ul></li><li><a href="#15-chapter-summary" class="table-of-contents__link toc-highlight">15. Chapter Summary</a><ul><li><a href="#final-takeaway" class="table-of-contents__link toc-highlight">Final takeaway</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

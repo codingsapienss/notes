@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Part 17C — OLTP vs OLAP: Architectural Differences | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Part 17C — OLTP vs OLAP: Architectural Differences | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"OLTPvsOLAP_Databases","item":"https://codingsapienss.github.io/notes/docs/category/oltpvsolap_databases"},{"@type":"ListItem","position":5,"name":"Part 17C — OLTP vs OLAP: Architectural Differences","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.dc4df95a.css">
+<script src="/notes/assets/js/runtime~main.bad224db.js" defer="defer"></script>
+<script src="/notes/assets/js/main.a6c26daa.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_fundamentals"><span title="Database_Fundamentals" class="categoryLinkLabel_W154">Database_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions_acid__concurrency"><span title="Transactions_ACID_&amp;_Concurrency" class="categoryLinkLabel_W154">Transactions_ACID_&amp;_Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions_ACID_&amp;_Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_indexing"><span title="Database_Indexing" class="categoryLinkLabel_W154">Database_Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database_Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database_normalization"><span title="Database_Normalization" class="categoryLinkLabel_W154">Database_Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database_Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_joins__join_execution"><span title="SQL_Joins_&amp;_Join_Execution" class="categoryLinkLabel_W154">SQL_Joins_&amp;_Join_Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL_Joins_&amp;_Join_Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling_relational_databases"><span title="Scaling_Relational_Databases" class="categoryLinkLabel_W154">Scaling_Relational_Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling_Relational_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql_sharding__horizontal_scaling"><span title="SQL_Sharding_&amp;_Horizontal_Scaling" class="categoryLinkLabel_W154">SQL_Sharding_&amp;_Horizontal_Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL_Sharding_&amp;_Horizontal_Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql_fundamentals"><span title="NoSQL_Fundamentals" class="categoryLinkLabel_W154">NoSQL_Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL_Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap_theorem__distributed_systems"><span title="CAP_Theorem_&amp;_Distributed_Systems" class="categoryLinkLabel_W154">CAP_Theorem_&amp;_Distributed_Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP_Theorem_&amp;_Distributed_Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal_scaling_in_nosql"><span title="Horizontal_Scaling_in_NoSQL" class="categoryLinkLabel_W154">Horizontal_Scaling_in_NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal_Scaling_in_NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types_of_nosql_db"><span title="Types_of_NoSQL_DB" class="categoryLinkLabel_W154">Types_of_NoSQL_DB</span></a><button aria-label="Expand sidebar category &#x27;Types_of_NoSQL_DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search_databases"><span title="Search_Databases" class="categoryLinkLabel_W154">Search_Databases</span></a><button aria-label="Expand sidebar category &#x27;Search_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time_series_databases"><span title="Time_Series_Databases" class="categoryLinkLabel_W154">Time_Series_Databases</span></a><button aria-label="Expand sidebar category &#x27;Time_Series_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/oltpvsolap_databases"><span title="OLTPvsOLAP_Databases" class="categoryLinkLabel_W154">OLTPvsOLAP_Databases</span></a><button aria-label="Collapse sidebar category &#x27;OLTPvsOLAP_Databases&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_01"><span title="OLTP (Online Transaction Processing)" class="linkLabel_WmDU">OLTP (Online Transaction Processing)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_02"><span title="OLAP (Online Analytical Processing)" class="linkLabel_WmDU">OLAP (Online Analytical Processing)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_03"><span title="Part 17C — OLTP vs OLAP: Architectural Differences" class="linkLabel_WmDU">Part 17C — OLTP vs OLAP: Architectural Differences</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_04"><span title="OLTP vs OLAP: Complete Comparison" class="linkLabel_WmDU">OLTP vs OLAP: Complete Comparison</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_05"><span title="Data Warehousing" class="linkLabel_WmDU">Data Warehousing</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql_databases"><span title="NewSQL_Databases" class="categoryLinkLabel_W154">NewSQL_Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL_Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot_persistence"><span title="Polyglot_Persistence" class="categoryLinkLabel_W154">Polyglot_Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot_Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/oltpvsolap_databases"><span>OLTPvsOLAP_Databases</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Part 17C — OLTP vs OLAP: Architectural Differences</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Part 17C — OLTP vs OLAP: Architectural Differences</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>OLTP architecture</strong> is designed to process business transactions reliably and quickly.</li>
+<li class=""><strong>OLAP architecture</strong> is designed to scan, aggregate, and analyze large volumes of data efficiently.</li>
+</ul>
+<p>Consider an e-commerce application.</p>
+<p>A customer places an order. The system must:</p>
+<ol>
+<li class="">Validate the customer.</li>
+<li class="">Check product availability.</li>
+<li class="">Create an order.</li>
+<li class="">Record payment information.</li>
+<li class="">Update inventory.</li>
+<li class="">Return the result.</li>
+</ol>
+<p>This is an OLTP workload.</p>
+<p>Now imagine the business wants to calculate:</p>
+<ul>
+<li class="">Total revenue by month.</li>
+<li class="">Top-selling products.</li>
+<li class="">Customer retention over the last two years.</li>
+<li class="">Revenue by geographical region.</li>
+<li class="">Campaign conversion rates.</li>
+</ul>
+<p>These are OLAP workloads.</p>
+<p>The same business data is involved, but the architecture required to process these workloads efficiently is different.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-we-will-compare">What we will compare<a href="#what-we-will-compare" class="hash-link" aria-label="Direct link to What we will compare" title="Direct link to What we will compare" translate="no">​</a></h3>
+<ol>
+<li class="">Row-oriented vs column-oriented storage.</li>
+<li class="">Query execution.</li>
+<li class="">Indexing strategies.</li>
+<li class="">Data organization.</li>
+<li class="">Transaction processing vs analytical processing.</li>
+<li class="">Memory and caching.</li>
+<li class="">Write and read patterns.</li>
+<li class="">Workload isolation.</li>
+<li class="">Hybrid OLTP/OLAP architectures.</li>
+<li class="">Real-world system design decisions.</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-architectural-overview">2. Architectural Overview<a href="#2-architectural-overview" class="hash-link" aria-label="Direct link to 2. Architectural Overview" title="Direct link to 2. Architectural Overview" translate="no">​</a></h2>
+<p>Before comparing individual components, understand the high-level architectures.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-oltp-architecture">2.1 OLTP architecture<a href="#21-oltp-architecture" class="hash-link" aria-label="Direct link to 2.1 OLTP architecture" title="Direct link to 2.1 OLTP architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             CLIENT / APPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               API / BACKEND</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               CONNECTION POOL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                QUERY ENGINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Transaction Manager      Query Executor</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 BUFFER CACHE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 STORAGE ENGINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      WAL / REDO LOG          DATA FILES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       DURABILITY</span><br></div></code></pre></div></div>
+<p>The architecture focuses on:</p>
+<ul>
+<li class="">Fast individual record access.</li>
+<li class="">Concurrent transactions.</li>
+<li class="">ACID guarantees.</li>
+<li class="">Efficient inserts and updates.</li>
+<li class="">Consistent database state.</li>
+<li class="">Low transaction latency.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-olap-architecture">2.2 OLAP architecture<a href="#22-olap-architecture" class="hash-link" aria-label="Direct link to 2.2 OLAP architecture" title="Direct link to 2.2 OLAP architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             DATA SOURCES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      OLTP       Events     External</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Database    Streams     Systems</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             DATA INGESTION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             DATA STORAGE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             COLUMNAR DATA</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             QUERY ENGINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Parallel  Aggregation  Filtering</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Scanning</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             ANALYTICAL RESULTS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          DASHBOARDS / REPORTS</span><br></div></code></pre></div></div>
+<p>The architecture focuses on:</p>
+<ul>
+<li class="">Large data scans.</li>
+<li class="">Aggregations.</li>
+<li class="">Columnar storage.</li>
+<li class="">Compression.</li>
+<li class="">Parallel execution.</li>
+<li class="">Historical analysis.</li>
+<li class="">Analytical query throughput.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-row-oriented-vs-column-oriented-storage">3. Row-Oriented vs Column-Oriented Storage<a href="#3-row-oriented-vs-column-oriented-storage" class="hash-link" aria-label="Direct link to 3. Row-Oriented vs Column-Oriented Storage" title="Direct link to 3. Row-Oriented vs Column-Oriented Storage" translate="no">​</a></h2>
+<p>This is one of the most important architectural differences.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-row-oriented-storage">3.1 Row-oriented storage<a href="#31-row-oriented-storage" class="hash-link" aria-label="Direct link to 3.1 Row-oriented storage" title="Direct link to 3.1 Row-oriented storage" translate="no">​</a></h3>
+<p>In row-oriented storage, values belonging to the same record are stored together.</p>
+<p>Consider an <code>orders</code> table:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>order_id</th><th>customer_id</th><th>region</th><th style="text-align:right">amount</th><th>status</th></tr></thead><tbody><tr><td>101</td><td>1</td><td>North</td><td style="text-align:right">1500</td><td>completed</td></tr><tr><td>102</td><td>2</td><td>South</td><td style="text-align:right">2500</td><td>pending</td></tr><tr><td>103</td><td>3</td><td>East</td><td style="text-align:right">3000</td><td>completed</td></tr></tbody></table>
+<p>Conceptually, the physical organization is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Row 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[101, 1, North, 1500, completed]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Row 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[102, 2, South, 2500, pending]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Row 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[103, 3, East, 3000, completed]</span><br></div></code></pre></div></div>
+<p>The database stores the fields of a record together in its row-oriented representation.</p>
+<p>This is useful when an application frequently accesses individual records.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database retrieves the record and its required fields.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-why-row-storage-works-well-for-oltp">3.2 Why row storage works well for OLTP<a href="#32-why-row-storage-works-well-for-oltp" class="hash-link" aria-label="Direct link to 3.2 Why row storage works well for OLTP" title="Direct link to 3.2 Why row storage works well for OLTP" translate="no">​</a></h3>
+<p>Consider a typical application operation:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">status</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;shipped&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database identifies the relevant record and modifies the required value while maintaining transactional guarantees.</p>
+<p>OLTP workloads commonly:</p>
+<ul>
+<li class="">Insert individual records.</li>
+<li class="">Update individual records.</li>
+<li class="">Delete individual records.</li>
+<li class="">Retrieve records by primary key.</li>
+<li class="">Retrieve small ranges of records.</li>
+</ul>
+<p>Row-oriented storage is a natural fit for these access patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-column-oriented-storage">3.3 Column-oriented storage<a href="#33-column-oriented-storage" class="hash-link" aria-label="Direct link to 3.3 Column-oriented storage" title="Direct link to 3.3 Column-oriented storage" translate="no">​</a></h3>
+<p>In column-oriented storage, values belonging to the same column are stored together.</p>
+<p>The same table can be conceptually organized as:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">order_id:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[101, 102, 103]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">customer_id:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[1, 2, 3]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">region:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[North, South, East]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">amount:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[1500, 2500, 3000]</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">status:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">[completed, pending, completed]</span><br></div></code></pre></div></div>
+<p>Instead of grouping all fields of a record together, the system organizes values by column.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-why-column-storage-works-well-for-olap">3.4 Why column storage works well for OLAP<a href="#34-why-column-storage-works-well-for-olap" class="hash-link" aria-label="Direct link to 3.4 Why column storage works well for OLAP" title="Direct link to 3.4 Why column storage works well for OLAP" translate="no">​</a></h3>
+<p>Consider this query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">status</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;completed&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The query only requires:</p>
+<ul>
+<li class=""><code>amount</code></li>
+<li class=""><code>status</code></li>
+</ul>
+<p>It does not need:</p>
+<ul>
+<li class=""><code>order_id</code></li>
+<li class=""><code>customer_id</code></li>
+<li class=""><code>region</code></li>
+</ul>
+<p>A column-oriented engine can read the required column data without reading unrelated columns.</p>
+<p>This reduces unnecessary data access.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-visual-comparison">3.5 Visual comparison<a href="#35-visual-comparison" class="hash-link" aria-label="Direct link to 3.5 Visual comparison" title="Direct link to 3.5 Visual comparison" translate="no">​</a></h3>
+<p><text id="x">Conceptual storage layout</text></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ROW-ORIENTED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Record 1: | ID | Customer | Region | Amount | Status |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Record 2: | ID | Customer | Region | Amount | Status |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Record 3: | ID | Customer | Region | Amount | Status |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">COLUMN-ORIENTED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ID:       | ID | ID | ID |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Customer: | Customer | Customer | Customer |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Region:   | Region | Region | Region |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Amount:   | Amount | Amount | Amount |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Status:   | Status | Status | Status |</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="36-comparison">3.6 Comparison<a href="#36-comparison" class="hash-link" aria-label="Direct link to 3.6 Comparison" title="Direct link to 3.6 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>Row-oriented</th><th>Column-oriented</th></tr></thead><tbody><tr><td>Organization</td><td>By record</td><td>By column</td></tr><tr><td>Typical workload</td><td>OLTP</td><td>OLAP</td></tr><tr><td>Point lookup</td><td>Usually efficient</td><td>Depends on engine and layout</td></tr><tr><td>Individual updates</td><td>Usually efficient</td><td>Can be more expensive</td></tr><tr><td>Large aggregations</td><td>Often less efficient</td><td>Often highly efficient</td></tr><tr><td>Reading a few columns</td><td>May read unrelated fields</td><td>Reads selected columns</td></tr><tr><td>Compression</td><td>Varies by implementation</td><td>Often benefits from similar column values</td></tr><tr><td>Common use</td><td>Transaction processing</td><td>Analytical processing</td></tr></tbody></table>
+<p><strong>Important:</strong> These are architectural tendencies, not absolute rules. Some systems combine multiple storage structures or use hybrid designs.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-why-columnar-storage-improves-analytical-performance">4. Why Columnar Storage Improves Analytical Performance<a href="#4-why-columnar-storage-improves-analytical-performance" class="hash-link" aria-label="Direct link to 4. Why Columnar Storage Improves Analytical Performance" title="Direct link to 4. Why Columnar Storage Improves Analytical Performance" translate="no">​</a></h2>
+<p>Columnar storage provides several advantages.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-column-pruning">4.1 Column pruning<a href="#41-column-pruning" class="hash-link" aria-label="Direct link to 4.1 Column pruning" title="Direct link to 4.1 Column pruning" translate="no">​</a></h3>
+<p>Column pruning means reading only the columns required by a query.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database does not need every field in the <code>orders</code> table.</p>
+<p>A column-oriented engine can avoid reading unrelated columns.</p>
+<p>This reduces I/O and memory consumption.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-compression">4.2 Compression<a href="#42-compression" class="hash-link" aria-label="Direct link to 4.2 Compression" title="Direct link to 4.2 Compression" translate="no">​</a></h3>
+<p>Column values often have similar data types and repeated patterns.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">status:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pending</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">pending</span><br></div></code></pre></div></div>
+<p>The database can compress repeated values efficiently.</p>
+<p>Other techniques include:</p>
+<ul>
+<li class="">Dictionary encoding.</li>
+<li class="">Run-length encoding.</li>
+<li class="">Bit packing.</li>
+<li class="">Delta encoding.</li>
+<li class="">Compression algorithms applied to column data.</li>
+</ul>
+<p>The exact techniques vary by database.</p>
+<p><strong>Why does compression matter?</strong></p>
+<p>Less data needs to be stored and transferred from storage into memory.</p>
+<p>In many analytical workloads, reducing data movement is a major performance advantage.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-vectorized-execution">4.3 Vectorized execution<a href="#43-vectorized-execution" class="hash-link" aria-label="Direct link to 4.3 Vectorized execution" title="Direct link to 4.3 Vectorized execution" translate="no">​</a></h3>
+<p>Traditional execution can process data one value or tuple at a time.</p>
+<p>Vectorized execution processes batches of values.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             COLUMN DATA</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             READ BATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          PROCESS MANY VALUES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           CALCULATE PARTIAL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               RESULTS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            READ NEXT BATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             FINAL RESULT</span><br></div></code></pre></div></div>
+<p>For example, instead of adding one revenue value at a time through a tuple-processing loop, the engine can process a batch of values using CPU-efficient operations.</p>
+<p>This can improve:</p>
+<ul>
+<li class="">CPU utilization.</li>
+<li class="">Cache efficiency.</li>
+<li class="">Throughput.</li>
+<li class="">Aggregation performance.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-less-unnecessary-data-movement">4.4 Less unnecessary data movement<a href="#44-less-unnecessary-data-movement" class="hash-link" aria-label="Direct link to 4.4 Less unnecessary data movement" title="Direct link to 4.4 Less unnecessary data movement" translate="no">​</a></h3>
+<p>Consider a table with 30 columns and 100 million records.</p>
+<p>A query needs only two columns.</p>
+<p>A row-oriented system may read pages containing many additional fields, depending on its storage layout and execution strategy.</p>
+<p>A columnar system can read the two relevant columns.</p>
+<p>This can substantially reduce the amount of data read.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-query-execution-oltp-vs-olap">5. Query Execution: OLTP vs OLAP<a href="#5-query-execution-oltp-vs-olap" class="hash-link" aria-label="Direct link to 5. Query Execution: OLTP vs OLAP" title="Direct link to 5. Query Execution: OLTP vs OLAP" translate="no">​</a></h2>
+<p>The two workloads execute different kinds of queries.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-oltp-query-execution">5.1 OLTP query execution<a href="#51-oltp-query-execution" class="hash-link" aria-label="Direct link to 5.1 OLTP query execution" title="Direct link to 5.1 OLTP query execution" translate="no">​</a></h3>
+<p>Consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Assume <code>order_id</code> is the primary key and has an index.</p>
+<p>A simplified execution process:</p>
+<ol>
+<li class="">Parse and validate the SQL.</li>
+<li class="">Generate possible execution plans.</li>
+<li class="">Choose an efficient plan.</li>
+<li class="">Use the index to locate the record.</li>
+<li class="">Fetch the required row.</li>
+<li class="">Return the result.</li>
+</ol>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">           SQL QUERY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          QUERY PLANNER</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          PRIMARY KEY INDEX</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          FIND ROW LOCATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           FETCH ROW</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          RETURN RESULT</span><br></div></code></pre></div></div>
+<p>The goal is to locate a small amount of data quickly.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-olap-query-execution">5.2 OLAP query execution<a href="#52-olap-query-execution" class="hash-link" aria-label="Direct link to 5.2 OLAP query execution" title="Direct link to 5.2 OLAP query execution" translate="no">​</a></h3>
+<p>Consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    region</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> revenue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_date </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;2026-01-01&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> region</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>A simplified execution process:</p>
+<ol>
+<li class="">Parse and validate the SQL.</li>
+<li class="">Generate possible execution plans.</li>
+<li class="">Identify relevant data partitions or segments.</li>
+<li class="">Read required columns.</li>
+<li class="">Filter rows.</li>
+<li class="">Aggregate partial results.</li>
+<li class="">Combine results from workers.</li>
+<li class="">Return the final result.</li>
+</ol>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             SQL QUERY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            QUERY PLANNER</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         IDENTIFY DATA PARTITIONS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         READ REQUIRED COLUMNS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          PARALLEL SCANNING</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          FILTER RECORDS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         PARTIAL AGGREGATIONS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          COMBINE RESULTS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           FINAL RESULT</span><br></div></code></pre></div></div>
+<p>The goal is to process a large amount of data efficiently.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-key-difference">5.3 Key difference<a href="#53-key-difference" class="hash-link" aria-label="Direct link to 5.3 Key difference" title="Direct link to 5.3 Key difference" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>OLTP execution</th><th>OLAP execution</th></tr></thead><tbody><tr><td>Locate specific records</td><td>Scan many records</td></tr><tr><td>Index lookups are common</td><td>Large scans are common</td></tr><tr><td>Small result sets</td><td>Large intermediate datasets</td></tr><tr><td>Individual row access</td><td>Batch and column processing</td></tr><tr><td>Transaction-focused</td><td>Aggregation-focused</td></tr><tr><td>Low latency per operation</td><td>High analytical throughput</td></tr></tbody></table>
+<p>Do not interpret this as a rule that OLTP always uses indexes or OLAP never uses indexes. Both workload types can use indexes, scans, and other execution strategies depending on the database and query.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-indexing-strategies-oltp-vs-olap">6. Indexing Strategies: OLTP vs OLAP<a href="#6-indexing-strategies-oltp-vs-olap" class="hash-link" aria-label="Direct link to 6. Indexing Strategies: OLTP vs OLAP" title="Direct link to 6. Indexing Strategies: OLTP vs OLAP" translate="no">​</a></h2>
+<p>Indexes help databases locate data efficiently, but index design depends on workload.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-oltp-indexing">6.1 OLTP indexing<a href="#61-oltp-indexing" class="hash-link" aria-label="Direct link to 6.1 OLTP indexing" title="Direct link to 6.1 OLTP indexing" translate="no">​</a></h3>
+<p>OLTP databases commonly need fast access to individual records.</p>
+<p>Typical indexes include:</p>
+<ul>
+<li class="">Primary key indexes.</li>
+<li class="">Unique indexes.</li>
+<li class="">Foreign key-related indexes.</li>
+<li class="">Composite indexes for application queries.</li>
+<li class="">Indexes supporting filtering and sorting.</li>
+</ul>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_orders_customer_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">customer_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> customer_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">501</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The index can help locate the customer&#x27;s orders without scanning every record.</p>
+<p>However, indexes introduce write overhead.</p>
+<p>When a row is inserted, updated, or deleted, relevant indexes may also need maintenance.</p>
+<p>Too many indexes can slow down transactional writes and consume storage.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-olap-indexing">6.2 OLAP indexing<a href="#62-olap-indexing" class="hash-link" aria-label="Direct link to 6.2 OLAP indexing" title="Direct link to 6.2 OLAP indexing" translate="no">​</a></h3>
+<p>Analytical databases may use different data organization and acceleration mechanisms.</p>
+<p>Examples include:</p>
+<ul>
+<li class="">Partitioning.</li>
+<li class="">Clustering or sorting.</li>
+<li class="">Zone maps or min/max metadata.</li>
+<li class="">Data skipping indexes.</li>
+<li class="">Bitmap indexes in suitable systems.</li>
+<li class="">Materialized views.</li>
+<li class="">Pre-aggregated tables.</li>
+<li class="">Specialized indexes supported by the engine.</li>
+</ul>
+<p>Not every analytical database uses the same indexing model.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-why-traditional-indexes-are-not-always-sufficient-for-olap">6.3 Why traditional indexes are not always sufficient for OLAP<a href="#63-why-traditional-indexes-are-not-always-sufficient-for-olap" class="hash-link" aria-label="Direct link to 6.3 Why traditional indexes are not always sufficient for OLAP" title="Direct link to 6.3 Why traditional indexes are not always sufficient for OLAP" translate="no">​</a></h3>
+<p>Imagine a table containing 100 million orders.</p>
+<p>The query is:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_date </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;2024-01-01&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>If most of the table matches the date condition, reading the qualifying data sequentially may be more efficient than performing a huge number of index lookups.</p>
+<p>This is why analytical databases often focus on efficient scans, data layout, compression, and parallel processing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-comparison">6.4 Comparison<a href="#64-comparison" class="hash-link" aria-label="Direct link to 6.4 Comparison" title="Direct link to 6.4 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td>Primary key index</td><td>Very common</td><td>Supported where appropriate</td></tr><tr><td>Unique indexes</td><td>Common</td><td>Supported where appropriate</td></tr><tr><td>Composite indexes</td><td>Common</td><td>Depends on engine and workload</td></tr><tr><td>Partitioning</td><td>Useful for selected workloads</td><td>Often important</td></tr><tr><td>Materialized views</td><td>Useful in some cases</td><td>Common for repeated reports</td></tr><tr><td>Pre-aggregation</td><td>Sometimes</td><td>Often useful</td></tr><tr><td>Main objective</td><td>Fast record access</td><td>Efficient analytical scans</td></tr></tbody></table>
+<p><strong>Remember:</strong> Indexing is not an either/or decision. The right design depends on the database engine, data layout, and query workload.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-data-organization-current-operational-data-vs-historical-analytical-data">7. Data Organization: Current Operational Data vs Historical Analytical Data<a href="#7-data-organization-current-operational-data-vs-historical-analytical-data" class="hash-link" aria-label="Direct link to 7. Data Organization: Current Operational Data vs Historical Analytical Data" title="Direct link to 7. Data Organization: Current Operational Data vs Historical Analytical Data" translate="no">​</a></h2>
+<p>OLTP and OLAP systems also differ in how they organize and use data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-oltp-data-organization">7.1 OLTP data organization<a href="#71-oltp-data-organization" class="hash-link" aria-label="Direct link to 7.1 OLTP data organization" title="Direct link to 7.1 OLTP data organization" translate="no">​</a></h3>
+<p>OLTP systems commonly store the current operational state.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">customer_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_date</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">status</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">total_amount</span><br></div></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">inventory</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">---------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">available_quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">updated_at</span><br></div></code></pre></div></div>
+<p>The application needs the latest valid state to process transactions.</p>
+<p>For example, when an order is placed, inventory availability must be updated reliably.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-olap-data-organization">7.2 OLAP data organization<a href="#72-olap-data-organization" class="hash-link" aria-label="Direct link to 7.2 OLAP data organization" title="Direct link to 7.2 OLAP data organization" translate="no">​</a></h3>
+<p>OLAP systems commonly maintain integrated and historical data.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">sales_analytics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">---------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">customer_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">region</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">category</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_date</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">revenue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">campaign_id</span><br></div></code></pre></div></div>
+<p>This data may be derived from multiple operational sources.</p>
+<p>It can be organized to make analytical queries easier and more efficient.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="73-historical-analysis">7.3 Historical analysis<a href="#73-historical-analysis" class="hash-link" aria-label="Direct link to 7.3 Historical analysis" title="Direct link to 7.3 Historical analysis" translate="no">​</a></h3>
+<p>Suppose a customer changes their address.</p>
+<p>An operational database may simply update the customer&#x27;s current address.</p>
+<p>An analytical system may need to preserve historical regional information so that old sales reports remain accurate.</p>
+<p>This can be handled through historical data modeling techniques.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Customer 501</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2024:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Region = North</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2025:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Region = South</span><br></div></code></pre></div></div>
+<p>If a business wants to analyze revenue by the customer&#x27;s region at the time of purchase, it needs a suitable historical representation.</p>
+<p>A common dimensional modeling technique for this is a slowly changing dimension, particularly Type 2. We will cover dimensional modeling in Part 17E.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="74-comparison">7.4 Comparison<a href="#74-comparison" class="hash-link" aria-label="Direct link to 7.4 Comparison" title="Direct link to 7.4 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td>Data focus</td><td>Current operational state</td><td>Historical and integrated data</td></tr><tr><td>Data structure</td><td>Often normalized</td><td>Often analytical or denormalized</td></tr><tr><td>Update pattern</td><td>Frequent transactions</td><td>Periodic or continuous ingestion</td></tr><tr><td>Data sources</td><td>Application services</td><td>Multiple operational and external sources</td></tr><tr><td>Main purpose</td><td>Operate the application</td><td>Understand business performance</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-normalization-vs-denormalization">8. Normalization vs Denormalization<a href="#8-normalization-vs-denormalization" class="hash-link" aria-label="Direct link to 8. Normalization vs Denormalization" title="Direct link to 8. Normalization vs Denormalization" translate="no">​</a></h2>
+<p>Data modeling also reflects the difference between transactional and analytical workloads.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-oltp-normalization">8.1 OLTP: Normalization<a href="#81-oltp-normalization" class="hash-link" aria-label="Direct link to 8.1 OLTP: Normalization" title="Direct link to 8.1 OLTP: Normalization" translate="no">​</a></h3>
+<p>OLTP systems commonly use normalization to reduce duplication and maintain consistency.</p>
+<p>Example:</p>
+<p><strong>customers</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>customer_id</th><th>name</th></tr></thead><tbody><tr><td>1</td><td>Amit</td></tr><tr><td>2</td><td>Ravi</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>order_id</th><th>customer_id</th><th style="text-align:right">total_amount</th></tr></thead><tbody><tr><td>101</td><td>1</td><td style="text-align:right">1500</td></tr><tr><td>102</td><td>2</td><td style="text-align:right">2500</td></tr></tbody></table>
+<p>The customer&#x27;s information is stored once in the customer table.</p>
+<p>Orders reference customers through <code>customer_id</code>.</p>
+<p>This avoids repeating the same customer information in every order record.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-olap-denormalization">8.2 OLAP: Denormalization<a href="#82-olap-denormalization" class="hash-link" aria-label="Direct link to 8.2 OLAP: Denormalization" title="Direct link to 8.2 OLAP: Denormalization" translate="no">​</a></h3>
+<p>Analytical systems may use denormalized structures to reduce the number of joins required for frequent reports.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>order_id</th><th>customer_name</th><th>region</th><th>product_category</th><th style="text-align:right">revenue</th></tr></thead><tbody><tr><td>101</td><td>Amit</td><td>North</td><td>Electronics</td><td style="text-align:right">1500</td></tr><tr><td>102</td><td>Ravi</td><td>South</td><td>Furniture</td><td style="text-align:right">2500</td></tr></tbody></table>
+<p>The analytical dataset contains attributes from multiple source tables.</p>
+<p>This can make certain analytical queries simpler and faster.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-why-denormalization-can-help">8.3 Why denormalization can help<a href="#83-why-denormalization-can-help" class="hash-link" aria-label="Direct link to 8.3 Why denormalization can help" title="Direct link to 8.3 Why denormalization can help" translate="no">​</a></h3>
+<p>Suppose a dashboard repeatedly calculates revenue by region and category.</p>
+<p>With a denormalized analytical table, the query might be:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    region</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_category</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">revenue</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> total_revenue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> sales_analytics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    region</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_category</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Without the required attributes in one dataset, the query might need several joins.</p>
+<p>However, denormalization introduces tradeoffs:</p>
+<ul>
+<li class="">Data duplication.</li>
+<li class="">More storage.</li>
+<li class="">Data synchronization complexity.</li>
+<li class="">Potential inconsistencies if updates are not managed correctly.</li>
+</ul>
+<p><strong>Important:</strong> OLAP does not require denormalization. Analytical systems can use normalized, denormalized, or dimensional models depending on the workload.</p>
+<p>Detailed fact tables, dimension tables, star schemas, and snowflake schemas are covered in Part 17E.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-transaction-processing-vs-analytical-processing">9. Transaction Processing vs Analytical Processing<a href="#9-transaction-processing-vs-analytical-processing" class="hash-link" aria-label="Direct link to 9. Transaction Processing vs Analytical Processing" title="Direct link to 9. Transaction Processing vs Analytical Processing" translate="no">​</a></h2>
+<p>The transaction model is another major difference.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-oltp-transaction-oriented">9.1 OLTP: Transaction-oriented<a href="#91-oltp-transaction-oriented" class="hash-link" aria-label="Direct link to 9.1 OLTP: Transaction-oriented" title="Direct link to 9.1 OLTP: Transaction-oriented" translate="no">​</a></h3>
+<p>OLTP systems depend heavily on transactions.</p>
+<p>Example: placing an order.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    customer_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    total_amount</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">status</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token number" style="color:#36acaa">501</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token number" style="color:#36acaa">2500</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token string" style="color:#e3116c">&#x27;pending&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> inventory</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> available_quantity </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> available_quantity </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> product_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> available_quantity </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This example is simplified. A production transaction should verify that the inventory update affected one row before committing. Otherwise, the application must roll back.</p>
+<p>The database must ensure that the operations behave consistently.</p>
+<p>Important requirements include:</p>
+<ul>
+<li class="">Atomicity.</li>
+<li class="">Consistency.</li>
+<li class="">Isolation.</li>
+<li class="">Durability.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-olap-analytical-processing">9.2 OLAP: Analytical processing<a href="#92-olap-analytical-processing" class="hash-link" aria-label="Direct link to 9.2 OLAP: Analytical processing" title="Direct link to 9.2 OLAP: Analytical processing" translate="no">​</a></h3>
+<p>OLAP systems focus on reading and analyzing data.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_category</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">revenue</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> total_revenue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> sales_analytics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> product_category</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The query may process millions of records.</p>
+<p>The main concern is efficient analytical execution rather than updating one business transaction.</p>
+<p>OLAP systems still have transaction and consistency mechanisms where needed. The difference is the dominant workload and optimization priority, not the absence of database correctness guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-comparison">9.3 Comparison<a href="#93-comparison" class="hash-link" aria-label="Direct link to 9.3 Comparison" title="Direct link to 9.3 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td>Main operation</td><td>Business transactions</td><td>Analytical queries</td></tr><tr><td>Write operations</td><td>Frequent</td><td>Primarily ingestion and refresh</td></tr><tr><td>Transaction size</td><td>Usually small</td><td>Queries can process large datasets</td></tr><tr><td>Concurrency concern</td><td>Conflicting updates</td><td>Concurrent analytical queries and resource sharing</td></tr><tr><td>Correctness focus</td><td>Transactional consistency</td><td>Accurate and sufficiently fresh analytical results</td></tr><tr><td>Typical latency goal</td><td>Very low</td><td>Depends on query complexity and reporting requirements</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-memory-and-caching-architecture">10. Memory and Caching Architecture<a href="#10-memory-and-caching-architecture" class="hash-link" aria-label="Direct link to 10. Memory and Caching Architecture" title="Direct link to 10. Memory and Caching Architecture" translate="no">​</a></h2>
+<p>Memory is important in both systems, but the data access patterns differ.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-oltp-caching">10.1 OLTP caching<a href="#101-oltp-caching" class="hash-link" aria-label="Direct link to 10.1 OLTP caching" title="Direct link to 10.1 OLTP caching" translate="no">​</a></h3>
+<p>OLTP systems benefit from keeping frequently accessed pages in memory.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Frequently accessed customer records.</li>
+<li class="">Product records.</li>
+<li class="">Index pages.</li>
+<li class="">Recently accessed order records.</li>
+</ul>
+<p>In PostgreSQL, the shared buffer cache holds database pages.</p>
+<p>The operating system may also cache file data.</p>
+<p>The goal is to avoid repeated disk reads for frequently accessed records.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-olap-caching">10.2 OLAP caching<a href="#102-olap-caching" class="hash-link" aria-label="Direct link to 10.2 OLAP caching" title="Direct link to 10.2 OLAP caching" translate="no">​</a></h3>
+<p>OLAP systems can benefit from caching:</p>
+<ul>
+<li class="">Frequently accessed column data.</li>
+<li class="">Compressed data blocks.</li>
+<li class="">Query results.</li>
+<li class="">Intermediate aggregation results.</li>
+<li class="">Metadata describing data segments.</li>
+</ul>
+<p>A dashboard may repeatedly execute the same revenue query.</p>
+<p>Caching or precomputing its result can reduce repeated processing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-comparison">10.3 Comparison<a href="#103-comparison" class="hash-link" aria-label="Direct link to 10.3 Comparison" title="Direct link to 10.3 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>OLTP caching</th><th>OLAP caching</th></tr></thead><tbody><tr><td>Frequently accessed records</td><td>Frequently scanned columns or data segments</td></tr><tr><td>Index pages</td><td>Column metadata and data blocks</td></tr><tr><td>Recent transaction data</td><td>Historical analytical data</td></tr><tr><td>Low-latency point access</td><td>Repeated scan and aggregation acceleration</td></tr><tr><td>Application-level caching is common</td><td>Result caching and pre-aggregation are common</td></tr></tbody></table>
+<p>The exact cache architecture depends on the database.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-write-and-read-patterns">11. Write and Read Patterns<a href="#11-write-and-read-patterns" class="hash-link" aria-label="Direct link to 11. Write and Read Patterns" title="Direct link to 11. Write and Read Patterns" translate="no">​</a></h2>
+<p>The most visible difference between OLTP and OLAP is how data is accessed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="111-oltp-workload">11.1 OLTP workload<a href="#111-oltp-workload" class="hash-link" aria-label="Direct link to 11.1 OLTP workload" title="Direct link to 11.1 OLTP workload" translate="no">​</a></h3>
+<p>Example operations:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">INSERT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INTO</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> inventory</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> available_quantity </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> available_quantity </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> product_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> order_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Characteristics:</p>
+<ul>
+<li class="">Frequent small writes.</li>
+<li class="">Frequent point lookups.</li>
+<li class="">Small result sets.</li>
+<li class="">Concurrent transactions.</li>
+<li class="">Updates to existing records.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="112-olap-workload">11.2 OLAP workload<a href="#112-olap-workload" class="hash-link" aria-label="Direct link to 11.2 OLAP workload" title="Direct link to 11.2 OLAP workload" translate="no">​</a></h3>
+<p>Example operations:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    region</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">revenue</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> sales_analytics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> region</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product_category</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">COUNT</span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> total_sales</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> sales_analytics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> product_category</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Characteristics:</p>
+<ul>
+<li class="">Large reads.</li>
+<li class="">Aggregations.</li>
+<li class="">Complex joins.</li>
+<li class="">Historical comparisons.</li>
+<li class="">Large result sets or summarized results.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="113-comparison">11.3 Comparison<a href="#113-comparison" class="hash-link" aria-label="Direct link to 11.3 Comparison" title="Direct link to 11.3 Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Property</th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td>Read pattern</td><td>Point lookups and small ranges</td><td>Large scans</td></tr><tr><td>Write pattern</td><td>Frequent individual writes</td><td>Batch or streaming ingestion</td></tr><tr><td>Update pattern</td><td>Frequent row updates</td><td>Often append-oriented or managed bulk changes</td></tr><tr><td>Delete pattern</td><td>Operational deletes and retention</td><td>Often partition-level or lifecycle operations</td></tr><tr><td>Query complexity</td><td>Usually lower</td><td>Often higher</td></tr></tbody></table>
+<p>Do not assume OLAP systems are append-only. Their ingestion and update mechanisms vary.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-workload-isolation-why-separate-oltp-and-olap">12. Workload Isolation: Why Separate OLTP and OLAP?<a href="#12-workload-isolation-why-separate-oltp-and-olap" class="hash-link" aria-label="Direct link to 12. Workload Isolation: Why Separate OLTP and OLAP?" title="Direct link to 12. Workload Isolation: Why Separate OLTP and OLAP?" translate="no">​</a></h2>
+<p>This is a critical real-world architecture decision.</p>
+<p>Imagine your application has:</p>
+<ul>
+<li class="">10,000 customers actively using the platform.</li>
+<li class="">50 million historical orders.</li>
+<li class="">A dashboard that calculates revenue across all historical orders.</li>
+</ul>
+<p>A large analytical query can consume substantial resources.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="121-what-can-go-wrong">12.1 What can go wrong?<a href="#121-what-can-go-wrong" class="hash-link" aria-label="Direct link to 12.1 What can go wrong?" title="Direct link to 12.1 What can go wrong?" translate="no">​</a></h3>
+<p>Suppose the production PostgreSQL database handles both workloads.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              PRODUCTION DATABASE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      OLTP QUERIES              OLAP QUERIES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Order creation             Revenue report</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Payment updates            Large table scan</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Inventory updates          Multiple joins</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +------------+------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              SHARED RESOURCES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             CPU / RAM / I/O</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              RESOURCE CONTENTION</span><br></div></code></pre></div></div>
+<p>The analytical workload can compete with operational transactions.</p>
+<p>Possible consequences:</p>
+<ul>
+<li class="">Higher query latency.</li>
+<li class="">Increased CPU usage.</li>
+<li class="">Memory pressure.</li>
+<li class="">More disk I/O.</li>
+<li class="">Connection pool exhaustion.</li>
+<li class="">Reduced throughput for application requests.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="122-solution-workload-separation">12.2 Solution: Workload separation<a href="#122-solution-workload-separation" class="hash-link" aria-label="Direct link to 12.2 Solution: Workload separation" title="Direct link to 12.2 Solution: Workload separation" translate="no">​</a></h3>
+<p>One approach is to use a read replica for reporting.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 APPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               PRIMARY DATABASE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  PostgreSQL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Replication Stream</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                READ REPLICA</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              REPORTING QUERIES</span><br></div></code></pre></div></div>
+<p>The primary handles writes and operational reads.</p>
+<p>The replica handles selected read workloads.</p>
+<p>However, a read replica is not automatically a dedicated OLAP warehouse.</p>
+<p>It may still be a row-oriented transactional database, and analytical queries can still consume significant resources on that replica.</p>
+<p>There may also be replication lag.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="123-dedicated-analytical-system">12.3 Dedicated analytical system<a href="#123-dedicated-analytical-system" class="hash-link" aria-label="Direct link to 12.3 Dedicated analytical system" title="Direct link to 12.3 Dedicated analytical system" translate="no">​</a></h3>
+<p>For larger workloads, the architecture may separate analytical storage and compute.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 APPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               OLTP DATABASE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              CDC / DATA PIPELINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              ANALYTICAL STORAGE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                OLAP ENGINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              REPORTING SYSTEMS</span><br></div></code></pre></div></div>
+<p>This provides stronger workload isolation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="124-when-should-you-separate-them">12.4 When should you separate them?<a href="#124-when-should-you-separate-them" class="hash-link" aria-label="Direct link to 12.4 When should you separate them?" title="Direct link to 12.4 When should you separate them?" translate="no">​</a></h3>
+<p>Consider separation when:</p>
+<ul>
+<li class="">Analytical queries affect application performance.</li>
+<li class="">The dataset has grown substantially.</li>
+<li class="">Reports require large historical scans.</li>
+<li class="">Many analysts or dashboards query simultaneously.</li>
+<li class="">OLTP and OLAP have different scaling requirements.</li>
+<li class="">Business reporting requires data integration from multiple systems.</li>
+</ul>
+<p>For smaller applications, PostgreSQL may be sufficient for both workloads. Do not introduce a warehouse before there is a real workload or operational reason.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-hybrid-oltpolap-architectures">13. Hybrid OLTP/OLAP Architectures<a href="#13-hybrid-oltpolap-architectures" class="hash-link" aria-label="Direct link to 13. Hybrid OLTP/OLAP Architectures" title="Direct link to 13. Hybrid OLTP/OLAP Architectures" translate="no">​</a></h2>
+<p>Modern systems do not always require completely separate databases.</p>
+<p>Some architectures attempt to support transactional and analytical workloads within one system.</p>
+<p>These are often described as HTAP.</p>
+<p>HTAP stands for <strong>Hybrid Transactional/Analytical Processing</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="131-what-is-htap">13.1 What is HTAP?<a href="#131-what-is-htap" class="hash-link" aria-label="Direct link to 13.1 What is HTAP?" title="Direct link to 13.1 What is HTAP?" translate="no">​</a></h3>
+<p>HTAP combines transactional and analytical processing capabilities.</p>
+<p>The objective is to support operational transactions and analytical queries with reduced data movement or delay between separate systems.</p>
+<p>Example:</p>
+<p>A retail platform processes an order and wants to analyze updated sales metrics almost immediately.</p>
+<p>A traditional architecture might require:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">OLTP Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data Pipeline</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Data Warehouse</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Analytics</span><br></div></code></pre></div></div>
+<p>This introduces data movement and possible freshness delays.</p>
+<p>An HTAP architecture attempts to reduce this separation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="132-conceptual-htap-architecture">13.2 Conceptual HTAP architecture<a href="#132-conceptual-htap-architecture" class="hash-link" aria-label="Direct link to 13.2 Conceptual HTAP architecture" title="Direct link to 13.2 Conceptual HTAP architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                APPLICATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                HTAP SYSTEM</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Transactional          Analytical</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Engine                 Engine</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                SHARED DATA</span><br></div></code></pre></div></div>
+<p>This is conceptual. Actual HTAP implementations vary significantly.</p>
+<p>Some use separate row and column storage structures. Others use distributed architectures or specialized execution engines.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="133-examples-of-htap-oriented-systems">13.3 Examples of HTAP-oriented systems<a href="#133-examples-of-htap-oriented-systems" class="hash-link" aria-label="Direct link to 13.3 Examples of HTAP-oriented systems" title="Direct link to 13.3 Examples of HTAP-oriented systems" translate="no">​</a></h3>
+<p>Examples include:</p>
+<ul>
+<li class="">TiDB.</li>
+<li class="">SingleStore.</li>
+<li class="">SAP HANA.</li>
+</ul>
+<p>Their internal architectures and supported capabilities differ. Do not assume every product implements HTAP in the same way.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="134-htap-advantages">13.4 HTAP advantages<a href="#134-htap-advantages" class="hash-link" aria-label="Direct link to 13.4 HTAP advantages" title="Direct link to 13.4 HTAP advantages" translate="no">​</a></h3>
+<ul>
+<li class="">Reduced delay between transactions and analytics.</li>
+<li class="">Less need for separate data pipelines in some architectures.</li>
+<li class="">Potentially simpler data synchronization.</li>
+<li class="">Near-real-time analytical visibility.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="135-htap-tradeoffs">13.5 HTAP tradeoffs<a href="#135-htap-tradeoffs" class="hash-link" aria-label="Direct link to 13.5 HTAP tradeoffs" title="Direct link to 13.5 HTAP tradeoffs" translate="no">​</a></h3>
+<ul>
+<li class="">More complex internal architecture.</li>
+<li class="">Resource contention may still exist.</li>
+<li class="">Operational and analytical workloads have different optimization needs.</li>
+<li class="">Scaling and capacity planning can be difficult.</li>
+<li class="">Not every analytical query is suitable for execution alongside transactions.</li>
+</ul>
+<p>HTAP is not automatically better than a separate OLTP and OLAP architecture.</p>
+<p>The right decision depends on latency requirements, workload size, consistency needs, and operational complexity.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-real-world-architecture-e-commerce-example">14. Real-World Architecture: E-Commerce Example<a href="#14-real-world-architecture-e-commerce-example" class="hash-link" aria-label="Direct link to 14. Real-World Architecture: E-Commerce Example" title="Direct link to 14. Real-World Architecture: E-Commerce Example" translate="no">​</a></h2>
+<p>Let&#x27;s design an architecture for a growing e-commerce platform.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="business-requirements">Business requirements<a href="#business-requirements" class="hash-link" aria-label="Direct link to Business requirements" title="Direct link to Business requirements" translate="no">​</a></h3>
+<p>The platform needs to:</p>
+<ol>
+<li class="">Process customer orders.</li>
+<li class="">Update inventory.</li>
+<li class="">Record payments.</li>
+<li class="">Track customer activity.</li>
+<li class="">Calculate revenue.</li>
+<li class="">Generate monthly sales reports.</li>
+<li class="">Analyze campaign performance.</li>
+<li class="">Provide management dashboards.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="141-oltp-layer">14.1 OLTP layer<a href="#141-oltp-layer" class="hash-link" aria-label="Direct link to 14.1 OLTP layer" title="Direct link to 14.1 OLTP layer" translate="no">​</a></h3>
+<p>Use a transactional database such as PostgreSQL.</p>
+<p>It stores:</p>
+<ul>
+<li class="">Customers.</li>
+<li class="">Orders.</li>
+<li class="">Payments.</li>
+<li class="">Inventory.</li>
+<li class="">Order items.</li>
+</ul>
+<p>The application uses it for transactional operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="142-data-ingestion-layer">14.2 Data ingestion layer<a href="#142-data-ingestion-layer" class="hash-link" aria-label="Direct link to 14.2 Data ingestion layer" title="Direct link to 14.2 Data ingestion layer" translate="no">​</a></h3>
+<p>Data moves from operational sources into analytical storage.</p>
+<p>Possible approaches:</p>
+<ul>
+<li class="">Scheduled ETL jobs.</li>
+<li class="">ELT pipelines.</li>
+<li class="">Change Data Capture.</li>
+<li class="">Event streaming.</li>
+</ul>
+<p>For example, a CDC pipeline may capture database changes and send them to an analytical platform.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="143-analytical-layer">14.3 Analytical layer<a href="#143-analytical-layer" class="hash-link" aria-label="Direct link to 14.3 Analytical layer" title="Direct link to 14.3 Analytical layer" translate="no">​</a></h3>
+<p>Use an analytical database such as ClickHouse, BigQuery, Snowflake, or Redshift, depending on workload and deployment requirements.</p>
+<p>It stores analytical datasets for:</p>
+<ul>
+<li class="">Revenue reporting.</li>
+<li class="">Product analysis.</li>
+<li class="">Customer segmentation.</li>
+<li class="">Campaign analysis.</li>
+<li class="">Historical trends.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="144-reporting-layer">14.4 Reporting layer<a href="#144-reporting-layer" class="hash-link" aria-label="Direct link to 14.4 Reporting layer" title="Direct link to 14.4 Reporting layer" translate="no">​</a></h3>
+<p>A BI tool or custom dashboard queries the analytical system.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="complete-architecture">Complete architecture<a href="#complete-architecture" class="hash-link" aria-label="Direct link to Complete architecture" title="Direct link to Complete architecture" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 CUSTOMERS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               E-COMMERCE APP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              NODE.JS / EXPRESS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               POSTGRESQL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  OLTP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     CDC PIPELINE          BATCH ETL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             ANALYTICAL STORAGE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             COLUMNAR OLAP ENGINE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      BI DASHBOARD          SQL ANALYSIS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               BUSINESS INSIGHTS</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="145-why-this-architecture-works">14.5 Why this architecture works<a href="#145-why-this-architecture-works" class="hash-link" aria-label="Direct link to 14.5 Why this architecture works" title="Direct link to 14.5 Why this architecture works" translate="no">​</a></h3>
+<ul>
+<li class="">PostgreSQL handles transactional consistency.</li>
+<li class="">Data ingestion transfers operational changes.</li>
+<li class="">Analytical storage supports large scans.</li>
+<li class="">The OLAP engine processes aggregations.</li>
+<li class="">Dashboards do not need to run heavy historical queries against the production database.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="146-what-about-mongodb-and-redis">14.6 What about MongoDB and Redis?<a href="#146-what-about-mongodb-and-redis" class="hash-link" aria-label="Direct link to 14.6 What about MongoDB and Redis?" title="Direct link to 14.6 What about MongoDB and Redis?" translate="no">​</a></h3>
+<p>In a Node.js backend environment, the same separation principle applies.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Technology</th><th>Possible responsibility</th></tr></thead><tbody><tr><td>MongoDB</td><td>Operational document storage</td></tr><tr><td>PostgreSQL</td><td>Transactional relational data</td></tr><tr><td>Redis</td><td>Caching, sessions, counters, and selected real-time state</td></tr><tr><td>ClickHouse</td><td>Analytical event and business metrics</td></tr><tr><td>BigQuery</td><td>Large-scale cloud analytics</td></tr></tbody></table>
+<p>This is an example of polyglot architecture, not a mandatory stack.</p>
+<p>Do not add databases just because they are available. Every additional system introduces operational complexity, data synchronization requirements, monitoring, and maintenance.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-database-examples-how-different-systems-fit">15. Database Examples: How Different Systems Fit<a href="#15-database-examples-how-different-systems-fit" class="hash-link" aria-label="Direct link to 15. Database Examples: How Different Systems Fit" title="Direct link to 15. Database Examples: How Different Systems Fit" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Database</th><th>Common workload positioning</th><th>Storage or architecture notes</th></tr></thead><tbody><tr><td>PostgreSQL</td><td>OLTP and moderate analytics</td><td>Row-oriented relational storage</td></tr><tr><td>MySQL/InnoDB</td><td>OLTP</td><td>Row-oriented transactional storage engine</td></tr><tr><td>Microsoft SQL Server</td><td>OLTP and OLAP</td><td>Supports rowstore and columnstore technologies</td></tr><tr><td>Oracle Database</td><td>OLTP and OLAP</td><td>Supports multiple workload and storage optimizations</td></tr><tr><td>Snowflake</td><td>OLAP</td><td>Cloud data warehouse architecture</td></tr><tr><td>BigQuery</td><td>OLAP</td><td>Distributed analytical query platform</td></tr><tr><td>Amazon Redshift</td><td>OLAP</td><td>Column-oriented data warehouse</td></tr><tr><td>ClickHouse</td><td>OLAP</td><td>Column-oriented analytical database</td></tr><tr><td>DuckDB</td><td>OLAP</td><td>Embedded analytical database</td></tr><tr><td>TiDB</td><td>Distributed SQL and HTAP-oriented workloads</td><td>Distributed transactional and analytical capabilities</td></tr></tbody></table>
+<p>The table describes common positioning, not strict limitations.</p>
+<p>For example:</p>
+<ul>
+<li class="">PostgreSQL can run analytical queries.</li>
+<li class="">SQL Server supports both rowstore and columnstore.</li>
+<li class="">Some modern analytical platforms support ingestion and update operations.</li>
+<li class="">Some transactional databases support analytical extensions or specialized storage.</li>
+</ul>
+<p>The workload, scale, and execution requirements matter more than the product label.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-oltp-vs-olap-complete-architectural-comparison">16. OLTP vs OLAP: Complete Architectural Comparison<a href="#16-oltp-vs-olap-complete-architectural-comparison" class="hash-link" aria-label="Direct link to 16. OLTP vs OLAP: Complete Architectural Comparison" title="Direct link to 16. OLTP vs OLAP: Complete Architectural Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Dimension</th><th>OLTP</th><th>OLAP</th></tr></thead><tbody><tr><td>Full form</td><td>Online Transaction Processing</td><td>Online Analytical Processing</td></tr><tr><td>Main objective</td><td>Operate business applications</td><td>Analyze business data</td></tr><tr><td>Data organization</td><td>Commonly row-oriented</td><td>Commonly column-oriented</td></tr><tr><td>Data model</td><td>Often normalized</td><td>Often denormalized or dimensional</td></tr><tr><td>Data focus</td><td>Current operational data</td><td>Historical and integrated data</td></tr><tr><td>Query pattern</td><td>Point lookups and small ranges</td><td>Large scans and aggregations</td></tr><tr><td>Query complexity</td><td>Usually simple</td><td>Often complex</td></tr><tr><td>Write workload</td><td>Frequent small writes</td><td>Primarily ingestion and refresh</td></tr><tr><td>Read workload</td><td>Frequent targeted reads</td><td>Large analytical reads</td></tr><tr><td>Indexing</td><td>Primary, unique, and composite indexes</td><td>Partitioning, clustering, skipping indexes, and pre-aggregation</td></tr><tr><td>Execution</td><td>Transaction and record focused</td><td>Scan and batch processing focused</td></tr><tr><td>Memory use</td><td>Frequently accessed pages and indexes</td><td>Data blocks, columns, intermediate results, and query results</td></tr><tr><td>Concurrency</td><td>Many concurrent transactions</td><td>Concurrent analytical queries</td></tr><tr><td>Consistency focus</td><td>ACID transaction correctness</td><td>Accurate, sufficiently fresh analytical results</td></tr><tr><td>Optimization</td><td>Transaction latency and throughput</td><td>Scan throughput and query efficiency</td></tr><tr><td>Typical users</td><td>Applications and customers</td><td>Analysts, managers, BI tools</td></tr><tr><td>Example</td><td>Order placement</td><td>Revenue analysis</td></tr><tr><td>Scaling focus</td><td>Transaction throughput and availability</td><td>Data volume and analytical query throughput</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="17-choosing-the-right-architecture">17. Choosing the Right Architecture<a href="#17-choosing-the-right-architecture" class="hash-link" aria-label="Direct link to 17. Choosing the Right Architecture" title="Direct link to 17. Choosing the Right Architecture" translate="no">​</a></h2>
+<p>The wrong approach is to choose a database based only on its popularity.</p>
+<p>The correct approach is to understand the workload first.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-an-oltp-oriented-architecture-when">Use an OLTP-oriented architecture when:<a href="#use-an-oltp-oriented-architecture-when" class="hash-link" aria-label="Direct link to Use an OLTP-oriented architecture when:" title="Direct link to Use an OLTP-oriented architecture when:" translate="no">​</a></h3>
+<ul>
+<li class="">The application frequently inserts and updates individual records.</li>
+<li class="">Transactions must maintain consistent business state.</li>
+<li class="">Queries are mostly targeted.</li>
+<li class="">Many users perform concurrent operations.</li>
+<li class="">Low transactional latency is important.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li class="">Banking transactions.</li>
+<li class="">E-commerce checkout.</li>
+<li class="">Inventory reservation.</li>
+<li class="">User account management.</li>
+<li class="">Payment processing.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-an-olap-oriented-architecture-when">Use an OLAP-oriented architecture when:<a href="#use-an-olap-oriented-architecture-when" class="hash-link" aria-label="Direct link to Use an OLAP-oriented architecture when:" title="Direct link to Use an OLAP-oriented architecture when:" translate="no">​</a></h3>
+<ul>
+<li class="">Queries scan large datasets.</li>
+<li class="">Historical comparisons are required.</li>
+<li class="">Aggregations dominate the workload.</li>
+<li class="">Dashboards execute complex queries.</li>
+<li class="">Data comes from multiple sources.</li>
+<li class="">Business reporting needs to scale independently of the application.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li class="">Revenue analytics.</li>
+<li class="">Customer retention analysis.</li>
+<li class="">Campaign performance.</li>
+<li class="">Product sales trends.</li>
+<li class="">Fraud trend analysis.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-an-htap-oriented-architecture-when">Use an HTAP-oriented architecture when:<a href="#use-an-htap-oriented-architecture-when" class="hash-link" aria-label="Direct link to Use an HTAP-oriented architecture when:" title="Direct link to Use an HTAP-oriented architecture when:" translate="no">​</a></h3>
+<ul>
+<li class="">Transactional data must be analyzed with very low delay.</li>
+<li class="">One platform can satisfy both workload requirements.</li>
+<li class="">The system&#x27;s consistency and performance characteristics meet the business needs.</li>
+<li class="">The benefits justify architectural complexity.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="decision-table">Decision table<a href="#decision-table" class="hash-link" aria-label="Direct link to Decision table" title="Direct link to Decision table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Suitable direction</th></tr></thead><tbody><tr><td>Process orders reliably</td><td>OLTP</td></tr><tr><td>Update inventory</td><td>OLTP</td></tr><tr><td>Retrieve one customer&#x27;s order history</td><td>OLTP-style access</td></tr><tr><td>Calculate revenue over five years</td><td>OLAP</td></tr><tr><td>Analyze millions of events</td><td>OLAP</td></tr><tr><td>Generate management dashboards</td><td>OLAP</td></tr><tr><td>Analyze transactions almost immediately</td><td>Consider HTAP or streaming analytics</td></tr><tr><td>Small application with moderate reporting</td><td>One relational database may be sufficient</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="18-common-misconceptions">18. Common Misconceptions<a href="#18-common-misconceptions" class="hash-link" aria-label="Direct link to 18. Common Misconceptions" title="Direct link to 18. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-oltp-always-uses-row-storage-and-olap-always-uses-column-storage">Misconception 1: OLTP always uses row storage and OLAP always uses column storage.<a href="#misconception-1-oltp-always-uses-row-storage-and-olap-always-uses-column-storage" class="hash-link" aria-label="Direct link to Misconception 1: OLTP always uses row storage and OLAP always uses column storage." title="Direct link to Misconception 1: OLTP always uses row storage and OLAP always uses column storage." translate="no">​</a></h3>
+<p>These are common design choices, not absolute requirements.</p>
+<p>Modern database engines can support multiple storage structures.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-olap-never-uses-indexes">Misconception 2: OLAP never uses indexes.<a href="#misconception-2-olap-never-uses-indexes" class="hash-link" aria-label="Direct link to Misconception 2: OLAP never uses indexes." title="Direct link to Misconception 2: OLAP never uses indexes." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Analytical systems may use indexes, metadata, partitioning, clustering, and data skipping mechanisms.</p>
+<p>The important difference is that large analytical scans are often more efficient than many individual lookups.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-denormalization-is-always-better-for-olap">Misconception 3: Denormalization is always better for OLAP.<a href="#misconception-3-denormalization-is-always-better-for-olap" class="hash-link" aria-label="Direct link to Misconception 3: Denormalization is always better for OLAP." title="Direct link to Misconception 3: Denormalization is always better for OLAP." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Denormalization can reduce joins, but it introduces duplication and synchronization costs.</p>
+<p>The right model depends on the analytical queries and data governance requirements.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-a-read-replica-is-the-same-as-a-data-warehouse">Misconception 4: A read replica is the same as a data warehouse.<a href="#misconception-4-a-read-replica-is-the-same-as-a-data-warehouse" class="hash-link" aria-label="Direct link to Misconception 4: A read replica is the same as a data warehouse." title="Direct link to Misconception 4: A read replica is the same as a data warehouse." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A read replica usually maintains a copy of the operational database. A data warehouse typically integrates and organizes data for analytical queries.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-htap-eliminates-all-performance-tradeoffs">Misconception 5: HTAP eliminates all performance tradeoffs.<a href="#misconception-5-htap-eliminates-all-performance-tradeoffs" class="hash-link" aria-label="Direct link to Misconception 5: HTAP eliminates all performance tradeoffs." title="Direct link to Misconception 5: HTAP eliminates all performance tradeoffs." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Transactional and analytical workloads still compete for resources unless the system isolates them effectively.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-every-application-needs-separate-oltp-and-olap-databases">Misconception 6: Every application needs separate OLTP and OLAP databases.<a href="#misconception-6-every-application-needs-separate-oltp-and-olap-databases" class="hash-link" aria-label="Direct link to Misconception 6: Every application needs separate OLTP and OLAP databases." title="Direct link to Misconception 6: Every application needs separate OLTP and OLAP databases." translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Small applications may handle both workloads in one database. Separation becomes useful when scale, performance, data integration, or operational requirements justify it.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="19-interview-questions">19. Interview Questions<a href="#19-interview-questions" class="hash-link" aria-label="Direct link to 19. Interview Questions" title="Direct link to 19. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="beginner-level">Beginner level<a href="#beginner-level" class="hash-link" aria-label="Direct link to Beginner level" title="Direct link to Beginner level" translate="no">​</a></h3>
+<p><strong>Q1. What is the main architectural difference between OLTP and OLAP?</strong></p>
+<p>OLTP is optimized for frequent transactional operations and individual record access. OLAP is optimized for large scans, aggregations, and analytical queries.</p>
+<p><strong>Q2. What is row-oriented storage?</strong></p>
+<p>Row-oriented storage organizes values belonging to the same record together. It is commonly used for transactional workloads.</p>
+<p><strong>Q3. What is column-oriented storage?</strong></p>
+<p>Column-oriented storage organizes values belonging to the same column together. It is commonly used for analytical workloads.</p>
+<p><strong>Q4. Why are columnar databases suitable for OLAP?</strong></p>
+<p>They can read only required columns, compress similar values efficiently, and support vectorized execution.</p>
+<p><strong>Q5. Why are OLTP databases commonly normalized?</strong></p>
+<p>Normalization reduces duplication and helps maintain data consistency during frequent transactions.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intermediate-level">Intermediate level<a href="#intermediate-level" class="hash-link" aria-label="Direct link to Intermediate level" title="Direct link to Intermediate level" translate="no">​</a></h3>
+<p><strong>Q6. Why are full table scans common in OLAP?</strong></p>
+<p>Analytical queries often need to process a large portion of the dataset. Sequential or columnar scans can be more efficient than many individual index lookups.</p>
+<p><strong>Q7. What is column pruning?</strong></p>
+<p>Column pruning is the process of reading only the columns required by a query.</p>
+<p><strong>Q8. What is vectorized execution?</strong></p>
+<p>Vectorized execution processes batches of values instead of processing individual values one at a time.</p>
+<p><strong>Q9. Why should OLTP and OLAP workloads sometimes be separated?</strong></p>
+<p>Large analytical queries can consume CPU, memory, and disk I/O, potentially degrading transactional performance.</p>
+<p><strong>Q10. Why is a read replica not necessarily a complete OLAP solution?</strong></p>
+<p>A read replica may still use the operational database&#x27;s storage and query architecture. It can reduce primary-database load but may not provide the performance or analytical modeling of a dedicated warehouse.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advanced-level">Advanced level<a href="#advanced-level" class="hash-link" aria-label="Direct link to Advanced level" title="Direct link to Advanced level" translate="no">​</a></h3>
+<p><strong>Q11. What is HTAP?</strong></p>
+<p>Hybrid Transactional/Analytical Processing combines transactional and analytical capabilities in one system or architecture.</p>
+<p><strong>Q12. What are the disadvantages of denormalization?</strong></p>
+<p>Data duplication, increased storage, synchronization complexity, and the possibility of inconsistent values.</p>
+<p><strong>Q13. How does columnar compression improve performance?</strong></p>
+<p>Compression reduces the amount of data stored and transferred from storage into memory. This can reduce I/O and improve analytical throughput.</p>
+<p><strong>Q14. When would you choose a dedicated data warehouse over a read replica?</strong></p>
+<p>When the system needs integrated historical data, large analytical scans, independent scaling, analytical modeling, or stronger workload isolation.</p>
+<p><strong>Q15. Can one database support both OLTP and OLAP?</strong></p>
+<p>Yes. Some relational databases support both workloads, and HTAP systems are designed specifically for hybrid use cases. Whether one database is appropriate depends on workload size, concurrency, latency, and isolation requirements.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="20-practical-exercise">20. Practical Exercise<a href="#20-practical-exercise" class="hash-link" aria-label="Direct link to 20. Practical Exercise" title="Direct link to 20. Practical Exercise" translate="no">​</a></h2>
+<p>You are designing an e-commerce platform with:</p>
+<ul>
+<li class="">5 million customers.</li>
+<li class="">50 million orders.</li>
+<li class="">100 million order items.</li>
+<li class="">10 million payment records.</li>
+<li class="">500 million website events.</li>
+</ul>
+<p>The platform must support customer transactions and management analytics.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-a-workload-classification">Exercise A: Workload classification<a href="#exercise-a-workload-classification" class="hash-link" aria-label="Direct link to Exercise A: Workload classification" title="Direct link to Exercise A: Workload classification" translate="no">​</a></h3>
+<p>Classify each operation as OLTP, OLAP, or potentially both.</p>
+<ol>
+<li class="">Create a new customer.</li>
+<li class="">Place an order.</li>
+<li class="">Update inventory.</li>
+<li class="">Retrieve one order using its ID.</li>
+<li class="">Calculate monthly revenue.</li>
+<li class="">Find the top 10 products by sales.</li>
+<li class="">Calculate customer retention over 12 months.</li>
+<li class="">Analyze website events by device and location.</li>
+<li class="">Generate a daily sales dashboard.</li>
+<li class="">Show a customer&#x27;s current payment status.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-b-architecture-design">Exercise B: Architecture design<a href="#exercise-b-architecture-design" class="hash-link" aria-label="Direct link to Exercise B: Architecture design" title="Direct link to Exercise B: Architecture design" translate="no">​</a></h3>
+<p>Design a system that includes:</p>
+<ul>
+<li class="">Node.js backend.</li>
+<li class="">PostgreSQL operational database.</li>
+<li class="">Data ingestion pipeline.</li>
+<li class="">Analytical database.</li>
+<li class="">Reporting dashboard.</li>
+</ul>
+<p>Explain:</p>
+<ol>
+<li class="">Which system handles order creation?</li>
+<li class="">How does data reach the analytical database?</li>
+<li class="">Why should heavy historical reports not necessarily run on the production database?</li>
+<li class="">How will you handle delays in analytical data?</li>
+<li class="">What happens when a new column is added to an operational table?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-c-storage-and-query-execution">Exercise C: Storage and query execution<a href="#exercise-c-storage-and-query-execution" class="hash-link" aria-label="Direct link to Exercise C: Storage and query execution" title="Direct link to Exercise C: Storage and query execution" translate="no">​</a></h3>
+<p>Explain:</p>
+<ol>
+<li class="">Why row storage is suitable for retrieving one order.</li>
+<li class="">Why column storage is suitable for calculating revenue across millions of orders.</li>
+<li class="">How compression reduces I/O.</li>
+<li class="">Why an index is not always the fastest option for a large analytical query.</li>
+<li class="">How parallel aggregation works.</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-chapter-summary">21. Chapter Summary<a href="#21-chapter-summary" class="hash-link" aria-label="Direct link to 21. Chapter Summary" title="Direct link to 21. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Key takeaway</th></tr></thead><tbody><tr><td>OLTP architecture</td><td>Designed for transactional operations</td></tr><tr><td>OLAP architecture</td><td>Designed for analytical processing</td></tr><tr><td>Row-oriented storage</td><td>Stores fields of a record together</td></tr><tr><td>Column-oriented storage</td><td>Stores values of a column together</td></tr><tr><td>Column pruning</td><td>Reads only required columns</td></tr><tr><td>Compression</td><td>Reduces storage and data movement</td></tr><tr><td>Vectorized execution</td><td>Processes batches of values efficiently</td></tr><tr><td>OLTP query execution</td><td>Often locates individual records</td></tr><tr><td>OLAP query execution</td><td>Often scans and aggregates large datasets</td></tr><tr><td>OLTP indexing</td><td>Commonly supports point lookups and small ranges</td></tr><tr><td>OLAP optimization</td><td>Often uses partitioning, clustering, and pre-aggregation</td></tr><tr><td>Normalization</td><td>Commonly used in transactional data models</td></tr><tr><td>Denormalization</td><td>Can simplify repeated analytical queries</td></tr><tr><td>Workload isolation</td><td>Prevents analytical workloads from harming transactions</td></tr><tr><td>Read replica</td><td>Can offload reads but is not automatically a warehouse</td></tr><tr><td>HTAP</td><td>Combines transactional and analytical capabilities</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-mental-model">Final mental model<a href="#final-mental-model" class="hash-link" aria-label="Direct link to Final mental model" title="Direct link to Final mental model" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  OLTP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Transaction Processing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Row-Oriented Storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         Individual Record Access</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Fast Transaction Execution</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  OLAP</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Analytical Processing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         Column-Oriented Storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Large Data Scanning</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Aggregation &amp; Analysis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Reports &amp; Dashboards</span><br></div></code></pre></div></div>
+<p><strong>The central principle:</strong></p>
+<p>OLTP optimizes how efficiently a database can process individual business transactions. OLAP optimizes how efficiently a database can analyze large amounts of business data.</p>
+<p>Neither is universally better. They solve different problems.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/14_OLTPvsOLAP_Databases/part_03.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_02"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">OLAP (Online Analytical Processing)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/OLTPvsOLAP_Databases/part_04"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">OLTP vs OLAP: Complete Comparison</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a><ul><li><a href="#what-we-will-compare" class="table-of-contents__link toc-highlight">What we will compare</a></li></ul></li><li><a href="#2-architectural-overview" class="table-of-contents__link toc-highlight">2. Architectural Overview</a><ul><li><a href="#21-oltp-architecture" class="table-of-contents__link toc-highlight">2.1 OLTP architecture</a></li><li><a href="#22-olap-architecture" class="table-of-contents__link toc-highlight">2.2 OLAP architecture</a></li></ul></li><li><a href="#3-row-oriented-vs-column-oriented-storage" class="table-of-contents__link toc-highlight">3. Row-Oriented vs Column-Oriented Storage</a><ul><li><a href="#31-row-oriented-storage" class="table-of-contents__link toc-highlight">3.1 Row-oriented storage</a></li><li><a href="#32-why-row-storage-works-well-for-oltp" class="table-of-contents__link toc-highlight">3.2 Why row storage works well for OLTP</a></li><li><a href="#33-column-oriented-storage" class="table-of-contents__link toc-highlight">3.3 Column-oriented storage</a></li><li><a href="#34-why-column-storage-works-well-for-olap" class="table-of-contents__link toc-highlight">3.4 Why column storage works well for OLAP</a></li><li><a href="#35-visual-comparison" class="table-of-contents__link toc-highlight">3.5 Visual comparison</a></li><li><a href="#36-comparison" class="table-of-contents__link toc-highlight">3.6 Comparison</a></li></ul></li><li><a href="#4-why-columnar-storage-improves-analytical-performance" class="table-of-contents__link toc-highlight">4. Why Columnar Storage Improves Analytical Performance</a><ul><li><a href="#41-column-pruning" class="table-of-contents__link toc-highlight">4.1 Column pruning</a></li><li><a href="#42-compression" class="table-of-contents__link toc-highlight">4.2 Compression</a></li><li><a href="#43-vectorized-execution" class="table-of-contents__link toc-highlight">4.3 Vectorized execution</a></li><li><a href="#44-less-unnecessary-data-movement" class="table-of-contents__link toc-highlight">4.4 Less unnecessary data movement</a></li></ul></li><li><a href="#5-query-execution-oltp-vs-olap" class="table-of-contents__link toc-highlight">5. Query Execution: OLTP vs OLAP</a><ul><li><a href="#51-oltp-query-execution" class="table-of-contents__link toc-highlight">5.1 OLTP query execution</a></li><li><a href="#52-olap-query-execution" class="table-of-contents__link toc-highlight">5.2 OLAP query execution</a></li><li><a href="#53-key-difference" class="table-of-contents__link toc-highlight">5.3 Key difference</a></li></ul></li><li><a href="#6-indexing-strategies-oltp-vs-olap" class="table-of-contents__link toc-highlight">6. Indexing Strategies: OLTP vs OLAP</a><ul><li><a href="#61-oltp-indexing" class="table-of-contents__link toc-highlight">6.1 OLTP indexing</a></li><li><a href="#62-olap-indexing" class="table-of-contents__link toc-highlight">6.2 OLAP indexing</a></li><li><a href="#63-why-traditional-indexes-are-not-always-sufficient-for-olap" class="table-of-contents__link toc-highlight">6.3 Why traditional indexes are not always sufficient for OLAP</a></li><li><a href="#64-comparison" class="table-of-contents__link toc-highlight">6.4 Comparison</a></li></ul></li><li><a href="#7-data-organization-current-operational-data-vs-historical-analytical-data" class="table-of-contents__link toc-highlight">7. Data Organization: Current Operational Data vs Historical Analytical Data</a><ul><li><a href="#71-oltp-data-organization" class="table-of-contents__link toc-highlight">7.1 OLTP data organization</a></li><li><a href="#72-olap-data-organization" class="table-of-contents__link toc-highlight">7.2 OLAP data organization</a></li><li><a href="#73-historical-analysis" class="table-of-contents__link toc-highlight">7.3 Historical analysis</a></li><li><a href="#74-comparison" class="table-of-contents__link toc-highlight">7.4 Comparison</a></li></ul></li><li><a href="#8-normalization-vs-denormalization" class="table-of-contents__link toc-highlight">8. Normalization vs Denormalization</a><ul><li><a href="#81-oltp-normalization" class="table-of-contents__link toc-highlight">8.1 OLTP: Normalization</a></li><li><a href="#82-olap-denormalization" class="table-of-contents__link toc-highlight">8.2 OLAP: Denormalization</a></li><li><a href="#83-why-denormalization-can-help" class="table-of-contents__link toc-highlight">8.3 Why denormalization can help</a></li></ul></li><li><a href="#9-transaction-processing-vs-analytical-processing" class="table-of-contents__link toc-highlight">9. Transaction Processing vs Analytical Processing</a><ul><li><a href="#91-oltp-transaction-oriented" class="table-of-contents__link toc-highlight">9.1 OLTP: Transaction-oriented</a></li><li><a href="#92-olap-analytical-processing" class="table-of-contents__link toc-highlight">9.2 OLAP: Analytical processing</a></li><li><a href="#93-comparison" class="table-of-contents__link toc-highlight">9.3 Comparison</a></li></ul></li><li><a href="#10-memory-and-caching-architecture" class="table-of-contents__link toc-highlight">10. Memory and Caching Architecture</a><ul><li><a href="#101-oltp-caching" class="table-of-contents__link toc-highlight">10.1 OLTP caching</a></li><li><a href="#102-olap-caching" class="table-of-contents__link toc-highlight">10.2 OLAP caching</a></li><li><a href="#103-comparison" class="table-of-contents__link toc-highlight">10.3 Comparison</a></li></ul></li><li><a href="#11-write-and-read-patterns" class="table-of-contents__link toc-highlight">11. Write and Read Patterns</a><ul><li><a href="#111-oltp-workload" class="table-of-contents__link toc-highlight">11.1 OLTP workload</a></li><li><a href="#112-olap-workload" class="table-of-contents__link toc-highlight">11.2 OLAP workload</a></li><li><a href="#113-comparison" class="table-of-contents__link toc-highlight">11.3 Comparison</a></li></ul></li><li><a href="#12-workload-isolation-why-separate-oltp-and-olap" class="table-of-contents__link toc-highlight">12. Workload Isolation: Why Separate OLTP and OLAP?</a><ul><li><a href="#121-what-can-go-wrong" class="table-of-contents__link toc-highlight">12.1 What can go wrong?</a></li><li><a href="#122-solution-workload-separation" class="table-of-contents__link toc-highlight">12.2 Solution: Workload separation</a></li><li><a href="#123-dedicated-analytical-system" class="table-of-contents__link toc-highlight">12.3 Dedicated analytical system</a></li><li><a href="#124-when-should-you-separate-them" class="table-of-contents__link toc-highlight">12.4 When should you separate them?</a></li></ul></li><li><a href="#13-hybrid-oltpolap-architectures" class="table-of-contents__link toc-highlight">13. Hybrid OLTP/OLAP Architectures</a><ul><li><a href="#131-what-is-htap" class="table-of-contents__link toc-highlight">13.1 What is HTAP?</a></li><li><a href="#132-conceptual-htap-architecture" class="table-of-contents__link toc-highlight">13.2 Conceptual HTAP architecture</a></li><li><a href="#133-examples-of-htap-oriented-systems" class="table-of-contents__link toc-highlight">13.3 Examples of HTAP-oriented systems</a></li><li><a href="#134-htap-advantages" class="table-of-contents__link toc-highlight">13.4 HTAP advantages</a></li><li><a href="#135-htap-tradeoffs" class="table-of-contents__link toc-highlight">13.5 HTAP tradeoffs</a></li></ul></li><li><a href="#14-real-world-architecture-e-commerce-example" class="table-of-contents__link toc-highlight">14. Real-World Architecture: E-Commerce Example</a><ul><li><a href="#business-requirements" class="table-of-contents__link toc-highlight">Business requirements</a></li><li><a href="#141-oltp-layer" class="table-of-contents__link toc-highlight">14.1 OLTP layer</a></li><li><a href="#142-data-ingestion-layer" class="table-of-contents__link toc-highlight">14.2 Data ingestion layer</a></li><li><a href="#143-analytical-layer" class="table-of-contents__link toc-highlight">14.3 Analytical layer</a></li><li><a href="#144-reporting-layer" class="table-of-contents__link toc-highlight">14.4 Reporting layer</a></li><li><a href="#complete-architecture" class="table-of-contents__link toc-highlight">Complete architecture</a></li><li><a href="#145-why-this-architecture-works" class="table-of-contents__link toc-highlight">14.5 Why this architecture works</a></li><li><a href="#146-what-about-mongodb-and-redis" class="table-of-contents__link toc-highlight">14.6 What about MongoDB and Redis?</a></li></ul></li><li><a href="#15-database-examples-how-different-systems-fit" class="table-of-contents__link toc-highlight">15. Database Examples: How Different Systems Fit</a></li><li><a href="#16-oltp-vs-olap-complete-architectural-comparison" class="table-of-contents__link toc-highlight">16. OLTP vs OLAP: Complete Architectural Comparison</a></li><li><a href="#17-choosing-the-right-architecture" class="table-of-contents__link toc-highlight">17. Choosing the Right Architecture</a><ul><li><a href="#use-an-oltp-oriented-architecture-when" class="table-of-contents__link toc-highlight">Use an OLTP-oriented architecture when:</a></li><li><a href="#use-an-olap-oriented-architecture-when" class="table-of-contents__link toc-highlight">Use an OLAP-oriented architecture when:</a></li><li><a href="#use-an-htap-oriented-architecture-when" class="table-of-contents__link toc-highlight">Use an HTAP-oriented architecture when:</a></li><li><a href="#decision-table" class="table-of-contents__link toc-highlight">Decision table</a></li></ul></li><li><a href="#18-common-misconceptions" class="table-of-contents__link toc-highlight">18. Common Misconceptions</a><ul><li><a href="#misconception-1-oltp-always-uses-row-storage-and-olap-always-uses-column-storage" class="table-of-contents__link toc-highlight">Misconception 1: OLTP always uses row storage and OLAP always uses column storage.</a></li><li><a href="#misconception-2-olap-never-uses-indexes" class="table-of-contents__link toc-highlight">Misconception 2: OLAP never uses indexes.</a></li><li><a href="#misconception-3-denormalization-is-always-better-for-olap" class="table-of-contents__link toc-highlight">Misconception 3: Denormalization is always better for OLAP.</a></li><li><a href="#misconception-4-a-read-replica-is-the-same-as-a-data-warehouse" class="table-of-contents__link toc-highlight">Misconception 4: A read replica is the same as a data warehouse.</a></li><li><a href="#misconception-5-htap-eliminates-all-performance-tradeoffs" class="table-of-contents__link toc-highlight">Misconception 5: HTAP eliminates all performance tradeoffs.</a></li><li><a href="#misconception-6-every-application-needs-separate-oltp-and-olap-databases" class="table-of-contents__link toc-highlight">Misconception 6: Every application needs separate OLTP and OLAP databases.</a></li></ul></li><li><a href="#19-interview-questions" class="table-of-contents__link toc-highlight">19. Interview Questions</a><ul><li><a href="#beginner-level" class="table-of-contents__link toc-highlight">Beginner level</a></li><li><a href="#intermediate-level" class="table-of-contents__link toc-highlight">Intermediate level</a></li><li><a href="#advanced-level" class="table-of-contents__link toc-highlight">Advanced level</a></li></ul></li><li><a href="#20-practical-exercise" class="table-of-contents__link toc-highlight">20. Practical Exercise</a><ul><li><a href="#exercise-a-workload-classification" class="table-of-contents__link toc-highlight">Exercise A: Workload classification</a></li><li><a href="#exercise-b-architecture-design" class="table-of-contents__link toc-highlight">Exercise B: Architecture design</a></li><li><a href="#exercise-c-storage-and-query-execution" class="table-of-contents__link toc-highlight">Exercise C: Storage and query execution</a></li></ul></li><li><a href="#21-chapter-summary" class="table-of-contents__link toc-highlight">21. Chapter Summary</a><ul><li><a href="#final-mental-model" class="table-of-contents__link toc-highlight">Final mental model</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>
