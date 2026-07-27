@@ -1,0 +1,1237 @@
+# Best Practices, Pitfalls & Logical Execution Order
+
+## 1. Introduction
+
+In the previous Sections, we covered:
+
+- Why JOINs exist.
+- Different JOIN types.
+- ON vs WHERE.
+- Nested Loop Join.
+- Hash Join.
+- Merge Join.
+
+Now we need to bring these concepts together and understand how to write correct, readable, and efficient JOIN queries.
+
+A JOIN query can be syntactically correct but still produce incorrect results.
+
+For example:
+
+- Joining on the wrong column.
+- Accidentally generating a Cartesian product.
+- Producing duplicate rows because of one-to-many relationships.
+- Filtering an OUTER JOIN incorrectly.
+- Joining tables before reducing unnecessary data.
+- Using DISTINCT to hide incorrect JOIN logic.
+
+This chapter focuses on practical SQL development and understanding how databases logically process queries.
+
+---
+
+## 2. Always understand the relationship before writing a JOIN
+
+Before writing a JOIN, identify the relationship between the tables.
+
+Consider an e-commerce database:
+
+### users
+
+|  id | name  |
+| --: | ----- |
+|   1 | Rahul |
+|   2 | Priya |
+
+### orders
+
+|  id | user_id | total |
+| --: | ------: | ----: |
+| 101 |       1 |  1500 |
+| 102 |       1 |  2500 |
+| 103 |       2 |   800 |
+
+Relationship:
+
+```text
+USERS
+  |
+  | One-to-Many
+  |
+  v
+ORDERS
+```
+
+One user can have multiple orders.
+
+The foreign key is:
+
+```sql
+orders.user_id
+```
+
+It references:
+
+```sql
+users.id
+```
+
+Therefore, the correct JOIN condition is:
+
+```sql
+ON users.id = orders.user_id
+```
+
+### Best practice
+
+Before writing a JOIN, ask:
+
+1. What are the two tables?
+2. How are they related?
+3. Which column identifies the relationship?
+4. Is the relationship one-to-one, one-to-many, or many-to-many?
+5. Do I want only matching rows or unmatched rows too?
+
+Do not write JOIN conditions by guessing based on column names.
+
+---
+
+## 3. Always use explicit JOIN syntax
+
+SQL supports older comma-separated JOIN syntax.
+
+### Older syntax
+
+```sql
+SELECT *
+FROM users, orders
+WHERE users.id = orders.user_id;
+```
+
+This can produce the same result as:
+
+```sql
+SELECT *
+FROM users
+INNER JOIN orders
+ON users.id = orders.user_id;
+```
+
+However, explicit JOIN syntax is preferable.
+
+### Why?
+
+**1. Better readability**
+
+The relationship is clearly visible.
+
+**2. Separates matching conditions from filters**
+
+```sql
+SELECT *
+FROM users u
+JOIN orders o
+ON u.id = o.user_id
+WHERE o.total > 1000;
+```
+
+Here:
+
+- ON defines how the tables are related.
+- WHERE filters the result.
+
+**3. Reduces accidental Cartesian products**
+
+With comma-separated syntax, forgetting a condition in WHERE can generate a Cartesian product.
+
+**Recommendation:** Use explicit JOIN syntax in production queries.
+
+---
+
+## 4. Always qualify columns with table names or aliases
+
+Suppose both tables contain a column named `id`.
+
+```text
+users:
+id
+name
+
+orders:
+id
+user_id
+total
+```
+
+This query is ambiguous:
+
+```sql
+SELECT id, name
+FROM users
+JOIN orders
+ON users.id = orders.user_id;
+```
+
+PostgreSQL may report:
+
+```text
+ERROR: column reference "id" is ambiguous
+```
+
+Why?
+
+Because both tables contain an `id` column.
+
+### Correct approach
+
+```sql
+SELECT
+    users.id,
+    users.name,
+    orders.id AS order_id,
+    orders.total
+FROM users
+JOIN orders
+ON users.id = orders.user_id;
+```
+
+### Better approach: Use aliases
+
+```sql
+SELECT
+    u.id AS user_id,
+    u.name,
+    o.id AS order_id,
+    o.total
+FROM users AS u
+JOIN orders AS o
+ON u.id = o.user_id;
+```
+
+Aliases make complex JOIN queries easier to read.
+
+### Recommended convention
+
+Use short, meaningful aliases:
+
+| Table       | Alias |
+| ----------- | ----- |
+| users       | u     |
+| orders      | o     |
+| products    | p     |
+| order_items | oi    |
+| payments    | pay   |
+| departments | d     |
+| employees   | e     |
+
+Avoid meaningless aliases when they make a query harder to understand.
+
+---
+
+## 5. Avoid SELECT \*
+
+Consider:
+
+```sql
+SELECT *
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+This returns every column from both tables.
+
+Problems:
+
+1. Unnecessary columns increase data transfer.
+2. Duplicate column names can make results confusing.
+3. The application receives more data than it needs.
+4. Adding columns to a table can unexpectedly change the query output.
+5. It can make API response construction harder.
+
+### Better approach
+
+```sql
+SELECT
+    u.id AS user_id,
+    u.name,
+    o.id AS order_id,
+    o.total
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+Select only the columns required by the application.
+
+This is particularly useful in backend APIs because unnecessary database results consume memory and increase response payload size.
+
+---
+
+## 6. Understand duplicate rows in JOIN results
+
+This is one of the most important concepts in practical SQL.
+
+Consider:
+
+### users
+
+|  id | name  |
+| --: | ----- |
+|   1 | Rahul |
+|   2 | Priya |
+
+### orders
+
+|  id | user_id | total |
+| --: | ------: | ----: |
+| 101 |       1 |  1000 |
+| 102 |       1 |  2000 |
+| 103 |       1 |  3000 |
+| 104 |       2 |   500 |
+
+Query:
+
+```sql
+SELECT
+    u.id,
+    u.name,
+    o.id AS order_id,
+    o.total
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+Result:
+
+|  id | name  | order_id | total |
+| --: | ----- | -------: | ----: |
+|   1 | Rahul |      101 |  1000 |
+|   1 | Rahul |      102 |  2000 |
+|   1 | Rahul |      103 |  3000 |
+|   2 | Priya |      104 |   500 |
+
+Rahul appears three times.
+
+This is not a database bug.
+
+It is the expected behavior of a one-to-many relationship.
+
+### Why does this happen?
+
+Because the JOIN produces one result row for each matching combination.
+
+For Rahul:
+
+```text
+Rahul + Order 101
+Rahul + Order 102
+Rahul + Order 103
+```
+
+Three matching combinations produce three rows.
+
+### What if you want only users?
+
+Use EXISTS:
+
+```sql
+SELECT
+    u.id,
+    u.name
+FROM users u
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.user_id = u.id
+);
+```
+
+### What if you want the total number of orders per user?
+
+Use GROUP BY:
+
+```sql
+SELECT
+    u.id,
+    u.name,
+    COUNT(o.id) AS total_orders
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id
+GROUP BY
+    u.id,
+    u.name;
+```
+
+Result:
+
+|  id | name  | total_orders |
+| --: | ----- | -----------: |
+|   1 | Rahul |            3 |
+|   2 | Priya |            1 |
+
+**Important:** Use JOIN when you need matching records, EXISTS when you only need to check existence, and GROUP BY when you need aggregation.
+
+---
+
+## 7. Understand COUNT(\*) vs COUNT(column) with LEFT JOIN
+
+Consider:
+
+### users
+
+|  id | name  |
+| --: | ----- |
+|   1 | Rahul |
+|   2 | Priya |
+|   3 | Amit  |
+
+### orders
+
+|  id | user_id |
+| --: | ------: |
+| 101 |       1 |
+| 102 |       1 |
+| 103 |       2 |
+
+Query:
+
+```sql
+SELECT
+    u.name,
+    COUNT(*) AS count_star,
+    COUNT(o.id) AS count_order_id
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id
+GROUP BY u.id, u.name;
+```
+
+Result:
+
+| name  | count_star | count_order_id |
+| ----- | ---------: | -------------: |
+| Rahul |          2 |              2 |
+| Priya |          1 |              1 |
+| Amit  |          1 |              0 |
+
+Why does Amit have `COUNT(*) = 1`?
+
+Because LEFT JOIN creates one NULL-extended result row for Amit.
+
+`COUNT(*)` counts rows, including that row.
+
+`COUNT(o.id)` counts only non-NULL values of `o.id`.
+
+Since Amit has no matching order, `o.id` is NULL.
+
+Therefore:
+
+```sql
+COUNT(*)      -- 1
+COUNT(o.id)   -- 0
+```
+
+### Best practice
+
+When counting matching records after a LEFT JOIN, use the non-NULL primary key of the right-side table:
+
+```sql
+COUNT(o.id)
+```
+
+Do not automatically use `COUNT(*)` when you want to count matching child records.
+
+---
+
+## 8. Avoid accidental Cartesian products
+
+A Cartesian product occurs when every row from one table is combined with every row from another table.
+
+Suppose:
+
+- Users table contains 100 rows.
+- Orders table contains 1,000 rows.
+
+A CROSS JOIN produces:
+
+\[
+100 \times 1000 = 100,000
+\]
+
+rows.
+
+### Incorrect query
+
+```sql
+SELECT *
+FROM users u
+JOIN orders o
+ON u.id = o.id;
+```
+
+This query may be syntactically valid, but the condition is likely incorrect if the intended relationship is between `users.id` and `orders.user_id`.
+
+### Correct query
+
+```sql
+SELECT *
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+### How to identify a Cartesian product?
+
+Look for:
+
+- Missing join conditions.
+- Unexpectedly large result sets.
+- Row counts much larger than expected.
+- CROSS JOIN used unintentionally.
+- Multiple tables connected incorrectly.
+
+### Best practice
+
+Every JOIN should have a deliberate relationship condition unless a Cartesian product is explicitly required.
+
+---
+
+## 9. Be careful when joining multiple one-to-many tables
+
+This is a particularly important problem in backend reporting queries.
+
+Suppose we have:
+
+### users
+
+|  id | name  |
+| --: | ----- |
+|   1 | Rahul |
+
+### orders
+
+|  id | user_id |
+| --: | ------: |
+| 101 |       1 |
+| 102 |       1 |
+
+### payments
+
+|  id | user_id | amount |
+| --: | ------: | -----: |
+| 201 |       1 |    500 |
+| 202 |       1 |    800 |
+| 203 |       1 |    300 |
+
+Now consider:
+
+```sql
+SELECT
+    u.name,
+    o.id AS order_id,
+    p.id AS payment_id
+FROM users u
+JOIN orders o
+ON u.id = o.user_id
+JOIN payments p
+ON u.id = p.user_id;
+```
+
+### Result
+
+| name  | order_id | payment_id |
+| ----- | -------: | ---------: |
+| Rahul |      101 |        201 |
+| Rahul |      101 |        202 |
+| Rahul |      101 |        203 |
+| Rahul |      102 |        201 |
+| Rahul |      102 |        202 |
+| Rahul |      102 |        203 |
+
+Why are there six rows?
+
+Because:
+
+- Rahul has two orders.
+- Rahul has three payments.
+- Each order is combined with each payment.
+
+Therefore:
+
+\[
+2 \times 3 = 6
+\]
+
+This is called row multiplication caused by joining independent one-to-many relationships.
+
+### Why is this dangerous?
+
+Suppose you calculate:
+
+```sql
+SELECT
+    u.name,
+    COUNT(o.id) AS total_orders,
+    SUM(p.amount) AS total_payments
+FROM users u
+JOIN orders o
+ON u.id = o.user_id
+JOIN payments p
+ON u.id = p.user_id
+GROUP BY u.id, u.name;
+```
+
+You may get:
+
+| name  | total_orders | total_payments |
+| ----- | -----------: | -------------: |
+| Rahul |            6 |           3200 |
+
+But the correct values are:
+
+- Orders: 2
+- Payments: 1,600
+
+Why?
+
+Each order is repeated three times, and each payment is repeated twice.
+
+This causes incorrect aggregation.
+
+### Solution: Aggregate independently before joining
+
+```sql
+SELECT
+    u.id,
+    u.name,
+    COALESCE(o.total_orders, 0) AS total_orders,
+    COALESCE(p.total_payments, 0) AS total_payments
+FROM users u
+
+LEFT JOIN (
+    SELECT
+        user_id,
+        COUNT(*) AS total_orders
+    FROM orders
+    GROUP BY user_id
+) o
+ON u.id = o.user_id
+
+LEFT JOIN (
+    SELECT
+        user_id,
+        SUM(amount) AS total_payments
+    FROM payments
+    GROUP BY user_id
+) p
+ON u.id = p.user_id;
+```
+
+Result:
+
+|  id | name  | total_orders | total_payments |
+| --: | ----- | -----------: | -------------: |
+|   1 | Rahul |            2 |           1600 |
+
+This works because each subquery produces at most one row per user before the JOIN.
+
+**Key lesson:** When joining multiple one-to-many relationships for reporting, consider aggregating each child table independently before joining the results.
+
+---
+
+## 10. Use EXISTS instead of JOIN when you only need existence
+
+Suppose you want customers who have placed at least one order.
+
+One approach:
+
+```sql
+SELECT DISTINCT
+    u.id,
+    u.name
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+Another approach:
+
+```sql
+SELECT
+    u.id,
+    u.name
+FROM users u
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.user_id = u.id
+);
+```
+
+The second approach expresses the requirement more directly.
+
+Why?
+
+You do not need order details. You only need to know whether at least one matching order exists.
+
+PostgreSQL may implement EXISTS using a semi-join strategy.
+
+### When to use JOIN
+
+Use JOIN when you need columns from both tables or need matching combinations.
+
+### When to use EXISTS
+
+Use EXISTS when you only need to check whether a matching record exists.
+
+### When to use NOT EXISTS
+
+Use NOT EXISTS when you need records without a match.
+
+---
+
+## 11. Avoid unnecessary JOINs
+
+Consider:
+
+```sql
+SELECT
+    u.id,
+    u.name
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+If you do not need any order information and only want users with orders, EXISTS may be more appropriate.
+
+Likewise, do not join five tables when the query only needs information from two.
+
+Unnecessary JOINs can:
+
+- Increase query complexity.
+- Increase execution work.
+- Introduce duplicate rows.
+- Make aggregation harder.
+- Make query maintenance more difficult.
+
+**Rule:** Join only the tables required to answer the question.
+
+---
+
+## 12. Filter data appropriately
+
+Suppose you want users with orders above 1,000.
+
+```sql
+SELECT
+    u.name,
+    o.id,
+    o.total
+FROM users u
+JOIN orders o
+ON u.id = o.user_id
+WHERE o.total > 1000;
+```
+
+The filter reduces the result to qualifying orders.
+
+For OUTER JOINs, remember the distinction from Part 5C.
+
+If the requirement is:
+
+> Return every user, but attach only orders above 1,000.
+
+Use:
+
+```sql
+SELECT
+    u.name,
+    o.id,
+    o.total
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id
+AND o.total > 1000;
+```
+
+The filter belongs in ON because unmatched users must be retained.
+
+Do not move this condition to WHERE unless you intend to remove users without qualifying orders.
+
+---
+
+## 13. Use proper indexes for JOIN columns
+
+JOIN performance can be significantly affected by indexing.
+
+Consider:
+
+```sql
+SELECT
+    u.name,
+    o.total
+FROM users u
+JOIN orders o
+ON u.id = o.user_id;
+```
+
+A typical indexing strategy is:
+
+```sql
+-- Usually already created by the primary key
+CREATE INDEX idx_users_id
+ON users(id);
+
+-- Often useful for joins and user-specific order lookups
+CREATE INDEX idx_orders_user_id
+ON orders(user_id);
+```
+
+The users primary key already has a supporting unique index in PostgreSQL.
+
+The second index is often useful because PostgreSQL does not automatically create an index on the referencing side of a foreign key.
+
+### Why index the foreign-key column?
+
+Suppose a user has thousands of orders.
+
+Without a suitable index, finding their orders may require scanning the orders table.
+
+With an index on `orders.user_id`, PostgreSQL can locate matching order records more efficiently when an index-based plan is appropriate.
+
+### Important
+
+An index does not guarantee that PostgreSQL will use it.
+
+The optimizer may choose:
+
+- Nested Loop Join.
+- Hash Join.
+- Merge Join.
+
+The best plan depends on table sizes, selectivity, statistics, and query requirements.
+
+---
+
+## 14. Understand NULL behavior in JOINs
+
+SQL NULL represents an unknown or missing value.
+
+Consider:
+
+```sql
+SELECT *
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id;
+```
+
+If a user has no order, the order-related columns contain NULL.
+
+This is not an actual matching row containing NULL values. It is the result of outer-join row preservation.
+
+### Incorrect NULL comparison
+
+```sql
+WHERE o.id = NULL
+```
+
+This does not work as intended.
+
+### Correct NULL comparison
+
+```sql
+WHERE o.id IS NULL
+```
+
+To check for non-NULL:
+
+```sql
+WHERE o.id IS NOT NULL
+```
+
+### Another important example
+
+```sql
+SELECT *
+FROM users u
+WHERE u.id NOT IN (
+    SELECT o.user_id
+    FROM orders o
+);
+```
+
+If the subquery returns NULL, NOT IN can produce unexpected results.
+
+A safer anti-match query is:
+
+```sql
+SELECT *
+FROM users u
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.user_id = u.id
+);
+```
+
+---
+
+## 15. Logical SQL execution order
+
+This is one of the most important SQL concepts for understanding complex queries.
+
+Consider:
+
+```sql
+SELECT
+    u.name,
+    COUNT(o.id) AS total_orders
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id
+WHERE u.active = TRUE
+GROUP BY u.id, u.name
+HAVING COUNT(o.id) > 2
+ORDER BY total_orders DESC
+LIMIT 10;
+```
+
+We write SQL in this order:
+
+```text
+SELECT
+FROM
+JOIN
+ON
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+```
+
+But its simplified logical processing order is different.
+
+### Logical processing order
+
+| Order | Clause                  | Purpose                                  |
+| ----: | ----------------------- | ---------------------------------------- |
+|     1 | FROM                    | Identify the source tables               |
+|     2 | JOIN                    | Combine the table inputs                 |
+|     3 | ON                      | Determine matching conditions            |
+|     4 | Outer-join preservation | Preserve unmatched rows where applicable |
+|     5 | WHERE                   | Filter rows                              |
+|     6 | GROUP BY                | Group remaining rows                     |
+|     7 | HAVING                  | Filter groups                            |
+|     8 | SELECT                  | Produce the requested output expressions |
+|     9 | DISTINCT                | Remove duplicate output rows             |
+|    10 | ORDER BY                | Sort the result                          |
+|    11 | LIMIT / OFFSET          | Restrict the final result                |
+
+This is a simplified conceptual model. SQL has more detailed rules for name resolution, aggregation, window functions, and set operations.
+
+The database optimizer is also free to choose a different physical execution plan as long as the query's semantics are preserved.
+
+### Step-by-step example
+
+Query:
+
+```sql
+SELECT
+    u.name,
+    COUNT(o.id) AS total_orders
+FROM users u
+LEFT JOIN orders o
+ON u.id = o.user_id
+WHERE u.active = TRUE
+GROUP BY u.id, u.name
+HAVING COUNT(o.id) > 2
+ORDER BY total_orders DESC
+LIMIT 10;
+```
+
+**Step 1: FROM**
+
+Start with the users table.
+
+**Step 2: JOIN and ON**
+
+Match users with orders using:
+
+```sql
+u.id = o.user_id
+```
+
+**Step 3: Outer-join preservation**
+
+Because this is a LEFT JOIN, users without orders are preserved.
+
+**Step 4: WHERE**
+
+Keep only active users.
+
+```sql
+u.active = TRUE
+```
+
+**Step 5: GROUP BY**
+
+Group the remaining records by user.
+
+**Step 6: HAVING**
+
+Keep groups having more than two orders.
+
+```sql
+COUNT(o.id) > 2
+```
+
+**Step 7: SELECT**
+
+Produce the user's name and order count.
+
+**Step 8: ORDER BY**
+
+Sort by order count in descending order.
+
+**Step 9: LIMIT**
+
+Return only the first ten rows.
+
+---
+
+## 16. WHERE vs HAVING
+
+These clauses both filter data, but they work at different logical stages.
+
+### WHERE
+
+Filters individual rows before grouping.
+
+```sql
+SELECT *
+FROM orders
+WHERE total > 1000;
+```
+
+### HAVING
+
+Filters groups after GROUP BY.
+
+```sql
+SELECT
+    user_id,
+    COUNT(*) AS total_orders
+FROM orders
+GROUP BY user_id
+HAVING COUNT(*) > 2;
+```
+
+### Comparison
+
+| WHERE                                                                            | HAVING                             |
+| -------------------------------------------------------------------------------- | ---------------------------------- |
+| Filters individual rows                                                          | Filters groups                     |
+| Applied before GROUP BY                                                          | Applied after GROUP BY             |
+| Commonly uses ordinary row conditions                                            | Commonly uses aggregate conditions |
+| Cannot directly use aggregate functions at the same query level in its condition | Can use aggregate functions        |
+
+### Example using both
+
+Find users who have more than two completed orders.
+
+```sql
+SELECT
+    user_id,
+    COUNT(*) AS total_orders
+FROM orders
+WHERE status = 'completed'
+GROUP BY user_id
+HAVING COUNT(*) > 2;
+```
+
+Logical flow:
+
+1. Filter completed orders.
+2. Group by user ID.
+3. Count orders per user.
+4. Keep users with more than two completed orders.
+
+---
+
+## 17. Understand JOIN order and optimizer behavior
+
+Consider:
+
+```sql
+SELECT *
+FROM users u
+JOIN orders o
+ON u.id = o.user_id
+JOIN order_items oi
+ON o.id = oi.order_id
+JOIN products p
+ON p.id = oi.product_id;
+```
+
+There are multiple JOIN operations.
+
+A simplified logical reading is:
+
+1. Start with users.
+2. Join orders.
+3. Join order_items.
+4. Join products.
+
+However, this does not mean PostgreSQL must physically execute the JOINs in exactly that sequence.
+
+The query optimizer can reorder eligible JOIN operations to find a lower-cost execution plan while preserving the query's semantics.
+
+For example, it may choose to process a selective table or filter earlier.
+
+### Why does this matter?
+
+Suppose the products table is huge, but the query only needs products in one category.
+
+The optimizer may use a plan that reduces the relevant rows before completing the larger join operation.
+
+The physical plan can be different from the order in which you wrote the SQL.
+
+### Important distinction
+
+- SQL query order describes the logical request.
+- Execution plan describes the physical operations chosen by the optimizer.
+
+Do not assume that the order of JOINs written in SQL always equals their execution order.
+
+---
+
+## 18. Practical JOIN best practices checklist
+
+Before deploying a complex JOIN query, review the following.
+
+### Correctness
+
+- [ ] Are the tables related through the correct columns?
+- [ ] Is the correct JOIN type being used?
+- [ ] Are unmatched rows supposed to be preserved?
+- [ ] Are NULL values handled correctly?
+- [ ] Can one-to-many relationships multiply rows?
+- [ ] Are aggregations affected by duplicate combinations?
+- [ ] Are multiple one-to-many relationships being joined independently?
+
+### Readability
+
+- [ ] Are explicit JOINs used?
+- [ ] Are table aliases meaningful?
+- [ ] Are columns qualified with table aliases?
+- [ ] Are only required columns selected?
+- [ ] Are join conditions easy to understand?
+- [ ] Are complex subqueries formatted clearly?
+
+### Performance
+
+- [ ] Are useful indexes available on join columns?
+- [ ] Are unnecessary JOINs avoided?
+- [ ] Are filters appropriate?
+- [ ] Is the result set unnecessarily large?
+- [ ] Has EXPLAIN ANALYZE been used for expensive queries?
+- [ ] Are estimated and actual row counts reasonably aligned?
+
+---
+
+## 19. Common interview questions
+
+### Basic questions
+
+**1. Why should we prefer explicit JOIN syntax over comma-separated tables?**
+
+Explicit JOIN syntax improves readability, separates matching conditions from filters, and reduces the risk of accidental Cartesian products.
+
+**2. Why should we avoid SELECT \* in production JOIN queries?**
+
+It retrieves unnecessary columns, increases data transfer, creates ambiguity around duplicate column names, and makes query outputs less stable when schemas change.
+
+**3. Why can JOINs produce duplicate parent rows?**
+
+Because one parent row can match multiple child rows in a one-to-many relationship.
+
+**4. What is the difference between COUNT(\*) and COUNT(column) with LEFT JOIN?**
+
+COUNT(\*) counts every result row, including NULL-extended rows. COUNT(column) counts only non-NULL values in that column.
+
+**5. How can you find users who have never placed an order?**
+
+Use NOT EXISTS or LEFT JOIN with IS NULL.
+
+### Intermediate questions
+
+**6. What is row multiplication in a multi-table JOIN?**
+
+When multiple one-to-many relationships are joined independently, their matching combinations can multiply the result rows.
+
+**7. How do you prevent incorrect aggregation when joining multiple one-to-many tables?**
+
+Aggregate each child table independently before joining the aggregated results.
+
+**8. When should you use EXISTS instead of JOIN?**
+
+When you only need to determine whether a matching record exists and do not need columns from the other table.
+
+**9. Does PostgreSQL always execute JOINs in the order written?**
+
+No. The optimizer can reorder eligible joins when it can preserve query semantics.
+
+**10. What is the logical execution order of SQL?**
+
+A simplified order is:
+
+FROM → JOIN/ON → outer-join preservation → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT.
+
+**11. What is the difference between WHERE and HAVING?**
+
+WHERE filters individual rows before grouping. HAVING filters groups after aggregation.
+
+**12. How would you investigate a slow JOIN query?**
+
+Use EXPLAIN ANALYZE, inspect row estimates, actual rows, loops, scans, join algorithms, indexes, and table statistics.
+
+---
+
+## 20. Chapter Summary
+
+| Topic                      | Key takeaway                                   |
+| -------------------------- | ---------------------------------------------- |
+| Explicit JOIN syntax       | Prefer JOIN ... ON over comma-separated tables |
+| Table aliases              | Improve readability and remove ambiguity       |
+| SELECT \*                  | Avoid retrieving unnecessary columns           |
+| Duplicate rows             | Often result from one-to-many relationships    |
+| COUNT(\*) vs COUNT(column) | Important distinction with OUTER JOINs         |
+| Cartesian product          | Can cause massive and unintended result sets   |
+| Multiple one-to-many JOINs | Can multiply rows and corrupt aggregates       |
+| EXISTS                     | Use for existence checks                       |
+| NOT EXISTS                 | Use for anti-match checks                      |
+| Indexes                    | Can improve JOIN performance                   |
+| NULL                       | Use IS NULL and IS NOT NULL                    |
+| WHERE                      | Filters individual rows                        |
+| GROUP BY                   | Groups rows for aggregation                    |
+| HAVING                     | Filters aggregated groups                      |
+| Logical execution order    | Differs from written SQL order                 |
+| Query optimizer            | Can reorder eligible physical JOIN operations  |
+
+### Key takeaways
+
+1. Understand table relationships before writing JOINs.
+2. Use explicit JOIN syntax and correct join conditions.
+3. Qualify columns using table aliases.
+4. Select only the columns you need.
+5. Understand why one-to-many JOINs produce duplicate parent rows.
+6. Be careful when joining multiple one-to-many relationships.
+7. Aggregate child tables independently when necessary.
+8. Use EXISTS and NOT EXISTS for existence checks.
+9. Indexes can improve JOIN performance, but the optimizer decides whether to use them.
+10. Understand the logical execution order of SQL.
+11. Use EXPLAIN ANALYZE to investigate expensive JOIN queries.
