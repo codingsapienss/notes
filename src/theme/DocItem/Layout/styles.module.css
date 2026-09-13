@@ -1,0 +1,86 @@
+/**
+ * Custom DocItem/Layout styles — adds TOC collapse support (desktop only).
+ */
+
+/* === Original styles (preserved) === */
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 997px) {
+  .docItemCol {
+    max-width: 75% !important;
+  }
+}
+
+/* === TOC collapse support === */
+
+/* When TOC is collapsed: expand main content to full width */
+@media (min-width: 997px) {
+  .tocCollapsed .docItemCol {
+    max-width: calc(100% - 56px) !important;
+  }
+
+  /* Collapsed TOC column: shrink to 56px icon strip */
+  .tocCollapsed .tocColumn {
+    max-width: 56px !important;
+    min-width: 56px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding-top: calc(var(--ifm-navbar-height) + 1rem) !important;
+  }
+}
+
+/* TOC column wrapper */
+.tocColumn {
+  padding: 0 !important;
+  transition: max-width 0.3s ease, min-width 0.3s ease;
+}
+
+/* Expanded TOC: sticky container with collapse button at top */
+@media (min-width: 997px) {
+  .tocInner {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+    max-height: calc(100vh - var(--ifm-navbar-height) - 2rem);
+    overflow-y: auto;
+    padding: 0.5rem;
+  }
+}
+
+/* Glassmorphism toggle buttons */
+.tocCollapseButton,
+.tocExpandButton {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px !important;
+  padding: 0.4rem !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+/* Collapse button inside expanded TOC (top, right-aligned) */
+.tocCollapseButton {
+  align-self: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+/* Expand button in collapsed TOC (centered in narrow strip) */
+.tocExpandButton {
+  position: static;
+}
+
+/* Hover states */
+.tocCollapseButton:hover,
+.tocExpandButton:hover {
+  border-color: var(--ifm-color-primary) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
