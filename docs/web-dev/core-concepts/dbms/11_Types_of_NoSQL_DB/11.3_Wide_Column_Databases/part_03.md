@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: Data Modeling
+sidebar_label: "Wide-Column Databases: Data Modeling"
 sidebar_position: 1
 ---
 

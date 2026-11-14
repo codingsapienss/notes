@@ -1,5 +1,5 @@
 ---
-sidebar_label: Key-Value Databases: Fundamentals
+sidebar_label: "Key-Value Databases: Fundamentals"
 sidebar_position: 1
 ---
 

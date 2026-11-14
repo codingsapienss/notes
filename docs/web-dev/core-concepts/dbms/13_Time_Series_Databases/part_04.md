@@ -1,5 +1,5 @@
 ---
-sidebar_label: Part 16D — Time-Series Operations: Downsampling, Retention & Rollups
+sidebar_label: "Part 16D — Time-Series Operations: Downsampling, Retention & Rollups"
 sidebar_position: 1
 ---
 

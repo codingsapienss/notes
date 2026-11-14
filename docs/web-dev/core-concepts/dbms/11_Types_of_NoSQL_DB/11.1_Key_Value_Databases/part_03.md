@@ -1,5 +1,5 @@
 ---
-sidebar_label: Key-Value Databases: Data Modeling & Use Cases
+sidebar_label: "Key-Value Databases: Data Modeling & Use Cases"
 sidebar_position: 1
 ---
 

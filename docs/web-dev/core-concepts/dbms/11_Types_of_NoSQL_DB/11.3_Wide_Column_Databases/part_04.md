@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: Scaling and Consistency
+sidebar_label: "Wide-Column Databases: Scaling and Consistency"
 sidebar_position: 1
 ---
 

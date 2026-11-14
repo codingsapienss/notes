@@ -1,5 +1,5 @@
 ---
-sidebar_label: Graph Databases: When to Use
+sidebar_label: "Graph Databases: When to Use"
 sidebar_position: 1
 ---
 

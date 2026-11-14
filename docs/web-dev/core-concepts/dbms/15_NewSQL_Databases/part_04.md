@@ -1,5 +1,5 @@
 ---
-sidebar_label: Part 18D — NewSQL Databases: Tradeoffs, Limitations & When to Use
+sidebar_label: "Part 18D — NewSQL Databases: Tradeoffs, Limitations & When to Use"
 sidebar_position: 1
 ---
 

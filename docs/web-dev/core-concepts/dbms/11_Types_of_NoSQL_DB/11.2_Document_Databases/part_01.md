@@ -1,5 +1,5 @@
 ---
-sidebar_label: Document Databases: Fundamentals
+sidebar_label: "Document Databases: Fundamentals"
 sidebar_position: 1
 ---
 

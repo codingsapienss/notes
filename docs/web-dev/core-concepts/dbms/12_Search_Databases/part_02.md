@@ -1,5 +1,5 @@
 ---
-sidebar_label: Inverted Index: Internal Working of Search Engines
+sidebar_label: "Inverted Index: Internal Working of Search Engines"
 sidebar_position: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: Real-World Use Cases
+sidebar_label: "Wide-Column Databases: Real-World Use Cases"
 sidebar_position: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label: Part 17C — OLTP vs OLAP: Architectural Differences
+sidebar_label: "Part 17C — OLTP vs OLAP: Architectural Differences"
 sidebar_position: 1
 ---
 

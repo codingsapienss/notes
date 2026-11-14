@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: Internal Architecture
+sidebar_label: "Wide-Column Databases: Internal Architecture"
 sidebar_position: 1
 ---
 

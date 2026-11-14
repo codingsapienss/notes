@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: When to Use and When Not to Use
+sidebar_label: "Wide-Column Databases: When to Use and When Not to Use"
 sidebar_position: 1
 ---
 

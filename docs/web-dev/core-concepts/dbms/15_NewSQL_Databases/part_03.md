@@ -1,5 +1,5 @@
 ---
-sidebar_label: NewSQL Database Examples: Google Spanner, CockroachDB, TiDB & YugabyteDB
+sidebar_label: "NewSQL Database Examples: Google Spanner, CockroachDB, TiDB & YugabyteDB"
 sidebar_position: 1
 ---
 

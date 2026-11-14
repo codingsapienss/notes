@@ -1,5 +1,5 @@
 ---
-sidebar_label: Real-World Architecture: Polyglot Persistence, CDC, Synchronization & Eventual Consistency
+sidebar_label: "Real-World Architecture: Polyglot Persistence, CDC, Synchronization & Eventual Consistency"
 sidebar_position: 1
 ---
 

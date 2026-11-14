@@ -1,5 +1,5 @@
 ---
-sidebar_label: OLTP vs OLAP: Complete Comparison
+sidebar_label: "OLTP vs OLAP: Complete Comparison"
 sidebar_position: 1
 ---
 

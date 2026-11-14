@@ -1,5 +1,5 @@
 ---
-sidebar_label: NewSQL Databases: Fundamentals
+sidebar_label: "NewSQL Databases: Fundamentals"
 sidebar_position: 1
 ---
 

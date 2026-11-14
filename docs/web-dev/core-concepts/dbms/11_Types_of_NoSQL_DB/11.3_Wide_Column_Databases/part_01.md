@@ -1,5 +1,5 @@
 ---
-sidebar_label: Wide-Column Databases: Fundamentals
+sidebar_label: "Wide-Column Databases: Fundamentals"
 sidebar_position: 1
 ---
 
