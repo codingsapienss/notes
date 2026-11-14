@@ -62,7 +62,7 @@ const KnowledgeCategories = [
   {
     title: 'Database Management',
     description: 'SQL, NoSQL, transactions, indexing, normalization, sharding, and distributed databases.',
-    link: '/docs/web-dev/core-concepts/dbms/01_Database_Fundamentals/part_01',
+    link: '/docs/web-dev/core-concepts/dbms',
     icon: <Database size={32} color="#3367d6" />,
   },
 ];
