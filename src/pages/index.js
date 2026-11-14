@@ -10,7 +10,8 @@ import {
   Atom, 
   GitBranch,
   ChevronRight,
-  Server 
+  Server,
+  Database 
 } from 'lucide-react';
 
 import styles from './index.module.css';
@@ -57,6 +58,12 @@ const KnowledgeCategories = [
     description: 'Scaling applications, distributed systems, and architectural patterns.',
     link: '#',
     icon: <GitBranch size={32} color="#f05032" />,
+  },
+  {
+    title: 'Database Management',
+    description: 'SQL, NoSQL, transactions, indexing, normalization, sharding, and distributed databases.',
+    link: '/docs/web-dev/core-concepts/dbms/01_Database_Fundamentals/part_01',
+    icon: <Database size={32} color="#3367d6" />,
   },
 ];
 
