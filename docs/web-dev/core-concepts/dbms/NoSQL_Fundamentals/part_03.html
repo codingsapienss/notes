@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">When to Choose SQL vs NoSQL | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="When to Choose SQL vs NoSQL | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"NoSQL Fundamentals","item":"https://codingsapienss.github.io/notes/docs/category/nosql-fundamentals"},{"@type":"ListItem","position":5,"name":"When to Choose SQL vs NoSQL","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.a7751dc0.css">
+<script src="/notes/assets/js/runtime~main.7c4ee92d.js" defer="defer"></script>
+<script src="/notes/assets/js/main.18e6a7d5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease" title="Adjust font size"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg><span>Font</span></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-fundamentals"><span title="Database Fundamentals" class="categoryLinkLabel_W154">Database Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions-acid--concurrency"><span title="Transactions ACID &amp; Concurrency" class="categoryLinkLabel_W154">Transactions ACID &amp; Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions ACID &amp; Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-indexing"><span title="Database Indexing" class="categoryLinkLabel_W154">Database Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-normalization"><span title="Database Normalization" class="categoryLinkLabel_W154">Database Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-joins--join-execution"><span title="SQL Joins &amp; Join Execution" class="categoryLinkLabel_W154">SQL Joins &amp; Join Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL Joins &amp; Join Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling-relational-databases"><span title="Scaling Relational Databases" class="categoryLinkLabel_W154">Scaling Relational Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling Relational Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-sharding--horizontal-scaling"><span title="SQL Sharding &amp; Horizontal Scaling" class="categoryLinkLabel_W154">SQL Sharding &amp; Horizontal Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL Sharding &amp; Horizontal Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/nosql-fundamentals"><span title="NoSQL Fundamentals" class="categoryLinkLabel_W154">NoSQL Fundamentals</span></a><button aria-label="Collapse sidebar category &#x27;NoSQL Fundamentals&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_01"><span title="Introduction to NoSQL" class="linkLabel_WmDU">Introduction to NoSQL</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_02"><span title="SQL vs NoSQL" class="linkLabel_WmDU">SQL vs NoSQL</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_03"><span title="When to Choose SQL vs NoSQL" class="linkLabel_WmDU">When to Choose SQL vs NoSQL</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap-theorem--distributed-systems"><span title="CAP Theorem &amp; Distributed Systems" class="categoryLinkLabel_W154">CAP Theorem &amp; Distributed Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP Theorem &amp; Distributed Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal-scaling-in-nosql"><span title="Horizontal Scaling in NoSQL" class="categoryLinkLabel_W154">Horizontal Scaling in NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal Scaling in NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types-of-nosql-db"><span title="Types of NoSQL DB" class="categoryLinkLabel_W154">Types of NoSQL DB</span></a><button aria-label="Expand sidebar category &#x27;Types of NoSQL DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search-databases"><span title="Search Databases" class="categoryLinkLabel_W154">Search Databases</span></a><button aria-label="Expand sidebar category &#x27;Search Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time-series-databases"><span title="Time Series Databases" class="categoryLinkLabel_W154">Time Series Databases</span></a><button aria-label="Expand sidebar category &#x27;Time Series Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltp-vs-olap-databases"><span title="OLTP vs OLAP Databases" class="categoryLinkLabel_W154">OLTP vs OLAP Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTP vs OLAP Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql-databases"><span title="NewSQL Databases" class="categoryLinkLabel_W154">NewSQL Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot-persistence"><span title="Polyglot Persistence" class="categoryLinkLabel_W154">Polyglot Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/nosql-fundamentals"><span>NoSQL Fundamentals</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">When to Choose SQL vs NoSQL</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>When to Choose SQL vs NoSQL</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<p>In last 2 sections, we studied NoSQL fundamentals and its four major categories.</p>
+<p>SQL and NoSQL databases across:</p>
+<ul>
+<li class="">Data models</li>
+<li class="">Schema</li>
+<li class="">Relationships and JOINs</li>
+<li class="">Normalization and denormalization</li>
+<li class="">Transactions and ACID</li>
+<li class="">Consistency</li>
+<li class="">Scaling</li>
+<li class="">Query languages</li>
+<li class="">Performance</li>
+</ul>
+<p>Now we need to answer the most practical question:</p>
+<p><strong>When should you actually choose SQL, when should you choose NoSQL, and when should you use both?</strong></p>
+<p>Consider that you are building a new e-commerce application.</p>
+<p>It requires:</p>
+<ul>
+<li class="">User registration and authentication.</li>
+<li class="">Product catalogs.</li>
+<li class="">Shopping carts.</li>
+<li class="">Orders.</li>
+<li class="">Payments.</li>
+<li class="">Inventory.</li>
+<li class="">Product search.</li>
+<li class="">User sessions.</li>
+<li class="">Analytics.</li>
+</ul>
+<p>Would you use PostgreSQL for everything?</p>
+<p>Would you use MongoDB for everything?</p>
+<p>Would you introduce Redis and a search engine?</p>
+<p>The answer depends on the application&#x27;s requirements.</p>
+<p>A database should not be selected because it is popular or because someone claims it is faster.</p>
+<p>The selection should be based on:</p>
+<ol>
+<li class="">Data structure.</li>
+<li class="">Relationships.</li>
+<li class="">Access patterns.</li>
+<li class="">Transaction requirements.</li>
+<li class="">Consistency requirements.</li>
+<li class="">Scalability.</li>
+<li class="">Performance.</li>
+<li class="">Operational complexity.</li>
+<li class="">Cost.</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-start-with-requirements-not-database-names">2. Start With Requirements, Not Database Names<a href="#2-start-with-requirements-not-database-names" class="hash-link" aria-label="Direct link to 2. Start With Requirements, Not Database Names" title="Direct link to 2. Start With Requirements, Not Database Names" translate="no">​</a></h2>
+<p>A common mistake is starting database design with a technology choice.</p>
+<p>For example:</p>
+<p>&quot;I want to use MongoDB, so I will design my entire application around MongoDB.&quot;</p>
+<p>This is backwards.</p>
+<p>First understand the problem.</p>
+<p>Consider two applications.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="application-a-banking-system">Application A: Banking System<a href="#application-a-banking-system" class="hash-link" aria-label="Direct link to Application A: Banking System" title="Direct link to Application A: Banking System" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Accounts.</li>
+<li class="">Transactions.</li>
+<li class="">Deposits.</li>
+<li class="">Withdrawals.</li>
+<li class="">Transfers.</li>
+<li class="">Transaction history.</li>
+<li class="">Account balances.</li>
+<li class="">Strong correctness guarantees.</li>
+</ul>
+<p>A transfer may require two account updates to succeed together.</p>
+<p>The database needs reliable transaction and consistency guarantees.</p>
+<p>A relational database such as PostgreSQL is a natural starting point.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="application-b-content-management-system">Application B: Content Management System<a href="#application-b-content-management-system" class="hash-link" aria-label="Direct link to Application B: Content Management System" title="Direct link to Application B: Content Management System" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Articles.</li>
+<li class="">Images.</li>
+<li class="">Metadata.</li>
+<li class="">Different content types.</li>
+<li class="">Flexible content structures.</li>
+<li class="">Frequently changing document fields.</li>
+</ul>
+<p>A document database such as MongoDB may be suitable because content can naturally be represented as documents.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-lesson">Important Lesson<a href="#important-lesson" class="hash-link" aria-label="Direct link to Important Lesson" title="Direct link to Important Lesson" translate="no">​</a></h3>
+<p>The correct question is not:</p>
+<p>&quot;Which database is better?&quot;</p>
+<p>The correct question is:</p>
+<p>&quot;Which database model fits the data and operations my application needs?&quot;</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-when-to-choose-sql">3. When to Choose SQL<a href="#3-when-to-choose-sql" class="hash-link" aria-label="Direct link to 3. When to Choose SQL" title="Direct link to 3. When to Choose SQL" translate="no">​</a></h2>
+<p>SQL databases are particularly suitable when the application has structured relational data and requires strong integrity and transactional guarantees.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-complex-relationships">3.1 Complex Relationships<a href="#31-complex-relationships" class="hash-link" aria-label="Direct link to 3.1 Complex Relationships" title="Direct link to 3.1 Complex Relationships" translate="no">​</a></h3>
+<p>Consider an e-commerce application.</p>
+<p>It has:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-----</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">total_amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">-----------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_item_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">products</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">--------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">price</span><br></div></code></pre></div></div>
+<p>The entities are connected through relationships.</p>
+<p>You frequently need queries such as:</p>
+<ul>
+<li class="">Find all orders for a user.</li>
+<li class="">Find products inside an order.</li>
+<li class="">Calculate customer spending.</li>
+<li class="">Find products purchased by a particular customer.</li>
+<li class="">Join payments with orders.</li>
+</ul>
+<p>Relational databases are designed to handle these relationships using keys and JOINs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-strong-transaction-requirements">3.2 Strong Transaction Requirements<a href="#32-strong-transaction-requirements" class="hash-link" aria-label="Direct link to 3.2 Strong Transaction Requirements" title="Direct link to 3.2 Strong Transaction Requirements" translate="no">​</a></h3>
+<p>Consider a bank transfer:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">BEGIN</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">UPDATE</span><span class="token plain"> accounts</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> balance </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1000</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> account_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">COMMIT</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Both operations can be committed atomically.</p>
+<p>If something fails, the transaction can be rolled back.</p>
+<p>This is important for:</p>
+<ul>
+<li class="">Banking.</li>
+<li class="">Payments.</li>
+<li class="">Order creation.</li>
+<li class="">Inventory reservation.</li>
+<li class="">Financial accounting.</li>
+</ul>
+<p>NoSQL databases can also support transactions, but the exact capabilities and performance characteristics depend on the database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-referential-integrity">3.3 Referential Integrity<a href="#33-referential-integrity" class="hash-link" aria-label="Direct link to 3.3 Referential Integrity" title="Direct link to 3.3 Referential Integrity" translate="no">​</a></h3>
+<p>Suppose an order references a user.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> orders </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    order_id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id </span><span class="token keyword" style="color:#00009f">BIGINT</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">REFERENCES</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    total_amount </span><span class="token keyword" style="color:#00009f">NUMERIC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">12</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database can enforce that the referenced user exists.</p>
+<p>This helps prevent invalid relationships.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-complex-queries-and-aggregations">3.4 Complex Queries and Aggregations<a href="#34-complex-queries-and-aggregations" class="hash-link" aria-label="Direct link to 3.4 Complex Queries and Aggregations" title="Direct link to 3.4 Complex Queries and Aggregations" translate="no">​</a></h3>
+<p>Suppose you need:</p>
+<ul>
+<li class="">Total revenue by month.</li>
+<li class="">Number of orders by customer.</li>
+<li class="">Top-selling products.</li>
+<li class="">Revenue by category.</li>
+<li class="">Payment success rates.</li>
+</ul>
+<p>SQL provides powerful JOIN, GROUP BY, HAVING, window function, and subquery capabilities.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    DATE_TRUNC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;month&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> order_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">month</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">total_amount</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> revenue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> DATE_TRUNC</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;month&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> order_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ORDER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">month</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-when-sql-is-a-strong-starting-choice">3.5 When SQL Is a Strong Starting Choice<a href="#35-when-sql-is-a-strong-starting-choice" class="hash-link" aria-label="Direct link to 3.5 When SQL Is a Strong Starting Choice" title="Direct link to 3.5 When SQL Is a Strong Starting Choice" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Why SQL Fits</th></tr></thead><tbody><tr><td>Financial transactions</td><td>ACID transactions and constraints</td></tr><tr><td>Complex relationships</td><td>Foreign keys and JOINs</td></tr><tr><td>Structured business data</td><td>Relational model</td></tr><tr><td>Data integrity</td><td>Constraints and validation</td></tr><tr><td>Complex reporting queries</td><td>SQL aggregation and joins</td></tr><tr><td>Multi-record updates</td><td>Transaction support</td></tr><tr><td>Accounting systems</td><td>Reliable relational consistency</td></tr></tbody></table>
+<p><strong>Practical default:</strong> For a typical business application with users, orders, payments, inventory, and relationships, start by evaluating PostgreSQL or another relational database.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-when-to-choose-nosql">4. When to Choose NoSQL<a href="#4-when-to-choose-nosql" class="hash-link" aria-label="Direct link to 4. When to Choose NoSQL" title="Direct link to 4. When to Choose NoSQL" translate="no">​</a></h2>
+<p>NoSQL is useful when a particular data model or access pattern benefits from a non-relational database architecture.</p>
+<p>Remember that NoSQL includes different database categories. Choosing NoSQL is not enough; you must choose the appropriate category.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-document-database--mongodb">4.1 Document Database — MongoDB<a href="#41-document-database--mongodb" class="hash-link" aria-label="Direct link to 4.1 Document Database — MongoDB" title="Direct link to 4.1 Document Database — MongoDB" translate="no">​</a></h3>
+<p>Choose a document database when:</p>
+<ul>
+<li class="">Data naturally fits document structures.</li>
+<li class="">Records have varying attributes.</li>
+<li class="">Related information is commonly retrieved together.</li>
+<li class="">Embedding or document references fit the access pattern.</li>
+<li class="">The application benefits from document-oriented queries.</li>
+</ul>
+<p>Example: Product catalog.</p>
+<p>Laptop:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Laptop&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;category&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Electronics&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;attributes&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;ram&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;16GB&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;storage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;512GB SSD&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;processor&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Intel i7&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Mobile:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">102</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Mobile&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;category&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Electronics&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;attributes&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;battery&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;5000mAh&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;camera&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;50MP&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;screen&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;6.7 inches&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Different product types have different attributes.</p>
+<p>MongoDB can represent these structures naturally.</p>
+<p>However, PostgreSQL JSONB can also handle this type of data. MongoDB is not automatically necessary.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-key-value-database--redis">4.2 Key-Value Database — Redis<a href="#42-key-value-database--redis" class="hash-link" aria-label="Direct link to 4.2 Key-Value Database — Redis" title="Direct link to 4.2 Key-Value Database — Redis" translate="no">​</a></h3>
+<p>Choose a key-value database when:</p>
+<ul>
+<li class="">Data is retrieved primarily using a known key.</li>
+<li class="">Very low-latency access is important.</li>
+<li class="">Data may have an expiration time.</li>
+<li class="">You need caching, session storage, or counters.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">session:abc123 -&gt; user:101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">cart:user101 -&gt; shopping cart data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">otp:user101 -&gt; 123456</span><br></div></code></pre></div></div>
+<p>Redis commands:</p>
+<div class="language-redis codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-redis codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">SET session:abc123 &quot;user:101&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">GET session:abc123</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">EXPIRE session:abc123 3600</span><br></div></code></pre></div></div>
+<p>Redis is particularly useful for:</p>
+<ul>
+<li class="">Sessions.</li>
+<li class="">Caching.</li>
+<li class="">Rate limiting.</li>
+<li class="">Temporary tokens.</li>
+<li class="">Counters.</li>
+<li class="">Real-time data structures.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-wide-column-database--cassandra">4.3 Wide-Column Database — Cassandra<a href="#43-wide-column-database--cassandra" class="hash-link" aria-label="Direct link to 4.3 Wide-Column Database — Cassandra" title="Direct link to 4.3 Wide-Column Database — Cassandra" translate="no">​</a></h3>
+<p>Choose a wide-column database when:</p>
+<ul>
+<li class="">You have very large distributed datasets.</li>
+<li class="">Write throughput is high.</li>
+<li class="">Queries can be designed around partition keys.</li>
+<li class="">Data distribution across nodes is important.</li>
+<li class="">The workload has predictable query patterns.</li>
+</ul>
+<p>Example:</p>
+<p>A large application records user activity.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">user_id | event_time          | event_type</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">--------|---------------------|-----------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">101     | 2026-11-14 10:00:00 | LOGIN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">101     | 2026-11-14 10:05:00 | VIEW</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">101     | 2026-11-14 10:10:00 | PURCHASE</span><br></div></code></pre></div></div>
+<p>Cassandra can be useful for large-scale distributed workloads when the table design matches the queries.</p>
+<p>However, it is not a general replacement for PostgreSQL.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-graph-database--neo4j">4.4 Graph Database — Neo4j<a href="#44-graph-database--neo4j" class="hash-link" aria-label="Direct link to 4.4 Graph Database — Neo4j" title="Direct link to 4.4 Graph Database — Neo4j" translate="no">​</a></h3>
+<p>Choose a graph database when relationships are central to the application.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Social networks.</li>
+<li class="">Fraud detection.</li>
+<li class="">Recommendation systems.</li>
+<li class="">Knowledge graphs.</li>
+<li class="">Relationship analysis.</li>
+</ul>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Rahul -&gt; FOLLOWS -&gt; Amit</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Amit  -&gt; FOLLOWS -&gt; Priya</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Priya -&gt; LIKES   -&gt; Product 101</span><br></div></code></pre></div></div>
+<p>You may want to discover connections between users and products.</p>
+<p>Graph databases are designed to represent and traverse relationships.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="45-nosql-category-selection">4.5 NoSQL Category Selection<a href="#45-nosql-category-selection" class="hash-link" aria-label="Direct link to 4.5 NoSQL Category Selection" title="Direct link to 4.5 NoSQL Category Selection" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Database Category</th><th>Example</th></tr></thead><tbody><tr><td>Fast lookup by key</td><td>Key-Value</td><td>Redis</td></tr><tr><td>Flexible product documents</td><td>Document</td><td>MongoDB</td></tr><tr><td>Large distributed event workload</td><td>Wide-Column</td><td>Cassandra</td></tr><tr><td>Relationship traversal</td><td>Graph</td><td>Neo4j</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-decision-factor-1-data-structure">5. Decision Factor 1: Data Structure<a href="#5-decision-factor-1-data-structure" class="hash-link" aria-label="Direct link to 5. Decision Factor 1: Data Structure" title="Direct link to 5. Decision Factor 1: Data Structure" translate="no">​</a></h2>
+<p>Ask how your data naturally behaves.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="structured-data">Structured Data<a href="#structured-data" class="hash-link" aria-label="Direct link to Structured Data" title="Direct link to Structured Data" translate="no">​</a></h3>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Employee</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">--------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">employee_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">email</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">salary</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">department_id</span><br></div></code></pre></div></div>
+<p>Fields and relationships are relatively well-defined.</p>
+<p>A relational database is a natural choice.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="semi-structured-data">Semi-Structured Data<a href="#semi-structured-data" class="hash-link" aria-label="Direct link to Semi-Structured Data" title="Direct link to Semi-Structured Data" translate="no">​</a></h3>
+<p>Example:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;productId&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">101</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Laptop&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;attributes&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;ram&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;16GB&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;storage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;512GB SSD&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>The fields inside <code>attributes</code> may vary.</p>
+<p>A document database or a relational database with JSONB may be suitable.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="relationship-centric-data">Relationship-Centric Data<a href="#relationship-centric-data" class="hash-link" aria-label="Direct link to Relationship-Centric Data" title="Direct link to Relationship-Centric Data" translate="no">​</a></h3>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User -&gt; Follows -&gt; User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User -&gt; Likes -&gt; Post</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Post -&gt; TaggedWith -&gt; Topic</span><br></div></code></pre></div></div>
+<p>A graph database may be appropriate if traversing these relationships is a major workload.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="decision-table">Decision Table<a href="#decision-table" class="hash-link" aria-label="Direct link to Decision Table" title="Direct link to Decision Table" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data Characteristic</th><th>Potentially Suitable Model</th></tr></thead><tbody><tr><td>Strongly relational</td><td>Relational</td></tr><tr><td>Document-oriented</td><td>Document</td></tr><tr><td>Simple key-based access</td><td>Key-Value</td></tr><tr><td>Large distributed partitioned data</td><td>Wide-Column</td></tr><tr><td>Deep relationship traversal</td><td>Graph</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-decision-factor-2-query-patterns">6. Decision Factor 2: Query Patterns<a href="#6-decision-factor-2-query-patterns" class="hash-link" aria-label="Direct link to 6. Decision Factor 2: Query Patterns" title="Direct link to 6. Decision Factor 2: Query Patterns" translate="no">​</a></h2>
+<p>Data modeling should follow how the application accesses data.</p>
+<p>Suppose you are building an order management application.</p>
+<p>Typical queries:</p>
+<ol>
+<li class="">Get order by ID.</li>
+<li class="">Get all orders for a user.</li>
+<li class="">Get order items.</li>
+<li class="">Get total customer spending.</li>
+<li class="">Find orders by payment status.</li>
+<li class="">Generate monthly revenue reports.</li>
+</ol>
+<p>These queries involve multiple entities and aggregations.</p>
+<p>A relational database is a natural starting point.</p>
+<p>Now consider a shopping cart:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">cart:user101 -&gt; {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product101: 2,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    product102: 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span><br></div></code></pre></div></div>
+<p>The application usually accesses the cart by user ID.</p>
+<p>A key-value database is a natural fit.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-principle">Important Principle<a href="#important-principle" class="hash-link" aria-label="Direct link to Important Principle" title="Direct link to Important Principle" translate="no">​</a></h3>
+<p>A database should be selected based on the queries the application needs to execute, not only on the shape of the stored data.</p>
+<p>Two databases can store similar data but have very different strengths for retrieving it.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-decision-factor-3-transactions-and-consistency">7. Decision Factor 3: Transactions and Consistency<a href="#7-decision-factor-3-transactions-and-consistency" class="hash-link" aria-label="Direct link to 7. Decision Factor 3: Transactions and Consistency" title="Direct link to 7. Decision Factor 3: Transactions and Consistency" translate="no">​</a></h2>
+<p>This is one of the most important decision factors.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-a-banking">Scenario A: Banking<a href="#scenario-a-banking" class="hash-link" aria-label="Direct link to Scenario A: Banking" title="Direct link to Scenario A: Banking" translate="no">​</a></h3>
+<p>A customer transfers ₹5,000.</p>
+<p>The system must:</p>
+<ul>
+<li class="">Debit one account.</li>
+<li class="">Credit another account.</li>
+<li class="">Record the transaction.</li>
+<li class="">Prevent incorrect concurrent updates.</li>
+</ul>
+<p>A relational database with strong transaction guarantees is a sensible starting point.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-b-social-media-likes">Scenario B: Social Media Likes<a href="#scenario-b-social-media-likes" class="hash-link" aria-label="Direct link to Scenario B: Social Media Likes" title="Direct link to Scenario B: Social Media Likes" translate="no">​</a></h3>
+<p>A user likes a post.</p>
+<p>The application updates a like count.</p>
+<p>If the displayed count takes a short time to catch up, eventual consistency may be acceptable.</p>
+<p>A distributed or cached architecture may be appropriate.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-c-inventory-reservation">Scenario C: Inventory Reservation<a href="#scenario-c-inventory-reservation" class="hash-link" aria-label="Direct link to Scenario C: Inventory Reservation" title="Direct link to Scenario C: Inventory Reservation" translate="no">​</a></h3>
+<p>A customer purchases the last available item.</p>
+<p>Two customers must not both successfully reserve the same final unit.</p>
+<p>The application needs a correct concurrency-control strategy.</p>
+<p>This can be implemented using SQL transactions and atomic updates, or other carefully designed mechanisms.</p>
+<p>Choosing NoSQL does not remove the need to solve concurrency.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="comparison">Comparison<a href="#comparison" class="hash-link" aria-label="Direct link to Comparison" title="Direct link to Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Consideration</th></tr></thead><tbody><tr><td>Atomic multi-record financial update</td><td>Transaction capabilities are critical</td></tr><tr><td>Read-after-write</td><td>Need suitable consistency guarantees</td></tr><tr><td>Temporary stale data acceptable</td><td>Eventual consistency may be acceptable</td></tr><tr><td>High concurrency on inventory</td><td>Atomic updates and concurrency control</td></tr><tr><td>Distributed multi-node transaction</td><td>Examine exact database guarantees and costs</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-decision-factor-4-scalability">8. Decision Factor 4: Scalability<a href="#8-decision-factor-4-scalability" class="hash-link" aria-label="Direct link to 8. Decision Factor 4: Scalability" title="Direct link to 8. Decision Factor 4: Scalability" translate="no">​</a></h2>
+<p>Consider an application growing from 10,000 users to 100 million users.</p>
+<p>You should not immediately conclude that you need NoSQL.</p>
+<p>First identify the actual bottleneck.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-optimize-the-existing-database">Step 1: Optimize the Existing Database<a href="#step-1-optimize-the-existing-database" class="hash-link" aria-label="Direct link to Step 1: Optimize the Existing Database" title="Direct link to Step 1: Optimize the Existing Database" translate="no">​</a></h3>
+<p>Check:</p>
+<ul>
+<li class="">Query execution plans.</li>
+<li class="">Missing indexes.</li>
+<li class="">Slow queries.</li>
+<li class="">Excessive JOINs.</li>
+<li class="">Inefficient transactions.</li>
+<li class="">Connection pool configuration.</li>
+<li class="">Database CPU and memory.</li>
+<li class="">Storage performance.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-scale-vertically">Step 2: Scale Vertically<a href="#step-2-scale-vertically" class="hash-link" aria-label="Direct link to Step 2: Scale Vertically" title="Direct link to Step 2: Scale Vertically" translate="no">​</a></h3>
+<p>Increase the resources of the database server when appropriate.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Before:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">8 CPU cores</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">32 GB RAM</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">After:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">32 CPU cores</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">128 GB RAM</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-introduce-replication">Step 3: Introduce Replication<a href="#step-3-introduce-replication" class="hash-link" aria-label="Direct link to Step 3: Introduce Replication" title="Direct link to Step 3: Introduce Replication" translate="no">​</a></h3>
+<p>If reads are overwhelming the primary, introduce read replicas.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">          Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       -------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |        |        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v        v        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Primary  Replica  Replica</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-partition-large-tables">Step 4: Partition Large Tables<a href="#step-4-partition-large-tables" class="hash-link" aria-label="Direct link to Step 4: Partition Large Tables" title="Direct link to Step 4: Partition Large Tables" translate="no">​</a></h3>
+<p>If a table becomes difficult to manage, consider partitioning.</p>
+<p>For example, partition an event table by month.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-5-consider-sharding">Step 5: Consider Sharding<a href="#step-5-consider-sharding" class="hash-link" aria-label="Direct link to Step 5: Consider Sharding" title="Direct link to Step 5: Consider Sharding" translate="no">​</a></h3>
+<p>If one database server cannot meet the storage or throughput requirements, consider distributing data across multiple servers.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-point">Important Point<a href="#important-point" class="hash-link" aria-label="Direct link to Important Point" title="Direct link to Important Point" translate="no">​</a></h3>
+<p>Relational and NoSQL databases can both support horizontal scaling through different architectures.</p>
+<p>Do not choose NoSQL simply because you expect future growth.</p>
+<p>Choose the architecture that meets the workload requirements with acceptable complexity.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-decision-factor-5-performance">9. Decision Factor 5: Performance<a href="#9-decision-factor-5-performance" class="hash-link" aria-label="Direct link to 9. Decision Factor 5: Performance" title="Direct link to 9. Decision Factor 5: Performance" translate="no">​</a></h2>
+<p>Performance depends on the operation.</p>
+<p>Consider these examples:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>Potentially Suitable Choice</th></tr></thead><tbody><tr><td>Get session by ID</td><td>Redis</td></tr><tr><td>Complex order and payment JOIN</td><td>PostgreSQL</td></tr><tr><td>Retrieve complete product document</td><td>MongoDB</td></tr><tr><td>Traverse social relationships</td><td>Neo4j</td></tr><tr><td>Large distributed event writes</td><td>Cassandra</td></tr></tbody></table>
+<p>These are common patterns, not absolute performance guarantees.</p>
+<p>A properly designed PostgreSQL database can handle millions of records and substantial traffic.</p>
+<p>A poorly designed MongoDB or Cassandra schema can perform badly.</p>
+<p><strong>The database model must match the access pattern.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-decision-factor-6-cost-and-operational-complexity">10. Decision Factor 6: Cost and Operational Complexity<a href="#10-decision-factor-6-cost-and-operational-complexity" class="hash-link" aria-label="Direct link to 10. Decision Factor 6: Cost and Operational Complexity" title="Direct link to 10. Decision Factor 6: Cost and Operational Complexity" translate="no">​</a></h2>
+<p>A database decision is not only a technical decision.</p>
+<p>It also affects infrastructure, engineering time, maintenance, and reliability.</p>
+<p>Consider two options.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-a-postgresql-only">Option A: PostgreSQL Only<a href="#option-a-postgresql-only" class="hash-link" aria-label="Direct link to Option A: PostgreSQL Only" title="Direct link to Option A: PostgreSQL Only" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node.js Backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   PostgreSQL</span><br></div></code></pre></div></div>
+<p>Advantages:</p>
+<ul>
+<li class="">One primary data platform.</li>
+<li class="">Simpler monitoring.</li>
+<li class="">Fewer backups to manage.</li>
+<li class="">Easier operational ownership.</li>
+<li class="">SQL can handle many different workloads.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li class="">Some specialized workloads may need additional optimization or separate systems.</li>
+<li class="">One database may eventually become a bottleneck for certain access patterns.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="option-b-multiple-databases">Option B: Multiple Databases<a href="#option-b-multiple-databases" class="hash-link" aria-label="Direct link to Option B: Multiple Databases" title="Direct link to Option B: Multiple Databases" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node.js Backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   -------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |     |     |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v     v     v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> Postgres Mongo Redis</span><br></div></code></pre></div></div>
+<p>Advantages:</p>
+<ul>
+<li class="">Specialized data models.</li>
+<li class="">Different workloads can be optimized independently.</li>
+<li class="">Potentially better performance for specific operations.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li class="">More infrastructure.</li>
+<li class="">More monitoring.</li>
+<li class="">More backup and recovery processes.</li>
+<li class="">Data synchronization.</li>
+<li class="">Different consistency guarantees.</li>
+<li class="">More failure scenarios.</li>
+<li class="">More knowledge required to operate the system.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-comparison">Cost Comparison<a href="#cost-comparison" class="hash-link" aria-label="Direct link to Cost Comparison" title="Direct link to Cost Comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Factor</th><th>One Database</th><th>Multiple Databases</th></tr></thead><tbody><tr><td>Infrastructure</td><td>Usually simpler</td><td>More components</td></tr><tr><td>Monitoring</td><td>Easier</td><td>More involved</td></tr><tr><td>Backup</td><td>Fewer systems</td><td>Multiple backup strategies</td></tr><tr><td>Data synchronization</td><td>Usually simpler</td><td>May be required</td></tr><tr><td>Operational expertise</td><td>Less breadth</td><td>More specialized knowledge</td></tr><tr><td>Workload specialization</td><td>Limited to one system&#x27;s capabilities</td><td>More options</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-lesson-1">Important Lesson<a href="#important-lesson-1" class="hash-link" aria-label="Direct link to Important Lesson" title="Direct link to Important Lesson" translate="no">​</a></h3>
+<p>Do not introduce another database unless it solves a real problem.</p>
+<p>The cost of operating another database is ongoing, not a one-time development cost.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-real-world-database-selection-scenarios">11. Real-World Database Selection Scenarios<a href="#11-real-world-database-selection-scenarios" class="hash-link" aria-label="Direct link to 11. Real-World Database Selection Scenarios" title="Direct link to 11. Real-World Database Selection Scenarios" translate="no">​</a></h2>
+<p>Let&#x27;s examine common applications.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="111-banking-application">11.1 Banking Application<a href="#111-banking-application" class="hash-link" aria-label="Direct link to 11.1 Banking Application" title="Direct link to 11.1 Banking Application" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Accounts.</li>
+<li class="">Transactions.</li>
+<li class="">Transfers.</li>
+<li class="">Balance management.</li>
+<li class="">Audit records.</li>
+<li class="">Strong transactional guarantees.</li>
+</ul>
+<p><badge color="success">Good starting choice</badge></p>
+<p><strong>PostgreSQL or another relational database.</strong></p>
+<p>Why?</p>
+<ul>
+<li class="">ACID transactions.</li>
+<li class="">Constraints.</li>
+<li class="">Referential integrity.</li>
+<li class="">Complex SQL queries.</li>
+<li class="">Strong relational modeling.</li>
+</ul>
+<p>A banking system may also use additional databases for analytics, caching, or other specialized workloads.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="112-social-media-application">11.2 Social Media Application<a href="#112-social-media-application" class="hash-link" aria-label="Direct link to 11.2 Social Media Application" title="Direct link to 11.2 Social Media Application" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Users.</li>
+<li class="">Posts.</li>
+<li class="">Comments.</li>
+<li class="">Likes.</li>
+<li class="">Followers.</li>
+<li class="">News feeds.</li>
+<li class="">Recommendations.</li>
+</ul>
+<p>Potential architecture:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Responsibility</th><th>Potential Database</th></tr></thead><tbody><tr><td>User accounts and core business data</td><td>PostgreSQL</td></tr><tr><td>Caching and sessions</td><td>Redis</td></tr><tr><td>Relationship traversal</td><td>Graph database, when justified</td></tr><tr><td>Activity feeds</td><td>Document or wide-column store, depending on workload</td></tr><tr><td>Analytics</td><td>Analytical database</td></tr></tbody></table>
+<p>There is no requirement to use all these technologies from the beginning.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="113-e-commerce-application">11.3 E-Commerce Application<a href="#113-e-commerce-application" class="hash-link" aria-label="Direct link to 11.3 E-Commerce Application" title="Direct link to 11.3 E-Commerce Application" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Products.</li>
+<li class="">Users.</li>
+<li class="">Orders.</li>
+<li class="">Payments.</li>
+<li class="">Inventory.</li>
+<li class="">Shopping carts.</li>
+<li class="">Search.</li>
+</ul>
+<p>Potential architecture:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Responsibility</th><th>Potential Database</th></tr></thead><tbody><tr><td>Users</td><td>PostgreSQL</td></tr><tr><td>Orders</td><td>PostgreSQL</td></tr><tr><td>Payments</td><td>PostgreSQL</td></tr><tr><td>Inventory</td><td>PostgreSQL</td></tr><tr><td>Product catalog</td><td>PostgreSQL or MongoDB</td></tr><tr><td>Shopping cart</td><td>Redis or PostgreSQL</td></tr><tr><td>Sessions</td><td>Redis</td></tr><tr><td>Full-text search</td><td>Elasticsearch or OpenSearch</td></tr><tr><td>Analytics</td><td>OLAP database</td></tr></tbody></table>
+<p>The core transactional data can remain in PostgreSQL even if the application uses other databases.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="114-real-time-chat-application">11.4 Real-Time Chat Application<a href="#114-real-time-chat-application" class="hash-link" aria-label="Direct link to 11.4 Real-Time Chat Application" title="Direct link to 11.4 Real-Time Chat Application" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Users.</li>
+<li class="">Conversations.</li>
+<li class="">Messages.</li>
+<li class="">Delivery status.</li>
+<li class="">Presence.</li>
+<li class="">Online status.</li>
+</ul>
+<p>Possible architecture:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Responsibility</th><th>Potential Technology</th></tr></thead><tbody><tr><td>User accounts</td><td>PostgreSQL</td></tr><tr><td>Message storage</td><td>Relational or wide-column database, depending on scale and access patterns</td></tr><tr><td>Online presence</td><td>Redis</td></tr><tr><td>Real-time communication</td><td>WebSockets</td></tr><tr><td>Analytics</td><td>Analytical database</td></tr></tbody></table>
+<p>The choice of message database depends on message volume, retention, ordering, consistency, and retrieval patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="115-analytics-platform">11.5 Analytics Platform<a href="#115-analytics-platform" class="hash-link" aria-label="Direct link to 11.5 Analytics Platform" title="Direct link to 11.5 Analytics Platform" translate="no">​</a></h3>
+<p>Requirements:</p>
+<ul>
+<li class="">Billions of events.</li>
+<li class="">Large aggregations.</li>
+<li class="">Time-based analysis.</li>
+<li class="">Reporting.</li>
+<li class="">Historical queries.</li>
+</ul>
+<p>An OLAP or analytical database may be more suitable than a transactional OLTP database.</p>
+<p>Examples include:</p>
+<ul>
+<li class="">ClickHouse.</li>
+<li class="">BigQuery.</li>
+<li class="">Snowflake.</li>
+<li class="">Amazon Redshift.</li>
+</ul>
+<p>These are analytical database systems, not all members of the traditional NoSQL categories.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-when-should-you-combine-sql-and-nosql">12. When Should You Combine SQL and NoSQL?<a href="#12-when-should-you-combine-sql-and-nosql" class="hash-link" aria-label="Direct link to 12. When Should You Combine SQL and NoSQL?" title="Direct link to 12. When Should You Combine SQL and NoSQL?" translate="no">​</a></h2>
+<p>This brings us to an important architecture concept: Polyglot Persistence.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="121-what-is-polyglot-persistence">12.1 What Is Polyglot Persistence?<a href="#121-what-is-polyglot-persistence" class="hash-link" aria-label="Direct link to 12.1 What Is Polyglot Persistence?" title="Direct link to 12.1 What Is Polyglot Persistence?" translate="no">​</a></h3>
+<p>Polyglot persistence means using multiple database technologies within the same application.</p>
+<p>Each database is selected according to the workload it handles.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Node.js Backend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          -------------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |             |               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v             v               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      PostgreSQL      MongoDB          Redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |             |               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v             v               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Orders        Product          Sessions</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Payments      Documents        Cache</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Users</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="122-why-combine-them">12.2 Why Combine Them?<a href="#122-why-combine-them" class="hash-link" aria-label="Direct link to 12.2 Why Combine Them?" title="Direct link to 12.2 Why Combine Them?" translate="no">​</a></h3>
+<p>Because different workloads have different requirements.</p>
+<p>For example:</p>
+<ul>
+<li class="">PostgreSQL provides relational transactions.</li>
+<li class="">MongoDB provides document-oriented storage.</li>
+<li class="">Redis provides fast key-based access.</li>
+<li class="">A search engine provides specialized search.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="123-does-this-mean-every-large-application-needs-multiple-databases">12.3 Does This Mean Every Large Application Needs Multiple Databases?<a href="#123-does-this-mean-every-large-application-needs-multiple-databases" class="hash-link" aria-label="Direct link to 12.3 Does This Mean Every Large Application Needs Multiple Databases?" title="Direct link to 12.3 Does This Mean Every Large Application Needs Multiple Databases?" translate="no">​</a></h3>
+<p>No.</p>
+<p>Many production applications can operate successfully with PostgreSQL alone.</p>
+<p>A useful architecture should minimize unnecessary components.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="124-when-should-you-add-another-database">12.4 When Should You Add Another Database?<a href="#124-when-should-you-add-another-database" class="hash-link" aria-label="Direct link to 12.4 When Should You Add Another Database?" title="Direct link to 12.4 When Should You Add Another Database?" translate="no">​</a></h3>
+<p>Ask:</p>
+<ol>
+<li class="">Is the current database unable to handle this workload efficiently?</li>
+<li class="">Is there a specialized data model that offers a meaningful advantage?</li>
+<li class="">Can the application justify the additional operational complexity?</li>
+<li class="">How will data synchronization work?</li>
+<li class="">What happens if the additional database becomes unavailable?</li>
+</ol>
+<p>If you cannot answer these questions, you probably have not justified adding another database.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-database-selection-decision-tree">13. Database Selection Decision Tree<a href="#13-database-selection-decision-tree" class="hash-link" aria-label="Direct link to 13. Database Selection Decision Tree" title="Direct link to 13. Database Selection Decision Tree" translate="no">​</a></h2>
+<p>Use this as a practical starting framework.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 START</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         What is the main data model?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       -----------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v             v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   Relational     Documents     Relationships</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v             v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     SQL         Document       Graph DB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   Database      Database</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> Are transactions and relational</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> integrity central?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ----------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   YES       NO</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   SQL    Evaluate other</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          data models</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Additional workload requirements:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Key-based access?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Large distributed partition-key workload?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Wide-Column DB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Full-text search?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Search Engine</span><br></div></code></pre></div></div>
+<p>This is a decision aid, not a strict rule. A single database can support multiple workloads, and some applications require more than one model.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-common-database-selection-mistakes">14. Common Database Selection Mistakes<a href="#14-common-database-selection-mistakes" class="hash-link" aria-label="Direct link to 14. Common Database Selection Mistakes" title="Direct link to 14. Common Database Selection Mistakes" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-1-choosing-mongodb-because-the-schema-changes-frequently">Mistake 1: Choosing MongoDB Because the Schema Changes Frequently<a href="#mistake-1-choosing-mongodb-because-the-schema-changes-frequently" class="hash-link" aria-label="Direct link to Mistake 1: Choosing MongoDB Because the Schema Changes Frequently" title="Direct link to Mistake 1: Choosing MongoDB Because the Schema Changes Frequently" translate="no">​</a></h3>
+<p>A changing schema does not automatically require MongoDB.</p>
+<p>PostgreSQL supports JSONB and can handle flexible data structures.</p>
+<p><strong>Better approach:</strong> Evaluate whether the entire document model and query patterns justify a document database.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-2-choosing-nosql-because-the-application-will-have-millions-of-users">Mistake 2: Choosing NoSQL Because the Application Will Have Millions of Users<a href="#mistake-2-choosing-nosql-because-the-application-will-have-millions-of-users" class="hash-link" aria-label="Direct link to Mistake 2: Choosing NoSQL Because the Application Will Have Millions of Users" title="Direct link to Mistake 2: Choosing NoSQL Because the Application Will Have Millions of Users" translate="no">​</a></h3>
+<p>User count alone does not determine database requirements.</p>
+<p>A million mostly inactive users can generate less database traffic than 50,000 highly active users.</p>
+<p><strong>Better approach:</strong> Estimate requests per second, read/write ratio, storage growth, and query patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-3-choosing-redis-as-the-primary-database-for-everything">Mistake 3: Choosing Redis as the Primary Database for Everything<a href="#mistake-3-choosing-redis-as-the-primary-database-for-everything" class="hash-link" aria-label="Direct link to Mistake 3: Choosing Redis as the Primary Database for Everything" title="Direct link to Mistake 3: Choosing Redis as the Primary Database for Everything" translate="no">​</a></h3>
+<p>Redis is excellent for many key-value and in-memory workloads, but it has different persistence, memory, query, and transactional characteristics from a relational database.</p>
+<p><strong>Better approach:</strong> Use it where its data model and durability guarantees fit the requirement.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-4-using-mongodb-without-understanding-document-modeling">Mistake 4: Using MongoDB Without Understanding Document Modeling<a href="#mistake-4-using-mongodb-without-understanding-document-modeling" class="hash-link" aria-label="Direct link to Mistake 4: Using MongoDB Without Understanding Document Modeling" title="Direct link to Mistake 4: Using MongoDB Without Understanding Document Modeling" translate="no">​</a></h3>
+<p>Developers sometimes create documents that embed every related entity.</p>
+<p>This can cause:</p>
+<ul>
+<li class="">Large documents.</li>
+<li class="">Unbounded arrays.</li>
+<li class="">Duplicate data.</li>
+<li class="">Difficult updates.</li>
+<li class="">Complex synchronization.</li>
+</ul>
+<p><strong>Better approach:</strong> Decide carefully between embedding and referencing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-5-using-multiple-databases-too-early">Mistake 5: Using Multiple Databases Too Early<a href="#mistake-5-using-multiple-databases-too-early" class="hash-link" aria-label="Direct link to Mistake 5: Using Multiple Databases Too Early" title="Direct link to Mistake 5: Using Multiple Databases Too Early" translate="no">​</a></h3>
+<p>Every additional database increases operational complexity.</p>
+<p><strong>Better approach:</strong> Start with the simplest architecture that satisfies the requirements.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-6-assuming-sql-cannot-scale">Mistake 6: Assuming SQL Cannot Scale<a href="#mistake-6-assuming-sql-cannot-scale" class="hash-link" aria-label="Direct link to Mistake 6: Assuming SQL Cannot Scale" title="Direct link to Mistake 6: Assuming SQL Cannot Scale" translate="no">​</a></h3>
+<p>Relational databases can scale significantly through optimization, replication, partitioning, and sharding.</p>
+<p><strong>Better approach:</strong> Identify the actual bottleneck before changing database technologies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mistake-7-ignoring-consistency-between-databases">Mistake 7: Ignoring Consistency Between Databases<a href="#mistake-7-ignoring-consistency-between-databases" class="hash-link" aria-label="Direct link to Mistake 7: Ignoring Consistency Between Databases" title="Direct link to Mistake 7: Ignoring Consistency Between Databases" translate="no">​</a></h3>
+<p>If PostgreSQL stores an order and MongoDB stores a separate order representation, how do updates propagate?</p>
+<p><strong>Better approach:</strong> Define ownership, synchronization, retries, and recovery.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-a-practical-database-selection-checklist">15. A Practical Database Selection Checklist<a href="#15-a-practical-database-selection-checklist" class="hash-link" aria-label="Direct link to 15. A Practical Database Selection Checklist" title="Direct link to 15. A Practical Database Selection Checklist" translate="no">​</a></h2>
+<p>Before selecting a database for a new project, answer these questions.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="data-model">Data Model<a href="#data-model" class="hash-link" aria-label="Direct link to Data Model" title="Direct link to Data Model" translate="no">​</a></h3>
+<ul>
+<li class="">Are records strongly related?</li>
+<li class="">Is the data naturally represented as documents?</li>
+<li class="">Are relationships the primary query requirement?</li>
+<li class="">Do records have substantially different structures?</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="query-patterns">Query Patterns<a href="#query-patterns" class="hash-link" aria-label="Direct link to Query Patterns" title="Direct link to Query Patterns" translate="no">​</a></h3>
+<ul>
+<li class="">Do you need complex JOINs?</li>
+<li class="">Are most reads by primary key?</li>
+<li class="">Do you need multi-level relationship traversal?</li>
+<li class="">Are queries known in advance?</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="transactions-and-consistency">Transactions and Consistency<a href="#transactions-and-consistency" class="hash-link" aria-label="Direct link to Transactions and Consistency" title="Direct link to Transactions and Consistency" translate="no">​</a></h3>
+<ul>
+<li class="">Do multiple records need to update atomically?</li>
+<li class="">Is read-after-write consistency required?</li>
+<li class="">Can the application tolerate stale data?</li>
+<li class="">What happens if a node fails during an operation?</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scalability">Scalability<a href="#scalability" class="hash-link" aria-label="Direct link to Scalability" title="Direct link to Scalability" translate="no">​</a></h3>
+<ul>
+<li class="">How much data will be stored?</li>
+<li class="">What is the expected read throughput?</li>
+<li class="">What is the expected write throughput?</li>
+<li class="">Can one server handle the workload?</li>
+<li class="">Will partitioning, replication, or sharding be required?</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="operations">Operations<a href="#operations" class="hash-link" aria-label="Direct link to Operations" title="Direct link to Operations" translate="no">​</a></h3>
+<ul>
+<li class="">Can the team operate the database?</li>
+<li class="">How will backups work?</li>
+<li class="">How will monitoring work?</li>
+<li class="">What is the recovery strategy?</li>
+<li class="">What is the total infrastructure cost?</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-decision">Final Decision<a href="#final-decision" class="hash-link" aria-label="Direct link to Final Decision" title="Direct link to Final Decision" translate="no">​</a></h3>
+<p>Choose the database that meets the requirements with the lowest acceptable complexity.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-interview-questions">16. Interview Questions<a href="#16-interview-questions" class="hash-link" aria-label="Direct link to 16. Interview Questions" title="Direct link to 16. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-when-should-you-choose-sql-over-nosql">Q1. When should you choose SQL over NoSQL?<a href="#q1-when-should-you-choose-sql-over-nosql" class="hash-link" aria-label="Direct link to Q1. When should you choose SQL over NoSQL?" title="Direct link to Q1. When should you choose SQL over NoSQL?" translate="no">​</a></h3>
+<p>When the application has relational data, complex JOINs, strong integrity requirements, and transactional workloads.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-when-should-you-choose-nosql">Q2. When should you choose NoSQL?<a href="#q2-when-should-you-choose-nosql" class="hash-link" aria-label="Direct link to Q2. When should you choose NoSQL?" title="Direct link to Q2. When should you choose NoSQL?" translate="no">​</a></h3>
+<p>When a specialized data model or access pattern benefits from key-value, document, wide-column, or graph storage.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-should-every-application-use-mongodb-because-it-has-a-flexible-schema">Q3. Should every application use MongoDB because it has a flexible schema?<a href="#q3-should-every-application-use-mongodb-because-it-has-a-flexible-schema" class="hash-link" aria-label="Direct link to Q3. Should every application use MongoDB because it has a flexible schema?" title="Direct link to Q3. Should every application use MongoDB because it has a flexible schema?" translate="no">​</a></h3>
+<p>No. PostgreSQL also supports JSONB. The decision depends on the entire data model and query requirements.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-why-is-postgresql-a-good-default-for-many-backend-applications">Q4. Why is PostgreSQL a good default for many backend applications?<a href="#q4-why-is-postgresql-a-good-default-for-many-backend-applications" class="hash-link" aria-label="Direct link to Q4. Why is PostgreSQL a good default for many backend applications?" title="Direct link to Q4. Why is PostgreSQL a good default for many backend applications?" translate="no">​</a></h3>
+<p>It provides relational modeling, transactions, constraints, indexing, JOINs, JSONB, and mature operational capabilities.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-when-would-you-use-redis">Q5. When would you use Redis?<a href="#q5-when-would-you-use-redis" class="hash-link" aria-label="Direct link to Q5. When would you use Redis?" title="Direct link to Q5. When would you use Redis?" translate="no">​</a></h3>
+<p>For caching, sessions, counters, rate limiting, temporary data, and other suitable key-based workloads.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-when-would-you-use-cassandra">Q6. When would you use Cassandra?<a href="#q6-when-would-you-use-cassandra" class="hash-link" aria-label="Direct link to Q6. When would you use Cassandra?" title="Direct link to Q6. When would you use Cassandra?" translate="no">​</a></h3>
+<p>For large distributed workloads where the data model and queries align with its partition-oriented architecture and consistency model.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-when-would-you-use-neo4j">Q7. When would you use Neo4j?<a href="#q7-when-would-you-use-neo4j" class="hash-link" aria-label="Direct link to Q7. When would you use Neo4j?" title="Direct link to Q7. When would you use Neo4j?" translate="no">​</a></h3>
+<p>When relationship traversal is central to the application, such as social connections, recommendations, or fraud detection.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-can-sql-and-nosql-databases-be-used-together">Q8. Can SQL and NoSQL databases be used together?<a href="#q8-can-sql-and-nosql-databases-be-used-together" class="hash-link" aria-label="Direct link to Q8. Can SQL and NoSQL databases be used together?" title="Direct link to Q8. Can SQL and NoSQL databases be used together?" translate="no">​</a></h3>
+<p>Yes. This is called polyglot persistence.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-the-disadvantage-of-polyglot-persistence">Q9. What is the disadvantage of polyglot persistence?<a href="#q9-what-is-the-disadvantage-of-polyglot-persistence" class="hash-link" aria-label="Direct link to Q9. What is the disadvantage of polyglot persistence?" title="Direct link to Q9. What is the disadvantage of polyglot persistence?" translate="no">​</a></h3>
+<p>More infrastructure, synchronization, monitoring, backups, failure handling, and operational complexity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-how-would-you-choose-a-database-for-an-e-commerce-application">Q10. How would you choose a database for an e-commerce application?<a href="#q10-how-would-you-choose-a-database-for-an-e-commerce-application" class="hash-link" aria-label="Direct link to Q10. How would you choose a database for an e-commerce application?" title="Direct link to Q10. How would you choose a database for an e-commerce application?" translate="no">​</a></h3>
+<p>I would start with a relational database for core transactional data such as users, orders, payments, and inventory. I would introduce Redis for caching or sessions, a search engine for advanced search, and a document database only if the product data model and workload justify it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-how-would-you-choose-a-database-for-a-social-media-application">Q11. How would you choose a database for a social media application?<a href="#q11-how-would-you-choose-a-database-for-a-social-media-application" class="hash-link" aria-label="Direct link to Q11. How would you choose a database for a social media application?" title="Direct link to Q11. How would you choose a database for a social media application?" translate="no">​</a></h3>
+<p>I would evaluate relational storage for core accounts and transactions, caching for hot data, and specialized storage for feeds, activity, or graph traversal if the workload requires it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-what-is-the-biggest-mistake-in-database-selection">Q12. What is the biggest mistake in database selection?<a href="#q12-what-is-the-biggest-mistake-in-database-selection" class="hash-link" aria-label="Direct link to Q12. What is the biggest mistake in database selection?" title="Direct link to Q12. What is the biggest mistake in database selection?" translate="no">​</a></h3>
+<p>Choosing technology based on popularity or assumptions rather than actual requirements and access patterns.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-is-nosql-always-better-for-horizontal-scaling">Q13. Is NoSQL always better for horizontal scaling?<a href="#q13-is-nosql-always-better-for-horizontal-scaling" class="hash-link" aria-label="Direct link to Q13. Is NoSQL always better for horizontal scaling?" title="Direct link to Q13. Is NoSQL always better for horizontal scaling?" translate="no">​</a></h3>
+<p>No. Both relational and NoSQL databases can scale horizontally. The implementation, limitations, and operational complexity differ.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-what-is-the-difference-between-a-database-and-a-cache">Q14. What is the difference between a database and a cache?<a href="#q14-what-is-the-difference-between-a-database-and-a-cache" class="hash-link" aria-label="Direct link to Q14. What is the difference between a database and a cache?" title="Direct link to Q14. What is the difference between a database and a cache?" translate="no">​</a></h3>
+<p>A database is generally the authoritative system for storing and retrieving application data. A cache stores data temporarily or as a derived copy to accelerate access. Some systems can serve both roles, but their durability and consistency characteristics must be considered.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-when-should-you-introduce-a-second-database">Q15. When should you introduce a second database?<a href="#q15-when-should-you-introduce-a-second-database" class="hash-link" aria-label="Direct link to Q15. When should you introduce a second database?" title="Direct link to Q15. When should you introduce a second database?" translate="no">​</a></h3>
+<p>When a specific workload has requirements that the existing database cannot meet efficiently enough, and the benefits justify the operational and synchronization costs.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="17-practical-design-exercise">17. Practical Design Exercise<a href="#17-practical-design-exercise" class="hash-link" aria-label="Direct link to 17. Practical Design Exercise" title="Direct link to 17. Practical Design Exercise" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scenario-design-a-large-e-commerce-backend">Scenario: Design a Large E-Commerce Backend<a href="#scenario-design-a-large-e-commerce-backend" class="hash-link" aria-label="Direct link to Scenario: Design a Large E-Commerce Backend" title="Direct link to Scenario: Design a Large E-Commerce Backend" translate="no">​</a></h3>
+<p>You are building an e-commerce platform with:</p>
+<ul>
+<li class="">10 million users.</li>
+<li class="">5 million products.</li>
+<li class="">100 million orders.</li>
+<li class="">High product browsing traffic.</li>
+<li class="">High order creation traffic.</li>
+<li class="">Shopping cart functionality.</li>
+<li class="">Payment processing.</li>
+<li class="">Product search.</li>
+<li class="">Analytics dashboards.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-a-select-the-primary-database">Exercise A: Select the Primary Database<a href="#exercise-a-select-the-primary-database" class="hash-link" aria-label="Direct link to Exercise A: Select the Primary Database" title="Direct link to Exercise A: Select the Primary Database" translate="no">​</a></h3>
+<p>Which database would you choose for:</p>
+<ul>
+<li class="">Users?</li>
+<li class="">Orders?</li>
+<li class="">Payments?</li>
+<li class="">Inventory?</li>
+</ul>
+<p>Explain your reasoning.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-b-select-supporting-databases">Exercise B: Select Supporting Databases<a href="#exercise-b-select-supporting-databases" class="hash-link" aria-label="Direct link to Exercise B: Select Supporting Databases" title="Direct link to Exercise B: Select Supporting Databases" translate="no">​</a></h3>
+<p>Would you use:</p>
+<ul>
+<li class="">Redis?</li>
+<li class="">MongoDB?</li>
+<li class="">Cassandra?</li>
+<li class="">Elasticsearch or OpenSearch?</li>
+</ul>
+<p>For each one, identify the specific workload it would handle.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-c-define-data-ownership">Exercise C: Define Data Ownership<a href="#exercise-c-define-data-ownership" class="hash-link" aria-label="Direct link to Exercise C: Define Data Ownership" title="Direct link to Exercise C: Define Data Ownership" translate="no">​</a></h3>
+<p>Suppose PostgreSQL stores orders, while an analytics database stores order summaries.</p>
+<p>Answer:</p>
+<ol>
+<li class="">Which database is the source of truth?</li>
+<li class="">How will updates reach the analytics database?</li>
+<li class="">What happens if event publishing fails?</li>
+<li class="">How will duplicate events be handled?</li>
+<li class="">How will delayed analytics data be represented?</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-d-identify-unnecessary-complexity">Exercise D: Identify Unnecessary Complexity<a href="#exercise-d-identify-unnecessary-complexity" class="hash-link" aria-label="Direct link to Exercise D: Identify Unnecessary Complexity" title="Direct link to Exercise D: Identify Unnecessary Complexity" translate="no">​</a></h3>
+<p>Suppose your application has 20,000 users and moderate traffic.</p>
+<p>You propose:</p>
+<ul>
+<li class="">PostgreSQL.</li>
+<li class="">MongoDB.</li>
+<li class="">Redis.</li>
+<li class="">Cassandra.</li>
+<li class="">Neo4j.</li>
+<li class="">Elasticsearch.</li>
+</ul>
+<p>Explain why this architecture may be unnecessarily complex.</p>
+<p>Identify the smallest architecture that satisfies the requirements.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="18-final-revision-sheet">18. Final Revision Sheet<a href="#18-final-revision-sheet" class="hash-link" aria-label="Direct link to 18. Final Revision Sheet" title="Direct link to 18. Final Revision Sheet" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Potential Database Choice</th></tr></thead><tbody><tr><td>Financial transactions</td><td>PostgreSQL / relational</td></tr><tr><td>Complex relationships</td><td>Relational</td></tr><tr><td>Flexible document structures</td><td>MongoDB / document</td></tr><tr><td>Sessions and caching</td><td>Redis / key-value</td></tr><tr><td>High-volume distributed event workload</td><td>Cassandra / wide-column</td></tr><tr><td>Relationship traversal</td><td>Neo4j / graph</td></tr><tr><td>Full-text search</td><td>Elasticsearch / OpenSearch</td></tr><tr><td>Large analytical queries</td><td>OLAP database</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-architecture-principles">Important Architecture Principles<a href="#important-architecture-principles" class="hash-link" aria-label="Direct link to Important Architecture Principles" title="Direct link to Important Architecture Principles" translate="no">​</a></h3>
+<ol>
+<li class="">Start with requirements, not technology.</li>
+<li class="">Understand data structure and access patterns.</li>
+<li class="">Evaluate transaction and consistency requirements.</li>
+<li class="">Optimize before introducing additional databases.</li>
+<li class="">Do not assume NoSQL is automatically faster or more scalable.</li>
+<li class="">Use specialized databases only when they provide meaningful benefits.</li>
+<li class="">Define a source of truth for every important piece of data.</li>
+<li class="">Plan synchronization and failure recovery when using multiple databases.</li>
+<li class="">Account for operational complexity.</li>
+<li class="">Choose the simplest architecture that meets the requirements.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-most-important-mental-model">The Most Important Mental Model<a href="#the-most-important-mental-model" class="hash-link" aria-label="Direct link to The Most Important Mental Model" title="Direct link to The Most Important Mental Model" translate="no">​</a></h3>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                DATABASE SELECTION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 BUSINESS REQUIREMENTS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           ----------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |            |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           v            v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        DATA MODEL   ACCESS PATTERN  CONSISTENCY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |            |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           ----------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 DATABASE SELECTION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           ----------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |            |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           v            v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          SQL          NoSQL       COMBINATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           |            |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           ----------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               OPERATIONAL EVALUATION</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                FINAL ARCHITECTURE</span><br></div></code></pre></div></div>
+<p><strong>The central lesson: A good database architecture is not the one with the most technologies. It is the simplest architecture that correctly handles the application&#x27;s data, workload, and growth requirements.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="19-completion-of-part-8--nosql-fundamentals">19. Completion of Part 8 — NoSQL Fundamentals<a href="#19-completion-of-part-8--nosql-fundamentals" class="hash-link" aria-label="Direct link to 19. Completion of Part 8 — NoSQL Fundamentals" title="Direct link to 19. Completion of Part 8 — NoSQL Fundamentals" translate="no">​</a></h2>
+<p>You have completed:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chapter</th><th>Topic</th><th>Status</th></tr></thead><tbody><tr><td>8A</td><td>Introduction to NoSQL</td><td>Completed</td></tr><tr><td>8B</td><td>SQL vs NoSQL</td><td>Completed</td></tr><tr><td>8C</td><td>When to Choose SQL vs NoSQL</td><td>Completed</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-you-should-be-able-to-explain-now">What You Should Be Able to Explain Now<a href="#what-you-should-be-able-to-explain-now" class="hash-link" aria-label="Direct link to What You Should Be Able to Explain Now" title="Direct link to What You Should Be Able to Explain Now" translate="no">​</a></h3>
+<ol>
+<li class="">What NoSQL means.</li>
+<li class="">The four major NoSQL database categories.</li>
+<li class="">How relational and document data models differ.</li>
+<li class="">How embedding and referencing work.</li>
+<li class="">Why schema flexibility does not mean no validation.</li>
+<li class="">How SQL and NoSQL transaction capabilities differ.</li>
+<li class="">How consistency models affect application behavior.</li>
+<li class="">Why database selection depends on query patterns.</li>
+<li class="">When to use PostgreSQL, MongoDB, Redis, Cassandra, or Neo4j.</li>
+<li class="">Why multiple databases introduce operational complexity.</li>
+</ol>
+<p>You should now be able to justify a database choice based on technical requirements rather than popularity.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/08_NoSQL_Fundamentals/part_03.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/NoSQL_Fundamentals/part_02"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">SQL vs NoSQL</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/category/cap-theorem--distributed-systems"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">CAP Theorem &amp; Distributed Systems</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a></li><li><a href="#2-start-with-requirements-not-database-names" class="table-of-contents__link toc-highlight">2. Start With Requirements, Not Database Names</a><ul><li><a href="#application-a-banking-system" class="table-of-contents__link toc-highlight">Application A: Banking System</a></li><li><a href="#application-b-content-management-system" class="table-of-contents__link toc-highlight">Application B: Content Management System</a></li><li><a href="#important-lesson" class="table-of-contents__link toc-highlight">Important Lesson</a></li></ul></li><li><a href="#3-when-to-choose-sql" class="table-of-contents__link toc-highlight">3. When to Choose SQL</a><ul><li><a href="#31-complex-relationships" class="table-of-contents__link toc-highlight">3.1 Complex Relationships</a></li><li><a href="#32-strong-transaction-requirements" class="table-of-contents__link toc-highlight">3.2 Strong Transaction Requirements</a></li><li><a href="#33-referential-integrity" class="table-of-contents__link toc-highlight">3.3 Referential Integrity</a></li><li><a href="#34-complex-queries-and-aggregations" class="table-of-contents__link toc-highlight">3.4 Complex Queries and Aggregations</a></li><li><a href="#35-when-sql-is-a-strong-starting-choice" class="table-of-contents__link toc-highlight">3.5 When SQL Is a Strong Starting Choice</a></li></ul></li><li><a href="#4-when-to-choose-nosql" class="table-of-contents__link toc-highlight">4. When to Choose NoSQL</a><ul><li><a href="#41-document-database--mongodb" class="table-of-contents__link toc-highlight">4.1 Document Database — MongoDB</a></li><li><a href="#42-key-value-database--redis" class="table-of-contents__link toc-highlight">4.2 Key-Value Database — Redis</a></li><li><a href="#43-wide-column-database--cassandra" class="table-of-contents__link toc-highlight">4.3 Wide-Column Database — Cassandra</a></li><li><a href="#44-graph-database--neo4j" class="table-of-contents__link toc-highlight">4.4 Graph Database — Neo4j</a></li><li><a href="#45-nosql-category-selection" class="table-of-contents__link toc-highlight">4.5 NoSQL Category Selection</a></li></ul></li><li><a href="#5-decision-factor-1-data-structure" class="table-of-contents__link toc-highlight">5. Decision Factor 1: Data Structure</a><ul><li><a href="#structured-data" class="table-of-contents__link toc-highlight">Structured Data</a></li><li><a href="#semi-structured-data" class="table-of-contents__link toc-highlight">Semi-Structured Data</a></li><li><a href="#relationship-centric-data" class="table-of-contents__link toc-highlight">Relationship-Centric Data</a></li><li><a href="#decision-table" class="table-of-contents__link toc-highlight">Decision Table</a></li></ul></li><li><a href="#6-decision-factor-2-query-patterns" class="table-of-contents__link toc-highlight">6. Decision Factor 2: Query Patterns</a><ul><li><a href="#important-principle" class="table-of-contents__link toc-highlight">Important Principle</a></li></ul></li><li><a href="#7-decision-factor-3-transactions-and-consistency" class="table-of-contents__link toc-highlight">7. Decision Factor 3: Transactions and Consistency</a><ul><li><a href="#scenario-a-banking" class="table-of-contents__link toc-highlight">Scenario A: Banking</a></li><li><a href="#scenario-b-social-media-likes" class="table-of-contents__link toc-highlight">Scenario B: Social Media Likes</a></li><li><a href="#scenario-c-inventory-reservation" class="table-of-contents__link toc-highlight">Scenario C: Inventory Reservation</a></li><li><a href="#comparison" class="table-of-contents__link toc-highlight">Comparison</a></li></ul></li><li><a href="#8-decision-factor-4-scalability" class="table-of-contents__link toc-highlight">8. Decision Factor 4: Scalability</a><ul><li><a href="#step-1-optimize-the-existing-database" class="table-of-contents__link toc-highlight">Step 1: Optimize the Existing Database</a></li><li><a href="#step-2-scale-vertically" class="table-of-contents__link toc-highlight">Step 2: Scale Vertically</a></li><li><a href="#step-3-introduce-replication" class="table-of-contents__link toc-highlight">Step 3: Introduce Replication</a></li><li><a href="#step-4-partition-large-tables" class="table-of-contents__link toc-highlight">Step 4: Partition Large Tables</a></li><li><a href="#step-5-consider-sharding" class="table-of-contents__link toc-highlight">Step 5: Consider Sharding</a></li><li><a href="#important-point" class="table-of-contents__link toc-highlight">Important Point</a></li></ul></li><li><a href="#9-decision-factor-5-performance" class="table-of-contents__link toc-highlight">9. Decision Factor 5: Performance</a></li><li><a href="#10-decision-factor-6-cost-and-operational-complexity" class="table-of-contents__link toc-highlight">10. Decision Factor 6: Cost and Operational Complexity</a><ul><li><a href="#option-a-postgresql-only" class="table-of-contents__link toc-highlight">Option A: PostgreSQL Only</a></li><li><a href="#option-b-multiple-databases" class="table-of-contents__link toc-highlight">Option B: Multiple Databases</a></li><li><a href="#cost-comparison" class="table-of-contents__link toc-highlight">Cost Comparison</a></li><li><a href="#important-lesson-1" class="table-of-contents__link toc-highlight">Important Lesson</a></li></ul></li><li><a href="#11-real-world-database-selection-scenarios" class="table-of-contents__link toc-highlight">11. Real-World Database Selection Scenarios</a><ul><li><a href="#111-banking-application" class="table-of-contents__link toc-highlight">11.1 Banking Application</a></li><li><a href="#112-social-media-application" class="table-of-contents__link toc-highlight">11.2 Social Media Application</a></li><li><a href="#113-e-commerce-application" class="table-of-contents__link toc-highlight">11.3 E-Commerce Application</a></li><li><a href="#114-real-time-chat-application" class="table-of-contents__link toc-highlight">11.4 Real-Time Chat Application</a></li><li><a href="#115-analytics-platform" class="table-of-contents__link toc-highlight">11.5 Analytics Platform</a></li></ul></li><li><a href="#12-when-should-you-combine-sql-and-nosql" class="table-of-contents__link toc-highlight">12. When Should You Combine SQL and NoSQL?</a><ul><li><a href="#121-what-is-polyglot-persistence" class="table-of-contents__link toc-highlight">12.1 What Is Polyglot Persistence?</a></li><li><a href="#122-why-combine-them" class="table-of-contents__link toc-highlight">12.2 Why Combine Them?</a></li><li><a href="#123-does-this-mean-every-large-application-needs-multiple-databases" class="table-of-contents__link toc-highlight">12.3 Does This Mean Every Large Application Needs Multiple Databases?</a></li><li><a href="#124-when-should-you-add-another-database" class="table-of-contents__link toc-highlight">12.4 When Should You Add Another Database?</a></li></ul></li><li><a href="#13-database-selection-decision-tree" class="table-of-contents__link toc-highlight">13. Database Selection Decision Tree</a></li><li><a href="#14-common-database-selection-mistakes" class="table-of-contents__link toc-highlight">14. Common Database Selection Mistakes</a><ul><li><a href="#mistake-1-choosing-mongodb-because-the-schema-changes-frequently" class="table-of-contents__link toc-highlight">Mistake 1: Choosing MongoDB Because the Schema Changes Frequently</a></li><li><a href="#mistake-2-choosing-nosql-because-the-application-will-have-millions-of-users" class="table-of-contents__link toc-highlight">Mistake 2: Choosing NoSQL Because the Application Will Have Millions of Users</a></li><li><a href="#mistake-3-choosing-redis-as-the-primary-database-for-everything" class="table-of-contents__link toc-highlight">Mistake 3: Choosing Redis as the Primary Database for Everything</a></li><li><a href="#mistake-4-using-mongodb-without-understanding-document-modeling" class="table-of-contents__link toc-highlight">Mistake 4: Using MongoDB Without Understanding Document Modeling</a></li><li><a href="#mistake-5-using-multiple-databases-too-early" class="table-of-contents__link toc-highlight">Mistake 5: Using Multiple Databases Too Early</a></li><li><a href="#mistake-6-assuming-sql-cannot-scale" class="table-of-contents__link toc-highlight">Mistake 6: Assuming SQL Cannot Scale</a></li><li><a href="#mistake-7-ignoring-consistency-between-databases" class="table-of-contents__link toc-highlight">Mistake 7: Ignoring Consistency Between Databases</a></li></ul></li><li><a href="#15-a-practical-database-selection-checklist" class="table-of-contents__link toc-highlight">15. A Practical Database Selection Checklist</a><ul><li><a href="#data-model" class="table-of-contents__link toc-highlight">Data Model</a></li><li><a href="#query-patterns" class="table-of-contents__link toc-highlight">Query Patterns</a></li><li><a href="#transactions-and-consistency" class="table-of-contents__link toc-highlight">Transactions and Consistency</a></li><li><a href="#scalability" class="table-of-contents__link toc-highlight">Scalability</a></li><li><a href="#operations" class="table-of-contents__link toc-highlight">Operations</a></li><li><a href="#final-decision" class="table-of-contents__link toc-highlight">Final Decision</a></li></ul></li><li><a href="#16-interview-questions" class="table-of-contents__link toc-highlight">16. Interview Questions</a><ul><li><a href="#q1-when-should-you-choose-sql-over-nosql" class="table-of-contents__link toc-highlight">Q1. When should you choose SQL over NoSQL?</a></li><li><a href="#q2-when-should-you-choose-nosql" class="table-of-contents__link toc-highlight">Q2. When should you choose NoSQL?</a></li><li><a href="#q3-should-every-application-use-mongodb-because-it-has-a-flexible-schema" class="table-of-contents__link toc-highlight">Q3. Should every application use MongoDB because it has a flexible schema?</a></li><li><a href="#q4-why-is-postgresql-a-good-default-for-many-backend-applications" class="table-of-contents__link toc-highlight">Q4. Why is PostgreSQL a good default for many backend applications?</a></li><li><a href="#q5-when-would-you-use-redis" class="table-of-contents__link toc-highlight">Q5. When would you use Redis?</a></li><li><a href="#q6-when-would-you-use-cassandra" class="table-of-contents__link toc-highlight">Q6. When would you use Cassandra?</a></li><li><a href="#q7-when-would-you-use-neo4j" class="table-of-contents__link toc-highlight">Q7. When would you use Neo4j?</a></li><li><a href="#q8-can-sql-and-nosql-databases-be-used-together" class="table-of-contents__link toc-highlight">Q8. Can SQL and NoSQL databases be used together?</a></li><li><a href="#q9-what-is-the-disadvantage-of-polyglot-persistence" class="table-of-contents__link toc-highlight">Q9. What is the disadvantage of polyglot persistence?</a></li><li><a href="#q10-how-would-you-choose-a-database-for-an-e-commerce-application" class="table-of-contents__link toc-highlight">Q10. How would you choose a database for an e-commerce application?</a></li><li><a href="#q11-how-would-you-choose-a-database-for-a-social-media-application" class="table-of-contents__link toc-highlight">Q11. How would you choose a database for a social media application?</a></li><li><a href="#q12-what-is-the-biggest-mistake-in-database-selection" class="table-of-contents__link toc-highlight">Q12. What is the biggest mistake in database selection?</a></li><li><a href="#q13-is-nosql-always-better-for-horizontal-scaling" class="table-of-contents__link toc-highlight">Q13. Is NoSQL always better for horizontal scaling?</a></li><li><a href="#q14-what-is-the-difference-between-a-database-and-a-cache" class="table-of-contents__link toc-highlight">Q14. What is the difference between a database and a cache?</a></li><li><a href="#q15-when-should-you-introduce-a-second-database" class="table-of-contents__link toc-highlight">Q15. When should you introduce a second database?</a></li></ul></li><li><a href="#17-practical-design-exercise" class="table-of-contents__link toc-highlight">17. Practical Design Exercise</a><ul><li><a href="#scenario-design-a-large-e-commerce-backend" class="table-of-contents__link toc-highlight">Scenario: Design a Large E-Commerce Backend</a></li><li><a href="#exercise-a-select-the-primary-database" class="table-of-contents__link toc-highlight">Exercise A: Select the Primary Database</a></li><li><a href="#exercise-b-select-supporting-databases" class="table-of-contents__link toc-highlight">Exercise B: Select Supporting Databases</a></li><li><a href="#exercise-c-define-data-ownership" class="table-of-contents__link toc-highlight">Exercise C: Define Data Ownership</a></li><li><a href="#exercise-d-identify-unnecessary-complexity" class="table-of-contents__link toc-highlight">Exercise D: Identify Unnecessary Complexity</a></li></ul></li><li><a href="#18-final-revision-sheet" class="table-of-contents__link toc-highlight">18. Final Revision Sheet</a><ul><li><a href="#important-architecture-principles" class="table-of-contents__link toc-highlight">Important Architecture Principles</a></li><li><a href="#the-most-important-mental-model" class="table-of-contents__link toc-highlight">The Most Important Mental Model</a></li></ul></li><li><a href="#19-completion-of-part-8--nosql-fundamentals" class="table-of-contents__link toc-highlight">19. Completion of Part 8 — NoSQL Fundamentals</a><ul><li><a href="#what-you-should-be-able-to-explain-now" class="table-of-contents__link toc-highlight">What You Should Be Able to Explain Now</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

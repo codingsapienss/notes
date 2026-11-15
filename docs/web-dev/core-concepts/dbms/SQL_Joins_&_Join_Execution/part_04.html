@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/SQL_Joins_&_Join_Execution/part_04" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Join Algorithms | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_04"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Join Algorithms | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_04"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_04" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_04" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"SQL Joins & Join Execution","item":"https://codingsapienss.github.io/notes/docs/category/sql-joins--join-execution"},{"@type":"ListItem","position":5,"name":"Join Algorithms","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&_Join_Execution/part_04"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.a7751dc0.css">
+<script src="/notes/assets/js/runtime~main.7c4ee92d.js" defer="defer"></script>
+<script src="/notes/assets/js/main.18e6a7d5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease" title="Adjust font size"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg><span>Font</span></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-fundamentals"><span title="Database Fundamentals" class="categoryLinkLabel_W154">Database Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions-acid--concurrency"><span title="Transactions ACID &amp; Concurrency" class="categoryLinkLabel_W154">Transactions ACID &amp; Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions ACID &amp; Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-indexing"><span title="Database Indexing" class="categoryLinkLabel_W154">Database Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-normalization"><span title="Database Normalization" class="categoryLinkLabel_W154">Database Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/sql-joins--join-execution"><span title="SQL Joins &amp; Join Execution" class="categoryLinkLabel_W154">SQL Joins &amp; Join Execution</span></a><button aria-label="Collapse sidebar category &#x27;SQL Joins &amp; Join Execution&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_01"><span title="Why Joins Exist" class="linkLabel_WmDU">Why Joins Exist</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_02"><span title="SQL Join Types" class="linkLabel_WmDU">SQL Join Types</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_03"><span title="JOIN vs WHERE, ON vs AND" class="linkLabel_WmDU">JOIN vs WHERE, ON vs AND</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_04"><span title="Join Algorithms" class="linkLabel_WmDU">Join Algorithms</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling-relational-databases"><span title="Scaling Relational Databases" class="categoryLinkLabel_W154">Scaling Relational Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling Relational Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-sharding--horizontal-scaling"><span title="SQL Sharding &amp; Horizontal Scaling" class="categoryLinkLabel_W154">SQL Sharding &amp; Horizontal Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL Sharding &amp; Horizontal Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql-fundamentals"><span title="NoSQL Fundamentals" class="categoryLinkLabel_W154">NoSQL Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap-theorem--distributed-systems"><span title="CAP Theorem &amp; Distributed Systems" class="categoryLinkLabel_W154">CAP Theorem &amp; Distributed Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP Theorem &amp; Distributed Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal-scaling-in-nosql"><span title="Horizontal Scaling in NoSQL" class="categoryLinkLabel_W154">Horizontal Scaling in NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal Scaling in NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types-of-nosql-db"><span title="Types of NoSQL DB" class="categoryLinkLabel_W154">Types of NoSQL DB</span></a><button aria-label="Expand sidebar category &#x27;Types of NoSQL DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search-databases"><span title="Search Databases" class="categoryLinkLabel_W154">Search Databases</span></a><button aria-label="Expand sidebar category &#x27;Search Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time-series-databases"><span title="Time Series Databases" class="categoryLinkLabel_W154">Time Series Databases</span></a><button aria-label="Expand sidebar category &#x27;Time Series Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltp-vs-olap-databases"><span title="OLTP vs OLAP Databases" class="categoryLinkLabel_W154">OLTP vs OLAP Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTP vs OLAP Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql-databases"><span title="NewSQL Databases" class="categoryLinkLabel_W154">NewSQL Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot-persistence"><span title="Polyglot Persistence" class="categoryLinkLabel_W154">Polyglot Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/sql-joins--join-execution"><span>SQL Joins &amp; Join Execution</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Join Algorithms</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Join Algorithms</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<p>So far, we have studied different types of SQL JOINs:</p>
+<ul>
+<li class="">INNER JOIN</li>
+<li class="">LEFT JOIN</li>
+<li class="">RIGHT JOIN</li>
+<li class="">FULL OUTER JOIN</li>
+<li class="">CROSS JOIN</li>
+<li class="">SELF JOIN</li>
+<li class="">SEMI JOIN</li>
+<li class="">ANTI JOIN</li>
+</ul>
+<p>But there is another important question:</p>
+<p><strong>How does a database actually execute a JOIN internally?</strong></p>
+<p>When you write:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The database must find matching records between the two tables.</p>
+<p>There are different ways to perform this operation.</p>
+<p>These techniques are called <strong>JOIN algorithms</strong> or <strong>JOIN execution algorithms</strong>.</p>
+<p>The three major algorithms used by relational databases are:</p>
+<ol>
+<li class="">Nested Loop Join</li>
+<li class="">Hash Join</li>
+<li class="">Merge Join</li>
+</ol>
+<p>The database query optimizer chooses an execution strategy based on factors such as:</p>
+<ul>
+<li class="">Number of rows in each table.</li>
+<li class="">Available indexes.</li>
+<li class="">Table statistics.</li>
+<li class="">Memory availability.</li>
+<li class="">Data ordering.</li>
+<li class="">Join conditions.</li>
+<li class="">Estimated execution cost.</li>
+</ul>
+<p><strong>Important distinction:</strong></p>
+<p>JOIN types describe the logical result you want.</p>
+<p>JOIN algorithms describe how the database physically produces that result.</p>
+<p>For example, an INNER JOIN can be executed using a Nested Loop Join, Hash Join, or Merge Join.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-understanding-the-difference-between-join-type-and-join-algorithm">2. Understanding the difference between JOIN type and JOIN algorithm<a href="#2-understanding-the-difference-between-join-type-and-join-algorithm" class="hash-link" aria-label="Direct link to 2. Understanding the difference between JOIN type and JOIN algorithm" title="Direct link to 2. Understanding the difference between JOIN type and JOIN algorithm" translate="no">​</a></h2>
+<p>Consider this query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Here:</p>
+<ul>
+<li class=""><code>INNER JOIN</code> specifies the logical operation.</li>
+<li class="">The database chooses an algorithm to execute that operation.</li>
+</ul>
+<p>The same SQL query can use different algorithms depending on the data and available resources.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">SQL QUERY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">INNER JOIN</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">QUERY OPTIMIZER</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Nested Loop         Hash Join</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Merge Join</span><br></div></code></pre></div></div>
+<p>The optimizer estimates the cost of possible execution plans and selects a suitable plan.</p>
+<p>It does not simply choose one algorithm permanently for a particular SQL JOIN type.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-nested-loop-join">3. Nested Loop Join<a href="#3-nested-loop-join" class="hash-link" aria-label="Direct link to 3. Nested Loop Join" title="Direct link to 3. Nested Loop Join" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="definition">Definition<a href="#definition" class="hash-link" aria-label="Direct link to Definition" title="Direct link to Definition" translate="no">​</a></h3>
+<p>A Nested Loop Join works by taking rows from one table and searching for matching rows in the other table.</p>
+<p>Conceptually:</p>
+<ol>
+<li class="">Take one row from the outer table.</li>
+<li class="">Search for matching rows in the inner table.</li>
+<li class="">Return matching combinations.</li>
+<li class="">Move to the next outer-table row.</li>
+<li class="">Repeat until all outer rows have been processed.</li>
+</ol>
+<p>It is called a Nested Loop because one loop runs inside another loop.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example">Example<a href="#example" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example" translate="no">​</a></h3>
+<p>Consider these tables.</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Priya</td></tr><tr><td style="text-align:right">3</td><td>Amit</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">300</td></tr></tbody></table>
+<p>We want to join users with orders.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-nested-loop-join-works">How Nested Loop Join works<a href="#how-nested-loop-join-works" class="hash-link" aria-label="Direct link to How Nested Loop Join works" title="Direct link to How Nested Loop Join works" translate="no">​</a></h3>
+<p>Suppose users is the outer table and orders is the inner table.</p>
+<p><strong>Iteration 1: Rahul</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Outer row:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Rahul (id = 1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Search orders:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 101 -&gt; user_id = 1  MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 102 -&gt; user_id = 1  MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 103 -&gt; user_id = 2  NO MATCH</span><br></div></code></pre></div></div>
+<p>Result:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td>Rahul</td><td style="text-align:right">101</td><td style="text-align:right">500</td></tr><tr><td>Rahul</td><td style="text-align:right">102</td><td style="text-align:right">800</td></tr></tbody></table>
+<p><strong>Iteration 2: Priya</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Outer row:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Priya (id = 2)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Search orders:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 101 -&gt; user_id = 1  NO MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 102 -&gt; user_id = 1  NO MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 103 -&gt; user_id = 2  MATCH</span><br></div></code></pre></div></div>
+<p>Result:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td>Priya</td><td style="text-align:right">103</td><td style="text-align:right">300</td></tr></tbody></table>
+<p><strong>Iteration 3: Amit</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Outer row:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Amit (id = 3)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Search orders:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 101 -&gt; user_id = 1  NO MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 102 -&gt; user_id = 1  NO MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 103 -&gt; user_id = 2  NO MATCH</span><br></div></code></pre></div></div>
+<p>No matching record is found.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="conceptual-algorithm">Conceptual algorithm<a href="#conceptual-algorithm" class="hash-link" aria-label="Direct link to Conceptual algorithm" title="Direct link to Conceptual algorithm" translate="no">​</a></h3>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> user </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> order </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">===</span><span class="token plain"> order</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> order</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This is a conceptual illustration, not the actual PostgreSQL implementation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="time-complexity">Time complexity<a href="#time-complexity" class="hash-link" aria-label="Direct link to Time complexity" title="Direct link to Time complexity" translate="no">​</a></h3>
+<p>If:</p>
+<ul>
+<li class="">Outer table has N rows.</li>
+<li class="">Inner table has M rows.</li>
+</ul>
+<p>A basic Nested Loop Join that scans the entire inner table for every outer row performs approximately:</p>
+<p>[
+O(N \times M)
+]</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">Users</th><th style="text-align:right">Orders</th><th style="text-align:right">Comparisons</th></tr></thead><tbody><tr><td style="text-align:right">10</td><td style="text-align:right">100</td><td style="text-align:right">1,000</td></tr><tr><td style="text-align:right">100</td><td style="text-align:right">1,000</td><td style="text-align:right">100,000</td></tr><tr><td style="text-align:right">1,000</td><td style="text-align:right">10,000</td><td style="text-align:right">10,000,000</td></tr></tbody></table>
+<p>This can become expensive when both tables are large.</p>
+<p>However, this basic complexity does not describe every Nested Loop Join. An index on the inner table can dramatically reduce the work.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="nested-loop-join-with-an-index">Nested Loop Join with an index<a href="#nested-loop-join-with-an-index" class="hash-link" aria-label="Direct link to Nested Loop Join with an index" title="Direct link to Nested Loop Join with an index" translate="no">​</a></h3>
+<p>Suppose <code>orders.user_id</code> has an index.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_orders_user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now PostgreSQL can:</p>
+<ol>
+<li class="">Read one user.</li>
+<li class="">Use the index to find matching orders.</li>
+<li class="">Read the matching order rows.</li>
+<li class="">Move to the next user.</li>
+</ol>
+<p>Instead of scanning every order for every user, the database can perform indexed lookups.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">FOR EACH USER:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    SEARCH orders.user_id INDEX</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    FETCH matching orders</span><br></div></code></pre></div></div>
+<p>This is commonly called an <strong>Index Nested Loop Join</strong>.</p>
+<p>Its approximate work depends on the number of outer rows and the cost of each index lookup.</p>
+<p>A simplified model is:</p>
+<p>[
+O(N \times \log M + K)
+]</p>
+<p>Where:</p>
+<ul>
+<li class="">N = number of outer rows.</li>
+<li class="">M = number of rows in the indexed inner table.</li>
+<li class="">K = total number of matching rows retrieved.</li>
+</ul>
+<p>Actual performance also depends on index depth, cache hits, disk access, and row visibility.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-is-nested-loop-join-useful">When is Nested Loop Join useful?<a href="#when-is-nested-loop-join-useful" class="hash-link" aria-label="Direct link to When is Nested Loop Join useful?" title="Direct link to When is Nested Loop Join useful?" translate="no">​</a></h3>
+<ul>
+<li class="">One table is small.</li>
+<li class="">The outer table returns very few rows.</li>
+<li class="">An index exists on the inner table&#x27;s join column.</li>
+<li class="">The query is highly selective.</li>
+<li class="">The database needs to retrieve only a small number of matching records.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-can-it-become-expensive">When can it become expensive?<a href="#when-can-it-become-expensive" class="hash-link" aria-label="Direct link to When can it become expensive?" title="Direct link to When can it become expensive?" translate="no">​</a></h3>
+<ul>
+<li class="">Both tables are large.</li>
+<li class="">The inner table has no useful index.</li>
+<li class="">The outer table contains many rows.</li>
+<li class="">The database repeatedly scans a large inner table.</li>
+</ul>
+<p><strong>Key point:</strong> Nested Loop Join is not inherently slow. With a suitable index and a small outer result, it can be extremely efficient.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-hash-join">4. Hash Join<a href="#4-hash-join" class="hash-link" aria-label="Direct link to 4. Hash Join" title="Direct link to 4. Hash Join" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="definition-1">Definition<a href="#definition-1" class="hash-link" aria-label="Direct link to Definition" title="Direct link to Definition" translate="no">​</a></h3>
+<p>A Hash Join uses a hash table to find matching rows between two tables.</p>
+<p>Instead of repeatedly scanning one table for every row of the other table, the database builds a hash table from one input and probes it using rows from the other input.</p>
+<p>A Hash Join generally has two main phases:</p>
+<ol>
+<li class="">Build phase.</li>
+<li class="">Probe phase.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-1">Example<a href="#example-1" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example" translate="no">​</a></h3>
+<p>Consider:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Priya</td></tr><tr><td style="text-align:right">3</td><td>Amit</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">300</td></tr></tbody></table>
+<p>Query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Assume PostgreSQL chooses users as the hash-build input.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-1-build-phase">Phase 1: Build phase<a href="#phase-1-build-phase" class="hash-link" aria-label="Direct link to Phase 1: Build phase" title="Direct link to Phase 1: Build phase" translate="no">​</a></h3>
+<p>The database reads the users table and creates a hash table using <code>users.id</code>.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">USERS TABLE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----+-------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 1  | Rahul |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 2  | Priya |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 3  | Amit  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----+-------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">BUILD HASH TABLE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Using users.id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hash(1) -&gt; Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hash(2) -&gt; Priya</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Hash(3) -&gt; Amit</span><br></div></code></pre></div></div>
+<p>The hash table stores enough information to retrieve the corresponding user row when a matching key is found.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-2-probe-phase">Phase 2: Probe phase<a href="#phase-2-probe-phase" class="hash-link" aria-label="Direct link to Phase 2: Probe phase" title="Direct link to Phase 2: Probe phase" translate="no">​</a></h3>
+<p>The database reads the orders table.</p>
+<p>For every order, it calculates a hash using <code>orders.user_id</code> and searches the hash table.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">ORDERS TABLE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 101 -&gt; user_id = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Hash(1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Rahul MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 102 -&gt; user_id = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Hash(1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Rahul MATCH</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Order 103 -&gt; user_id = 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Hash(2)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Priya MATCH</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-result">Final result<a href="#final-result" class="hash-link" aria-label="Direct link to Final result" title="Direct link to Final result" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td>Rahul</td><td style="text-align:right">101</td><td style="text-align:right">500</td></tr><tr><td>Rahul</td><td style="text-align:right">102</td><td style="text-align:right">800</td></tr><tr><td>Priya</td><td style="text-align:right">103</td><td style="text-align:right">300</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="conceptual-algorithm-1">Conceptual algorithm<a href="#conceptual-algorithm-1" class="hash-link" aria-label="Direct link to Conceptual algorithm" title="Direct link to Conceptual algorithm" translate="no">​</a></h3>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> hashTable </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Map</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">// Build phase</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> user </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">!</span><span class="token plain">hashTable</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">has</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    hashTable</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">set</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  hashTable</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">push</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">// Probe phase</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> order </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> matchingUsers </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> hashTable</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">get</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">order</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">||</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> user </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> matchingUsers</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> order</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This illustrates the idea. Real database hash tables use specialized memory structures and handle duplicate keys, hash collisions, and memory limits.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="time-complexity-1">Time complexity<a href="#time-complexity-1" class="hash-link" aria-label="Direct link to Time complexity" title="Direct link to Time complexity" translate="no">​</a></h3>
+<p>Building a hash table takes approximately:</p>
+<p>[
+O(N)
+]</p>
+<p>Probing it takes approximately:</p>
+<p>[
+O(M)
+]</p>
+<p>Therefore, under normal assumptions:</p>
+<p>[
+O(N + M + K)
+]</p>
+<p>Where:</p>
+<ul>
+<li class="">N = rows in the build input.</li>
+<li class="">M = rows in the probe input.</li>
+<li class="">K = matching output rows.</li>
+</ul>
+<p>Hash lookup is expected to be approximately constant time on average, but collisions and output size still matter.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-happens-if-the-hash-table-becomes-too-large">What happens if the hash table becomes too large?<a href="#what-happens-if-the-hash-table-becomes-too-large" class="hash-link" aria-label="Direct link to What happens if the hash table becomes too large?" title="Direct link to What happens if the hash table becomes too large?" translate="no">​</a></h3>
+<p>Hash tables consume memory.</p>
+<p>Suppose the database wants to build a hash table from a table containing millions of records, but the available memory is insufficient.</p>
+<p>PostgreSQL can use a <strong>multi-batch Hash Join</strong>.</p>
+<p>Instead of keeping the entire hash table in memory, it partitions data into batches and uses temporary storage as necessary.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">INPUT DATA</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">PARTITION INTO BATCHES</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> Batch 1    Batch 2    Batch 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"> Build and probe each batch</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">COMBINE MATCHES</span><br></div></code></pre></div></div>
+<p>This can involve temporary disk I/O, making the join slower than an in-memory Hash Join.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-is-hash-join-useful">When is Hash Join useful?<a href="#when-is-hash-join-useful" class="hash-link" aria-label="Direct link to When is Hash Join useful?" title="Direct link to When is Hash Join useful?" translate="no">​</a></h3>
+<ul>
+<li class="">Both tables contain many rows.</li>
+<li class="">The join uses equality conditions.</li>
+<li class="">There is no especially useful index for a Nested Loop Join.</li>
+<li class="">The database can build a reasonably sized hash table.</li>
+<li class="">A large portion of the tables needs to be joined.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="limitations">Limitations<a href="#limitations" class="hash-link" aria-label="Direct link to Limitations" title="Direct link to Limitations" translate="no">​</a></h3>
+<ul>
+<li class="">Building the hash table requires memory.</li>
+<li class="">Large hash tables can spill to disk.</li>
+<li class="">Hash joins are generally intended for equality join conditions.</li>
+<li class="">They do not inherently provide sorted output.</li>
+</ul>
+<p><strong>Key point:</strong> Hash Join is particularly effective for large equality joins when an appropriate hash table can be built efficiently.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-merge-join">5. Merge Join<a href="#5-merge-join" class="hash-link" aria-label="Direct link to 5. Merge Join" title="Direct link to 5. Merge Join" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="definition-2">Definition<a href="#definition-2" class="hash-link" aria-label="Direct link to Definition" title="Direct link to Definition" translate="no">​</a></h3>
+<p>A Merge Join works by combining two inputs that are ordered by their join keys.</p>
+<p>The database compares the current keys from both inputs and advances through them in sorted order.</p>
+<p>It is similar to merging two sorted arrays.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-2">Example<a href="#example-2" class="hash-link" aria-label="Direct link to Example" title="Direct link to Example" translate="no">​</a></h3>
+<p>Consider:</p>
+<p><strong>users</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th>name</th></tr></thead><tbody><tr><td style="text-align:right">1</td><td>Rahul</td></tr><tr><td style="text-align:right">2</td><td>Priya</td></tr><tr><td style="text-align:right">3</td><td>Amit</td></tr><tr><td style="text-align:right">4</td><td>Neha</td></tr></tbody></table>
+<p><strong>orders</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:right">id</th><th style="text-align:right">user_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td style="text-align:right">101</td><td style="text-align:right">1</td><td style="text-align:right">500</td></tr><tr><td style="text-align:right">102</td><td style="text-align:right">1</td><td style="text-align:right">800</td></tr><tr><td style="text-align:right">103</td><td style="text-align:right">2</td><td style="text-align:right">300</td></tr><tr><td style="text-align:right">104</td><td style="text-align:right">4</td><td style="text-align:right">600</td></tr></tbody></table>
+<p>Both inputs are ordered by their respective join keys:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">USERS (sorted by id)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 Rahul</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2 Priya</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">3 Amit</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">4 Neha</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ORDERS (sorted by user_id)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 Order 101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 Order 102</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2 Order 103</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">4 Order 104</span><br></div></code></pre></div></div>
+<p>Query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">INNER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-merge-join-works">How Merge Join works<a href="#how-merge-join-works" class="hash-link" aria-label="Direct link to How Merge Join works" title="Direct link to How Merge Join works" translate="no">​</a></h3>
+<p>The database maintains a position in each sorted input.</p>
+<p>It compares the current keys.</p>
+<p><strong>Step 1</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">USERS                  ORDERS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 Rahul                1 Order 101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH</span><br></div></code></pre></div></div>
+<p><strong>Step 2</strong></p>
+<p>There are two orders with user_id = 1.</p>
+<p>Both match Rahul.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1 Rahul                1 Order 102</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 = 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH</span><br></div></code></pre></div></div>
+<p><strong>Step 3</strong></p>
+<p>Move to the next distinct user key and next order key.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">2 Priya                2 Order 103</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2 = 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH</span><br></div></code></pre></div></div>
+<p><strong>Step 4</strong></p>
+<p>The next user is Amit, ID 3.</p>
+<p>The next order belongs to user 4.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">3 Amit                 4 Order 104</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">3 &lt; 4</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Advance users</span><br></div></code></pre></div></div>
+<p><strong>Step 5</strong></p>
+<p>Now compare Neha and order 104.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">4 Neha                 4 Order 104</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">4 = 4</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MATCH</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-result-1">Final result<a href="#final-result-1" class="hash-link" aria-label="Direct link to Final result" title="Direct link to Final result" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>name</th><th style="text-align:right">order_id</th><th style="text-align:right">amount</th></tr></thead><tbody><tr><td>Rahul</td><td style="text-align:right">101</td><td style="text-align:right">500</td></tr><tr><td>Rahul</td><td style="text-align:right">102</td><td style="text-align:right">800</td></tr><tr><td>Priya</td><td style="text-align:right">103</td><td style="text-align:right">300</td></tr><tr><td>Neha</td><td style="text-align:right">104</td><td style="text-align:right">600</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="conceptual-algorithm-2">Conceptual algorithm<a href="#conceptual-algorithm-2" class="hash-link" aria-label="Direct link to Conceptual algorithm" title="Direct link to Conceptual algorithm" translate="no">​</a></h3>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">let</span><span class="token plain"> i </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">let</span><span class="token plain"> j </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword control-flow" style="color:#00009f">while</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">i </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">length</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> j </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">length</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">users</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">===</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">j</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">users</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">j</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    j</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">else</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">users</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">id</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">j</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    i</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword control-flow" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    j</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This is simplified pseudocode for understanding the matching process. A real Merge Join must also handle duplicate keys, join semantics, and the possibility of multiple matching rows on either side.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="time-complexity-2">Time complexity<a href="#time-complexity-2" class="hash-link" aria-label="Direct link to Time complexity" title="Direct link to Time complexity" translate="no">​</a></h3>
+<p>If both inputs are already sorted:</p>
+<p>[
+O(N + M + K)
+]</p>
+<p>Where:</p>
+<ul>
+<li class="">N = rows in the first input.</li>
+<li class="">M = rows in the second input.</li>
+<li class="">K = matching output rows.</li>
+</ul>
+<p>Why?</p>
+<p>Because the algorithm can advance through both sorted inputs rather than repeatedly searching the entire opposite table.</p>
+<p>However, if the inputs are not already sorted, the database may need to sort them first.</p>
+<p>Sorting generally costs approximately:</p>
+<p>[
+O(N\log N + M\log M)
+]</p>
+<p>The total execution cost therefore includes the sorting work when required.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="can-indexes-help-merge-join">Can indexes help Merge Join?<a href="#can-indexes-help-merge-join" class="hash-link" aria-label="Direct link to Can indexes help Merge Join?" title="Direct link to Can indexes help Merge Join?" translate="no">​</a></h3>
+<p>Yes.</p>
+<p>Indexes can provide data in the required order, potentially avoiding an explicit sort.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_users_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_orders_user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>A suitable index scan may provide ordered input to a Merge Join.</p>
+<p>However, an index is not automatically the best choice. The optimizer considers the cost of reading the indexes versus scanning and sorting the tables.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-is-merge-join-useful">When is Merge Join useful?<a href="#when-is-merge-join-useful" class="hash-link" aria-label="Direct link to When is Merge Join useful?" title="Direct link to When is Merge Join useful?" translate="no">​</a></h3>
+<ul>
+<li class="">Both inputs are already sorted by join keys.</li>
+<li class="">Suitable indexes can provide ordered input.</li>
+<li class="">Large datasets need to be joined.</li>
+<li class="">The query also benefits from sorted output.</li>
+<li class="">The database can process the inputs efficiently in order.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="limitations-1">Limitations<a href="#limitations-1" class="hash-link" aria-label="Direct link to Limitations" title="Direct link to Limitations" translate="no">​</a></h3>
+<ul>
+<li class="">Sorting can be expensive when the inputs are not already ordered.</li>
+<li class="">Maintaining sorted inputs may require additional work.</li>
+<li class="">Merge Join generally needs compatible ordering on the join keys.</li>
+</ul>
+<p><strong>Key point:</strong> Merge Join is efficient when both inputs can be processed in sorted order without excessive sorting overhead.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-comparison-of-the-three-join-algorithms">6. Comparison of the Three JOIN Algorithms<a href="#6-comparison-of-the-three-join-algorithms" class="hash-link" aria-label="Direct link to 6. Comparison of the Three JOIN Algorithms" title="Direct link to 6. Comparison of the Three JOIN Algorithms" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Nested Loop</th><th>Hash Join</th><th>Merge Join</th></tr></thead><tbody><tr><td>Basic approach</td><td>Repeatedly searches inner input</td><td>Builds and probes a hash table</td><td>Merges ordered inputs</td></tr><tr><td>Index usage</td><td>Can benefit greatly</td><td>Not required</td><td>Can help provide sorted input</td></tr><tr><td>Requires sorting</td><td>No</td><td>No</td><td>Inputs must be ordered</td></tr><tr><td>Memory usage</td><td>Generally low</td><td>Can be significant</td><td>Depends on sorting and execution</td></tr><tr><td>Best suited for</td><td>Small/selective inputs</td><td>Large equality joins</td><td>Ordered inputs and large joins</td></tr><tr><td>Equality joins</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Range joins</td><td>Possible with suitable conditions</td><td>Generally not</td><td>Possible for suitable merge conditions</td></tr><tr><td>Main risk</td><td>Repeated inner scans</td><td>Memory pressure and spilling</td><td>Expensive sorting</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="complexity-comparison">Complexity comparison<a href="#complexity-comparison" class="hash-link" aria-label="Direct link to Complexity comparison" title="Direct link to Complexity comparison" translate="no">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Algorithm</th><th>Approximate cost model</th></tr></thead><tbody><tr><td>Nested Loop without inner index</td><td>O(N × M)</td></tr><tr><td>Nested Loop with useful index</td><td>Depends on indexed lookup cost and matches</td></tr><tr><td>Hash Join</td><td>Expected O(N + M + K)</td></tr><tr><td>Merge Join with sorted inputs</td><td>O(N + M + K)</td></tr><tr><td>Merge Join with sorting</td><td>Sorting cost + O(N + M + K)</td></tr></tbody></table>
+<p>These are simplified algorithmic models, not guarantees of actual database execution time.</p>
+<p>Real execution also depends on disk I/O, cache state, row width, data distribution, memory, and result size.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="7-how-postgresql-chooses-a-join-algorithm">7. How PostgreSQL chooses a JOIN algorithm<a href="#7-how-postgresql-chooses-a-join-algorithm" class="hash-link" aria-label="Direct link to 7. How PostgreSQL chooses a JOIN algorithm" title="Direct link to 7. How PostgreSQL chooses a JOIN algorithm" translate="no">​</a></h2>
+<p>PostgreSQL uses a query optimizer to determine how a query should be executed.</p>
+<p>Consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>PostgreSQL does not blindly execute the JOIN using one fixed algorithm.</p>
+<p>It considers:</p>
+<ol>
+<li class="">Estimated row counts.</li>
+<li class="">Table statistics.</li>
+<li class="">Available indexes.</li>
+<li class="">Estimated number of matching rows.</li>
+<li class="">Estimated disk and memory costs.</li>
+<li class="">Whether the inputs are already ordered.</li>
+<li class="">Available join strategies.</li>
+</ol>
+<p>It then selects a plan with an estimated low cost.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-scenarios">Example scenarios<a href="#example-scenarios" class="hash-link" aria-label="Direct link to Example scenarios" title="Direct link to Example scenarios" translate="no">​</a></h3>
+<p><strong>Scenario 1: Small result set</strong></p>
+<p>Suppose a query filters users down to five rows and <code>orders.user_id</code> has a suitable index.</p>
+<p>PostgreSQL may choose an Index Nested Loop Join.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Nested Loop</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Index Scan on users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Index Scan on orders</span><br></div></code></pre></div></div>
+<p><strong>Scenario 2: Large tables</strong></p>
+<p>Suppose both tables contain millions of rows and the query joins a large portion of them using equality.</p>
+<p>PostgreSQL may choose a Hash Join.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Hash Join</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Seq Scan on orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Hash</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         -&gt; Seq Scan on users</span><br></div></code></pre></div></div>
+<p><strong>Scenario 3: Already ordered inputs</strong></p>
+<p>Suppose both inputs can be read efficiently in join-key order.</p>
+<p>PostgreSQL may choose a Merge Join.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Merge Join</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Index Scan on users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    -&gt; Index Scan on orders</span><br></div></code></pre></div></div>
+<p>These are illustrative plan shapes. The actual plan depends on the query and data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-the-optimizer-does-not-always-choose-the-algorithm-you-expect">Important: The optimizer does not always choose the algorithm you expect<a href="#important-the-optimizer-does-not-always-choose-the-algorithm-you-expect" class="hash-link" aria-label="Direct link to Important: The optimizer does not always choose the algorithm you expect" title="Direct link to Important: The optimizer does not always choose the algorithm you expect" translate="no">​</a></h3>
+<p>You might create an index and expect PostgreSQL to use Nested Loop Join.</p>
+<p>But it may choose Hash Join instead.</p>
+<p>Why?</p>
+<p>Because using an index repeatedly can cost more than scanning the tables and building a hash table.</p>
+<p>An index is an available option, not a command forcing the optimizer to use it.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-understanding-explain-and-explain-analyze">8. Understanding EXPLAIN and EXPLAIN ANALYZE<a href="#8-understanding-explain-and-explain-analyze" class="hash-link" aria-label="Direct link to 8. Understanding EXPLAIN and EXPLAIN ANALYZE" title="Direct link to 8. Understanding EXPLAIN and EXPLAIN ANALYZE" translate="no">​</a></h2>
+<p>To understand how PostgreSQL executes JOINs, you need to inspect the execution plan.</p>
+<p>Two important commands are:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="explain">EXPLAIN<a href="#explain" class="hash-link" aria-label="Direct link to EXPLAIN" title="Direct link to EXPLAIN" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">EXPLAIN</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>EXPLAIN displays the estimated execution plan.</p>
+<p>It does not normally execute the query.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="explain-analyze">EXPLAIN ANALYZE<a href="#explain-analyze" class="hash-link" aria-label="Direct link to EXPLAIN ANALYZE" title="Direct link to EXPLAIN ANALYZE" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">EXPLAIN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">ANALYZE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>EXPLAIN ANALYZE executes the query and displays actual execution information.</p>
+<p>It provides information such as:</p>
+<ul>
+<li class="">Actual execution time.</li>
+<li class="">Actual rows returned.</li>
+<li class="">Number of loops.</li>
+<li class="">Estimated rows.</li>
+<li class="">Actual rows.</li>
+<li class="">Planning time.</li>
+<li class="">Execution time.</li>
+</ul>
+<p><strong>Important:</strong> EXPLAIN ANALYZE actually executes the query. Be careful with INSERT, UPDATE, and DELETE statements. Use a transaction and roll it back when testing data-changing statements.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="9-understanding-a-nested-loop-execution-plan">9. Understanding a Nested Loop execution plan<a href="#9-understanding-a-nested-loop-execution-plan" class="hash-link" aria-label="Direct link to 9. Understanding a Nested Loop execution plan" title="Direct link to 9. Understanding a Nested Loop execution plan" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Nested Loop</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (cost=0.29..16.50 rows=5 width=40)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (actual time=0.030..0.080 rows=5 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Index Scan using users_pkey on users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=5 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Index Scan using idx_orders_user_id on orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=1 loops=5)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Index Cond: (user_id = users.id)</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-to-read-it">How to read it<a href="#how-to-read-it" class="hash-link" aria-label="Direct link to How to read it" title="Direct link to How to read it" translate="no">​</a></h3>
+<p><strong>Nested Loop</strong></p>
+<p>PostgreSQL selected the Nested Loop algorithm.</p>
+<p><strong>Index Scan using users_pkey</strong></p>
+<p>The outer input is obtained using the users primary-key index.</p>
+<p><strong>Index Scan using idx_orders_user_id</strong></p>
+<p>For each outer user, PostgreSQL searches the orders index.</p>
+<p><strong>loops=5</strong></p>
+<p>The inner index scan executed five times, once for each outer row.</p>
+<p><strong>Index Cond</strong></p>
+<p>The index lookup condition is:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id</span><br></div></code></pre></div></div>
+<p>This is a good example of how an index can make Nested Loop Join efficient.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="10-understanding-a-hash-join-execution-plan">10. Understanding a Hash Join execution plan<a href="#10-understanding-a-hash-join-execution-plan" class="hash-link" aria-label="Direct link to 10. Understanding a Hash Join execution plan" title="Direct link to 10. Understanding a Hash Join execution plan" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Hash Join</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (cost=20.00..120.00 rows=1000 width=40)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (actual time=0.300..2.500 rows=1000 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Hash Cond: (orders.user_id = users.id)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Seq Scan on orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=1000 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Hash</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=100 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       -&gt; Seq Scan on users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            (actual rows=100 loops=1)</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-to-read-it-1">How to read it<a href="#how-to-read-it-1" class="hash-link" aria-label="Direct link to How to read it" title="Direct link to How to read it" translate="no">​</a></h3>
+<p><strong>Hash Join</strong></p>
+<p>PostgreSQL selected Hash Join.</p>
+<p><strong>Hash Cond</strong></p>
+<p>The matching condition is:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id</span><br></div></code></pre></div></div>
+<p><strong>Seq Scan on users</strong></p>
+<p>PostgreSQL reads the users table to build the hash table.</p>
+<p><strong>Hash</strong></p>
+<p>The database creates a hash table from the users input.</p>
+<p><strong>Seq Scan on orders</strong></p>
+<p>PostgreSQL reads the orders table to probe the hash table.</p>
+<p>Notice that the plan shows the build side beneath the Hash node.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-understanding-a-merge-join-execution-plan">11. Understanding a Merge Join execution plan<a href="#11-understanding-a-merge-join-execution-plan" class="hash-link" aria-label="Direct link to 11. Understanding a Merge Join execution plan" title="Direct link to 11. Understanding a Merge Join execution plan" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Merge Join</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (cost=0.60..100.00 rows=1000 width=40)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  (actual time=0.040..1.800 rows=1000 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Merge Cond: (users.id = orders.user_id)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Index Scan using users_pkey on users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=100 loops=1)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -&gt; Index Scan using idx_orders_user_id on orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       (actual rows=1000 loops=1)</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-to-read-it-2">How to read it<a href="#how-to-read-it-2" class="hash-link" aria-label="Direct link to How to read it" title="Direct link to How to read it" translate="no">​</a></h3>
+<p><strong>Merge Join</strong></p>
+<p>PostgreSQL selected Merge Join.</p>
+<p><strong>Merge Cond</strong></p>
+<p>The join keys are:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><br></div></code></pre></div></div>
+<p><strong>Index Scan on users</strong></p>
+<p>Reads users in the order of the index.</p>
+<p><strong>Index Scan on orders</strong></p>
+<p>Reads orders in the order of the index.</p>
+<p>Because both inputs are ordered appropriately, PostgreSQL can merge them without an explicit Sort node in this illustrative plan.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-what-if-postgresql-chooses-the-wrong-join-algorithm">12. What if PostgreSQL chooses the wrong JOIN algorithm?<a href="#12-what-if-postgresql-chooses-the-wrong-join-algorithm" class="hash-link" aria-label="Direct link to 12. What if PostgreSQL chooses the wrong JOIN algorithm?" title="Direct link to 12. What if PostgreSQL chooses the wrong JOIN algorithm?" translate="no">​</a></h2>
+<p>Sometimes the optimizer chooses a plan that performs poorly because its estimates are inaccurate.</p>
+<p>For example:</p>
+<ul>
+<li class="">PostgreSQL estimates 100 rows.</li>
+<li class="">The query actually returns 100,000 rows.</li>
+<li class="">The optimizer chooses a Nested Loop Join.</li>
+<li class="">The repeated inner lookups become expensive.</li>
+</ul>
+<p>Common reasons include:</p>
+<ol>
+<li class="">Outdated statistics.</li>
+<li class="">Data distribution changes.</li>
+<li class="">Incorrect cardinality estimates.</li>
+<li class="">Highly skewed values.</li>
+<li class="">Missing or unsuitable indexes.</li>
+<li class="">Insufficient memory for a hash operation.</li>
+<li class="">A query returning far more rows than expected.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-inspect-the-plan">Step 1: Inspect the plan<a href="#step-1-inspect-the-plan" class="hash-link" aria-label="Direct link to Step 1: Inspect the plan" title="Direct link to Step 1: Inspect the plan" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">EXPLAIN</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">ANALYZE</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-compare-estimated-and-actual-rows">Step 2: Compare estimated and actual rows<a href="#step-2-compare-estimated-and-actual-rows" class="hash-link" aria-label="Direct link to Step 2: Compare estimated and actual rows" title="Direct link to Step 2: Compare estimated and actual rows" translate="no">​</a></h3>
+<p>Look for:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">rows=100</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">actual rows=100000</span><br></div></code></pre></div></div>
+<p>A large difference indicates that the optimizer&#x27;s estimate may be inaccurate.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-refresh-statistics">Step 3: Refresh statistics<a href="#step-3-refresh-statistics" class="hash-link" aria-label="Direct link to Step 3: Refresh statistics" title="Direct link to Step 3: Refresh statistics" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">ANALYZE</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ANALYZE</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>PostgreSQL uses table statistics to estimate row counts and selectivity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-inspect-indexes">Step 4: Inspect indexes<a href="#step-4-inspect-indexes" class="hash-link" aria-label="Direct link to Step 4: Inspect indexes" title="Direct link to Step 4: Inspect indexes" translate="no">​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    indexname</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    indexdef</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> pg_indexes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> tablename </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;orders&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-5-re-run-explain-analyze">Step 5: Re-run EXPLAIN ANALYZE<a href="#step-5-re-run-explain-analyze" class="hash-link" aria-label="Direct link to Step 5: Re-run EXPLAIN ANALYZE" title="Direct link to Step 5: Re-run EXPLAIN ANALYZE" translate="no">​</a></h3>
+<p>Check whether the execution plan and actual performance improve.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-do-not-force-join-algorithms-as-your-first-solution">Important: Do not force JOIN algorithms as your first solution<a href="#important-do-not-force-join-algorithms-as-your-first-solution" class="hash-link" aria-label="Direct link to Important: Do not force JOIN algorithms as your first solution" title="Direct link to Important: Do not force JOIN algorithms as your first solution" translate="no">​</a></h3>
+<p>PostgreSQL provides planner configuration parameters that can discourage particular join strategies during testing.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SET</span><span class="token plain"> enable_nestloop </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">OFF</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This is useful for experimentation, but disabling algorithms globally or as a permanent workaround is usually a poor optimization strategy.</p>
+<p>First investigate:</p>
+<ul>
+<li class="">Statistics.</li>
+<li class="">Indexes.</li>
+<li class="">Query conditions.</li>
+<li class="">Data distribution.</li>
+<li class="">Actual execution cost.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-join-algorithms-in-real-backend-applications">13. JOIN algorithms in real backend applications<a href="#13-join-algorithms-in-real-backend-applications" class="hash-link" aria-label="Direct link to 13. JOIN algorithms in real backend applications" title="Direct link to 13. JOIN algorithms in real backend applications" translate="no">​</a></h2>
+<p>Consider an e-commerce application.</p>
+<p>It has:</p>
+<ul>
+<li class=""><code>users</code>: 500,000 rows.</li>
+<li class=""><code>orders</code>: 5,000,000 rows.</li>
+<li class=""><code>products</code>: 200,000 rows.</li>
+<li class=""><code>order_items</code>: 15,000,000 rows.</li>
+</ul>
+<p>A typical query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name </span><span class="token keyword" style="color:#00009f">AS</span><span class="token plain"> product_name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">quantity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users u</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders o</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> order_items oi</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> o</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> products p</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> u</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>What might PostgreSQL do?</p>
+<ol>
+<li class="">Use an index to find user 100.</li>
+<li class="">Use an index on <code>orders.user_id</code> to retrieve the user&#x27;s orders.</li>
+<li class="">Use an index on <code>order_items.order_id</code> to retrieve matching order items.</li>
+<li class="">Use the products primary-key index to retrieve product details.</li>
+</ol>
+<p>This may result in several Nested Loop Joins.</p>
+<p>Why?</p>
+<p>Because the query is highly selective: only one user is requested.</p>
+<p>Now imagine a different query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">category_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">SUM</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">quantity</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> products p</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> order_items oi</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> oi</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">product_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">GROUP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> p</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">category_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This query may need to process a large portion of both tables.</p>
+<p>A Hash Join or Merge Join could be more efficient, depending on the indexes, data distribution, and available memory.</p>
+<p><strong>Lesson:</strong> The best JOIN algorithm depends on the workload, not just the table names or the SQL syntax.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-common-misconceptions">14. Common Misconceptions<a href="#14-common-misconceptions" class="hash-link" aria-label="Direct link to 14. Common Misconceptions" title="Direct link to 14. Common Misconceptions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-1-inner-join-always-uses-nested-loop-join">Misconception 1: INNER JOIN always uses Nested Loop Join<a href="#misconception-1-inner-join-always-uses-nested-loop-join" class="hash-link" aria-label="Direct link to Misconception 1: INNER JOIN always uses Nested Loop Join" title="Direct link to Misconception 1: INNER JOIN always uses Nested Loop Join" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>INNER JOIN is a logical operation. PostgreSQL may execute it using Nested Loop, Hash Join, or Merge Join.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-2-hash-join-is-always-faster-than-nested-loop-join">Misconception 2: Hash Join is always faster than Nested Loop Join<a href="#misconception-2-hash-join-is-always-faster-than-nested-loop-join" class="hash-link" aria-label="Direct link to Misconception 2: Hash Join is always faster than Nested Loop Join" title="Direct link to Misconception 2: Hash Join is always faster than Nested Loop Join" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>For a small outer input and a useful index, Nested Loop Join can be significantly faster.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-3-indexes-are-mandatory-for-joins">Misconception 3: Indexes are mandatory for JOINs<a href="#misconception-3-indexes-are-mandatory-for-joins" class="hash-link" aria-label="Direct link to Misconception 3: Indexes are mandatory for JOINs" title="Direct link to Misconception 3: Indexes are mandatory for JOINs" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>Hash Join and sequential scans can execute JOINs without indexes.</p>
+<p>Indexes are useful, but they are not a requirement.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-4-merge-join-always-requires-sorting">Misconception 4: Merge Join always requires sorting<a href="#misconception-4-merge-join-always-requires-sorting" class="hash-link" aria-label="Direct link to Misconception 4: Merge Join always requires sorting" title="Direct link to Misconception 4: Merge Join always requires sorting" translate="no">​</a></h3>
+<p>Not necessarily.</p>
+<p>If the inputs are already available in the required order, such as through suitable index scans, an explicit sort may not be needed.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-5-the-smallest-table-is-always-the-hash-build-side">Misconception 5: The smallest table is always the hash-build side<a href="#misconception-5-the-smallest-table-is-always-the-hash-build-side" class="hash-link" aria-label="Direct link to Misconception 5: The smallest table is always the hash-build side" title="Direct link to Misconception 5: The smallest table is always the hash-build side" translate="no">​</a></h3>
+<p>Not necessarily.</p>
+<p>The optimizer considers estimated size, row width, join conditions, and costs. The smaller input is often a good build-side candidate, but it is not an absolute rule.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-6-a-nested-loop-join-is-always-bad-for-large-tables">Misconception 6: A Nested Loop Join is always bad for large tables<a href="#misconception-6-a-nested-loop-join-is-always-bad-for-large-tables" class="hash-link" aria-label="Direct link to Misconception 6: A Nested Loop Join is always bad for large tables" title="Direct link to Misconception 6: A Nested Loop Join is always bad for large tables" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>A large table can be involved in an efficient Nested Loop Join if the outer input is selective and the inner lookups use suitable indexes.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="misconception-7-explain-analyze-only-estimates-performance">Misconception 7: EXPLAIN ANALYZE only estimates performance<a href="#misconception-7-explain-analyze-only-estimates-performance" class="hash-link" aria-label="Direct link to Misconception 7: EXPLAIN ANALYZE only estimates performance" title="Direct link to Misconception 7: EXPLAIN ANALYZE only estimates performance" translate="no">​</a></h3>
+<p>Incorrect.</p>
+<p>It executes the query and reports actual execution measurements.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="15-interview-questions">15. Interview Questions<a href="#15-interview-questions" class="hash-link" aria-label="Direct link to 15. Interview Questions" title="Direct link to 15. Interview Questions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="basic-questions">Basic questions<a href="#basic-questions" class="hash-link" aria-label="Direct link to Basic questions" title="Direct link to Basic questions" translate="no">​</a></h3>
+<p><strong>1. What are JOIN algorithms?</strong></p>
+<p>JOIN algorithms are physical execution strategies used by a database to find matching records between tables.</p>
+<p><strong>2. What are the three major JOIN algorithms?</strong></p>
+<ul>
+<li class="">Nested Loop Join</li>
+<li class="">Hash Join</li>
+<li class="">Merge Join</li>
+</ul>
+<p><strong>3. What is a Nested Loop Join?</strong></p>
+<p>It iterates through one input and searches the other input for matching rows.</p>
+<p><strong>4. What is a Hash Join?</strong></p>
+<p>It builds a hash table from one input and probes it using rows from the other input.</p>
+<p><strong>5. What is a Merge Join?</strong></p>
+<p>It processes two ordered inputs and matches their join keys by advancing through them.</p>
+<p><strong>6. Which JOIN algorithm benefits from an index on the inner table?</strong></p>
+<p>Nested Loop Join can benefit significantly from an index on its inner input.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intermediate-questions">Intermediate questions<a href="#intermediate-questions" class="hash-link" aria-label="Direct link to Intermediate questions" title="Direct link to Intermediate questions" translate="no">​</a></h3>
+<p><strong>7. Which JOIN algorithm is often effective for large equality joins?</strong></p>
+<p>Hash Join is often effective when a suitable hash table can be built efficiently.</p>
+<p><strong>8. Does Hash Join require an index?</strong></p>
+<p>No. It builds its own hash structure.</p>
+<p><strong>9. Does Merge Join require sorted inputs?</strong></p>
+<p>Yes. Both inputs must be ordered appropriately. The database can obtain that order through indexes or explicit sorting.</p>
+<p><strong>10. Can an INNER JOIN use a Hash Join?</strong></p>
+<p>Yes. INNER JOIN specifies logical behavior, while Hash Join is a physical execution strategy.</p>
+<p><strong>11. What happens if a Hash Join does not fit in memory?</strong></p>
+<p>PostgreSQL can use multiple batches and temporary storage, increasing disk I/O.</p>
+<p><strong>12. Why might PostgreSQL choose Nested Loop Join even when both tables are large?</strong></p>
+<p>The query may be selective, the outer result may be small, and the inner input may have an efficient index.</p>
+<p><strong>13. What is the difference between EXPLAIN and EXPLAIN ANALYZE?</strong></p>
+<p>EXPLAIN displays the estimated plan. EXPLAIN ANALYZE executes the query and reports actual execution measurements.</p>
+<p><strong>14. What does loops mean in EXPLAIN ANALYZE?</strong></p>
+<p>It indicates how many times an execution-plan node ran.</p>
+<p><strong>15. What should you investigate if estimated rows differ significantly from actual rows?</strong></p>
+<p>Check statistics, data distribution, selectivity, and whether the planner has enough information to estimate the query correctly.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="16-chapter-summary">16. Chapter Summary<a href="#16-chapter-summary" class="hash-link" aria-label="Direct link to 16. Chapter Summary" title="Direct link to 16. Chapter Summary" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Algorithm</th><th>Main idea</th><th>Best suited for</th></tr></thead><tbody><tr><td>Nested Loop Join</td><td>Repeatedly search for matching rows</td><td>Small/selective inputs, especially with an inner index</td></tr><tr><td>Hash Join</td><td>Build and probe a hash table</td><td>Large equality joins</td></tr><tr><td>Merge Join</td><td>Match two ordered inputs</td><td>Inputs already sorted or efficiently available in sorted order</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-takeaways">Key takeaways<a href="#key-takeaways" class="hash-link" aria-label="Direct link to Key takeaways" title="Direct link to Key takeaways" translate="no">​</a></h3>
+<ol>
+<li class="">JOIN types describe what result is required.</li>
+<li class="">JOIN algorithms describe how the database produces that result.</li>
+<li class="">Nested Loop Join uses repeated matching searches.</li>
+<li class="">An index can make Nested Loop Join very efficient.</li>
+<li class="">Hash Join uses a build phase and a probe phase.</li>
+<li class="">Hash Join can spill to disk when memory is insufficient.</li>
+<li class="">Merge Join processes ordered inputs.</li>
+<li class="">Indexes can help provide the ordering needed by Merge Join.</li>
+<li class="">PostgreSQL&#x27;s optimizer selects the execution plan based on estimated costs.</li>
+<li class="">EXPLAIN ANALYZE is essential for understanding actual JOIN performance.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/05_SQL_Joins_&amp;_Join_Execution/part_04.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/SQL_Joins_&amp;_Join_Execution/part_03"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">JOIN vs WHERE, ON vs AND</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/category/scaling-relational-databases"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Scaling Relational Databases</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a></li><li><a href="#2-understanding-the-difference-between-join-type-and-join-algorithm" class="table-of-contents__link toc-highlight">2. Understanding the difference between JOIN type and JOIN algorithm</a></li><li><a href="#3-nested-loop-join" class="table-of-contents__link toc-highlight">3. Nested Loop Join</a><ul><li><a href="#definition" class="table-of-contents__link toc-highlight">Definition</a></li><li><a href="#example" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#how-nested-loop-join-works" class="table-of-contents__link toc-highlight">How Nested Loop Join works</a></li><li><a href="#conceptual-algorithm" class="table-of-contents__link toc-highlight">Conceptual algorithm</a></li><li><a href="#time-complexity" class="table-of-contents__link toc-highlight">Time complexity</a></li><li><a href="#nested-loop-join-with-an-index" class="table-of-contents__link toc-highlight">Nested Loop Join with an index</a></li><li><a href="#when-is-nested-loop-join-useful" class="table-of-contents__link toc-highlight">When is Nested Loop Join useful?</a></li><li><a href="#when-can-it-become-expensive" class="table-of-contents__link toc-highlight">When can it become expensive?</a></li></ul></li><li><a href="#4-hash-join" class="table-of-contents__link toc-highlight">4. Hash Join</a><ul><li><a href="#definition-1" class="table-of-contents__link toc-highlight">Definition</a></li><li><a href="#example-1" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#phase-1-build-phase" class="table-of-contents__link toc-highlight">Phase 1: Build phase</a></li><li><a href="#phase-2-probe-phase" class="table-of-contents__link toc-highlight">Phase 2: Probe phase</a></li><li><a href="#final-result" class="table-of-contents__link toc-highlight">Final result</a></li><li><a href="#conceptual-algorithm-1" class="table-of-contents__link toc-highlight">Conceptual algorithm</a></li><li><a href="#time-complexity-1" class="table-of-contents__link toc-highlight">Time complexity</a></li><li><a href="#what-happens-if-the-hash-table-becomes-too-large" class="table-of-contents__link toc-highlight">What happens if the hash table becomes too large?</a></li><li><a href="#when-is-hash-join-useful" class="table-of-contents__link toc-highlight">When is Hash Join useful?</a></li><li><a href="#limitations" class="table-of-contents__link toc-highlight">Limitations</a></li></ul></li><li><a href="#5-merge-join" class="table-of-contents__link toc-highlight">5. Merge Join</a><ul><li><a href="#definition-2" class="table-of-contents__link toc-highlight">Definition</a></li><li><a href="#example-2" class="table-of-contents__link toc-highlight">Example</a></li><li><a href="#how-merge-join-works" class="table-of-contents__link toc-highlight">How Merge Join works</a></li><li><a href="#final-result-1" class="table-of-contents__link toc-highlight">Final result</a></li><li><a href="#conceptual-algorithm-2" class="table-of-contents__link toc-highlight">Conceptual algorithm</a></li><li><a href="#time-complexity-2" class="table-of-contents__link toc-highlight">Time complexity</a></li><li><a href="#can-indexes-help-merge-join" class="table-of-contents__link toc-highlight">Can indexes help Merge Join?</a></li><li><a href="#when-is-merge-join-useful" class="table-of-contents__link toc-highlight">When is Merge Join useful?</a></li><li><a href="#limitations-1" class="table-of-contents__link toc-highlight">Limitations</a></li></ul></li><li><a href="#6-comparison-of-the-three-join-algorithms" class="table-of-contents__link toc-highlight">6. Comparison of the Three JOIN Algorithms</a><ul><li><a href="#complexity-comparison" class="table-of-contents__link toc-highlight">Complexity comparison</a></li></ul></li><li><a href="#7-how-postgresql-chooses-a-join-algorithm" class="table-of-contents__link toc-highlight">7. How PostgreSQL chooses a JOIN algorithm</a><ul><li><a href="#example-scenarios" class="table-of-contents__link toc-highlight">Example scenarios</a></li><li><a href="#important-the-optimizer-does-not-always-choose-the-algorithm-you-expect" class="table-of-contents__link toc-highlight">Important: The optimizer does not always choose the algorithm you expect</a></li></ul></li><li><a href="#8-understanding-explain-and-explain-analyze" class="table-of-contents__link toc-highlight">8. Understanding EXPLAIN and EXPLAIN ANALYZE</a><ul><li><a href="#explain" class="table-of-contents__link toc-highlight">EXPLAIN</a></li><li><a href="#explain-analyze" class="table-of-contents__link toc-highlight">EXPLAIN ANALYZE</a></li></ul></li><li><a href="#9-understanding-a-nested-loop-execution-plan" class="table-of-contents__link toc-highlight">9. Understanding a Nested Loop execution plan</a><ul><li><a href="#how-to-read-it" class="table-of-contents__link toc-highlight">How to read it</a></li></ul></li><li><a href="#10-understanding-a-hash-join-execution-plan" class="table-of-contents__link toc-highlight">10. Understanding a Hash Join execution plan</a><ul><li><a href="#how-to-read-it-1" class="table-of-contents__link toc-highlight">How to read it</a></li></ul></li><li><a href="#11-understanding-a-merge-join-execution-plan" class="table-of-contents__link toc-highlight">11. Understanding a Merge Join execution plan</a><ul><li><a href="#how-to-read-it-2" class="table-of-contents__link toc-highlight">How to read it</a></li></ul></li><li><a href="#12-what-if-postgresql-chooses-the-wrong-join-algorithm" class="table-of-contents__link toc-highlight">12. What if PostgreSQL chooses the wrong JOIN algorithm?</a><ul><li><a href="#step-1-inspect-the-plan" class="table-of-contents__link toc-highlight">Step 1: Inspect the plan</a></li><li><a href="#step-2-compare-estimated-and-actual-rows" class="table-of-contents__link toc-highlight">Step 2: Compare estimated and actual rows</a></li><li><a href="#step-3-refresh-statistics" class="table-of-contents__link toc-highlight">Step 3: Refresh statistics</a></li><li><a href="#step-4-inspect-indexes" class="table-of-contents__link toc-highlight">Step 4: Inspect indexes</a></li><li><a href="#step-5-re-run-explain-analyze" class="table-of-contents__link toc-highlight">Step 5: Re-run EXPLAIN ANALYZE</a></li><li><a href="#important-do-not-force-join-algorithms-as-your-first-solution" class="table-of-contents__link toc-highlight">Important: Do not force JOIN algorithms as your first solution</a></li></ul></li><li><a href="#13-join-algorithms-in-real-backend-applications" class="table-of-contents__link toc-highlight">13. JOIN algorithms in real backend applications</a></li><li><a href="#14-common-misconceptions" class="table-of-contents__link toc-highlight">14. Common Misconceptions</a><ul><li><a href="#misconception-1-inner-join-always-uses-nested-loop-join" class="table-of-contents__link toc-highlight">Misconception 1: INNER JOIN always uses Nested Loop Join</a></li><li><a href="#misconception-2-hash-join-is-always-faster-than-nested-loop-join" class="table-of-contents__link toc-highlight">Misconception 2: Hash Join is always faster than Nested Loop Join</a></li><li><a href="#misconception-3-indexes-are-mandatory-for-joins" class="table-of-contents__link toc-highlight">Misconception 3: Indexes are mandatory for JOINs</a></li><li><a href="#misconception-4-merge-join-always-requires-sorting" class="table-of-contents__link toc-highlight">Misconception 4: Merge Join always requires sorting</a></li><li><a href="#misconception-5-the-smallest-table-is-always-the-hash-build-side" class="table-of-contents__link toc-highlight">Misconception 5: The smallest table is always the hash-build side</a></li><li><a href="#misconception-6-a-nested-loop-join-is-always-bad-for-large-tables" class="table-of-contents__link toc-highlight">Misconception 6: A Nested Loop Join is always bad for large tables</a></li><li><a href="#misconception-7-explain-analyze-only-estimates-performance" class="table-of-contents__link toc-highlight">Misconception 7: EXPLAIN ANALYZE only estimates performance</a></li></ul></li><li><a href="#15-interview-questions" class="table-of-contents__link toc-highlight">15. Interview Questions</a><ul><li><a href="#basic-questions" class="table-of-contents__link toc-highlight">Basic questions</a></li><li><a href="#intermediate-questions" class="table-of-contents__link toc-highlight">Intermediate questions</a></li></ul></li><li><a href="#16-chapter-summary" class="table-of-contents__link toc-highlight">16. Chapter Summary</a><ul><li><a href="#key-takeaways" class="table-of-contents__link toc-highlight">Key takeaways</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

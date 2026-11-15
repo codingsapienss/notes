@@ -1,0 +1,1336 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Wide-Column Databases: When to Use and When Not to Use | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Wide-Column Databases: When to Use and When Not to Use | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Types of NoSQL DB","item":"https://codingsapienss.github.io/notes/docs/category/types-of-nosql-db"},{"@type":"ListItem","position":5,"name":"Wide Column Databases","item":"https://codingsapienss.github.io/notes/docs/category/wide-column-databases"},{"@type":"ListItem","position":6,"name":"Wide-Column Databases: When to Use and When Not to Use","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.a7751dc0.css">
+<script src="/notes/assets/js/runtime~main.7c4ee92d.js" defer="defer"></script>
+<script src="/notes/assets/js/main.18e6a7d5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease" title="Adjust font size"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg><span>Font</span></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-fundamentals"><span title="Database Fundamentals" class="categoryLinkLabel_W154">Database Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions-acid--concurrency"><span title="Transactions ACID &amp; Concurrency" class="categoryLinkLabel_W154">Transactions ACID &amp; Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions ACID &amp; Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-indexing"><span title="Database Indexing" class="categoryLinkLabel_W154">Database Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-normalization"><span title="Database Normalization" class="categoryLinkLabel_W154">Database Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-joins--join-execution"><span title="SQL Joins &amp; Join Execution" class="categoryLinkLabel_W154">SQL Joins &amp; Join Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL Joins &amp; Join Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling-relational-databases"><span title="Scaling Relational Databases" class="categoryLinkLabel_W154">Scaling Relational Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling Relational Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-sharding--horizontal-scaling"><span title="SQL Sharding &amp; Horizontal Scaling" class="categoryLinkLabel_W154">SQL Sharding &amp; Horizontal Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL Sharding &amp; Horizontal Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql-fundamentals"><span title="NoSQL Fundamentals" class="categoryLinkLabel_W154">NoSQL Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap-theorem--distributed-systems"><span title="CAP Theorem &amp; Distributed Systems" class="categoryLinkLabel_W154">CAP Theorem &amp; Distributed Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP Theorem &amp; Distributed Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal-scaling-in-nosql"><span title="Horizontal Scaling in NoSQL" class="categoryLinkLabel_W154">Horizontal Scaling in NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal Scaling in NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/types-of-nosql-db"><span title="Types of NoSQL DB" class="categoryLinkLabel_W154">Types of NoSQL DB</span></a><button aria-label="Collapse sidebar category &#x27;Types of NoSQL DB&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/key-value-databases"><span title="Key Value Databases" class="categoryLinkLabel_W154">Key Value Databases</span></a><button aria-label="Expand sidebar category &#x27;Key Value Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/document-databases"><span title="Document Databases" class="categoryLinkLabel_W154">Document Databases</span></a><button aria-label="Expand sidebar category &#x27;Document Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/wide-column-databases"><span title="Wide Column Databases" class="categoryLinkLabel_W154">Wide Column Databases</span></a><button aria-label="Collapse sidebar category &#x27;Wide Column Databases&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_01"><span title="Wide-Column Databases: Fundamentals" class="linkLabel_WmDU">Wide-Column Databases: Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_02"><span title="Wide-Column Databases: Internal Architecture" class="linkLabel_WmDU">Wide-Column Databases: Internal Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_03"><span title="Wide-Column Databases: Data Modeling" class="linkLabel_WmDU">Wide-Column Databases: Data Modeling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_04"><span title="Wide-Column Databases: Scaling and Consistency" class="linkLabel_WmDU">Wide-Column Databases: Scaling and Consistency</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_05"><span title="Wide-Column Databases: Real-World Use Cases" class="linkLabel_WmDU">Wide-Column Databases: Real-World Use Cases</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06"><span title="Wide-Column Databases: When to Use and When Not to Use" class="linkLabel_WmDU">Wide-Column Databases: When to Use and When Not to Use</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/graph-databases"><span title="Graph Databases" class="categoryLinkLabel_W154">Graph Databases</span></a><button aria-label="Expand sidebar category &#x27;Graph Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search-databases"><span title="Search Databases" class="categoryLinkLabel_W154">Search Databases</span></a><button aria-label="Expand sidebar category &#x27;Search Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time-series-databases"><span title="Time Series Databases" class="categoryLinkLabel_W154">Time Series Databases</span></a><button aria-label="Expand sidebar category &#x27;Time Series Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltp-vs-olap-databases"><span title="OLTP vs OLAP Databases" class="categoryLinkLabel_W154">OLTP vs OLAP Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTP vs OLAP Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql-databases"><span title="NewSQL Databases" class="categoryLinkLabel_W154">NewSQL Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot-persistence"><span title="Polyglot Persistence" class="categoryLinkLabel_W154">Polyglot Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/types-of-nosql-db"><span>Types of NoSQL DB</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/wide-column-databases"><span>Wide Column Databases</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Wide-Column Databases: When to Use and When Not to Use</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Wide-Column Databases: When to Use and When Not to Use</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<p><strong>When should we actually choose a wide-column database, and when should we avoid it?</strong></p>
+<p>Understanding how Cassandra or HBase works is not enough. A backend engineer must understand whether a database is suitable for a particular workload.</p>
+<p>For example, imagine you are building an e-commerce platform.</p>
+<p>You have several types of data:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data</th><th>Typical access pattern</th></tr></thead><tbody><tr><td>Users</td><td>Find user by ID or email</td></tr><tr><td>Products</td><td>Search, filter, sort products</td></tr><tr><td>Orders</td><td>Find orders by user, update order status</td></tr><tr><td>Payments</td><td>Transactional payment processing</td></tr><tr><td>User activity events</td><td>Continuously ingest millions of events</td></tr><tr><td>Application logs</td><td>Write and retrieve large volumes of logs</td></tr><tr><td>Product analytics</td><td>Run aggregations over large datasets</td></tr><tr><td>Shopping cart cache</td><td>Fast key-based reads and writes</td></tr></tbody></table>
+<p>Would you use Cassandra for all of these?</p>
+<p>No. That would be a poor architectural decision.</p>
+<p>A wide-column database is designed for particular distributed data workloads. It is not a universal replacement for relational, document, key-value, or analytical databases.</p>
+<hr>
+<h1>2. Core Strengths of Wide-Column Databases</h1>
+<p>Let&#x27;s understand where wide-column databases are particularly useful.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-horizontal-scalability">2.1 Horizontal Scalability<a href="#21-horizontal-scalability" class="hash-link" aria-label="Direct link to 2.1 Horizontal Scalability" title="Direct link to 2.1 Horizontal Scalability" translate="no">​</a></h2>
+<p>One of the biggest strengths of wide-column databases is their ability to distribute data across multiple machines.</p>
+<p>Suppose your application receives:</p>
+<ul>
+<li class="">10 million events per day.</li>
+<li class="">100 million events per day.</li>
+<li class="">1 billion events per day.</li>
+</ul>
+<p>A single database server may eventually become a bottleneck.</p>
+<p>A distributed wide-column database can partition data across multiple nodes.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Cassandra Cluster</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Node 1     Node 2     Node 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Partitions Partitions Partitions</span><br></div></code></pre></div></div>
+<p>As the workload grows, you can add more nodes and redistribute data.</p>
+<p>This can increase:</p>
+<ul>
+<li class="">Storage capacity.</li>
+<li class="">Aggregate write throughput.</li>
+<li class="">Aggregate read throughput.</li>
+<li class="">Cluster processing capacity.</li>
+</ul>
+<p><strong>Important:</strong> Adding nodes does not guarantee perfectly linear performance improvements. Replication traffic, partition distribution, network bandwidth, disk I/O, and coordination overhead all matter.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-high-write-throughput">2.2 High Write Throughput<a href="#22-high-write-throughput" class="hash-link" aria-label="Direct link to 2.2 High Write Throughput" title="Direct link to 2.2 High Write Throughput" translate="no">​</a></h2>
+<p>Wide-column databases such as Cassandra use an LSM-tree-oriented storage architecture.</p>
+<p>A simplified write path:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Coordinator</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica Nodes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Commit Log</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Memtable</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">SSTable</span><br></div></code></pre></div></div>
+<p>Writes are initially handled through memory and sequential disk-oriented operations rather than requiring every update to modify an existing on-disk B-tree structure.</p>
+<p>This architecture is useful for workloads involving:</p>
+<ul>
+<li class="">Continuous event ingestion.</li>
+<li class="">IoT sensor readings.</li>
+<li class="">Application telemetry.</li>
+<li class="">User activity tracking.</li>
+<li class="">Large-scale logging.</li>
+</ul>
+<p>However, high write throughput does not mean every write is free or equally efficient. Replication, consistency levels, compaction, disk capacity, and partition design still affect performance.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-distributed-replication-and-availability">2.3 Distributed Replication and Availability<a href="#23-distributed-replication-and-availability" class="hash-link" aria-label="Direct link to 2.3 Distributed Replication and Availability" title="Direct link to 2.3 Distributed Replication and Availability" translate="no">​</a></h2>
+<p>Cassandra distributes replicas across nodes.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Replication Factor = 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition P1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node A -&gt; Replica</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node B -&gt; Replica</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node C -&gt; Replica</span><br></div></code></pre></div></div>
+<p>If one node becomes unavailable, the remaining replicas may continue serving requests, depending on the configured consistency level and the availability of the required replicas.</p>
+<p>Cassandra also supports replication across data centers.</p>
+<p>This is useful when an application needs to serve geographically distributed users.</p>
+<p><strong>Remember:</strong></p>
+<p>Replication improves availability and resilience. It does not replace backups.</p>
+<p>A replicated accidental deletion can propagate to other replicas.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-predictable-query-performance-for-known-access-patterns">2.4 Predictable Query Performance for Known Access Patterns<a href="#24-predictable-query-performance-for-known-access-patterns" class="hash-link" aria-label="Direct link to 2.4 Predictable Query Performance for Known Access Patterns" title="Direct link to 2.4 Predictable Query Performance for Known Access Patterns" translate="no">​</a></h2>
+<p>Wide-column databases work particularly well when application queries are known in advance.</p>
+<p>Suppose an application needs these queries:</p>
+<ol>
+<li class="">Find all events for a user.</li>
+<li class="">Find a user&#x27;s events for a particular day.</li>
+<li class="">Find the latest events for a campaign.</li>
+</ol>
+<p>You can create tables specifically designed for these queries.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> user_events </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id UUID</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_date </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_time </span><span class="token keyword" style="color:#00009f">TIMESTAMP</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_type </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_data </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_time</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">WITH</span><span class="token plain"> CLUSTERING </span><span class="token keyword" style="color:#00009f">ORDER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">event_time </span><span class="token keyword" style="color:#00009f">DESC</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The partition key is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(user_id, event_date)</span><br></div></code></pre></div></div>
+<p>The clustering column is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">event_time</span><br></div></code></pre></div></div>
+<p>This allows the application to retrieve events for a particular user and date in time order.</p>
+<p>The key principle:</p>
+<p><strong>Design the data model around the queries the application must execute.</strong></p>
+<p>This is different from designing a normalized relational model first and then writing arbitrary queries against it.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="25-handling-large-datasets">2.5 Handling Large Datasets<a href="#25-handling-large-datasets" class="hash-link" aria-label="Direct link to 2.5 Handling Large Datasets" title="Direct link to 2.5 Handling Large Datasets" translate="no">​</a></h2>
+<p>Wide-column databases are designed to distribute large datasets across multiple machines.</p>
+<p>They are useful when data grows beyond what is practical to keep on a single database server.</p>
+<p>Examples include:</p>
+<ul>
+<li class="">Billions of application events.</li>
+<li class="">Large IoT telemetry datasets.</li>
+<li class="">Historical user activity.</li>
+<li class="">Distributed messaging metadata.</li>
+<li class="">High-volume tracking information.</li>
+</ul>
+<p>But large dataset size alone is not a reason to choose Cassandra.</p>
+<p>A database should be selected based on access patterns, write/read characteristics, consistency requirements, query requirements, and operational capabilities.</p>
+<hr>
+<h1>3. Limitations and Tradeoffs</h1>
+<p>The strengths of wide-column databases come with tradeoffs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-query-first-data-modeling">3.1 Query-First Data Modeling<a href="#31-query-first-data-modeling" class="hash-link" aria-label="Direct link to 3.1 Query-First Data Modeling" title="Direct link to 3.1 Query-First Data Modeling" translate="no">​</a></h2>
+<p>In a relational database, you can normalize data into multiple tables and use JOINs to retrieve related information.</p>
+<p>For example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">name</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">order_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">total_amount</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> users</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">JOIN</span><span class="token plain"> orders</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> users</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> orders</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This is a normal relational query.</p>
+<p>Cassandra does not provide this kind of arbitrary relational JOIN capability in its normal query model.</p>
+<p>Instead, you design tables around individual queries.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users_by_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_user</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_status</span><br></div></code></pre></div></div>
+<p>The same logical information may be stored in multiple tables.</p>
+<p>This is called <strong>denormalization</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-is-this-a-limitation">Why is this a limitation?<a href="#why-is-this-a-limitation" class="hash-link" aria-label="Direct link to Why is this a limitation?" title="Direct link to Why is this a limitation?" translate="no">​</a></h3>
+<p>Suppose a user changes their name.</p>
+<p>If their name is duplicated across multiple query-specific tables, the application may need to update multiple records.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">users_by_id</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- User name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_user</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- User name</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">user_activity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- User name</span><br></div></code></pre></div></div>
+<p>Keeping duplicated information consistent becomes an application responsibility.</p>
+<p>This increases write complexity and the possibility of inconsistent data.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-limited-ad-hoc-query-flexibility">3.2 Limited Ad-Hoc Query Flexibility<a href="#32-limited-ad-hoc-query-flexibility" class="hash-link" aria-label="Direct link to 3.2 Limited Ad-Hoc Query Flexibility" title="Direct link to 3.2 Limited Ad-Hoc Query Flexibility" translate="no">​</a></h2>
+<p>Relational databases support flexible filtering, JOINs, grouping, sorting, and complex queries.</p>
+<p>Cassandra queries must generally align with the table&#x27;s primary-key design.</p>
+<p>For example, if the primary key is:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_time</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<p>A query filtering by <code>user_id</code> and <code>event_date</code> is aligned with the partition key.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> user_events</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> event_date </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ?</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>But asking for every user&#x27;s events for an arbitrary event type is not naturally supported by that table design.</p>
+<p>You may need another table designed for that access pattern.</p>
+<p><strong>Key takeaway:</strong> Cassandra is not designed to be a general-purpose ad-hoc query engine.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-denormalization-increases-storage-and-write-complexity">3.3 Denormalization Increases Storage and Write Complexity<a href="#33-denormalization-increases-storage-and-write-complexity" class="hash-link" aria-label="Direct link to 3.3 Denormalization Increases Storage and Write Complexity" title="Direct link to 3.3 Denormalization Increases Storage and Write Complexity" translate="no">​</a></h2>
+<p>Suppose you have three query requirements:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Query 1: Find orders by user.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Query 2: Find orders by status.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Query 3: Find recent orders by date.</span><br></div></code></pre></div></div>
+<p>You might create:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_user</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_status</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">orders_by_date</span><br></div></code></pre></div></div>
+<p>The same order can appear in all three tables.</p>
+<p>Advantages:</p>
+<ul>
+<li class="">Queries can access data efficiently.</li>
+<li class="">Joins are avoided.</li>
+<li class="">Tables are optimized for their specific access patterns.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li class="">Duplicate storage.</li>
+<li class="">Multiple writes for one logical change.</li>
+<li class="">More complex failure handling.</li>
+<li class="">Potentially inconsistent copies.</li>
+<li class="">More complicated schema evolution.</li>
+</ul>
+<p>You are trading storage and write simplicity for predictable query access.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-consistency-requires-deliberate-configuration">3.4 Consistency Requires Deliberate Configuration<a href="#34-consistency-requires-deliberate-configuration" class="hash-link" aria-label="Direct link to 3.4 Consistency Requires Deliberate Configuration" title="Direct link to 3.4 Consistency Requires Deliberate Configuration" translate="no">​</a></h2>
+<p>Cassandra offers tunable consistency levels.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Replication Factor = 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ONE</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">QUORUM</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">ALL</span><br></div></code></pre></div></div>
+<p>With a replication factor of 3:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Consistency level</th><th style="text-align:right">Required replica acknowledgements</th></tr></thead><tbody><tr><td>ONE</td><td style="text-align:right">1</td></tr><tr><td>QUORUM</td><td style="text-align:right">2</td></tr><tr><td>ALL</td><td style="text-align:right">3</td></tr></tbody></table>
+<p>The quorum formula is:</p>
+<p>[
+QUORUM = \left\lfloor \frac{RF}{2} \right\rfloor + 1
+]</p>
+<p>For RF = 3:</p>
+<p>[
+QUORUM = \left\lfloor \frac{3}{2} \right\rfloor + 1 = 2
+]</p>
+<p>A higher consistency level can provide stronger guarantees for an operation, but may reduce availability or increase latency when replicas are unavailable or slow.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="important-distinction">Important distinction<a href="#important-distinction" class="hash-link" aria-label="Direct link to Important distinction" title="Direct link to Important distinction" translate="no">​</a></h3>
+<p>Cassandra consistency levels are not the same as PostgreSQL transaction isolation levels.</p>
+<p>For example:</p>
+<ul>
+<li class="">PostgreSQL <code>READ COMMITTED</code> controls transaction visibility.</li>
+<li class="">Cassandra <code>QUORUM</code> controls how many replicas must respond successfully for an operation.</li>
+</ul>
+<p>They solve different problems.</p>
+<p>Also, <code>R + W &gt; RF</code> can create overlap between read and write replica sets under suitable assumptions. It does not automatically guarantee universal linearizability or serializable transactions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-partition-design-is-critical">3.5 Partition Design Is Critical<a href="#35-partition-design-is-critical" class="hash-link" aria-label="Direct link to 3.5 Partition Design Is Critical" title="Direct link to 3.5 Partition Design Is Critical" translate="no">​</a></h2>
+<p>A poor partition key can create hotspots or oversized partitions.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">event_date</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> user_id</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<p>If every application event uses the same date as its partition key, all events for that date may be concentrated in one logical partition.</p>
+<p>A very popular partition can become a bottleneck.</p>
+<p>A more deliberate design might be:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_time</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<p>This distributes data across user-and-date combinations.</p>
+<p>However, this design also has tradeoffs. A user with an extremely high event volume can still generate a large partition.</p>
+<p>Partition size, data distribution, and query requirements must be evaluated together.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="36-compaction-and-tombstones-add-operational-costs">3.6 Compaction and Tombstones Add Operational Costs<a href="#36-compaction-and-tombstones-add-operational-costs" class="hash-link" aria-label="Direct link to 3.6 Compaction and Tombstones Add Operational Costs" title="Direct link to 3.6 Compaction and Tombstones Add Operational Costs" translate="no">​</a></h2>
+<p>Cassandra&#x27;s LSM-based storage architecture uses SSTables and background compaction.</p>
+<p>Compaction:</p>
+<ul>
+<li class="">Merges SSTables.</li>
+<li class="">Removes obsolete versions when safe.</li>
+<li class="">Reclaims eligible deleted data.</li>
+<li class="">Creates new SSTables.</li>
+</ul>
+<p>This consumes disk I/O, CPU, and temporary disk space.</p>
+<p>Deletes create tombstones rather than immediately removing the data from all storage files.</p>
+<p>If tombstones accumulate excessively, reads can become slower and compaction can become more expensive.</p>
+<p>A production cluster requires monitoring of:</p>
+<ul>
+<li class="">Tombstone density.</li>
+<li class="">Compaction backlog.</li>
+<li class="">Pending compactions.</li>
+<li class="">Disk utilization.</li>
+<li class="">Read latency.</li>
+<li class="">Repair status.</li>
+</ul>
+<p><strong>Important:</strong> Tombstone cleanup must respect the cluster&#x27;s repair and garbage-collection safety requirements. Reducing tombstones too aggressively can risk deleted data reappearing from an unrepaired replica.</p>
+<hr>
+<h1>4. Cassandra vs HBase</h1>
+<p>Both Cassandra and HBase are wide-column databases, but their architectures and operating models differ.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-cassandra-architecture">4.1 Cassandra Architecture<a href="#41-cassandra-architecture" class="hash-link" aria-label="Direct link to 4.1 Cassandra Architecture" title="Direct link to 4.1 Cassandra Architecture" translate="no">​</a></h2>
+<p>Cassandra uses a peer-to-peer architecture.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Node A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +----------+----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v          v          v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Node A     Node B     Node C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |          |          |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Partitions Partitions Partitions</span><br></div></code></pre></div></div>
+<p>There is no traditional single master that coordinates every operation.</p>
+<p>Nodes can participate in request coordination, and data is distributed across the cluster.</p>
+<p>Key characteristics:</p>
+<ul>
+<li class="">Peer-to-peer architecture.</li>
+<li class="">Partitioning and replication.</li>
+<li class="">Tunable consistency.</li>
+<li class="">CQL query interface.</li>
+<li class="">LSM-oriented storage.</li>
+<li class="">Multi-data-center replication support.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-hbase-architecture">4.2 HBase Architecture<a href="#42-hbase-architecture" class="hash-link" aria-label="Direct link to 4.2 HBase Architecture" title="Direct link to 4.2 HBase Architecture" translate="no">​</a></h2>
+<p>HBase is modeled after Google&#x27;s Bigtable architecture and commonly runs on top of HDFS.</p>
+<p>Its architecture includes:</p>
+<ul>
+<li class="">HMaster.</li>
+<li class="">RegionServers.</li>
+<li class="">Regions.</li>
+<li class="">HDFS.</li>
+<li class="">ZooKeeper in traditional deployments.</li>
+</ul>
+<p>Simplified architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">               Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 HBase</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           HMaster    ZooKeeper</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  RegionServer A  RegionServer B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     Regions       Regions</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       +------+------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             HDFS</span><br></div></code></pre></div></div>
+<p>HMaster handles cluster-level coordination and administrative responsibilities.</p>
+<p>RegionServers serve data requests for the regions they host.</p>
+<p>HBase provides strong consistency for row-level operations.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-comparison">4.3 Comparison<a href="#43-comparison" class="hash-link" aria-label="Direct link to 4.3 Comparison" title="Direct link to 4.3 Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Cassandra</th><th>HBase</th></tr></thead><tbody><tr><td>Architecture</td><td>Peer-to-peer</td><td>HMaster and RegionServers</td></tr><tr><td>Storage model</td><td>Wide-column tables</td><td>Wide-column key/value model</td></tr><tr><td>Storage foundation</td><td>Local SSTables on nodes</td><td>Commonly HDFS</td></tr><tr><td>Data distribution</td><td>Consistent hashing / token ranges</td><td>Regions and region assignment</td></tr><tr><td>Consistency</td><td>Tunable consistency</td><td>Strong consistency for row operations</td></tr><tr><td>Query interface</td><td>CQL</td><td>Java API, REST and other integrations</td></tr><tr><td>Joins</td><td>No arbitrary relational joins</td><td>No arbitrary relational joins</td></tr><tr><td>Multi-data-center design</td><td>Built-in replication mechanisms</td><td>Depends on deployment and replication architecture</td></tr><tr><td>Ecosystem</td><td>Cassandra ecosystem</td><td>Hadoop ecosystem</td></tr><tr><td>Typical fit</td><td>Distributed, always-on operational workloads</td><td>Large-scale data workloads integrated with Hadoop/HDFS</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-would-you-choose-cassandra">When would you choose Cassandra?<a href="#when-would-you-choose-cassandra" class="hash-link" aria-label="Direct link to When would you choose Cassandra?" title="Direct link to When would you choose Cassandra?" translate="no">​</a></h3>
+<p>Choose Cassandra when:</p>
+<ul>
+<li class="">You need a distributed, highly available operational database.</li>
+<li class="">Your application has predictable query patterns.</li>
+<li class="">You need high write throughput.</li>
+<li class="">You want built-in multi-data-center replication capabilities.</li>
+<li class="">Your team understands Cassandra&#x27;s partitioning and operational requirements.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-would-you-choose-hbase">When would you choose HBase?<a href="#when-would-you-choose-hbase" class="hash-link" aria-label="Direct link to When would you choose HBase?" title="Direct link to When would you choose HBase?" translate="no">​</a></h3>
+<p>Choose HBase when:</p>
+<ul>
+<li class="">Your architecture is already integrated with Hadoop and HDFS.</li>
+<li class="">You need a distributed table store with row-level consistency.</li>
+<li class="">You have large-scale data workloads that fit HBase&#x27;s access model.</li>
+<li class="">Your organization has experience operating the HBase ecosystem.</li>
+</ul>
+<p><strong>Do not treat Cassandra and HBase as interchangeable products.</strong> Their storage foundations, consistency models, architecture, and operational requirements differ.</p>
+<hr>
+<h1>5. Wide-Column vs Relational Databases</h1>
+<p>Let&#x27;s compare Cassandra with PostgreSQL.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>PostgreSQL</th><th>Cassandra</th></tr></thead><tbody><tr><td>Database type</td><td>Relational</td><td>Wide-column NoSQL</td></tr><tr><td>Data model</td><td>Tables, rows, columns</td><td>Partitioned wide-column tables</td></tr><tr><td>Schema</td><td>Defined schema</td><td>Defined table schema</td></tr><tr><td>Relationships</td><td>Foreign keys and relationships</td><td>Usually modeled through application-level access patterns</td></tr><tr><td>JOINs</td><td>Supported</td><td>No arbitrary relational JOINs</td></tr><tr><td>Transactions</td><td>Full ACID transaction support</td><td>Different transaction and consistency capabilities</td></tr><tr><td>Query flexibility</td><td>High</td><td>Query patterns constrained by data model</td></tr><tr><td>Scaling</td><td>Vertical scaling, replication, partitioning, distributed options</td><td>Designed for distributed horizontal scaling</td></tr><tr><td>Write workload</td><td>Strong transactional capabilities</td><td>Particularly suitable for high-volume distributed writes</td></tr><tr><td>Consistency</td><td>Strong transactional guarantees</td><td>Tunable consistency</td></tr><tr><td>Best fit</td><td>Transactional business data</td><td>Distributed high-volume operational data</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-example-e-commerce-orders">5.1 Example: E-commerce Orders<a href="#51-example-e-commerce-orders" class="hash-link" aria-label="Direct link to 5.1 Example: E-commerce Orders" title="Direct link to 5.1 Example: E-commerce Orders" translate="no">​</a></h2>
+<p>Consider an order-processing system.</p>
+<p>An order may involve:</p>
+<ul>
+<li class="">User information.</li>
+<li class="">Products.</li>
+<li class="">Inventory.</li>
+<li class="">Payment.</li>
+<li class="">Shipping.</li>
+<li class="">Refunds.</li>
+</ul>
+<p>These entities have relationships and business constraints.</p>
+<p>For example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Order</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- Order Items</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |      +-- Product</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- Payment</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  +-- Shipment</span><br></div></code></pre></div></div>
+<p>A relational database is a natural fit because you need:</p>
+<ul>
+<li class="">Referential integrity.</li>
+<li class="">Transactions.</li>
+<li class="">Consistent updates.</li>
+<li class="">Relationships.</li>
+<li class="">Flexible queries.</li>
+</ul>
+<p>PostgreSQL is often a better choice for the core order and payment workflow.</p>
+<p>Now consider recording every user interaction:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User viewed product</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User clicked campaign</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User opened page</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User added product to wishlist</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User searched for product</span><br></div></code></pre></div></div>
+<p>This could generate millions of events.</p>
+<p>A wide-column database may be a better fit for the event-ingestion workload if its access patterns and scale requirements match Cassandra&#x27;s model.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="architectural-conclusion">Architectural conclusion<a href="#architectural-conclusion" class="hash-link" aria-label="Direct link to Architectural conclusion" title="Direct link to Architectural conclusion" translate="no">​</a></h3>
+<p>Do not replace PostgreSQL with Cassandra just because your application has high traffic.</p>
+<p>Use each database for the workload it handles well.</p>
+<hr>
+<h1>6. Wide-Column vs Document Databases</h1>
+<p>Now compare Cassandra with MongoDB.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>MongoDB</th><th>Cassandra</th></tr></thead><tbody><tr><td>Data model</td><td>Documents</td><td>Wide-column tables</td></tr><tr><td>Storage representation</td><td>BSON documents</td><td>Partitioned rows and columns</td></tr><tr><td>Schema</td><td>Flexible, validation optional</td><td>Defined table schema</td></tr><tr><td>Nested structures</td><td>Natural support</td><td>Not a general document model</td></tr><tr><td>Query model</td><td>Document-oriented queries</td><td>Partition-key and clustering-oriented queries</td></tr><tr><td>Indexing</td><td>Multiple index types</td><td>More constrained indexing model</td></tr><tr><td>Joins</td><td><code>$lookup</code> available</td><td>No arbitrary relational joins</td></tr><tr><td>Transactions</td><td>Single-document atomicity and multi-document transactions</td><td>Different transactional capabilities</td></tr><tr><td>Horizontal scaling</td><td>Sharding</td><td>Partitioning and replication</td></tr><tr><td>Typical fit</td><td>Document-shaped application data</td><td>High-volume distributed query-specific workloads</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-example-campaign-platform">6.1 Example: Campaign Platform<a href="#61-example-campaign-platform" class="hash-link" aria-label="Direct link to 6.1 Example: Campaign Platform" title="Direct link to 6.1 Example: Campaign Platform" translate="no">​</a></h2>
+<p>Imagine you are building a campaign platform.</p>
+<p>A campaign document might look like:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;campaign_101&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Summer Rewards&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;status&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;active&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;configuration&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;startDate&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-01&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;endDate&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-30&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;prizes&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Gift Box&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;quantity&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Cap&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token property" style="color:#36acaa">&quot;quantity&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">200</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>MongoDB naturally represents this structure.</p>
+<p>It is useful when:</p>
+<ul>
+<li class="">Data contains nested objects.</li>
+<li class="">Application entities have flexible attributes.</li>
+<li class="">The application retrieves and updates documents.</li>
+<li class="">Queries need document-level filtering and indexing.</li>
+</ul>
+<p>Now suppose the platform records 500 million gameplay events.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User 101 -&gt; Game Started</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 101 -&gt; Game Completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 102 -&gt; Game Started</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User 103 -&gt; Game Completed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">...</span><br></div></code></pre></div></div>
+<p>If the workload requires extremely high write throughput and predictable queries by user, campaign, and time bucket, Cassandra may be worth evaluating.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="architectural-conclusion-1">Architectural conclusion<a href="#architectural-conclusion-1" class="hash-link" aria-label="Direct link to Architectural conclusion" title="Direct link to Architectural conclusion" translate="no">​</a></h3>
+<p>MongoDB is a natural fit for document-shaped application entities.</p>
+<p>Cassandra is a candidate for high-volume distributed operational data with known query patterns.</p>
+<p>Neither is automatically faster or better. The workload determines the choice.</p>
+<hr>
+<h1>7. Wide-Column vs Key-Value Databases</h1>
+<p>A key-value database stores information using a key and its associated value.</p>
+<p>For example, Redis:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Key: user:101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Value: {&quot;name&quot;:&quot;Prashant&quot;,&quot;role&quot;:&quot;developer&quot;}</span><br></div></code></pre></div></div>
+<p>A wide-column database has a richer partitioned table model.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Key-value</th><th>Wide-column</th></tr></thead><tbody><tr><td>Basic model</td><td>Key -&gt; Value</td><td>Partitioned rows and columns</td></tr><tr><td>Access</td><td>Primarily by key</td><td>Partition key and clustering columns</td></tr><tr><td>Query flexibility</td><td>Usually limited</td><td>Structured queries within data-model constraints</td></tr><tr><td>Data organization</td><td>Keys and values</td><td>Tables, partitions, rows, columns</td></tr><tr><td>Common use</td><td>Cache, sessions, counters</td><td>Event storage, telemetry, distributed operational data</td></tr><tr><td>Example</td><td>Redis</td><td>Cassandra</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-example-user-sessions">7.1 Example: User Sessions<a href="#71-example-user-sessions" class="hash-link" aria-label="Direct link to 7.1 Example: User Sessions" title="Direct link to 7.1 Example: User Sessions" translate="no">​</a></h2>
+<p>Suppose a backend needs to store user sessions.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">session:abc123 -&gt; user_id:101</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">session:def456 -&gt; user_id:102</span><br></div></code></pre></div></div>
+<p>The application primarily needs to retrieve a session using its key.</p>
+<p>Redis is a natural fit.</p>
+<p>Using Cassandra for this simple workload may introduce unnecessary operational complexity.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-example-user-activity-history">7.2 Example: User Activity History<a href="#72-example-user-activity-history" class="hash-link" aria-label="Direct link to 7.2 Example: User Activity History" title="Direct link to 7.2 Example: User Activity History" translate="no">​</a></h2>
+<p>Now consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Find all events for user 101 on 14 November.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Return the latest 100 events.</span><br></div></code></pre></div></div>
+<p>This is a structured query over partitioned data.</p>
+<p>A wide-column model may be more suitable than a simple key-value model, depending on throughput, retention, and query requirements.</p>
+<p><strong>Key takeaway:</strong> Key-value databases optimize simple key-based access. Wide-column databases support a richer partitioned data model for known query patterns.</p>
+<hr>
+<h1>8. Operational Complexity</h1>
+<p>This is one of the most important sections for backend engineers.</p>
+<p>A database that performs well in a benchmark can still be a poor choice if your team cannot operate it reliably.</p>
+<p>Cassandra is a distributed database. Operating it requires understanding more than CRUD operations.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-cluster-sizing">8.1 Cluster Sizing<a href="#81-cluster-sizing" class="hash-link" aria-label="Direct link to 8.1 Cluster Sizing" title="Direct link to 8.1 Cluster Sizing" translate="no">​</a></h2>
+<p>You must estimate:</p>
+<ul>
+<li class="">Total data volume.</li>
+<li class="">Write throughput.</li>
+<li class="">Read throughput.</li>
+<li class="">Replication factor.</li>
+<li class="">Network capacity.</li>
+<li class="">Disk capacity.</li>
+<li class="">CPU requirements.</li>
+<li class="">Growth rate.</li>
+<li class="">Compaction overhead.</li>
+</ul>
+<p>Example:</p>
+<p>Suppose:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Daily incoming data = 100 GB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Retention period = 30 days</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replication factor = 3</span><br></div></code></pre></div></div>
+<p>Logical retained data:</p>
+<p>[
+100 \times 30 = 3000\ GB
+]</p>
+<p>Approximate replicated data:</p>
+<p>[
+3000 \times 3 = 9000\ GB
+]</p>
+<p>This is approximately 9 TB before accounting for:</p>
+<ul>
+<li class="">Compression.</li>
+<li class="">Compaction temporary space.</li>
+<li class="">Operational headroom.</li>
+<li class="">Backups.</li>
+<li class="">Snapshots.</li>
+<li class="">Metadata and other storage overhead.</li>
+</ul>
+<p>Do not size a production cluster using only logical application data size.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-monitoring">8.2 Monitoring<a href="#82-monitoring" class="hash-link" aria-label="Direct link to 8.2 Monitoring" title="Direct link to 8.2 Monitoring" translate="no">​</a></h2>
+<p>A production Cassandra cluster needs monitoring for:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Why it matters</th></tr></thead><tbody><tr><td>Read latency</td><td>Detects slow read operations</td></tr><tr><td>Write latency</td><td>Detects write bottlenecks</td></tr><tr><td>Pending compactions</td><td>Indicates compaction backlog</td></tr><tr><td>Disk utilization</td><td>Prevents storage exhaustion</td></tr><tr><td>CPU utilization</td><td>Detects processing bottlenecks</td></tr><tr><td>Heap and garbage collection</td><td>Detects memory pressure</td></tr><tr><td>Dropped messages</td><td>Indicates overloaded or delayed processing</td></tr><tr><td>Tombstones</td><td>Can degrade read performance</td></tr><tr><td>Node availability</td><td>Detects failed or unreachable nodes</td></tr><tr><td>Repair status</td><td>Helps maintain replica consistency</td></tr></tbody></table>
+<p>Monitoring only whether the application server is running is insufficient.</p>
+<p>You must monitor the database cluster itself.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-repair-operations">8.3 Repair Operations<a href="#83-repair-operations" class="hash-link" aria-label="Direct link to 8.3 Repair Operations" title="Direct link to 8.3 Repair Operations" translate="no">​</a></h2>
+<p>Cassandra replicas can become inconsistent due to node failures, network problems, or missed updates.</p>
+<p>Repair operations help synchronize replica data.</p>
+<p>Important mechanisms:</p>
+<ul>
+<li class=""><strong>Hinted handoff:</strong> Stores hints for unavailable replicas and attempts to deliver missed mutations later.</li>
+<li class=""><strong>Read repair:</strong> Can reconcile replica differences during certain read paths, depending on the version and configuration.</li>
+<li class=""><strong>Anti-entropy repair:</strong> Compares replica data and repairs inconsistencies using mechanisms such as Merkle trees.</li>
+</ul>
+<p>These mechanisms have different roles.</p>
+<p>Hinted handoff is not a replacement for regular repair.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="84-backup-and-recovery">8.4 Backup and Recovery<a href="#84-backup-and-recovery" class="hash-link" aria-label="Direct link to 8.4 Backup and Recovery" title="Direct link to 8.4 Backup and Recovery" translate="no">​</a></h2>
+<p>Replication is not backup.</p>
+<p>Suppose an application accidentally deletes a large number of records.</p>
+<p>If the deletion is replicated, the replicas can all reflect the deletion.</p>
+<p>A backup provides a separate recovery point.</p>
+<p>A production backup strategy should define:</p>
+<ul>
+<li class="">Backup frequency.</li>
+<li class="">Retention period.</li>
+<li class="">Recovery point objective (RPO).</li>
+<li class="">Recovery time objective (RTO).</li>
+<li class="">Restore testing.</li>
+<li class="">Off-cluster or otherwise protected backup storage.</li>
+</ul>
+<p>A backup that has never been restored successfully is not a proven recovery strategy.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="85-compaction-management">8.5 Compaction Management<a href="#85-compaction-management" class="hash-link" aria-label="Direct link to 8.5 Compaction Management" title="Direct link to 8.5 Compaction Management" translate="no">​</a></h2>
+<p>Compaction merges SSTables.</p>
+<p>It can cause:</p>
+<ul>
+<li class="">Increased disk I/O.</li>
+<li class="">CPU usage.</li>
+<li class="">Temporary disk-space requirements.</li>
+<li class="">Write amplification.</li>
+<li class="">Performance fluctuations.</li>
+</ul>
+<p>The compaction strategy must match the workload.</p>
+<p>For example:</p>
+<ul>
+<li class="">TimeWindowCompactionStrategy (TWCS) can suit time-series workloads with time-oriented SSTable windows.</li>
+<li class="">SizeTieredCompactionStrategy (STCS) is commonly used for write-heavy workloads with similarly sized SSTables.</li>
+<li class="">LeveledCompactionStrategy (LCS) can offer more predictable read behavior at the cost of additional write amplification.</li>
+</ul>
+<p>The right choice depends on the workload and Cassandra version.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="86-schema-and-data-model-changes">8.6 Schema and Data Model Changes<a href="#86-schema-and-data-model-changes" class="hash-link" aria-label="Direct link to 8.6 Schema and Data Model Changes" title="Direct link to 8.6 Schema and Data Model Changes" translate="no">​</a></h2>
+<p>In Cassandra, changing a table&#x27;s primary-key design is not equivalent to changing an ordinary relational column.</p>
+<p>A different access pattern may require:</p>
+<ol>
+<li class="">A new table.</li>
+<li class="">Backfilling existing data.</li>
+<li class="">Updating application writes.</li>
+<li class="">Validating the new query path.</li>
+<li class="">Migrating reads.</li>
+<li class="">Retiring the old table when safe.</li>
+</ol>
+<p>This means data modeling decisions have long-term consequences.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="87-multi-data-center-operations">8.7 Multi-Data-Center Operations<a href="#87-multi-data-center-operations" class="hash-link" aria-label="Direct link to 8.7 Multi-Data-Center Operations" title="Direct link to 8.7 Multi-Data-Center Operations" translate="no">​</a></h2>
+<p>Multi-data-center deployments introduce additional concerns:</p>
+<ul>
+<li class="">Network latency.</li>
+<li class="">Replication traffic.</li>
+<li class="">Consistency levels.</li>
+<li class="">Failure handling.</li>
+<li class="">Data-center topology.</li>
+<li class="">Capacity planning.</li>
+<li class="">Recovery procedures.</li>
+</ul>
+<p>Cross-data-center replication is not free.</p>
+<p>You must design the application around the actual consistency and latency guarantees required by the workload.</p>
+<hr>
+<h1>9. Database Selection Checklist</h1>
+<p>Before choosing a wide-column database, answer these questions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-workload-questions">9.1 Workload Questions<a href="#91-workload-questions" class="hash-link" aria-label="Direct link to 9.1 Workload Questions" title="Direct link to 9.1 Workload Questions" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Question</th><th>What it tells you</th></tr></thead><tbody><tr><td>Do I have very high write throughput?</td><td>Whether write-optimized distributed storage may help</td></tr><tr><td>Is my dataset extremely large?</td><td>Whether distributed storage is necessary</td></tr><tr><td>Are query patterns predictable?</td><td>Whether query-first modeling is practical</td></tr><tr><td>Do I need horizontal scaling?</td><td>Whether a distributed architecture is appropriate</td></tr><tr><td>Do I need multi-data-center replication?</td><td>Whether the database&#x27;s replication model fits</td></tr><tr><td>Do I need arbitrary JOINs?</td><td>Whether a relational model is more appropriate</td></tr><tr><td>Do I need complex transactions?</td><td>Whether transactional relational storage is preferable</td></tr><tr><td>Do I need flexible nested documents?</td><td>Whether a document database is more suitable</td></tr><tr><td>Do I need simple key-based retrieval?</td><td>Whether a key-value database is enough</td></tr><tr><td>Can my team operate a distributed cluster?</td><td>Whether operational complexity is manageable</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-decision-tree">9.2 Decision Tree<a href="#92-decision-tree" class="hash-link" aria-label="Direct link to 9.2 Decision Tree" title="Direct link to 9.2 Decision Tree" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Start</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Do you need relational transactions?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             +------+------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Yes            No</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |             |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v             v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         PostgreSQL    Is data document-shaped?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    Yes          No</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                     v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  MongoDB   Is access primarily</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                            key-based?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                         Yes          No</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                          v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                        Redis   Is workload distributed,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                high-volume, and query-</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                pattern driven?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                               Yes          No</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                            Cassandra   Evaluate other</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                or       database types</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                              HBase</span><br></div></code></pre></div></div>
+<p>This is a starting point, not an automatic selection algorithm.</p>
+<p>Real architecture decisions also depend on latency, consistency, data volume, operational expertise, cost, ecosystem, and migration constraints.</p>
+<hr>
+<h1>10. Real-World Architecture Decisions</h1>
+<p>Let&#x27;s apply the concepts to backend systems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-campaign-platform-architecture">10.1 Campaign Platform Architecture<a href="#101-campaign-platform-architecture" class="hash-link" aria-label="Direct link to 10.1 Campaign Platform Architecture" title="Direct link to 10.1 Campaign Platform Architecture" translate="no">​</a></h2>
+<p>Suppose you are building a consumer-facing campaign platform.</p>
+<p>It includes:</p>
+<ul>
+<li class="">User registration.</li>
+<li class="">Campaign configuration.</li>
+<li class="">Gameplay.</li>
+<li class="">Score submission.</li>
+<li class="">Winner allocation.</li>
+<li class="">Analytics.</li>
+<li class="">Event tracking.</li>
+</ul>
+<p>A possible architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Frontend</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Node.js API</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    PostgreSQL   MongoDB      Redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Users and   Campaign     Sessions and</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    payments    documents    temporary data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               Event Queue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               Cassandra</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Event History</span><br></div></code></pre></div></div>
+<p>Possible responsibilities:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Component</th><th>Responsibility</th></tr></thead><tbody><tr><td>PostgreSQL</td><td>Transactional orders, payments, and relational business data</td></tr><tr><td>MongoDB</td><td>Campaign configuration and document-shaped application data</td></tr><tr><td>Redis</td><td>Sessions, caching, temporary state, and rate limiting</td></tr><tr><td>Cassandra</td><td>High-volume event history, if workload justifies it</td></tr><tr><td>Analytical database</td><td>Reporting and large-scale aggregations, if required</td></tr></tbody></table>
+<p>This is an example of polyglot persistence: using multiple databases for different workloads.</p>
+<p>Do not add Cassandra just because the architecture diagram looks more advanced.</p>
+<p>If MongoDB or PostgreSQL can comfortably handle the event workload, adding another database may create more problems than it solves.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-e-commerce-architecture">10.2 E-commerce Architecture<a href="#102-e-commerce-architecture" class="hash-link" aria-label="Direct link to 10.2 E-commerce Architecture" title="Direct link to 10.2 E-commerce Architecture" translate="no">​</a></h2>
+<p>Consider an e-commerce application.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 E-commerce API</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        +--------------+--------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |              |              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v              v              v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    PostgreSQL       Redis         MongoDB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        |              |              |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        v              v              v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Orders and      Cache and      Product</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Payments        Sessions       Catalog</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  Event Queue</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   Cassandra</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                User Activity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                and Event History</span><br></div></code></pre></div></div>
+<p>Why this separation?</p>
+<ul>
+<li class="">Orders and payments need transactional guarantees.</li>
+<li class="">Sessions need fast key-based retrieval.</li>
+<li class="">Product information may fit a document model.</li>
+<li class="">User activity events may need high-volume distributed ingestion.</li>
+</ul>
+<p>The key is workload separation, not database variety.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-iot-telemetry-architecture">10.3 IoT Telemetry Architecture<a href="#103-iot-telemetry-architecture" class="hash-link" aria-label="Direct link to 10.3 IoT Telemetry Architecture" title="Direct link to 10.3 IoT Telemetry Architecture" translate="no">​</a></h2>
+<p>Suppose you have 1 million devices.</p>
+<p>Each device sends a reading every 10 seconds.</p>
+<p>Approximate events per second:</p>
+<p>[
+\frac{1,000,000}{10} = 100,000
+]</p>
+<p>That is 100,000 incoming readings per second, assuming all devices report evenly.</p>
+<p>A possible architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">          IoT Devices</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Message Broker</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Ingestion Service</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Cassandra Cluster</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Historical Read APIs</span><br></div></code></pre></div></div>
+<p>Cassandra may be suitable when:</p>
+<ul>
+<li class="">Writes are continuous.</li>
+<li class="">Data is partitioned by device and time.</li>
+<li class="">Queries are predictable.</li>
+<li class="">Distributed availability is important.</li>
+</ul>
+<p>However, if the main requirement is analytical aggregation across huge time ranges, a columnar analytical database or specialized time-series system may be a better fit.</p>
+<hr>
+<h1>11. Common Mistakes and Misconceptions</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Misconception</th><th>Correct understanding</th></tr></thead><tbody><tr><td>Wide-column databases are just relational tables with many columns.</td><td>They use a different partitioned data model and query approach.</td></tr><tr><td>Cassandra is always faster than PostgreSQL.</td><td>Performance depends on workload and data model.</td></tr><tr><td>More nodes always mean proportionally more throughput.</td><td>Replication, coordination, hotspots, and network overhead affect scaling.</td></tr><tr><td>Cassandra supports arbitrary SQL queries.</td><td>CQL is SQL-like but has important query-model restrictions.</td></tr><tr><td>Replication means data is backed up.</td><td>Replication and backup solve different problems.</td></tr><tr><td>QUORUM means serializable transactions.</td><td>Quorum is a replica acknowledgement policy, not a general transaction isolation level.</td></tr><tr><td>Cassandra never has consistency problems.</td><td>Replica divergence and repair requirements still exist.</td></tr><tr><td>Hinted handoff replaces repair.</td><td>Hints and anti-entropy repair have different purposes.</td></tr><tr><td>Deletes immediately remove data from disk.</td><td>Tombstones represent deletes; physical cleanup occurs later.</td></tr><tr><td>Cassandra is suitable for every high-traffic application.</td><td>Traffic volume alone is insufficient to justify Cassandra.</td></tr><tr><td>Cassandra and HBase are identical.</td><td>They have different architectures, storage foundations, and consistency models.</td></tr><tr><td>Denormalization is always better.</td><td>It improves certain reads but adds storage and write complexity.</td></tr></tbody></table>
+<hr>
+<h1>12. Interview Questions and Answers</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-what-is-a-wide-column-database">Q1. What is a wide-column database?<a href="#q1-what-is-a-wide-column-database" class="hash-link" aria-label="Direct link to Q1. What is a wide-column database?" title="Direct link to Q1. What is a wide-column database?" translate="no">​</a></h2>
+<p>A wide-column database is a NoSQL database that organizes data into partitioned rows and columns. It is designed for distributed storage and access patterns that fit its data model.</p>
+<p>Examples include Apache Cassandra and Apache HBase.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-why-does-cassandra-use-denormalization">Q2. Why does Cassandra use denormalization?<a href="#q2-why-does-cassandra-use-denormalization" class="hash-link" aria-label="Direct link to Q2. Why does Cassandra use denormalization?" title="Direct link to Q2. Why does Cassandra use denormalization?" translate="no">​</a></h2>
+<p>Cassandra does not provide arbitrary relational JOINs as part of its normal query model.</p>
+<p>Instead, tables are designed around application queries.</p>
+<p>Denormalization allows the database to serve those queries efficiently without requiring relational joins.</p>
+<p>The tradeoff is duplicated data and more complex write coordination.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-why-is-cassandra-suitable-for-write-heavy-workloads">Q3. Why is Cassandra suitable for write-heavy workloads?<a href="#q3-why-is-cassandra-suitable-for-write-heavy-workloads" class="hash-link" aria-label="Direct link to Q3. Why is Cassandra suitable for write-heavy workloads?" title="Direct link to Q3. Why is Cassandra suitable for write-heavy workloads?" translate="no">​</a></h2>
+<p>Cassandra uses an LSM-oriented storage architecture.</p>
+<p>Writes are initially recorded through a commit log and memtable, then flushed into immutable SSTables.</p>
+<p>This architecture can support high write throughput, especially for workloads with predictable partition-based access patterns.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-the-difference-between-partition-keys-and-clustering-columns">Q4. What is the difference between partition keys and clustering columns?<a href="#q4-what-is-the-difference-between-partition-keys-and-clustering-columns" class="hash-link" aria-label="Direct link to Q4. What is the difference between partition keys and clustering columns?" title="Direct link to Q4. What is the difference between partition keys and clustering columns?" translate="no">​</a></h2>
+<p><strong>Partition key:</strong></p>
+<ul>
+<li class="">Determines the partition.</li>
+<li class="">Determines how data is distributed across the cluster.</li>
+<li class="">Defines which rows are grouped together.</li>
+</ul>
+<p><strong>Clustering columns:</strong></p>
+<ul>
+<li class="">Determine the ordering of rows within a partition.</li>
+<li class="">Help define the row&#x27;s primary-key identity.</li>
+<li class="">Support efficient queries over ordered values within the partition.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-happens-if-you-choose-a-bad-partition-key">Q5. What happens if you choose a bad partition key?<a href="#q5-what-happens-if-you-choose-a-bad-partition-key" class="hash-link" aria-label="Direct link to Q5. What happens if you choose a bad partition key?" title="Direct link to Q5. What happens if you choose a bad partition key?" translate="no">​</a></h2>
+<p>A poor partition key can cause:</p>
+<ul>
+<li class="">Hot partitions.</li>
+<li class="">Uneven data distribution.</li>
+<li class="">Large partitions.</li>
+<li class="">Uneven node utilization.</li>
+<li class="">Increased read and write latency.</li>
+</ul>
+<p>Partition-key design is one of the most important Cassandra data-modeling decisions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-the-difference-between-replication-factor-and-consistency-level">Q6. What is the difference between replication factor and consistency level?<a href="#q6-what-is-the-difference-between-replication-factor-and-consistency-level" class="hash-link" aria-label="Direct link to Q6. What is the difference between replication factor and consistency level?" title="Direct link to Q6. What is the difference between replication factor and consistency level?" translate="no">​</a></h2>
+<p>Replication factor determines how many replicas are maintained for a partition.</p>
+<p>Consistency level determines how many replica responses are required for a particular operation.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">RF = 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">QUORUM = 2</span><br></div></code></pre></div></div>
+<p>Three replicas are maintained, and two acknowledgements are required for a quorum write.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-does-cassandra-support-transactions">Q7. Does Cassandra support transactions?<a href="#q7-does-cassandra-support-transactions" class="hash-link" aria-label="Direct link to Q7. Does Cassandra support transactions?" title="Direct link to Q7. Does Cassandra support transactions?" translate="no">​</a></h2>
+<p>Cassandra supports certain atomic operations and lightweight transactions using Paxos-based mechanisms, but it does not provide the same general-purpose multi-row and multi-table ACID transaction model as PostgreSQL.</p>
+<p>Do not assume that Cassandra transactions are equivalent to relational database transactions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-a-tombstone">Q8. What is a tombstone?<a href="#q8-what-is-a-tombstone" class="hash-link" aria-label="Direct link to Q8. What is a tombstone?" title="Direct link to Q8. What is a tombstone?" translate="no">​</a></h2>
+<p>A tombstone is a marker representing deleted data.</p>
+<p>It allows the database to propagate deletion information across replicas.</p>
+<p>The actual deleted data is cleaned up later during compaction when it is safe to do so.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-the-difference-between-cassandra-and-hbase">Q9. What is the difference between Cassandra and HBase?<a href="#q9-what-is-the-difference-between-cassandra-and-hbase" class="hash-link" aria-label="Direct link to Q9. What is the difference between Cassandra and HBase?" title="Direct link to Q9. What is the difference between Cassandra and HBase?" translate="no">​</a></h2>
+<p>Cassandra uses a peer-to-peer architecture and provides tunable consistency.</p>
+<p>HBase uses a RegionServer-based architecture, commonly runs on HDFS, and provides strong consistency for row operations.</p>
+<p>Their architecture and operational models are different.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-why-is-cassandra-not-suitable-for-every-application">Q10. Why is Cassandra not suitable for every application?<a href="#q10-why-is-cassandra-not-suitable-for-every-application" class="hash-link" aria-label="Direct link to Q10. Why is Cassandra not suitable for every application?" title="Direct link to Q10. Why is Cassandra not suitable for every application?" translate="no">​</a></h2>
+<p>Because it has tradeoffs:</p>
+<ul>
+<li class="">Limited ad-hoc query flexibility.</li>
+<li class="">No arbitrary relational joins.</li>
+<li class="">Query-driven data modeling.</li>
+<li class="">Denormalization.</li>
+<li class="">Distributed cluster operations.</li>
+<li class="">Repair and compaction management.</li>
+<li class="">Different transaction capabilities from relational databases.</li>
+</ul>
+<p>If the application requires relational transactions and complex queries, PostgreSQL may be a better choice.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-can-cassandra-replace-redis">Q11. Can Cassandra replace Redis?<a href="#q11-can-cassandra-replace-redis" class="hash-link" aria-label="Direct link to Q11. Can Cassandra replace Redis?" title="Direct link to Q11. Can Cassandra replace Redis?" translate="no">​</a></h2>
+<p>Not necessarily.</p>
+<p>Redis is optimized for fast key-value access and offers features such as expiration, data structures, and in-memory operations.</p>
+<p>Cassandra is designed for distributed, persistent, partitioned data workloads.</p>
+<p>They solve different problems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-can-cassandra-be-used-for-analytics">Q12. Can Cassandra be used for analytics?<a href="#q12-can-cassandra-be-used-for-analytics" class="hash-link" aria-label="Direct link to Q12. Can Cassandra be used for analytics?" title="Direct link to Q12. Can Cassandra be used for analytics?" translate="no">​</a></h2>
+<p>It can support certain query-specific operational summaries and retrieval workloads.</p>
+<p>However, it is not a general-purpose analytical database.</p>
+<p>For large analytical aggregations, systems such as ClickHouse or data warehouse platforms may be more appropriate.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-the-difference-between-cassandra-replication-and-backup">Q13. What is the difference between Cassandra replication and backup?<a href="#q13-what-is-the-difference-between-cassandra-replication-and-backup" class="hash-link" aria-label="Direct link to Q13. What is the difference between Cassandra replication and backup?" title="Direct link to Q13. What is the difference between Cassandra replication and backup?" translate="no">​</a></h2>
+<p>Replication maintains copies of data across nodes.</p>
+<p>Backup provides recoverable historical copies that can be restored after accidental deletion, corruption, or other failures.</p>
+<p>Replication alone cannot protect against every data-loss scenario.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-why-might-an-organization-use-postgresql-and-cassandra-together">Q14. Why might an organization use PostgreSQL and Cassandra together?<a href="#q14-why-might-an-organization-use-postgresql-and-cassandra-together" class="hash-link" aria-label="Direct link to Q14. Why might an organization use PostgreSQL and Cassandra together?" title="Direct link to Q14. Why might an organization use PostgreSQL and Cassandra together?" translate="no">​</a></h2>
+<p>PostgreSQL can handle transactional business entities, relationships, and consistency constraints.</p>
+<p>Cassandra can handle high-volume distributed event ingestion and query-specific event retrieval.</p>
+<p>The application uses each database for the workload it handles best.</p>
+<hr>
+<h1>13. Practical Architecture Exercises</h1>
+<p>These exercises test whether you can select a database based on requirements rather than popularity.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-1-choose-the-database">Exercise 1: Choose the Database<a href="#exercise-1-choose-the-database" class="hash-link" aria-label="Direct link to Exercise 1: Choose the Database" title="Direct link to Exercise 1: Choose the Database" translate="no">​</a></h2>
+<p>For each requirement, select a suitable database and explain why.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Possible choice</th></tr></thead><tbody><tr><td>Store user sessions</td><td>Redis</td></tr><tr><td>Store customer orders</td><td>PostgreSQL</td></tr><tr><td>Store nested campaign configurations</td><td>MongoDB</td></tr><tr><td>Store billions of user activity events</td><td>Cassandra, if access patterns fit</td></tr><tr><td>Run large analytical aggregations</td><td>ClickHouse or a data warehouse</td></tr><tr><td>Store device telemetry at high ingestion volume</td><td>Cassandra or a specialized time-series database</td></tr><tr><td>Store product relationships and inventory transactions</td><td>PostgreSQL</td></tr><tr><td>Search application logs by text</td><td>A search engine such as OpenSearch</td></tr></tbody></table>
+<p>These are starting recommendations. Actual selection requires workload measurements and requirements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-2-design-a-cassandra-table">Exercise 2: Design a Cassandra Table<a href="#exercise-2-design-a-cassandra-table" class="hash-link" aria-label="Direct link to Exercise 2: Design a Cassandra Table" title="Direct link to Exercise 2: Design a Cassandra Table" translate="no">​</a></h2>
+<p>Requirement:</p>
+<p>Find the latest 100 events for a user on a particular date.</p>
+<p>Possible schema:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> user_events </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    user_id UUID</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_date </span><span class="token keyword" style="color:#00009f">DATE</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_time </span><span class="token keyword" style="color:#00009f">TIMESTAMP</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_type </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    event_data </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">user_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_date</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> event_time</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">WITH</span><span class="token plain"> CLUSTERING </span><span class="token keyword" style="color:#00009f">ORDER</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">event_time </span><span class="token keyword" style="color:#00009f">DESC</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Query:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> user_events</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> user_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> event_date </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> ?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">LIMIT</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Explain:</p>
+<ol>
+<li class="">Why <code>user_id</code> is part of the partition key.</li>
+<li class="">Why <code>event_date</code> is part of the partition key.</li>
+<li class="">Why <code>event_time</code> is a clustering column.</li>
+<li class="">Why descending order is useful.</li>
+<li class="">What happens if one user generates an unusually large number of events.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-3-identify-the-architecture-mistake">Exercise 3: Identify the Architecture Mistake<a href="#exercise-3-identify-the-architecture-mistake" class="hash-link" aria-label="Direct link to Exercise 3: Identify the Architecture Mistake" title="Direct link to Exercise 3: Identify the Architecture Mistake" translate="no">​</a></h2>
+<p>A startup has:</p>
+<ul>
+<li class="">5,000 users.</li>
+<li class="">20,000 orders per month.</li>
+<li class="">PostgreSQL running comfortably.</li>
+<li class="">No significant write bottleneck.</li>
+</ul>
+<p>The engineering team decides to migrate everything to Cassandra because Cassandra is horizontally scalable.</p>
+<p>What is wrong with this decision?</p>
+<p><strong>Expected reasoning:</strong></p>
+<p>The team has not demonstrated a scaling problem that requires Cassandra.</p>
+<p>The migration would introduce:</p>
+<ul>
+<li class="">Data-model redesign.</li>
+<li class="">Loss of convenient relational querying.</li>
+<li class="">Denormalization.</li>
+<li class="">New operational responsibilities.</li>
+<li class="">Migration risk.</li>
+<li class="">More complex transactional workflows.</li>
+</ul>
+<p>Horizontal scalability is not automatically a business requirement.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-4-design-a-hybrid-architecture">Exercise 4: Design a Hybrid Architecture<a href="#exercise-4-design-a-hybrid-architecture" class="hash-link" aria-label="Direct link to Exercise 4: Design a Hybrid Architecture" title="Direct link to Exercise 4: Design a Hybrid Architecture" translate="no">​</a></h2>
+<p>Requirement:</p>
+<p>A campaign platform needs:</p>
+<ul>
+<li class="">User registration.</li>
+<li class="">Campaign configuration.</li>
+<li class="">Game scores.</li>
+<li class="">Session storage.</li>
+<li class="">Billions of historical gameplay events.</li>
+<li class="">Daily campaign analytics.</li>
+</ul>
+<p>Propose a database for each responsibility.</p>
+<p>One possible design:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Responsibility</th><th>Database</th></tr></thead><tbody><tr><td>User accounts and transactional records</td><td>PostgreSQL</td></tr><tr><td>Campaign configuration</td><td>MongoDB or PostgreSQL</td></tr><tr><td>Sessions and temporary state</td><td>Redis</td></tr><tr><td>Historical gameplay events</td><td>Cassandra, if the workload justifies it</td></tr><tr><td>Daily analytics</td><td>ClickHouse or a warehouse</td></tr></tbody></table>
+<p>Explain how events move from the application into the analytical system.</p>
+<p>A common approach is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Message Broker</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Event Consumers</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-------&gt; Cassandra</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-------&gt; Analytical Database</span><br></div></code></pre></div></div>
+<p>This decouples event ingestion from downstream processing.</p>
+<hr>
+<h1>14. Final Revision: Wide-Column Databases</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="141-core-concepts">14.1 Core Concepts<a href="#141-core-concepts" class="hash-link" aria-label="Direct link to 14.1 Core Concepts" title="Direct link to 14.1 Core Concepts" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>Meaning</th></tr></thead><tbody><tr><td>Wide-column database</td><td>Distributed database with partitioned rows and columns</td></tr><tr><td>Partition key</td><td>Determines data partition placement</td></tr><tr><td>Clustering column</td><td>Defines ordering within a partition</td></tr><tr><td>Replication factor</td><td>Number of replicas maintained</td></tr><tr><td>Consistency level</td><td>Number of replica acknowledgements required</td></tr><tr><td>Memtable</td><td>In-memory structure holding recent writes</td></tr><tr><td>Commit log</td><td>Durable record of mutations</td></tr><tr><td>SSTable</td><td>Immutable on-disk storage file</td></tr><tr><td>LSM tree</td><td>Storage design based on memory structures and sorted files</td></tr><tr><td>Compaction</td><td>Merges SSTables and processes obsolete data</td></tr><tr><td>Tombstone</td><td>Marker representing deleted data</td></tr><tr><td>Denormalization</td><td>Storing duplicated data to support query patterns</td></tr><tr><td>Hinted handoff</td><td>Attempts to deliver missed mutations to temporarily unavailable replicas</td></tr><tr><td>Anti-entropy repair</td><td>Reconciles differences between replicas</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="142-cassandra-vs-hbase-vs-postgresql-vs-mongodb-vs-redis">14.2 Cassandra vs HBase vs PostgreSQL vs MongoDB vs Redis<a href="#142-cassandra-vs-hbase-vs-postgresql-vs-mongodb-vs-redis" class="hash-link" aria-label="Direct link to 14.2 Cassandra vs HBase vs PostgreSQL vs MongoDB vs Redis" title="Direct link to 14.2 Cassandra vs HBase vs PostgreSQL vs MongoDB vs Redis" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Requirement</th><th>Strong candidate</th></tr></thead><tbody><tr><td>Relational transactions</td><td>PostgreSQL</td></tr><tr><td>Complex JOINs</td><td>PostgreSQL</td></tr><tr><td>Flexible nested documents</td><td>MongoDB</td></tr><tr><td>Fast key-value caching</td><td>Redis</td></tr><tr><td>Distributed high-volume operational writes</td><td>Cassandra</td></tr><tr><td>Hadoop/HDFS-integrated wide-column storage</td><td>HBase</td></tr><tr><td>Large-scale analytical aggregation</td><td>ClickHouse / Data Warehouse</td></tr></tbody></table>
+<p>These are workload-oriented recommendations, not universal performance rankings.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="143-final-mental-model">14.3 Final Mental Model<a href="#143-final-mental-model" class="hash-link" aria-label="Direct link to 14.3 Final Mental Model" title="Direct link to 14.3 Final Mental Model" translate="no">​</a></h2>
+<p>Remember these distinctions:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">PostgreSQL</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Relationships</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Transactions</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Constraints</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Flexible SQL queries</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">MongoDB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Documents</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Nested data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Flexible document structures</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Redis</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Key-value access</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Caching</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Sessions</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Fast in-memory operations</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Cassandra</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Distributed data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- High-volume writes</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Partition-based queries</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Replication</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">HBase</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Distributed wide-column storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- HDFS ecosystem</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    +-- Region-based architecture</span><br></div></code></pre></div></div>
+<hr>
+<h1>15. Chapter Summary</h1>
+<p>Wide-column databases are useful when an application needs distributed storage, high write throughput, horizontal scalability, and predictable query patterns.</p>
+<p>However, they require deliberate data modeling and operational expertise.</p>
+<p>The most important lessons from Part 13:</p>
+<ol>
+<li class="">Wide-column databases are not simply relational databases with more columns.</li>
+<li class="">Cassandra uses a peer-to-peer architecture and an LSM-oriented storage engine.</li>
+<li class="">HBase uses a RegionServer-based architecture and is commonly built on HDFS.</li>
+<li class="">Partition-key design determines data distribution and strongly influences performance.</li>
+<li class="">Clustering columns organize rows within a partition.</li>
+<li class="">Cassandra data modeling is query-driven.</li>
+<li class="">Denormalization reduces some read costs but increases write and storage complexity.</li>
+<li class="">Replication factor and consistency level solve different problems.</li>
+<li class="">Replication is not backup.</li>
+<li class="">Tombstones, compaction, and repair require operational attention.</li>
+<li class="">PostgreSQL, MongoDB, Redis, Cassandra, and HBase solve different classes of problems.</li>
+<li class="">A database should be selected based on workload requirements, not popularity or theoretical scalability.</li>
+</ol>
+<p><strong>The most important architectural principle:</strong></p>
+<p>Choose the simplest database architecture that satisfies the application&#x27;s actual requirements. Introduce distributed databases when the workload justifies their benefits and the team can manage their operational costs.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/11_Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_06.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.3_Wide_Column_Databases/part_05"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Wide-Column Databases: Real-World Use Cases</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/category/graph-databases"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Graph Databases</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a></li><li><a href="#21-horizontal-scalability" class="table-of-contents__link toc-highlight">2.1 Horizontal Scalability</a></li><li><a href="#22-high-write-throughput" class="table-of-contents__link toc-highlight">2.2 High Write Throughput</a></li><li><a href="#23-distributed-replication-and-availability" class="table-of-contents__link toc-highlight">2.3 Distributed Replication and Availability</a></li><li><a href="#24-predictable-query-performance-for-known-access-patterns" class="table-of-contents__link toc-highlight">2.4 Predictable Query Performance for Known Access Patterns</a></li><li><a href="#25-handling-large-datasets" class="table-of-contents__link toc-highlight">2.5 Handling Large Datasets</a></li><li><a href="#31-query-first-data-modeling" class="table-of-contents__link toc-highlight">3.1 Query-First Data Modeling</a><ul><li><a href="#why-is-this-a-limitation" class="table-of-contents__link toc-highlight">Why is this a limitation?</a></li></ul></li><li><a href="#32-limited-ad-hoc-query-flexibility" class="table-of-contents__link toc-highlight">3.2 Limited Ad-Hoc Query Flexibility</a></li><li><a href="#33-denormalization-increases-storage-and-write-complexity" class="table-of-contents__link toc-highlight">3.3 Denormalization Increases Storage and Write Complexity</a></li><li><a href="#34-consistency-requires-deliberate-configuration" class="table-of-contents__link toc-highlight">3.4 Consistency Requires Deliberate Configuration</a><ul><li><a href="#important-distinction" class="table-of-contents__link toc-highlight">Important distinction</a></li></ul></li><li><a href="#35-partition-design-is-critical" class="table-of-contents__link toc-highlight">3.5 Partition Design Is Critical</a></li><li><a href="#36-compaction-and-tombstones-add-operational-costs" class="table-of-contents__link toc-highlight">3.6 Compaction and Tombstones Add Operational Costs</a></li><li><a href="#41-cassandra-architecture" class="table-of-contents__link toc-highlight">4.1 Cassandra Architecture</a></li><li><a href="#42-hbase-architecture" class="table-of-contents__link toc-highlight">4.2 HBase Architecture</a></li><li><a href="#43-comparison" class="table-of-contents__link toc-highlight">4.3 Comparison</a><ul><li><a href="#when-would-you-choose-cassandra" class="table-of-contents__link toc-highlight">When would you choose Cassandra?</a></li><li><a href="#when-would-you-choose-hbase" class="table-of-contents__link toc-highlight">When would you choose HBase?</a></li></ul></li><li><a href="#51-example-e-commerce-orders" class="table-of-contents__link toc-highlight">5.1 Example: E-commerce Orders</a><ul><li><a href="#architectural-conclusion" class="table-of-contents__link toc-highlight">Architectural conclusion</a></li></ul></li><li><a href="#61-example-campaign-platform" class="table-of-contents__link toc-highlight">6.1 Example: Campaign Platform</a><ul><li><a href="#architectural-conclusion-1" class="table-of-contents__link toc-highlight">Architectural conclusion</a></li></ul></li><li><a href="#71-example-user-sessions" class="table-of-contents__link toc-highlight">7.1 Example: User Sessions</a></li><li><a href="#72-example-user-activity-history" class="table-of-contents__link toc-highlight">7.2 Example: User Activity History</a></li><li><a href="#81-cluster-sizing" class="table-of-contents__link toc-highlight">8.1 Cluster Sizing</a></li><li><a href="#82-monitoring" class="table-of-contents__link toc-highlight">8.2 Monitoring</a></li><li><a href="#83-repair-operations" class="table-of-contents__link toc-highlight">8.3 Repair Operations</a></li><li><a href="#84-backup-and-recovery" class="table-of-contents__link toc-highlight">8.4 Backup and Recovery</a></li><li><a href="#85-compaction-management" class="table-of-contents__link toc-highlight">8.5 Compaction Management</a></li><li><a href="#86-schema-and-data-model-changes" class="table-of-contents__link toc-highlight">8.6 Schema and Data Model Changes</a></li><li><a href="#87-multi-data-center-operations" class="table-of-contents__link toc-highlight">8.7 Multi-Data-Center Operations</a></li><li><a href="#91-workload-questions" class="table-of-contents__link toc-highlight">9.1 Workload Questions</a></li><li><a href="#92-decision-tree" class="table-of-contents__link toc-highlight">9.2 Decision Tree</a></li><li><a href="#101-campaign-platform-architecture" class="table-of-contents__link toc-highlight">10.1 Campaign Platform Architecture</a></li><li><a href="#102-e-commerce-architecture" class="table-of-contents__link toc-highlight">10.2 E-commerce Architecture</a></li><li><a href="#103-iot-telemetry-architecture" class="table-of-contents__link toc-highlight">10.3 IoT Telemetry Architecture</a></li><li><a href="#q1-what-is-a-wide-column-database" class="table-of-contents__link toc-highlight">Q1. What is a wide-column database?</a></li><li><a href="#q2-why-does-cassandra-use-denormalization" class="table-of-contents__link toc-highlight">Q2. Why does Cassandra use denormalization?</a></li><li><a href="#q3-why-is-cassandra-suitable-for-write-heavy-workloads" class="table-of-contents__link toc-highlight">Q3. Why is Cassandra suitable for write-heavy workloads?</a></li><li><a href="#q4-what-is-the-difference-between-partition-keys-and-clustering-columns" class="table-of-contents__link toc-highlight">Q4. What is the difference between partition keys and clustering columns?</a></li><li><a href="#q5-what-happens-if-you-choose-a-bad-partition-key" class="table-of-contents__link toc-highlight">Q5. What happens if you choose a bad partition key?</a></li><li><a href="#q6-what-is-the-difference-between-replication-factor-and-consistency-level" class="table-of-contents__link toc-highlight">Q6. What is the difference between replication factor and consistency level?</a></li><li><a href="#q7-does-cassandra-support-transactions" class="table-of-contents__link toc-highlight">Q7. Does Cassandra support transactions?</a></li><li><a href="#q8-what-is-a-tombstone" class="table-of-contents__link toc-highlight">Q8. What is a tombstone?</a></li><li><a href="#q9-what-is-the-difference-between-cassandra-and-hbase" class="table-of-contents__link toc-highlight">Q9. What is the difference between Cassandra and HBase?</a></li><li><a href="#q10-why-is-cassandra-not-suitable-for-every-application" class="table-of-contents__link toc-highlight">Q10. Why is Cassandra not suitable for every application?</a></li><li><a href="#q11-can-cassandra-replace-redis" class="table-of-contents__link toc-highlight">Q11. Can Cassandra replace Redis?</a></li><li><a href="#q12-can-cassandra-be-used-for-analytics" class="table-of-contents__link toc-highlight">Q12. Can Cassandra be used for analytics?</a></li><li><a href="#q13-what-is-the-difference-between-cassandra-replication-and-backup" class="table-of-contents__link toc-highlight">Q13. What is the difference between Cassandra replication and backup?</a></li><li><a href="#q14-why-might-an-organization-use-postgresql-and-cassandra-together" class="table-of-contents__link toc-highlight">Q14. Why might an organization use PostgreSQL and Cassandra together?</a></li><li><a href="#exercise-1-choose-the-database" class="table-of-contents__link toc-highlight">Exercise 1: Choose the Database</a></li><li><a href="#exercise-2-design-a-cassandra-table" class="table-of-contents__link toc-highlight">Exercise 2: Design a Cassandra Table</a></li><li><a href="#exercise-3-identify-the-architecture-mistake" class="table-of-contents__link toc-highlight">Exercise 3: Identify the Architecture Mistake</a></li><li><a href="#exercise-4-design-a-hybrid-architecture" class="table-of-contents__link toc-highlight">Exercise 4: Design a Hybrid Architecture</a></li><li><a href="#141-core-concepts" class="table-of-contents__link toc-highlight">14.1 Core Concepts</a></li><li><a href="#142-cassandra-vs-hbase-vs-postgresql-vs-mongodb-vs-redis" class="table-of-contents__link toc-highlight">14.2 Cassandra vs HBase vs PostgreSQL vs MongoDB vs Redis</a></li><li><a href="#143-final-mental-model" class="table-of-contents__link toc-highlight">14.3 Final Mental Model</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

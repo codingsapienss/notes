@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Time_Series_Databases/part_02" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">Part 16B — Why Traditional Databases Struggle with Time-Series Workloads | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Part 16B — Why Traditional Databases Struggle with Time-Series Workloads | Knowledge Base"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Time Series Databases","item":"https://codingsapienss.github.io/notes/docs/category/time-series-databases"},{"@type":"ListItem","position":5,"name":"Part 16B — Why Traditional Databases Struggle with Time-Series Workloads","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.a7751dc0.css">
+<script src="/notes/assets/js/runtime~main.7c4ee92d.js" defer="defer"></script>
+<script src="/notes/assets/js/main.18e6a7d5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease" title="Adjust font size"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg><span>Font</span></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-fundamentals"><span title="Database Fundamentals" class="categoryLinkLabel_W154">Database Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions-acid--concurrency"><span title="Transactions ACID &amp; Concurrency" class="categoryLinkLabel_W154">Transactions ACID &amp; Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions ACID &amp; Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-indexing"><span title="Database Indexing" class="categoryLinkLabel_W154">Database Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-normalization"><span title="Database Normalization" class="categoryLinkLabel_W154">Database Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-joins--join-execution"><span title="SQL Joins &amp; Join Execution" class="categoryLinkLabel_W154">SQL Joins &amp; Join Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL Joins &amp; Join Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling-relational-databases"><span title="Scaling Relational Databases" class="categoryLinkLabel_W154">Scaling Relational Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling Relational Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-sharding--horizontal-scaling"><span title="SQL Sharding &amp; Horizontal Scaling" class="categoryLinkLabel_W154">SQL Sharding &amp; Horizontal Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL Sharding &amp; Horizontal Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql-fundamentals"><span title="NoSQL Fundamentals" class="categoryLinkLabel_W154">NoSQL Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap-theorem--distributed-systems"><span title="CAP Theorem &amp; Distributed Systems" class="categoryLinkLabel_W154">CAP Theorem &amp; Distributed Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP Theorem &amp; Distributed Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal-scaling-in-nosql"><span title="Horizontal Scaling in NoSQL" class="categoryLinkLabel_W154">Horizontal Scaling in NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal Scaling in NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/types-of-nosql-db"><span title="Types of NoSQL DB" class="categoryLinkLabel_W154">Types of NoSQL DB</span></a><button aria-label="Expand sidebar category &#x27;Types of NoSQL DB&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search-databases"><span title="Search Databases" class="categoryLinkLabel_W154">Search Databases</span></a><button aria-label="Expand sidebar category &#x27;Search Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/time-series-databases"><span title="Time Series Databases" class="categoryLinkLabel_W154">Time Series Databases</span></a><button aria-label="Collapse sidebar category &#x27;Time Series Databases&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_01"><span title="Time-Series Database Fundamentals" class="linkLabel_WmDU">Time-Series Database Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_02"><span title="Part 16B — Why Traditional Databases Struggle with Time-Series Workloads" class="linkLabel_WmDU">Part 16B — Why Traditional Databases Struggle with Time-Series Workloads</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_03"><span title="Time-Series Database Internal Architecture" class="linkLabel_WmDU">Time-Series Database Internal Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_04"><span title="Part 16D — Time-Series Operations: Downsampling, Retention &amp; Rollups" class="linkLabel_WmDU">Part 16D — Time-Series Operations: Downsampling, Retention &amp; Rollups</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_05"><span title="Wide-Column Databases vs Time-Series Databases" class="linkLabel_WmDU">Wide-Column Databases vs Time-Series Databases</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltp-vs-olap-databases"><span title="OLTP vs OLAP Databases" class="categoryLinkLabel_W154">OLTP vs OLAP Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTP vs OLAP Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql-databases"><span title="NewSQL Databases" class="categoryLinkLabel_W154">NewSQL Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot-persistence"><span title="Polyglot Persistence" class="categoryLinkLabel_W154">Polyglot Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/time-series-databases"><span>Time Series Databases</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Part 16B — Why Traditional Databases Struggle with Time-Series Workloads</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Part 16B — Why Traditional Databases Struggle with Time-Series Workloads</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-introduction">1. Introduction<a href="#1-introduction" class="hash-link" aria-label="Direct link to 1. Introduction" title="Direct link to 1. Introduction" translate="no">​</a></h2>
+<p>In Part 16A, we learned what time-series data is and why specialized time-series databases exist.</p>
+<p>Now we need to understand a more important question:</p>
+<p><strong>Why can a traditional database struggle when handling large-scale time-series workloads?</strong></p>
+<p>Consider an infrastructure monitoring application.</p>
+<p>It monitors:</p>
+<ul>
+<li class="">10,000 servers.</li>
+<li class="">CPU utilization every 5 seconds.</li>
+<li class="">Memory utilization every 5 seconds.</li>
+<li class="">Disk utilization every 5 seconds.</li>
+<li class="">Network traffic every 5 seconds.</li>
+</ul>
+<p>Every server continuously generates measurements.</p>
+<p>As the system grows, the database must handle:</p>
+<ol>
+<li class="">A continuous stream of incoming writes.</li>
+<li class="">Millions or billions of historical records.</li>
+<li class="">Frequent time-range queries.</li>
+<li class="">Aggregations over large time intervals.</li>
+<li class="">Storage growth.</li>
+<li class="">Retention and deletion of old data.</li>
+<li class="">High-cardinality dimensions.</li>
+</ol>
+<p>A general-purpose database can handle time-series data, but its performance and operational costs depend on the workload and database architecture.</p>
+<p>Specialized time-series databases optimize their storage and query execution around these patterns.</p>
+<p>This chapter explains the underlying challenges.</p>
+<hr>
+<h1>2. Challenge 1 — High Write Throughput</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-what-is-write-throughput">2.1 What is write throughput?<a href="#21-what-is-write-throughput" class="hash-link" aria-label="Direct link to 2.1 What is write throughput?" title="Direct link to 2.1 What is write throughput?" translate="no">​</a></h2>
+<p>Write throughput is the amount of data a database can successfully write within a given period.</p>
+<p>It is commonly measured as:</p>
+<ul>
+<li class="">Writes per second.</li>
+<li class="">Inserts per second.</li>
+<li class="">Records per second.</li>
+<li class="">Bytes per second.</li>
+</ul>
+<p>Suppose a monitoring system has:</p>
+<ul>
+<li class="">10,000 servers.</li>
+<li class="">One measurement every 5 seconds.</li>
+<li class="">One measurement record per server per interval.</li>
+</ul>
+<p>Measurements per second:</p>
+<p>[
+\frac{10,000}{5} = 2,000
+]</p>
+<p><badge color="success">2,000 writes/second</badge></p>
+<p>Measurements per day:</p>
+<p>[
+2,000 \times 86,400 = 172,800,000
+]</p>
+<p>That is 172.8 million records per day.</p>
+<p>Now imagine each server produces 10 different metric records per interval.</p>
+<p>The ingestion rate becomes:</p>
+<p>[
+2,000 \times 10 = 20,000
+]</p>
+<p>That is 20,000 records per second.</p>
+<p>This is a substantial continuous write workload.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-why-can-traditional-databases-struggle">2.2 Why can traditional databases struggle?<a href="#22-why-can-traditional-databases-struggle" class="hash-link" aria-label="Direct link to 2.2 Why can traditional databases struggle?" title="Direct link to 2.2 Why can traditional databases struggle?" translate="no">​</a></h2>
+<p>A general-purpose relational database must manage more than simply writing a value to disk.</p>
+<p>Depending on the operation, it may need to handle:</p>
+<ul>
+<li class="">Transaction processing.</li>
+<li class="">Index maintenance.</li>
+<li class="">WAL (Write-Ahead Logging).</li>
+<li class="">Constraints.</li>
+<li class="">MVCC metadata.</li>
+<li class="">Replication.</li>
+<li class="">Buffer management.</li>
+<li class="">Storage-engine bookkeeping.</li>
+</ul>
+<p>These mechanisms are valuable for general-purpose database correctness and functionality.</p>
+<p>However, a workload consisting mostly of continuously inserted measurements may not need every general-purpose feature for every operation.</p>
+<p>The cost of maintaining indexes and other structures can become significant.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-index-maintenance-overhead">2.3 Index maintenance overhead<a href="#23-index-maintenance-overhead" class="hash-link" aria-label="Direct link to 2.3 Index maintenance overhead" title="Direct link to 2.3 Index maintenance overhead" translate="no">​</a></h2>
+<p>Suppose we have this table:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> server_metrics </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    server_id </span><span class="token keyword" style="color:#00009f">VARCHAR</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">50</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    recorded_at TIMESTAMPTZ</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    cpu_usage </span><span class="token keyword" style="color:#00009f">DOUBLE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRECISION</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>We create indexes:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_server_metrics_server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">server_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_server_metrics_time</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">recorded_at</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now every inserted row must also be reflected in the relevant index structures.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Incoming Record</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Database Table</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |---- Update Primary Key Index</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |---- Update Server Index</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |---- Update Timestamp Index</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Write Completion</span><br></div></code></pre></div></div>
+<p>Indexes improve query performance, but maintaining them adds write work.</p>
+<p>With millions of records, unnecessary indexes can become expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="24-how-do-time-series-databases-address-this">2.4 How do time-series databases address this?<a href="#24-how-do-time-series-databases-address-this" class="hash-link" aria-label="Direct link to 2.4 How do time-series databases address this?" title="Direct link to 2.4 How do time-series databases address this?" translate="no">​</a></h2>
+<p>Specialized TSDBs commonly optimize ingestion through techniques such as:</p>
+<ul>
+<li class="">Batch ingestion.</li>
+<li class="">Buffered writes.</li>
+<li class="">Sequential or append-oriented storage.</li>
+<li class="">Time-based partitioning.</li>
+<li class="">Efficient encoding.</li>
+<li class="">Compression.</li>
+<li class="">Specialized indexing.</li>
+</ul>
+<p>The exact implementation varies by database.</p>
+<p>For example, a system may buffer incoming measurements and write them in batches instead of independently processing every small record.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Incoming Measurements</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     |   |   |   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">     v   v   v   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Write Buffer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Batch Processing</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  Storage Engine</span><br></div></code></pre></div></div>
+<p>Batching can reduce per-operation overhead.</p>
+<p><strong>Important:</strong> Traditional databases can also support batching, partitioning, and efficient bulk ingestion. The advantage of a TSDB comes from optimizing the entire workload, not from possessing a feature that SQL databases lack.</p>
+<hr>
+<h1>3. Challenge 2 — Continuous Data Ingestion</h1>
+<p>Time-series systems often receive data continuously.</p>
+<p>Unlike a typical business application where users create or update records occasionally, a monitoring system may receive new measurements every second.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00 → CPU = 40%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:05 → CPU = 42%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:10 → CPU = 45%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:15 → CPU = 48%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:20 → CPU = 51%</span><br></div></code></pre></div></div>
+<p>This process continues throughout the day.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-why-continuous-ingestion-is-different">3.1 Why continuous ingestion is different<a href="#31-why-continuous-ingestion-is-different" class="hash-link" aria-label="Direct link to 3.1 Why continuous ingestion is different" title="Direct link to 3.1 Why continuous ingestion is different" translate="no">​</a></h2>
+<p>Suppose an application has 1,000 servers.</p>
+<p>Each server sends one record every second.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1,000 records/second</span><br></div></code></pre></div></div>
+<p>After one minute:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">60,000 records</span><br></div></code></pre></div></div>
+<p>After one hour:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">3,600,000 records</span><br></div></code></pre></div></div>
+<p>After one day:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">86,400,000 records</span><br></div></code></pre></div></div>
+<p>The database must handle the incoming stream without creating excessive write contention or storage overhead.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-write-amplification">3.2 Write amplification<a href="#32-write-amplification" class="hash-link" aria-label="Direct link to 3.2 Write amplification" title="Direct link to 3.2 Write amplification" translate="no">​</a></h2>
+<p>Write amplification refers to a situation where the storage system performs more physical write work than the amount of new logical data supplied by the application.</p>
+<p>For example, a single logical measurement may cause:</p>
+<ul>
+<li class="">Data-page modifications.</li>
+<li class="">Index updates.</li>
+<li class="">WAL or journal writes.</li>
+<li class="">Metadata updates.</li>
+<li class="">Later storage-engine maintenance.</li>
+</ul>
+<p>The actual physical write volume can exceed the application&#x27;s logical input volume.</p>
+<p>Different storage engines have different write-amplification characteristics.</p>
+<p>Specialized time-series systems attempt to reduce unnecessary storage work through buffering, batching, compression, and storage-engine design.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-batch-ingestion">3.3 Batch ingestion<a href="#33-batch-ingestion" class="hash-link" aria-label="Direct link to 3.3 Batch ingestion" title="Direct link to 3.3 Batch ingestion" translate="no">​</a></h2>
+<p>Instead of writing every measurement independently, an application can send multiple records in one batch.</p>
+<p>Individual writes:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> metric </span><span class="token keyword" style="color:#00009f">of</span><span class="token plain"> metrics</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">insertMetric</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">metric</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This can create many separate database operations.</p>
+<p>Batch-oriented approach:</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword control-flow" style="color:#00009f">await</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">insertMetrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">metrics</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The batch can be written in a single operation or a small number of operations.</p>
+<p>Benefits may include:</p>
+<ul>
+<li class="">Fewer network round trips.</li>
+<li class="">Lower request overhead.</li>
+<li class="">Better storage efficiency.</li>
+<li class="">Improved ingestion throughput.</li>
+</ul>
+<p><strong>Practical point:</strong> Even when using a specialized TSDB, batching and buffering are important ingestion design decisions.</p>
+<hr>
+<h1>4. Challenge 3 — Massive Historical Data</h1>
+<p>Time-series databases accumulate data continuously.</p>
+<p>The biggest problem is not always the speed of inserting new records. It is the amount of historical data that accumulates.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-storage-growth-calculation">4.1 Storage growth calculation<a href="#41-storage-growth-calculation" class="hash-link" aria-label="Direct link to 4.1 Storage growth calculation" title="Direct link to 4.1 Storage growth calculation" translate="no">​</a></h2>
+<p>Suppose:</p>
+<ul>
+<li class="">5,000 servers.</li>
+<li class="">One measurement every 10 seconds.</li>
+<li class="">Average logical record size: 200 bytes.</li>
+</ul>
+<p>Measurements per second:</p>
+<p>[
+\frac{5,000}{10} = 500
+]</p>
+<p>Measurements per day:</p>
+<p>[
+500 \times 86,400 = 43,200,000
+]</p>
+<p>Approximate logical data per day:</p>
+<p>[
+43,200,000 \times 200
+= 8,640,000,000 \text{ bytes}
+]</p>
+<p>Approximately 8.64 GB per day using decimal units.</p>
+<p>For 30 days:</p>
+<p>[
+8.64 \times 30 = 259.2 \text{ GB}
+]</p>
+<p>For one year:</p>
+<p>[
+8.64 \times 365 = 3,153.6 \text{ GB}
+]</p>
+<p>Approximately 3.15 TB of logical data per year.</p>
+<p>This is before considering actual storage-engine overhead, indexes, replication, and compression.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-why-historical-data-creates-challenges">4.2 Why historical data creates challenges<a href="#42-why-historical-data-creates-challenges" class="hash-link" aria-label="Direct link to 4.2 Why historical data creates challenges" title="Direct link to 4.2 Why historical data creates challenges" translate="no">​</a></h2>
+<p>As the dataset grows:</p>
+<ul>
+<li class="">Indexes become larger.</li>
+<li class="">Queries may touch more storage.</li>
+<li class="">Disk usage increases.</li>
+<li class="">Backups take longer.</li>
+<li class="">Replication transfers more data.</li>
+<li class="">Retention becomes important.</li>
+<li class="">Storage costs increase.</li>
+</ul>
+<p>A database that performs well with 10 million records may behave very differently with several billion records.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-historical-queries">4.3 Historical queries<a href="#43-historical-queries" class="hash-link" aria-label="Direct link to 4.3 Historical queries" title="Direct link to 4.3 Historical queries" translate="no">​</a></h2>
+<p>Suppose a monitoring dashboard requests:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Show average CPU usage for the last 90 days.</span><br></div></code></pre></div></div>
+<p>If the database stores one measurement every second for 1,000 servers:</p>
+<p>[
+90 \times 86,400 \times 1,000
+= 7,776,000,000
+]</p>
+<p>That is approximately 7.78 billion measurements.</p>
+<p>The database cannot efficiently process every historical record without an appropriate storage layout and query strategy.</p>
+<p>Time-series databases use techniques such as partition pruning, compression, and pre-aggregation to reduce the amount of work.</p>
+<hr>
+<h1>5. Challenge 4 — Time-Range Query Performance</h1>
+<p>Time-series applications frequently query records based on time intervals.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Last 5 minutes.</li>
+<li class="">Last 1 hour.</li>
+<li class="">Last 24 hours.</li>
+<li class="">Last 7 days.</li>
+<li class="">Last 90 days.</li>
+</ul>
+<p>This creates a strong need for efficient time-based data access.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-traditional-query-without-a-suitable-index">5.1 Traditional query without a suitable index<a href="#51-traditional-query-without-a-suitable-index" class="hash-link" aria-label="Direct link to 5.1 Traditional query without a suitable index" title="Direct link to 5.1 Traditional query without a suitable index" translate="no">​</a></h2>
+<p>Suppose a table contains 100 million records.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">SELECT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> server_metrics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">WHERE</span><span class="token plain"> recorded_at </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&#x27;2026-11-14 10:00:00+00&#x27;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">AND</span><span class="token plain"> recorded_at </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">  </span><span class="token string" style="color:#e3116c">&#x27;2026-11-14 11:00:00+00&#x27;</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Without a useful index or partition-pruning opportunity, the database may need to examine a large number of rows.</p>
+<p>A full table scan can become expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-b-tree-indexing-on-timestamps">5.2 B-Tree indexing on timestamps<a href="#52-b-tree-indexing-on-timestamps" class="hash-link" aria-label="Direct link to 5.2 B-Tree indexing on timestamps" title="Direct link to 5.2 B-Tree indexing on timestamps" translate="no">​</a></h2>
+<p>A relational database can create a timestamp index.</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_metrics_recorded_at</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">recorded_at</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>The index can help the database locate records within a time range.</p>
+<p>Conceptually:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Timestamp Index</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Ordered timestamp values</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Locate start of requested range</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Read matching entries</span><br></div></code></pre></div></div>
+<p>This can substantially improve time-range queries.</p>
+<p>However, an index does not make every large historical query cheap.</p>
+<p>If the requested interval contains hundreds of millions of records, the database still has substantial work to perform.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-time-based-partitioning">5.3 Time-based partitioning<a href="#53-time-based-partitioning" class="hash-link" aria-label="Direct link to 5.3 Time-based partitioning" title="Direct link to 5.3 Time-based partitioning" translate="no">​</a></h2>
+<p>One approach is to divide data into time-based partitions.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">server_metrics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |-- metrics_2026_11_12</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |-- metrics_2026_11_13</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |-- metrics_2026_11_14</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |-- metrics_2026_11_15</span><br></div></code></pre></div></div>
+<p>Suppose the application requests data for November 14.</p>
+<p>The database may only need to scan the relevant partition instead of considering every historical partition.</p>
+<p>This is called partition pruning when the query planner excludes partitions that cannot contain matching rows.</p>
+<p>Example in PostgreSQL:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> server_metrics </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    server_id </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    recorded_at TIMESTAMPTZ </span><span class="token operator" style="color:#393A34">NOT</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">NULL</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    cpu_usage </span><span class="token keyword" style="color:#00009f">DOUBLE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRECISION</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PARTITION</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">BY</span><span class="token plain"> RANGE </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">recorded_at</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Create a partition:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> server_metrics_2026_11_14</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">PARTITION</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">OF</span><span class="token plain"> server_metrics</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">FOR</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">VALUES</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">FROM</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;2026-11-14 00:00:00+00&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             </span><span class="token keyword" style="color:#00009f">TO</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;2026-11-15 00:00:00+00&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now a query restricted to that day can potentially use partition pruning.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="54-how-tsdbs-approach-time-range-queries">5.4 How TSDBs approach time-range queries<a href="#54-how-tsdbs-approach-time-range-queries" class="hash-link" aria-label="Direct link to 5.4 How TSDBs approach time-range queries" title="Direct link to 5.4 How TSDBs approach time-range queries" translate="no">​</a></h2>
+<p>Specialized systems often organize data around time internally.</p>
+<p>Depending on the product, they may use:</p>
+<ul>
+<li class="">Time-based partitions or chunks.</li>
+<li class="">Time-oriented indexes.</li>
+<li class="">Compressed blocks.</li>
+<li class="">Metadata indexes.</li>
+<li class="">Specialized query execution.</li>
+</ul>
+<p>This allows the system to avoid unnecessary historical data access.</p>
+<p><strong>Important:</strong> Time-based partitioning is not exclusive to TSDBs. PostgreSQL and other general-purpose databases support partitioning too.</p>
+<hr>
+<h1>6. Challenge 5 — Random I/O vs Sequential I/O</h1>
+<p>To understand storage performance, we need to understand two important concepts.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-random-io">6.1 Random I/O<a href="#61-random-io" class="hash-link" aria-label="Direct link to 6.1 Random I/O" title="Direct link to 6.1 Random I/O" translate="no">​</a></h2>
+<p>Random I/O involves reading or writing data at locations that are not necessarily adjacent on storage.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Disk blocks:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 4</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 5</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 6</span><br></div></code></pre></div></div>
+<p>A workload accesses:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Block 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 6</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 5</span><br></div></code></pre></div></div>
+<p>The access pattern jumps between locations.</p>
+<p>Random I/O can be expensive, particularly on storage devices where access latency depends heavily on location.</p>
+<p>Modern SSDs are much better at random access than traditional HDDs, but random I/O still has performance and resource costs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-sequential-io">6.2 Sequential I/O<a href="#62-sequential-io" class="hash-link" aria-label="Direct link to 6.2 Sequential I/O" title="Direct link to 6.2 Sequential I/O" translate="no">​</a></h2>
+<p>Sequential I/O accesses data in a more continuous order.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Block 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Block 4</span><br></div></code></pre></div></div>
+<p>Sequential access can improve storage throughput because data is read or written in larger contiguous operations.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-why-time-series-workloads-can-benefit-from-sequential-access">6.3 Why time-series workloads can benefit from sequential access<a href="#63-why-time-series-workloads-can-benefit-from-sequential-access" class="hash-link" aria-label="Direct link to 6.3 Why time-series workloads can benefit from sequential access" title="Direct link to 6.3 Why time-series workloads can benefit from sequential access" translate="no">​</a></h2>
+<p>Time-series records are naturally associated with a time order.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:01</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:02</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:03</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:04</span><br></div></code></pre></div></div>
+<p>If storage is organized into time-oriented blocks, the database can read relevant ranges more efficiently.</p>
+<p>Specialized TSDB architectures often exploit this property through append-oriented storage, buffering, block-based layouts, and compression.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-important-qualification">6.4 Important qualification<a href="#64-important-qualification" class="hash-link" aria-label="Direct link to 6.4 Important qualification" title="Direct link to 6.4 Important qualification" translate="no">​</a></h2>
+<p>Sequential storage is not automatically the best approach for every query.</p>
+<p>A time-series application may also need to retrieve records for:</p>
+<ul>
+<li class="">A particular server.</li>
+<li class="">A particular sensor.</li>
+<li class="">A specific region.</li>
+<li class="">A particular metric.</li>
+</ul>
+<p>A good storage architecture must balance time ordering with dimension-based access.</p>
+<hr>
+<h1>7. Challenge 6 — Indexing Overhead</h1>
+<p>Indexes improve query performance, but they consume resources.</p>
+<p>Consider:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> server_metrics </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    id BIGSERIAL </span><span class="token keyword" style="color:#00009f">PRIMARY</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">KEY</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    server_id </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    region </span><span class="token keyword" style="color:#00009f">TEXT</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    recorded_at TIMESTAMPTZ</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    cpu_usage </span><span class="token keyword" style="color:#00009f">DOUBLE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRECISION</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    memory_usage </span><span class="token keyword" style="color:#00009f">DOUBLE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">PRECISION</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Suppose we create:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_server</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">server_id</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_region</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">region</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_recorded_at</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">recorded_at</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">CREATE</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">INDEX</span><span class="token plain"> idx_cpu</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">ON</span><span class="token plain"> server_metrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">cpu_usage</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>Now every inserted record requires maintaining multiple indexes.</p>
+<p>This can create:</p>
+<ul>
+<li class="">More disk writes.</li>
+<li class="">More storage usage.</li>
+<li class="">More cache pressure.</li>
+<li class="">More index maintenance.</li>
+<li class="">Slower ingestion.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-the-indexing-tradeoff">7.1 The indexing tradeoff<a href="#71-the-indexing-tradeoff" class="hash-link" aria-label="Direct link to 7.1 The indexing tradeoff" title="Direct link to 7.1 The indexing tradeoff" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>More indexes</th><th>Fewer indexes</th></tr></thead><tbody><tr><td>More query access paths</td><td>Less index maintenance</td></tr><tr><td>Can improve selected queries</td><td>Can improve ingestion efficiency</td></tr><tr><td>More storage consumption</td><td>Lower index storage</td></tr><tr><td>More write overhead</td><td>Less write overhead</td></tr></tbody></table>
+<p>The correct solution is not to remove every index.</p>
+<p>Instead, identify the queries the application actually executes and build appropriate indexes.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-how-tsdbs-optimize-indexing">7.2 How TSDBs optimize indexing<a href="#72-how-tsdbs-optimize-indexing" class="hash-link" aria-label="Direct link to 7.2 How TSDBs optimize indexing" title="Direct link to 7.2 How TSDBs optimize indexing" translate="no">​</a></h2>
+<p>Time-series systems may use:</p>
+<ul>
+<li class="">Compact metadata indexes.</li>
+<li class="">Time-oriented indexes.</li>
+<li class="">Block-level indexes.</li>
+<li class="">Column-oriented storage.</li>
+<li class="">Compressed data blocks.</li>
+</ul>
+<p>The goal is to avoid maintaining a large conventional row-oriented index structure for every individual measurement when the workload does not require it.</p>
+<p>Implementation differs across databases.</p>
+<hr>
+<h1>8. Challenge 7 — High Cardinality</h1>
+<p>This is one of the most important concepts in time-series database design.</p>
+<p>A poorly designed time-series schema can create serious performance and memory problems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-what-is-cardinality">8.1 What is cardinality?<a href="#81-what-is-cardinality" class="hash-link" aria-label="Direct link to 8.1 What is cardinality?" title="Direct link to 8.1 What is cardinality?" translate="no">​</a></h2>
+<p>Cardinality refers to the number of unique values in a dimension or the number of unique combinations of dimensions.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">region:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- india</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- usa</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- uk</span><br></div></code></pre></div></div>
+<p>There are three unique region values.</p>
+<p>Now consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">server:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- server-001</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- server-002</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- server-003</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">...</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">- server-10000</span><br></div></code></pre></div></div>
+<p>There are 10,000 unique server values.</p>
+<p>The server dimension has higher cardinality.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-low-cardinality-dimensions">8.2 Low-cardinality dimensions<a href="#82-low-cardinality-dimensions" class="hash-link" aria-label="Direct link to 8.2 Low-cardinality dimensions" title="Direct link to 8.2 Low-cardinality dimensions" translate="no">​</a></h2>
+<p>Examples:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Dimension</th><th style="text-align:right">Approximate unique values</th></tr></thead><tbody><tr><td>Environment</td><td style="text-align:right">3</td></tr><tr><td>Region</td><td style="text-align:right">10</td></tr><tr><td>HTTP method</td><td style="text-align:right">5</td></tr><tr><td>Status class</td><td style="text-align:right">5</td></tr></tbody></table>
+<p>These are relatively low-cardinality dimensions.</p>
+<p>They are commonly useful for grouping and filtering.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="83-high-cardinality-dimensions">8.3 High-cardinality dimensions<a href="#83-high-cardinality-dimensions" class="hash-link" aria-label="Direct link to 8.3 High-cardinality dimensions" title="Direct link to 8.3 High-cardinality dimensions" translate="no">​</a></h2>
+<p>Examples:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Dimension</th><th style="text-align:right">Possible unique values</th></tr></thead><tbody><tr><td>User ID</td><td style="text-align:right">Millions</td></tr><tr><td>Request ID</td><td style="text-align:right">Billions</td></tr><tr><td>Session ID</td><td style="text-align:right">Millions</td></tr><tr><td>Random UUID</td><td style="text-align:right">Potentially enormous</td></tr><tr><td>Unique URL containing user identifiers</td><td style="text-align:right">Potentially enormous</td></tr></tbody></table>
+<p>These can create expensive indexing and metadata structures in some time-series systems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="84-example-of-a-cardinality-problem">8.4 Example of a cardinality problem<a href="#84-example-of-a-cardinality-problem" class="hash-link" aria-label="Direct link to 8.4 Example of a cardinality problem" title="Direct link to 8.4 Example of a cardinality problem" translate="no">​</a></h2>
+<p>Suppose every API request generates a metric:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:00Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;endpoint&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;/api/products&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;request_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;REQ-839274829&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;response_time&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">120</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Now imagine <code>request_id</code> is stored as an indexed tag.</p>
+<p>Every request may introduce a new unique value.</p>
+<p>After millions of requests, the number of unique tag values becomes extremely large.</p>
+<p>This can create excessive index and metadata overhead.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="85-better-design">8.5 Better design<a href="#85-better-design" class="hash-link" aria-label="Direct link to 8.5 Better design" title="Direct link to 8.5 Better design" translate="no">​</a></h2>
+<p>Instead of indexing every request ID as a metric dimension, consider:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:00Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;endpoint&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;/api/products&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;region&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;india&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;status&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;200&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;response_time&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">120</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>Keep high-cardinality identifiers in a suitable event or trace store if individual-event lookup is required.</p>
+<p>Use metrics for aggregated measurements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="86-cardinality-vs-data-volume">8.6 Cardinality vs data volume<a href="#86-cardinality-vs-data-volume" class="hash-link" aria-label="Direct link to 8.6 Cardinality vs data volume" title="Direct link to 8.6 Cardinality vs data volume" translate="no">​</a></h2>
+<p>These are different concepts.</p>
+<p><strong>Data volume</strong> is how much data is stored or ingested.</p>
+<p><strong>Cardinality</strong> is how many distinct dimension values or combinations exist.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1 billion measurements</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">3 regions</span><br></div></code></pre></div></div>
+<p>This may have enormous data volume but relatively low region cardinality.</p>
+<p>Another example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">1 million measurements</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1 million unique request IDs</span><br></div></code></pre></div></div>
+<p>This has lower data volume but extremely high cardinality for the request ID dimension.</p>
+<p>A system can struggle with either problem.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="87-cardinality-and-dimensional-combinations">8.7 Cardinality and dimensional combinations<a href="#87-cardinality-and-dimensional-combinations" class="hash-link" aria-label="Direct link to 8.7 Cardinality and dimensional combinations" title="Direct link to 8.7 Cardinality and dimensional combinations" translate="no">​</a></h2>
+<p>Suppose metrics use these dimensions:</p>
+<ul>
+<li class="">100 servers.</li>
+<li class="">10 regions.</li>
+<li class="">5 environments.</li>
+<li class="">20 endpoints.</li>
+</ul>
+<p>The maximum possible combination count is:</p>
+<p>[
+100 \times 10 \times 5 \times 20 = 1,000,000
+]</p>
+<p>This is a theoretical upper bound if every combination exists.</p>
+<p>Adding another dimension with 100,000 unique values can dramatically increase the number of possible combinations.</p>
+<p>This is why metric-label and tag design matters.</p>
+<p><strong>Rule:</strong> Avoid using arbitrary unique identifiers as indexed metric dimensions unless the chosen database is designed and sized for that cardinality.</p>
+<hr>
+<h1>9. Challenge 8 — Storage Growth and Retention</h1>
+<p>Time-series data keeps arriving.</p>
+<p>If the application never deletes or summarizes old measurements, storage requirements continue increasing.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Day 1  → 10 GB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Day 2  → 20 GB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Day 3  → 30 GB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Day 4  → 40 GB</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">...</span><br></div></code></pre></div></div>
+<p>Eventually, storage becomes expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-why-not-keep-everything-forever">9.1 Why not keep everything forever?<a href="#91-why-not-keep-everything-forever" class="hash-link" aria-label="Direct link to 9.1 Why not keep everything forever?" title="Direct link to 9.1 Why not keep everything forever?" translate="no">​</a></h2>
+<p>Not every historical record needs the same level of detail.</p>
+<p>Suppose a monitoring system collects CPU usage every five seconds.</p>
+<p>For recent incidents, five-second precision may be valuable.</p>
+<p>For a report covering the previous year, one-hour averages may be sufficient.</p>
+<p>Keeping all raw data forever can be unnecessarily expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-retention-policies">9.2 Retention policies<a href="#92-retention-policies" class="hash-link" aria-label="Direct link to 9.2 Retention policies" title="Direct link to 9.2 Retention policies" translate="no">​</a></h2>
+<p>A retention policy defines how long data remains available.</p>
+<p>Example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data type</th><th>Retention</th></tr></thead><tbody><tr><td>Raw 5-second measurements</td><td>7 days</td></tr><tr><td>1-minute aggregates</td><td>90 days</td></tr><tr><td>1-hour aggregates</td><td>2 years</td></tr><tr><td>Daily summaries</td><td>5 years</td></tr></tbody></table>
+<p>A retention policy can remove expired data automatically.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-why-time-based-deletion-matters">9.3 Why time-based deletion matters<a href="#93-why-time-based-deletion-matters" class="hash-link" aria-label="Direct link to 9.3 Why time-based deletion matters" title="Direct link to 9.3 Why time-based deletion matters" translate="no">​</a></h2>
+<p>Suppose the database contains:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">November 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">November 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">November 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">...</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">November 30</span><br></div></code></pre></div></div>
+<p>The system needs to remove data older than a configured retention period.</p>
+<p>Deleting millions of rows individually can create substantial overhead.</p>
+<p>In a partitioned database, dropping or detaching an entire old partition can be much more efficient than deleting every row separately.</p>
+<p>Example:</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">DROP</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">TABLE</span><span class="token plain"> server_metrics_2026_01</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p>This is only appropriate when the partition is no longer needed and the database&#x27;s partition-management process is designed accordingly.</p>
+<p>Specialized TSDBs often provide retention features that automate time-based expiration.</p>
+<hr>
+<h1>10. Challenge 9 — Aggregating Large Historical Datasets</h1>
+<p>Suppose an application collects CPU measurements every second.</p>
+<p>The user opens a dashboard and requests:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Average CPU usage over the last 12 months.</span><br></div></code></pre></div></div>
+<p>The database may need to process a very large number of records.</p>
+<p>If the dashboard only displays monthly averages, scanning every raw observation is often unnecessary.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-raw-data-aggregation">10.1 Raw data aggregation<a href="#101-raw-data-aggregation" class="hash-link" aria-label="Direct link to 10.1 Raw data aggregation" title="Direct link to 10.1 Raw data aggregation" translate="no">​</a></h2>
+<p>Suppose we have:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">January:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1, 2, 3, 4, 5, ...</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">February:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1, 2, 3, 4, 5, ...</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">March:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1, 2, 3, 4, 5, ...</span><br></div></code></pre></div></div>
+<p>The system calculates averages directly from raw data.</p>
+<p>For large datasets, this can be expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-pre-aggregation">10.2 Pre-aggregation<a href="#102-pre-aggregation" class="hash-link" aria-label="Direct link to 10.2 Pre-aggregation" title="Direct link to 10.2 Pre-aggregation" translate="no">​</a></h2>
+<p>Instead, the system can calculate and store summarized data.</p>
+<p>Example:</p>
+<p>Raw data:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00 → 30%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:01 → 35%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:02 → 40%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:03 → 45%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:04 → 50%</span><br></div></code></pre></div></div>
+<p>One-minute summary:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00 → Average CPU: 40%</span><br></div></code></pre></div></div>
+<p>Now a dashboard querying monthly averages can operate on much less data.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-downsampling">10.3 Downsampling<a href="#103-downsampling" class="hash-link" aria-label="Direct link to 10.3 Downsampling" title="Direct link to 10.3 Downsampling" translate="no">​</a></h2>
+<p>Downsampling reduces the time resolution of data.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Raw:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Every 1 second</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Downsampled:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Every 1 minute</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Further downsampled:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Every 1 hour</span><br></div></code></pre></div></div>
+<p>This reduces the amount of data needed for long-term analysis.</p>
+<p>However, aggregation must preserve the statistics the application needs.</p>
+<p>For example, storing only an average may be insufficient if users later need maximum and minimum values.</p>
+<p>A better aggregate may store:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:00Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;average_cpu&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">42.5</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;minimum_cpu&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">20.1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;maximum_cpu&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">89.7</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;sample_count&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">60</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>For mathematically correct rollups, maintain sufficient information to combine aggregates. For averages, this generally means retaining sum and count rather than averaging averages without weighting.</p>
+<p>We will study this in Part 16D.</p>
+<hr>
+<h1>11. Challenge 10 — Updates and Deletes</h1>
+<p>Time-series workloads are often append-heavy.</p>
+<p>Measurements are usually inserted once and then queried repeatedly.</p>
+<p>This means the database can optimize for a different pattern than a transactional application where records are frequently updated.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="111-traditional-application-workload">11.1 Traditional application workload<a href="#111-traditional-application-workload" class="hash-link" aria-label="Direct link to 11.1 Traditional application workload" title="Direct link to 11.1 Traditional application workload" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User profile created</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Email updated</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Address updated</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Profile modified again</span><br></div></code></pre></div></div>
+<p>Records may change over time.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="112-time-series-workload">11.2 Time-series workload<a href="#112-time-series-workload" class="hash-link" aria-label="Direct link to 11.2 Time-series workload" title="Direct link to 11.2 Time-series workload" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00 → CPU = 40%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:05 → CPU = 45%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:10 → CPU = 43%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:15 → CPU = 48%</span><br></div></code></pre></div></div>
+<p>Each new measurement represents a new observation.</p>
+<p>Historical measurements are often not modified.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="113-why-this-difference-matters">11.3 Why this difference matters<a href="#113-why-this-difference-matters" class="hash-link" aria-label="Direct link to 11.3 Why this difference matters" title="Direct link to 11.3 Why this difference matters" translate="no">​</a></h2>
+<p>A storage engine optimized for frequent updates and deletes may maintain additional structures to handle those operations efficiently and safely.</p>
+<p>A time-series workload often benefits from append-oriented storage because old measurements rarely change.</p>
+<p>This can simplify some aspects of storage organization.</p>
+<p>However, real time-series systems still need to handle:</p>
+<ul>
+<li class="">Late-arriving measurements.</li>
+<li class="">Duplicate measurements.</li>
+<li class="">Corrections.</li>
+<li class="">Out-of-order timestamps.</li>
+<li class="">Data deletion.</li>
+<li class="">Retention.</li>
+</ul>
+<p>Append-heavy does not mean write-once under every circumstance.</p>
+<hr>
+<h1>12. Challenge 11 — Out-of-Order Data and Late Arrivals</h1>
+<p>An important practical issue is that measurements do not always arrive in timestamp order.</p>
+<p>Suppose sensors generate:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00 → 30%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:05 → 35%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:10 → 40%</span><br></div></code></pre></div></div>
+<p>But due to network delays, the database receives:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">10:00:00 → 30%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:10 → 40%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">10:00:05 → 35%</span><br></div></code></pre></div></div>
+<p>The data arrives out of order.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="121-why-can-this-happen">12.1 Why can this happen?<a href="#121-why-can-this-happen" class="hash-link" aria-label="Direct link to 12.1 Why can this happen?" title="Direct link to 12.1 Why can this happen?" translate="no">​</a></h2>
+<ul>
+<li class="">Network latency.</li>
+<li class="">Device connectivity problems.</li>
+<li class="">Buffering.</li>
+<li class="">Queue delays.</li>
+<li class="">Batch delivery.</li>
+<li class="">Clock differences.</li>
+<li class="">Retries.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="122-why-does-it-matter">12.2 Why does it matter?<a href="#122-why-does-it-matter" class="hash-link" aria-label="Direct link to 12.2 Why does it matter?" title="Direct link to 12.2 Why does it matter?" translate="no">​</a></h2>
+<p>A TSDB may organize data into time-oriented blocks.</p>
+<p>Late-arriving data can require additional work to insert into older time ranges or update existing storage structures.</p>
+<p>The exact cost depends on the database.</p>
+<p>Applications should distinguish:</p>
+<ul>
+<li class="">Event time: when the measurement actually occurred.</li>
+<li class="">Ingestion time: when the database or collector received it.</li>
+</ul>
+<p>Example:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;event_time&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:05Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;ingested_at&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:12Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;cpu_usage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">35</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>This distinction is important for delayed sensor data and event pipelines.</p>
+<hr>
+<h1>13. Challenge 12 — Storage and Query Tradeoffs</h1>
+<p>No storage architecture is optimal for every operation.</p>
+<p>Consider three requirements:</p>
+<ol>
+<li class="">High write throughput.</li>
+<li class="">Fast historical queries.</li>
+<li class="">Low storage consumption.</li>
+</ol>
+<p>Improving one can affect the others.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Design choice</th><th>Benefit</th><th>Cost</th></tr></thead><tbody><tr><td>More indexes</td><td>Faster selected queries</td><td>More write overhead and storage</td></tr><tr><td>More frequent compression</td><td>Lower storage</td><td>CPU cost and possible write complexity</td></tr><tr><td>Longer retention</td><td>More historical information</td><td>Higher storage requirements</td></tr><tr><td>More aggressive downsampling</td><td>Smaller historical datasets</td><td>Less detail</td></tr><tr><td>More frequent pre-aggregation</td><td>Faster dashboard queries</td><td>Additional storage and processing</td></tr><tr><td>Larger batches</td><td>Lower ingestion overhead</td><td>Potentially higher write latency</td></tr></tbody></table>
+<p>The right architecture depends on the application.</p>
+<p>Example:</p>
+<p>A real-time monitoring dashboard may prioritize recent metric visibility.</p>
+<p>A historical analytics platform may prioritize compression and long-term storage.</p>
+<p>They have different requirements.</p>
+<hr>
+<h1>14. How Specialized Time-Series Databases Address These Challenges</h1>
+<p>Let&#x27;s connect the problems to common TSDB design approaches.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Challenge</th><th>Common TSDB approach</th></tr></thead><tbody><tr><td>High write throughput</td><td>Buffered and batch ingestion</td></tr><tr><td>Continuous ingestion</td><td>Append-oriented storage</td></tr><tr><td>Large historical data</td><td>Compression and retention</td></tr><tr><td>Slow time-range queries</td><td>Time-based partitioning and indexing</td></tr><tr><td>Excessive random I/O</td><td>Block-oriented and sequential access patterns</td></tr><tr><td>Index overhead</td><td>Specialized metadata and indexing structures</td></tr><tr><td>High cardinality</td><td>Cardinality-aware data modeling and indexing</td></tr><tr><td>Large aggregations</td><td>Time-window aggregation and pre-aggregation</td></tr><tr><td>Storage growth</td><td>Retention and downsampling</td></tr><tr><td>Frequent updates</td><td>Append-oriented design, with support for corrections as required</td></tr><tr><td>Late-arriving data</td><td>Out-of-order ingestion handling</td></tr><tr><td>Long-term dashboard queries</td><td>Rollups and compressed historical storage</td></tr></tbody></table>
+<p>These are common techniques, not a guarantee that every TSDB implements every feature in the same way.</p>
+<hr>
+<h1>15. Practical Example — Monitoring a Node.js Application</h1>
+<p>Let&#x27;s design a monitoring workload similar to a production backend.</p>
+<p>Suppose we run five Node.js applications.</p>
+<p>Each application produces metrics:</p>
+<ul>
+<li class="">CPU usage.</li>
+<li class="">Memory usage.</li>
+<li class="">Request count.</li>
+<li class="">Average response time.</li>
+<li class="">Error count.</li>
+</ul>
+<p>Assume each application exports one metric batch every five seconds.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="151-data-model">15.1 Data model<a href="#151-data-model" class="hash-link" aria-label="Direct link to 15.1 Data model" title="Direct link to 15.1 Data model" translate="no">​</a></h2>
+<p>Example:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;2026-11-14T10:00:00Z&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;application&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;campaign-api&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;environment&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;production&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;region&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;india&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;cpu_usage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">45.5</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;memory_usage&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">72.1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;request_count&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">250</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;average_response_time_ms&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">125</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token property" style="color:#36acaa">&quot;error_count&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="152-ingestion-calculation">15.2 Ingestion calculation<a href="#152-ingestion-calculation" class="hash-link" aria-label="Direct link to 15.2 Ingestion calculation" title="Direct link to 15.2 Ingestion calculation" translate="no">​</a></h2>
+<p>Five applications:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">5 applications × 1 batch every 5 seconds</span><br></div></code></pre></div></div>
+<p>Batches per second:</p>
+<p>[
+\frac{5}{5} = 1
+]</p>
+<p>Batches per day:</p>
+<p>[
+1 \times 86,400 = 86,400
+]</p>
+<p>If each batch contains 100 individual metric samples:</p>
+<p>[
+86,400 \times 100 = 8,640,000
+]</p>
+<p>Approximately 8.64 million samples per day.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="153-query-requirements">15.3 Query requirements<a href="#153-query-requirements" class="hash-link" aria-label="Direct link to 15.3 Query requirements" title="Direct link to 15.3 Query requirements" translate="no">​</a></h2>
+<p>The monitoring dashboard needs:</p>
+<ul>
+<li class="">CPU usage for the last hour.</li>
+<li class="">Maximum memory usage today.</li>
+<li class="">Error count per application.</li>
+<li class="">Average response time per endpoint.</li>
+<li class="">Daily request volume.</li>
+</ul>
+<p>These queries are naturally time-oriented.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="154-what-problems-might-appear-as-the-application-grows">15.4 What problems might appear as the application grows?<a href="#154-what-problems-might-appear-as-the-application-grows" class="hash-link" aria-label="Direct link to 15.4 What problems might appear as the application grows?" title="Direct link to 15.4 What problems might appear as the application grows?" translate="no">​</a></h2>
+<ol>
+<li class="">More applications increase ingestion.</li>
+<li class="">More endpoints increase dimension cardinality.</li>
+<li class="">Historical data increases storage.</li>
+<li class="">Long-range dashboards scan more data.</li>
+<li class="">Excessive labels create indexing overhead.</li>
+<li class="">Frequent dashboard refreshes create query load.</li>
+<li class="">Long retention increases storage costs.</li>
+</ol>
+<p>A TSDB architecture can address these challenges through batching, compression, partitioning, aggregation, and retention.</p>
+<hr>
+<h1>16. Practical Database Design Guidelines</h1>
+<p>When designing a time-series system, follow these principles.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="161-identify-the-measurement-frequency">16.1 Identify the measurement frequency<a href="#161-identify-the-measurement-frequency" class="hash-link" aria-label="Direct link to 16.1 Identify the measurement frequency" title="Direct link to 16.1 Identify the measurement frequency" translate="no">​</a></h2>
+<p>Ask:</p>
+<ul>
+<li class="">How often is each metric generated?</li>
+<li class="">How many devices or applications generate it?</li>
+<li class="">Can measurements arrive in batches?</li>
+<li class="">What is the expected peak ingestion rate?</li>
+</ul>
+<p>Calculate daily and yearly data volume before selecting infrastructure.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="162-design-dimensions-carefully">16.2 Design dimensions carefully<a href="#162-design-dimensions-carefully" class="hash-link" aria-label="Direct link to 16.2 Design dimensions carefully" title="Direct link to 16.2 Design dimensions carefully" translate="no">​</a></h2>
+<p>Use dimensions that support actual query requirements.</p>
+<p>Examples:</p>
+<ul>
+<li class="">Application.</li>
+<li class="">Environment.</li>
+<li class="">Region.</li>
+<li class="">Server.</li>
+<li class="">Endpoint.</li>
+</ul>
+<p>Avoid blindly indexing:</p>
+<ul>
+<li class="">Request IDs.</li>
+<li class="">Random UUIDs.</li>
+<li class="">Unique session IDs.</li>
+<li class="">Arbitrary user identifiers.</li>
+</ul>
+<p>Use a separate event or trace storage design when individual-event lookup is necessary.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="163-define-retention-requirements">16.3 Define retention requirements<a href="#163-define-retention-requirements" class="hash-link" aria-label="Direct link to 16.3 Define retention requirements" title="Direct link to 16.3 Define retention requirements" translate="no">​</a></h2>
+<p>Decide:</p>
+<ul>
+<li class="">How long raw data is needed.</li>
+<li class="">How long aggregated data is needed.</li>
+<li class="">Which data can be deleted.</li>
+<li class="">Which metrics require long-term history.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="164-define-dashboard-query-patterns">16.4 Define dashboard query patterns<a href="#164-define-dashboard-query-patterns" class="hash-link" aria-label="Direct link to 16.4 Define dashboard query patterns" title="Direct link to 16.4 Define dashboard query patterns" translate="no">​</a></h2>
+<p>Understand the actual queries:</p>
+<ul>
+<li class="">Last 5 minutes.</li>
+<li class="">Last 1 hour.</li>
+<li class="">Last 24 hours.</li>
+<li class="">Average per minute.</li>
+<li class="">Maximum per hour.</li>
+<li class="">Group by server.</li>
+<li class="">Group by region.</li>
+</ul>
+<p>Storage and indexing should support these patterns.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="165-consider-late-arriving-data">16.5 Consider late-arriving data<a href="#165-consider-late-arriving-data" class="hash-link" aria-label="Direct link to 16.5 Consider late-arriving data" title="Direct link to 16.5 Consider late-arriving data" translate="no">​</a></h2>
+<p>Determine:</p>
+<ul>
+<li class="">Whether measurements can arrive late.</li>
+<li class="">How far back late data can arrive.</li>
+<li class="">Whether duplicates are possible.</li>
+<li class="">How timestamps are synchronized.</li>
+<li class="">How corrections are handled.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="166-avoid-unnecessary-metric-granularity">16.6 Avoid unnecessary metric granularity<a href="#166-avoid-unnecessary-metric-granularity" class="hash-link" aria-label="Direct link to 16.6 Avoid unnecessary metric granularity" title="Direct link to 16.6 Avoid unnecessary metric granularity" translate="no">​</a></h2>
+<p>Collecting every possible measurement at the highest frequency can create enormous storage and ingestion costs.</p>
+<p>The sampling interval should match the operational value of the metric.</p>
+<p>For example:</p>
+<ul>
+<li class="">CPU monitoring may need five-second resolution.</li>
+<li class="">A daily business KPI may need only daily resolution.</li>
+</ul>
+<hr>
+<h1>17. Interview Questions and Answers</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-why-can-traditional-databases-struggle-with-large-time-series-workloads">Q1. Why can traditional databases struggle with large time-series workloads?<a href="#q1-why-can-traditional-databases-struggle-with-large-time-series-workloads" class="hash-link" aria-label="Direct link to Q1. Why can traditional databases struggle with large time-series workloads?" title="Direct link to Q1. Why can traditional databases struggle with large time-series workloads?" translate="no">​</a></h2>
+<p>Because continuous high-volume ingestion, large historical datasets, time-range queries, aggregation workloads, and retention requirements can create substantial indexing, storage, and query overhead.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-can-postgresql-handle-time-series-data">Q2. Can PostgreSQL handle time-series data?<a href="#q2-can-postgresql-handle-time-series-data" class="hash-link" aria-label="Direct link to Q2. Can PostgreSQL handle time-series data?" title="Direct link to Q2. Can PostgreSQL handle time-series data?" translate="no">​</a></h2>
+<p>Yes. PostgreSQL supports timestamp columns, B-Tree indexes, table partitioning, aggregation, and other useful features. TimescaleDB adds specialized time-series functionality.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-write-throughput">Q3. What is write throughput?<a href="#q3-what-is-write-throughput" class="hash-link" aria-label="Direct link to Q3. What is write throughput?" title="Direct link to Q3. What is write throughput?" translate="no">​</a></h2>
+<p>The number of records or amount of data a database can successfully write per unit of time.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-write-amplification">Q4. What is write amplification?<a href="#q4-what-is-write-amplification" class="hash-link" aria-label="Direct link to Q4. What is write amplification?" title="Direct link to Q4. What is write amplification?" translate="no">​</a></h2>
+<p>It is the additional physical storage work caused by a logical write, such as data-page writes, index updates, logs, and storage-engine maintenance.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-why-is-indexing-expensive-in-write-heavy-workloads">Q5. Why is indexing expensive in write-heavy workloads?<a href="#q5-why-is-indexing-expensive-in-write-heavy-workloads" class="hash-link" aria-label="Direct link to Q5. Why is indexing expensive in write-heavy workloads?" title="Direct link to Q5. Why is indexing expensive in write-heavy workloads?" translate="no">​</a></h2>
+<p>Every relevant index must be maintained when records are inserted or modified. This increases CPU, storage, and I/O work.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-what-is-partition-pruning">Q6. What is partition pruning?<a href="#q6-what-is-partition-pruning" class="hash-link" aria-label="Direct link to Q6. What is partition pruning?" title="Direct link to Q6. What is partition pruning?" translate="no">​</a></h2>
+<p>Partition pruning is when a database excludes partitions that cannot contain records matching a query.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-why-is-time-based-partitioning-useful">Q7. Why is time-based partitioning useful?<a href="#q7-why-is-time-based-partitioning-useful" class="hash-link" aria-label="Direct link to Q7. Why is time-based partitioning useful?" title="Direct link to Q7. Why is time-based partitioning useful?" translate="no">​</a></h2>
+<p>It organizes historical records into time ranges, allowing relevant partitions to be accessed while unrelated historical partitions can be skipped.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-what-is-the-difference-between-random-and-sequential-io">Q8. What is the difference between random and sequential I/O?<a href="#q8-what-is-the-difference-between-random-and-sequential-io" class="hash-link" aria-label="Direct link to Q8. What is the difference between random and sequential I/O?" title="Direct link to Q8. What is the difference between random and sequential I/O?" translate="no">​</a></h2>
+<p>Random I/O accesses non-adjacent storage locations. Sequential I/O accesses data in a more continuous order.</p>
+<p>Sequential access can provide better throughput for suitable workloads.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-what-is-cardinality">Q9. What is cardinality?<a href="#q9-what-is-cardinality" class="hash-link" aria-label="Direct link to Q9. What is cardinality?" title="Direct link to Q9. What is cardinality?" translate="no">​</a></h2>
+<p>Cardinality refers to the number of distinct values or combinations in a dimension or indexed field.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-why-is-high-cardinality-problematic">Q10. Why is high cardinality problematic?<a href="#q10-why-is-high-cardinality-problematic" class="hash-link" aria-label="Direct link to Q10. Why is high cardinality problematic?" title="Direct link to Q10. Why is high cardinality problematic?" translate="no">​</a></h2>
+<p>High-cardinality dimensions can create large indexing and metadata structures, consuming memory and storage and making queries more expensive.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-is-data-volume-the-same-as-cardinality">Q11. Is data volume the same as cardinality?<a href="#q11-is-data-volume-the-same-as-cardinality" class="hash-link" aria-label="Direct link to Q11. Is data volume the same as cardinality?" title="Direct link to Q11. Is data volume the same as cardinality?" translate="no">​</a></h2>
+<p>No. Data volume measures how much data exists. Cardinality measures how many distinct values or combinations exist.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-why-are-retention-policies-important">Q12. Why are retention policies important?<a href="#q12-why-are-retention-policies-important" class="hash-link" aria-label="Direct link to Q12. Why are retention policies important?" title="Direct link to Q12. Why are retention policies important?" translate="no">​</a></h2>
+<p>They prevent historical data from growing indefinitely by automatically removing data that is no longer required.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-downsampling">Q13. What is downsampling?<a href="#q13-what-is-downsampling" class="hash-link" aria-label="Direct link to Q13. What is downsampling?" title="Direct link to Q13. What is downsampling?" translate="no">​</a></h2>
+<p>Downsampling reduces the resolution of historical data, such as converting five-second measurements into one-minute summaries.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q14-what-is-pre-aggregation">Q14. What is pre-aggregation?<a href="#q14-what-is-pre-aggregation" class="hash-link" aria-label="Direct link to Q14. What is pre-aggregation?" title="Direct link to Q14. What is pre-aggregation?" translate="no">​</a></h2>
+<p>Pre-aggregation calculates and stores summaries before a query needs them, reducing repeated computation over raw data.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q15-what-is-out-of-order-data">Q15. What is out-of-order data?<a href="#q15-what-is-out-of-order-data" class="hash-link" aria-label="Direct link to Q15. What is out-of-order data?" title="Direct link to Q15. What is out-of-order data?" translate="no">​</a></h2>
+<p>It is data that arrives in a different order from its event timestamps.</p>
+<p>For example, a measurement from 10:00:05 may arrive after a measurement from 10:00:10.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q16-what-is-the-difference-between-event-time-and-ingestion-time">Q16. What is the difference between event time and ingestion time?<a href="#q16-what-is-the-difference-between-event-time-and-ingestion-time" class="hash-link" aria-label="Direct link to Q16. What is the difference between event time and ingestion time?" title="Direct link to Q16. What is the difference between event time and ingestion time?" translate="no">​</a></h2>
+<p>Event time is when the measurement occurred. Ingestion time is when the storage or collection system received it.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q17-why-are-time-series-workloads-often-append-heavy">Q17. Why are time-series workloads often append-heavy?<a href="#q17-why-are-time-series-workloads-often-append-heavy" class="hash-link" aria-label="Direct link to Q17. Why are time-series workloads often append-heavy?" title="Direct link to Q17. Why are time-series workloads often append-heavy?" translate="no">​</a></h2>
+<p>Because monitoring systems continuously generate new observations, while historical measurements are frequently read and aggregated rather than updated.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q18-does-every-time-series-workload-require-a-dedicated-tsdb">Q18. Does every time-series workload require a dedicated TSDB?<a href="#q18-does-every-time-series-workload-require-a-dedicated-tsdb" class="hash-link" aria-label="Direct link to Q18. Does every time-series workload require a dedicated TSDB?" title="Direct link to Q18. Does every time-series workload require a dedicated TSDB?" translate="no">​</a></h2>
+<p>No. General-purpose databases can handle many time-series workloads. A dedicated TSDB becomes useful when workload scale, ingestion rates, retention, compression, and query patterns justify its specialized architecture.</p>
+<hr>
+<h1>18. Practical Exercises</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-1--calculate-ingestion-volume">Exercise 1 — Calculate ingestion volume<a href="#exercise-1--calculate-ingestion-volume" class="hash-link" aria-label="Direct link to Exercise 1 — Calculate ingestion volume" title="Direct link to Exercise 1 — Calculate ingestion volume" translate="no">​</a></h2>
+<p>A system has:</p>
+<ul>
+<li class="">2,000 servers.</li>
+<li class="">One metric record every 2 seconds.</li>
+<li class="">86,400 seconds per day.</li>
+</ul>
+<p>Calculate:</p>
+<ol>
+<li class="">Records per second.</li>
+<li class="">Records per day.</li>
+<li class="">Records per 30 days.</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Records per second:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">2,000 / 2 = 1,000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Records per day:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">1,000 × 86,400 = 86,400,000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Records per 30 days:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">86,400,000 × 30 = 2,592,000,000</span><br></div></code></pre></div></div>
+<p>Approximately 2.592 billion records in 30 days.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-2--identify-cardinality-problems">Exercise 2 — Identify cardinality problems<a href="#exercise-2--identify-cardinality-problems" class="hash-link" aria-label="Direct link to Exercise 2 — Identify cardinality problems" title="Direct link to Exercise 2 — Identify cardinality problems" translate="no">​</a></h2>
+<p>Consider these dimensions:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Dimension</th><th>Values</th></tr></thead><tbody><tr><td>Environment</td><td>production, staging, development</td></tr><tr><td>Region</td><td>India, USA, UK</td></tr><tr><td>HTTP method</td><td>GET, POST, PUT, DELETE</td></tr><tr><td>Request ID</td><td>Unique for every request</td></tr><tr><td>Session ID</td><td>Unique for every user session</td></tr></tbody></table>
+<p>Questions:</p>
+<ol>
+<li class="">Which dimensions have relatively low cardinality?</li>
+<li class="">Which dimensions can have very high cardinality?</li>
+<li class="">Why might indexing request IDs as metric tags be expensive?</li>
+<li class="">Where could individual request details be stored instead?</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-3--design-retention-policies">Exercise 3 — Design retention policies<a href="#exercise-3--design-retention-policies" class="hash-link" aria-label="Direct link to Exercise 3 — Design retention policies" title="Direct link to Exercise 3 — Design retention policies" translate="no">​</a></h2>
+<p>A monitoring platform needs:</p>
+<ul>
+<li class="">Detailed metrics for recent incident investigation.</li>
+<li class="">Historical trends for management reports.</li>
+<li class="">Long-term yearly summaries.</li>
+</ul>
+<p>Design a retention strategy for:</p>
+<ol>
+<li class="">Raw measurements.</li>
+<li class="">Minute-level aggregates.</li>
+<li class="">Hourly aggregates.</li>
+<li class="">Daily summaries.</li>
+</ol>
+<p>Explain the storage and information-loss tradeoffs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-4--diagnose-slow-queries">Exercise 4 — Diagnose slow queries<a href="#exercise-4--diagnose-slow-queries" class="hash-link" aria-label="Direct link to Exercise 4 — Diagnose slow queries" title="Direct link to Exercise 4 — Diagnose slow queries" translate="no">​</a></h2>
+<p>A dashboard displays CPU usage over the last 180 days.</p>
+<p>The database contains billions of raw measurements.</p>
+<p>Questions:</p>
+<ol>
+<li class="">Why might this query be expensive?</li>
+<li class="">Would a timestamp index alone solve the problem?</li>
+<li class="">How can time-based partitioning help?</li>
+<li class="">How can pre-aggregation help?</li>
+<li class="">What information would you preserve in the aggregates?</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-5--design-a-nodejs-monitoring-system">Exercise 5 — Design a Node.js monitoring system<a href="#exercise-5--design-a-nodejs-monitoring-system" class="hash-link" aria-label="Direct link to Exercise 5 — Design a Node.js monitoring system" title="Direct link to Exercise 5 — Design a Node.js monitoring system" translate="no">​</a></h2>
+<p>Your Node.js application has:</p>
+<ul>
+<li class="">20 servers.</li>
+<li class="">10 API endpoints per server.</li>
+<li class="">One metric collection interval every 5 seconds.</li>
+</ul>
+<p>Design a system that collects:</p>
+<ul>
+<li class="">Request count.</li>
+<li class="">Average response time.</li>
+<li class="">Error count.</li>
+<li class="">CPU utilization.</li>
+<li class="">Memory utilization.</li>
+</ul>
+<p>Explain:</p>
+<ol>
+<li class="">How metrics are collected.</li>
+<li class="">How measurements are batched.</li>
+<li class="">Which fields should be dimensions.</li>
+<li class="">Which values should be measurements.</li>
+<li class="">How long raw data should be retained.</li>
+<li class="">How long-term dashboards should query summarized data.</li>
+</ol>
+<hr>
+<h1>19. Final Revision Sheet</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Challenge</th><th>Why it matters</th><th>Common solution</th></tr></thead><tbody><tr><td>High write throughput</td><td>Continuous ingestion can overwhelm resources</td><td>Batching and optimized ingestion</td></tr><tr><td>Continuous data ingestion</td><td>New records arrive constantly</td><td>Buffering and append-oriented storage</td></tr><tr><td>Large historical datasets</td><td>Storage and query costs increase</td><td>Compression and retention</td></tr><tr><td>Slow time-range queries</td><td>Large datasets require expensive scans</td><td>Time indexes and partitioning</td></tr><tr><td>Random I/O</td><td>Can reduce storage throughput</td><td>Efficient block and sequential access</td></tr><tr><td>Index maintenance</td><td>Adds write and storage overhead</td><td>Workload-specific indexing</td></tr><tr><td>High cardinality</td><td>Creates large metadata/index structures</td><td>Careful dimension design</td></tr><tr><td>Large aggregations</td><td>Raw historical scans are expensive</td><td>Pre-aggregation and downsampling</td></tr><tr><td>Storage growth</td><td>Data accumulates indefinitely</td><td>Retention policies</td></tr><tr><td>Late-arriving data</td><td>Arrival order differs from event time</td><td>Out-of-order ingestion handling</td></tr><tr><td>Frequent updates</td><td>Can conflict with append-heavy optimization</td><td>Appropriate correction and update strategy</td></tr></tbody></table></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/13_Time_Series_Databases/part_02.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_01"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Time-Series Database Fundamentals</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Time_Series_Databases/part_03"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Time-Series Database Internal Architecture</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-introduction" class="table-of-contents__link toc-highlight">1. Introduction</a></li><li><a href="#21-what-is-write-throughput" class="table-of-contents__link toc-highlight">2.1 What is write throughput?</a></li><li><a href="#22-why-can-traditional-databases-struggle" class="table-of-contents__link toc-highlight">2.2 Why can traditional databases struggle?</a></li><li><a href="#23-index-maintenance-overhead" class="table-of-contents__link toc-highlight">2.3 Index maintenance overhead</a></li><li><a href="#24-how-do-time-series-databases-address-this" class="table-of-contents__link toc-highlight">2.4 How do time-series databases address this?</a></li><li><a href="#31-why-continuous-ingestion-is-different" class="table-of-contents__link toc-highlight">3.1 Why continuous ingestion is different</a></li><li><a href="#32-write-amplification" class="table-of-contents__link toc-highlight">3.2 Write amplification</a></li><li><a href="#33-batch-ingestion" class="table-of-contents__link toc-highlight">3.3 Batch ingestion</a></li><li><a href="#41-storage-growth-calculation" class="table-of-contents__link toc-highlight">4.1 Storage growth calculation</a></li><li><a href="#42-why-historical-data-creates-challenges" class="table-of-contents__link toc-highlight">4.2 Why historical data creates challenges</a></li><li><a href="#43-historical-queries" class="table-of-contents__link toc-highlight">4.3 Historical queries</a></li><li><a href="#51-traditional-query-without-a-suitable-index" class="table-of-contents__link toc-highlight">5.1 Traditional query without a suitable index</a></li><li><a href="#52-b-tree-indexing-on-timestamps" class="table-of-contents__link toc-highlight">5.2 B-Tree indexing on timestamps</a></li><li><a href="#53-time-based-partitioning" class="table-of-contents__link toc-highlight">5.3 Time-based partitioning</a></li><li><a href="#54-how-tsdbs-approach-time-range-queries" class="table-of-contents__link toc-highlight">5.4 How TSDBs approach time-range queries</a></li><li><a href="#61-random-io" class="table-of-contents__link toc-highlight">6.1 Random I/O</a></li><li><a href="#62-sequential-io" class="table-of-contents__link toc-highlight">6.2 Sequential I/O</a></li><li><a href="#63-why-time-series-workloads-can-benefit-from-sequential-access" class="table-of-contents__link toc-highlight">6.3 Why time-series workloads can benefit from sequential access</a></li><li><a href="#64-important-qualification" class="table-of-contents__link toc-highlight">6.4 Important qualification</a></li><li><a href="#71-the-indexing-tradeoff" class="table-of-contents__link toc-highlight">7.1 The indexing tradeoff</a></li><li><a href="#72-how-tsdbs-optimize-indexing" class="table-of-contents__link toc-highlight">7.2 How TSDBs optimize indexing</a></li><li><a href="#81-what-is-cardinality" class="table-of-contents__link toc-highlight">8.1 What is cardinality?</a></li><li><a href="#82-low-cardinality-dimensions" class="table-of-contents__link toc-highlight">8.2 Low-cardinality dimensions</a></li><li><a href="#83-high-cardinality-dimensions" class="table-of-contents__link toc-highlight">8.3 High-cardinality dimensions</a></li><li><a href="#84-example-of-a-cardinality-problem" class="table-of-contents__link toc-highlight">8.4 Example of a cardinality problem</a></li><li><a href="#85-better-design" class="table-of-contents__link toc-highlight">8.5 Better design</a></li><li><a href="#86-cardinality-vs-data-volume" class="table-of-contents__link toc-highlight">8.6 Cardinality vs data volume</a></li><li><a href="#87-cardinality-and-dimensional-combinations" class="table-of-contents__link toc-highlight">8.7 Cardinality and dimensional combinations</a></li><li><a href="#91-why-not-keep-everything-forever" class="table-of-contents__link toc-highlight">9.1 Why not keep everything forever?</a></li><li><a href="#92-retention-policies" class="table-of-contents__link toc-highlight">9.2 Retention policies</a></li><li><a href="#93-why-time-based-deletion-matters" class="table-of-contents__link toc-highlight">9.3 Why time-based deletion matters</a></li><li><a href="#101-raw-data-aggregation" class="table-of-contents__link toc-highlight">10.1 Raw data aggregation</a></li><li><a href="#102-pre-aggregation" class="table-of-contents__link toc-highlight">10.2 Pre-aggregation</a></li><li><a href="#103-downsampling" class="table-of-contents__link toc-highlight">10.3 Downsampling</a></li><li><a href="#111-traditional-application-workload" class="table-of-contents__link toc-highlight">11.1 Traditional application workload</a></li><li><a href="#112-time-series-workload" class="table-of-contents__link toc-highlight">11.2 Time-series workload</a></li><li><a href="#113-why-this-difference-matters" class="table-of-contents__link toc-highlight">11.3 Why this difference matters</a></li><li><a href="#121-why-can-this-happen" class="table-of-contents__link toc-highlight">12.1 Why can this happen?</a></li><li><a href="#122-why-does-it-matter" class="table-of-contents__link toc-highlight">12.2 Why does it matter?</a></li><li><a href="#151-data-model" class="table-of-contents__link toc-highlight">15.1 Data model</a></li><li><a href="#152-ingestion-calculation" class="table-of-contents__link toc-highlight">15.2 Ingestion calculation</a></li><li><a href="#153-query-requirements" class="table-of-contents__link toc-highlight">15.3 Query requirements</a></li><li><a href="#154-what-problems-might-appear-as-the-application-grows" class="table-of-contents__link toc-highlight">15.4 What problems might appear as the application grows?</a></li><li><a href="#161-identify-the-measurement-frequency" class="table-of-contents__link toc-highlight">16.1 Identify the measurement frequency</a></li><li><a href="#162-design-dimensions-carefully" class="table-of-contents__link toc-highlight">16.2 Design dimensions carefully</a></li><li><a href="#163-define-retention-requirements" class="table-of-contents__link toc-highlight">16.3 Define retention requirements</a></li><li><a href="#164-define-dashboard-query-patterns" class="table-of-contents__link toc-highlight">16.4 Define dashboard query patterns</a></li><li><a href="#165-consider-late-arriving-data" class="table-of-contents__link toc-highlight">16.5 Consider late-arriving data</a></li><li><a href="#166-avoid-unnecessary-metric-granularity" class="table-of-contents__link toc-highlight">16.6 Avoid unnecessary metric granularity</a></li><li><a href="#q1-why-can-traditional-databases-struggle-with-large-time-series-workloads" class="table-of-contents__link toc-highlight">Q1. Why can traditional databases struggle with large time-series workloads?</a></li><li><a href="#q2-can-postgresql-handle-time-series-data" class="table-of-contents__link toc-highlight">Q2. Can PostgreSQL handle time-series data?</a></li><li><a href="#q3-what-is-write-throughput" class="table-of-contents__link toc-highlight">Q3. What is write throughput?</a></li><li><a href="#q4-what-is-write-amplification" class="table-of-contents__link toc-highlight">Q4. What is write amplification?</a></li><li><a href="#q5-why-is-indexing-expensive-in-write-heavy-workloads" class="table-of-contents__link toc-highlight">Q5. Why is indexing expensive in write-heavy workloads?</a></li><li><a href="#q6-what-is-partition-pruning" class="table-of-contents__link toc-highlight">Q6. What is partition pruning?</a></li><li><a href="#q7-why-is-time-based-partitioning-useful" class="table-of-contents__link toc-highlight">Q7. Why is time-based partitioning useful?</a></li><li><a href="#q8-what-is-the-difference-between-random-and-sequential-io" class="table-of-contents__link toc-highlight">Q8. What is the difference between random and sequential I/O?</a></li><li><a href="#q9-what-is-cardinality" class="table-of-contents__link toc-highlight">Q9. What is cardinality?</a></li><li><a href="#q10-why-is-high-cardinality-problematic" class="table-of-contents__link toc-highlight">Q10. Why is high cardinality problematic?</a></li><li><a href="#q11-is-data-volume-the-same-as-cardinality" class="table-of-contents__link toc-highlight">Q11. Is data volume the same as cardinality?</a></li><li><a href="#q12-why-are-retention-policies-important" class="table-of-contents__link toc-highlight">Q12. Why are retention policies important?</a></li><li><a href="#q13-what-is-downsampling" class="table-of-contents__link toc-highlight">Q13. What is downsampling?</a></li><li><a href="#q14-what-is-pre-aggregation" class="table-of-contents__link toc-highlight">Q14. What is pre-aggregation?</a></li><li><a href="#q15-what-is-out-of-order-data" class="table-of-contents__link toc-highlight">Q15. What is out-of-order data?</a></li><li><a href="#q16-what-is-the-difference-between-event-time-and-ingestion-time" class="table-of-contents__link toc-highlight">Q16. What is the difference between event time and ingestion time?</a></li><li><a href="#q17-why-are-time-series-workloads-often-append-heavy" class="table-of-contents__link toc-highlight">Q17. Why are time-series workloads often append-heavy?</a></li><li><a href="#q18-does-every-time-series-workload-require-a-dedicated-tsdb" class="table-of-contents__link toc-highlight">Q18. Does every time-series workload require a dedicated TSDB?</a></li><li><a href="#exercise-1--calculate-ingestion-volume" class="table-of-contents__link toc-highlight">Exercise 1 — Calculate ingestion volume</a></li><li><a href="#exercise-2--identify-cardinality-problems" class="table-of-contents__link toc-highlight">Exercise 2 — Identify cardinality problems</a></li><li><a href="#exercise-3--design-retention-policies" class="table-of-contents__link toc-highlight">Exercise 3 — Design retention policies</a></li><li><a href="#exercise-4--diagnose-slow-queries" class="table-of-contents__link toc-highlight">Exercise 4 — Diagnose slow queries</a></li><li><a href="#exercise-5--design-a-nodejs-monitoring-system" class="table-of-contents__link toc-highlight">Exercise 5 — Design a Node.js monitoring system</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>

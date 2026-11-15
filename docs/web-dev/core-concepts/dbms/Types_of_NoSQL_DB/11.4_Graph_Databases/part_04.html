@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">part_04 | Knowledge Base</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://codingsapienss.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="part_04 | Knowledge Base"><meta data-rh="true" name="description" content="How do graph databases scale when the graph grows from thousands of nodes to millions or billions of nodes and relationships?"><meta data-rh="true" property="og:description" content="How do graph databases scale when the graph grows from thousands of nodes to millions or billions of nodes and relationships?"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04" hreflang="en"><link data-rh="true" rel="alternate" href="https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Web Development","item":"https://codingsapienss.github.io/notes/docs/web-dev"},{"@type":"ListItem","position":2,"name":"Core Concepts","item":"https://codingsapienss.github.io/notes/docs/category/core-concepts"},{"@type":"ListItem","position":3,"name":"DBMS","item":"https://codingsapienss.github.io/notes/docs/category/dbms"},{"@type":"ListItem","position":4,"name":"Types of NoSQL DB","item":"https://codingsapienss.github.io/notes/docs/category/types-of-nosql-db"},{"@type":"ListItem","position":5,"name":"Graph Databases","item":"https://codingsapienss.github.io/notes/docs/category/graph-databases"},{"@type":"ListItem","position":6,"name":"1. Introduction","item":"https://codingsapienss.github.io/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04"}]}</script><link rel="stylesheet" href="/notes/assets/css/styles.a7751dc0.css">
+<script src="/notes/assets/js/runtime~main.7c4ee92d.js" defer="defer"></script>
+<script src="/notes/assets/js/main.18e6a7d5.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="Knowledge Base Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Knowledge Base</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e8555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><span>Theme</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true" style="transform:none;transition:transform 0.2s"><path d="m6 9 6 6 6-6"></path></svg></button></div><div style="position:relative;display:flex;align-items:center;height:100%"><button style="display:flex;align-items:center;gap:8px;background:var(--ifm-color-emphasis-100);border:1px solid var(--ifm-color-emphasis-300);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--ifm-font-color-base);font-size:0.9rem;font-weight:500;transition:all 0.2s ease" title="Adjust font size"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type" aria-hidden="true"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg><span>Font</span></button></div><a href="https://github.com/codingsapienss/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/dsa"><span title="DSA (C++)" class="categoryLinkLabel_W154">DSA (C++)</span></a><button aria-label="Collapse sidebar category &#x27;DSA (C++)&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/dsa/basics"><span title="Basics" class="categoryLinkLabel_W154">Basics</span></a><button aria-label="Expand sidebar category &#x27;Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/notes/docs/devops"><span title="DevOps" class="categoryLinkLabel_W154">DevOps</span></a><button aria-label="Collapse sidebar category &#x27;DevOps&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-00-cheatsheet/Azure_Ubuntu_Deployment_Guide"><span title="Cheatsheet" class="categoryLinkLabel_W154">Cheatsheet</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-01-foundations/why-linux"><span title="Foundations" class="categoryLinkLabel_W154">Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-02-linux-administration/linux-filesystem"><span title="Linux Administration" class="categoryLinkLabel_W154">Linux Administration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-03-networking/networking-basics"><span title="Networking" class="categoryLinkLabel_W154">Networking</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-04-security/linux-security-basics"><span title="Security" class="categoryLinkLabel_W154">Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-05-development-environment/git"><span title="Development Environment" class="categoryLinkLabel_W154">Development Environment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-06-nginx/nginx-introduction"><span title="Nginx" class="categoryLinkLabel_W154">Nginx</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-07-cloud/what-is-cloud-computing"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-08-deployment/deployment-overview"><span title="Deployment" class="categoryLinkLabel_W154">Deployment</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-09-monitoring/monitoring-basics"><span title="Monitoring" class="categoryLinkLabel_W154">Monitoring</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-10-troubleshooting/linux-troubleshooting"><span title="Troubleshooting" class="categoryLinkLabel_W154">Troubleshooting</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-11-reference/linux-command-reference"><span title="Reference" class="categoryLinkLabel_W154">Reference</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/notes/docs/devops/part-12-interview/linux-interview"><span title="Interview Prep" class="categoryLinkLabel_W154">Interview Prep</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/notes/docs/web-dev"><span title="Web Development" class="categoryLinkLabel_W154">Web Development</span></a><button aria-label="Collapse sidebar category &#x27;Web Development&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/core-concepts"><span title="Core Concepts" class="categoryLinkLabel_W154">Core Concepts</span></a><button aria-label="Collapse sidebar category &#x27;Core Concepts&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/dbms"><span title="DBMS" class="categoryLinkLabel_W154">DBMS</span></a><button aria-label="Collapse sidebar category &#x27;DBMS&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-fundamentals"><span title="Database Fundamentals" class="categoryLinkLabel_W154">Database Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;Database Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/transactions-acid--concurrency"><span title="Transactions ACID &amp; Concurrency" class="categoryLinkLabel_W154">Transactions ACID &amp; Concurrency</span></a><button aria-label="Expand sidebar category &#x27;Transactions ACID &amp; Concurrency&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-indexing"><span title="Database Indexing" class="categoryLinkLabel_W154">Database Indexing</span></a><button aria-label="Expand sidebar category &#x27;Database Indexing&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/database-normalization"><span title="Database Normalization" class="categoryLinkLabel_W154">Database Normalization</span></a><button aria-label="Expand sidebar category &#x27;Database Normalization&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-joins--join-execution"><span title="SQL Joins &amp; Join Execution" class="categoryLinkLabel_W154">SQL Joins &amp; Join Execution</span></a><button aria-label="Expand sidebar category &#x27;SQL Joins &amp; Join Execution&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/scaling-relational-databases"><span title="Scaling Relational Databases" class="categoryLinkLabel_W154">Scaling Relational Databases</span></a><button aria-label="Expand sidebar category &#x27;Scaling Relational Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/sql-sharding--horizontal-scaling"><span title="SQL Sharding &amp; Horizontal Scaling" class="categoryLinkLabel_W154">SQL Sharding &amp; Horizontal Scaling</span></a><button aria-label="Expand sidebar category &#x27;SQL Sharding &amp; Horizontal Scaling&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nosql-fundamentals"><span title="NoSQL Fundamentals" class="categoryLinkLabel_W154">NoSQL Fundamentals</span></a><button aria-label="Expand sidebar category &#x27;NoSQL Fundamentals&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/cap-theorem--distributed-systems"><span title="CAP Theorem &amp; Distributed Systems" class="categoryLinkLabel_W154">CAP Theorem &amp; Distributed Systems</span></a><button aria-label="Expand sidebar category &#x27;CAP Theorem &amp; Distributed Systems&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/horizontal-scaling-in-nosql"><span title="Horizontal Scaling in NoSQL" class="categoryLinkLabel_W154">Horizontal Scaling in NoSQL</span></a><button aria-label="Expand sidebar category &#x27;Horizontal Scaling in NoSQL&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/types-of-nosql-db"><span title="Types of NoSQL DB" class="categoryLinkLabel_W154">Types of NoSQL DB</span></a><button aria-label="Collapse sidebar category &#x27;Types of NoSQL DB&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/key-value-databases"><span title="Key Value Databases" class="categoryLinkLabel_W154">Key Value Databases</span></a><button aria-label="Expand sidebar category &#x27;Key Value Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/document-databases"><span title="Document Databases" class="categoryLinkLabel_W154">Document Databases</span></a><button aria-label="Expand sidebar category &#x27;Document Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/wide-column-databases"><span title="Wide Column Databases" class="categoryLinkLabel_W154">Wide Column Databases</span></a><button aria-label="Expand sidebar category &#x27;Wide Column Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-5 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/notes/docs/category/graph-databases"><span title="Graph Databases" class="categoryLinkLabel_W154">Graph Databases</span></a><button aria-label="Collapse sidebar category &#x27;Graph Databases&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_01"><span title="Graph Database Fundamentals" class="linkLabel_WmDU">Graph Database Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_02"><span title="Graph Database Internal Storage" class="linkLabel_WmDU">Graph Database Internal Storage</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_03"><span title="Graph Data Modeling" class="linkLabel_WmDU">Graph Data Modeling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_04"><span title="1. Introduction" class="linkLabel_WmDU">1. Introduction</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-6 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_05"><span title="Graph Databases: When to Use" class="linkLabel_WmDU">Graph Databases: When to Use</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/search-databases"><span title="Search Databases" class="categoryLinkLabel_W154">Search Databases</span></a><button aria-label="Expand sidebar category &#x27;Search Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/time-series-databases"><span title="Time Series Databases" class="categoryLinkLabel_W154">Time Series Databases</span></a><button aria-label="Expand sidebar category &#x27;Time Series Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/oltp-vs-olap-databases"><span title="OLTP vs OLAP Databases" class="categoryLinkLabel_W154">OLTP vs OLAP Databases</span></a><button aria-label="Expand sidebar category &#x27;OLTP vs OLAP Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/newsql-databases"><span title="NewSQL Databases" class="categoryLinkLabel_W154">NewSQL Databases</span></a><button aria-label="Expand sidebar category &#x27;NewSQL Databases&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/polyglot-persistence"><span title="Polyglot Persistence" class="categoryLinkLabel_W154">Polyglot Persistence</span></a><button aria-label="Expand sidebar category &#x27;Polyglot Persistence&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/javascript"><span title="JavaScript" class="categoryLinkLabel_W154">JavaScript</span></a><button aria-label="Expand sidebar category &#x27;JavaScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/react"><span title="React" class="categoryLinkLabel_W154">React</span></a><button aria-label="Expand sidebar category &#x27;React&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/typescript"><span title="TypeScript" class="categoryLinkLabel_W154">TypeScript</span></a><button aria-label="Expand sidebar category &#x27;TypeScript&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/nodejs"><span title="Node.js" class="categoryLinkLabel_W154">Node.js</span></a><button aria-label="Expand sidebar category &#x27;Node.js&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/web-dev"><span>Web Development</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/core-concepts"><span>Core Concepts</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/dbms"><span>DBMS</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/types-of-nosql-db"><span>Types of NoSQL DB</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/category/graph-databases"><span>Graph Databases</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">1. Introduction</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><p>#Graph Database Scaling and Tradeoffs</p>
+<header><h1>1. Introduction</h1></header>
+<p><strong>How do graph databases scale when the graph grows from thousands of nodes to millions or billions of nodes and relationships?</strong></p>
+<p>Consider a social networking application.</p>
+<p>Initially:</p>
+<ul>
+<li class="">10,000 users.</li>
+<li class="">100,000 relationships.</li>
+<li class="">A few thousand posts.</li>
+</ul>
+<p>A single database server may handle this workload comfortably.</p>
+<p>Now imagine the application grows to:</p>
+<ul>
+<li class="">100 million users.</li>
+<li class="">10 billion relationships.</li>
+<li class="">Billions of interactions.</li>
+<li class="">Millions of graph queries per minute.</li>
+</ul>
+<p>The database must handle:</p>
+<ul>
+<li class="">Increasing storage requirements.</li>
+<li class="">More concurrent queries.</li>
+<li class="">Higher read and write throughput.</li>
+<li class="">Large relationship traversals.</li>
+<li class="">Failures of individual machines.</li>
+<li class="">Network communication between machines.</li>
+</ul>
+<p>This is where graph database scaling becomes important.</p>
+<hr>
+<h1>2. Why Is Scaling Graph Databases Challenging?</h1>
+<p>Before discussing scaling strategies, understand what makes graph databases different from other databases.</p>
+<p>Consider this graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User A) ----FOLLOWS----&gt; (User B)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">PURCHASED                   PURCHASED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |                           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v                           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(Product X) &lt;---SIMILAR_TO-- (Product Y)</span><br></div></code></pre></div></div>
+<p>Suppose the database stores:</p>
+<ul>
+<li class="">User A on Server 1.</li>
+<li class="">User B on Server 2.</li>
+<li class="">Product X on Server 1.</li>
+<li class="">Product Y on Server 3.</li>
+</ul>
+<p>A traversal from User A to Product Y may cross multiple servers.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   | FOLLOWS</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">User B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   | PURCHASED</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Product Y</span><br></div></code></pre></div></div>
+<p>Each cross-server traversal may require network communication.</p>
+<p>This introduces latency and coordination overhead.</p>
+<p><strong>The central scaling challenge:</strong></p>
+<p>Graph queries frequently follow relationships, but connected nodes may be distributed across different machines.</p>
+<p>This is different from a query that accesses one known partition using a partition key.</p>
+<hr>
+<h1>3. Vertical Scaling</h1>
+<p>Vertical scaling means increasing the resources of an existing database server.</p>
+<p>You increase:</p>
+<ul>
+<li class="">CPU.</li>
+<li class="">RAM.</li>
+<li class="">Storage.</li>
+<li class="">Disk I/O capacity.</li>
+<li class="">Network capacity.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Before:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| Graph Database       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 4 CPU                |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 16 GB RAM            |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 500 GB SSD           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">After:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----------------------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| Graph Database       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 32 CPU               |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 256 GB RAM           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">| 4 TB NVMe SSD        |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">+----------------------+</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-why-is-ram-important">3.1 Why Is RAM Important?<a href="#31-why-is-ram-important" class="hash-link" aria-label="Direct link to 3.1 Why Is RAM Important?" title="Direct link to 3.1 Why Is RAM Important?" translate="no">​</a></h2>
+<p>Graph workloads often involve traversing relationships and processing intermediate results.</p>
+<p>Memory can be used for:</p>
+<ul>
+<li class="">Cached graph records.</li>
+<li class="">Indexes.</li>
+<li class="">Frequently accessed properties.</li>
+<li class="">Query execution state.</li>
+<li class="">Traversal frontiers.</li>
+<li class="">Intermediate results.</li>
+</ul>
+<p>A larger memory allocation can reduce disk access for frequently accessed data.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-advantages">3.2 Advantages<a href="#32-advantages" class="hash-link" aria-label="Direct link to 3.2 Advantages" title="Direct link to 3.2 Advantages" translate="no">​</a></h2>
+<ul>
+<li class="">Simpler architecture.</li>
+<li class="">No distributed graph coordination required.</li>
+<li class="">Easier data locality.</li>
+<li class="">Lower network communication overhead.</li>
+<li class="">Often simpler operational management.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-disadvantages">3.3 Disadvantages<a href="#33-disadvantages" class="hash-link" aria-label="Direct link to 3.3 Disadvantages" title="Direct link to 3.3 Disadvantages" translate="no">​</a></h2>
+<ul>
+<li class="">Hardware has practical limits.</li>
+<li class="">Large machines can be expensive.</li>
+<li class="">A single machine remains a failure domain.</li>
+<li class="">Eventually, the workload may exceed the machine&#x27;s capacity.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-when-is-vertical-scaling-useful">3.4 When Is Vertical Scaling Useful?<a href="#34-when-is-vertical-scaling-useful" class="hash-link" aria-label="Direct link to 3.4 When Is Vertical Scaling Useful?" title="Direct link to 3.4 When Is Vertical Scaling Useful?" translate="no">​</a></h2>
+<p>Vertical scaling is useful when:</p>
+<ul>
+<li class="">The graph fits comfortably on one machine.</li>
+<li class="">Workloads benefit from local traversal.</li>
+<li class="">Operational simplicity is important.</li>
+<li class="">The database has not reached hardware limits.</li>
+</ul>
+<p>Do not introduce distributed graph architecture before demonstrating that a single server is insufficient.</p>
+<hr>
+<h1>4. Horizontal Scaling</h1>
+<p>Horizontal scaling means distributing graph data and processing across multiple machines.</p>
+<p>Instead of one powerful server, you use multiple servers.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Graph Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Graph Cluster</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                    |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +---------+---------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Server 1  Server 2  Server 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Graph     Graph     Graph</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Data      Data      Data</span><br></div></code></pre></div></div>
+<p>Each server stores or processes part of the graph, depending on the database architecture.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-why-horizontal-scaling">4.1 Why Horizontal Scaling?<a href="#41-why-horizontal-scaling" class="hash-link" aria-label="Direct link to 4.1 Why Horizontal Scaling?" title="Direct link to 4.1 Why Horizontal Scaling?" translate="no">​</a></h2>
+<p>It can increase:</p>
+<ul>
+<li class="">Total storage capacity.</li>
+<li class="">Aggregate processing capacity.</li>
+<li class="">Read throughput.</li>
+<li class="">Write throughput.</li>
+<li class="">Fault tolerance, depending on replication and architecture.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-why-is-it-difficult-for-graph-databases">4.2 Why Is It Difficult for Graph Databases?<a href="#42-why-is-it-difficult-for-graph-databases" class="hash-link" aria-label="Direct link to 4.2 Why Is It Difficult for Graph Databases?" title="Direct link to 4.2 Why Is It Difficult for Graph Databases?" translate="no">​</a></h2>
+<p>Suppose a graph is partitioned like this:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A, B, C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">D, E, F</span><br></div></code></pre></div></div>
+<p>Relationships:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">B -&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C -&gt; D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">D -&gt; E</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">E -&gt; F</span><br></div></code></pre></div></div>
+<p>Traversing from A to F requires crossing the partition boundary between C and D.</p>
+<p>The database may need network communication to continue the traversal.</p>
+<p>This can increase latency.</p>
+<p><strong>Important:</strong> Horizontal scaling does not guarantee that every graph query becomes faster. Some workloads benefit substantially, while others become slower due to distributed coordination.</p>
+<hr>
+<h1>5. Graph Partitioning and Sharding</h1>
+<p>Partitioning means dividing a large graph into smaller sections.</p>
+<p>Each partition is stored or managed separately.</p>
+<p>The objective is to distribute the graph while keeping frequently connected nodes close together where possible.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-example-of-graph-partitioning">5.1 Example of Graph Partitioning<a href="#51-example-of-graph-partitioning" class="hash-link" aria-label="Direct link to 5.1 Example of Graph Partitioning" title="Direct link to 5.1 Example of Graph Partitioning" translate="no">​</a></h2>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B ---- C ---- D ---- E ---- F</span><br></div></code></pre></div></div>
+<p>We divide the graph into two partitions.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A, B, C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">D, E, F</span><br></div></code></pre></div></div>
+<p>Graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1          Partition 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B ---- C  ---- D ---- E ---- F</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   ^</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Cross-partition edge</span><br></div></code></pre></div></div>
+<p>The relationship between C and D crosses the partition boundary.</p>
+<p>This is called a cross-partition relationship.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-why-does-partition-placement-matter">5.2 Why Does Partition Placement Matter?<a href="#52-why-does-partition-placement-matter" class="hash-link" aria-label="Direct link to 5.2 Why Does Partition Placement Matter?" title="Direct link to 5.2 Why Does Partition Placement Matter?" translate="no">​</a></h2>
+<p>Suppose users frequently interact with one another.</p>
+<p>If closely connected users are stored on different servers, relationship traversal may require repeated network communication.</p>
+<p>If frequently connected nodes are stored together, more traversal can happen locally.</p>
+<p>This is known as improving <strong>graph locality</strong>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-graph-partitioning-objectives">5.3 Graph Partitioning Objectives<a href="#53-graph-partitioning-objectives" class="hash-link" aria-label="Direct link to 5.3 Graph Partitioning Objectives" title="Direct link to 5.3 Graph Partitioning Objectives" translate="no">​</a></h2>
+<p>A good partitioning strategy tries to:</p>
+<ol>
+<li class="">Balance the amount of data across partitions.</li>
+<li class="">Reduce cross-partition relationships.</li>
+<li class="">Keep frequently traversed nodes close together.</li>
+<li class="">Avoid overloaded partitions.</li>
+<li class="">Minimize expensive data movement.</li>
+</ol>
+<p>These objectives can conflict.</p>
+<p>For example, putting all nodes connected to one popular user into the same partition may create an overloaded partition.</p>
+<hr>
+<h1>6. Graph Partitioning Strategies</h1>
+<p>There are several ways to partition graph data.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-hash-based-partitioning">6.1 Hash-Based Partitioning<a href="#61-hash-based-partitioning" class="hash-link" aria-label="Direct link to 6.1 Hash-Based Partitioning" title="Direct link to 6.1 Hash-Based Partitioning" translate="no">​</a></h2>
+<p>A hash function determines which partition stores a node.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">partition = hash(node_id) % number_of_partitions</span><br></div></code></pre></div></div>
+<p>Suppose there are four partitions:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 0</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 3</span><br></div></code></pre></div></div>
+<p>Node IDs are hashed and distributed.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Node A -&gt; Partition 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node B -&gt; Partition 0</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node C -&gt; Partition 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node D -&gt; Partition 1</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advantages">Advantages<a href="#advantages" class="hash-link" aria-label="Direct link to Advantages" title="Direct link to Advantages" translate="no">​</a></h3>
+<ul>
+<li class="">Relatively simple.</li>
+<li class="">Can distribute nodes across partitions.</li>
+<li class="">Can reduce some forms of key-based hotspots.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="disadvantages">Disadvantages<a href="#disadvantages" class="hash-link" aria-label="Direct link to Disadvantages" title="Direct link to Disadvantages" translate="no">​</a></h3>
+<ul>
+<li class="">Connected nodes may be distributed randomly.</li>
+<li class="">Traversals may cross multiple partitions.</li>
+<li class="">Graph locality is not guaranteed.</li>
+</ul>
+<p>Hash-based partitioning is common in distributed data systems, but it is not automatically optimal for relationship-heavy graphs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-range-based-partitioning">6.2 Range-Based Partitioning<a href="#62-range-based-partitioning" class="hash-link" aria-label="Direct link to 6.2 Range-Based Partitioning" title="Direct link to 6.2 Range-Based Partitioning" translate="no">​</a></h2>
+<p>Nodes are assigned based on ranges of identifiers or another ordered key.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node IDs 1 - 1000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node IDs 1001 - 2000</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Node IDs 2001 - 3000</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advantages-1">Advantages<a href="#advantages-1" class="hash-link" aria-label="Direct link to Advantages" title="Direct link to Advantages" translate="no">​</a></h3>
+<ul>
+<li class="">Simple range organization.</li>
+<li class="">Can support certain range-oriented access patterns.</li>
+<li class="">May preserve locality when identifiers reflect meaningful grouping.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="disadvantages-1">Disadvantages<a href="#disadvantages-1" class="hash-link" aria-label="Direct link to Disadvantages" title="Direct link to Disadvantages" translate="no">​</a></h3>
+<ul>
+<li class="">Sequential or skewed IDs can create hotspots.</li>
+<li class="">Related nodes may still be separated.</li>
+<li class="">Uneven data distribution is possible.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-graph-aware-partitioning">6.3 Graph-Aware Partitioning<a href="#63-graph-aware-partitioning" class="hash-link" aria-label="Direct link to 6.3 Graph-Aware Partitioning" title="Direct link to 6.3 Graph-Aware Partitioning" translate="no">​</a></h2>
+<p>Graph-aware partitioning attempts to place highly connected nodes together.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Original graph:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A ---- B ---- C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">|      |      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">D ---- E ---- F</span><br></div></code></pre></div></div>
+<p>A graph-aware strategy may group strongly connected nodes into the same partition.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A, B, D, E</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C, F</span><br></div></code></pre></div></div>
+<p>The objective is to reduce cross-partition edges.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advantages-2">Advantages<a href="#advantages-2" class="hash-link" aria-label="Direct link to Advantages" title="Direct link to Advantages" translate="no">​</a></h3>
+<ul>
+<li class="">Can improve traversal locality.</li>
+<li class="">May reduce network communication.</li>
+<li class="">Useful for relationship-heavy workloads.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="disadvantages-2">Disadvantages<a href="#disadvantages-2" class="hash-link" aria-label="Direct link to Disadvantages" title="Direct link to Disadvantages" translate="no">​</a></h3>
+<ul>
+<li class="">Finding good partitions can be computationally expensive.</li>
+<li class="">Graph relationships can change frequently.</li>
+<li class="">Rebalancing may require substantial data movement.</li>
+<li class="">High-degree nodes can still cause hotspots.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="64-comparison">6.4 Comparison<a href="#64-comparison" class="hash-link" aria-label="Direct link to 6.4 Comparison" title="Direct link to 6.4 Comparison" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Strategy</th><th>Main idea</th><th>Main limitation</th></tr></thead><tbody><tr><td>Hash-based</td><td>Distribute nodes using a hash</td><td>Related nodes may be separated</td></tr><tr><td>Range-based</td><td>Distribute nodes using key ranges</td><td>Can create hotspots</td></tr><tr><td>Graph-aware</td><td>Group strongly connected nodes</td><td>More complex to compute and maintain</td></tr></tbody></table>
+<p><strong>Important:</strong> Not every graph database exposes these strategies as user-configurable options. Some products manage partitioning internally or offer only specific distribution mechanisms.</p>
+<hr>
+<h1>7. Relationship Locality</h1>
+<p>Relationship locality means keeping frequently connected nodes close to each other in storage or execution.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">User A -&gt; User B -&gt; User C -&gt; User D</span><br></div></code></pre></div></div>
+<p>If all nodes are on one server:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D</span><br></div></code></pre></div></div>
+<p>Traversal can often happen locally.</p>
+<p>If nodes are distributed:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server 1: A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 2: B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 3: C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server 4: D</span><br></div></code></pre></div></div>
+<p>Traversal may require several network calls.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-why-is-locality-important">7.1 Why Is Locality Important?<a href="#71-why-is-locality-important" class="hash-link" aria-label="Direct link to 7.1 Why Is Locality Important?" title="Direct link to 7.1 Why Is Locality Important?" translate="no">​</a></h2>
+<p>Network communication is generally more expensive than accessing data already available in local memory.</p>
+<p>Poor locality can cause:</p>
+<ul>
+<li class="">Higher query latency.</li>
+<li class="">More network traffic.</li>
+<li class="">Increased coordination.</li>
+<li class="">Greater sensitivity to slow nodes.</li>
+<li class="">Reduced throughput.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="72-can-all-connected-nodes-be-stored-together">7.2 Can All Connected Nodes Be Stored Together?<a href="#72-can-all-connected-nodes-be-stored-together" class="hash-link" aria-label="Direct link to 7.2 Can All Connected Nodes Be Stored Together?" title="Direct link to 7.2 Can All Connected Nodes Be Stored Together?" translate="no">​</a></h2>
+<p>Not always.</p>
+<p>Imagine one popular user has 10 million followers.</p>
+<p>If every follower is placed on the same server, that server may become overloaded.</p>
+<p>There is a tradeoff between:</p>
+<ul>
+<li class="">Keeping connected nodes together.</li>
+<li class="">Distributing load evenly.</li>
+</ul>
+<p>A good partitioning strategy must balance both.</p>
+<hr>
+<h1>8. Replication in Graph Databases</h1>
+<p>Partitioning and replication solve different problems.</p>
+<p><strong>Partitioning:</strong></p>
+<p>Divides graph data across machines.</p>
+<p><strong>Replication:</strong></p>
+<p>Maintains copies of data across machines.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary Copy -&gt; Server A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica      -&gt; Server B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary Copy -&gt; Server C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica      -&gt; Server D</span><br></div></code></pre></div></div>
+<p>Replication can improve:</p>
+<ul>
+<li class="">Availability.</li>
+<li class="">Fault tolerance.</li>
+<li class="">Read capacity in some architectures.</li>
+<li class="">Recovery from node failures.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-why-is-replication-needed">8.1 Why Is Replication Needed?<a href="#81-why-is-replication-needed" class="hash-link" aria-label="Direct link to 8.1 Why Is Replication Needed?" title="Direct link to 8.1 Why Is Replication Needed?" translate="no">​</a></h2>
+<p>Suppose a graph database has one server:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server A:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">All graph data</span><br></div></code></pre></div></div>
+<p>If Server A fails, the application may lose access to the database.</p>
+<p>With replication:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Server A:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary data</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Server B:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica data</span><br></div></code></pre></div></div>
+<p>If the system supports suitable failover, Server B may take over when Server A becomes unavailable.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="82-replication-challenges">8.2 Replication Challenges<a href="#82-replication-challenges" class="hash-link" aria-label="Direct link to 8.2 Replication Challenges" title="Direct link to 8.2 Replication Challenges" translate="no">​</a></h2>
+<p>Replication introduces:</p>
+<ul>
+<li class="">Additional storage requirements.</li>
+<li class="">Network traffic.</li>
+<li class="">Replica synchronization.</li>
+<li class="">Failover complexity.</li>
+<li class="">Potentially stale reads.</li>
+<li class="">Conflict handling in some architectures.</li>
+</ul>
+<p>Replication does not automatically guarantee that every read returns the latest committed data.</p>
+<p>The actual guarantees depend on the database&#x27;s consistency and replication model.</p>
+<hr>
+<h1>9. Consistency in Distributed Graph Databases</h1>
+<p>Suppose a user creates a relationship:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User A)-[:FOLLOWS]-&gt;(User B)</span><br></div></code></pre></div></div>
+<p>The database must persist this relationship and make it visible according to its consistency guarantees.</p>
+<p>In a distributed database, replicas may need to synchronize.</p>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Primary:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div></code></pre></div></div>
+<p>Now suppose a new relationship is created:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; C</span><br></div></code></pre></div></div>
+<p>During asynchronous replication:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Primary:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B</span><br></div></code></pre></div></div>
+<p>Replica 2 is temporarily behind.</p>
+<p>This is replication lag.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="91-strong-consistency">9.1 Strong Consistency<a href="#91-strong-consistency" class="hash-link" aria-label="Direct link to 9.1 Strong Consistency" title="Direct link to 9.1 Strong Consistency" translate="no">​</a></h2>
+<p>Strong consistency means operations provide guarantees that prevent clients from observing certain stale or inconsistent states.</p>
+<p>The precise guarantees differ across database products.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="92-eventual-consistency">9.2 Eventual Consistency<a href="#92-eventual-consistency" class="hash-link" aria-label="Direct link to 9.2 Eventual Consistency" title="Direct link to 9.2 Eventual Consistency" translate="no">​</a></h2>
+<p>Eventual consistency means replicas may temporarily differ, but under suitable conditions and after updates stop, they are expected to converge.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Time 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary = A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica = A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Time 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary = A -&gt; B, A -&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica = A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Time 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Primary = A -&gt; B, A -&gt; C</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Replica = A -&gt; B, A -&gt; C</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="93-why-does-consistency-matter-for-graph-queries">9.3 Why Does Consistency Matter for Graph Queries?<a href="#93-why-does-consistency-matter-for-graph-queries" class="hash-link" aria-label="Direct link to 9.3 Why Does Consistency Matter for Graph Queries?" title="Direct link to 9.3 Why Does Consistency Matter for Graph Queries?" translate="no">​</a></h2>
+<p>Suppose a fraud detection system creates a relationship:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(Account A)-[:LINKED_TO]-&gt;(Account B)</span><br></div></code></pre></div></div>
+<p>A fraud investigation immediately queries the graph.</p>
+<p>If it reads from a replica that has not received the relationship, it may miss an important connection.</p>
+<p>For some use cases, this delay is acceptable.</p>
+<p>For others, it may create business or security risks.</p>
+<p>Therefore, consistency requirements should be part of database selection and query design.</p>
+<hr>
+<h1>10. Distributed Graph Query Execution</h1>
+<p>Let&#x27;s understand what happens when a graph query spans multiple partitions.</p>
+<p>Suppose the graph is:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D -&gt; E</span><br></div></code></pre></div></div>
+<p>Partition placement:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">A, B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">C, D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 3:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">E</span><br></div></code></pre></div></div>
+<p>Query:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Find all nodes reachable from A within 4 hops.</span><br></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="101-execution-flow">10.1 Execution Flow<a href="#101-execution-flow" class="hash-link" aria-label="Direct link to 10.1 Execution Flow" title="Direct link to 10.1 Execution Flow" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                 Query</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Query Coordinator</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Locate Starting A</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Partition 1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Traverse A -&gt; B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Cross to Partition 2</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Traverse C -&gt; D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Cross to Partition 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Reach Node E</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Combine Results</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                   v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Return Results</span><br></div></code></pre></div></div>
+<p>The system may need to:</p>
+<ol>
+<li class="">Locate the starting node.</li>
+<li class="">Identify its neighboring nodes.</li>
+<li class="">Determine where those nodes are stored.</li>
+<li class="">Send traversal requests to remote partitions.</li>
+<li class="">Collect intermediate results.</li>
+<li class="">Continue traversal.</li>
+<li class="">Combine results.</li>
+<li class="">Return the final output.</li>
+</ol>
+<p>The actual implementation varies by database.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="102-why-can-this-be-expensive">10.2 Why Can This Be Expensive?<a href="#102-why-can-this-be-expensive" class="hash-link" aria-label="Direct link to 10.2 Why Can This Be Expensive?" title="Direct link to 10.2 Why Can This Be Expensive?" translate="no">​</a></h2>
+<p>Every remote traversal can involve:</p>
+<ul>
+<li class="">Network latency.</li>
+<li class="">Request coordination.</li>
+<li class="">Serialization and deserialization.</li>
+<li class="">Remote storage access.</li>
+<li class="">Intermediate result transfer.</li>
+</ul>
+<p>A deep traversal across many partitions can become expensive even when the graph itself is relatively small.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="103-how-can-we-improve-it">10.3 How Can We Improve It?<a href="#103-how-can-we-improve-it" class="hash-link" aria-label="Direct link to 10.3 How Can We Improve It?" title="Direct link to 10.3 How Can We Improve It?" translate="no">​</a></h2>
+<p>Common approaches include:</p>
+<ul>
+<li class="">Better partition placement.</li>
+<li class="">Reducing unnecessary traversal depth.</li>
+<li class="">Starting from highly selective nodes.</li>
+<li class="">Using indexes.</li>
+<li class="">Applying relationship-type filters.</li>
+<li class="">Limiting result sets.</li>
+<li class="">Caching frequently accessed data.</li>
+<li class="">Avoiding unnecessarily broad graph queries.</li>
+</ul>
+<hr>
+<h1>11. Graph Database Performance Bottlenecks</h1>
+<p>Let&#x27;s examine common production bottlenecks.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="111-high-degree-nodes">11.1 High-Degree Nodes<a href="#111-high-degree-nodes" class="hash-link" aria-label="Direct link to 11.1 High-Degree Nodes" title="Direct link to 11.1 High-Degree Nodes" translate="no">​</a></h2>
+<p>A node with millions of relationships can become expensive to traverse.</p>
+<p>Example:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">             Celebrity User</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           /   |   |   |   \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          /    |   |   |    \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Millions of followers</span><br></div></code></pre></div></div>
+<p>A query retrieving all followers may generate a huge result set.</p>
+<p>Possible mitigations:</p>
+<ul>
+<li class="">Pagination where supported by the application query.</li>
+<li class="">More selective relationship filters.</li>
+<li class="">Avoiding unnecessary full-neighbor retrieval.</li>
+<li class="">Separating hot aggregates from detailed relationship data.</li>
+<li class="">Caching suitable read results.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="112-deep-traversals">11.2 Deep Traversals<a href="#112-deep-traversals" class="hash-link" aria-label="Direct link to 11.2 Deep Traversals" title="Direct link to 11.2 Deep Traversals" translate="no">​</a></h2>
+<p>A query traversing 10 or 20 levels may explore an enormous number of paths.</p>
+<p>Possible mitigations:</p>
+<ul>
+<li class="">Set maximum traversal depth.</li>
+<li class="">Filter relationship types.</li>
+<li class="">Filter node properties early.</li>
+<li class="">Restrict the starting population.</li>
+<li class="">Return only necessary data.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="113-large-result-sets">11.3 Large Result Sets<a href="#113-large-result-sets" class="hash-link" aria-label="Direct link to 11.3 Large Result Sets" title="Direct link to 11.3 Large Result Sets" translate="no">​</a></h2>
+<p>Consider:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Find every user connected to User A.</span><br></div></code></pre></div></div>
+<p>If User A is connected to 20 million users, returning all those records is expensive.</p>
+<p>The bottleneck may be result materialization and network transfer, not just graph traversal.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="114-poor-starting-node-selection">11.4 Poor Starting-Node Selection<a href="#114-poor-starting-node-selection" class="hash-link" aria-label="Direct link to 11.4 Poor Starting-Node Selection" title="Direct link to 11.4 Poor Starting-Node Selection" translate="no">​</a></h2>
+<p>Suppose a query begins from a very broad set of nodes.</p>
+<p>The database may have to explore far more of the graph than necessary.</p>
+<p>Prefer selective starting conditions.</p>
+<p>For example:</p>
+<div class="language-cypher codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cypher codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">MATCH (u:User {userId: 101})</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      -[:FOLLOWS]-&gt;(connected:User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">RETURN connected;</span><br></div></code></pre></div></div>
+<p>An indexed <code>userId</code> property can help locate the starting node.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="115-cross-partition-traversal">11.5 Cross-Partition Traversal<a href="#115-cross-partition-traversal" class="hash-link" aria-label="Direct link to 11.5 Cross-Partition Traversal" title="Direct link to 11.5 Cross-Partition Traversal" translate="no">​</a></h2>
+<p>If related nodes are spread across different machines, network communication can dominate query execution time.</p>
+<p>Possible mitigations include:</p>
+<ul>
+<li class="">Improving graph locality.</li>
+<li class="">Choosing a suitable partitioning strategy.</li>
+<li class="">Reducing traversal depth.</li>
+<li class="">Avoiding unnecessary remote relationship expansion.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="116-memory-pressure">11.6 Memory Pressure<a href="#116-memory-pressure" class="hash-link" aria-label="Direct link to 11.6 Memory Pressure" title="Direct link to 11.6 Memory Pressure" translate="no">​</a></h2>
+<p>Large graph traversals can require substantial memory for:</p>
+<ul>
+<li class="">Intermediate results.</li>
+<li class="">Visited-node tracking.</li>
+<li class="">Paths.</li>
+<li class="">Query execution state.</li>
+<li class="">Caches.</li>
+</ul>
+<p>Insufficient memory can cause slower execution and resource contention.</p>
+<hr>
+<h1>12. Graph Database Scaling vs Relational Database Scaling</h1>
+<p>Let&#x27;s compare graph databases with relational databases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Relational database</th><th>Graph database</th></tr></thead><tbody><tr><td>Primary data model</td><td>Tables</td><td>Nodes and relationships</td></tr><tr><td>Vertical scaling</td><td>Common</td><td>Common</td></tr><tr><td>Horizontal scaling</td><td>Replication, sharding, distributed SQL</td><td>Product-specific distributed graph architecture</td></tr><tr><td>Data partitioning</td><td>Often based on keys or ranges</td><td>May consider node distribution and graph locality</td></tr><tr><td>Cross-partition operations</td><td>Distributed joins can be expensive</td><td>Cross-partition traversal can be expensive</td></tr><tr><td>Replication</td><td>Widely supported</td><td>Product-dependent</td></tr><tr><td>Query challenge</td><td>Joins across distributed data</td><td>Traversals across distributed graph data</td></tr><tr><td>Locality concern</td><td>Keep related records efficiently accessible</td><td>Keep frequently traversed nodes and relationships close</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="121-important-difference">12.1 Important Difference<a href="#121-important-difference" class="hash-link" aria-label="Direct link to 12.1 Important Difference" title="Direct link to 12.1 Important Difference" translate="no">​</a></h2>
+<p>Relational systems often distribute data according to partition keys.</p>
+<p>Graph systems must consider both:</p>
+<ul>
+<li class="">How nodes are distributed.</li>
+<li class="">How relationships connect those nodes.</li>
+</ul>
+<p>This makes graph partitioning particularly challenging.</p>
+<p>A partitioning strategy that balances node counts may still produce a large number of cross-partition relationships.</p>
+<hr>
+<h1>13. Graph Database Scaling vs Cassandra Scaling</h1>
+<p>Since we studied Cassandra in Part 13, compare the two architectures.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Cassandra</th><th>Distributed graph database</th></tr></thead><tbody><tr><td>Primary focus</td><td>Partition-oriented distributed data</td><td>Relationship-oriented data</td></tr><tr><td>Data distribution</td><td>Partition key and token placement</td><td>Product-specific graph partitioning</td></tr><tr><td>Query model</td><td>Known partition-based access patterns</td><td>Graph traversal</td></tr><tr><td>Scaling challenge</td><td>Hot partitions and uneven distribution</td><td>Cross-partition traversal and graph locality</td></tr><tr><td>Replication</td><td>Built-in distributed replication mechanisms</td><td>Depends on the graph database</td></tr><tr><td>Common workload</td><td>High-volume operational writes</td><td>Relationship-heavy queries</td></tr><tr><td>Partitioning objective</td><td>Distribute data and load</td><td>Distribute data while managing graph connectivity</td></tr></tbody></table>
+<p>Cassandra can distribute data effectively for its intended access patterns.</p>
+<p>However, Cassandra is not a graph database simply because it can store relationship records.</p>
+<p>A graph layer such as JanusGraph can use Cassandra as a storage backend, but that adds another architectural layer.</p>
+<hr>
+<h1>14. Practical Architecture Example: Social Network</h1>
+<p>Imagine a social network with:</p>
+<ul>
+<li class="">100 million users.</li>
+<li class="">10 billion follow relationships.</li>
+<li class="">1 billion posts.</li>
+<li class="">High-volume likes and comments.</li>
+</ul>
+<p>Possible logical graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:FOLLOWS]-&gt;(User)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:CREATED]-&gt;(Post)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:LIKED]-&gt;(Post)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">(User)-[:COMMENTED_ON]-&gt;(Post)</span><br></div></code></pre></div></div>
+<p>A possible distributed architecture:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">                  Application</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                Graph Query Layer</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             +---------+---------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Graph 1   Graph 2   Graph 3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             v         v         v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         Partition  Partition  Partition</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             |         |         |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             +---------+---------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                       v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                 Replication</span><br></div></code></pre></div></div>
+<p>The architecture needs to handle:</p>
+<ul>
+<li class="">User relationship lookups.</li>
+<li class="">Friend-of-friend traversal.</li>
+<li class="">Popular users with millions of followers.</li>
+<li class="">Frequent relationship updates.</li>
+<li class="">High-volume post interactions.</li>
+<li class="">Distributed queries.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="141-do-all-social-network-data-need-a-graph-database">14.1 Do All Social Network Data Need a Graph Database?<a href="#141-do-all-social-network-data-need-a-graph-database" class="hash-link" aria-label="Direct link to 14.1 Do All Social Network Data Need a Graph Database?" title="Direct link to 14.1 Do All Social Network Data Need a Graph Database?" translate="no">​</a></h2>
+<p>No.</p>
+<p>A social network can use multiple storage systems.</p>
+<p>For example:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data</th><th>Possible storage</th></tr></thead><tbody><tr><td>User profiles</td><td>PostgreSQL or MongoDB</td></tr><tr><td>Sessions</td><td>Redis</td></tr><tr><td>Posts</td><td>Relational or document database</td></tr><tr><td>Follow relationships</td><td>Graph database or relational relationship tables</td></tr><tr><td>High-volume activity events</td><td>Cassandra or another event store</td></tr><tr><td>Search</td><td>Search engine</td></tr><tr><td>Analytics</td><td>Analytical database</td></tr></tbody></table>
+<p>The graph database should be used where graph traversal provides real value.</p>
+<p>Do not put all application data into a graph database merely because the application contains relationships.</p>
+<hr>
+<h1>15. When Should You Scale a Graph Database?</h1>
+<p>Do not scale because the dataset looks large.</p>
+<p>Scale when you have measured bottlenecks.</p>
+<p>Look for:</p>
+<ul>
+<li class="">Increasing query latency.</li>
+<li class="">CPU saturation.</li>
+<li class="">Memory pressure.</li>
+<li class="">Storage bottlenecks.</li>
+<li class="">High disk I/O.</li>
+<li class="">High concurrency.</li>
+<li class="">Excessive network traffic.</li>
+<li class="">Uneven partition utilization.</li>
+<li class="">Replication lag.</li>
+<li class="">Slow cross-partition traversals.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="151-scaling-decision-framework">15.1 Scaling Decision Framework<a href="#151-scaling-decision-framework" class="hash-link" aria-label="Direct link to 15.1 Scaling Decision Framework" title="Direct link to 15.1 Scaling Decision Framework" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              Performance Problem</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">             Identify the Bottleneck</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          +-----------+-----------+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">         CPU         RAM         Disk</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          |           |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          v           v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Optimize     Increase    Improve I/O</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">      Queries      Memory      / Storage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">              Is One Server Enough?</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                      |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                +-----+-----+</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">               Yes          No</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                |           |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                v           v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Vertical    Evaluate Distributed</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">            Scaling     Graph Architecture</span><br></div></code></pre></div></div>
+<p>Horizontal scaling should be considered after measuring whether vertical scaling and query optimization are sufficient.</p>
+<hr>
+<h1>16. Graph Database Tradeoffs</h1>
+<p>Let&#x27;s summarize the main advantages and disadvantages.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="161-advantages">16.1 Advantages<a href="#161-advantages" class="hash-link" aria-label="Direct link to 16.1 Advantages" title="Direct link to 16.1 Advantages" translate="no">​</a></h2>
+<ol>
+<li class="">Relationships are first-class elements.</li>
+<li class="">Relationship traversal is a natural query operation.</li>
+<li class="">Complex connected-data queries can be easier to express.</li>
+<li class="">Graph algorithms support network analysis.</li>
+<li class="">Some graph databases provide efficient local traversal through adjacency-oriented storage.</li>
+<li class="">Graph models can represent evolving relationship structures naturally.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="162-disadvantages">16.2 Disadvantages<a href="#162-disadvantages" class="hash-link" aria-label="Direct link to 16.2 Disadvantages" title="Direct link to 16.2 Disadvantages" translate="no">​</a></h2>
+<ol>
+<li class="">Distributed graph partitioning is challenging.</li>
+<li class="">Cross-partition traversal can increase latency.</li>
+<li class="">High-degree nodes can become bottlenecks.</li>
+<li class="">Deep traversals can produce large intermediate result sets.</li>
+<li class="">Graph queries may consume substantial memory.</li>
+<li class="">Graph database operations require product-specific expertise.</li>
+<li class="">Some graph databases have different scaling and transaction capabilities from relational databases.</li>
+<li class="">Introducing another database increases operational complexity.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="163-summary-table">16.3 Summary Table<a href="#163-summary-table" class="hash-link" aria-label="Direct link to 16.3 Summary Table" title="Direct link to 16.3 Summary Table" translate="no">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concern</th><th>Potential solution</th></tr></thead><tbody><tr><td>CPU bottleneck</td><td>Query optimization and additional compute</td></tr><tr><td>Memory pressure</td><td>Increase memory and optimize traversal</td></tr><tr><td>Disk bottleneck</td><td>Improve storage and caching</td></tr><tr><td>High-degree nodes</td><td>Filter, paginate, cache, or redesign queries</td></tr><tr><td>Deep traversals</td><td>Bound traversal depth</td></tr><tr><td>Cross-partition latency</td><td>Improve locality and partition placement</td></tr><tr><td>Uneven distribution</td><td>Rebalance partitions</td></tr><tr><td>Replication lag</td><td>Review replication and consistency configuration</td></tr></tbody></table>
+<hr>
+<h1>17. Interview Questions and Answers</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q1-why-is-horizontal-scaling-difficult-for-graph-databases">Q1. Why is horizontal scaling difficult for graph databases?<a href="#q1-why-is-horizontal-scaling-difficult-for-graph-databases" class="hash-link" aria-label="Direct link to Q1. Why is horizontal scaling difficult for graph databases?" title="Direct link to Q1. Why is horizontal scaling difficult for graph databases?" translate="no">​</a></h2>
+<p>Because relationships can connect nodes stored on different machines.</p>
+<p>Graph traversal may require network communication across partitions, increasing latency and coordination overhead.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q2-what-is-graph-partitioning">Q2. What is graph partitioning?<a href="#q2-what-is-graph-partitioning" class="hash-link" aria-label="Direct link to Q2. What is graph partitioning?" title="Direct link to Q2. What is graph partitioning?" translate="no">​</a></h2>
+<p>Graph partitioning divides a graph into smaller sections that can be stored or processed separately.</p>
+<p>A good partitioning strategy attempts to balance load while minimizing expensive cross-partition relationships.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q3-what-is-graph-locality">Q3. What is graph locality?<a href="#q3-what-is-graph-locality" class="hash-link" aria-label="Direct link to Q3. What is graph locality?" title="Direct link to Q3. What is graph locality?" translate="no">​</a></h2>
+<p>Graph locality means keeping frequently connected nodes close together in storage or execution.</p>
+<p>It can reduce network communication during traversal.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q4-what-is-a-cross-partition-traversal">Q4. What is a cross-partition traversal?<a href="#q4-what-is-a-cross-partition-traversal" class="hash-link" aria-label="Direct link to Q4. What is a cross-partition traversal?" title="Direct link to Q4. What is a cross-partition traversal?" translate="no">​</a></h2>
+<p>A cross-partition traversal occurs when a query follows relationships from nodes stored in one partition to nodes stored in another partition.</p>
+<p>It may require network communication.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q5-what-is-the-difference-between-vertical-and-horizontal-scaling">Q5. What is the difference between vertical and horizontal scaling?<a href="#q5-what-is-the-difference-between-vertical-and-horizontal-scaling" class="hash-link" aria-label="Direct link to Q5. What is the difference between vertical and horizontal scaling?" title="Direct link to Q5. What is the difference between vertical and horizontal scaling?" translate="no">​</a></h2>
+<p>Vertical scaling increases the resources of one machine.</p>
+<p>Horizontal scaling distributes data and workload across multiple machines.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q6-why-can-a-high-degree-node-cause-performance-problems">Q6. Why can a high-degree node cause performance problems?<a href="#q6-why-can-a-high-degree-node-cause-performance-problems" class="hash-link" aria-label="Direct link to Q6. Why can a high-degree node cause performance problems?" title="Direct link to Q6. Why can a high-degree node cause performance problems?" translate="no">​</a></h2>
+<p>A high-degree node has many relationships.</p>
+<p>Queries traversing all its relationships may process huge numbers of edges and produce large result sets.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q7-what-is-the-difference-between-partitioning-and-replication">Q7. What is the difference between partitioning and replication?<a href="#q7-what-is-the-difference-between-partitioning-and-replication" class="hash-link" aria-label="Direct link to Q7. What is the difference between partitioning and replication?" title="Direct link to Q7. What is the difference between partitioning and replication?" translate="no">​</a></h2>
+<p>Partitioning divides data across machines.</p>
+<p>Replication maintains additional copies of data.</p>
+<p>Partitioning primarily supports distribution and capacity; replication primarily supports availability and resilience.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q8-does-replication-guarantee-strong-consistency">Q8. Does replication guarantee strong consistency?<a href="#q8-does-replication-guarantee-strong-consistency" class="hash-link" aria-label="Direct link to Q8. Does replication guarantee strong consistency?" title="Direct link to Q8. Does replication guarantee strong consistency?" translate="no">​</a></h2>
+<p>No.</p>
+<p>Consistency depends on the database&#x27;s replication and transaction model.</p>
+<p>Asynchronous replication may allow replicas to lag behind the primary copy.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q9-why-is-graph-aware-partitioning-useful">Q9. Why is graph-aware partitioning useful?<a href="#q9-why-is-graph-aware-partitioning-useful" class="hash-link" aria-label="Direct link to Q9. Why is graph-aware partitioning useful?" title="Direct link to Q9. Why is graph-aware partitioning useful?" translate="no">​</a></h2>
+<p>It attempts to keep strongly connected nodes together, reducing cross-partition traversal and network communication.</p>
+<p>However, it can be expensive to compute and maintain.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q10-what-happens-when-a-graph-query-crosses-multiple-servers">Q10. What happens when a graph query crosses multiple servers?<a href="#q10-what-happens-when-a-graph-query-crosses-multiple-servers" class="hash-link" aria-label="Direct link to Q10. What happens when a graph query crosses multiple servers?" title="Direct link to Q10. What happens when a graph query crosses multiple servers?" translate="no">​</a></h2>
+<p>The database may need to send traversal requests to remote partitions, collect results, and continue execution.</p>
+<p>This can increase latency due to network communication and coordination.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q11-is-cassandra-a-graph-database">Q11. Is Cassandra a graph database?<a href="#q11-is-cassandra-a-graph-database" class="hash-link" aria-label="Direct link to Q11. Is Cassandra a graph database?" title="Direct link to Q11. Is Cassandra a graph database?" translate="no">​</a></h2>
+<p>No.</p>
+<p>Cassandra is a wide-column distributed database.</p>
+<p>It can be used as a storage backend for graph systems such as JanusGraph, but Cassandra itself does not provide the same native graph data model and traversal engine.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q12-should-you-always-use-horizontal-scaling-for-large-graphs">Q12. Should you always use horizontal scaling for large graphs?<a href="#q12-should-you-always-use-horizontal-scaling-for-large-graphs" class="hash-link" aria-label="Direct link to Q12. Should you always use horizontal scaling for large graphs?" title="Direct link to Q12. Should you always use horizontal scaling for large graphs?" translate="no">​</a></h2>
+<p>No.</p>
+<p>First identify the bottleneck.</p>
+<p>Vertical scaling, indexing, caching, and query optimization may be sufficient.</p>
+<p>Distributed graph architecture introduces additional complexity and should be justified by actual requirements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="q13-what-is-the-biggest-tradeoff-in-distributed-graph-databases">Q13. What is the biggest tradeoff in distributed graph databases?<a href="#q13-what-is-the-biggest-tradeoff-in-distributed-graph-databases" class="hash-link" aria-label="Direct link to Q13. What is the biggest tradeoff in distributed graph databases?" title="Direct link to Q13. What is the biggest tradeoff in distributed graph databases?" translate="no">​</a></h2>
+<p>One of the biggest tradeoffs is balancing data distribution and graph locality.</p>
+<p>Distributing nodes evenly helps balance resources, while keeping related nodes together can reduce traversal latency.</p>
+<p>Achieving both is difficult.</p>
+<hr>
+<h1>18. Practical Exercises</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-1--identify-the-scaling-problem">Exercise 1 — Identify the Scaling Problem<a href="#exercise-1--identify-the-scaling-problem" class="hash-link" aria-label="Direct link to Exercise 1 — Identify the Scaling Problem" title="Direct link to Exercise 1 — Identify the Scaling Problem" translate="no">​</a></h2>
+<p>A graph database has:</p>
+<ul>
+<li class="">20 million nodes.</li>
+<li class="">200 million relationships.</li>
+<li class="">90% CPU utilization.</li>
+<li class="">Low memory usage.</li>
+<li class="">High query latency.</li>
+</ul>
+<p>What should you investigate?</p>
+<p>Possible areas:</p>
+<ul>
+<li class="">Expensive traversals.</li>
+<li class="">Poor starting-node selection.</li>
+<li class="">Inefficient query plans.</li>
+<li class="">High-degree nodes.</li>
+<li class="">Excessive concurrency.</li>
+</ul>
+<p>Do not immediately assume that adding more servers is the correct solution.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-2--identify-cross-partition-traversal">Exercise 2 — Identify Cross-Partition Traversal<a href="#exercise-2--identify-cross-partition-traversal" class="hash-link" aria-label="Direct link to Exercise 2 — Identify Cross-Partition Traversal" title="Direct link to Exercise 2 — Identify Cross-Partition Traversal" translate="no">​</a></h2>
+<p>Graph:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">A -&gt; B -&gt; C -&gt; D -&gt; E</span><br></div></code></pre></div></div>
+<p>Partition placement:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Partition 1: A, B</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 2: C, D</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Partition 3: E</span><br></div></code></pre></div></div>
+<p>Questions:</p>
+<ol>
+<li class="">How many partition boundaries does the path cross?</li>
+<li class="">Why can these crossings increase latency?</li>
+<li class="">How might graph-aware partitioning help?</li>
+<li class="">Why might grouping all connected nodes together still create a hotspot?</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-3--design-a-partitioning-strategy">Exercise 3 — Design a Partitioning Strategy<a href="#exercise-3--design-a-partitioning-strategy" class="hash-link" aria-label="Direct link to Exercise 3 — Design a Partitioning Strategy" title="Direct link to Exercise 3 — Design a Partitioning Strategy" translate="no">​</a></h2>
+<p>A social network contains:</p>
+<ul>
+<li class="">Normal users with 100 followers.</li>
+<li class="">Influencers with 10 million followers.</li>
+<li class="">Millions of small communities.</li>
+<li class="">Users who frequently interact within the same community.</li>
+</ul>
+<p>Propose a partitioning strategy.</p>
+<p>Consider:</p>
+<ul>
+<li class="">User distribution.</li>
+<li class="">Community locality.</li>
+<li class="">High-degree users.</li>
+<li class="">Cross-partition relationships.</li>
+<li class="">Rebalancing costs.</li>
+</ul>
+<p>There is no universally correct answer. Explain the tradeoffs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-4--scaling-decision">Exercise 4 — Scaling Decision<a href="#exercise-4--scaling-decision" class="hash-link" aria-label="Direct link to Exercise 4 — Scaling Decision" title="Direct link to Exercise 4 — Scaling Decision" translate="no">​</a></h2>
+<p>A graph database has increasing query latency.</p>
+<p>Metrics:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Current value</th></tr></thead><tbody><tr><td>CPU</td><td>35%</td></tr><tr><td>RAM</td><td>95%</td></tr><tr><td>Disk utilization</td><td>40%</td></tr><tr><td>Network</td><td>25%</td></tr><tr><td>Query latency</td><td>High</td></tr></tbody></table>
+<p>What should you investigate first?</p>
+<p>A likely starting point is memory pressure and cache behavior, along with query execution state and traversal size.</p>
+<p>Adding CPU alone may not solve the problem.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exercise-5--architecture-design">Exercise 5 — Architecture Design<a href="#exercise-5--architecture-design" class="hash-link" aria-label="Direct link to Exercise 5 — Architecture Design" title="Direct link to Exercise 5 — Architecture Design" translate="no">​</a></h2>
+<p>Design an architecture for a fraud detection system.</p>
+<p>Requirements:</p>
+<ul>
+<li class="">50 million customer accounts.</li>
+<li class="">Multiple accounts can share devices.</li>
+<li class="">Transactions connect accounts.</li>
+<li class="">Fraud investigators need multi-hop relationship queries.</li>
+<li class="">The system must ingest new transactions continuously.</li>
+</ul>
+<p>Explain:</p>
+<ol>
+<li class="">Which entities become nodes?</li>
+<li class="">Which connections become relationships?</li>
+<li class="">Which data belongs in relationship properties?</li>
+<li class="">Which database could serve the transactional system of record?</li>
+<li class="">Where could a graph database fit?</li>
+<li class="">How would new transactions reach the graph?</li>
+<li class="">What happens if the graph is temporarily behind the transactional system?</li>
+</ol>
+<hr>
+<h1>19. Part 14D Summary</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Concept</th><th>What to remember</th></tr></thead><tbody><tr><td>Vertical scaling</td><td>Increase resources on one machine</td></tr><tr><td>Horizontal scaling</td><td>Distribute workload across machines</td></tr><tr><td>Graph partitioning</td><td>Divide graph data into partitions</td></tr><tr><td>Hash partitioning</td><td>Distribute nodes using a hash</td></tr><tr><td>Range partitioning</td><td>Distribute nodes using key ranges</td></tr><tr><td>Graph-aware partitioning</td><td>Group connected nodes to improve locality</td></tr><tr><td>Graph locality</td><td>Keep frequently traversed nodes close</td></tr><tr><td>Cross-partition traversal</td><td>Follow relationships across partitions</td></tr><tr><td>Replication</td><td>Maintain additional copies of data</td></tr><tr><td>Replication lag</td><td>Delay between updates and replica visibility</td></tr><tr><td>Strong consistency</td><td>Provides stronger visibility guarantees</td></tr><tr><td>Eventual consistency</td><td>Replicas may temporarily differ but can converge</td></tr><tr><td>High-degree node</td><td>Node with many relationships</td></tr><tr><td>Traversal depth</td><td>Number of relationship hops explored</td></tr><tr><td>Distributed query execution</td><td>Coordinates work across partitions or machines</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-most-important-mental-model">The Most Important Mental Model<a href="#the-most-important-mental-model" class="hash-link" aria-label="Direct link to The Most Important Mental Model" title="Direct link to The Most Important Mental Model" translate="no">​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">              Large Graph</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Identify Bottleneck</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">           Optimize Queries</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Evaluate Vertical Scale</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Evaluate Partitioning</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          Improve Graph Locality</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        Manage Replication and Consistency</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  |</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  v</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">       Monitor Cross-Partition Traversal</span><br></div></code></pre></div></div>
+<p>Remember these five principles:</p>
+<ol>
+<li class="">Graph databases can scale vertically and horizontally, but distributed traversal introduces additional complexity.</li>
+<li class="">Graph partitioning must consider both load distribution and relationship locality.</li>
+<li class="">Cross-partition traversal can increase latency due to network communication.</li>
+<li class="">Replication and partitioning solve different problems.</li>
+<li class="">Scale only after measuring the actual bottleneck.</li>
+</ol>
+<p><strong>The central architectural tradeoff:</strong> A distributed graph database must balance keeping connected nodes close together with distributing data and workload evenly across machines.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/codingsapienss/notes/tree/main/docs/web-dev/core-concepts/dbms/11_Types_of_NoSQL_DB/11.4_Graph_Databases/part_04.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_03"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Graph Data Modeling</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/web-dev/core-concepts/dbms/Types_of_NoSQL_DB/11.4_Graph_Databases/part_05"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Graph Databases: When to Use</div></a></nav></div></div><div class="col col--3 tocColumn_ky7T"><div class="tocInner_z0Dp"><button type="button" class="tocCollapseButton_gl1G" aria-label="Collapse table of contents" title="Collapse table of contents"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#31-why-is-ram-important" class="table-of-contents__link toc-highlight">3.1 Why Is RAM Important?</a></li><li><a href="#32-advantages" class="table-of-contents__link toc-highlight">3.2 Advantages</a></li><li><a href="#33-disadvantages" class="table-of-contents__link toc-highlight">3.3 Disadvantages</a></li><li><a href="#34-when-is-vertical-scaling-useful" class="table-of-contents__link toc-highlight">3.4 When Is Vertical Scaling Useful?</a></li><li><a href="#41-why-horizontal-scaling" class="table-of-contents__link toc-highlight">4.1 Why Horizontal Scaling?</a></li><li><a href="#42-why-is-it-difficult-for-graph-databases" class="table-of-contents__link toc-highlight">4.2 Why Is It Difficult for Graph Databases?</a></li><li><a href="#51-example-of-graph-partitioning" class="table-of-contents__link toc-highlight">5.1 Example of Graph Partitioning</a></li><li><a href="#52-why-does-partition-placement-matter" class="table-of-contents__link toc-highlight">5.2 Why Does Partition Placement Matter?</a></li><li><a href="#53-graph-partitioning-objectives" class="table-of-contents__link toc-highlight">5.3 Graph Partitioning Objectives</a></li><li><a href="#61-hash-based-partitioning" class="table-of-contents__link toc-highlight">6.1 Hash-Based Partitioning</a><ul><li><a href="#advantages" class="table-of-contents__link toc-highlight">Advantages</a></li><li><a href="#disadvantages" class="table-of-contents__link toc-highlight">Disadvantages</a></li></ul></li><li><a href="#62-range-based-partitioning" class="table-of-contents__link toc-highlight">6.2 Range-Based Partitioning</a><ul><li><a href="#advantages-1" class="table-of-contents__link toc-highlight">Advantages</a></li><li><a href="#disadvantages-1" class="table-of-contents__link toc-highlight">Disadvantages</a></li></ul></li><li><a href="#63-graph-aware-partitioning" class="table-of-contents__link toc-highlight">6.3 Graph-Aware Partitioning</a><ul><li><a href="#advantages-2" class="table-of-contents__link toc-highlight">Advantages</a></li><li><a href="#disadvantages-2" class="table-of-contents__link toc-highlight">Disadvantages</a></li></ul></li><li><a href="#64-comparison" class="table-of-contents__link toc-highlight">6.4 Comparison</a></li><li><a href="#71-why-is-locality-important" class="table-of-contents__link toc-highlight">7.1 Why Is Locality Important?</a></li><li><a href="#72-can-all-connected-nodes-be-stored-together" class="table-of-contents__link toc-highlight">7.2 Can All Connected Nodes Be Stored Together?</a></li><li><a href="#81-why-is-replication-needed" class="table-of-contents__link toc-highlight">8.1 Why Is Replication Needed?</a></li><li><a href="#82-replication-challenges" class="table-of-contents__link toc-highlight">8.2 Replication Challenges</a></li><li><a href="#91-strong-consistency" class="table-of-contents__link toc-highlight">9.1 Strong Consistency</a></li><li><a href="#92-eventual-consistency" class="table-of-contents__link toc-highlight">9.2 Eventual Consistency</a></li><li><a href="#93-why-does-consistency-matter-for-graph-queries" class="table-of-contents__link toc-highlight">9.3 Why Does Consistency Matter for Graph Queries?</a></li><li><a href="#101-execution-flow" class="table-of-contents__link toc-highlight">10.1 Execution Flow</a></li><li><a href="#102-why-can-this-be-expensive" class="table-of-contents__link toc-highlight">10.2 Why Can This Be Expensive?</a></li><li><a href="#103-how-can-we-improve-it" class="table-of-contents__link toc-highlight">10.3 How Can We Improve It?</a></li><li><a href="#111-high-degree-nodes" class="table-of-contents__link toc-highlight">11.1 High-Degree Nodes</a></li><li><a href="#112-deep-traversals" class="table-of-contents__link toc-highlight">11.2 Deep Traversals</a></li><li><a href="#113-large-result-sets" class="table-of-contents__link toc-highlight">11.3 Large Result Sets</a></li><li><a href="#114-poor-starting-node-selection" class="table-of-contents__link toc-highlight">11.4 Poor Starting-Node Selection</a></li><li><a href="#115-cross-partition-traversal" class="table-of-contents__link toc-highlight">11.5 Cross-Partition Traversal</a></li><li><a href="#116-memory-pressure" class="table-of-contents__link toc-highlight">11.6 Memory Pressure</a></li><li><a href="#121-important-difference" class="table-of-contents__link toc-highlight">12.1 Important Difference</a></li><li><a href="#141-do-all-social-network-data-need-a-graph-database" class="table-of-contents__link toc-highlight">14.1 Do All Social Network Data Need a Graph Database?</a></li><li><a href="#151-scaling-decision-framework" class="table-of-contents__link toc-highlight">15.1 Scaling Decision Framework</a></li><li><a href="#161-advantages" class="table-of-contents__link toc-highlight">16.1 Advantages</a></li><li><a href="#162-disadvantages" class="table-of-contents__link toc-highlight">16.2 Disadvantages</a></li><li><a href="#163-summary-table" class="table-of-contents__link toc-highlight">16.3 Summary Table</a></li><li><a href="#q1-why-is-horizontal-scaling-difficult-for-graph-databases" class="table-of-contents__link toc-highlight">Q1. Why is horizontal scaling difficult for graph databases?</a></li><li><a href="#q2-what-is-graph-partitioning" class="table-of-contents__link toc-highlight">Q2. What is graph partitioning?</a></li><li><a href="#q3-what-is-graph-locality" class="table-of-contents__link toc-highlight">Q3. What is graph locality?</a></li><li><a href="#q4-what-is-a-cross-partition-traversal" class="table-of-contents__link toc-highlight">Q4. What is a cross-partition traversal?</a></li><li><a href="#q5-what-is-the-difference-between-vertical-and-horizontal-scaling" class="table-of-contents__link toc-highlight">Q5. What is the difference between vertical and horizontal scaling?</a></li><li><a href="#q6-why-can-a-high-degree-node-cause-performance-problems" class="table-of-contents__link toc-highlight">Q6. Why can a high-degree node cause performance problems?</a></li><li><a href="#q7-what-is-the-difference-between-partitioning-and-replication" class="table-of-contents__link toc-highlight">Q7. What is the difference between partitioning and replication?</a></li><li><a href="#q8-does-replication-guarantee-strong-consistency" class="table-of-contents__link toc-highlight">Q8. Does replication guarantee strong consistency?</a></li><li><a href="#q9-why-is-graph-aware-partitioning-useful" class="table-of-contents__link toc-highlight">Q9. Why is graph-aware partitioning useful?</a></li><li><a href="#q10-what-happens-when-a-graph-query-crosses-multiple-servers" class="table-of-contents__link toc-highlight">Q10. What happens when a graph query crosses multiple servers?</a></li><li><a href="#q11-is-cassandra-a-graph-database" class="table-of-contents__link toc-highlight">Q11. Is Cassandra a graph database?</a></li><li><a href="#q12-should-you-always-use-horizontal-scaling-for-large-graphs" class="table-of-contents__link toc-highlight">Q12. Should you always use horizontal scaling for large graphs?</a></li><li><a href="#q13-what-is-the-biggest-tradeoff-in-distributed-graph-databases" class="table-of-contents__link toc-highlight">Q13. What is the biggest tradeoff in distributed graph databases?</a></li><li><a href="#exercise-1--identify-the-scaling-problem" class="table-of-contents__link toc-highlight">Exercise 1 — Identify the Scaling Problem</a></li><li><a href="#exercise-2--identify-cross-partition-traversal" class="table-of-contents__link toc-highlight">Exercise 2 — Identify Cross-Partition Traversal</a></li><li><a href="#exercise-3--design-a-partitioning-strategy" class="table-of-contents__link toc-highlight">Exercise 3 — Design a Partitioning Strategy</a></li><li><a href="#exercise-4--scaling-decision" class="table-of-contents__link toc-highlight">Exercise 4 — Scaling Decision</a></li><li><a href="#exercise-5--architecture-design" class="table-of-contents__link toc-highlight">Exercise 5 — Architecture Design</a></li><li><a href="#the-most-important-mental-model" class="table-of-contents__link toc-highlight">The Most Important Mental Model</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with ❤️ by codingsapienss • © 2026 Knowledge Base</div></div></div></footer></div>
+</body>
+</html>
