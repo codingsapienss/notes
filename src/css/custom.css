@@ -251,76 +251,79 @@ article blockquote {
   font-size: 13px !important;
 }
 
-/* Sidebar root categories - folder icon via menu__icon */
-.menu__list-item--category > .menu__link .menu__icon {
-  width: 16px !important;
-  height: 16px !important;
-  flex-shrink: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
+/* Add gap between icon and text */
+.theme-doc-sidebar-container .menu__link .menu__label {
+  margin-left: 0.5rem !important;
+}
+
+/* Sidebar root categories - folder icon */
+.menu__list-item--category > .menu__link .menu__icon::after {
+  content: '📁';
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
 }
 
 .menu__list-item--category > .menu__link .menu__chevron {
-  margin-left: auto !important;
-  color: var(--ifm-color-emphasis-500) !important;
-  font-size: 12px !important;
-  transition: transform 0.2s ease !important;
-  flex-shrink: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-500);
+  font-size: 12px;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu__list-item--category.collapsed > .menu__link .menu__chevron {
-  transform: rotate(-90deg) !important;
+  transform: rotate(-90deg);
 }
 
 /* Sub-category headers - folder icon */
-.menu__list-item--nested.menu__list-item--category > .menu__link .menu__icon {
-  width: 15px !important;
-  height: 15px !important;
-  flex-shrink: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 13px !important;
-  line-height: 1.4 !important;
-  opacity: 0.8 !important;
+.menu__list-item--nested.menu__list-item--category > .menu__link .menu__icon::after {
+  content: '📁';
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  opacity: 0.8;
 }
 
 .menu__list-item--nested.menu__list-item--category > .menu__link .menu__chevron {
-  margin-left: auto !important;
-  color: var(--ifm-color-emphasis-500) !important;
-  font-size: 11px !important;
-  transition: transform 0.2s ease !important;
-  flex-shrink: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-500);
+  font-size: 11px;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu__list-item--nested.menu__list-item--category.collapsed > .menu__link .menu__chevron {
-  transform: rotate(-90deg) !important;
+  transform: rotate(-90deg);
 }
 
 /* Regular page links - document icon */
-.menu__list-item > .menu__link:not(.menu__link--category) .menu__icon {
-  width: 14px !important;
-  height: 14px !important;
-  flex-shrink: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 12px !important;
-  line-height: 1.4 !important;
-  opacity: 0.7 !important;
+.menu__list-item > .menu__link:not(.menu__link--category) .menu__icon::after {
+  content: '📄';
+  font-size: 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
 }
 
-.menu__list-item > .menu__link--active .menu__icon {
-  opacity: 1 !important;
+.menu__list-item > .menu__link--active .menu__icon::after {
+  opacity: 1;
 }
 
 /* Nested items - indented with left border */
@@ -331,7 +334,7 @@ article blockquote {
 }
 
 .menu__list-item--nested > .menu__link {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ifm-color-emphasis-700);
 }
 
@@ -347,7 +350,7 @@ article blockquote {
 }
 
 .menu__list-item--nested.menu__list-item--nested > .menu__link {
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--ifm-color-emphasis-500);
 }
 
