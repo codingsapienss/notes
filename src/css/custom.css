@@ -210,43 +210,202 @@ article blockquote {
   color: #cbd5e1 !important; /* Light gray for dark mode */
 }
 
-/* --- Sidebar & TOC compact styling --- */
+/* --- Sidebar visual differentiation --- */
 .theme-doc-sidebar-container {
   --ifm-font-size-base: 12px;
+  --ifm-sidebar-width: 270px !important;
+  background: linear-gradient(180deg, var(--glass-bg) 0%, var(--ifm-background-color) 100%) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid var(--glass-border) !important;
 }
 
-.menu__list-item {
-  font-size: 12px;
-  line-height: 1.4;
+/* Sidebar root categories - distinct colored badges */
+.menu__list-item--category > .menu__link {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-primary) !important;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.menu__link {
+.menu__list-item--category > .menu__link::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  flex-shrink: 0;
+}
+
+/* Sub-category headers - slightly smaller, dot indicator */
+.menu__list-item--nested.menu__list-item--category > .menu__link {
   font-size: 12px;
-  padding: 0.35rem 0.5rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--ifm-color-primary);
+  padding-top: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed var(--ifm-color-emphasis-300);
+  margin-bottom: 0.2rem;
+}
+
+.menu__list-item--nested.menu__list-item--category > .menu__link::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary-light);
+  flex-shrink: 0;
+}
+
+/* Section divider between top-level categories */
+.menu__list-item--category + .menu__list-item--category {
+  margin-top: 0.5rem;
+}
+
+.menu__list-item--category + .menu__list-item--category > .menu__link {
+  border-top: 2px solid var(--ifm-color-emphasis-200);
+  padding-top: 1.25rem;
+}
+
+/* Regular sidebar links - muted with left padding */
+.menu__list-item > .menu__link {
+  font-size: 12.5px;
+  color: var(--ifm-font-color-base);
+  border-radius: 5px;
+  padding-left: 1.5rem;
+  transition: all 0.15s ease;
+}
+
+.menu__list-item > .menu__link:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+}
+
+/* Active link - highlighted pill */
+.menu__list-item > .menu__link--active {
+  background-color: var(--ifm-color-primary);
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Nested items - indented with left border */
+.menu__list-item--nested {
+  margin-left: 0.5rem;
+  border-left: 2px solid var(--ifm-color-emphasis-200);
+  padding-left: 0.5rem;
+}
+
+.menu__list-item--nested > .menu__link {
+  font-size: 12px;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.menu__list-item--nested > .menu__link:hover {
+  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+/* Deeply nested - more indented, lighter */
+.menu__list-item--nested.menu__list-item--nested {
+  margin-left: 0.75rem;
+  border-left-color: var(--ifm-color-emphasis-300);
+}
+
+.menu__list-item--nested.menu__list-item--nested > .menu__link {
+  font-size: 11.5px;
+  color: var(--ifm-color-emphasis-500);
+}
+
+/* Collapse/expand toggle */
+.menu__collapse-button {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Sidebar footer - collapse button */
+.theme-doc-sidebar-container .button--secondary.button--outline {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px !important;
+  margin: 0.5rem !important;
+  font-size: 12px !important;
+}
+
+/* Expand arrow strip when collapsed */
+.theme-doc-sidebar-container .docSidebarContainerHidden {
+  background: var(--glass-bg) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+/* TOC (right sidebar) - visual hierarchy */
+.table-of-contents {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.table-of-contents__title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ifm-color-emphasis-500);
+  margin-bottom: 0.5rem;
 }
 
 .table-of-contents__link {
   font-size: 12px;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease;
+  color: var(--ifm-color-emphasis-700);
 }
 
 .table-of-contents__link:hover {
   background-color: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+  border-left-color: var(--ifm-color-primary);
 }
 
-.doc-sidebar-item {
-  font-size: 12px;
+/* TOC H2 (top level) */
+.table-of-contents__list > .table-of-contents__link {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--ifm-font-color-base);
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 0.6rem;
 }
 
-/* Reduce sidebar width when expanded */
-.theme-doc-sidebar-container {
-  --ifm-sidebar-width: 260px !important;
+/* TOC H3 (nested) */
+.table-of-contents__list .table-of-contents__list .table-of-contents__link {
+  font-size: 11.5px;
+  color: var(--ifm-color-emphasis-700);
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
 }
 
-/* Reduce TOC width */
-.tocCollapsibleButton__txt,
-.tocCollapsibleButton__chevron {
-  font-size: 12px;
+/* TOC H4 (deep nested) */
+.table-of-contents__list .table-of-contents__list .table-of-contents__list .table-of-contents__link {
+  font-size: 11px;
+  color: var(--ifm-color-emphasis-500);
+  padding-left: 1.75rem;
+  font-style: italic;
 }
 
 /* --- MOBILE OPTIMIZATION --- */
