@@ -21,14 +21,14 @@
   --ifm-background-color: #f0f2f5 !important; /* Clean light gray background */
   
   /* Font size reductions for readability */
-  --ifm-font-size-base: 14px;
-  --ifm-font-size-sm: 12px;
-  --ifm-font-size-lg: 15px;
-  --ifm-font-size-xl: 18px;
-  --ifm-font-size-2xl: 21px;
-  --ifm-font-size-3xl: 24px;
-  --ifm-font-size-4xl: 28px;
-  --ifm-code-font-size: 85%;
+  --ifm-font-size-base: 13px;
+  --ifm-font-size-sm: 11px;
+  --ifm-font-size-lg: 14px;
+  --ifm-font-size-xl: 16px;
+  --ifm-font-size-2xl: 19px;
+  --ifm-font-size-3xl: 22px;
+  --ifm-font-size-4xl: 26px;
+  --ifm-code-font-size: 82%;
   
   /* Grid & Glass (Light) */
   --grid-color: rgba(0, 0, 0, 0.08);
@@ -138,45 +138,45 @@ article {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 2.5rem;
+  padding: 2rem 2.5rem;
   border-radius: 8px;
   border: 1px solid var(--glass-border) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  max-width: 860px;
+  max-width: 780px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 article p, article li {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 article h1 {
-  font-size: 1.75rem !important;
-  margin-bottom: 1.25rem;
+  font-size: 1.6rem !important;
+  margin-bottom: 1rem;
 }
 
 article h2 {
-  font-size: 1.45rem !important;
-  margin-top: 1.75rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.35rem !important;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
 }
 
 article h3 {
-  font-size: 1.2rem !important;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-article h4 {
-  font-size: 1.05rem !important;
-  margin-top: 1rem;
+  font-size: 1.12rem !important;
+  margin-top: 1.1rem;
   margin-bottom: 0.4rem;
 }
 
+article h4 {
+  font-size: 0.98rem !important;
+  margin-top: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
 article pre, article code {
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
 article ul, article ol {
@@ -212,16 +212,22 @@ article blockquote {
 
 /* --- Sidebar & TOC compact styling --- */
 .theme-doc-sidebar-container {
-  --ifm-font-size-base: 13px;
+  --ifm-font-size-base: 12px;
 }
 
 .menu__list-item {
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.menu__link {
+  font-size: 12px;
+  padding: 0.35rem 0.5rem;
 }
 
 .table-of-contents__link {
-  font-size: 13px;
-  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  padding: 0.2rem 0.4rem;
 }
 
 .table-of-contents__link:hover {
@@ -229,7 +235,18 @@ article blockquote {
 }
 
 .doc-sidebar-item {
-  font-size: 13px;
+  font-size: 12px;
+}
+
+/* Reduce sidebar width when expanded */
+.theme-doc-sidebar-container {
+  --ifm-sidebar-width: 260px !important;
+}
+
+/* Reduce TOC width */
+.tocCollapsibleButton__txt,
+.tocCollapsibleButton__chevron {
+  font-size: 12px;
 }
 
 /* --- MOBILE OPTIMIZATION --- */

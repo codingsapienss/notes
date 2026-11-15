@@ -1,5 +1,5 @@
 .heroBanner {
-  padding: 4rem 0 3rem;
+  padding: 3rem 0 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -12,16 +12,16 @@
 }
 
 .heroBanner :global(.hero__title) {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   letter-spacing: -0.02em;
 }
 
 .heroBanner :global(.hero__subtitle) {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: var(--ifm-color-emphasis-600);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .buttons {
@@ -34,8 +34,8 @@
 .categoryList {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  max-width: 680px;
+  gap: 0.4rem;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -52,7 +52,7 @@
 .categoryLink {
   display: flex;
   align-items: center;
-  padding: 0.85rem 1.25rem;
+  padding: 0.7rem 1rem;
   text-decoration: none !important;
   color: inherit !important;
   border-radius: 8px;
@@ -65,14 +65,14 @@
 }
 
 .categoryIcon {
-  font-size: 1.4rem;
-  margin-right: 1rem;
+  font-size: 1.25rem;
+  margin-right: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 7px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
   background: var(--ifm-color-emphasis-100);
   flex-shrink: 0;
 }
@@ -84,22 +84,22 @@
 
 .categoryTitle {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--ifm-font-color-base);
 }
 
 .categoryDescription {
-  margin: 0.15rem 0 0 0;
-  font-size: 0.82rem;
+  margin: 0.1rem 0 0 0;
+  font-size: 0.78rem;
   color: var(--ifm-color-emphasis-600);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .categoryArrow {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--ifm-color-emphasis-400);
-  margin-left: 0.75rem;
+  margin-left: 0.6rem;
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -111,21 +111,21 @@
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2.5rem 1.5rem 2rem;
+    padding: 2rem 1rem 1.5rem;
   }
   .heroBanner :global(.hero__title) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   .heroBanner :global(.hero__subtitle) {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   .categoryLink {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.85rem;
   }
   .categoryTitle {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
   }
   .categoryDescription {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
   }
 }
