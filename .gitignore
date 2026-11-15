@@ -26,6 +26,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 prompt-data.txt
+
+# AI workflow guide — local reference only, never committed/pushed
+AI_DOCS_GUIDE.md
+
+# AGENTS.md — local reference only, never committed/pushed
+AGENTS.md
+
+# Scripts — local utilities only, never committed/pushed
+scripts/
 # Editor folders
 .idea
 .vscode
