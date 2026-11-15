@@ -19,6 +19,7 @@
   --ifm-font-color-base: #1c1e21; 
   --ifm-heading-color: #000000;
   --ifm-background-color: #f0f2f5 !important; /* Clean light gray background */
+  --ifm-container-max-width: 960px;
   
   /* Font size reductions for readability */
   --ifm-font-size-base: 13px;
@@ -152,6 +153,20 @@ article p, article li {
   line-height: 1.6;
 }
 
+/* Tables - match paragraph font size */
+article table {
+  font-size: 13px !important;
+}
+
+article th, article td {
+  font-size: 13px !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+article th {
+  font-weight: 600 !important;
+}
+
 article h1 {
   font-size: 1.6rem !important;
   margin-bottom: 1rem;
@@ -210,17 +225,23 @@ article blockquote {
   color: #cbd5e1 !important; /* Light gray for dark mode */
 }
 
-/* --- Sidebar visual differentiation --- */
+/* Sidebar container - broader background with surface color */
 .theme-doc-sidebar-container {
   --ifm-font-size-base: 12px;
-  --ifm-sidebar-width: 270px !important;
-  background: linear-gradient(180deg, var(--glass-bg) 0%, var(--ifm-background-color) 100%) !important;
+  --ifm-sidebar-width: 300px !important;
+  background: linear-gradient(180deg, var(--ifm-background-surface-color) 0%, var(--ifm-background-color) 100%) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-right: 1px solid var(--glass-border) !important;
+  border-right: 1px solid var(--ifm-color-emphasis-200) !important;
 }
 
-/* Sidebar root categories - distinct colored badges */
+/* Sidebar background panel - solid surface */
+.theme-doc-sidebar-container .sidebar,
+.theme-doc-sidebar-container .menu {
+  background-color: var(--ifm-background-surface-color) !important;
+}
+
+/* Sidebar root categories - folder icon + chevron */
 .menu__list-item--category > .menu__link {
   font-size: 13px;
   font-weight: 700;
@@ -237,15 +258,24 @@ article blockquote {
 }
 
 .menu__list-item--category > .menu__link::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ifm-color-primary);
+  content: '📁';
+  font-size: 14px;
   flex-shrink: 0;
 }
 
-/* Sub-category headers - slightly smaller, dot indicator */
+.menu__list-item--category > .menu__link::after {
+  content: '▾';
+  font-size: 12px;
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-500);
+  transition: transform 0.2s ease;
+}
+
+.menu__list-item--category.collapsed > .menu__link::after {
+  transform: rotate(-90deg);
+}
+
+/* Sub-category headers - folder icon */
 .menu__list-item--nested.menu__list-item--category > .menu__link {
   font-size: 12px;
   font-weight: 600;
@@ -256,15 +286,28 @@ article blockquote {
   padding-bottom: 0.35rem;
   border-bottom: 1px dashed var(--ifm-color-emphasis-300);
   margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .menu__list-item--nested.menu__list-item--category > .menu__link::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--ifm-color-primary-light);
+  content: '📁';
+  font-size: 13px;
   flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.menu__list-item--nested.menu__list-item--category > .menu__link::after {
+  content: '▾';
+  font-size: 11px;
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-500);
+  transition: transform 0.2s ease;
+}
+
+.menu__list-item--nested.menu__list-item--category.collapsed > .menu__link::after {
+  transform: rotate(-90deg);
 }
 
 /* Section divider between top-level categories */
@@ -277,27 +320,27 @@ article blockquote {
   padding-top: 1.25rem;
 }
 
-/* Regular sidebar links - muted with left padding */
-.menu__list-item > .menu__link {
-  font-size: 12.5px;
-  color: var(--ifm-font-color-base);
-  border-radius: 5px;
+/* Regular page links - document icon */
+.menu__list-item > .menu__link:not(.menu__link--category) {
+  position: relative;
   padding-left: 1.5rem;
-  transition: all 0.15s ease;
 }
 
-.menu__list-item > .menu__link:hover {
-  background-color: var(--ifm-color-emphasis-100);
-  color: var(--ifm-color-primary);
+.menu__list-item > .menu__link:not(.menu__link--category)::before {
+  content: '📄';
+  font-size: 12px;
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 
-/* Active link - highlighted pill */
+/* Active page link - highlighted with left border */
 .menu__list-item > .menu__link--active {
-  background-color: var(--ifm-color-primary);
-  color: #fff !important;
+  color: var(--ifm-color-primary) !important;
   font-weight: 600;
-  border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background-color: rgba(26, 94, 58, 0.06);
+  border-radius: 0 5px 5px 0;
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 1.25rem;
 }
 
 /* Nested items - indented with left border */
@@ -352,8 +395,9 @@ article blockquote {
   border-right: 1px solid var(--glass-border) !important;
 }
 
-/* TOC (right sidebar) - visual hierarchy */
+/* TOC (right sidebar) - wider with visual hierarchy */
 .table-of-contents {
+  width: 280px !important;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
@@ -406,6 +450,11 @@ article blockquote {
   color: var(--ifm-color-emphasis-500);
   padding-left: 1.75rem;
   font-style: italic;
+}
+
+/* TOC container - wider */
+.tocCollapsibleButton {
+  width: 280px !important;
 }
 
 /* --- MOBILE OPTIMIZATION --- */
