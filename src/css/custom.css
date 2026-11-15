@@ -22,15 +22,18 @@
   --ifm-container-max-width: 100%;
   --ifm-font-size-base: 13px;
   
-  /* Font size reductions for readability */
-  --ifm-font-size-base: 13px;
-  --ifm-font-size-sm: 11px;
-  --ifm-font-size-lg: 14px;
-  --ifm-font-size-xl: 16px;
-  --ifm-font-size-2xl: 19px;
-  --ifm-font-size-3xl: 22px;
-  --ifm-font-size-4xl: 26px;
-  --ifm-code-font-size: 82%;
+  /* Font size base - adjustable via JS zoom */
+:root {
+  --font-scale: 1;
+  --ifm-font-size-base: calc(14px * var(--font-scale));
+  --ifm-font-size-sm: calc(12px * var(--font-scale));
+  --ifm-font-size-lg: calc(16px * var(--font-scale));
+  --ifm-font-size-xl: calc(18px * var(--font-scale));
+  --ifm-font-size-2xl: calc(21px * var(--font-scale));
+  --ifm-font-size-3xl: calc(24px * var(--font-scale));
+  --ifm-font-size-4xl: calc(28px * var(--font-scale));
+  --ifm-code-font-size: calc(13px * var(--font-scale));
+}
   
   /* Grid & Glass (Light) */
   --grid-color: rgba(0, 0, 0, 0.08);
@@ -152,17 +155,17 @@ article {
 }
 
 article p, article li {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: calc(14px * var(--font-scale));
+  line-height: 1.65;
 }
 
 /* Tables - match paragraph font size */
 article table {
-  font-size: 13px !important;
+  font-size: calc(14px * var(--font-scale)) !important;
 }
 
 article th, article td {
-  font-size: 13px !important;
+  font-size: calc(14px * var(--font-scale)) !important;
   padding: 0.5rem 0.75rem !important;
 }
 
@@ -171,30 +174,30 @@ article th {
 }
 
 article h1 {
-  font-size: 1.6rem !important;
+  font-size: calc(1.6rem * var(--font-scale)) !important;
   margin-bottom: 1rem;
 }
 
 article h2 {
-  font-size: 1.35rem !important;
+  font-size: calc(1.35rem * var(--font-scale)) !important;
   margin-top: 1.5rem;
   margin-bottom: 0.6rem;
 }
 
 article h3 {
-  font-size: 1.12rem !important;
+  font-size: calc(1.12rem * var(--font-scale)) !important;
   margin-top: 1.1rem;
   margin-bottom: 0.4rem;
 }
 
 article h4 {
-  font-size: 0.98rem !important;
+  font-size: calc(0.98rem * var(--font-scale)) !important;
   margin-top: 0.9rem;
   margin-bottom: 0.3rem;
 }
 
 article pre, article code {
-  font-size: 11px !important;
+  font-size: calc(13px * var(--font-scale)) !important;
 }
 
 article ul, article ol {
@@ -230,7 +233,7 @@ article blockquote {
 
 /* Sidebar container - broader background with surface color */
 .theme-doc-sidebar-container {
-  --ifm-font-size-base: 13px !important;
+  --ifm-font-size-base: calc(13px * var(--font-scale)) !important;
   --ifm-sidebar-width: 300px !important;
   background: linear-gradient(180deg, var(--ifm-background-surface-color) 0%, var(--ifm-background-color) 100%) !important;
   backdrop-filter: blur(10px);
@@ -248,12 +251,12 @@ article blockquote {
 .theme-doc-sidebar-container .menu__link,
 .theme-doc-sidebar-container .menu__list-item,
 .theme-doc-sidebar-container .menu__label {
-  font-size: 13px !important;
+  font-size: calc(13px * var(--font-scale)) !important;
 }
 
 /* Add gap between icon and text */
 .theme-doc-sidebar-container .menu__link .menu__label {
-  margin-left: 0.5rem !important;
+  margin-left: calc(0.5rem * var(--font-scale)) !important;
 }
 
 /* Sidebar root categories - folder icon */
@@ -334,7 +337,7 @@ article blockquote {
 }
 
 .menu__list-item--nested > .menu__link {
-  font-size: 13px;
+  font-size: calc(13px * var(--font-scale));
   color: var(--ifm-color-emphasis-700);
 }
 
@@ -387,7 +390,7 @@ article blockquote {
 }
 
 .table-of-contents__title {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale));
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -396,7 +399,7 @@ article blockquote {
 }
 
 .table-of-contents__link {
-  font-size: 12px;
+  font-size: calc(12px * var(--font-scale));
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   border-left: 2px solid transparent;
@@ -413,7 +416,7 @@ article blockquote {
 /* TOC H2 (top level) */
 .table-of-contents__list > .table-of-contents__link {
   font-weight: 600;
-  font-size: 12.5px;
+  font-size: calc(12.5px * var(--font-scale));
   color: var(--ifm-font-color-base);
   border-left: 3px solid var(--ifm-color-primary);
   padding-left: 0.6rem;
@@ -421,7 +424,7 @@ article blockquote {
 
 /* TOC H3 (nested) */
 .table-of-contents__list .table-of-contents__list .table-of-contents__link {
-  font-size: 11.5px;
+  font-size: calc(11.5px * var(--font-scale));
   color: var(--ifm-color-emphasis-700);
   padding-left: 1.25rem;
   border-left: 2px solid var(--ifm-color-emphasis-300);
@@ -429,7 +432,7 @@ article blockquote {
 
 /* TOC H4 (deep nested) */
 .table-of-contents__list .table-of-contents__list .table-of-contents__list .table-of-contents__link {
-  font-size: 11px;
+  font-size: calc(11px * var(--font-scale));
   color: var(--ifm-color-emphasis-500);
   padding-left: 1.75rem;
   font-style: italic;
