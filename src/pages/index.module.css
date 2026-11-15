@@ -1,5 +1,5 @@
 .heroBanner {
-  padding: 5rem 0 4rem;
+  padding: 4rem 0 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -12,16 +12,16 @@
 }
 
 .heroBanner :global(.hero__title) {
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
 
 .heroBanner :global(.hero__subtitle) {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--ifm-color-emphasis-600);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .buttons {
@@ -31,18 +31,17 @@
   margin-top: 0;
 }
 
-/* Minimalist List Styles */
 .categoryList {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-width: 720px;
+  gap: 0.5rem;
+  max-width: 680px;
   margin: 0 auto;
 }
 
 .categoryItem {
   border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--glass-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -50,17 +49,13 @@
   overflow: hidden;
 }
 
-.categoryItem:last-child {
-  margin-bottom: 0;
-}
-
 .categoryLink {
   display: flex;
   align-items: center;
-  padding: 1.25rem 1.5rem;
+  padding: 0.85rem 1.25rem;
   text-decoration: none !important;
   color: inherit !important;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .categoryLink:hover {
@@ -70,14 +65,14 @@
 }
 
 .categoryIcon {
-  font-size: 1.75rem;
-  margin-right: 1.25rem;
+  font-size: 1.4rem;
+  margin-right: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 8px;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 7px;
   background: var(--ifm-color-emphasis-100);
   flex-shrink: 0;
 }
@@ -89,22 +84,22 @@
 
 .categoryTitle {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ifm-font-color-base);
 }
 
 .categoryDescription {
-  margin: 0.2rem 0 0 0;
-  font-size: 0.88rem;
+  margin: 0.15rem 0 0 0;
+  font-size: 0.82rem;
   color: var(--ifm-color-emphasis-600);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .categoryArrow {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--ifm-color-emphasis-400);
-  margin-left: 1rem;
+  margin-left: 0.75rem;
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -116,18 +111,21 @@
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 3rem 1.5rem 2.5rem;
+    padding: 2.5rem 1.5rem 2rem;
   }
   .heroBanner :global(.hero__title) {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   .heroBanner :global(.hero__subtitle) {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .categoryLink {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
   }
   .categoryTitle {
-    font-size: 1rem;
+    font-size: 0.92rem;
+  }
+  .categoryDescription {
+    font-size: 0.78rem;
   }
 }

@@ -21,14 +21,14 @@
   --ifm-background-color: #f0f2f5 !important; /* Clean light gray background */
   
   /* Font size reductions for readability */
-  --ifm-font-size-base: 15px;
-  --ifm-font-size-sm: 13px;
-  --ifm-font-size-lg: 17px;
-  --ifm-font-size-xl: 20px;
-  --ifm-font-size-2xl: 24px;
-  --ifm-font-size-3xl: 28px;
-  --ifm-font-size-4xl: 32px;
-  --ifm-code-font-size: 88%;
+  --ifm-font-size-base: 14px;
+  --ifm-font-size-sm: 12px;
+  --ifm-font-size-lg: 15px;
+  --ifm-font-size-xl: 18px;
+  --ifm-font-size-2xl: 21px;
+  --ifm-font-size-3xl: 24px;
+  --ifm-font-size-4xl: 28px;
+  --ifm-code-font-size: 85%;
   
   /* Grid & Glass (Light) */
   --grid-color: rgba(0, 0, 0, 0.08);
@@ -148,35 +148,35 @@ article {
 }
 
 article p, article li {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 article h1 {
-  font-size: 2rem !important;
-  margin-bottom: 1.5rem;
+  font-size: 1.75rem !important;
+  margin-bottom: 1.25rem;
 }
 
 article h2 {
-  font-size: 1.6rem !important;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-article h3 {
-  font-size: 1.35rem !important;
-  margin-top: 1.5rem;
+  font-size: 1.45rem !important;
+  margin-top: 1.75rem;
   margin-bottom: 0.75rem;
 }
 
-article h4 {
-  font-size: 1.15rem !important;
+article h3 {
+  font-size: 1.2rem !important;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
+article h4 {
+  font-size: 1.05rem !important;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
 article pre, article code {
-  font-size: 13px !important;
+  font-size: 12px !important;
 }
 
 article ul, article ol {
@@ -210,8 +210,26 @@ article blockquote {
   color: #cbd5e1 !important; /* Light gray for dark mode */
 }
 
+/* --- Sidebar & TOC compact styling --- */
+.theme-doc-sidebar-container {
+  --ifm-font-size-base: 13px;
+}
+
+.menu__list-item {
+  font-size: 13px;
+}
+
 .table-of-contents__link {
-  text-transform: none !important;
+  font-size: 13px;
+  padding: 0.25rem 0.5rem;
+}
+
+.table-of-contents__link:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.doc-sidebar-item {
+  font-size: 13px;
 }
 
 /* --- MOBILE OPTIMIZATION --- */
