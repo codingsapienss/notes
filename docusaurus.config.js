@@ -1,6 +1,5 @@
 // @ts-check
 import {themes as prismThemes} from 'prism-react-renderer';
-import FontZoomController from './src/components/FontZoomController';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
