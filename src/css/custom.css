@@ -487,8 +487,14 @@ main .container {
   h3 { font-size: 1.15rem !important; }
   
   p, li {
-    font-size: 0.95rem !important;
+    font-size: calc(0.95rem * var(--font-scale)) !important;
     line-height: 1.6 !important;
+  }
+
+  article table,
+  article th,
+  article td {
+    font-size: calc(0.95rem * var(--font-scale)) !important;
   }
 
   .pagination-nav {
